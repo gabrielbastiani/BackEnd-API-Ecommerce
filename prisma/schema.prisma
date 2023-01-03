@@ -26,6 +26,8 @@ model User {
   nomeDoRecebedor   String? @db.VarChar(95)
   address           String? @db.VarChar(405)
   cep               String? @db.VarChar(25)
+  city              String? @db.VarChar(185)
+  state             String? @db.VarChar(155)
 
   authenticated Boolean @default(false)
   role          Role    @default(USER)
@@ -63,27 +65,26 @@ model Category {
 }
 
 model Product {
-  id                  String  @id @default(uuid())
-  nameProduct         String  @db.VarChar(225)
-  productPhoto1       String?
-  productPhoto2       String?
-  productPhoto3       String?
-  productPhoto4       String?
-  productPhoto5       String?
-  productPhoto6       String?
-  descriptionProduct1 String? @db.VarChar(725)
-  descriptionProduct2 String? @db.VarChar(725)
-  descriptionProduct3 String? @db.VarChar(725)
-  descriptionProduct4 String? @db.VarChar(725)
-  descriptionProduct5 String? @db.VarChar(725)
-  descriptionProduct6 String? @db.VarChar(725)
-  price               String? @db.VarChar(15)
-  sku                 String? @db.VarChar(25)
-  estoque             String? @db.VarChar(10)
+  id                  String   @id @default(uuid())
+  nameProduct         String   @db.VarChar(225)
+  productPhoto        String[]
+  descriptionProduct1 String?  @db.VarChar(725)
+  descriptionProduct2 String?  @db.VarChar(725)
+  descriptionProduct3 String?  @db.VarChar(725)
+  descriptionProduct4 String?  @db.VarChar(725)
+  descriptionProduct5 String?  @db.VarChar(725)
+  descriptionProduct6 String?  @db.VarChar(725)
+  price               String?  @db.VarChar(15)
+  sku                 String?  @db.VarChar(25)
+  estoque             String?  @db.VarChar(10)
   quantidade          Int?
-  avaliacao           String? @db.VarChar(15)
-  peso                Int?
-  dimensoes           Int?
+  avaliacao           String?  @db.VarChar(15)
+  pesoKG              Int?
+  larguraCM           Int?
+  alturaCM            Int?
+  profundidadeCM      Int?
+  promocao            Boolean  @default(false)
+  freteGratis         Boolean  @default(false)
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -91,7 +92,19 @@ model Product {
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
 
+  variacoes Variacao[]
+
   @@map("products")
+}
+
+model Variacao {
+  id           String  @id @default(uuid())
+  nameVariacao String? @db.VarChar(225)
+
+  product    Product @relation(fields: [product_id], references: [id])
+  product_id String
+
+  @@map("variacoes")
 }
 
 model Pedido {
@@ -102,9 +115,36 @@ model Pedido {
   quantidadeDeItens Int
   statusDoPedido    Boolean @default(false)
   modoDePagamento   String  @db.VarChar(25)
+  cancelar          Boolean @default(false)
 
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
+  user     User   @relation(fields: [user_id], references: [id])
+  user_id  String
+  frete    Frete  @relation(fields: [frete_id], references: [id])
+  frete_id String
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("pedidos")
+}
+
+model Frete {
+  id                 String  @id @default(uuid())
+  codigoRastreamento String? @db.VarChar(95)
+  status             Boolean @default(false)
+  custo              Int?
+  prazoDeEntrega     String? @db.VarChar(95)
+
+  nomeDoRecebedor String? @db.VarChar(95)
+  address         String? @db.VarChar(405)
+  cep             String? @db.VarChar(25)
+  city            String? @db.VarChar(185)
+  state           String? @db.VarChar(155)
+
+  pedidos Pedido[]
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("fretes")
 }
