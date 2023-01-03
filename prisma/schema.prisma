@@ -28,6 +28,7 @@ model User {
   cep               String? @db.VarChar(25)
   city              String? @db.VarChar(185)
   state             String? @db.VarChar(155)
+  pais              String? @db.VarChar(25)
 
   authenticated Boolean @default(false)
   role          Role    @default(USER)

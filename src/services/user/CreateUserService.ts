@@ -16,10 +16,28 @@ interface UserRequest {
   nomeDoRecebedor: string;
   address: string;
   cep: string;
+  pais: string;
+  state: string;
+  city: string;
 }
 
 class CreateUserService {
-  async execute({ nameComplete, email, password, cpfOrCnpj, inscricaoEstadual, phone, dataNascimento, genero, nomeDoRecebedor, address, cep }: UserRequest) {
+  async execute({
+    nameComplete,
+    email,
+    password,
+    cpfOrCnpj,
+    inscricaoEstadual,
+    phone,
+    dataNascimento,
+    genero,
+    nomeDoRecebedor,
+    address,
+    cep,
+    city,
+    state,
+    pais
+  }: UserRequest) {
 
     // verificar se ele enviou um email
     if (!email) {
@@ -52,6 +70,9 @@ class CreateUserService {
         nomeDoRecebedor: nomeDoRecebedor,
         address: address,
         cep: cep,
+        city: city,
+        state: state,
+        pais: pais
       },
       select: {
         id: true,
@@ -66,6 +87,9 @@ class CreateUserService {
         nomeDoRecebedor: true,
         address: true,
         cep: true,
+        city: true,
+        state: true,
+        pais: true,
         authenticated: true,
         role: true,
         created_at: true,

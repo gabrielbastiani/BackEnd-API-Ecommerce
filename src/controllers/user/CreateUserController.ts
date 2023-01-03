@@ -3,7 +3,22 @@ import { CreateUserService } from '../../services/user/CreateUserService'
 
 class CreateUserController {
     async handle(req: Request, res: Response) {
-        const { nameComplete, email, password, cpfOrCnpj, inscricaoEstadual, phone, dataNascimento, genero, nomeDoRecebedor, address, cep } = req.body;
+        const {
+            nameComplete,
+            email,
+            password,
+            cpfOrCnpj,
+            inscricaoEstadual,
+            phone,
+            dataNascimento,
+            genero,
+            nomeDoRecebedor,
+            address,
+            cep,
+            city,
+            state,
+            pais
+        } = req.body;
 
         const createUserService = new CreateUserService();
 
@@ -18,7 +33,10 @@ class CreateUserController {
             genero,
             nomeDoRecebedor,
             address,
-            cep
+            cep,
+            city,
+            state,
+            pais
         });
 
         return res.json(user)
