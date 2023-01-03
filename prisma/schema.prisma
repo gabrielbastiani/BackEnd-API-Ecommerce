@@ -13,16 +13,98 @@ datasource db {
 // criar uma migration: yarn prisma migrate dev
 
 model User {
-  id       String  @id @default(uuid())
-  photo    String? @default("")
-  name     String  @db.VarChar(75) @unique
-  email    String  @unique @db.VarChar(80)
-  password String
+  id                String  @id @default(uuid())
+  nameComplete      String  @db.VarChar(95)
+  email             String  @unique @db.VarChar(80)
+  password          String
+  cpfOrCnpj         String? @db.VarChar(25)
+  inscricaoEstadual String? @db.VarChar(55)
+  phone             String? @db.VarChar(35)
+  dataNascimento    String? @db.VarChar(25)
+  genero            String? @db.VarChar(35)
+  newslatter        Boolean @default(false)
+  nomeDoRecebedor   String? @db.VarChar(95)
+  address           String? @db.VarChar(405)
+  cep               String? @db.VarChar(25)
 
   authenticated Boolean @default(false)
+  role          Role    @default(USER)
+
+  pedidos Pedido[]
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
   @@map("users")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model PasswordRecovery {
+  id    String @id @default(uuid())
+  email String
+
+  @@map("passwordRecoverys")
+}
+
+model Category {
+  id           String @id @default(uuid())
+  categoryName String @unique @db.VarChar(100)
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  products Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id                  String  @id @default(uuid())
+  nameProduct         String  @db.VarChar(225)
+  productPhoto1       String?
+  productPhoto2       String?
+  productPhoto3       String?
+  productPhoto4       String?
+  productPhoto5       String?
+  productPhoto6       String?
+  descriptionProduct1 String? @db.VarChar(725)
+  descriptionProduct2 String? @db.VarChar(725)
+  descriptionProduct3 String? @db.VarChar(725)
+  descriptionProduct4 String? @db.VarChar(725)
+  descriptionProduct5 String? @db.VarChar(725)
+  descriptionProduct6 String? @db.VarChar(725)
+  price               String? @db.VarChar(15)
+  sku                 String? @db.VarChar(25)
+  estoque             String? @db.VarChar(10)
+  quantidade          Int?
+  avaliacao           String? @db.VarChar(15)
+  peso                Int?
+  dimensoes           Int?
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id String
+
+  @@map("products")
+}
+
+model Pedido {
+  id                String  @id @default(uuid())
+  nameClient        String  @db.VarChar(95)
+  nameProduct       String  @db.VarChar(225)
+  valorPedido       Int
+  quantidadeDeItens Int
+  statusDoPedido    Boolean @default(false)
+  modoDePagamento   String  @db.VarChar(25)
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  @@map("pedidos")
 }
