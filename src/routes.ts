@@ -37,7 +37,7 @@ router.put('/recover', new RecoveryPasswordController().handle);
 router.delete('/deleteUser', isAuthenticated, new DeleteUserController().handle);
 router.put('/roleUser', new UserRoleUserController().handle);
 router.put('/newslatter', new NewslatterUserController().handle);
-router.get('/allUsers', isAuthenticated, new PageListAllUsersController().handle);
+router.get('/allUsersPage', isAuthenticated, new PageListAllUsersController().handle);
 
 
 export { router };
