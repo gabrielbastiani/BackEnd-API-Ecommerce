@@ -27,8 +27,22 @@ import { UpdateUserNomeDoRecebedorController } from './controllers/user/UpdateUs
 import { UpdateUserAdressController } from './controllers/user/UpdateUserAdressController';
 import { UpdateUserCepController } from './controllers/user/UpdateUserCepController';
 import { UpdateUserCityController } from './controllers/user/UpdateUserCityController';
+import { UpdateUserEstadoController } from './controllers/user/UpdateUserEstadoController';
+import { UpdateUserPaisController } from './controllers/user/UpdateUserPaisController';
 
-// -- ROTASENVIAR EMAILS --
+// -- ROTAS CATEGORIAS --
+import { CreateCategoryController } from './controllers/category/CreateCategoryController';
+import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
+import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
+import { ListCategoryController } from './controllers/category/ListCategoryController';
+import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
+
+// -- ROTAS PRODUTOS --
+import { CreateProductController } from './controllers/product/CreateProductController';
+
+
+
+// -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
 
 
@@ -68,6 +82,20 @@ router.put('/nomeDoRecebedorUserUpdate', isAuthenticated, new UpdateUserNomeDoRe
 router.put('/adressUserUpdate', isAuthenticated, new UpdateUserAdressController().handle);
 router.put('/cepUserUpdate', isAuthenticated, new UpdateUserCepController().handle);
 router.put('/cityUserUpdate', isAuthenticated, new UpdateUserCityController().handle);
+router.put('/estadoUserUpdate', isAuthenticated, new UpdateUserEstadoController().handle);
+router.put('/paisUserUpdate', isAuthenticated, new UpdateUserPaisController().handle);
+
+// -- ROTAS CATEGORIAS --
+router.post('/category', isAuthenticated, new CreateCategoryController().handle);
+router.put('/categoryUpdate', isAuthenticated, new UpdateNameCategoryController().handle);
+router.get('/allCategorysPage', isAuthenticated, new PageListAllCategorysController().handle);
+router.get('/allCategorys', new ListCategoryController().handle);
+router.get('/exactCategory', isAuthenticated, new ListExactCategoryController().handle);
+
+// -- ROTAS PRODUTOS --
+router.post('/createProduct', isAuthenticated, upload.array('files'), new CreateProductController().handle);
+
+
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);

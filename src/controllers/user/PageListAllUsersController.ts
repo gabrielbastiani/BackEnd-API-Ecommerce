@@ -7,9 +7,9 @@ class PageListAllUsersController {
 
         const { page, limit } = req.query;
 
-        const newslatter = await pageListAllUsersService.execute(Number(page), Number(limit));
+        const usersPage = await pageListAllUsersService.execute(Number(page), Number(limit));
 
-        return res.json(newslatter);
+        return res.json(usersPage);
     }
 }
 
