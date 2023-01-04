@@ -14,6 +14,23 @@ import { DeleteUserController } from './controllers/user/DeleteUserController';
 import { UserRoleUserController } from './controllers/user/UserRoleUserController';
 import { NewslatterUserController } from './controllers/user/NewslatterUserController';
 import { PageListAllUsersController } from './controllers/user/PageListAllUsersController';
+import { ExportUsersController } from './controllers/user/ExportUsersController';
+import { UpdateUserNameController } from './controllers/user/UpdateUserNameController';
+import { UpdateUserEmailController } from './controllers/user/UpdateUserEmailController';
+import { UpdateUserCpfOrCnpjController } from './controllers/user/UpdateUserCpfOrCnpjController';
+import { UpdateUserInscricaoEstadualController } from './controllers/user/UpdateUserInscricaoEstadualController';
+import { UpdateUserPhoneController } from './controllers/user/UpdateUserPhoneController';
+import { UpdateUserDataDeNascimentoController } from './controllers/user/UpdateUserDataDeNascimentoController';
+import { UpdateUserGeneroController } from './controllers/user/UpdateUserGeneroController';
+import { UpdateUserNewslatterController } from './controllers/user/UpdateUserNewslatterController';
+import { UpdateUserNomeDoRecebedorController } from './controllers/user/UpdateUserNomeDoRecebedorController';
+import { UpdateUserAdressController } from './controllers/user/UpdateUserAdressController';
+import { UpdateUserCepController } from './controllers/user/UpdateUserCepController';
+import { UpdateUserCityController } from './controllers/user/UpdateUserCityController';
+
+// -- ROTASENVIAR EMAILS --
+import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
+
 
 
 
@@ -38,6 +55,22 @@ router.delete('/deleteUser', isAuthenticated, new DeleteUserController().handle)
 router.put('/roleUser', new UserRoleUserController().handle);
 router.put('/newslatter', new NewslatterUserController().handle);
 router.get('/allUsersPage', isAuthenticated, new PageListAllUsersController().handle);
+router.get('/exportUser', isAuthenticated, new ExportUsersController().handle);
+router.put('/nameUserUpdate', isAuthenticated, new UpdateUserNameController().handle);
+router.put('/emailUserUpdate', isAuthenticated, new UpdateUserEmailController().handle);
+router.put('/cpfOrConpjUserUpdate', isAuthenticated, new UpdateUserCpfOrCnpjController().handle);
+router.put('/inscricaoEstadualUserUpdate', isAuthenticated, new UpdateUserInscricaoEstadualController().handle);
+router.put('/phoneUserUpdate', isAuthenticated, new UpdateUserPhoneController().handle);
+router.put('/dataDeNascimentoUserUpdate', isAuthenticated, new UpdateUserDataDeNascimentoController().handle);
+router.put('/generoUserUpdate', isAuthenticated, new UpdateUserGeneroController().handle);
+router.put('/newslatterUserUpdate', isAuthenticated, new UpdateUserNewslatterController().handle);
+router.put('/nomeDoRecebedorUserUpdate', isAuthenticated, new UpdateUserNomeDoRecebedorController().handle);
+router.put('/adressUserUpdate', isAuthenticated, new UpdateUserAdressController().handle);
+router.put('/cepUserUpdate', isAuthenticated, new UpdateUserCepController().handle);
+router.put('/cityUserUpdate', isAuthenticated, new UpdateUserCityController().handle);
+
+// -- ROTAS ENVIAR EMAILS --
+router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);
 
 
 export { router };
