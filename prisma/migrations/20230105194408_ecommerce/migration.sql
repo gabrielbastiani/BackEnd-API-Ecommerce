@@ -49,22 +49,21 @@ CREATE TABLE "categories" (
 CREATE TABLE "products" (
     "id" TEXT NOT NULL,
     "nameProduct" VARCHAR(225) NOT NULL,
-    "productPhoto" TEXT[],
     "descriptionProduct1" VARCHAR(725),
     "descriptionProduct2" VARCHAR(725),
     "descriptionProduct3" VARCHAR(725),
     "descriptionProduct4" VARCHAR(725),
     "descriptionProduct5" VARCHAR(725),
     "descriptionProduct6" VARCHAR(725),
-    "price" VARCHAR(15),
+    "price" INTEGER DEFAULT 0,
     "sku" VARCHAR(25),
-    "estoque" VARCHAR(10),
-    "quantidade" INTEGER,
+    "estoque" INTEGER DEFAULT 0,
+    "quantidade" INTEGER DEFAULT 0,
     "avaliacao" VARCHAR(15),
-    "pesoKG" INTEGER,
-    "larguraCM" INTEGER,
-    "alturaCM" INTEGER,
-    "profundidadeCM" INTEGER,
+    "pesoKG" INTEGER DEFAULT 0,
+    "larguraCM" INTEGER DEFAULT 0,
+    "alturaCM" INTEGER DEFAULT 0,
+    "profundidadeCM" INTEGER DEFAULT 0,
     "promocao" BOOLEAN NOT NULL DEFAULT false,
     "freteGratis" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -72,6 +71,16 @@ CREATE TABLE "products" (
     "category_id" TEXT NOT NULL,
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "photoproducts" (
+    "id" TEXT NOT NULL,
+    "photo" TEXT,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "product_id" TEXT NOT NULL,
+
+    CONSTRAINT "photoproducts_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -127,6 +136,9 @@ CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName"
 
 -- AddForeignKey
 ALTER TABLE "products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "photoproducts" ADD CONSTRAINT "photoproducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "variacoes" ADD CONSTRAINT "variacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

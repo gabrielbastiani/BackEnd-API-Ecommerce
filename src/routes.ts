@@ -39,8 +39,8 @@ import { ListExactCategoryController } from './controllers/category/ListExactCat
 
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
-
-
+import { PhotoProductController } from './controllers/product/photoproduct/PhotoProductController';
+import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -93,8 +93,9 @@ router.get('/allCategorys', new ListCategoryController().handle);
 router.get('/exactCategory', isAuthenticated, new ListExactCategoryController().handle);
 
 // -- ROTAS PRODUTOS --
-router.post('/createProduct', isAuthenticated, upload.array("files", 15), new CreateProductController().handle);
-
+router.post('/createProduct', isAuthenticated, new CreateProductController().handle);
+router.post('/photo', isAuthenticated, upload.single('file'), new PhotoProductController().handle);
+router.get('/allProductsPage', isAuthenticated, new PageListAllProductController().handle);
 
 
 // -- ROTAS ENVIAR EMAILS --
