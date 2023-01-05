@@ -1,7 +1,6 @@
 import prismaClient from "../../prisma";
 
 interface ProductRequest {
-    product_id: string;
     nameProduct: string;
     productPhoto: [];
     descriptionProduct1: string;

@@ -25,11 +25,11 @@ class CreateProductController {
 
         const createProductService = new CreateProductService();
 
-        if (!req.file) {
-            throw new Error("error upload file")
+        if (!req.files) {
+            throw new Error("error upload files")
         } else {
 
-            const { originalname, filesname: productPhoto } = req.files;
+            const { originalname, filename: productPhoto } = req.files;
 
             const product = await createProductService.execute({
                 nameProduct,

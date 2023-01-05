@@ -93,7 +93,7 @@ router.get('/allCategorys', new ListCategoryController().handle);
 router.get('/exactCategory', isAuthenticated, new ListExactCategoryController().handle);
 
 // -- ROTAS PRODUTOS --
-router.post('/createProduct', isAuthenticated, upload.array('files'), new CreateProductController().handle);
+router.post('/createProduct', isAuthenticated, upload.array("files", 15), new CreateProductController().handle);
 
 
 
