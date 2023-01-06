@@ -36,11 +36,14 @@ import { UpdateNameCategoryController } from './controllers/category/UpdateNameC
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
+import { UpdateCategoryController } from './controllers/category/UpdateCategoryController';
 
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
 import { PhotoProductController } from './controllers/product/photoproduct/PhotoProductController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
+import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
+import { DeleteProductController } from './controllers/product/DeleteProductController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -91,12 +94,14 @@ router.put('/categoryUpdate', isAuthenticated, new UpdateNameCategoryController(
 router.get('/allCategorysPage', isAuthenticated, new PageListAllCategorysController().handle);
 router.get('/allCategorys', new ListCategoryController().handle);
 router.get('/exactCategory', isAuthenticated, new ListExactCategoryController().handle);
+router.put('/categoryUpdate', isAuthenticated, new UpdateCategoryController().handle);
 
 // -- ROTAS PRODUTOS --
 router.post('/createProduct', isAuthenticated, new CreateProductController().handle);
 router.post('/photo', isAuthenticated, upload.single('file'), new PhotoProductController().handle);
+router.delete('/deletePhoto', isAuthenticated, new DeletePhotoProductController().handle);
 router.get('/allProductsPage', isAuthenticated, new PageListAllProductController().handle);
-
+router.delete('/deleteProduct', isAuthenticated, new DeleteProductController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);
