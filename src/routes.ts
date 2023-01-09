@@ -6,7 +6,7 @@ import multer from 'multer';
 import { CreateUserController } from './controllers/user/CreateUserController';
 import { AuthUserController } from './controllers/user/AuthUserController';
 import { AuthenticatedEmailUserController } from './controllers/user/AuthenticatedEmailUserController';
-import { DesativarlUserController } from './controllers/user/DesativarlUserController';
+import { ActiveOrDesactiveUserController } from './controllers/user/ActiveOrDesactiveUserController';
 import { EmailPasswordController } from './controllers/user/PasswordRecovery/EmailPasswordController';
 import { RecoveryPasswordController } from './controllers/user/PasswordRecovery/RecoveryPasswordController';
 import { DetailuserController } from './controllers/user/DetailUserController';
@@ -44,6 +44,24 @@ import { PhotoProductController } from './controllers/product/photoproduct/Photo
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
+import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
+import { Update1DescriptionProductController } from './controllers/product/Update1DescriptionProductController';
+import { Update2DescriptionProductController } from './controllers/product/Update2DescriptionProductController';
+import { Update3DescriptionProductController } from './controllers/product/Update3DescriptionProductController';
+import { Update4DescriptionProductController } from './controllers/product/Update4DescriptionProductController';
+import { Update5DescriptionProductController } from './controllers/product/Update5DescriptionProductController';
+import { Update6DescriptionProductController } from './controllers/product/Update6DescriptionProductController';
+import { UpdatePriceProductController } from './controllers/product/UpdatePriceProductController';
+import { UpdateSKUProductController } from './controllers/product/UpdateSKUProductController';
+import { UpdateEstoqueProductController } from './controllers/product/UpdateEstoqueProductController';
+import { UpdateQuantidadeProductController } from './controllers/product/UpdateQuantidadeProductController';
+import { UpdateAvaliacaoProductController } from './controllers/product/UpdateAvaliacaoProductController';
+import { UpdatePesoProductController } from './controllers/product/UpdatePesoProductController';
+import { UpdateLarguraProductController } from './controllers/product/UpdateLarguraProductController';
+import { UpdateAlturaProductController } from './controllers/product/UpdateAlturaProductController';
+import { UpdateProfundidadeProductController } from './controllers/product/UpdateProfundidadeProductController';
+import { PromocaoProductController } from './controllers/product/PromocaoProductController';
+import { FreteGratisProductController } from './controllers/product/FreteGratisProductController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -65,7 +83,7 @@ router.post('/createUser', new CreateUserController().handle);
 router.post('/session', new AuthUserController().handle);
 router.get('/me', isAuthenticated, new DetailuserController().handle);
 router.put('/authenticated', new AuthenticatedEmailUserController().handle);
-router.put('/disabledUser', isAuthenticated, new DesativarlUserController().handle);
+router.put('/activeOrDesactiveUser', isAuthenticated, new ActiveOrDesactiveUserController().handle);
 router.post('/recover', new EmailPasswordController().handle);
 router.put('/recover', new RecoveryPasswordController().handle);
 router.delete('/deleteUser', isAuthenticated, new DeleteUserController().handle);
@@ -102,6 +120,24 @@ router.post('/photo', isAuthenticated, upload.single('file'), new PhotoProductCo
 router.delete('/deletePhoto', isAuthenticated, new DeletePhotoProductController().handle);
 router.get('/allProductsPage', isAuthenticated, new PageListAllProductController().handle);
 router.delete('/deleteProduct', isAuthenticated, new DeleteProductController().handle);
+router.put('/updateNameProduct', isAuthenticated, new UpdateNameProductController().handle);
+router.put('/updateDescription1', isAuthenticated, new Update1DescriptionProductController().handle);
+router.put('/updateDescription2', isAuthenticated, new Update2DescriptionProductController().handle);
+router.put('/updateDescription3', isAuthenticated, new Update3DescriptionProductController().handle);
+router.put('/updateDescription4', isAuthenticated, new Update4DescriptionProductController().handle);
+router.put('/updateDescription5', isAuthenticated, new Update5DescriptionProductController().handle);
+router.put('/updateDescription6', isAuthenticated, new Update6DescriptionProductController().handle);
+router.put('/updatePrice', isAuthenticated, new UpdatePriceProductController().handle);
+router.put('/updateSKU', isAuthenticated, new UpdateSKUProductController().handle);
+router.put('/updateEstoque', isAuthenticated, new UpdateEstoqueProductController().handle);
+router.put('/updateQuantidade', isAuthenticated, new UpdateQuantidadeProductController().handle);
+router.put('/updateAvaliacao', isAuthenticated, new UpdateAvaliacaoProductController().handle);
+router.put('/updatePeso', isAuthenticated, new UpdatePesoProductController().handle);
+router.put('/updateLargura', isAuthenticated, new UpdateLarguraProductController().handle);
+router.put('/updateAltura', isAuthenticated, new UpdateAlturaProductController().handle);
+router.put('/updateProfundidade', isAuthenticated, new UpdateProfundidadeProductController().handle);
+router.put('/activeOrDesactivePromocao', isAuthenticated, new PromocaoProductController().handle);
+router.put('/activeOrDesactiveFreteGratis', isAuthenticated, new FreteGratisProductController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);

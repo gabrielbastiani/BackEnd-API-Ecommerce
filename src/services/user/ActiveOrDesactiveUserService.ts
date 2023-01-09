@@ -4,7 +4,7 @@ interface UserRequest{
   user_id: string;
 }
 
-class UserUpdateNewslatterService {
+class ActiveOrDesactiveUserService {
   async execute({ user_id }: UserRequest) {
 
     const activeTrue = await prismaClient.user.findUnique({
@@ -12,7 +12,7 @@ class UserUpdateNewslatterService {
         id: user_id
       },
       select: {
-        newslatter: true
+        authenticated: true
       }
     })
 
@@ -21,30 +21,30 @@ class UserUpdateNewslatterService {
         id: user_id
       },
       select: {
-        newslatter: true
+        authenticated: true
       }
     })
 
-    if(activeTrue.newslatter === true){
+    if(activeTrue.authenticated === true){
       const isFalse = await prismaClient.user.update({
         where:{
           id: user_id
         },
         data: {
-          newslatter: false
+          authenticated: false
         }
       })
 
       return isFalse;
     }
 
-    if(activeFalse.newslatter === false){
+    if(activeFalse.authenticated === false){
       const isTrue = await prismaClient.user.update({
         where:{
           id: user_id
         },
         data: {
-          newslatter: true
+          authenticated: true
         }
       })
 
@@ -55,4 +55,4 @@ class UserUpdateNewslatterService {
   }
 }
 
-export { UserUpdateNewslatterService }
+export { ActiveOrDesactiveUserService }
