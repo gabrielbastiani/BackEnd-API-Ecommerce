@@ -24,7 +24,6 @@ class PageListAllProductService {
                 price: true,
                 sku: true,
                 estoque: true,
-                quantidade: true,
                 avaliacao: true,
                 pesoKG: true,
                 larguraCM: true,

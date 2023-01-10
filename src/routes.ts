@@ -63,6 +63,12 @@ import { PromocaoProductController } from './controllers/product/PromocaoProduct
 import { FreteGratisProductController } from './controllers/product/FreteGratisProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
 
+// -- ROTAS VARIACOES --
+import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
+import { DeleteVariacaoController } from './controllers/variacao/DeleteVariacaoController';
+import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
+import { UpdateUrlVariacaoController } from './controllers/variacao/UpdateUrlVariacaoController';
+
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
@@ -139,6 +145,12 @@ router.put('/updateProfundidade', isAuthenticated, new UpdateProfundidadeProduct
 router.put('/activeOrDesactivePromocao', isAuthenticated, new PromocaoProductController().handle);
 router.put('/activeOrDesactiveFreteGratis', isAuthenticated, new FreteGratisProductController().handle);
 router.get('/exportProduct', isAuthenticated, new ExportProductController().handle);
+
+// -- ROTAS VARIACOES --
+router.post('/createVariacao', isAuthenticated, new CreateVariacaoController().handle);
+router.delete('/deleteVariacao', isAuthenticated, new DeleteVariacaoController().handle);
+router.put('/updateNameVariacao', isAuthenticated, new UpdateNameVariacaoController().handle);
+router.put('/updateUrl', isAuthenticated, new UpdateUrlVariacaoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);

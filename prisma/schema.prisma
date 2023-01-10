@@ -112,6 +112,7 @@ model PhotoProduct {
 model Variacao {
   id           String  @id @default(uuid())
   nameVariacao String? @db.VarChar(225)
+  urlProduct   String?
 
   product    Product @relation(fields: [product_id], references: [id])
   product_id String

@@ -86,6 +86,7 @@ CREATE TABLE "photoproducts" (
 CREATE TABLE "variacoes" (
     "id" TEXT NOT NULL,
     "nameVariacao" VARCHAR(225),
+    "urlProduct" TEXT,
     "product_id" TEXT NOT NULL,
 
     CONSTRAINT "variacoes_pkey" PRIMARY KEY ("id")
