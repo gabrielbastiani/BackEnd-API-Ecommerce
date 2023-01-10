@@ -74,15 +74,14 @@ model Product {
   descriptionProduct4 String? @db.VarChar(725)
   descriptionProduct5 String? @db.VarChar(725)
   descriptionProduct6 String? @db.VarChar(725)
-  price               Int?    @default(0)
+  price               String? @db.VarChar(15)
   sku                 String? @db.VarChar(25)
-  estoque             Int?    @default(0)
-  quantidade          Int?    @default(0)
+  estoque             String? @db.VarChar(15)
   avaliacao           String? @db.VarChar(15)
-  pesoKG              Int?    @default(0)
-  larguraCM           Int?    @default(0)
-  alturaCM            Int?    @default(0)
-  profundidadeCM      Int?    @default(0)
+  pesoKG              String? @db.VarChar(15)
+  larguraCM           String? @db.VarChar(15)
+  alturaCM            String? @db.VarChar(15)
+  profundidadeCM      String? @db.VarChar(15)
   promocao            Boolean @default(false)
   freteGratis         Boolean @default(false)
 
@@ -122,10 +121,10 @@ model Variacao {
 
 model Pedido {
   id                String  @id @default(uuid())
-  nameClient        String  @db.VarChar(95)
-  nameProduct       String  @db.VarChar(225)
-  valorPedido       Int
-  quantidadeDeItens Int
+  nameClient        String? @db.VarChar(95)
+  nameProduct       String? @db.VarChar(225)
+  valorPedido       String? @db.VarChar(15)
+  quantidadeDeItens String? @db.VarChar(15)
   statusDoPedido    Boolean @default(false)
   modoDePagamento   String  @db.VarChar(25)
   cancelar          Boolean @default(false)
@@ -145,7 +144,7 @@ model Frete {
   id                 String  @id @default(uuid())
   codigoRastreamento String? @db.VarChar(95)
   status             Boolean @default(false)
-  custo              Int?
+  custo              String? @db.VarChar(15)
   prazoDeEntrega     String? @db.VarChar(95)
 
   nomeDoRecebedor String? @db.VarChar(95)

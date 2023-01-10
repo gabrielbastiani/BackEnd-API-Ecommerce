@@ -8,15 +8,14 @@ interface ProductRequest {
     descriptionProduct4: string;
     descriptionProduct5: string;
     descriptionProduct6: string;
-    price: number;
+    price: string;
     sku: string;
-    estoque: number;
-    quantidade: number;
+    estoque: string;
     avaliacao: string;
-    pesoKG: number;
-    larguraCM: number;
-    alturaCM: number;
-    profundidadeCM: number;
+    pesoKG: string;
+    larguraCM: string;
+    alturaCM: string;
+    profundidadeCM: string;
     category_id: string;
 }
 
@@ -32,7 +31,6 @@ class CreateProductService {
         price,
         sku,
         estoque,
-        quantidade,
         avaliacao,
         pesoKG,
         larguraCM,
@@ -53,7 +51,6 @@ class CreateProductService {
                 price: price,
                 sku: sku,
                 estoque: estoque,
-                quantidade: quantidade,
                 avaliacao: avaliacao,
                 pesoKG: pesoKG,
                 larguraCM: larguraCM,
@@ -73,7 +70,6 @@ class CreateProductService {
                 price: true,
                 sku: true,
                 estoque: true,
-                quantidade: true,
                 avaliacao: true,
                 pesoKG: true,
                 larguraCM: true,

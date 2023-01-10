@@ -54,7 +54,6 @@ import { Update6DescriptionProductController } from './controllers/product/Updat
 import { UpdatePriceProductController } from './controllers/product/UpdatePriceProductController';
 import { UpdateSKUProductController } from './controllers/product/UpdateSKUProductController';
 import { UpdateEstoqueProductController } from './controllers/product/UpdateEstoqueProductController';
-import { UpdateQuantidadeProductController } from './controllers/product/UpdateQuantidadeProductController';
 import { UpdateAvaliacaoProductController } from './controllers/product/UpdateAvaliacaoProductController';
 import { UpdatePesoProductController } from './controllers/product/UpdatePesoProductController';
 import { UpdateLarguraProductController } from './controllers/product/UpdateLarguraProductController';
@@ -62,9 +61,11 @@ import { UpdateAlturaProductController } from './controllers/product/UpdateAltur
 import { UpdateProfundidadeProductController } from './controllers/product/UpdateProfundidadeProductController';
 import { PromocaoProductController } from './controllers/product/PromocaoProductController';
 import { FreteGratisProductController } from './controllers/product/FreteGratisProductController';
+import { ExportProductController } from './controllers/product/ExportProductController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
+import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
 
 
 
@@ -130,7 +131,6 @@ router.put('/updateDescription6', isAuthenticated, new Update6DescriptionProduct
 router.put('/updatePrice', isAuthenticated, new UpdatePriceProductController().handle);
 router.put('/updateSKU', isAuthenticated, new UpdateSKUProductController().handle);
 router.put('/updateEstoque', isAuthenticated, new UpdateEstoqueProductController().handle);
-router.put('/updateQuantidade', isAuthenticated, new UpdateQuantidadeProductController().handle);
 router.put('/updateAvaliacao', isAuthenticated, new UpdateAvaliacaoProductController().handle);
 router.put('/updatePeso', isAuthenticated, new UpdatePesoProductController().handle);
 router.put('/updateLargura', isAuthenticated, new UpdateLarguraProductController().handle);
@@ -138,9 +138,11 @@ router.put('/updateAltura', isAuthenticated, new UpdateAlturaProductController()
 router.put('/updateProfundidade', isAuthenticated, new UpdateProfundidadeProductController().handle);
 router.put('/activeOrDesactivePromocao', isAuthenticated, new PromocaoProductController().handle);
 router.put('/activeOrDesactiveFreteGratis', isAuthenticated, new FreteGratisProductController().handle);
+router.get('/exportProduct', isAuthenticated, new ExportProductController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);
+router.get('/sendlistproduct', isAuthenticated, new EmailExportProductsController().handle);
 
 
 export { router };
