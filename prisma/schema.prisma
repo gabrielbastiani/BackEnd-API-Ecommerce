@@ -13,27 +13,30 @@ datasource db {
 // criar uma migration: yarn prisma migrate dev
 
 model User {
-  id                String  @id @default(uuid())
-  nameComplete      String  @db.VarChar(95)
-  email             String  @unique @db.VarChar(80)
+  id                String   @id @default(uuid())
+  nameComplete      String   @db.VarChar(95)
+  email             String   @unique @db.VarChar(80)
   password          String
-  cpfOrCnpj         String? @db.VarChar(25)
-  inscricaoEstadual String? @db.VarChar(55)
-  phone             String? @db.VarChar(35)
-  dataNascimento    String? @db.VarChar(25)
-  genero            String? @db.VarChar(35)
-  newslatter        Boolean @default(false)
-  nomeDoRecebedor   String? @db.VarChar(95)
-  address           String? @db.VarChar(405)
-  cep               String? @db.VarChar(25)
-  city              String? @db.VarChar(185)
-  state             String? @db.VarChar(155)
-  pais              String? @db.VarChar(25)
+  cpfOrCnpj         String?  @unique @db.VarChar(25)
+  inscricaoEstadual String?  @db.VarChar(55)
+  phone             String?  @db.VarChar(35)
+  dataNascimento    String?  @db.VarChar(25)
+  genero            String?  @db.VarChar(35)
+  newslatter        Boolean? @default(false)
+  nomeDoRecebedor   String?  @db.VarChar(95)
+  address           String?  @db.VarChar(405)
+  bairro            String?  @db.VarChar(95)
+  complemento       String?  @db.VarChar(155)
+  cep               String?  @db.VarChar(25)
+  city              String?  @db.VarChar(185)
+  state             String?  @db.VarChar(155)
+  pais              String?  @db.VarChar(25)
 
   authenticated Boolean @default(false)
   role          Role    @default(USER)
 
-  pedidos Pedido[]
+  pedidos    Pedido[]
+  avaliacoes Avaliacao[]
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -54,8 +57,9 @@ model PasswordRecovery {
 }
 
 model Category {
-  id           String @id @default(uuid())
-  categoryName String @unique @db.VarChar(100)
+  id              String  @id @default(uuid())
+  categoryName    String  @unique @db.VarChar(100)
+  disponibilidade Boolean @default(true)
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -77,22 +81,23 @@ model Product {
   price               String? @db.VarChar(15)
   sku                 String? @db.VarChar(25)
   estoque             String? @db.VarChar(15)
-  avaliacao           String? @db.VarChar(15)
   pesoKG              String? @db.VarChar(15)
   larguraCM           String? @db.VarChar(15)
   alturaCM            String? @db.VarChar(15)
   profundidadeCM      String? @db.VarChar(15)
+  disponibilidade     Boolean @default(true)
   promocao            Boolean @default(false)
   freteGratis         Boolean @default(false)
-
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
 
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
 
-  variacoes     Variacao[]
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
   photoproducts PhotoProduct[]
+  variacoes     Variacao[]
+  avaliacoes    Avaliacao[]
 
   @@map("products")
 }
@@ -101,44 +106,132 @@ model PhotoProduct {
   id    String  @id @default(uuid())
   photo String?
 
-  created_at DateTime @default(now())
-
   product    Product @relation(fields: [product_id], references: [id])
   product_id String
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("photoproducts")
 }
 
-model Variacao {
-  id           String  @id @default(uuid())
-  nameVariacao String? @db.VarChar(225)
-  urlProduct   String?
+model Avaliacao {
+  id          String  @id @default(uuid())
+  clientName  String? @db.VarChar(225)
+  description String? @db.VarChar(225)
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
 
   product    Product @relation(fields: [product_id], references: [id])
   product_id String
 
-  @@map("variacoes")
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("avaliacoes")
 }
 
 model Pedido {
   id                String  @id @default(uuid())
   nameClient        String? @db.VarChar(95)
   nameProduct       String? @db.VarChar(225)
-  valorPedido       String? @db.VarChar(15)
+  valorUnitario     String? @db.VarChar(15)
   quantidadeDeItens String? @db.VarChar(15)
+  productStatic     String? @db.VarChar(115)
   statusDoPedido    Boolean @default(false)
   modoDePagamento   String  @db.VarChar(25)
-  cancelar          Boolean @default(false)
+  cancelado         Boolean @default(false)
 
-  user     User   @relation(fields: [user_id], references: [id])
-  user_id  String
-  frete    Frete  @relation(fields: [frete_id], references: [id])
-  frete_id String
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
+  pagamentos Pagamento[]
+  fretes     Frete[]
+
   @@map("pedidos")
+}
+
+model Variacao {
+  id                   String  @id @default(uuid())
+  nameVariacao         String? @db.VarChar(155)
+  descriptionVariacao1 String? @db.VarChar(725)
+  descriptionVariacao2 String? @db.VarChar(725)
+  descriptionVariacao3 String? @db.VarChar(725)
+  descriptionVariacao4 String? @db.VarChar(725)
+  descriptionVariacao5 String? @db.VarChar(725)
+  descriptionVariacao6 String? @db.VarChar(725)
+  price                String? @db.VarChar(15)
+  sku                  String? @db.VarChar(25)
+  estoque              String? @db.VarChar(15)
+  pesoKG               String? @db.VarChar(15)
+  larguraCM            String? @db.VarChar(15)
+  alturaCM             String? @db.VarChar(15)
+  profundidadeCM       String? @db.VarChar(15)
+  disponibilidade      Boolean @default(true)
+  promocao             Boolean @default(false)
+  freteGratis          Boolean @default(false)
+
+  product    Product @relation(fields: [product_id], references: [id])
+  product_id String
+
+  photovariacoes PhotoVariacao[]
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("variacoes")
+}
+
+model PhotoVariacao {
+  id            String  @id @default(uuid())
+  photoVariacao String?
+
+  variacao    Variacao @relation(fields: [variacao_id], references: [id])
+  variacao_id String
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("photovariacoes")
+}
+
+model Pagamento {
+  id               String  @id @default(uuid())
+  valor            String? @db.VarChar(15)
+  formaDePagamento String? @db.VarChar(55)
+  parcelas         String? @db.VarChar(15)
+  status           String? @db.VarChar(55)
+
+  nomeDoPagador String? @db.VarChar(95)
+  address       String? @db.VarChar(405)
+  bairro        String? @db.VarChar(95)
+  complemento   String? @db.VarChar(155)
+  cep           String? @db.VarChar(25)
+  city          String? @db.VarChar(185)
+  state         String? @db.VarChar(155)
+  pais          String? @db.VarChar(25)
+
+  nomeCompleto      String? @db.VarChar(95)
+  codigoArea        String? @db.VarChar(15)
+  telefone          String? @db.VarChar(15)
+  dataDeNascimento  String? @db.VarChar(15)
+  credit_card_token String? @db.VarChar(15)
+  cpf               String? @db.VarChar(15)
+
+  enderecoEntregaIgualCobranca Boolean @default(true)
+  pagSeguroCode                String?
+
+  pedido    Pedido @relation(fields: [pedido_id], references: [id])
+  pedido_id String
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("pagamentos")
 }
 
 model Frete {
@@ -153,8 +246,10 @@ model Frete {
   cep             String? @db.VarChar(25)
   city            String? @db.VarChar(185)
   state           String? @db.VarChar(155)
+  pais            String? @db.VarChar(25)
 
-  pedidos Pedido[]
+  pedido    Pedido @relation(fields: [pedido_id], references: [id])
+  pedido_id String
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
