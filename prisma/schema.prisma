@@ -32,6 +32,9 @@ model User {
   state             String?  @db.VarChar(155)
   pais              String?  @db.VarChar(25)
 
+  loja    Loja   @relation(fields: [loja_id], references: [id])
+  loja_id String
+
   authenticated Boolean @default(false)
   role          Role    @default(USER)
 
@@ -56,13 +59,46 @@ model PasswordRecovery {
   @@map("passwordRecoverys")
 }
 
+model Loja {
+  id              String  @id @default(uuid())
+  nameLoja        String? @db.VarChar(185)
+  cnpjLoja        String? @db.VarChar(85)
+  emailLoja       String? @db.VarChar(95)
+  phoneLoja       String? @db.VarChar(85)
+  ruaLoja         String? @db.VarChar(405)
+  numeroLoja      String? @db.VarChar(8)
+  bairroLoja      String? @db.VarChar(95)
+  complementoLoja String? @db.VarChar(155)
+  cepLoja         String? @db.VarChar(25)
+  cityLoja        String? @db.VarChar(185)
+  stateLoja       String? @db.VarChar(155)
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  users      User[]
+  categories Category[]
+  products   Product[]
+  variacoes  Variacao[]
+  avaliacoes Avaliacao[]
+  pedidos    Pedido[]
+  pagamentos Pagamento[]
+  entregas   Entrega[]
+
+  @@map("lojas")
+}
+
 model Category {
   id              String  @id @default(uuid())
   categoryName    String  @unique @db.VarChar(100)
+  codigo          String? @db.VarChar(5)
   disponibilidade Boolean @default(true)
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  loja    Loja   @relation(fields: [loja_id], references: [id])
+  loja_id String
 
   products Product[]
 
@@ -86,11 +122,13 @@ model Product {
   alturaCM            String? @db.VarChar(15)
   profundidadeCM      String? @db.VarChar(15)
   disponibilidade     Boolean @default(true)
-  promocao            Boolean @default(false)
-  freteGratis         Boolean @default(false)
+  promocao            String? @db.VarChar(15)
 
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
+
+  loja    Loja   @relation(fields: [loja_id], references: [id])
+  loja_id String
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -98,6 +136,7 @@ model Product {
   photoproducts PhotoProduct[]
   variacoes     Variacao[]
   avaliacoes    Avaliacao[]
+  pedidos       Pedido[]
 
   @@map("products")
 }
@@ -115,70 +154,34 @@ model PhotoProduct {
   @@map("photoproducts")
 }
 
-model Avaliacao {
-  id          String  @id @default(uuid())
-  clientName  String? @db.VarChar(225)
-  description String? @db.VarChar(225)
-
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
-
-  product    Product @relation(fields: [product_id], references: [id])
-  product_id String
-
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  @@map("avaliacoes")
-}
-
-model Pedido {
-  id                String  @id @default(uuid())
-  nameClient        String? @db.VarChar(95)
-  nameProduct       String? @db.VarChar(225)
-  valorUnitario     String? @db.VarChar(15)
-  quantidadeDeItens String? @db.VarChar(15)
-  productStatic     String? @db.VarChar(115)
-  statusDoPedido    Boolean @default(false)
-  modoDePagamento   String  @db.VarChar(25)
-  cancelado         Boolean @default(false)
-
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
-
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  pagamentos Pagamento[]
-  fretes     Frete[]
-
-  @@map("pedidos")
-}
-
 model Variacao {
-  id                   String  @id @default(uuid())
-  nameVariacao         String? @db.VarChar(155)
-  descriptionVariacao1 String? @db.VarChar(725)
-  descriptionVariacao2 String? @db.VarChar(725)
-  descriptionVariacao3 String? @db.VarChar(725)
-  descriptionVariacao4 String? @db.VarChar(725)
-  descriptionVariacao5 String? @db.VarChar(725)
-  descriptionVariacao6 String? @db.VarChar(725)
-  price                String? @db.VarChar(15)
-  sku                  String? @db.VarChar(25)
-  estoque              String? @db.VarChar(15)
-  pesoKG               String? @db.VarChar(15)
-  larguraCM            String? @db.VarChar(15)
-  alturaCM             String? @db.VarChar(15)
-  profundidadeCM       String? @db.VarChar(15)
-  disponibilidade      Boolean @default(true)
-  promocao             Boolean @default(false)
-  freteGratis          Boolean @default(false)
+  id                      String  @id @default(uuid())
+  nameVariacao            String? @db.VarChar(155)
+  descriptionVariacao1    String? @db.VarChar(725)
+  descriptionVariacao2    String? @db.VarChar(725)
+  descriptionVariacao3    String? @db.VarChar(725)
+  descriptionVariacao4    String? @db.VarChar(725)
+  descriptionVariacao5    String? @db.VarChar(725)
+  descriptionVariacao6    String? @db.VarChar(725)
+  priceVariacao           String? @db.VarChar(15)
+  skuVariacao             String? @db.VarChar(25)
+  estoqueVariacao         String? @db.VarChar(15)
+  pesoKGVariacao          String? @db.VarChar(15)
+  larguraCMVariacao       String? @db.VarChar(15)
+  alturaCMVariacao        String? @db.VarChar(15)
+  profundidadeCMVariacao  String? @db.VarChar(15)
+  disponibilidadeVariacao Boolean @default(true)
+  promocaoVariacao        String? @db.VarChar(15)
+  EntregaGratisVariacao   Boolean @default(false)
 
   product    Product @relation(fields: [product_id], references: [id])
   product_id String
+
+  loja    Loja   @relation(fields: [loja_id], references: [id])
+  loja_id String
 
   photovariacoes PhotoVariacao[]
+  pedidos        Pedido[]
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -199,6 +202,62 @@ model PhotoVariacao {
   @@map("photovariacoes")
 }
 
+model Avaliacao {
+  id          String  @id @default(uuid())
+  clientName  String? @db.VarChar(225)
+  description String? @db.VarChar(225)
+  pontuacao   String? @db.VarChar(25)
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  product    Product @relation(fields: [product_id], references: [id])
+  product_id String
+
+  loja    Loja   @relation(fields: [loja_id], references: [id])
+  loja_id String
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("avaliacoes")
+}
+
+model Pedido {
+  id             String  @id @default(uuid())
+  precoUnitario  String? @db.VarChar(15)
+  quantidade     String? @db.VarChar(55)
+  productStatic  String? @db.VarChar(115)
+  statusDoPedido Boolean @default(false)
+  cancelado      Boolean @default(false)
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  product    Product @relation(fields: [product_id], references: [id])
+  product_id String
+
+  variacao    Variacao @relation(fields: [variacao_id], references: [id])
+  variacao_id String
+
+  pagamento    Pagamento @relation(fields: [pagamento_id], references: [id])
+  pagamento_id String
+
+  entrega    Entrega @relation(fields: [entrega_id], references: [id])
+  entrega_id String
+
+  loja    Loja   @relation(fields: [loja_id], references: [id])
+  loja_id String
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  writtenPagamento Pagamento[] @relation("WrittenPagamento")
+  pinnedEntrega    Entrega[]   @relation("PinnedEntrega")
+
+  @@map("pedidos")
+}
+
 model Pagamento {
   id               String  @id @default(uuid())
   valor            String? @db.VarChar(15)
@@ -206,27 +265,31 @@ model Pagamento {
   parcelas         String? @db.VarChar(15)
   status           String? @db.VarChar(55)
 
-  nomeDoPagador String? @db.VarChar(95)
-  address       String? @db.VarChar(405)
-  bairro        String? @db.VarChar(95)
-  complemento   String? @db.VarChar(155)
-  cep           String? @db.VarChar(25)
-  city          String? @db.VarChar(185)
-  state         String? @db.VarChar(155)
-  pais          String? @db.VarChar(25)
+  ruaPagamento         String? @db.VarChar(405)
+  numeroPagamento      String? @db.VarChar(8)
+  bairroPagamento      String? @db.VarChar(95)
+  complementoPagamento String? @db.VarChar(155)
+  cepPagamento         String? @db.VarChar(25)
+  cityPagamento        String? @db.VarChar(185)
+  statePagamento       String? @db.VarChar(155)
 
-  nomeCompleto      String? @db.VarChar(95)
-  codigoArea        String? @db.VarChar(15)
-  telefone          String? @db.VarChar(15)
-  dataDeNascimento  String? @db.VarChar(15)
-  credit_card_token String? @db.VarChar(15)
-  cpf               String? @db.VarChar(15)
+  nomeCompletoPagamento String? @db.VarChar(95)
+  codigoArea            String? @db.VarChar(15)
+  phonePagamento        String? @db.VarChar(15)
+  dataDeNascimento      String? @db.VarChar(15)
+  credit_card_token     String?
+  cpfPagamento          String? @db.VarChar(15)
 
   enderecoEntregaIgualCobranca Boolean @default(true)
   pagSeguroCode                String?
 
-  pedido    Pedido @relation(fields: [pedido_id], references: [id])
+  pedido    Pedido @relation("WrittenPagamento", fields: [pedido_id], references: [id])
   pedido_id String
+
+  loja    Loja   @relation(fields: [loja_id], references: [id])
+  loja_id String
+
+  pedidos Pedido[]
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -234,25 +297,32 @@ model Pagamento {
   @@map("pagamentos")
 }
 
-model Frete {
+model Entrega {
   id                 String  @id @default(uuid())
   codigoRastreamento String? @db.VarChar(95)
   status             Boolean @default(false)
+  tipo               String? @db.VarChar(25)
   custo              String? @db.VarChar(15)
   prazoDeEntrega     String? @db.VarChar(95)
 
-  nomeDoRecebedor String? @db.VarChar(95)
-  address         String? @db.VarChar(405)
-  cep             String? @db.VarChar(25)
-  city            String? @db.VarChar(185)
-  state           String? @db.VarChar(155)
-  pais            String? @db.VarChar(25)
+  ruaEntrega         String? @db.VarChar(405)
+  numeroEntrega      String? @db.VarChar(25)
+  complementoEntrega String? @db.VarChar(155)
+  bairroEntrega      String? @db.VarChar(85)
+  cepEntrega         String? @db.VarChar(25)
+  cityEntrega        String? @db.VarChar(185)
+  stateEntrega       String? @db.VarChar(155)
 
-  pedido    Pedido @relation(fields: [pedido_id], references: [id])
+  pedido    Pedido @relation("PinnedEntrega", fields: [pedido_id], references: [id])
   pedido_id String
+
+  loja    Loja   @relation(fields: [loja_id], references: [id])
+  loja_id String
+
+  pedidos Pedido[]
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@map("fretes")
+  @@map("entregas")
 }
