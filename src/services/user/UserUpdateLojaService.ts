@@ -2,17 +2,17 @@ import prismaClient from '../../prisma';
 
 interface UserRequest {
   user_id: any;
-  address: string;
+  loja_id: string;
 }
 
-class UserUpdateAdressService {
-  async execute({ user_id, address }: UserRequest) {
+class UserUpdateLojaService {
+  async execute({ user_id, loja_id }: UserRequest) {
     const userUpdated = await prismaClient.user.update({
       where: {
         id: String(user_id),
       },
       data: {
-        address: address,
+        loja_id: loja_id,
       }
     })
 
@@ -20,4 +20,4 @@ class UserUpdateAdressService {
   }
 }
 
-export { UserUpdateAdressService }
+export { UserUpdateLojaService }

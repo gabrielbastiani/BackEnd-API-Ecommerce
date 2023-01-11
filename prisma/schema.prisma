@@ -23,23 +23,21 @@ model User {
   dataNascimento    String?  @db.VarChar(25)
   genero            String?  @db.VarChar(35)
   newslatter        Boolean? @default(false)
-  nomeDoRecebedor   String?  @db.VarChar(95)
-  address           String?  @db.VarChar(405)
+  rua               String?  @db.VarChar(405)
+  numero            String?  @db.VarChar(8)
   bairro            String?  @db.VarChar(95)
   complemento       String?  @db.VarChar(155)
   cep               String?  @db.VarChar(25)
   city              String?  @db.VarChar(185)
   state             String?  @db.VarChar(155)
-  pais              String?  @db.VarChar(25)
 
-  loja    Loja   @relation(fields: [loja_id], references: [id])
-  loja_id String
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   authenticated Boolean @default(false)
   role          Role    @default(USER)
 
-  pedidos    Pedido[]
-  avaliacoes Avaliacao[]
+  pedidos Pedido[]
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -97,8 +95,8 @@ model Category {
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  loja    Loja   @relation(fields: [loja_id], references: [id])
-  loja_id String
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   products Product[]
 
@@ -124,11 +122,11 @@ model Product {
   disponibilidade     Boolean @default(true)
   promocao            String? @db.VarChar(15)
 
-  category    Category @relation(fields: [category_id], references: [id])
-  category_id String
+  category    Category? @relation(fields: [category_id], references: [id])
+  category_id String?
 
-  loja    Loja   @relation(fields: [loja_id], references: [id])
-  loja_id String
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -145,8 +143,8 @@ model PhotoProduct {
   id    String  @id @default(uuid())
   photo String?
 
-  product    Product @relation(fields: [product_id], references: [id])
-  product_id String
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -174,11 +172,11 @@ model Variacao {
   promocaoVariacao        String? @db.VarChar(15)
   EntregaGratisVariacao   Boolean @default(false)
 
-  product    Product @relation(fields: [product_id], references: [id])
-  product_id String
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
 
-  loja    Loja   @relation(fields: [loja_id], references: [id])
-  loja_id String
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   photovariacoes PhotoVariacao[]
   pedidos        Pedido[]
@@ -193,8 +191,8 @@ model PhotoVariacao {
   id            String  @id @default(uuid())
   photoVariacao String?
 
-  variacao    Variacao @relation(fields: [variacao_id], references: [id])
-  variacao_id String
+  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id String?
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -208,14 +206,11 @@ model Avaliacao {
   description String? @db.VarChar(225)
   pontuacao   String? @db.VarChar(25)
 
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
 
-  product    Product @relation(fields: [product_id], references: [id])
-  product_id String
-
-  loja    Loja   @relation(fields: [loja_id], references: [id])
-  loja_id String
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -231,23 +226,23 @@ model Pedido {
   statusDoPedido Boolean @default(false)
   cancelado      Boolean @default(false)
 
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
+  user    User?   @relation(fields: [user_id], references: [id])
+  user_id String?
 
-  product    Product @relation(fields: [product_id], references: [id])
-  product_id String
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
 
-  variacao    Variacao @relation(fields: [variacao_id], references: [id])
-  variacao_id String
+  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id String?
 
-  pagamento    Pagamento @relation(fields: [pagamento_id], references: [id])
-  pagamento_id String
+  pagamento    Pagamento? @relation(fields: [pagamento_id], references: [id])
+  pagamento_id String?
 
-  entrega    Entrega @relation(fields: [entrega_id], references: [id])
-  entrega_id String
+  entrega    Entrega? @relation(fields: [entrega_id], references: [id])
+  entrega_id String?
 
-  loja    Loja   @relation(fields: [loja_id], references: [id])
-  loja_id String
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -283,11 +278,11 @@ model Pagamento {
   enderecoEntregaIgualCobranca Boolean @default(true)
   pagSeguroCode                String?
 
-  pedido    Pedido @relation("WrittenPagamento", fields: [pedido_id], references: [id])
-  pedido_id String
+  pedido    Pedido? @relation("WrittenPagamento", fields: [pedido_id], references: [id])
+  pedido_id String?
 
-  loja    Loja   @relation(fields: [loja_id], references: [id])
-  loja_id String
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   pedidos Pedido[]
 
@@ -313,11 +308,11 @@ model Entrega {
   cityEntrega        String? @db.VarChar(185)
   stateEntrega       String? @db.VarChar(155)
 
-  pedido    Pedido @relation("PinnedEntrega", fields: [pedido_id], references: [id])
-  pedido_id String
+  pedido    Pedido? @relation("PinnedEntrega", fields: [pedido_id], references: [id])
+  pedido_id String?
 
-  loja    Loja   @relation(fields: [loja_id], references: [id])
-  loja_id String
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   pedidos Pedido[]
 

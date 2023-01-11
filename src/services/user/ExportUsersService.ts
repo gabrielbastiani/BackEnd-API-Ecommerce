@@ -8,6 +8,7 @@ class ExportUsersService {
     async execute() {
         const findAll = await prismaClient.user.findMany({
             select: {
+                id: true,
                 nameComplete: true,
                 email: true,
                 cpfOrCnpj: true,
@@ -15,12 +16,14 @@ class ExportUsersService {
                 phone: true,
                 dataNascimento: true,
                 genero: true,
-                nomeDoRecebedor: true,
-                address: true,
+                rua: true,
+                numero: true,
+                bairro: true,
+                complemento: true,
                 cep: true,
                 city: true,
                 state: true,
-                pais: true,
+                loja_id: true,
             },
             orderBy: {
                 created_at: 'desc'
@@ -28,6 +31,7 @@ class ExportUsersService {
         });
 
         const headingColumnNames = [
+            "ID do Usuario",
             "Nome Completo",
             "Email",
             "CPF ou CNPJ",
@@ -35,12 +39,14 @@ class ExportUsersService {
             "Telefone",
             "Data de Nascimento",
             "Genero",
-            "Nome do recebedor do pedido",
-            "Endereço",
+            "Rua",
+            "Numero",
+            "Bairro",
+            "Complemento",
             "CEP",
             "Cidade",
             "Estado",
-            "Pais",
+            "ID Loja",
         ]
 
         let headingColumnIndex = 1; //diz que começará na primeira linha

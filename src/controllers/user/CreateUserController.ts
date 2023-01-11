@@ -12,12 +12,15 @@ class CreateUserController {
             phone,
             dataNascimento,
             genero,
-            nomeDoRecebedor,
-            address,
+            newslatter,
+            rua,
+            numero,
+            bairro,
+            complemento,
             cep,
             city,
             state,
-            pais
+            loja_id
         } = req.body;
 
         const createUserService = new CreateUserService();
@@ -31,12 +34,15 @@ class CreateUserController {
             phone,
             dataNascimento,
             genero,
-            nomeDoRecebedor,
-            address,
+            newslatter,
+            rua,
+            numero,
+            bairro,
+            complemento,
             cep,
             city,
             state,
-            pais
+            loja_id
         });
 
         return res.json(user)

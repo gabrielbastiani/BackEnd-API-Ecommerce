@@ -1,20 +1,20 @@
 import { Request, Response } from 'express';
-import { UserUpdatePaisService } from '../../services/user/UserUpdatePaisService';
+import { UserUpdateRuaService } from '../../services/user/UserUpdateRuaService';
 
-class UpdateUserPaisController {
+class UpdateUserRuaController {
   async handle(req: Request, res: Response) {
     const user_id = req.query.user_id;
 
-    const { pais } = req.body;
+    const { rua } = req.body;
 
-    const updateUserService = new UserUpdatePaisService();
+    const updateUserService = new UserUpdateRuaService();
 
     const userUpdated = await updateUserService.execute({
       user_id,
-      pais,
+      rua,
     });
     return res.json(userUpdated);
   }
 }
 
-export { UpdateUserPaisController }
+export { UpdateUserRuaController }

@@ -23,12 +23,30 @@ import { UpdateUserPhoneController } from './controllers/user/UpdateUserPhoneCon
 import { UpdateUserDataDeNascimentoController } from './controllers/user/UpdateUserDataDeNascimentoController';
 import { UpdateUserGeneroController } from './controllers/user/UpdateUserGeneroController';
 import { UpdateUserNewslatterController } from './controllers/user/UpdateUserNewslatterController';
-import { UpdateUserNomeDoRecebedorController } from './controllers/user/UpdateUserNomeDoRecebedorController';
-import { UpdateUserAdressController } from './controllers/user/UpdateUserAdressController';
+import { UpdateUserRuaController } from './controllers/user/UpdateUserRuaController';
+import { UpdateUserNumeroController } from './controllers/user/UpdateUserNumeroController';
+import { UpdateUserComplementoController } from './controllers/user/UpdateUserComplementoController';
 import { UpdateUserCepController } from './controllers/user/UpdateUserCepController';
 import { UpdateUserCityController } from './controllers/user/UpdateUserCityController';
 import { UpdateUserEstadoController } from './controllers/user/UpdateUserEstadoController';
-import { UpdateUserPaisController } from './controllers/user/UpdateUserPaisController';
+import { UpdateUserBairroController } from './controllers/user/UpdateUserBairroController';
+import { UpdateUserLojaController } from './controllers/user/UpdateUserLojaController';
+
+// -- ROTAS LOJA --
+import { CreateLojaController } from './controllers/loja/CreateLojaController';
+import { UpdateNameLojaController } from './controllers/loja/UpdateNameLojaController';
+import { UpdateCNPJLojaController } from './controllers/loja/UpdateCNPJLojaController';
+import { UpdateEmailLojaController } from './controllers/loja/UpdateEmailLojaController';
+import { UpdatePhoneLojaController } from './controllers/loja/UpdatePhoneLojaController';
+import { UpdateRuaLojaController } from './controllers/loja/UpdateRuaLojaController';
+import { UpdateNumeroLojaController } from './controllers/loja/UpdateNumeroLojaController';
+import { UpdateBairroLojaController } from './controllers/loja/UpdateBairroLojaController';
+import { UpdateComplementoLojaController } from './controllers/loja/UpdateComplementoLojaController';
+import { UpdateCEPLojaController } from './controllers/loja/UpdateCEPLojaController';
+import { UpdateCidadeLojaController } from './controllers/loja/UpdateCidadeLojaController';
+import { UpdateEstadoLojaController } from './controllers/loja/UpdateEstadoLojaController';
+import { PageListAllLojaController } from './controllers/loja/PageListAllLojaController';
+import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
 
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -100,12 +118,30 @@ router.put('/phoneUserUpdate', isAuthenticated, new UpdateUserPhoneController().
 router.put('/dataDeNascimentoUserUpdate', isAuthenticated, new UpdateUserDataDeNascimentoController().handle);
 router.put('/generoUserUpdate', isAuthenticated, new UpdateUserGeneroController().handle);
 router.put('/newslatterUserUpdate', isAuthenticated, new UpdateUserNewslatterController().handle);
-router.put('/nomeDoRecebedorUserUpdate', isAuthenticated, new UpdateUserNomeDoRecebedorController().handle);
-router.put('/adressUserUpdate', isAuthenticated, new UpdateUserAdressController().handle);
+router.put('/ruaUserUpdate', isAuthenticated, new UpdateUserRuaController().handle);
+router.put('/numeroUserUpdate', isAuthenticated, new UpdateUserNumeroController().handle);
+router.put('/bairroUserUpdate', isAuthenticated, new UpdateUserBairroController().handle);
+router.put('/complementoUserUpdate', isAuthenticated, new UpdateUserComplementoController().handle);
 router.put('/cepUserUpdate', isAuthenticated, new UpdateUserCepController().handle);
 router.put('/cityUserUpdate', isAuthenticated, new UpdateUserCityController().handle);
 router.put('/estadoUserUpdate', isAuthenticated, new UpdateUserEstadoController().handle);
-router.put('/paisUserUpdate', isAuthenticated, new UpdateUserPaisController().handle);
+router.put('/lojaidUserUpdate', isAuthenticated, new UpdateUserLojaController().handle);
+
+// -- ROTAS LOJA --
+router.post('/loja', new CreateLojaController().handle);
+router.put('/nameLojaUpdate', isAuthenticated, new UpdateNameLojaController().handle);
+router.put('/cnpjLojaUpdate', isAuthenticated, new UpdateCNPJLojaController().handle);
+router.put('/emailLojaUpdate', isAuthenticated, new UpdateEmailLojaController().handle);
+router.put('/phoneLojaUpdate', isAuthenticated, new UpdatePhoneLojaController().handle);
+router.put('/ruaLojaUpdate', isAuthenticated, new UpdateRuaLojaController().handle);
+router.put('/numeroLojaUpdate', isAuthenticated, new UpdateNumeroLojaController().handle);
+router.put('/bairroLojaUpdate', isAuthenticated, new UpdateBairroLojaController().handle);
+router.put('/complementoLojaUpdate', isAuthenticated, new UpdateComplementoLojaController().handle);
+router.put('/cepLojaUpdate', isAuthenticated, new UpdateCEPLojaController().handle);
+router.put('/cidadeLojaUpdate', isAuthenticated, new UpdateCidadeLojaController().handle);
+router.put('/estadoLojaUpdate', isAuthenticated, new UpdateEstadoLojaController().handle);
+router.get('/allLojasPage', isAuthenticated, new PageListAllLojaController().handle);
+router.delete('/deleteLoja', isAuthenticated, new DeleteLojaController().handle);
 
 // -- ROTAS CATEGORIAS --
 router.post('/category', isAuthenticated, new CreateCategoryController().handle);

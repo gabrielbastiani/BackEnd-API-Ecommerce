@@ -13,12 +13,15 @@ interface UserRequest {
   phone: string;
   dataNascimento: string;
   genero: string;
-  nomeDoRecebedor: string;
-  address: string;
+  newslatter: boolean;
+  rua: string;
+  numero: string;
+  bairro: string;
+  complemento: string;
   cep: string;
-  pais: string;
-  state: string;
   city: string;
+  state: string;
+  loja_id: string;
 }
 
 class CreateUserService {
@@ -31,12 +34,15 @@ class CreateUserService {
     phone,
     dataNascimento,
     genero,
-    nomeDoRecebedor,
-    address,
+    newslatter,
+    rua,
+    numero,
+    bairro,
+    complemento,
     cep,
     city,
     state,
-    pais
+    loja_id
   }: UserRequest) {
 
     // verificar se ele enviou um email
@@ -67,12 +73,15 @@ class CreateUserService {
         phone: phone,
         dataNascimento: dataNascimento,
         genero: genero,
-        nomeDoRecebedor: nomeDoRecebedor,
-        address: address,
+        newslatter: newslatter,
+        rua: rua,
+        numero: numero,
+        bairro: bairro,
+        complemento: complemento,
         cep: cep,
         city: city,
         state: state,
-        pais: pais
+        loja_id: loja_id
       },
       select: {
         id: true,
@@ -84,12 +93,14 @@ class CreateUserService {
         dataNascimento: true,
         genero: true,
         newslatter: true,
-        nomeDoRecebedor: true,
-        address: true,
+        rua: true,
+        numero: true,
+        bairro: true,
+        complemento: true,
         cep: true,
         city: true,
         state: true,
-        pais: true,
+        loja_id: true,
         authenticated: true,
         role: true,
         created_at: true,
