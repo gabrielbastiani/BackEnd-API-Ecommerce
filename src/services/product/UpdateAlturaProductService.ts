@@ -2,7 +2,7 @@ import prismaClient from "../../prisma";
 
 interface ProductRequest {
    product_id: any;
-   alturaCM: number;
+   alturaCM: string;
 }
 
 class UpdateAlturaProductService {

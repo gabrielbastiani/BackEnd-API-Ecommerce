@@ -12,6 +12,15 @@ class PageListAllCategorysService {
         });
 
         const categorys = await prismaClient.category.findMany({
+            select: {
+                id: true,
+                categoryName: true,
+                codigo: true,
+                disponibilidade: true,
+                created_at: true,
+                loja_id: true,
+                products:true
+            },
             skip,
             take: limit,
             orderBy: {

@@ -2,10 +2,13 @@ import prismaClient from "../../prisma";
 
 interface CategoryRequest {
   categoryName: string;
+  codigo: string;
+  disponibilidade: boolean;
+  loja_id: string;
 }
 
 class CreateCategoryService {
-  async execute({ categoryName }: CategoryRequest){
+  async execute({ categoryName, codigo, disponibilidade, loja_id }: CategoryRequest){
     
     if(categoryName === ''){
       throw new Error('categoryName invalid')
@@ -14,11 +17,17 @@ class CreateCategoryService {
     const category = await prismaClient.category.create({
       data:{
         categoryName: categoryName,
+        codigo: codigo,
+        disponibilidade, disponibilidade,
+        loja_id: loja_id
       },
       select: {
         id: true,
         categoryName: true,
+        codigo: true,
+        disponibilidade: true,
         created_at: true,
+        loja_id: true,
         products: true
       }
     })

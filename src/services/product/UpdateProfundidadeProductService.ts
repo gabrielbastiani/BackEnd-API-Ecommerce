@@ -2,7 +2,7 @@ import prismaClient from "../../prisma";
 
 interface ProductRequest {
    product_id: any;
-   profundidadeCM: number;
+   profundidadeCM: string;
 }
 
 class UpdateProfundidadeProductService {

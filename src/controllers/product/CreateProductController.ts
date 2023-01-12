@@ -14,12 +14,14 @@ class CreateProductController {
             price,
             sku,
             estoque,
-            avaliacao,
             pesoKG,
             larguraCM,
             alturaCM,
             profundidadeCM,
+            disponibilidade,
+            promocao,
             category_id,
+            loja_id
         } = req.body;
 
         const createProductService = new CreateProductService();
@@ -35,12 +37,14 @@ class CreateProductController {
             price,
             sku,
             estoque,
-            avaliacao,
             pesoKG,
             larguraCM,
             alturaCM,
             profundidadeCM,
-            category_id
+            disponibilidade,
+            promocao,
+            category_id,
+            loja_id
         })
 
         return res.json(product)

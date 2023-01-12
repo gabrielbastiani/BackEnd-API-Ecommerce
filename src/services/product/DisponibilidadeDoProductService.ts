@@ -1,18 +1,17 @@
 import prismaClient from "../../prisma";
 
-interface UserRequest{
+interface ProductRequest {
   product_id: string;
 }
 
-class FreteGratisProductService {
-  async execute({ product_id }: UserRequest){
-
+class DisponibilidadeDoProductService {
+  async execute({ product_id }: ProductRequest) {
     const activeTrue = await prismaClient.product.findUnique({
       where: {
         id: product_id
       },
       select: {
-        freteGratis: true
+        disponibilidade: true
       }
     })
 
@@ -21,30 +20,30 @@ class FreteGratisProductService {
         id: product_id
       },
       select: {
-        freteGratis: true
+        disponibilidade: true
       }
     })
 
-    if(activeTrue.freteGratis === true){
+    if(activeTrue.disponibilidade === true){
       const isFalse = await prismaClient.product.update({
         where:{
           id: product_id
         },
         data: {
-          freteGratis: false
+          disponibilidade: false
         }
       })
 
       return isFalse;
     }
 
-    if(activeFalse.freteGratis === false){
+    if(activeFalse.disponibilidade === false){
       const isTrue = await prismaClient.product.update({
         where:{
           id: product_id
         },
         data: {
-          freteGratis: true
+          disponibilidade: true
         }
       })
 
@@ -55,4 +54,4 @@ class FreteGratisProductService {
   }
 }
 
-export { FreteGratisProductService }
+export { DisponibilidadeDoProductService }

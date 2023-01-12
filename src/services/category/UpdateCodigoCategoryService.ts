@@ -1,19 +1,19 @@
 import prismaClient from "../../prisma";
 
 interface CategoryRequest {
-  categoryName: string;
+  codigo: string;
   category_id: string;
 }
 
-class UpdateCategoryService {
-  async execute({ category_id }: CategoryRequest) {
+class UpdateCodigoCategoryService {
+  async execute({ category_id, codigo }: CategoryRequest) {
 
     const category = await prismaClient.category.update({
       where: {
-        id: category_id
+        id: String(category_id)
       },
       data: {
-        categoryName: categoryName,
+        codigo: codigo,
       }
     })
 
@@ -22,4 +22,4 @@ class UpdateCategoryService {
 
 }
 
-export { UpdateCategoryService }
+export { UpdateCodigoCategoryService }

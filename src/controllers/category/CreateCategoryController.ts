@@ -3,12 +3,15 @@ import { CreateCategoryService } from '../../services/category/CreateCategorySer
 
 class CreateCategoryController {
   async handle(req: Request, res: Response){
-    const { categoryName } = req.body;
+    const { categoryName, codigo, loja_id, disponibilidade } = req.body;
 
     const createCategoryService = new CreateCategoryService();
 
     const category = await createCategoryService.execute({
-      categoryName
+      categoryName,
+      disponibilidade,
+      codigo,
+      loja_id
     });
 
     return res.json(category);

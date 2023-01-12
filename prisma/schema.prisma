@@ -89,7 +89,7 @@ model Loja {
 model Category {
   id              String  @id @default(uuid())
   categoryName    String  @unique @db.VarChar(100)
-  codigo          String? @db.VarChar(5)
+  codigo          String? @db.VarChar(100)
   disponibilidade Boolean @default(true)
 
   created_at DateTime @default(now())
@@ -134,7 +134,6 @@ model Product {
   photoproducts PhotoProduct[]
   variacoes     Variacao[]
   avaliacoes    Avaliacao[]
-  pedidos       Pedido[]
 
   @@map("products")
 }
@@ -228,9 +227,6 @@ model Pedido {
 
   user    User?   @relation(fields: [user_id], references: [id])
   user_id String?
-
-  product    Product? @relation(fields: [product_id], references: [id])
-  product_id String?
 
   variacao    Variacao? @relation(fields: [variacao_id], references: [id])
   variacao_id String?

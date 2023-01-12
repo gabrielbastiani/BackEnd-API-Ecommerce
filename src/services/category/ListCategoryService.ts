@@ -7,6 +7,10 @@ class ListCategoryService {
          select: {
             id: true,
             categoryName: true,
+            codigo: true,
+            disponibilidade: true,
+            created_at: true,
+            products: true
          },
          orderBy: {
             created_at: 'desc'

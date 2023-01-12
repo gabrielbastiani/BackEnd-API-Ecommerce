@@ -61,11 +61,11 @@ CREATE TABLE "lojas" (
 CREATE TABLE "categories" (
     "id" TEXT NOT NULL,
     "categoryName" VARCHAR(100) NOT NULL,
-    "codigo" VARCHAR(5),
+    "codigo" VARCHAR(100),
     "disponibilidade" BOOLEAN NOT NULL DEFAULT true,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "loja_id" TEXT NOT NULL,
+    "loja_id" TEXT,
 
     CONSTRAINT "categories_pkey" PRIMARY KEY ("id")
 );
@@ -89,8 +89,8 @@ CREATE TABLE "products" (
     "profundidadeCM" VARCHAR(15),
     "disponibilidade" BOOLEAN NOT NULL DEFAULT true,
     "promocao" VARCHAR(15),
-    "category_id" TEXT NOT NULL,
-    "loja_id" TEXT NOT NULL,
+    "category_id" TEXT,
+    "loja_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -101,7 +101,7 @@ CREATE TABLE "products" (
 CREATE TABLE "photoproducts" (
     "id" TEXT NOT NULL,
     "photo" TEXT,
-    "product_id" TEXT NOT NULL,
+    "product_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -128,8 +128,8 @@ CREATE TABLE "variacoes" (
     "disponibilidadeVariacao" BOOLEAN NOT NULL DEFAULT true,
     "promocaoVariacao" VARCHAR(15),
     "EntregaGratisVariacao" BOOLEAN NOT NULL DEFAULT false,
-    "product_id" TEXT NOT NULL,
-    "loja_id" TEXT NOT NULL,
+    "product_id" TEXT,
+    "loja_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -140,7 +140,7 @@ CREATE TABLE "variacoes" (
 CREATE TABLE "photovariacoes" (
     "id" TEXT NOT NULL,
     "photoVariacao" TEXT,
-    "variacao_id" TEXT NOT NULL,
+    "variacao_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -153,8 +153,8 @@ CREATE TABLE "avaliacoes" (
     "clientName" VARCHAR(225),
     "description" VARCHAR(225),
     "pontuacao" VARCHAR(25),
-    "product_id" TEXT NOT NULL,
-    "loja_id" TEXT NOT NULL,
+    "product_id" TEXT,
+    "loja_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -169,12 +169,11 @@ CREATE TABLE "pedidos" (
     "productStatic" VARCHAR(115),
     "statusDoPedido" BOOLEAN NOT NULL DEFAULT false,
     "cancelado" BOOLEAN NOT NULL DEFAULT false,
-    "user_id" TEXT NOT NULL,
-    "product_id" TEXT NOT NULL,
-    "variacao_id" TEXT NOT NULL,
-    "pagamento_id" TEXT NOT NULL,
-    "entrega_id" TEXT NOT NULL,
-    "loja_id" TEXT NOT NULL,
+    "user_id" TEXT,
+    "variacao_id" TEXT,
+    "pagamento_id" TEXT,
+    "entrega_id" TEXT,
+    "loja_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -203,8 +202,8 @@ CREATE TABLE "pagamentos" (
     "cpfPagamento" VARCHAR(15),
     "enderecoEntregaIgualCobranca" BOOLEAN NOT NULL DEFAULT true,
     "pagSeguroCode" TEXT,
-    "pedido_id" TEXT NOT NULL,
-    "loja_id" TEXT NOT NULL,
+    "pedido_id" TEXT,
+    "loja_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -226,8 +225,8 @@ CREATE TABLE "entregas" (
     "cepEntrega" VARCHAR(25),
     "cityEntrega" VARCHAR(185),
     "stateEntrega" VARCHAR(155),
-    "pedido_id" TEXT NOT NULL,
-    "loja_id" TEXT NOT NULL,
+    "pedido_id" TEXT,
+    "loja_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -247,58 +246,55 @@ CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName"
 ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "categories" ADD CONSTRAINT "categories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "categories" ADD CONSTRAINT "categories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "photoproducts" ADD CONSTRAINT "photoproducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "photoproducts" ADD CONSTRAINT "photoproducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "variacoes" ADD CONSTRAINT "variacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "variacoes" ADD CONSTRAINT "variacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "variacoes" ADD CONSTRAINT "variacoes_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "variacoes" ADD CONSTRAINT "variacoes_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "photovariacoes" ADD CONSTRAINT "photovariacoes_variacao_id_fkey" FOREIGN KEY ("variacao_id") REFERENCES "variacoes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "photovariacoes" ADD CONSTRAINT "photovariacoes_variacao_id_fkey" FOREIGN KEY ("variacao_id") REFERENCES "variacoes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_variacao_id_fkey" FOREIGN KEY ("variacao_id") REFERENCES "variacoes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_variacao_id_fkey" FOREIGN KEY ("variacao_id") REFERENCES "variacoes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_pagamento_id_fkey" FOREIGN KEY ("pagamento_id") REFERENCES "pagamentos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_pagamento_id_fkey" FOREIGN KEY ("pagamento_id") REFERENCES "pagamentos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_entrega_id_fkey" FOREIGN KEY ("entrega_id") REFERENCES "entregas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_entrega_id_fkey" FOREIGN KEY ("entrega_id") REFERENCES "entregas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pagamentos" ADD CONSTRAINT "pagamentos_pedido_id_fkey" FOREIGN KEY ("pedido_id") REFERENCES "pedidos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pagamentos" ADD CONSTRAINT "pagamentos_pedido_id_fkey" FOREIGN KEY ("pedido_id") REFERENCES "pedidos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pagamentos" ADD CONSTRAINT "pagamentos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pagamentos" ADD CONSTRAINT "pagamentos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "entregas" ADD CONSTRAINT "entregas_pedido_id_fkey" FOREIGN KEY ("pedido_id") REFERENCES "pedidos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "entregas" ADD CONSTRAINT "entregas_pedido_id_fkey" FOREIGN KEY ("pedido_id") REFERENCES "pedidos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "entregas" ADD CONSTRAINT "entregas_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "entregas" ADD CONSTRAINT "entregas_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;

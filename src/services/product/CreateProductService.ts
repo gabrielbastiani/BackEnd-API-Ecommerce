@@ -11,12 +11,14 @@ interface ProductRequest {
     price: string;
     sku: string;
     estoque: string;
-    avaliacao: string;
     pesoKG: string;
     larguraCM: string;
     alturaCM: string;
     profundidadeCM: string;
+    disponibilidade: boolean;
+    promocao: string;
     category_id: string;
+    loja_id: string;
 }
 
 class CreateProductService {
@@ -31,12 +33,14 @@ class CreateProductService {
         price,
         sku,
         estoque,
-        avaliacao,
         pesoKG,
         larguraCM,
         alturaCM,
         profundidadeCM,
-        category_id
+        disponibilidade,
+        promocao,
+        category_id,
+        loja_id,
     }: ProductRequest) {
 
         const product = await prismaClient.product.create({
@@ -51,12 +55,14 @@ class CreateProductService {
                 price: price,
                 sku: sku,
                 estoque: estoque,
-                avaliacao: avaliacao,
                 pesoKG: pesoKG,
                 larguraCM: larguraCM,
                 alturaCM: alturaCM,
                 profundidadeCM: profundidadeCM,
-                category_id: category_id
+                disponibilidade: disponibilidade,
+                promocao: promocao,
+                category_id: category_id,
+                loja_id: loja_id
             },
             select: {
                 id: true,
@@ -70,12 +76,14 @@ class CreateProductService {
                 price: true,
                 sku: true,
                 estoque: true,
-                avaliacao: true,
                 pesoKG: true,
                 larguraCM: true,
                 alturaCM: true,
                 profundidadeCM: true,
+                disponibilidade: true,
+                promocao: true,
                 category_id: true,
+                loja_id: true,
                 created_at: true,
                 variacoes: true,
                 photoproducts: true

@@ -51,10 +51,12 @@ import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
+import { UpdateCodigoCategoryController } from './controllers/category/UpdateCodigoCategoryController';
+import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
-import { UpdateCategoryController } from './controllers/category/UpdateCategoryController';
+import { DeleteCategoryController } from './controllers/category/DeleteCategoryController';
 
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
@@ -72,14 +74,15 @@ import { Update6DescriptionProductController } from './controllers/product/Updat
 import { UpdatePriceProductController } from './controllers/product/UpdatePriceProductController';
 import { UpdateSKUProductController } from './controllers/product/UpdateSKUProductController';
 import { UpdateEstoqueProductController } from './controllers/product/UpdateEstoqueProductController';
-import { UpdateAvaliacaoProductController } from './controllers/product/UpdateAvaliacaoProductController';
 import { UpdatePesoProductController } from './controllers/product/UpdatePesoProductController';
 import { UpdateLarguraProductController } from './controllers/product/UpdateLarguraProductController';
 import { UpdateAlturaProductController } from './controllers/product/UpdateAlturaProductController';
 import { UpdateProfundidadeProductController } from './controllers/product/UpdateProfundidadeProductController';
 import { PromocaoProductController } from './controllers/product/PromocaoProductController';
-import { FreteGratisProductController } from './controllers/product/FreteGratisProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
+import { DisponibilidadeDoProductController } from './controllers/product/DisponibilidadeDoProductController';
+import { UpdateCategoryProductController } from './controllers/product/UpdateCategoryProductController';
+import { UpdateLojaProductController } from './controllers/product/UpdateLojaProductController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -145,11 +148,13 @@ router.delete('/deleteLoja', isAuthenticated, new DeleteLojaController().handle)
 
 // -- ROTAS CATEGORIAS --
 router.post('/category', isAuthenticated, new CreateCategoryController().handle);
-router.put('/categoryUpdate', isAuthenticated, new UpdateNameCategoryController().handle);
+router.put('/categoryNameUpdate', isAuthenticated, new UpdateNameCategoryController().handle);
+router.put('/categoryCodigoUpdate', isAuthenticated, new UpdateCodigoCategoryController().handle);
+router.put('/updateDisponibilidadeCategory', isAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.get('/allCategorysPage', isAuthenticated, new PageListAllCategorysController().handle);
 router.get('/allCategorys', new ListCategoryController().handle);
 router.get('/exactCategory', isAuthenticated, new ListExactCategoryController().handle);
-router.put('/categoryUpdate', isAuthenticated, new UpdateCategoryController().handle);
+router.delete('/deleteCategory', isAuthenticated, new DeleteCategoryController().handle);
 
 // -- ROTAS PRODUTOS --
 router.post('/createProduct', isAuthenticated, new CreateProductController().handle);
@@ -167,14 +172,15 @@ router.put('/updateDescription6', isAuthenticated, new Update6DescriptionProduct
 router.put('/updatePrice', isAuthenticated, new UpdatePriceProductController().handle);
 router.put('/updateSKU', isAuthenticated, new UpdateSKUProductController().handle);
 router.put('/updateEstoque', isAuthenticated, new UpdateEstoqueProductController().handle);
-router.put('/updateAvaliacao', isAuthenticated, new UpdateAvaliacaoProductController().handle);
 router.put('/updatePeso', isAuthenticated, new UpdatePesoProductController().handle);
 router.put('/updateLargura', isAuthenticated, new UpdateLarguraProductController().handle);
 router.put('/updateAltura', isAuthenticated, new UpdateAlturaProductController().handle);
 router.put('/updateProfundidade', isAuthenticated, new UpdateProfundidadeProductController().handle);
-router.put('/activeOrDesactivePromocao', isAuthenticated, new PromocaoProductController().handle);
-router.put('/activeOrDesactiveFreteGratis', isAuthenticated, new FreteGratisProductController().handle);
+router.put('/productPromocao', isAuthenticated, new PromocaoProductController().handle);
 router.get('/exportProduct', isAuthenticated, new ExportProductController().handle);
+router.put('/diponibilidadeProduct', isAuthenticated, new DisponibilidadeDoProductController().handle);
+router.put('/updateCategory', isAuthenticated, new UpdateCategoryProductController().handle);
+router.put('/updateLoja', isAuthenticated, new UpdateLojaProductController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);
