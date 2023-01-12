@@ -19,15 +19,13 @@ class ExportProductService {
                 price: true,
                 sku: true,
                 estoque: true,
-                avaliacao: true,
                 pesoKG: true,
                 larguraCM: true,
                 alturaCM: true,
                 profundidadeCM: true,
+                promocao: true,
                 category_id: true,
-                created_at: true,
-                variacoes: true,
-                photoproducts: true
+                loja_id: true,
             },
             orderBy: {
                 created_at: 'desc'
@@ -46,12 +44,13 @@ class ExportProductService {
             "Preço do Produto",
             "SKU do Produto",
             "Estoque do Produto",
-            "Avaliação do Produto",
             "Peso do Produto",
             "Largura do Produto",
             "Altura do Produto",
             "Profundidade do Produto",
+            "Promoção do Produto",
             "Categoria do Produto",
+            "Loja do Produto"
         ]
 
         let headingColumnIndex = 1; //diz que começará na primeira linha

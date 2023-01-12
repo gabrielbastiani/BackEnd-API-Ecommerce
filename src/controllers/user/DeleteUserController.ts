@@ -7,11 +7,11 @@ class DeleteUserController {
 
     const deleteUserService = new DeleteUserService();
 
-    const userPhoto = await deleteUserService.execute({
+    const deleteUser = await deleteUserService.execute({
       user_id,
     });
 
-    return res.json(userPhoto);
+    return res.json(deleteUser);
   }
 }
 

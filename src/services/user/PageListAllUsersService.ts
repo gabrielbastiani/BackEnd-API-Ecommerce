@@ -12,6 +12,29 @@ class PageListAllUsersService {
         });
 
         const users = await prismaClient.user.findMany({
+            select: {
+                id: true,
+                nameComplete: true,
+                email: true,
+                cpfOrCnpj: true,
+                inscricaoEstadual: true,
+                phone: true,
+                dataNascimento: true,
+                genero: true,
+                newslatter: true,
+                rua: true,
+                numero: true,
+                bairro: true,
+                complemento: true,
+                cep: true,
+                city: true,
+                state: true,
+                loja_id: true,
+                authenticated: true,
+                role: true,
+                created_at: true,
+                pedidos: true
+            },
             skip,
             take: limit,
             orderBy: {

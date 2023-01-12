@@ -84,6 +84,25 @@ import { DisponibilidadeDoProductController } from './controllers/product/Dispon
 import { UpdateCategoryProductController } from './controllers/product/UpdateCategoryProductController';
 import { UpdateLojaProductController } from './controllers/product/UpdateLojaProductController';
 
+// -- ROTAS AVALIACAO --
+import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
+import { DeleteAvaliacaoController } from './controllers/avaliacao/DeleteAvaliacaoController';
+
+// -- ROTAS VARIAÇÃO --
+import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
+import { DeleteVariacaoController } from './controllers/variacao/DeleteVariacaoController';
+import { PageListAllVariacaoController } from './controllers/variacao/PageListAllVariacaoController';
+import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
+import { DeletePhotoVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoVariacaoController';
+import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
+import { UpdateDescriptionVariacao1Controller } from './controllers/variacao/UpdateDescriptionVariacao1Controller';
+import { UpdateDescriptionVariacao2Controller } from './controllers/variacao/UpdateDescriptionVariacao2Controller';
+import { UpdateDescriptionVariacao3Controller } from './controllers/variacao/UpdateDescriptionVariacao3Controller';
+import { UpdateDescriptionVariacao4Controller } from './controllers/variacao/UpdateDescriptionVariacao4Controller';
+import { UpdateDescriptionVariacao5Controller } from './controllers/variacao/UpdateDescriptionVariacao5Controller';
+import { UpdateDescriptionVariacao6Controller } from './controllers/variacao/UpdateDescriptionVariacao6Controller';
+import { UpdatePriceVariacaoController } from './controllers/variacao/UpdatePriceVariacaoController';
+
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
@@ -181,6 +200,25 @@ router.get('/exportProduct', isAuthenticated, new ExportProductController().hand
 router.put('/diponibilidadeProduct', isAuthenticated, new DisponibilidadeDoProductController().handle);
 router.put('/updateCategory', isAuthenticated, new UpdateCategoryProductController().handle);
 router.put('/updateLoja', isAuthenticated, new UpdateLojaProductController().handle);
+
+// -- ROTAS AVALIACAO --
+router.post('/avaliacao', isAuthenticated, new CreateAvaliacaoController().handle);
+router.delete('/deleteAvaliacao', isAuthenticated, new DeleteAvaliacaoController().handle);
+
+// -- ROTAS VARIAÇÃO --
+router.post('/variacao', isAuthenticated, new CreateVariacaoController().handle);
+router.delete('/deleteVariacao', isAuthenticated, new DeleteVariacaoController().handle);
+router.get('/allVariacaoPage', isAuthenticated, new PageListAllVariacaoController().handle);
+router.post('/photoVariante', isAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
+router.delete('/deletePhotoVariacao', isAuthenticated, new DeletePhotoVariacaoController().handle);
+router.put('/updateNameVariacao', isAuthenticated, new UpdateNameVariacaoController().handle);
+router.put('/updateDescriptionVariacao1', isAuthenticated, new UpdateDescriptionVariacao1Controller().handle);
+router.put('/updateDescriptionVariacao2', isAuthenticated, new UpdateDescriptionVariacao2Controller().handle);
+router.put('/updateDescriptionVariacao3', isAuthenticated, new UpdateDescriptionVariacao3Controller().handle);
+router.put('/updateDescriptionVariacao4', isAuthenticated, new UpdateDescriptionVariacao4Controller().handle);
+router.put('/updateDescriptionVariacao5', isAuthenticated, new UpdateDescriptionVariacao5Controller().handle);
+router.put('/updateDescriptionVariacao6', isAuthenticated, new UpdateDescriptionVariacao6Controller().handle);
+router.put('/updatePriceVariacao', isAuthenticated, new UpdatePriceVariacaoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);

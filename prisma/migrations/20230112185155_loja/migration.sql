@@ -127,7 +127,7 @@ CREATE TABLE "variacoes" (
     "profundidadeCMVariacao" VARCHAR(15),
     "disponibilidadeVariacao" BOOLEAN NOT NULL DEFAULT true,
     "promocaoVariacao" VARCHAR(15),
-    "EntregaGratisVariacao" BOOLEAN NOT NULL DEFAULT false,
+    "entregaGratisVariacao" BOOLEAN NOT NULL DEFAULT false,
     "product_id" TEXT,
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -170,7 +170,6 @@ CREATE TABLE "pedidos" (
     "statusDoPedido" BOOLEAN NOT NULL DEFAULT false,
     "cancelado" BOOLEAN NOT NULL DEFAULT false,
     "user_id" TEXT,
-    "variacao_id" TEXT,
     "pagamento_id" TEXT,
     "entrega_id" TEXT,
     "loja_id" TEXT,
@@ -274,9 +273,6 @@ ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_loja_id_fkey" FOREIGN KEY ("
 
 -- AddForeignKey
 ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_variacao_id_fkey" FOREIGN KEY ("variacao_id") REFERENCES "variacoes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "pedidos" ADD CONSTRAINT "pedidos_pagamento_id_fkey" FOREIGN KEY ("pagamento_id") REFERENCES "pagamentos"("id") ON DELETE SET NULL ON UPDATE CASCADE;

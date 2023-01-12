@@ -34,7 +34,8 @@ class PageListAllProductService {
                 loja_id: true,
                 created_at: true,
                 variacoes: true,
-                photoproducts: true
+                photoproducts: true,
+                avaliacoes: true
             },
             skip,
             take: limit,
