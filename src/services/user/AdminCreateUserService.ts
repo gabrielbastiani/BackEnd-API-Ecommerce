@@ -1,0 +1,87 @@
+import { Role } from '@prisma/client';
+import prismaClient from '../../prisma'
+import { hash } from 'bcryptjs'
+import nodemailer from "nodemailer";
+require('dotenv/config');
+
+
+interface UserRequest {
+  nameComplete: string;
+  email: string;
+  password: string;
+  loja_id: string;
+}
+
+class AdminCreateUserService {
+  async execute({ nameComplete, email, password, loja_id }: UserRequest) {
+
+    // verificar se ele enviou um email
+    if (!email) {
+      throw new Error("Email incorrect")
+    }
+
+    //Verificar se esse email já está cadastrado na plataforma
+    const userAlreadyExists = await prismaClient.user.findFirst({
+      where: {
+        email: email,
+      }
+    })
+
+    if (userAlreadyExists) {
+      throw new Error("User already exists")
+    }
+
+    const passwordHash = await hash(password, 8);
+
+    const user = await prismaClient.user.create({
+      data: {
+        nameComplete: nameComplete,
+        email: email,
+        password: passwordHash,
+        role: Role.ADMIN,
+        loja_id: loja_id,
+      },
+      select: {
+        id: true,
+        nameComplete: true,
+        email: true,
+        role: true,
+        authenticated: true,
+        created_at: true,
+        loja_id: true,
+        pedidos: true
+      }
+    })
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.HOST_SMTP,
+      port: 465,
+      auth: {
+        user: process.env.USER_SMTP,
+        pass: process.env.PASS_SMTP
+      }
+    })
+
+    await transporter.sendMail({
+      from: "contato@builderseunegocioonline.com.br",
+      to: "gabriel.bastiani@hotmail.com.br",
+      subject: "Confirme seu cadastro de Administração na Loja Virtual",
+      html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
+                <h2>Confirme seu cadastro!</h2>
+            </div>
+            
+            <article>
+                <p>Olá, ${user.nameComplete}!</p>
+                <p><a href="http://localhost:3000/userAuthenticated?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar sua conta junto a Loja Virtual e poder acessa-la com os dados que cadastrou anteriormente.</p>
+            </article>
+            
+            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
+                <h5>Loja Virtual Builder Seu Negocio Online</h5>
+            </div>`,
+    });
+
+    return user;
+  }
+}
+
+export { AdminCreateUserService }

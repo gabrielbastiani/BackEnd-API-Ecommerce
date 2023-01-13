@@ -4,6 +4,8 @@ import multer from 'multer';
 
 // -- ROTAS USER --
 import { CreateUserController } from './controllers/user/CreateUserController';
+import { AdminRoleUserController } from './controllers/user/AdminRoleUserController';
+import { AdminCreateUserController } from './controllers/user/AdminCreateUserController';
 import { AuthUserController } from './controllers/user/AuthUserController';
 import { AuthenticatedEmailUserController } from './controllers/user/AuthenticatedEmailUserController';
 import { ActiveOrDesactiveUserController } from './controllers/user/ActiveOrDesactiveUserController';
@@ -132,6 +134,8 @@ const upload = multer(uploadConfig.upload("./images"));
 
 // -- ROTAS USER --
 router.post('/createUser', new CreateUserController().handle);
+router.put('/userAdmin', isAuthenticated, new AdminRoleUserController().handle);
+router.post('/createAdmin', new AdminCreateUserController().handle);
 router.post('/session', new AuthUserController().handle);
 router.get('/me', isAuthenticated, new DetailuserController().handle);
 router.put('/authenticated', new AuthenticatedEmailUserController().handle);
