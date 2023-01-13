@@ -102,6 +102,17 @@ import { UpdateDescriptionVariacao4Controller } from './controllers/variacao/Upd
 import { UpdateDescriptionVariacao5Controller } from './controllers/variacao/UpdateDescriptionVariacao5Controller';
 import { UpdateDescriptionVariacao6Controller } from './controllers/variacao/UpdateDescriptionVariacao6Controller';
 import { UpdatePriceVariacaoController } from './controllers/variacao/UpdatePriceVariacaoController';
+import { UpdateSkuVariacaoController } from './controllers/variacao/UpdateSkuVariacaoController';
+import { UpdateEstoqueVariacaoController } from './controllers/variacao/UpdateEstoqueVariacaoController';
+import { UpdatePesoVariacaoController } from './controllers/variacao/UpdatePesoVariacaoController';
+import { UpdateLarguraVariacaoController } from './controllers/variacao/UpdateLarguraVariacaoController';
+import { UpdateAlturaVariacaoController } from './controllers/variacao/UpdateAlturaVariacaoController';
+import { UpdateProfundidadeVariacaoController } from './controllers/variacao/UpdateProfundidadeVariacaoController';
+import { UpdateDisponibilidadeVariacaoController } from './controllers/variacao/UpdateDisponibilidadeVariacaoController';
+import { UpdatePromocaoVariacaoController } from './controllers/variacao/UpdatePromocaoVariacaoController';
+import { UpdateEntregaVariacaoController } from './controllers/variacao/UpdateEntregaVariacaoController';
+import { UpdateProductIdVariacaoController } from './controllers/variacao/UpdateProductIdVariacaoController';
+import { UpdateLojaIdVariacaoController } from './controllers/variacao/UpdateLojaIdVariacaoController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -219,6 +230,17 @@ router.put('/updateDescriptionVariacao4', isAuthenticated, new UpdateDescription
 router.put('/updateDescriptionVariacao5', isAuthenticated, new UpdateDescriptionVariacao5Controller().handle);
 router.put('/updateDescriptionVariacao6', isAuthenticated, new UpdateDescriptionVariacao6Controller().handle);
 router.put('/updatePriceVariacao', isAuthenticated, new UpdatePriceVariacaoController().handle);
+router.put('/updateSkuVariacao', isAuthenticated, new UpdateSkuVariacaoController().handle);
+router.put('/updateEstoqueVariacao', isAuthenticated, new UpdateEstoqueVariacaoController().handle);
+router.put('/updatePesoVariacao', isAuthenticated, new UpdatePesoVariacaoController().handle);
+router.put('/updateLarguraVariacao', isAuthenticated, new UpdateLarguraVariacaoController().handle);
+router.put('/updateAlturaVariacao', isAuthenticated, new UpdateAlturaVariacaoController().handle);
+router.put('/updateProfundidadeVariacao', isAuthenticated, new UpdateProfundidadeVariacaoController().handle);
+router.put('/updateDisponibilidadeVariacao', isAuthenticated, new UpdateDisponibilidadeVariacaoController().handle);
+router.put('/updatePromocaoVariacao', isAuthenticated, new UpdatePromocaoVariacaoController().handle);
+router.put('/updateEntregaVariacao', isAuthenticated, new UpdateEntregaVariacaoController().handle);
+router.put('/updateProductIdVariacao', isAuthenticated, new UpdateProductIdVariacaoController().handle);
+router.put('/updateLojaIdVariacao', isAuthenticated, new UpdateLojaIdVariacaoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', isAuthenticated, new EmailExportUsersController().handle);

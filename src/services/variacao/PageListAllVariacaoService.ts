@@ -35,7 +35,6 @@ class PageListAllVariacaoService {
                 product_id: true,
                 loja_id: true,
                 photovariacoes: true,
-                pedidos: true
             },
             skip,
             take: limit,
