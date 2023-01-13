@@ -37,8 +37,6 @@ model User {
   authenticated Boolean @default(false)
   role          Role    @default(USER)
 
-  pedidos Pedido[]
-
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
@@ -79,9 +77,9 @@ model Loja {
   products   Product[]
   variacoes  Variacao[]
   avaliacoes Avaliacao[]
-  pedidos    Pedido[]
   pagamentos Pagamento[]
   entregas   Entrega[]
+  pedidos    Pedido[]
 
   @@map("lojas")
 }
@@ -217,30 +215,29 @@ model Avaliacao {
 }
 
 model Pedido {
-  id             String  @id @default(uuid())
-  precoUnitario  String? @db.VarChar(15)
-  quantidade     String? @db.VarChar(55)
-  productStatic  String? @db.VarChar(115)
-  statusDoPedido Boolean @default(false)
-  cancelado      Boolean @default(false)
-
-  user    User?   @relation(fields: [user_id], references: [id])
-  user_id String?
-
-  pagamento    Pagamento? @relation(fields: [pagamento_id], references: [id])
-  pagamento_id String?
-
-  entrega    Entrega? @relation(fields: [entrega_id], references: [id])
-  entrega_id String?
+  id                           String     @id @default(uuid())
+  product_id                   String
+  variacao_id                  String
+  produtoEstatico              String?
+  quantidade                   String     @default("1")
+  precoUnitario                String
+  entrega                      Entrega?   @relation(fields: [entrega_id], references: [id])
+  entrega_id                   String?
+  custoEntrega                 String
+  prazoEntrega                 String
+  tipoEntrega                  String
+  pagamento                    Pagamento? @relation(fields: [pagamento_id], references: [id])
+  pagamento_id                 String?
+  valorPagamento               String
+  formaPagamento               String?
+  enderecoEntregaIgualCobranca Boolean    @default(true)
+  cancelado                    Boolean    @default(false)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
-
-  writtenPagamento Pagamento[] @relation("WrittenPagamento")
-  pinnedEntrega    Entrega[]   @relation("PinnedEntrega")
 
   @@map("pedidos")
 }
@@ -268,18 +265,16 @@ model Pagamento {
   cpfPagamento          String? @db.VarChar(15)
 
   enderecoEntregaIgualCobranca Boolean @default(true)
+  pedido_id                    String?
   pagSeguroCode                String?
-
-  pedido    Pedido? @relation("WrittenPagamento", fields: [pedido_id], references: [id])
-  pedido_id String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  pedidos Pedido[]
-
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  pedidos Pedido[]
 
   @@map("pagamentos")
 }
@@ -300,16 +295,14 @@ model Entrega {
   cityEntrega        String? @db.VarChar(185)
   stateEntrega       String? @db.VarChar(155)
 
-  pedido    Pedido? @relation("PinnedEntrega", fields: [pedido_id], references: [id])
   pedido_id String?
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  pedidos Pedido[]
+  loja      Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id   String?
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  pedidos Pedido[]
 
   @@map("entregas")
 }

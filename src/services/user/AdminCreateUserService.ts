@@ -65,14 +65,14 @@ class AdminCreateUserService {
     await transporter.sendMail({
       from: "contato@builderseunegocioonline.com.br",
       to: "gabriel.bastiani@hotmail.com.br",
-      subject: "Confirme seu cadastro de Administração na Loja Virtual",
+      subject: "Confirme cadastro de Administração na Loja Virtual",
       html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h2>Confirme seu cadastro!</h2>
+                <h2>Confirme cadastro!</h2>
             </div>
             
             <article>
                 <p>Olá, ${user.nameComplete}!</p>
-                <p><a href="http://localhost:3000/userAuthenticated?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar sua conta junto a Loja Virtual e poder acessa-la com os dados que cadastrou anteriormente.</p>
+                <p><a href="http://localhost:3000/userAuthenticated?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar a conta junto a Loja Virtual e poder acessa-la com os dados que cadastrou anteriormente.</p>
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
