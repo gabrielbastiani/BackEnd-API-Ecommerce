@@ -104,7 +104,6 @@ class CreateUserService {
         authenticated: true,
         role: true,
         created_at: true,
-        pedidos: true
       }
     })
 

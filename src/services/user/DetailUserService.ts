@@ -28,7 +28,6 @@ class DetailUserService {
         authenticated: true,
         role: true,
         created_at: true,
-        pedidos: true
       }
     })
 

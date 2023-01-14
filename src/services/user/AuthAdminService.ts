@@ -9,14 +9,14 @@ interface AuthRequest {
   password: string;
 }
 
-class AuthUserService {
+class AuthAdminService {
   async execute({ email, password }: AuthRequest) {
     //Verificar se o email existe, e se o usuario confirmou a autenticação no email dele.
     const user = await prismaClient.user.findFirst({
       where: {
         email: email,
         authenticated: true,
-        role: Role.USER
+        role: Role.ADMIN
       }
     })
 
@@ -36,7 +36,6 @@ class AuthUserService {
       {
         name: user.nameComplete,
         email: user.email,
-        role: user.role
       },
       process.env.JWT_SECRET,
       {
@@ -57,4 +56,4 @@ class AuthUserService {
 
 }
 
-export { AuthUserService };
+export { AuthAdminService };
