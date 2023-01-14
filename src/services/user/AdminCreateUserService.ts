@@ -49,6 +49,7 @@ class AdminCreateUserService {
         authenticated: true,
         created_at: true,
         loja_id: true,
+        pedidos: true
       }
     })
 

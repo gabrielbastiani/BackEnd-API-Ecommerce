@@ -220,7 +220,7 @@ model Avaliacao {
 model Carrinho {
   id             String  @id @default(uuid())
   product_id     String
-  variacao_id    String
+  variacao_id    String?
   quantidade     String  @default("1")
   precoUnitario  String
   custoEntrega   String
@@ -241,8 +241,8 @@ model Carrinho {
 
 model Pedido {
   id                           String     @id @default(uuid())
-  user                         User       @relation(fields: [user_id], references: [id])
-  user_id                      String
+  user                         User?      @relation(fields: [user_id], references: [id])
+  user_id                      String?
   carrinhos                    Carrinho[]
   entrega                      Entrega?   @relation(fields: [entrega_id], references: [id])
   entrega_id                   String?

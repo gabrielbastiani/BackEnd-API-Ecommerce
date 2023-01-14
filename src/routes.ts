@@ -118,6 +118,13 @@ import { UpdateEntregaVariacaoController } from './controllers/variacao/UpdateEn
 import { UpdateProductIdVariacaoController } from './controllers/variacao/UpdateProductIdVariacaoController';
 import { UpdateLojaIdVariacaoController } from './controllers/variacao/UpdateLojaIdVariacaoController';
 
+// -- ROTAS ENVIAR PEDIDO --
+import { CreateCarrinhoController } from './controllers/pedido/carrinho/CreateCarrinhoController';
+import { CreatePedidoController } from './controllers/pedido/CreatePedidoController';
+import { UpdatePedidoCarrinhoController } from './controllers/pedido/carrinho/UpdatePedidoCarrinhoController';
+import { PageAllPedidosUserController } from './controllers/pedido/PageAllPedidosUserController';
+import { DeleteCarrinhoController } from './controllers/pedido/carrinho/DeleteCarrinhoController';
+
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
@@ -250,6 +257,13 @@ router.put('/updatePromocaoVariacao', ADMINisAuthenticated, new UpdatePromocaoVa
 router.put('/updateEntregaVariacao', ADMINisAuthenticated, new UpdateEntregaVariacaoController().handle);
 router.put('/updateProductIdVariacao', ADMINisAuthenticated, new UpdateProductIdVariacaoController().handle);
 router.put('/updateLojaIdVariacao', ADMINisAuthenticated, new UpdateLojaIdVariacaoController().handle);
+
+// -- ROTAS PEDIDO --
+router.post('/carrinho', new CreateCarrinhoController().handle);
+router.post('/pedido', ADMINisAuthenticated && USERisAuthenticated, new CreatePedidoController().handle);
+router.put('/updatePedidoCarrinho', ADMINisAuthenticated && USERisAuthenticated, new UpdatePedidoCarrinhoController().handle);
+router.get('/allPedidosPage', ADMINisAuthenticated && USERisAuthenticated, new PageAllPedidosUserController().handle);
+router.delete('/deleteCarrinho', ADMINisAuthenticated && USERisAuthenticated, new DeleteCarrinhoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);
