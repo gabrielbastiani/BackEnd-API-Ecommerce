@@ -40,6 +40,8 @@ model User {
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
+  pedidos Pedido[]
+
   @@map("users")
 }
 
@@ -77,6 +79,7 @@ model Loja {
   products   Product[]
   variacoes  Variacao[]
   avaliacoes Avaliacao[]
+  carrinhos  Carrinho[]
   pagamentos Pagamento[]
   entregas   Entrega[]
   pedidos    Pedido[]
@@ -214,21 +217,37 @@ model Avaliacao {
   @@map("avaliacoes")
 }
 
+model Carrinho {
+  id             String  @id @default(uuid())
+  product_id     String
+  variacao_id    String
+  quantidade     String  @default("1")
+  precoUnitario  String
+  custoEntrega   String
+  prazoEntrega   String
+  tipoEntrega    String
+  valorPagamento String
+  pedido         Pedido? @relation(fields: [pedido_id], references: [id])
+  pedido_id      String?
+
+  created_at DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("carrinhos")
+}
+
 model Pedido {
   id                           String     @id @default(uuid())
-  product_id                   String
-  variacao_id                  String
-  produtoEstatico              String?
-  quantidade                   String     @default("1")
-  precoUnitario                String
+  user                         User       @relation(fields: [user_id], references: [id])
+  user_id                      String
+  carrinhos                    Carrinho[]
   entrega                      Entrega?   @relation(fields: [entrega_id], references: [id])
   entrega_id                   String?
-  custoEntrega                 String
-  prazoEntrega                 String
-  tipoEntrega                  String
   pagamento                    Pagamento? @relation(fields: [pagamento_id], references: [id])
   pagamento_id                 String?
-  valorPagamento               String
   formaPagamento               String?
   enderecoEntregaIgualCobranca Boolean    @default(true)
   cancelado                    Boolean    @default(false)

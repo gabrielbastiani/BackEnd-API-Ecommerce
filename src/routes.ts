@@ -90,6 +90,7 @@ import { UpdateLojaProductController } from './controllers/product/UpdateLojaPro
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
 import { DeleteAvaliacaoController } from './controllers/avaliacao/DeleteAvaliacaoController';
+import { PageListAllAvaliacaoController } from './controllers/avaliacao/PageListAllAvaliacaoController';
 
 // -- ROTAS VARIAÇÃO --
 import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
@@ -222,6 +223,7 @@ router.put('/updateLoja', ADMINisAuthenticated, new UpdateLojaProductController(
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
 router.delete('/deleteAvaliacao', ADMINisAuthenticated, new DeleteAvaliacaoController().handle);
+router.get('/allAvaliacao', new PageListAllAvaliacaoController().handle);
 
 // -- ROTAS VARIAÇÃO --
 router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);

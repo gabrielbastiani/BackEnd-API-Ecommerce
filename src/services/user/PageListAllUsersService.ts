@@ -33,7 +33,6 @@ class PageListAllUsersService {
                 authenticated: true,
                 role: true,
                 created_at: true,
-                pedidos: true
             },
             skip,
             take: limit,
