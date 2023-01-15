@@ -8,7 +8,7 @@ interface ProductRequest {
     descriptionProduct4: string;
     descriptionProduct5: string;
     descriptionProduct6: string;
-    price: string;
+    preco: string;
     sku: string;
     estoque: string;
     pesoKG: string;
@@ -30,7 +30,7 @@ class CreateProductService {
         descriptionProduct4,
         descriptionProduct5,
         descriptionProduct6,
-        price,
+        preco,
         sku,
         estoque,
         pesoKG,
@@ -52,7 +52,7 @@ class CreateProductService {
                 descriptionProduct4: descriptionProduct4,
                 descriptionProduct5: descriptionProduct5,
                 descriptionProduct6: descriptionProduct6,
-                price: price,
+                preco: preco,
                 sku: sku,
                 estoque: estoque,
                 pesoKG: pesoKG,
@@ -73,7 +73,7 @@ class CreateProductService {
                 descriptionProduct4: true,
                 descriptionProduct5: true,
                 descriptionProduct6: true,
-                price: true,
+                preco: true,
                 sku: true,
                 estoque: true,
                 pesoKG: true,

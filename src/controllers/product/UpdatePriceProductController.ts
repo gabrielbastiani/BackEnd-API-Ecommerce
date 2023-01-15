@@ -5,13 +5,13 @@ class UpdatePriceProductController {
   async handle(req: Request, res: Response) {
     const product_id = req.query.product_id;
 
-    const { price } = req.body;
+    const { preco } = req.body;
 
     const updatePrice = new UpdatePriceProductService();
 
     const product = await updatePrice.execute({
       product_id,
-      price,
+      preco,
     });
 
     return res.json(product);

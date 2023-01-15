@@ -16,7 +16,7 @@ class ExportProductService {
                 descriptionProduct4: true,
                 descriptionProduct5: true,
                 descriptionProduct6: true,
-                price: true,
+                preco: true,
                 sku: true,
                 estoque: true,
                 pesoKG: true,
