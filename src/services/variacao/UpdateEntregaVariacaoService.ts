@@ -11,7 +11,7 @@ class UpdateEntregaVariacaoService {
         id: variacao_id
       },
       select: {
-        entregaGratisVariacao: true
+        freteGratis: true
       }
     })
 
@@ -20,30 +20,30 @@ class UpdateEntregaVariacaoService {
         id: variacao_id
       },
       select: {
-        entregaGratisVariacao: true
+        freteGratis: true
       }
     })
 
-    if(activeTrue.entregaGratisVariacao === true){
+    if(activeTrue.freteGratis === true){
       const isFalse = await prismaClient.variacao.update({
         where:{
           id: variacao_id
         },
         data: {
-          entregaGratisVariacao: false
+          freteGratis: false
         }
       })
 
       return isFalse;
     }
 
-    if(activeFalse.entregaGratisVariacao === false){
+    if(activeFalse.freteGratis === false){
       const isTrue = await prismaClient.variacao.update({
         where:{
           id: variacao_id
         },
         data: {
-          entregaGratisVariacao: true
+          freteGratis: true
         }
       })
 

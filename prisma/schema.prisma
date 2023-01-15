@@ -23,13 +23,13 @@ model User {
   dataNascimento    String?  @db.VarChar(25)
   genero            String?  @db.VarChar(35)
   newslatter        Boolean? @default(false)
-  rua               String?  @db.VarChar(405)
-  numero            String?  @db.VarChar(8)
-  bairro            String?  @db.VarChar(95)
+  local             String?  @db.VarChar(405)
+  numero            String?  @db.VarChar(25)
   complemento       String?  @db.VarChar(155)
-  cep               String?  @db.VarChar(25)
-  city              String?  @db.VarChar(185)
-  state             String?  @db.VarChar(155)
+  bairro            String?  @db.VarChar(85)
+  CEP               String?  @db.VarChar(25)
+  cidade            String?  @db.VarChar(185)
+  estado            String?  @db.VarChar(85)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -105,26 +105,25 @@ model Category {
 }
 
 model Product {
-  id                  String  @id @default(uuid())
-  nameProduct         String  @db.VarChar(225)
-  descriptionProduct1 String? @db.VarChar(725)
-  descriptionProduct2 String? @db.VarChar(725)
-  descriptionProduct3 String? @db.VarChar(725)
-  descriptionProduct4 String? @db.VarChar(725)
-  descriptionProduct5 String? @db.VarChar(725)
-  descriptionProduct6 String? @db.VarChar(725)
-  price               String? @db.VarChar(15)
-  sku                 String? @db.VarChar(25)
-  estoque             String? @db.VarChar(15)
-  pesoKG              String? @db.VarChar(15)
-  larguraCM           String? @db.VarChar(15)
-  alturaCM            String? @db.VarChar(15)
-  profundidadeCM      String? @db.VarChar(15)
-  disponibilidade     Boolean @default(true)
-  promocao            String? @db.VarChar(15)
-
-  category    Category? @relation(fields: [category_id], references: [id])
-  category_id String?
+  id                  String    @id @default(uuid())
+  nameProduct         String    @db.VarChar(225)
+  descriptionProduct1 String?   @db.VarChar(725)
+  descriptionProduct2 String?   @db.VarChar(725)
+  descriptionProduct3 String?   @db.VarChar(725)
+  descriptionProduct4 String?   @db.VarChar(725)
+  descriptionProduct5 String?   @db.VarChar(725)
+  descriptionProduct6 String?   @db.VarChar(725)
+  preco               String?   @db.VarChar(15)
+  sku                 String?   @db.VarChar(25)
+  estoque             String?   @db.VarChar(15)
+  pesoKG              String?   @db.VarChar(15)
+  larguraCM           String?   @db.VarChar(15)
+  alturaCM            String?   @db.VarChar(15)
+  profundidadeCM      String?   @db.VarChar(15)
+  disponibilidade     Boolean   @default(true)
+  promocao            String?   @db.VarChar(15)
+  category            Category? @relation(fields: [category_id], references: [id])
+  category_id         String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -140,9 +139,8 @@ model Product {
 }
 
 model PhotoProduct {
-  id    String  @id @default(uuid())
-  photo String?
-
+  id         String   @id @default(uuid())
+  photo      String?
   product    Product? @relation(fields: [product_id], references: [id])
   product_id String?
 
@@ -153,27 +151,28 @@ model PhotoProduct {
 }
 
 model Variacao {
-  id                      String  @id @default(uuid())
-  nameVariacao            String? @db.VarChar(155)
-  descriptionVariacao1    String? @db.VarChar(725)
-  descriptionVariacao2    String? @db.VarChar(725)
-  descriptionVariacao3    String? @db.VarChar(725)
-  descriptionVariacao4    String? @db.VarChar(725)
-  descriptionVariacao5    String? @db.VarChar(725)
-  descriptionVariacao6    String? @db.VarChar(725)
-  priceVariacao           String? @db.VarChar(15)
-  skuVariacao             String? @db.VarChar(25)
-  estoqueVariacao         String? @db.VarChar(15)
-  pesoKGVariacao          String? @db.VarChar(15)
-  larguraCMVariacao       String? @db.VarChar(15)
-  alturaCMVariacao        String? @db.VarChar(15)
-  profundidadeCMVariacao  String? @db.VarChar(15)
-  disponibilidadeVariacao Boolean @default(true)
-  promocaoVariacao        String? @db.VarChar(15)
-  entregaGratisVariacao   Boolean @default(false)
-
-  product    Product? @relation(fields: [product_id], references: [id])
-  product_id String?
+  id                      String   @id @default(uuid())
+  nameVariacao            String?  @db.VarChar(155)
+  descriptionVariacao1    String?  @db.VarChar(725)
+  descriptionVariacao2    String?  @db.VarChar(725)
+  descriptionVariacao3    String?  @db.VarChar(725)
+  descriptionVariacao4    String?  @db.VarChar(725)
+  descriptionVariacao5    String?  @db.VarChar(725)
+  descriptionVariacao6    String?  @db.VarChar(725)
+  preco                   String?  @db.VarChar(15)
+  skuVariacao             String?  @db.VarChar(25)
+  estoqueVariacao         String?  @db.VarChar(15)
+  pesoKg                  String?  @db.VarChar(15)
+  larguraCm               String?  @db.VarChar(15)
+  alturaCm                String?  @db.VarChar(15)
+  profundidadeCm          String?  @db.VarChar(15)
+  disponibilidadeVariacao Boolean  @default(true)
+  promocao                String?  @db.VarChar(15)
+  freteGratis             Boolean  @default(false)
+  quantidade              String?  @db.VarChar(15)
+  quantidadeBloqueada     Int?     @default(0)
+  product                 Product? @relation(fields: [product_id], references: [id])
+  product_id              String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -187,11 +186,10 @@ model Variacao {
 }
 
 model PhotoVariacao {
-  id            String  @id @default(uuid())
+  id            String    @id @default(uuid())
   photoVariacao String?
-
-  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
-  variacao_id String?
+  variacao      Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id   String?
 
   created_at DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -200,13 +198,12 @@ model PhotoVariacao {
 }
 
 model Avaliacao {
-  id          String  @id @default(uuid())
-  clientName  String? @db.VarChar(225)
-  description String? @db.VarChar(225)
-  pontuacao   String? @db.VarChar(25)
-
-  product    Product? @relation(fields: [product_id], references: [id])
-  product_id String?
+  id          String   @id @default(uuid())
+  clientName  String?  @db.VarChar(225)
+  description String?  @db.VarChar(225)
+  pontuacao   String?  @db.VarChar(25)
+  product     Product? @relation(fields: [product_id], references: [id])
+  product_id  String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -304,15 +301,15 @@ model Entrega {
   status             Boolean @default(false)
   tipo               String? @db.VarChar(25)
   custo              String? @db.VarChar(15)
-  prazoDeEntrega     String? @db.VarChar(95)
+  prazo              String? @db.VarChar(95)
 
-  ruaEntrega         String? @db.VarChar(405)
-  numeroEntrega      String? @db.VarChar(25)
-  complementoEntrega String? @db.VarChar(155)
-  bairroEntrega      String? @db.VarChar(85)
-  cepEntrega         String? @db.VarChar(25)
-  cityEntrega        String? @db.VarChar(185)
-  stateEntrega       String? @db.VarChar(155)
+  local       String? @db.VarChar(405)
+  numero      String? @db.VarChar(25)
+  complemento String? @db.VarChar(155)
+  bairro      String? @db.VarChar(85)
+  CEP         String? @db.VarChar(25)
+  cidade      String? @db.VarChar(185)
+  estado      String? @db.VarChar(155)
 
   pedido_id String?
   loja      Loja?   @relation(fields: [loja_id], references: [id])

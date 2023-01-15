@@ -13,13 +13,13 @@ class CreateUserController {
             dataNascimento,
             genero,
             newslatter,
-            rua,
+            local,
             numero,
-            bairro,
             complemento,
-            cep,
-            city,
-            state,
+            bairro,
+            CEP,
+            cidade,
+            estado,
             loja_id
         } = req.body;
 
@@ -35,13 +35,13 @@ class CreateUserController {
             dataNascimento,
             genero,
             newslatter,
-            rua,
+            local,
             numero,
-            bairro,
             complemento,
-            cep,
-            city,
-            state,
+            bairro,
+            CEP,
+            cidade,
+            estado,
             loja_id
         });
 

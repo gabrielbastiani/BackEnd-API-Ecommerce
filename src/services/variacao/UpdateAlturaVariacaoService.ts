@@ -2,17 +2,17 @@ import prismaClient from "../../prisma";
 
 interface VariacaoRequest {
    variacao_id: any;
-   alturaCMVariacao: string;
+   alturaCm: string;
 }
 
 class UpdateAlturaVariacaoService {
-  async execute({ variacao_id, alturaCMVariacao }: VariacaoRequest){
+  async execute({ variacao_id, alturaCm }: VariacaoRequest){
     const updateVariacao = await prismaClient.variacao.update({
       where:{
         id: String(variacao_id)
       },
       data:{
-        alturaCMVariacao: alturaCMVariacao,
+        alturaCm: alturaCm,
       }
     })
 

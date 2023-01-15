@@ -8,15 +8,15 @@ interface VariacaoRequest {
     descriptionVariacao4: string;
     descriptionVariacao5: string;
     descriptionVariacao6: string;
-    priceVariacao: string;
+    preco: string;
     skuVariacao: string;
     estoqueVariacao: string;
-    pesoKGVariacao: string;
-    larguraCMVariacao: string;
-    alturaCMVariacao: string;
-    profundidadeCMVariacao: string;
+    pesoKg: string;
+    larguraCm: string;
+    alturaCm: string;
+    profundidadeCm: string;
     disponibilidadeVariacao: boolean;
-    promocaoVariacao: string;
+    promocao: string;
     EntregaGratisVariacao: boolean;
     product_id: string;
     loja_id: string;
@@ -31,16 +31,16 @@ class CreateVariacaoService {
         descriptionVariacao4,
         descriptionVariacao5,
         descriptionVariacao6,
-        priceVariacao,
+        preco,
         skuVariacao,
         estoqueVariacao,
-        pesoKGVariacao,
-        larguraCMVariacao,
-        alturaCMVariacao,
-        profundidadeCMVariacao,
+        pesoKg,
+        larguraCm,
+        alturaCm,
+        profundidadeCm,
         disponibilidadeVariacao,
-        promocaoVariacao,
-        entregaGratisVariacao,
+        promocao,
+        freteGratis,
         product_id,
         loja_id
     }: VariacaoRequest) {
@@ -54,16 +54,16 @@ class CreateVariacaoService {
                 descriptionVariacao4: descriptionVariacao4,
                 descriptionVariacao5: descriptionVariacao5,
                 descriptionVariacao6: descriptionVariacao6,
-                priceVariacao: priceVariacao,
+                preco: preco,
                 skuVariacao: skuVariacao,
                 estoqueVariacao: estoqueVariacao,
-                pesoKGVariacao: pesoKGVariacao,
-                larguraCMVariacao: larguraCMVariacao,
-                alturaCMVariacao: alturaCMVariacao,
-                profundidadeCMVariacao: profundidadeCMVariacao,
+                pesoKg: pesoKg,
+                larguraCm: larguraCm,
+                alturaCm: alturaCm,
+                profundidadeCm: profundidadeCm,
                 disponibilidadeVariacao: disponibilidadeVariacao,
-                promocaoVariacao: promocaoVariacao,
-                entregaGratisVariacao: entregaGratisVariacao,
+                promocao: promocao,
+                freteGratis: freteGratis,
                 product_id: product_id,
                 loja_id: loja_id
             },
@@ -76,16 +76,16 @@ class CreateVariacaoService {
                 descriptionVariacao4: true,
                 descriptionVariacao5: true,
                 descriptionVariacao6: true,
-                priceVariacao: true,
+                preco: true,
                 skuVariacao: true,
                 estoqueVariacao: true,
-                pesoKGVariacao: true,
-                larguraCMVariacao: true,
-                alturaCMVariacao: true,
-                profundidadeCMVariacao: true,
+                pesoKg: true,
+                larguraCm: true,
+                alturaCm: true,
+                profundidadeCm: true,
                 disponibilidadeVariacao: true,
-                promocaoVariacao: true,
-                entregaGratisVariacao: true,
+                promocao: true,
+                freteGratis: true,
                 created_at: true,
                 product_id: true,
                 loja_id: true,

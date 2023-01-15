@@ -5,13 +5,13 @@ class UpdateProfundidadeVariacaoController {
   async handle(req: Request, res: Response) {
     const variacao_id = req.query.variacao_id;
 
-    const { profundidadeCMVariacao } = req.body;
+    const { profundidadeCm } = req.body;
 
     const updateProfundidadeVariacaoService = new UpdateProfundidadeVariacaoService();
 
     const variacao = await updateProfundidadeVariacaoService.execute({
       variacao_id,
-      profundidadeCMVariacao,
+      profundidadeCm,
     });
 
     return res.json(variacao);

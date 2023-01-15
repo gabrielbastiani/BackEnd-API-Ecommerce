@@ -5,13 +5,13 @@ class UpdatePriceVariacaoController {
   async handle(req: Request, res: Response) {
     const variacao_id = req.query.variacao_id;
 
-    const { priceVariacao } = req.body;
+    const { preco } = req.body;
 
     const updatePriceVariacaoService = new UpdatePriceVariacaoService();
 
     const variacao = await updatePriceVariacaoService.execute({
       variacao_id,
-      priceVariacao,
+      preco,
     });
 
     return res.json(variacao);

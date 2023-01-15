@@ -14,13 +14,13 @@ interface UserRequest {
   dataNascimento: string;
   genero: string;
   newslatter: boolean;
-  rua: string;
+  local: string;
   numero: string;
-  bairro: string;
   complemento: string;
-  cep: string;
-  city: string;
-  state: string;
+  bairro: string;
+  CEP: string;
+  cidade: string;
+  estado: string;
   loja_id: string;
 }
 
@@ -35,13 +35,13 @@ class CreateUserService {
     dataNascimento,
     genero,
     newslatter,
-    rua,
+    local,
     numero,
-    bairro,
     complemento,
-    cep,
-    city,
-    state,
+    bairro,
+    CEP,
+    cidade,
+    estado,
     loja_id
   }: UserRequest) {
 
@@ -74,13 +74,13 @@ class CreateUserService {
         dataNascimento: dataNascimento,
         genero: genero,
         newslatter: newslatter,
-        rua: rua,
+        local: local,
         numero: numero,
         bairro: bairro,
         complemento: complemento,
-        cep: cep,
-        city: city,
-        state: state,
+        CEP: CEP,
+        cidade: cidade,
+        estado: estado,
         loja_id: loja_id
       },
       select: {
@@ -93,13 +93,13 @@ class CreateUserService {
         dataNascimento: true,
         genero: true,
         newslatter: true,
-        rua: true,
+        local: true,
         numero: true,
         bairro: true,
         complemento: true,
-        cep: true,
-        city: true,
-        state: true,
+        CEP: true,
+        cidade: true,
+        estado: true,
         loja_id: true,
         authenticated: true,
         role: true,

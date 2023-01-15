@@ -5,13 +5,13 @@ class UpdatePesoVariacaoController {
   async handle(req: Request, res: Response) {
     const variacao_id = req.query.variacao_id;
 
-    const { pesoKGVariacao } = req.body;
+    const { pesoKg } = req.body;
 
     const updatePesoVariacaoService = new UpdatePesoVariacaoService();
 
     const variacao = await updatePesoVariacaoService.execute({
       variacao_id,
-      pesoKGVariacao,
+      pesoKg,
     });
 
     return res.json(variacao);

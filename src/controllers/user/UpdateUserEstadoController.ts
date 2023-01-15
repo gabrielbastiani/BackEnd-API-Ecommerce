@@ -5,13 +5,13 @@ class UpdateUserEstadoController {
   async handle(req: Request, res: Response) {
     const user_id = req.query.user_id;
 
-    const { state } = req.body;
+    const { estado } = req.body;
 
     const updateUserService = new UserUpdateEstadoService();
 
     const userUpdated = await updateUserService.execute({
       user_id,
-      state,
+      estado,
     });
     return res.json(userUpdated);
   }

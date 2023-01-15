@@ -2,17 +2,17 @@ import prismaClient from '../../prisma';
 
 interface UserRequest {
   user_id: any;
-  city: string;
+  cidade: string;
 }
 
 class UserUpdateCityService {
-  async execute({ user_id, city }: UserRequest) {
+  async execute({ user_id, cidade }: UserRequest) {
     const userUpdated = await prismaClient.user.update({
       where: {
         id: String(user_id),
       },
       data: {
-        city: city,
+        cidade: cidade,
       }
     })
 

@@ -5,13 +5,13 @@ class UpdateLarguraVariacaoController {
   async handle(req: Request, res: Response) {
     const variacao_id = req.query.variacao_id;
 
-    const { larguraCMVariacao } = req.body;
+    const { larguraCm } = req.body;
 
     const updateLarguraVariacaoService = new UpdateLarguraVariacaoService();
 
     const variacao = await updateLarguraVariacaoService.execute({
       variacao_id,
-      larguraCMVariacao,
+      larguraCm,
     });
 
     return res.json(variacao);
