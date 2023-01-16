@@ -37,8 +37,8 @@ model User {
   authenticated Boolean @default(false)
   role          Role    @default(USER)
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   pedidos Pedido[]
 
@@ -71,8 +71,8 @@ model Loja {
   cityLoja        String? @db.VarChar(185)
   stateLoja       String? @db.VarChar(155)
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   users      User[]
   categories Category[]
@@ -93,8 +93,8 @@ model Category {
   codigo          String? @db.VarChar(100)
   disponibilidade Boolean @default(true)
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -128,12 +128,13 @@ model Product {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   photoproducts PhotoProduct[]
   variacoes     Variacao[]
   avaliacoes    Avaliacao[]
+  carrinho      Carrinho[]
 
   @@map("products")
 }
@@ -144,8 +145,8 @@ model PhotoProduct {
   product    Product? @relation(fields: [product_id], references: [id])
   product_id String?
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   @@map("photoproducts")
 }
@@ -179,8 +180,8 @@ model Variacao {
 
   photovariacoes PhotoVariacao[]
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   @@map("variacoes")
 }
@@ -191,8 +192,8 @@ model PhotoVariacao {
   variacao      Variacao? @relation(fields: [variacao_id], references: [id])
   variacao_id   String?
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   @@map("photovariacoes")
 }
@@ -208,27 +209,27 @@ model Avaliacao {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   @@map("avaliacoes")
 }
 
 model Carrinho {
-  id             String  @id @default(uuid())
-  product_id     String
-  variacao_id    String?
-  quantidade     String  @default("1")
-  precoUnitario  String
-  custoEntrega   String
-  prazoEntrega   String
-  tipoEntrega    String
-  valorPagamento String
-  pedido         Pedido? @relation(fields: [pedido_id], references: [id])
+  id             String   @id @default(uuid())
+  quantidade     Int?     @default(0)
+  pedido         Pedido?  @relation(fields: [pedido_id], references: [id])
   pedido_id      String?
+  product        Product? @relation(fields: [product_id], references: [id])
+  product_id     String?
+  precoUnitario  String?
+  custoEntrega   String?
+  prazoEntrega   String?
+  tipoEntrega    String?
+  valorPagamento String?
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -241,8 +242,7 @@ model Pedido {
   user                         User?      @relation(fields: [user_id], references: [id])
   user_id                      String?
   carrinhos                    Carrinho[]
-  entrega                      Entrega?   @relation(fields: [entrega_id], references: [id])
-  entrega_id                   String?
+  entregas                     Entrega[]
   pagamento                    Pagamento? @relation(fields: [pagamento_id], references: [id])
   pagamento_id                 String?
   formaPagamento               String?
@@ -252,8 +252,8 @@ model Pedido {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   @@map("pedidos")
 }
@@ -287,8 +287,8 @@ model Pagamento {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   pedidos Pedido[]
 
@@ -311,14 +311,13 @@ model Entrega {
   cidade      String? @db.VarChar(185)
   estado      String? @db.VarChar(155)
 
+  pedido    Pedido? @relation(fields: [pedido_id], references: [id])
   pedido_id String?
   loja      Loja?   @relation(fields: [loja_id], references: [id])
   loja_id   String?
 
-  created_at DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  pedidos Pedido[]
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   @@map("entregas")
 }

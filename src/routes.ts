@@ -127,6 +127,9 @@ import { DeleteCarrinhoController } from './controllers/pedido/carrinho/DeleteCa
 import { CancelarPedidoAdminController } from './controllers/pedido/CancelarPedidoAdminController';
 import { CancelarPedidoClienteController } from './controllers/pedido/CancelarPedidoClienteController';
 import { EntregaEnderecoMesmoPedidoController } from './controllers/pedido/EntregaEnderecoMesmoPedidoController';
+import { CreateEntregaController } from './controllers/pedido/entrega/CreateEntregaController';
+import { DeleteEntregaController } from './controllers/pedido/entrega/DeleteEntregaController';
+import { PageAllListEntregaController } from './controllers/pedido/entrega/PageAllListEntregaController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -208,7 +211,7 @@ router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryControl
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
 router.post('/photo', ADMINisAuthenticated, upload.single('file'), new PhotoProductController().handle);
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
-router.get('/allProductsPage', ADMINisAuthenticated, new PageListAllProductController().handle);
+router.get('/allProductsPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
 router.put('/updateDescription1', ADMINisAuthenticated, new Update1DescriptionProductController().handle);
@@ -238,7 +241,7 @@ router.get('/allAvaliacao', new PageListAllAvaliacaoController().handle);
 // -- ROTAS VARIAÇÃO --
 router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);
 router.delete('/deleteVariacao', ADMINisAuthenticated, new DeleteVariacaoController().handle);
-router.get('/allVariacaoPage', ADMINisAuthenticated, new PageListAllVariacaoController().handle);
+router.get('/allVariacaoPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllVariacaoController().handle);
 router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
 router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
 router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
@@ -270,6 +273,9 @@ router.delete('/deleteCarrinho', ADMINisAuthenticated && USERisAuthenticated, ne
 router.put('/cancelarPedidoAdmin', ADMINisAuthenticated, new CancelarPedidoAdminController().handle);
 router.put('/cancelarPedidoCliente', USERisAuthenticated, new CancelarPedidoClienteController().handle);
 router.put('/entregaPedidoEndereco', ADMINisAuthenticated && USERisAuthenticated, new EntregaEnderecoMesmoPedidoController().handle);
+router.post('/entregaPedido', new CreateEntregaController().handle);
+router.delete('/deleteEntrega', new DeleteEntregaController().handle);
+router.get('/allEntregaPedido', new PageAllListEntregaController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);

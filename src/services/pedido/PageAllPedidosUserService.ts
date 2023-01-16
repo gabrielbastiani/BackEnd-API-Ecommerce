@@ -19,7 +19,7 @@ class PageAllPedidosUserService {
                 id: true,
                 user_id: true,
                 carrinhos: true,
-                entrega_id: true,
+                entregas: true,
                 pagamento_id: true,
                 formaPagamento: true,
                 enderecoEntregaIgualCobranca: true,
