@@ -3,7 +3,7 @@ import prismaClient from "../../prisma";
 interface PedidoRequest {
     product_id: string;
     variacao_id: string;
-    quantidade: string;
+    quantidade: number;
     precoUnitario: string;
     custoEntrega: string;
     prazoEntrega: string;
@@ -57,7 +57,6 @@ class CreatePedidoService {
                 carrinhos: true,
                 entregas: true,
                 pagamento_id: true,
-                formaPagamento: true,
                 enderecoEntregaIgualCobranca: true,
                 cancelado: true,
                 created_at: true,
@@ -65,35 +64,15 @@ class CreatePedidoService {
             }
         })
 
-        const carrinho = await prismaClient.carrinho.create({
-            data: {
-                product_id: product_id,
-                variacao_id: variacao_id,
-                quantidade: quantidade,
-                precoUnitario: precoUnitario,
-                custoEntrega: custoEntrega,
-                prazoEntrega: prazoEntrega,
-                tipoEntrega: tipoEntrega,
-                valorPagamento: valorPagamento,
-                loja_id: loja_id
-            },
-            select: {
-                id: true,
-                product_id: true,
-                variacao_id: true,
-                quantidade: true,
-                precoUnitario: true,
-                custoEntrega: true,
-                prazoEntrega: true,
-                tipoEntrega: true,
-                valorPagamento: true,
-                created_at: true,
-                loja_id: true,
+        const pedidoID = await prismaClient.pedido.findFirst({
+            where: {
+                id: pedido.id
             }
         })
 
         const entrega = await prismaClient.entrega.create({
             data: {
+                pedido_id: pedidoID.id,
                 tipo: tipo,
                 custo: custo,
                 prazo: prazo,
@@ -104,7 +83,7 @@ class CreatePedidoService {
                 CEP: CEP,
                 cidade: cidade,
                 estado: estado,
-                loja_id: loja_id
+                loja_id: pedidoID.loja_id
             },
             select: {
                 id: true,
@@ -120,6 +99,34 @@ class CreatePedidoService {
                 cidade: true,
                 estado: true,
                 pedido_id: true,
+                created_at: true,
+                loja_id: true,
+            }
+        })
+
+        const carrinho = await prismaClient.carrinho.create({
+            data: {
+                pedido_id: pedidoID.id,
+                product_id: product_id,
+                variacao_id: variacao_id,
+                quantidade,
+                precoUnitario: precoUnitario,
+                custoEntrega: custoEntrega,
+                prazoEntrega: prazoEntrega,
+                tipoEntrega: tipoEntrega,
+                valorPagamento: valorPagamento,
+                loja_id: pedidoID.loja_id
+            },
+            select: {
+                id: true,
+                product_id: true,
+                variacao_id: true,
+                quantidade: true,
+                precoUnitario: true,
+                custoEntrega: true,
+                prazoEntrega: true,
+                tipoEntrega: true,
+                valorPagamento: true,
                 created_at: true,
                 loja_id: true,
             }

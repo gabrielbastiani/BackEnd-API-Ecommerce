@@ -21,7 +21,6 @@ class PageAllPedidosUserService {
                 carrinhos: true,
                 entregas: true,
                 pagamento_id: true,
-                formaPagamento: true,
                 enderecoEntregaIgualCobranca: true,
                 cancelado: true,
                 loja_id: true,

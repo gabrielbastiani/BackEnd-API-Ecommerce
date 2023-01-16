@@ -3,7 +3,7 @@ import prismaClient from "../../../prisma";
 interface CarrinhoRequest {
     product_id: string;
     variacao_id: string;
-    quantidade: string;
+    quantidade: number;
     precoUnitario: string;
     custoEntrega: string;
     prazoEntrega: string;
@@ -24,13 +24,32 @@ class CreateCarrinhoService {
         valorPagamento,
         loja_id
     }: CarrinhoRequest) {
+        const carrinhoID = await prismaClient.carrinho.findFirst({
+            where: {
+                id: carrinho.id
+            }
+        })
 
-        const carrinho = await prismaClient.carrinho.create({
+        const item = await prismaClient.item.create({
             data: {
                 product_id: product_id,
                 variacao_id: variacao_id,
                 quantidade: quantidade,
                 precoUnitario: precoUnitario,
+                carrinho_id: carrinhoID.id
+            },
+            select: {
+                id: true,
+                carrinho_id: true,
+                product_id: true,
+                variacao_id: true,
+                quantidade: true,
+                precoUnitario: true
+            }
+        })
+
+        const carrinho = await prismaClient.carrinho.create({
+            data: {
                 custoEntrega: custoEntrega,
                 prazoEntrega: prazoEntrega,
                 tipoEntrega: tipoEntrega,
@@ -39,10 +58,6 @@ class CreateCarrinhoService {
             },
             select: {
                 id: true,
-                product_id: true,
-                variacao_id: true,
-                quantidade: true,
-                precoUnitario: true,
                 custoEntrega: true,
                 prazoEntrega: true,
                 tipoEntrega: true,
@@ -52,7 +67,7 @@ class CreateCarrinhoService {
             }
         })
 
-        return carrinho;
+        return ([item, carrinho]);
 
     }
 }

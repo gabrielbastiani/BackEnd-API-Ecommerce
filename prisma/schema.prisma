@@ -134,7 +134,7 @@ model Product {
   photoproducts PhotoProduct[]
   variacoes     Variacao[]
   avaliacoes    Avaliacao[]
-  carrinho      Carrinho[]
+  item          Item[]
 
   @@map("products")
 }
@@ -179,6 +179,7 @@ model Variacao {
   loja_id String?
 
   photovariacoes PhotoVariacao[]
+  item           Item[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -215,14 +216,28 @@ model Avaliacao {
   @@map("avaliacoes")
 }
 
+model Item {
+  id            String    @id @default(uuid())
+  carrinho      Carrinho? @relation(fields: [carrinho_id], references: [id])
+  carrinho_id   String?
+  product       Product?  @relation(fields: [product_id], references: [id])
+  product_id    String?
+  variacao      Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id   String?
+  quantidade    Int?      @default(0)
+  precoUnitario String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("itens")
+}
+
 model Carrinho {
-  id             String   @id @default(uuid())
-  quantidade     Int?     @default(0)
-  pedido         Pedido?  @relation(fields: [pedido_id], references: [id])
+  id             String  @id @default(uuid())
+  pedido         Pedido? @relation(fields: [pedido_id], references: [id])
   pedido_id      String?
-  product        Product? @relation(fields: [product_id], references: [id])
-  product_id     String?
-  precoUnitario  String?
+  itens          Item[]
   custoEntrega   String?
   prazoEntrega   String?
   tipoEntrega    String?
@@ -235,64 +250,6 @@ model Carrinho {
   loja_id String?
 
   @@map("carrinhos")
-}
-
-model Pedido {
-  id                           String     @id @default(uuid())
-  user                         User?      @relation(fields: [user_id], references: [id])
-  user_id                      String?
-  carrinhos                    Carrinho[]
-  entregas                     Entrega[]
-  pagamento                    Pagamento? @relation(fields: [pagamento_id], references: [id])
-  pagamento_id                 String?
-  formaPagamento               String?
-  enderecoEntregaIgualCobranca Boolean    @default(true)
-  cancelado                    Boolean    @default(false)
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  @@map("pedidos")
-}
-
-model Pagamento {
-  id               String  @id @default(uuid())
-  valor            String? @db.VarChar(15)
-  formaDePagamento String? @db.VarChar(55)
-  parcelas         String? @db.VarChar(15)
-  status           String? @db.VarChar(55)
-
-  ruaPagamento         String? @db.VarChar(405)
-  numeroPagamento      String? @db.VarChar(8)
-  bairroPagamento      String? @db.VarChar(95)
-  complementoPagamento String? @db.VarChar(155)
-  cepPagamento         String? @db.VarChar(25)
-  cityPagamento        String? @db.VarChar(185)
-  statePagamento       String? @db.VarChar(155)
-
-  nomeCompletoPagamento String? @db.VarChar(95)
-  codigoArea            String? @db.VarChar(15)
-  phonePagamento        String? @db.VarChar(15)
-  dataDeNascimento      String? @db.VarChar(15)
-  credit_card_token     String?
-  cpfPagamento          String? @db.VarChar(15)
-
-  enderecoEntregaIgualCobranca Boolean @default(true)
-  pedido_id                    String?
-  pagSeguroCode                String?
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  pedidos Pedido[]
-
-  @@map("pagamentos")
 }
 
 model Entrega {
@@ -320,4 +277,63 @@ model Entrega {
   updated_at DateTime? @default(now())
 
   @@map("entregas")
+}
+
+model Pagamento {
+  id               String  @id @default(uuid())
+  valor            String? @db.VarChar(15)
+  formaDePagamento String? @db.VarChar(55)
+  parcelas         String? @db.VarChar(15)
+  status           String? @db.VarChar(55)
+
+  ruaPagamento         String? @db.VarChar(405)
+  numeroPagamento      String? @db.VarChar(8)
+  bairroPagamento      String? @db.VarChar(95)
+  complementoPagamento String? @db.VarChar(155)
+  cepPagamento         String? @db.VarChar(25)
+  cityPagamento        String? @db.VarChar(185)
+  statePagamento       String? @db.VarChar(155)
+
+  nomeCompletoPagamento String? @db.VarChar(95)
+  codigoArea            String? @db.VarChar(15)
+  phonePagamento        String? @db.VarChar(15)
+  dataDeNascimento      String? @db.VarChar(15)
+  credit_card_token     String?
+  cpfPagamento          String? @db.VarChar(15)
+
+  enderecoEntregaIgualCobranca Boolean @default(true)
+  pedido                       Pedido? @relation(name: "pagamentos", fields: [pedido_id], references: [id])
+  pedido_id                    String?
+  pagSeguroCode                String?
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  pedidos Pedido[]
+
+  @@map("pagamentos")
+}
+
+model Pedido {
+  id                           String      @id @default(uuid())
+  user                         User?       @relation(fields: [user_id], references: [id])
+  user_id                      String?
+  carrinhos                    Carrinho[]
+  entregas                     Entrega[]
+  pagamentos                   Pagamento[] @relation("pagamentos")
+  pagamento                    Pagamento?  @relation(fields: [pagamento_id], references: [id])
+  pagamento_id                 String?
+  enderecoEntregaIgualCobranca Boolean     @default(true)
+  cancelado                    Boolean     @default(false)
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("pedidos")
 }
