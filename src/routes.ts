@@ -126,10 +126,13 @@ import { PageAllPedidosUserController } from './controllers/pedido/PageAllPedido
 import { DeleteCarrinhoController } from './controllers/pedido/carrinho/DeleteCarrinhoController';
 import { CancelarPedidoAdminController } from './controllers/pedido/CancelarPedidoAdminController';
 import { CancelarPedidoClienteController } from './controllers/pedido/CancelarPedidoClienteController';
-import { EntregaEnderecoMesmoPedidoController } from './controllers/pedido/EntregaEnderecoMesmoPedidoController';
+import { EntregaEnderecoMesmoPedidoController } from './controllers/pedido/entrega/EntregaEnderecoMesmoPedidoController';
 import { CreateEntregaController } from './controllers/pedido/entrega/CreateEntregaController';
 import { DeleteEntregaController } from './controllers/pedido/entrega/DeleteEntregaController';
 import { PageAllListEntregaController } from './controllers/pedido/entrega/PageAllListEntregaController';
+import { CreateItemController } from './controllers/pedido/carrinho/item/CreateItemController';
+import { PageAllCarrinhoController } from './controllers/pedido/carrinho/PageAllCarrinhoController';
+import { CreateItemInCarrinhoController } from './controllers/pedido/carrinho/item/CreateItemInCarrinhoController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -276,6 +279,9 @@ router.put('/entregaPedidoEndereco', ADMINisAuthenticated && USERisAuthenticated
 router.post('/entregaPedido', new CreateEntregaController().handle);
 router.delete('/deleteEntrega', new DeleteEntregaController().handle);
 router.get('/allEntregaPedido', new PageAllListEntregaController().handle);
+router.post('/item', new CreateItemController().handle);
+router.get('/allItemPage', new PageAllCarrinhoController().handle);
+router.post('/itemInCarrinho', new CreateItemInCarrinhoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);

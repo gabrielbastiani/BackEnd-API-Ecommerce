@@ -1,4 +1,5 @@
 import prismaClient from "../../../prisma";
+import { calcularPrecoPrazo } from 'correios-brasil';
 
 interface CarrinhoRequest {
     product_id: string;
@@ -18,12 +19,24 @@ class CreateCarrinhoService {
         variacao_id,
         quantidade,
         precoUnitario,
-        custoEntrega,
-        prazoEntrega,
-        tipoEntrega,
-        valorPagamento,
         loja_id
     }: CarrinhoRequest) {
+        const carrinho = await prismaClient.carrinho.create({
+            data: {
+                loja_id: loja_id
+            },
+            select: {
+                id: true,
+                itens: true,
+                custoEntrega: true,
+                prazoEntrega: true,
+                tipoEntrega: true,
+                valorPagamento: true,
+                created_at: true,
+                loja_id: true,
+            }
+        })
+
         const carrinhoID = await prismaClient.carrinho.findFirst({
             where: {
                 id: carrinho.id
@@ -48,28 +61,50 @@ class CreateCarrinhoService {
             }
         })
 
-        const carrinho = await prismaClient.carrinho.create({
-            data: {
-                custoEntrega: custoEntrega,
-                prazoEntrega: prazoEntrega,
-                tipoEntrega: tipoEntrega,
-                valorPagamento: valorPagamento,
-                loja_id: loja_id
-            },
-            select: {
-                id: true,
-                custoEntrega: true,
-                prazoEntrega: true,
-                tipoEntrega: true,
-                valorPagamento: true,
-                created_at: true,
-                loja_id: true,
+        const product = await prismaClient.variacao.findUnique({
+            where: {
+                id: item.variacao_id
             }
         })
+
+        const pesoProdu = product.pesoKg;
+        const comprProduc = product.profundidadeCm;
+        const altuProduc = product.alturaCm;
+        const largProduc = product.larguraCm;
+
+        const args = {
+            // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
+            sCepOrigem: '95034100',
+            sCepDestino: '90050290',
+            nVlPeso: pesoProdu,
+            nCdFormato: '1',
+            nVlComprimento: comprProduc,
+            nVlAltura: altuProduc,
+            nVlLargura: largProduc,
+            nCdServico: ['04014', '04510'], //Array com os códigos de serviço
+            nVlDiametro: '0',
+          };
+          
+          calcularPrecoPrazo(args).then(response => {
+            console.log(response);
+          });
+
+        /* const carrinhoUpdte = await prismaClient.carrinho.update({
+            where: {
+                id: String(carrinhoID)
+            },
+            data: {
+                custoEntrega: custoEnt,
+                prazoEntrega: prazoEnt,
+                tipoEntrega: tipoEntr,
+                valorPagamento: valorPag
+            }
+        }) */
 
         return ([item, carrinho]);
 
     }
 }
+
 
 export { CreateCarrinhoService }

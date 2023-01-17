@@ -1,10 +1,6 @@
 import prismaClient from "../../prisma";
 
 interface PedidoRequest {
-    product_id: string;
-    variacao_id: string;
-    quantidade: number;
-    precoUnitario: string;
     custoEntrega: string;
     prazoEntrega: string;
     tipoEntrega: string;
@@ -27,10 +23,6 @@ class CreatePedidoService {
     async execute({
         loja_id,
         user_id,
-        product_id,
-        variacao_id,
-        quantidade,
-        precoUnitario,
         custoEntrega,
         prazoEntrega,
         tipoEntrega,
@@ -64,7 +56,7 @@ class CreatePedidoService {
             }
         })
 
-        const pedidoID = await prismaClient.pedido.findFirst({
+        const pedidoID = await prismaClient.pedido.findUnique({
             where: {
                 id: pedido.id
             }
@@ -107,10 +99,6 @@ class CreatePedidoService {
         const carrinho = await prismaClient.carrinho.create({
             data: {
                 pedido_id: pedidoID.id,
-                product_id: product_id,
-                variacao_id: variacao_id,
-                quantidade,
-                precoUnitario: precoUnitario,
                 custoEntrega: custoEntrega,
                 prazoEntrega: prazoEntrega,
                 tipoEntrega: tipoEntrega,
@@ -119,10 +107,6 @@ class CreatePedidoService {
             },
             select: {
                 id: true,
-                product_id: true,
-                variacao_id: true,
-                quantidade: true,
-                precoUnitario: true,
                 custoEntrega: true,
                 prazoEntrega: true,
                 tipoEntrega: true,

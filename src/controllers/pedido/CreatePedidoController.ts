@@ -6,10 +6,6 @@ class CreatePedidoController {
         const {
             loja_id,
             user_id,
-            product_id,
-            variacao_id,
-            quantidade,
-            precoUnitario,
             custoEntrega,
             prazoEntrega,
             tipoEntrega,
@@ -31,10 +27,6 @@ class CreatePedidoController {
         const pedido = await createPedidoService.execute({
             loja_id,
             user_id,
-            product_id,
-            variacao_id,
-            quantidade,
-            precoUnitario,
             custoEntrega,
             prazoEntrega,
             tipoEntrega,
