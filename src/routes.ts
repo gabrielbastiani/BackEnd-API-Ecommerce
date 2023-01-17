@@ -120,6 +120,8 @@ import { UpdateLojaIdVariacaoController } from './controllers/variacao/UpdateLoj
 
 // -- ROTAS ENVIAR PEDIDO --
 import { CreateCarrinhoController } from './controllers/pedido/carrinho/CreateCarrinhoController';
+import { CreateItemInCarrinhoController } from './controllers/pedido/carrinho/item/CreateItemInCarrinhoController';
+import { CreateCarrinhoSemFreteController } from './controllers/pedido/carrinho/CreateCarrinhoSemFreteController';
 import { CreatePedidoController } from './controllers/pedido/CreatePedidoController';
 import { UpdatePedidoCarrinhoController } from './controllers/pedido/carrinho/UpdatePedidoCarrinhoController';
 import { PageAllPedidosUserController } from './controllers/pedido/PageAllPedidosUserController';
@@ -132,7 +134,6 @@ import { DeleteEntregaController } from './controllers/pedido/entrega/DeleteEntr
 import { PageAllListEntregaController } from './controllers/pedido/entrega/PageAllListEntregaController';
 import { CreateItemController } from './controllers/pedido/carrinho/item/CreateItemController';
 import { PageAllCarrinhoController } from './controllers/pedido/carrinho/PageAllCarrinhoController';
-import { CreateItemInCarrinhoController } from './controllers/pedido/carrinho/item/CreateItemInCarrinhoController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -269,6 +270,8 @@ router.put('/updateLojaIdVariacao', ADMINisAuthenticated, new UpdateLojaIdVariac
 
 // -- ROTAS PEDIDO --
 router.post('/carrinho', new CreateCarrinhoController().handle);
+router.post('/itemInCarrinho', new CreateItemInCarrinhoController().handle);
+router.post('/carrinhoItem', new CreateCarrinhoSemFreteController().handle);
 router.post('/pedido', ADMINisAuthenticated && USERisAuthenticated, new CreatePedidoController().handle);
 router.put('/updatePedidoCarrinho', ADMINisAuthenticated && USERisAuthenticated, new UpdatePedidoCarrinhoController().handle);
 router.get('/allPedidosPage', ADMINisAuthenticated && USERisAuthenticated, new PageAllPedidosUserController().handle);
@@ -281,7 +284,6 @@ router.delete('/deleteEntrega', new DeleteEntregaController().handle);
 router.get('/allEntregaPedido', new PageAllListEntregaController().handle);
 router.post('/item', new CreateItemController().handle);
 router.get('/allItemPage', new PageAllCarrinhoController().handle);
-router.post('/itemInCarrinho', new CreateItemInCarrinhoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);
