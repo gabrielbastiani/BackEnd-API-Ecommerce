@@ -40,7 +40,8 @@ model User {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  pedidos Pedido[]
+  pagamentos Pagamento[]
+  pedidos    Pedido[]
 
   @@map("users")
 }
@@ -302,6 +303,8 @@ model Pagamento {
   cpfPagamento          String? @db.VarChar(15)
 
   enderecoEntregaIgualCobranca Boolean @default(true)
+  user                         User?   @relation(fields: [user_id], references: [id])
+  user_id                      String?
   pedido                       Pedido? @relation(name: "pagamentos", fields: [pedido_id], references: [id])
   pedido_id                    String?
   pagSeguroCode                String?

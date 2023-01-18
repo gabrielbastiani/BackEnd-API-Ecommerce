@@ -135,6 +135,9 @@ import { PageAllListEntregaController } from './controllers/pedido/entrega/PageA
 import { CreateItemController } from './controllers/pedido/carrinho/item/CreateItemController';
 import { PageAllCarrinhoController } from './controllers/pedido/carrinho/PageAllCarrinhoController';
 import { DeleteItemController } from './controllers/pedido/carrinho/item/DeleteItemController';
+import { CreatePagamentoController } from './controllers/pagamento/CreatePagamentoController';
+import { DeletePagamentoController } from './controllers/pagamento/DeletePagamentoController';
+import { UpdatePagamentoController } from './controllers/pagamento/UpdatePagamentoController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -286,6 +289,9 @@ router.get('/allEntregaPedido', new PageAllListEntregaController().handle);
 router.post('/item', new CreateItemController().handle);
 router.get('/allItemPage', new PageAllCarrinhoController().handle);
 router.delete('/deleteItem', new DeleteItemController().handle);
+router.post('/pagamento', ADMINisAuthenticated && USERisAuthenticated, new CreatePagamentoController().handle);
+router.delete('/deletePagamento', ADMINisAuthenticated && USERisAuthenticated, new DeletePagamentoController().handle);
+router.put('/updatePagamento', ADMINisAuthenticated && USERisAuthenticated, new UpdatePagamentoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);
