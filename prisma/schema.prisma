@@ -224,8 +224,8 @@ model Item {
   product_id    String?
   variacao      Variacao? @relation(fields: [variacao_id], references: [id])
   variacao_id   String?
-  quantidade    Int?      @default(0)
-  precoUnitario String?
+  quantidade    Int?      @default(1)
+  precoUnitario Int?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

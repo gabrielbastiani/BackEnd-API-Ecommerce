@@ -169,8 +169,8 @@ CREATE TABLE "itens" (
     "carrinho_id" TEXT,
     "product_id" TEXT,
     "variacao_id" TEXT,
-    "quantidade" INTEGER DEFAULT 0,
-    "precoUnitario" TEXT,
+    "quantidade" INTEGER DEFAULT 1,
+    "precoUnitario" INTEGER,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 

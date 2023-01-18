@@ -5,7 +5,7 @@ interface CarrinhoRequest {
     product_id: string;
     variacao_id: string;
     quantidade: number;
-    precoUnitario: string;
+    precoUnitario: number;
     custoEntrega: string;
     prazoEntrega: string;
     tipoEntrega: string;

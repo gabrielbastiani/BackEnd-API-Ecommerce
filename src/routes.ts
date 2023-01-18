@@ -134,6 +134,7 @@ import { DeleteEntregaController } from './controllers/pedido/entrega/DeleteEntr
 import { PageAllListEntregaController } from './controllers/pedido/entrega/PageAllListEntregaController';
 import { CreateItemController } from './controllers/pedido/carrinho/item/CreateItemController';
 import { PageAllCarrinhoController } from './controllers/pedido/carrinho/PageAllCarrinhoController';
+import { DeleteItemController } from './controllers/pedido/carrinho/item/DeleteItemController';
 
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
@@ -284,6 +285,7 @@ router.delete('/deleteEntrega', new DeleteEntregaController().handle);
 router.get('/allEntregaPedido', new PageAllListEntregaController().handle);
 router.post('/item', new CreateItemController().handle);
 router.get('/allItemPage', new PageAllCarrinhoController().handle);
+router.delete('/deleteItem', new DeleteItemController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);
