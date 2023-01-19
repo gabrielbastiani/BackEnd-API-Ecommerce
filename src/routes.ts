@@ -50,6 +50,7 @@ import { UpdateCidadeLojaController } from './controllers/loja/UpdateCidadeLojaC
 import { UpdateEstadoLojaController } from './controllers/loja/UpdateEstadoLojaController';
 import { PageListAllLojaController } from './controllers/loja/PageListAllLojaController';
 import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
+import { UpdateLogoLojaController } from './controllers/loja/UpdateLogoLojaController';
 
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -190,7 +191,7 @@ router.put('/estadoUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new
 router.put('/lojaidUserUpdate', ADMINisAuthenticated, new UpdateUserLojaController().handle);
 
 // -- ROTAS LOJA --
-router.post('/loja', new CreateLojaController().handle);
+router.post('/loja', upload.single('file'), new CreateLojaController().handle);
 router.put('/nameLojaUpdate', ADMINisAuthenticated, new UpdateNameLojaController().handle);
 router.put('/cnpjLojaUpdate', ADMINisAuthenticated, new UpdateCNPJLojaController().handle);
 router.put('/emailLojaUpdate', ADMINisAuthenticated, new UpdateEmailLojaController().handle);
@@ -204,6 +205,7 @@ router.put('/cidadeLojaUpdate', ADMINisAuthenticated, new UpdateCidadeLojaContro
 router.put('/estadoLojaUpdate', ADMINisAuthenticated, new UpdateEstadoLojaController().handle);
 router.get('/allLojasPage', ADMINisAuthenticated, new PageListAllLojaController().handle);
 router.delete('/deleteLoja', ADMINisAuthenticated, new DeleteLojaController().handle);
+router.put('/logoLojaUpdate', ADMINisAuthenticated, upload.single('file'), new UpdateLogoLojaController().handle);
 
 // -- ROTAS CATEGORIAS --
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
