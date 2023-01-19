@@ -2,7 +2,7 @@ import prismaClient from "../../prisma";
 
 interface ProductRequest {
    product_id: any;
-   estoque: string;
+   estoque: number;
 }
 
 class UpdateEstoqueProductService {

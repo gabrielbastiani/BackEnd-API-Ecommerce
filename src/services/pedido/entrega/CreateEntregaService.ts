@@ -2,7 +2,7 @@ import prismaClient from "../../../prisma";
 
 interface EntregaRequest {
     tipo: string;
-    custo: string;
+    custo: number;
     prazo: string;
     local: string;
     numero: string;

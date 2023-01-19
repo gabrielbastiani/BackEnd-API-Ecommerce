@@ -1,14 +1,14 @@
 import prismaClient from "../../prisma";
 
 interface PedidoRequest {
-    custoEntrega: string;
+    custoEntrega: number;
     prazoEntrega: string;
     tipoEntrega: string;
-    valorPagamento: string;
+    valorPagamento: number;
     loja_id: string;
     user_id: string;
     tipo: string;
-    custo: string;
+    custo: number;
     prazo: string;
     local: string;
     numero: string;

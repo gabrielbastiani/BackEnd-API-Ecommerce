@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface PagamentoRequest {
-    valor: string;
+    valor: number;
     formaDePagamento: string;
     parcelas: string;
     status: string;

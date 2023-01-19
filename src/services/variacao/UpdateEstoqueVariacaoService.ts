@@ -2,7 +2,7 @@ import prismaClient from "../../prisma";
 
 interface VariacaoRequest {
   variacao_id: any;
-  estoqueVariacao: string;
+  estoqueVariacao: number;
 }
 
 class UpdateEstoqueVariacaoService {

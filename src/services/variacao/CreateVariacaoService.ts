@@ -8,15 +8,15 @@ interface VariacaoRequest {
     descriptionVariacao4: string;
     descriptionVariacao5: string;
     descriptionVariacao6: string;
-    preco: string;
+    preco: number;
     skuVariacao: string;
-    estoqueVariacao: string;
+    estoqueVariacao: number;
     pesoKg: string;
     larguraCm: string;
     alturaCm: string;
     profundidadeCm: string;
     disponibilidadeVariacao: boolean;
-    promocao: string;
+    promocao: number;
     EntregaGratisVariacao: boolean;
     product_id: string;
     loja_id: string;

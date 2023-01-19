@@ -2,6 +2,7 @@ import prismaClient from "../../prisma";
 
 interface LojaRequest {
     nameLoja: string;
+    logoLoja: string;
     cnpjLoja: string;
     emailLoja: string;
     phoneLoja: string;
@@ -17,6 +18,7 @@ interface LojaRequest {
 class CreateLojaService {
   async execute({
     nameLoja,
+    logoLoja,
     cnpjLoja,
     emailLoja,
     phoneLoja,
@@ -31,6 +33,7 @@ class CreateLojaService {
     const loja = await prismaClient.loja.create({
       data:{
         nameLoja: nameLoja,
+        logoLoja: logoLoja,
         cnpjLoja: cnpjLoja,
         emailLoja: emailLoja,
         phoneLoja: phoneLoja,

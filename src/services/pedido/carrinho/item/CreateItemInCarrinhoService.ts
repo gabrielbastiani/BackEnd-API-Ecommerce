@@ -5,7 +5,7 @@ interface ItemRequest {
     product_id: string;
     variacao_id: string;
     quantidade: number;
-    precoUnitario: string;
+    precoUnitario: number;
 }
 
 class CreateItemInCarrinhoService {

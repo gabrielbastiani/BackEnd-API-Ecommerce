@@ -8,15 +8,15 @@ interface ProductRequest {
     descriptionProduct4: string;
     descriptionProduct5: string;
     descriptionProduct6: string;
-    preco: string;
+    preco: number;
     sku: string;
-    estoque: string;
+    estoque: number;
     pesoKG: string;
     larguraCM: string;
     alturaCM: string;
     profundidadeCM: string;
     disponibilidade: boolean;
-    promocao: string;
+    promocao: number;
     category_id: string;
     loja_id: string;
 }

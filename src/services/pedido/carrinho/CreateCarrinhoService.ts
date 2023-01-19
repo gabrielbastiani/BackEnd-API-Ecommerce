@@ -6,10 +6,10 @@ interface CarrinhoRequest {
     variacao_id: string;
     quantidade: number;
     precoUnitario: number;
-    custoEntrega: string;
+    custoEntrega: number;
     prazoEntrega: string;
     tipoEntrega: string;
-    valorPagamento: string;
+    valorPagamento: number;
     loja_id: string;
 }
 

@@ -19,8 +19,11 @@ class CreateLojaController {
 
         const createLojaService = new CreateLojaService();
 
+        const { originalname, filename: logoLoja } = req.file;
+
         const loja = await createLojaService.execute({
             nameLoja,
+            logoLoja,
             cnpjLoja,
             emailLoja,
             phoneLoja,
