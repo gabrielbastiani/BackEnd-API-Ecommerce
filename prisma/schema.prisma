@@ -14,22 +14,22 @@ datasource db {
 
 model User {
   id                String   @id @default(uuid())
-  nameComplete      String   @db.VarChar(95)
-  email             String   @unique @db.VarChar(80)
+  nameComplete      String   @db.VarChar(195)
+  email             String   @unique @db.VarChar(180)
   password          String
-  cpfOrCnpj         String?  @unique @db.VarChar(25)
-  inscricaoEstadual String?  @db.VarChar(55)
-  phone             String?  @db.VarChar(35)
-  dataNascimento    String?  @db.VarChar(25)
-  genero            String?  @db.VarChar(35)
+  cpfOrCnpj         String?  @unique @db.VarChar(125)
+  inscricaoEstadual String?  @db.VarChar(155)
+  phone             String?  @db.VarChar(135)
+  dataNascimento    String?  @db.VarChar(125)
+  genero            String?  @db.VarChar(135)
   newslatter        Boolean? @default(false)
   local             String?  @db.VarChar(405)
-  numero            String?  @db.VarChar(25)
+  numero            String?  @db.VarChar(125)
   complemento       String?  @db.VarChar(155)
-  bairro            String?  @db.VarChar(85)
-  CEP               String?  @db.VarChar(25)
+  bairro            String?  @db.VarChar(185)
+  CEP               String?  @db.VarChar(125)
   cidade            String?  @db.VarChar(185)
-  estado            String?  @db.VarChar(85)
+  estado            String?  @db.VarChar(185)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
