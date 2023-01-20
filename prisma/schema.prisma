@@ -204,8 +204,8 @@ model PhotoVariacao {
 model Avaliacao {
   id          String   @id @default(uuid())
   clientName  String?  @db.VarChar(225)
-  description String?  @db.VarChar(225)
-  pontuacao   String?  @db.VarChar(25)
+  description String?  @db.VarChar(1225)
+  pontuacao   String?  @db.VarChar(75)
   product     Product? @relation(fields: [product_id], references: [id])
   product_id  String?
 
