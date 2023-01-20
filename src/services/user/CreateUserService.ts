@@ -127,7 +127,7 @@ class CreateUserService {
             
             <article>
                 <p>Olá, ${user.nameComplete}!</p>
-                <p><a href="http://localhost:3000/userAuthenticatedPostagens?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar sua conta junto a loja virtual Builder Seu Negócio Online, e poder acessa-la com os dados que cadastrou anteriormente.</p>
+                <p><a href="http://localhost:3000/userAuthenticated?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar sua conta junto a loja virtual Builder Seu Negócio Online, e poder acessa-la com os dados que cadastrou anteriormente.</p>
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
