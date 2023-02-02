@@ -71,8 +71,9 @@ class AdminCreateUserService {
             </div>
             
             <article>
-                <p>Olá, ${user.nameComplete}!</p>
-                <p><a href="http://localhost:3000/userAuthenticated?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar a conta junto a Loja Virtual e poder acessa-la com os dados que cadastrou anteriormente.</p>
+                <p>Olá!</p>
+                <p>O usuario, ${user.nameComplete} está se cadastrando como administrador na loja virtual!</p>
+                <p><a href="http://localhost:3000/authenticated/${user.id}">CLIQUE AQUI</a>, para confirmar a conta junto a Loja Virtual desse novo usuario.</p>
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
