@@ -19,6 +19,9 @@ class CreateVariacaoController {
             alturaCm,
             profundidadeCm,
             promocao,
+            freteGratis,
+            disponibilidadeVariacao,
+            quantidade,
             product_id,
             loja_id
         } = req.body;
@@ -41,6 +44,9 @@ class CreateVariacaoController {
             alturaCm,
             profundidadeCm,
             promocao,
+            freteGratis,
+            disponibilidadeVariacao,
+            quantidade,
             product_id,
             loja_id
         })

@@ -15,7 +15,10 @@ interface VariacaoRequest {
     larguraCm: string;
     alturaCm: string;
     profundidadeCm: string;
+    disponibilidadeVariacao: boolean;
     promocao: number;
+    freteGratis: boolean;
+    quantidade: number;
     product_id: string;
     loja_id: string;
 }
@@ -36,7 +39,10 @@ class CreateVariacaoService {
         larguraCm,
         alturaCm,
         profundidadeCm,
+        disponibilidadeVariacao,
         promocao,
+        freteGratis,
+        quantidade,
         product_id,
         loja_id
     }: VariacaoRequest) {
@@ -58,6 +64,9 @@ class CreateVariacaoService {
                 alturaCm: alturaCm,
                 profundidadeCm: profundidadeCm,
                 promocao: promocao,
+                freteGratis: freteGratis,
+                disponibilidadeVariacao: disponibilidadeVariacao,
+                quantidade: quantidade,
                 product_id: product_id,
                 loja_id: loja_id
             },
@@ -79,6 +88,7 @@ class CreateVariacaoService {
                 profundidadeCm: true,
                 disponibilidadeVariacao: true,
                 promocao: true,
+                quantidade: true,
                 freteGratis: true,
                 created_at: true,
                 product_id: true,
