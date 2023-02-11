@@ -7,7 +7,8 @@ class ListExactCategoryService {
                 id: String(category_id)
             },
             select: {
-                categoryName: true
+                categoryName: true,
+                codigo: true
             }
         })
         return exactCategory;
