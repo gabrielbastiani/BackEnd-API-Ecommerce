@@ -8,7 +8,8 @@ class ListExactCategoryService {
             },
             select: {
                 categoryName: true,
-                codigo: true
+                codigo: true,
+                disponibilidade: true
             }
         })
         return exactCategory;
