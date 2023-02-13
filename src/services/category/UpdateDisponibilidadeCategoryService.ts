@@ -1,3 +1,4 @@
+import { StatusCategory } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface CategoryRequest {
@@ -6,7 +7,7 @@ interface CategoryRequest {
 
 class UpdateDisponibilidadeCategoryService {
   async execute({ category_id }: CategoryRequest) {
-    const activeTrue = await prismaClient.category.findUnique({
+    const active = await prismaClient.category.findUnique({
       where: {
         id: category_id
       },
@@ -15,35 +16,26 @@ class UpdateDisponibilidadeCategoryService {
       }
     })
 
-    const activeFalse = await prismaClient.category.findUnique({
-      where: {
-        id: category_id
-      },
-      select: {
-        disponibilidade: true
-      }
-    })
-
-    if(activeTrue.disponibilidade === true){
+    if(active.disponibilidade === "Disponivel"){
       const isFalse = await prismaClient.category.update({
         where:{
           id: category_id
         },
         data: {
-          disponibilidade: false
+          disponibilidade: StatusCategory.Indisponivel
         }
       })
 
       return isFalse;
     }
 
-    if(activeFalse.disponibilidade === false){
+    if(active.disponibilidade === "Indisponivel"){
       const isTrue = await prismaClient.category.update({
         where:{
           id: category_id
         },
         data: {
-          disponibilidade: true
+          disponibilidade: StatusCategory.Disponivel
         }
       })
 

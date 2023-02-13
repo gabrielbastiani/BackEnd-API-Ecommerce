@@ -1,6 +1,24 @@
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
+-- CreateEnum
+CREATE TYPE "StatusCategory" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
+CREATE TYPE "StatusProduct" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
+CREATE TYPE "StatusVariacao" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
+CREATE TYPE "StatusFrete" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
+CREATE TYPE "StatusPedido" AS ENUM ('Valido', 'Cancelado');
+
+-- CreateEnum
+CREATE TYPE "EnderecoEntrega" AS ENUM ('Sim', 'Nao');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
@@ -63,7 +81,7 @@ CREATE TABLE "categories" (
     "id" TEXT NOT NULL,
     "categoryName" VARCHAR(300) NOT NULL,
     "codigo" VARCHAR(300),
-    "disponibilidade" BOOLEAN NOT NULL DEFAULT true,
+    "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "loja_id" TEXT,
@@ -88,7 +106,7 @@ CREATE TABLE "products" (
     "larguraCM" VARCHAR(15),
     "alturaCM" VARCHAR(15),
     "profundidadeCM" VARCHAR(15),
-    "disponibilidade" BOOLEAN NOT NULL DEFAULT true,
+    "disponibilidade" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "promocao" INTEGER,
     "category_id" TEXT,
     "loja_id" TEXT,
@@ -126,9 +144,9 @@ CREATE TABLE "variacoes" (
     "larguraCm" VARCHAR(15),
     "alturaCm" VARCHAR(15),
     "profundidadeCm" VARCHAR(15),
-    "disponibilidadeVariacao" BOOLEAN NOT NULL DEFAULT true,
+    "disponibilidadeVariacao" "StatusVariacao" NOT NULL DEFAULT 'Disponivel',
     "promocao" INTEGER,
-    "freteGratis" BOOLEAN NOT NULL DEFAULT false,
+    "freteGratis" "StatusFrete" NOT NULL DEFAULT 'Sim',
     "quantidade" INTEGER,
     "quantidadeBloqueada" INTEGER DEFAULT 0,
     "product_id" TEXT,
@@ -252,8 +270,8 @@ CREATE TABLE "pedidos" (
     "id" TEXT NOT NULL,
     "user_id" TEXT,
     "pagamento_id" TEXT,
-    "enderecoEntregaIgualCobranca" BOOLEAN NOT NULL DEFAULT true,
-    "cancelado" BOOLEAN NOT NULL DEFAULT false,
+    "enderecoEntregaIgualCobranca" "EnderecoEntrega" NOT NULL DEFAULT 'Sim',
+    "cancelado" "StatusPedido" NOT NULL DEFAULT 'Valido',
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,

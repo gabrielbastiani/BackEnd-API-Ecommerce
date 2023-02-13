@@ -90,10 +90,10 @@ model Loja {
 }
 
 model Category {
-  id              String  @id @default(uuid())
-  categoryName    String  @unique @db.VarChar(300)
-  codigo          String? @db.VarChar(300)
-  disponibilidade Boolean @default(true)
+  id              String         @id @default(uuid())
+  categoryName    String         @unique @db.VarChar(300)
+  codigo          String?        @db.VarChar(300)
+  disponibilidade StatusCategory @default(Disponivel)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -106,25 +106,30 @@ model Category {
   @@map("categories")
 }
 
+enum StatusCategory {
+  Disponivel
+  Indisponivel
+}
+
 model Product {
-  id                  String    @id @default(uuid())
-  nameProduct         String    @db.VarChar(325)
-  descriptionProduct1 String?   @db.VarChar(1725)
-  descriptionProduct2 String?   @db.VarChar(1725)
-  descriptionProduct3 String?   @db.VarChar(1725)
-  descriptionProduct4 String?   @db.VarChar(1725)
-  descriptionProduct5 String?   @db.VarChar(1725)
-  descriptionProduct6 String?   @db.VarChar(1725)
+  id                  String        @id @default(uuid())
+  nameProduct         String        @db.VarChar(325)
+  descriptionProduct1 String?       @db.VarChar(1725)
+  descriptionProduct2 String?       @db.VarChar(1725)
+  descriptionProduct3 String?       @db.VarChar(1725)
+  descriptionProduct4 String?       @db.VarChar(1725)
+  descriptionProduct5 String?       @db.VarChar(1725)
+  descriptionProduct6 String?       @db.VarChar(1725)
   preco               Int?
-  sku                 String?   @db.VarChar(25)
+  sku                 String?       @db.VarChar(25)
   estoque             Int?
-  pesoKG              String?   @db.VarChar(15)
-  larguraCM           String?   @db.VarChar(15)
-  alturaCM            String?   @db.VarChar(15)
-  profundidadeCM      String?   @db.VarChar(15)
-  disponibilidade     Boolean   @default(true)
+  pesoKG              String?       @db.VarChar(15)
+  larguraCM           String?       @db.VarChar(15)
+  alturaCM            String?       @db.VarChar(15)
+  profundidadeCM      String?       @db.VarChar(15)
+  disponibilidade     StatusProduct @default(Disponivel)
   promocao            Int?
-  category            Category? @relation(fields: [category_id], references: [id])
+  category            Category?     @relation(fields: [category_id], references: [id])
   category_id         String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
@@ -141,6 +146,11 @@ model Product {
   @@map("products")
 }
 
+enum StatusProduct {
+  Disponivel
+  Indisponivel
+}
+
 model PhotoProduct {
   id         String   @id @default(uuid())
   photo      String?
@@ -154,27 +164,27 @@ model PhotoProduct {
 }
 
 model Variacao {
-  id                      String   @id @default(uuid())
-  nameVariacao            String?  @db.VarChar(355)
-  descriptionVariacao1    String?  @db.VarChar(1725)
-  descriptionVariacao2    String?  @db.VarChar(1725)
-  descriptionVariacao3    String?  @db.VarChar(1725)
-  descriptionVariacao4    String?  @db.VarChar(1725)
-  descriptionVariacao5    String?  @db.VarChar(1725)
-  descriptionVariacao6    String?  @db.VarChar(1725)
+  id                      String         @id @default(uuid())
+  nameVariacao            String?        @db.VarChar(355)
+  descriptionVariacao1    String?        @db.VarChar(1725)
+  descriptionVariacao2    String?        @db.VarChar(1725)
+  descriptionVariacao3    String?        @db.VarChar(1725)
+  descriptionVariacao4    String?        @db.VarChar(1725)
+  descriptionVariacao5    String?        @db.VarChar(1725)
+  descriptionVariacao6    String?        @db.VarChar(1725)
   preco                   Int?
-  skuVariacao             String?  @db.VarChar(25)
+  skuVariacao             String?        @db.VarChar(25)
   estoqueVariacao         Int?
-  pesoKg                  String?  @db.VarChar(15)
-  larguraCm               String?  @db.VarChar(15)
-  alturaCm                String?  @db.VarChar(15)
-  profundidadeCm          String?  @db.VarChar(15)
-  disponibilidadeVariacao Boolean  @default(true)
+  pesoKg                  String?        @db.VarChar(15)
+  larguraCm               String?        @db.VarChar(15)
+  alturaCm                String?        @db.VarChar(15)
+  profundidadeCm          String?        @db.VarChar(15)
+  disponibilidadeVariacao StatusVariacao @default(Disponivel)
   promocao                Int?
-  freteGratis             Boolean  @default(false)
+  freteGratis             StatusFrete    @default(Sim)
   quantidade              Int?
-  quantidadeBloqueada     Int?     @default(0)
-  product                 Product? @relation(fields: [product_id], references: [id])
+  quantidadeBloqueada     Int?           @default(0)
+  product                 Product?       @relation(fields: [product_id], references: [id])
   product_id              String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
@@ -187,6 +197,16 @@ model Variacao {
   updated_at DateTime? @default(now())
 
   @@map("variacoes")
+}
+
+enum StatusVariacao {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusFrete {
+  Sim
+  Nao
 }
 
 model PhotoVariacao {
@@ -322,16 +342,16 @@ model Pagamento {
 }
 
 model Pedido {
-  id                           String      @id @default(uuid())
-  user                         User?       @relation(fields: [user_id], references: [id])
+  id                           String          @id @default(uuid())
+  user                         User?           @relation(fields: [user_id], references: [id])
   user_id                      String?
   carrinhos                    Carrinho[]
   entregas                     Entrega[]
-  pagamentos                   Pagamento[] @relation("pagamentos")
-  pagamento                    Pagamento?  @relation(fields: [pagamento_id], references: [id])
+  pagamentos                   Pagamento[]     @relation("pagamentos")
+  pagamento                    Pagamento?      @relation(fields: [pagamento_id], references: [id])
   pagamento_id                 String?
-  enderecoEntregaIgualCobranca Boolean     @default(true)
-  cancelado                    Boolean     @default(false)
+  enderecoEntregaIgualCobranca EnderecoEntrega @default(Sim)
+  cancelado                    StatusPedido    @default(Valido)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -340,4 +360,14 @@ model Pedido {
   updated_at DateTime? @default(now())
 
   @@map("pedidos")
+}
+
+enum StatusPedido {
+  Valido
+  Cancelado
+}
+
+enum EnderecoEntrega {
+  Sim
+  Nao
 }
