@@ -58,6 +58,7 @@ import { UpdateNameCategoryController } from './controllers/category/UpdateNameC
 import { UpdateCodigoCategoryController } from './controllers/category/UpdateCodigoCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
+import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
 import { DeleteCategoryController } from './controllers/category/DeleteCategoryController';
@@ -213,6 +214,7 @@ router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryCo
 router.put('/categoryCodigoUpdate', ADMINisAuthenticated, new UpdateCodigoCategoryController().handle);
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
+router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
 router.get('/allCategorys', new ListCategoryController().handle);
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryController().handle);
