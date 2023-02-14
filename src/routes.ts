@@ -49,6 +49,7 @@ import { UpdateCEPLojaController } from './controllers/loja/UpdateCEPLojaControl
 import { UpdateCidadeLojaController } from './controllers/loja/UpdateCidadeLojaController';
 import { UpdateEstadoLojaController } from './controllers/loja/UpdateEstadoLojaController';
 import { PageListAllLojaController } from './controllers/loja/PageListAllLojaController';
+import { UserLojaController } from './controllers/loja/UserLojaController';
 import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
 import { UpdateLogoLojaController } from './controllers/loja/UpdateLogoLojaController';
 
@@ -206,6 +207,7 @@ router.put('/cepLojaUpdate', ADMINisAuthenticated, new UpdateCEPLojaController()
 router.put('/cidadeLojaUpdate', ADMINisAuthenticated, new UpdateCidadeLojaController().handle);
 router.put('/estadoLojaUpdate', ADMINisAuthenticated, new UpdateEstadoLojaController().handle);
 router.get('/allLojasPage', ADMINisAuthenticated, new PageListAllLojaController().handle);
+router.get('/userLoja', ADMINisAuthenticated, new UserLojaController().handle);
 router.delete('/deleteLoja', ADMINisAuthenticated, new DeleteLojaController().handle);
 router.put('/logoLojaUpdate', ADMINisAuthenticated, upload.single('file'), new UpdateLogoLojaController().handle);
 
