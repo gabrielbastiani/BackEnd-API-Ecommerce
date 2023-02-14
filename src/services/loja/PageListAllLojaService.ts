@@ -13,6 +13,7 @@ class PageListAllLojaService {
 
         const lojas = await prismaClient.loja.findMany({
             select: {
+                logoLoja: true,
                 nameLoja: true,
                 cnpjLoja: true,
                 emailLoja: true,
