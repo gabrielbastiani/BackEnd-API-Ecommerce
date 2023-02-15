@@ -52,6 +52,7 @@ import { PageListAllLojaController } from './controllers/loja/PageListAllLojaCon
 import { UserLojaController } from './controllers/loja/UserLojaController';
 import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
 import { UpdateLogoLojaController } from './controllers/loja/UpdateLogoLojaController';
+import { UpdateAllDateLojaController } from './controllers/loja/UpdateAllDateLojaController';
 
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -210,6 +211,7 @@ router.get('/allLojasPage', ADMINisAuthenticated, new PageListAllLojaController(
 router.get('/userLoja', ADMINisAuthenticated, new UserLojaController().handle);
 router.delete('/deleteLoja', ADMINisAuthenticated, new DeleteLojaController().handle);
 router.put('/logoLojaUpdate', ADMINisAuthenticated, upload.single('file'), new UpdateLogoLojaController().handle);
+router.put('/updateAllDateLoja', ADMINisAuthenticated, new UpdateAllDateLojaController().handle);
 
 // -- ROTAS CATEGORIAS --
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
