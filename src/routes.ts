@@ -195,7 +195,7 @@ router.put('/estadoUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new
 router.put('/lojaidUserUpdate', ADMINisAuthenticated, new UpdateUserLojaController().handle);
 
 // -- ROTAS LOJA --
-router.post('/loja', upload.single('file'), new CreateLojaController().handle);
+router.post('/loja', ADMINisAuthenticated, upload.single('file'), new CreateLojaController().handle);
 router.put('/nameLojaUpdate', ADMINisAuthenticated, new UpdateNameLojaController().handle);
 router.put('/cnpjLojaUpdate', ADMINisAuthenticated, new UpdateCNPJLojaController().handle);
 router.put('/emailLojaUpdate', ADMINisAuthenticated, new UpdateEmailLojaController().handle);
