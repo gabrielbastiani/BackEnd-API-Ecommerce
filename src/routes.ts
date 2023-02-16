@@ -50,6 +50,7 @@ import { UpdateCidadeLojaController } from './controllers/loja/UpdateCidadeLojaC
 import { UpdateEstadoLojaController } from './controllers/loja/UpdateEstadoLojaController';
 import { PageListAllLojaController } from './controllers/loja/PageListAllLojaController';
 import { UserLojaController } from './controllers/loja/UserLojaController';
+import { UserCreateLojaController } from './controllers/loja/UserCreateLojaController';
 import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
 import { UpdateLogoLojaController } from './controllers/loja/UpdateLogoLojaController';
 import { UpdateAllDateLojaController } from './controllers/loja/UpdateAllDateLojaController';
@@ -209,6 +210,7 @@ router.put('/cidadeLojaUpdate', ADMINisAuthenticated, new UpdateCidadeLojaContro
 router.put('/estadoLojaUpdate', ADMINisAuthenticated, new UpdateEstadoLojaController().handle);
 router.get('/allLojasPage', ADMINisAuthenticated, new PageListAllLojaController().handle);
 router.get('/userLoja', ADMINisAuthenticated, new UserLojaController().handle);
+router.get('/lojaCreateFind', ADMINisAuthenticated, new UserCreateLojaController().handle);
 router.delete('/deleteLoja', ADMINisAuthenticated, new DeleteLojaController().handle);
 router.put('/logoLojaUpdate', ADMINisAuthenticated, upload.single('file'), new UpdateLogoLojaController().handle);
 router.put('/updateAllDateLoja', ADMINisAuthenticated, new UpdateAllDateLojaController().handle);
