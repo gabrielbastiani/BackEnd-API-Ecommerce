@@ -11,6 +11,7 @@ import { AuthUserController } from './controllers/user/AuthUserController';
 import { AuthenticatedEmailUserController } from './controllers/user/AuthenticatedEmailUserController';
 import { ActiveOrDesactiveUserController } from './controllers/user/ActiveOrDesactiveUserController';
 import { EmailPasswordController } from './controllers/user/PasswordRecovery/EmailPasswordController';
+import { EmailPasswordDashboardController } from './controllers/user/PasswordRecovery/EmailPasswordDashboardController';
 import { RecoveryPasswordController } from './controllers/user/PasswordRecovery/RecoveryPasswordController';
 import { DetailuserController } from './controllers/user/DetailUserController';
 import { DeleteUserController } from './controllers/user/DeleteUserController';
@@ -174,6 +175,7 @@ router.get('/listExactUser', ADMINisAuthenticated, new ListExactUserController()
 router.put('/authenticated', new AuthenticatedEmailUserController().handle);
 router.put('/activeOrDesactiveUser', ADMINisAuthenticated, new ActiveOrDesactiveUserController().handle);
 router.post('/recover', new EmailPasswordController().handle);
+router.post('/recoverDashboard', ADMINisAuthenticated && USERisAuthenticated, new EmailPasswordDashboardController().handle);
 router.put('/recover', new RecoveryPasswordController().handle);
 router.delete('/deleteUser', ADMINisAuthenticated, new DeleteUserController().handle);
 router.put('/roleUser', new UserRoleUserController().handle);
