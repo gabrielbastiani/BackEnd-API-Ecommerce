@@ -13,6 +13,8 @@ import { ActiveOrDesactiveUserController } from './controllers/user/ActiveOrDesa
 import { EmailPasswordController } from './controllers/user/PasswordRecovery/EmailPasswordController';
 import { EmailPasswordDashboardController } from './controllers/user/PasswordRecovery/EmailPasswordDashboardController';
 import { RecoveryPasswordController } from './controllers/user/PasswordRecovery/RecoveryPasswordController';
+import { FindRecoveryIDController } from './controllers/user/PasswordRecovery/FindRecoveryIDController';
+import { DeletePasswordRecoveryIDController } from './controllers/user/PasswordRecovery/DeletePasswordRecoveryIDController';
 import { DetailuserController } from './controllers/user/DetailUserController';
 import { DeleteUserController } from './controllers/user/DeleteUserController';
 import { UserRoleUserController } from './controllers/user/UserRoleUserController';
@@ -177,6 +179,8 @@ router.put('/activeOrDesactiveUser', ADMINisAuthenticated, new ActiveOrDesactive
 router.post('/recover', new EmailPasswordController().handle);
 router.post('/recoverDashboard', ADMINisAuthenticated && USERisAuthenticated, new EmailPasswordDashboardController().handle);
 router.put('/recover', new RecoveryPasswordController().handle);
+router.get('/recoverFind', ADMINisAuthenticated && USERisAuthenticated, new FindRecoveryIDController().handle);
+router.delete('/deleteRecoverID', ADMINisAuthenticated && USERisAuthenticated, new DeletePasswordRecoveryIDController().handle);
 router.delete('/deleteUser', ADMINisAuthenticated, new DeleteUserController().handle);
 router.put('/roleUser', new UserRoleUserController().handle);
 router.put('/newslatter', new NewslatterUserController().handle);
