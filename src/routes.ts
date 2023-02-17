@@ -34,6 +34,7 @@ import { UpdateUserCityController } from './controllers/user/UpdateUserCityContr
 import { UpdateUserEstadoController } from './controllers/user/UpdateUserEstadoController';
 import { UpdateUserBairroController } from './controllers/user/UpdateUserBairroController';
 import { UpdateUserLojaController } from './controllers/user/UpdateUserLojaController';
+import { ListExactUserController } from './controllers/user/ListExactUserController';
 
 // -- ROTAS LOJA --
 import { CreateLojaController } from './controllers/loja/CreateLojaController';
@@ -169,6 +170,7 @@ router.post('/createAdmin', new AdminCreateUserController().handle);
 router.post('/sessionAdmin', new AuthAdminController().handle);
 router.post('/session', new AuthUserController().handle);
 router.get('/me', ADMINisAuthenticated && USERisAuthenticated, new DetailuserController().handle);
+router.get('/listExactUser', ADMINisAuthenticated, new ListExactUserController().handle);
 router.put('/authenticated', new AuthenticatedEmailUserController().handle);
 router.put('/activeOrDesactiveUser', ADMINisAuthenticated, new ActiveOrDesactiveUserController().handle);
 router.post('/recover', new EmailPasswordController().handle);
