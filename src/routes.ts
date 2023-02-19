@@ -65,6 +65,7 @@ import { UpdateNameCategoryController } from './controllers/category/UpdateNameC
 import { UpdateCodigoCategoryController } from './controllers/category/UpdateCodigoCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
+import { ExactCategoryProductController } from './controllers/product/ExactCategoryProductController';
 import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
@@ -240,6 +241,7 @@ router.post('/photo', ADMINisAuthenticated, upload.single('file'), new PhotoProd
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
 router.get('/allProductsPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllProductController().handle);
 router.get('/allProductsPageExact', ADMINisAuthenticated, new ExactPageListAllProductController().handle);
+router.get('/productExactCategory', ADMINisAuthenticated, new ExactCategoryProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
 router.put('/updateDescription1', ADMINisAuthenticated, new Update1DescriptionProductController().handle);
