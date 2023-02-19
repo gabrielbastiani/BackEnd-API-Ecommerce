@@ -29,6 +29,7 @@ class ExactCategoryProductService {
                 disponibilidade: true,
                 promocao: true,
                 category_id: true,
+                categoryName: true,
                 loja_id: true,
                 created_at: true,
                 variacoes: true,

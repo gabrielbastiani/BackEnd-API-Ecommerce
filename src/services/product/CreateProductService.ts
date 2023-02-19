@@ -18,6 +18,7 @@ interface ProductRequest {
     disponibilidade: boolean;
     promocao: number;
     category_id: string;
+    categoryName: string;
     loja_id: string;
 }
 
@@ -40,6 +41,7 @@ class CreateProductService {
         disponibilidade,
         promocao,
         category_id,
+        categoryName,
         loja_id,
     }: ProductRequest) {
 
@@ -62,6 +64,7 @@ class CreateProductService {
                 disponibilidade: disponibilidade,
                 promocao: promocao,
                 category_id: category_id,
+                categoryName: categoryName,
                 loja_id: loja_id
             },
             select: {
@@ -83,6 +86,7 @@ class CreateProductService {
                 disponibilidade: true,
                 promocao: true,
                 category_id: true,
+                categoryName: true,
                 loja_id: true,
                 created_at: true,
                 variacoes: true,

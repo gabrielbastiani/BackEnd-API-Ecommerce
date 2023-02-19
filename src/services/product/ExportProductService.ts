@@ -24,7 +24,7 @@ class ExportProductService {
                 alturaCM: true,
                 profundidadeCM: true,
                 promocao: true,
-                category_id: true,
+                categoryName: true,
                 loja_id: true,
             },
             orderBy: {

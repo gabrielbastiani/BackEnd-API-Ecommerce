@@ -5,7 +5,7 @@ interface ProductRequest {
    category_id: string;
 }
 
-class UpdateCategoryUProductService {
+class UpdateCategoryIDProductService {
   async execute({ product_id, category_id }: ProductRequest){
     const updatecategoryid = await prismaClient.product.update({
       where:{
@@ -21,4 +21,4 @@ class UpdateCategoryUProductService {
   }
 }
 
-export { UpdateCategoryUProductService }
+export { UpdateCategoryIDProductService }

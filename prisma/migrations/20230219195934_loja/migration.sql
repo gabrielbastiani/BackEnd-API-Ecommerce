@@ -109,6 +109,7 @@ CREATE TABLE "products" (
     "disponibilidade" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "promocao" INTEGER,
     "category_id" TEXT,
+    "categoryName" TEXT,
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -288,6 +289,9 @@ CREATE UNIQUE INDEX "users_cpfOrCnpj_key" ON "users"("cpfOrCnpj");
 -- CreateIndex
 CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "categories_id_categoryName_key" ON "categories"("id", "categoryName");
+
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
@@ -295,7 +299,7 @@ ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") 
 ALTER TABLE "categories" ADD CONSTRAINT "categories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "products" ADD CONSTRAINT "products_category_id_categoryName_fkey" FOREIGN KEY ("category_id", "categoryName") REFERENCES "categories"("id", "categoryName") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;

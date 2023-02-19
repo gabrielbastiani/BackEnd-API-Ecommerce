@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { UpdateCategoryUProductService } from '../../services/product/UpdateCategoryUProductService';
+import { UpdateCategoryIDProductService } from '../../services/product/UpdateCategoryIDProductService';
 
-class UpdateCategoryProductController {
+class UpdateCategoryIDProductController {
   async handle(req: Request, res: Response) {
     const product_id = req.query.product_id;
 
     const { category_id } = req.body;
 
-    const updatecategoryid = new UpdateCategoryUProductService();
+    const updatecategoryid = new UpdateCategoryIDProductService();
 
     const product = await updatecategoryid.execute({
       product_id,
@@ -19,4 +19,4 @@ class UpdateCategoryProductController {
   }
 }
 
-export { UpdateCategoryProductController }
+export { UpdateCategoryIDProductController }

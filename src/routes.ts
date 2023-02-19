@@ -95,7 +95,8 @@ import { UpdateProfundidadeProductController } from './controllers/product/Updat
 import { PromocaoProductController } from './controllers/product/PromocaoProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
 import { DisponibilidadeDoProductController } from './controllers/product/DisponibilidadeDoProductController';
-import { UpdateCategoryProductController } from './controllers/product/UpdateCategoryProductController';
+import { UpdateCategoryIDProductController } from './controllers/product/UpdateCategoryIDProductController';
+import { UpdateCategoryNameProductController } from './controllers/product/UpdateCategoryNameProductController';
 import { UpdateLojaProductController } from './controllers/product/UpdateLojaProductController';
 
 // -- ROTAS AVALIACAO --
@@ -260,7 +261,8 @@ router.put('/updateProfundidade', ADMINisAuthenticated, new UpdateProfundidadePr
 router.put('/productPromocao', ADMINisAuthenticated, new PromocaoProductController().handle);
 router.get('/exportProduct', ADMINisAuthenticated, new ExportProductController().handle);
 router.put('/diponibilidadeProduct', ADMINisAuthenticated, new DisponibilidadeDoProductController().handle);
-router.put('/updateCategory', ADMINisAuthenticated, new UpdateCategoryProductController().handle);
+router.put('/updateCategory', ADMINisAuthenticated, new UpdateCategoryIDProductController().handle);
+router.put('/updateCategoryName', ADMINisAuthenticated, new UpdateCategoryNameProductController().handle);
 router.put('/updateLoja', ADMINisAuthenticated, new UpdateLojaProductController().handle);
 
 // -- ROTAS AVALIACAO --

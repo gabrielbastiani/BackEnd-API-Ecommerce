@@ -103,6 +103,7 @@ model Category {
 
   products Product[]
 
+  @@unique([id, categoryName])
   @@map("categories")
 }
 
@@ -129,8 +130,9 @@ model Product {
   profundidadeCM      String?       @db.VarChar(15)
   disponibilidade     StatusProduct @default(Disponivel)
   promocao            Int?
-  category            Category?     @relation(fields: [category_id], references: [id])
+  category            Category?     @relation(fields: [category_id, categoryName], references: [id, categoryName])
   category_id         String?
+  categoryName        String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
