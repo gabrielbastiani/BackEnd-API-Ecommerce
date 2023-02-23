@@ -6,27 +6,7 @@ class ListExactUserService {
             where: {
                 id: String(user_id)
             },
-            select: {
-                id: true,
-                nameComplete: true,
-                email: true,
-                cpfOrCnpj: true,
-                inscricaoEstadual: true,
-                phone: true,
-                dataNascimento: true,
-                genero: true,
-                newslatter: true,
-                local: true,
-                numero: true,
-                complemento: true,
-                bairro: true,
-                CEP: true,
-                cidade: true,
-                estado: true,
-                loja_id: true,
-                authenticated: true,
-                role: true,
-                created_at: true,
+            include: {
                 pagamentos: true,
                 pedidos: true
             }

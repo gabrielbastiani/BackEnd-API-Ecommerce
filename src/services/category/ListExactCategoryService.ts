@@ -6,11 +6,10 @@ class ListExactCategoryService {
             where: {
                 id: String(category_id)
             },
-            select: {
-                categoryName: true,
-                codigo: true,
-                disponibilidade: true
-            }
+            include: {
+                loja: true,
+                products: true,
+            },
         })
         return exactCategory;
     }

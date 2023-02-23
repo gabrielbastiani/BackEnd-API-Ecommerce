@@ -8,6 +8,12 @@ class PageListAllVariacaoService {
         const allVariacao = await prismaClient.variacao.findMany({
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                photovariacoes: true,
+                item: true,
+                product: true,
+                loja: true
             }
         });
 

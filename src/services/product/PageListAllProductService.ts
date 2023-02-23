@@ -10,13 +10,23 @@ class PageListAllProductService {
                 created_at: 'desc'
             },
             include: {
-                category: true,
+                photoproducts: true,
+                variacoes: true,
+                avaliacoes: true,
+                item: true,
+                loja: true,
+                category: true
             }
         });
         
         const products = await prismaClient.product.findMany({
             include: {
-                category: true,
+                photoproducts: true,
+                variacoes: true,
+                avaliacoes: true,
+                item: true,
+                loja: true,
+                category: true
             },
             skip,
             take: limit,

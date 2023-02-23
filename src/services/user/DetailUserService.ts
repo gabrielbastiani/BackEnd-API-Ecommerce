@@ -7,27 +7,10 @@ class DetailUserService {
       where: {
         id: user_id
       },
-      select: {
-        id: true,
-        nameComplete: true,
-        email: true,
-        cpfOrCnpj: true,
-        inscricaoEstadual: true,
-        phone: true,
-        dataNascimento: true,
-        genero: true,
-        newslatter: true,
-        local: true,
-        numero: true,
-        bairro: true,
-        complemento: true,
-        CEP: true,
-        cidade: true,
-        estado: true,
-        loja_id: true,
-        authenticated: true,
-        role: true,
-        created_at: true,
+      include: {
+        loja: true,
+        pagamentos: true,
+        pedidos: true
       }
     })
 

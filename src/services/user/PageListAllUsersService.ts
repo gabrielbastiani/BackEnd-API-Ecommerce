@@ -8,31 +8,19 @@ class PageListAllUsersService {
         const allUsers = await prismaClient.user.findMany({
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                loja: true,
+                pagamentos: true,
+                pedidos: true
             }
         });
 
         const users = await prismaClient.user.findMany({
-            select: {
-                id: true,
-                nameComplete: true,
-                email: true,
-                cpfOrCnpj: true,
-                inscricaoEstadual: true,
-                phone: true,
-                dataNascimento: true,
-                genero: true,
-                newslatter: true,
-                local: true,
-                numero: true,
-                bairro: true,
-                complemento: true,
-                CEP: true,
-                cidade: true,
-                estado: true,
-                loja_id: true,
-                authenticated: true,
-                role: true,
-                created_at: true,
+            include: {
+                loja: true,
+                pagamentos: true,
+                pedidos: true
             },
             skip,
             take: limit,

@@ -11,6 +11,14 @@ class ExactPageListAllProductService {
             },
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                photoproducts: true,
+                variacoes: true,
+                avaliacoes: true,
+                item: true,
+                loja: true,
+                category: true
             }
         });
 
@@ -18,31 +26,13 @@ class ExactPageListAllProductService {
             where: {
                 category_id: category_id
             },
-            select: {
-                id: true,
-                nameProduct: true,
-                descriptionProduct1: true,
-                descriptionProduct2: true,
-                descriptionProduct3: true,
-                descriptionProduct4: true,
-                descriptionProduct5: true,
-                descriptionProduct6: true,
-                preco: true,
-                sku: true,
-                estoque: true,
-                pesoKG: true,
-                larguraCM: true,
-                alturaCM: true,
-                profundidadeCM: true,
-                disponibilidade: true,
-                promocao: true,
-                category_id: true,
-                categoryName: true,
-                loja_id: true,
-                created_at: true,
-                variacoes: true,
+            include: {
                 photoproducts: true,
-                avaliacoes: true
+                variacoes: true,
+                avaliacoes: true,
+                item: true,
+                loja: true,
+                category: true
             },
             skip,
             take: limit,
