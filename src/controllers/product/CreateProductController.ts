@@ -18,7 +18,6 @@ class CreateProductController {
             larguraCM,
             alturaCM,
             profundidadeCM,
-            disponibilidade,
             promocao,
             category_id,
             loja_id
@@ -41,7 +40,6 @@ class CreateProductController {
             larguraCM,
             alturaCM,
             profundidadeCM,
-            disponibilidade,
             promocao,
             category_id,
             loja_id

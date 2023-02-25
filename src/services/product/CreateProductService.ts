@@ -15,7 +15,6 @@ interface ProductRequest {
     larguraCM: string;
     alturaCM: string;
     profundidadeCM: string;
-    disponibilidade: boolean;
     promocao: number;
     category_id: string;
     loja_id: string;
@@ -37,7 +36,6 @@ class CreateProductService {
         larguraCM,
         alturaCM,
         profundidadeCM,
-        disponibilidade,
         promocao,
         category_id,
         loja_id,
@@ -59,7 +57,6 @@ class CreateProductService {
                 larguraCM: larguraCM,
                 alturaCM: alturaCM,
                 profundidadeCM: profundidadeCM,
-                disponibilidade: disponibilidade,
                 promocao: promocao,
                 category_id: category_id,
                 loja_id: loja_id
