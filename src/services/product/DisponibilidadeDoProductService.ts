@@ -1,3 +1,4 @@
+import { StatusProduct } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface ProductRequest {
@@ -6,7 +7,7 @@ interface ProductRequest {
 
 class DisponibilidadeDoProductService {
   async execute({ product_id }: ProductRequest) {
-    const activeTrue = await prismaClient.product.findUnique({
+    const active = await prismaClient.product.findUnique({
       where: {
         id: product_id
       },
@@ -15,35 +16,26 @@ class DisponibilidadeDoProductService {
       }
     })
 
-    const activeFalse = await prismaClient.product.findUnique({
-      where: {
-        id: product_id
-      },
-      select: {
-        disponibilidade: true
-      }
-    })
-
-    if(activeTrue.disponibilidade === true){
+    if(active.disponibilidade === "Disponivel"){
       const isFalse = await prismaClient.product.update({
         where:{
           id: product_id
         },
         data: {
-          disponibilidade: false
+          disponibilidade: StatusProduct.Indisponivel
         }
       })
 
       return isFalse;
     }
 
-    if(activeFalse.disponibilidade === false){
+    if(active.disponibilidade === "Indisponivel"){
       const isTrue = await prismaClient.product.update({
         where:{
           id: product_id
         },
         data: {
-          disponibilidade: true
+          disponibilidade: StatusProduct.Disponivel
         }
       })
 
