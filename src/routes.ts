@@ -76,6 +76,7 @@ import { CreateProductController } from './controllers/product/CreateProductCont
 import { PhotoProductController } from './controllers/product/photoproduct/PhotoProductController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { ExactPageListAllProductController } from './controllers/product/ExactPageListAllProductController';
+import { ListExactProductController } from './controllers/product/ListExactProductController';
 import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
@@ -243,6 +244,7 @@ router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductContro
 router.get('/allProductsPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllProductController().handle);
 router.get('/allProductsPageExact', ADMINisAuthenticated, new ExactPageListAllProductController().handle);
 router.get('/productExactCategory', ADMINisAuthenticated, new ExactCategoryProductController().handle);
+router.get('/exactProduct', ADMINisAuthenticated, new ListExactProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
 router.put('/updateDescription1', ADMINisAuthenticated, new Update1DescriptionProductController().handle);
