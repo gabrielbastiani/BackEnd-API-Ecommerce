@@ -80,6 +80,7 @@ import { ListExactProductController } from './controllers/product/ListExactProdu
 import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
+import { UpdateAllDescriptionProductController } from './controllers/product/UpdateAllDescriptionProductController';
 import { Update1DescriptionProductController } from './controllers/product/Update1DescriptionProductController';
 import { Update2DescriptionProductController } from './controllers/product/Update2DescriptionProductController';
 import { Update3DescriptionProductController } from './controllers/product/Update3DescriptionProductController';
@@ -247,6 +248,7 @@ router.get('/productExactCategory', ADMINisAuthenticated, new ExactCategoryProdu
 router.get('/exactProduct', ADMINisAuthenticated, new ListExactProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
+router.put('/updateAllDescription', ADMINisAuthenticated, new UpdateAllDescriptionProductController().handle);
 router.put('/updateDescription1', ADMINisAuthenticated, new Update1DescriptionProductController().handle);
 router.put('/updateDescription2', ADMINisAuthenticated, new Update2DescriptionProductController().handle);
 router.put('/updateDescription3', ADMINisAuthenticated, new Update3DescriptionProductController().handle);
