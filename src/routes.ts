@@ -74,6 +74,8 @@ import { DeleteCategoryController } from './controllers/category/DeleteCategoryC
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
 import { PhotoProductController } from './controllers/product/photoproduct/PhotoProductController';
+import { UpdatePhotoProductController } from './controllers/product/photoproduct/UpdatePhotoProductController';
+import { AllPhotosProductController } from './controllers/product/photoproduct/AllPhotosProductController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { ExactPageListAllProductController } from './controllers/product/ExactPageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
@@ -242,6 +244,8 @@ router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryControl
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
 router.post('/photo', ADMINisAuthenticated, upload.single('file'), new PhotoProductController().handle);
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
+router.put('/updatePhoto', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoProductController().handle);
+router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductController().handle);
 router.get('/allProductsPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllProductController().handle);
 router.get('/allProductsPageExact', ADMINisAuthenticated, new ExactPageListAllProductController().handle);
 router.get('/productExactCategory', ADMINisAuthenticated, new ExactCategoryProductController().handle);

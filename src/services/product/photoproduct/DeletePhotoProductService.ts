@@ -7,13 +7,13 @@ interface ProductRequest {
 class DeletePhotoProductService {
   async execute({ photoProduts_id }: ProductRequest){
 
-      const photo = await prismaClient.photoProduct.delete({
+      const photoPro = await prismaClient.photoProduct.findUnique({
         where:{
           id: photoProduts_id 
         }
       })
   
-      return photo;
+      return photoPro;
     }
     
 }
