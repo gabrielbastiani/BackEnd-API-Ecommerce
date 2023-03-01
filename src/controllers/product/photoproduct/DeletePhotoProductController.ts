@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { DeletePhotoProductService } from "../../../services/product/photoproduct/DeletePhotoProductService";
+import fs from 'fs';
 
 class DeletePhotoProductController {
   async handle(req: Request, res: Response) {
@@ -10,6 +11,8 @@ class DeletePhotoProductController {
     const userPhoto = await deletePhotoProductService.execute({
       photoProduts_id,
     });
+
+    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + userPhoto.photo);
 
     return res.json(userPhoto);
   }
