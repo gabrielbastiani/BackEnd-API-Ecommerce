@@ -13,6 +13,9 @@ class AllPhotosProductService {
             select: {
                 id: true,
                 photo: true
+            },
+            orderBy: {
+                created_at: 'desc'
             }
         });
 
