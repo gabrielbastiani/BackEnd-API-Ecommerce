@@ -11,6 +11,7 @@ class AllPhotosProductService {
                 product_id: product_id
             },
             select: {
+                id: true,
                 photo: true
             }
         });
