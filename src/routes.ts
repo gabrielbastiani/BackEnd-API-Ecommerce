@@ -113,6 +113,7 @@ import { PageListAllAvaliacaoController } from './controllers/avaliacao/PageList
 import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
 import { DeleteVariacaoController } from './controllers/variacao/DeleteVariacaoController';
 import { PageListAllVariacaoController } from './controllers/variacao/PageListAllVariacaoController';
+import { AllVariacoesProductController } from './controllers/variacao/AllVariacoesProductController';
 import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
 import { DeletePhotoVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoVariacaoController';
 import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
@@ -284,6 +285,7 @@ router.get('/allAvaliacao', new PageListAllAvaliacaoController().handle);
 router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);
 router.delete('/deleteVariacao', ADMINisAuthenticated, new DeleteVariacaoController().handle);
 router.get('/allVariacaoPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllVariacaoController().handle);
+router.get('/variacoesProduct', ADMINisAuthenticated, new AllVariacoesProductController().handle);
 router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
 router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
 router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
