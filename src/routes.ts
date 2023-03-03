@@ -135,9 +135,9 @@ import { UpdatePesoVariacaoController } from './controllers/variacao/UpdatePesoV
 import { UpdateLarguraVariacaoController } from './controllers/variacao/UpdateLarguraVariacaoController';
 import { UpdateAlturaVariacaoController } from './controllers/variacao/UpdateAlturaVariacaoController';
 import { UpdateProfundidadeVariacaoController } from './controllers/variacao/UpdateProfundidadeVariacaoController';
-import { UpdateDisponibilidadeVariacaoController } from './controllers/variacao/UpdateDisponibilidadeVariacaoController';
+import { UpdateDisponibilidadeVariacaoController } from './controllers/variacao/DisponibilidadeVariacaoController';
 import { UpdatePromocaoVariacaoController } from './controllers/variacao/UpdatePromocaoVariacaoController';
-import { UpdateEntregaVariacaoController } from './controllers/variacao/UpdateEntregaVariacaoController';
+import { FreteGratisVariacaoController } from './controllers/variacao/FreteGratisVariacaoController';
 import { UpdateProductIdVariacaoController } from './controllers/variacao/UpdateProductIdVariacaoController';
 import { UpdateLojaIdVariacaoController } from './controllers/variacao/UpdateLojaIdVariacaoController';
 
@@ -314,7 +314,7 @@ router.put('/updateAlturaVariacao', ADMINisAuthenticated, new UpdateAlturaVariac
 router.put('/updateProfundidadeVariacao', ADMINisAuthenticated, new UpdateProfundidadeVariacaoController().handle);
 router.put('/updateDisponibilidadeVariacao', ADMINisAuthenticated, new UpdateDisponibilidadeVariacaoController().handle);
 router.put('/updatePromocaoVariacao', ADMINisAuthenticated, new UpdatePromocaoVariacaoController().handle);
-router.put('/updateEntregaVariacao', ADMINisAuthenticated, new UpdateEntregaVariacaoController().handle);
+router.put('/freteGratisVariacao', ADMINisAuthenticated, new FreteGratisVariacaoController().handle);
 router.put('/updateProductIdVariacao', ADMINisAuthenticated, new UpdateProductIdVariacaoController().handle);
 router.put('/updateLojaIdVariacao', ADMINisAuthenticated, new UpdateLojaIdVariacaoController().handle);
 

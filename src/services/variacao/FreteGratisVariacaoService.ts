@@ -1,12 +1,13 @@
+import { StatusFrete } from "@prisma/client";
 import prismaClient from "../../prisma";
 
-interface VariacaoRequest {
+interface VariacaoRerquest {
   variacao_id: string;
 }
 
-class UpdateEntregaVariacaoService {
-  async execute({ variacao_id }: VariacaoRequest) {
-    const activeTrue = await prismaClient.variacao.findUnique({
+class FreteGratisVariacaoService {
+  async execute({ variacao_id }: VariacaoRerquest) {
+    const active = await prismaClient.variacao.findUnique({
       where: {
         id: variacao_id
       },
@@ -15,35 +16,26 @@ class UpdateEntregaVariacaoService {
       }
     })
 
-    const activeFalse = await prismaClient.variacao.findUnique({
-      where: {
-        id: variacao_id
-      },
-      select: {
-        freteGratis: true
-      }
-    })
-
-    if(activeTrue.freteGratis === true){
+    if(active.freteGratis === "Sim"){
       const isFalse = await prismaClient.variacao.update({
         where:{
           id: variacao_id
         },
         data: {
-          freteGratis: false
+          freteGratis: StatusFrete.Nao
         }
       })
 
       return isFalse;
     }
 
-    if(activeFalse.freteGratis === false){
+    if(active.freteGratis === "Nao"){
       const isTrue = await prismaClient.variacao.update({
         where:{
           id: variacao_id
         },
         data: {
-          freteGratis: true
+          freteGratis: StatusFrete.Sim
         }
       })
 
@@ -54,4 +46,4 @@ class UpdateEntregaVariacaoService {
   }
 }
 
-export { UpdateEntregaVariacaoService }
+export { FreteGratisVariacaoService }
