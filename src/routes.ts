@@ -115,6 +115,8 @@ import { DeleteVariacaoController } from './controllers/variacao/DeleteVariacaoC
 import { PageListAllVariacaoController } from './controllers/variacao/PageListAllVariacaoController';
 import { AllVariacoesProductController } from './controllers/variacao/AllVariacoesProductController';
 import { AllVariacoesController } from './controllers/variacao/AllVariacoesController';
+import { AllPhotosVariacaoController } from './controllers/variacao/photoVariacao/AllPhotosVariacaoController';
+import { AllPhotosVariacoesController } from './controllers/variacao/photoVariacao/AllPhotosVariacoesController';
 import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
 import { DeletePhotoVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoVariacaoController';
 import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
@@ -168,7 +170,6 @@ import { EmailExportProductsController } from './controllers/sendEmails/EmailExp
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { AllPhotosVariacaoController } from './controllers/variacao/photoVariacao/AllPhotosVariacaoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -289,6 +290,7 @@ router.delete('/deleteVariacao', ADMINisAuthenticated, new DeleteVariacaoControl
 router.get('/allVariacaoPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllVariacaoController().handle);
 router.get('/variacoesProduct', ADMINisAuthenticated, new AllVariacoesProductController().handle);
 router.get('/variacoes', ADMINisAuthenticated, new AllVariacoesController().handle);
+router.get('/allPhotosVariacoes', ADMINisAuthenticated, new AllPhotosVariacoesController().handle);
 router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
 router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
 router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
