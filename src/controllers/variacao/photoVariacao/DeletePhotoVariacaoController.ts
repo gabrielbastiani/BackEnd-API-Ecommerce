@@ -1,17 +1,20 @@
 import { Request, Response } from "express";
 import { DeletePhotoVariacaoService } from "../../../services/variacao/photoVariacao/DeletePhotoVariacaoService";
+import fs from 'fs';
 
 class DeletePhotoVariacaoController {
     async handle(req: Request, res: Response) {
-        const photovariacao_id = req.query.photovariacao_id as string;
+        const photoVariacao_id = req.query.photoVariacao_id as string;
 
         const deletePhotoVariacaoService = new DeletePhotoVariacaoService();
 
-        const photo = await deletePhotoVariacaoService.execute({
-            photovariacao_id,
+        const photoVariates = await deletePhotoVariacaoService.execute({
+            photoVariacao_id,
         });
 
-        return res.json(photo);
+        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + photoVariates.photoVariacao);
+
+        return res.json(photoVariates);
     }
 }
 

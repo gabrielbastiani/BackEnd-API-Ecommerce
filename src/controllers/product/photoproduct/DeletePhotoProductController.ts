@@ -8,13 +8,13 @@ class DeletePhotoProductController {
 
     const deletePhotoProductService = new DeletePhotoProductService();
 
-    const userPhoto = await deletePhotoProductService.execute({
+    const photoProducts = await deletePhotoProductService.execute({
       photoProduts_id,
     });
 
-    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + userPhoto.photo);
+    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + photoProducts.photo);
 
-    return res.json(userPhoto);
+    return res.json(photoProducts);
   }
 }
 
