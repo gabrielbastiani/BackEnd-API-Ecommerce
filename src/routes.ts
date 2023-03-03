@@ -168,6 +168,7 @@ import { EmailExportProductsController } from './controllers/sendEmails/EmailExp
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { AllPhotosVariacaoController } from './controllers/variacao/photoVariacao/AllPhotosVariacaoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -290,6 +291,7 @@ router.get('/variacoesProduct', ADMINisAuthenticated, new AllVariacoesProductCon
 router.get('/variacoes', ADMINisAuthenticated, new AllVariacoesController().handle);
 router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
 router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
+router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
 router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
 router.put('/updateDescriptionVariacao1', ADMINisAuthenticated, new UpdateDescriptionVariacao1Controller().handle);
 router.put('/updateDescriptionVariacao2', ADMINisAuthenticated, new UpdateDescriptionVariacao2Controller().handle);
