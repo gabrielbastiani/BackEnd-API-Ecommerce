@@ -10,6 +10,9 @@ class AllVariacoesProductService {
             where: {
                 product_id: product_id
             },
+            orderBy: {
+                created_at: 'asc'
+            },
             include: {
                 product: true,
                 photovariacoes: true,
