@@ -3,7 +3,7 @@ import { PhotoVariacaoService } from "../../../services/variacao/photoVariacao/P
 
 class PhotoVariacaoController {
     async handle(req: Request, res: Response) {
-        const { variacao_id } = req.body;
+        const { variacao_id, product_id } = req.body;
 
         const photoVariacaoService = new PhotoVariacaoService();
 
@@ -15,7 +15,8 @@ class PhotoVariacaoController {
 
             const photoVariacaoProduct = await photoVariacaoService.execute({
                 photoVariacao,
-                variacao_id
+                variacao_id,
+                product_id
             })
             return res.json(photoVariacaoProduct)
         }

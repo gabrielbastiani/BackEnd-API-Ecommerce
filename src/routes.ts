@@ -120,6 +120,7 @@ import { AllPhotosVariacaoController } from './controllers/variacao/photoVariaca
 import { AllPhotosVariacoesController } from './controllers/variacao/photoVariacao/AllPhotosVariacoesController';
 import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
 import { DeletePhotoVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoVariacaoController';
+/* import { DeletePhotoALLVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoALLVariacaoController'; */
 import { UpdateAllDescriptionVariacaoController } from './controllers/variacao/UpdateAllDescriptionVariacaoController';
 import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
 import { UpdateDescriptionVariacao1Controller } from './controllers/variacao/UpdateDescriptionVariacao1Controller';
@@ -294,8 +295,9 @@ router.get('/variacoesProduct', ADMINisAuthenticated, new AllVariacoesProductCon
 router.get('/variacoes', ADMINisAuthenticated, new AllVariacoesController().handle);
 router.get('/exactVariacao', ADMINisAuthenticated, new ListExactVariacaoController().handle);
 router.get('/allPhotosVariacoes', ADMINisAuthenticated, new AllPhotosVariacoesController().handle);
-router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
+router.post('/photoVariante', ADMINisAuthenticated, upload.array('file'), new PhotoVariacaoController().handle);
 router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
+/* router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeletePhotoALLVariacaoController().handle); */
 router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
 router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
 router.put('/updateAllDescriptionVariacao', ADMINisAuthenticated, new UpdateAllDescriptionVariacaoController().handle);

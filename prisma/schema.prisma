@@ -138,10 +138,11 @@ model Product {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  photoproducts PhotoProduct[]
-  variacoes     Variacao[]
-  avaliacoes    Avaliacao[]
-  item          Item[]
+  photoproducts  PhotoProduct[]
+  variacoes      Variacao[]
+  photovariacoes PhotoVariacao[]
+  avaliacoes     Avaliacao[]
+  item           Item[]
 
   @@map("products")
 }
@@ -214,6 +215,8 @@ model PhotoVariacao {
   photoVariacao String?
   variacao      Variacao? @relation(fields: [variacao_id], references: [id])
   variacao_id   String?
+  product       Product?  @relation(fields: [product_id], references: [id])
+  product_id    String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

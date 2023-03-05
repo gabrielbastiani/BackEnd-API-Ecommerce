@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { DeleteProductService } from "../../services/product/DeleteProductService";
+import fs from 'fs';
 
 class DeleteProductController {
   async handle(req: Request, res: Response) {
@@ -10,6 +11,8 @@ class DeleteProductController {
     const product = await deleteProductService.execute({
       product_id,
     });
+
+    /* fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + ); */
 
     return res.json(product);
   }
