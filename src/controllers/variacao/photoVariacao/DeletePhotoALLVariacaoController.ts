@@ -1,4 +1,4 @@
-/* import { Request, Response } from "express";
+import { Request, Response } from "express";
 import { DeleteALLPhotoVariacaoService } from "../../../services/variacao/photoVariacao/DeleteALLPhotoVariacaoService";
 import fs from 'fs';
 
@@ -18,4 +18,4 @@ class DeletePhotoALLVariacaoController {
     }
 }
 
-export { DeletePhotoALLVariacaoController }; */
+export { DeletePhotoALLVariacaoController };

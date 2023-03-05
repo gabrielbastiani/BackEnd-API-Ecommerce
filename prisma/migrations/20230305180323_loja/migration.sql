@@ -119,7 +119,7 @@ CREATE TABLE "products" (
 -- CreateTable
 CREATE TABLE "photoproducts" (
     "id" TEXT NOT NULL,
-    "photo" TEXT,
+    "photo" TEXT NOT NULL,
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -160,7 +160,7 @@ CREATE TABLE "variacoes" (
 -- CreateTable
 CREATE TABLE "photovariacoes" (
     "id" TEXT NOT NULL,
-    "photoVariacao" TEXT[],
+    "photoVariacao" TEXT NOT NULL,
     "variacao_id" TEXT,
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
