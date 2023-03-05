@@ -7,11 +7,11 @@ class PhotoVariacaoController {
 
         const photoVariacaoService = new PhotoVariacaoService();
 
-        if (!req.file) {
+        if (!req.files) {
             throw new Error("error upload file")
         } else {
-
-            const { originalname, filename: photoVariacao } = req.file;
+            /* @ts-ignore */
+            const { originalname, filename: photoVariacao } = req.files;
 
             const photoVariacaoProduct = await photoVariacaoService.execute({
                 photoVariacao,

@@ -160,7 +160,7 @@ CREATE TABLE "variacoes" (
 -- CreateTable
 CREATE TABLE "photovariacoes" (
     "id" TEXT NOT NULL,
-    "photoVariacao" TEXT,
+    "photoVariacao" TEXT[],
     "variacao_id" TEXT,
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,

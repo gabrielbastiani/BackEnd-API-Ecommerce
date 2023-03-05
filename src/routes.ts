@@ -295,7 +295,7 @@ router.get('/variacoesProduct', ADMINisAuthenticated, new AllVariacoesProductCon
 router.get('/variacoes', ADMINisAuthenticated, new AllVariacoesController().handle);
 router.get('/exactVariacao', ADMINisAuthenticated, new ListExactVariacaoController().handle);
 router.get('/allPhotosVariacoes', ADMINisAuthenticated, new AllPhotosVariacoesController().handle);
-router.post('/photoVariante', ADMINisAuthenticated, upload.array('file'), new PhotoVariacaoController().handle);
+router.post('/photoVariante', ADMINisAuthenticated, upload.array('files'), new PhotoVariacaoController().handle);
 router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
 /* router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeletePhotoALLVariacaoController().handle); */
 router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
