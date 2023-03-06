@@ -5,23 +5,17 @@ interface ProductRequest {
 }
 
 class DeleteAllPhotoProductService {
-  async execute({ product_id }: ProductRequest){
+  async execute({ product_id }: ProductRequest) {
 
-      const photosProduct = await prismaClient.photoProduct.deleteMany({
-        where:{
-          product_id : product_id
-        }
-      })
+    const photosProduct = await prismaClient.photoProduct.deleteMany({
+      where: {
+        product_id: product_id
+      }
+    })
 
-      const photosVariacao = await prismaClient.photoVariacao.deleteMany({
-        where:{
-          product_id : product_id
-        }
-      });
-  
-      return photoPro;
-    }
-    
+    return photosProduct;
+  }
+
 }
 
 export { DeleteAllPhotoProductService }

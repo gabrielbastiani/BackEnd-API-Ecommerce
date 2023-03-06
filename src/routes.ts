@@ -82,6 +82,7 @@ import { PageListAllProductController } from './controllers/product/PageListAllP
 import { ExactPageListAllProductController } from './controllers/product/ExactPageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
 import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
+import { DeleteAllPhotoProductController } from './controllers/product/photoproduct/DeleteAllPhotoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
 import { UpdateAllDescriptionProductController } from './controllers/product/UpdateAllDescriptionProductController';
@@ -253,6 +254,7 @@ router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryControl
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
 router.post('/photo', ADMINisAuthenticated, upload.single('file'), new PhotoProductController().handle);
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
+router.delete('/deleteAllPhotos', ADMINisAuthenticated, new DeleteAllPhotoProductController().handle);
 router.put('/updatePhoto', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoProductController().handle);
 router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductController().handle);
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
