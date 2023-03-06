@@ -2,37 +2,39 @@ import prismaClient from "../../prisma";
 
 interface ProductRequest {
   product_id: string;
+  variacao_id: string;
+
 }
 
 class DeleteProductService {
-  async execute({ product_id }: ProductRequest){
-      const productDelete = await prismaClient.product.delete({
-        where:{
-          id: product_id 
-        }
-      })
+  async execute({ product_id, variacao_id }: ProductRequest) {
+    const productDelete = await prismaClient.product.delete({
+      where: {/* @ts-ignore */
+        id: product_id
+      }
+    })
 
-      const variacao = await prismaClient.variacao.deleteMany({
-        where:{
-          product_id: product_id
-        }
-      })
+    await prismaClient.variacao.delete({
+      where: {/* @ts-ignore */
+        product_id: variacao_id
+      }
+    })
 
-      const photosProduct = await prismaClient.photoProduct.deleteMany({
-        where:{
-          id: product_id
-        }
-      })
+    await prismaClient.photoProduct.delete({
+      where: {/* @ts-ignore */
+        product_id: product_id
+      }
+    })
 
-      const photosVariacao = await prismaClient.photoVariacao.deleteMany({
-        where:{
-          id: product_id
-        }
-      })
-  
-      return [productDelete, variacao, photosProduct, photosVariacao];
-    }
-    
+    await prismaClient.photoVariacao.delete({
+      where: {/* @ts-ignore */
+        product_id: product_id
+      }
+    })
+
+    return productDelete;
+  }
+
 }
 
 export { DeleteProductService }
