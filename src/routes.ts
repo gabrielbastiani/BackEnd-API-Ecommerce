@@ -123,7 +123,7 @@ import { AllPhotosVariacaoController } from './controllers/variacao/photoVariaca
 import { AllPhotosVariacoesController } from './controllers/variacao/photoVariacao/AllPhotosVariacoesController';
 import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
 import { DeletePhotoVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoVariacaoController';
-import { DeleteALLPhotoVariacaoController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoController';
+import { DeleteALLPhotoVariacaoProductController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoProductController';
 import { UpdateAllDescriptionVariacaoController } from './controllers/variacao/UpdateAllDescriptionVariacaoController';
 import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
 import { UpdateDescriptionVariacao1Controller } from './controllers/variacao/UpdateDescriptionVariacao1Controller';
@@ -176,6 +176,7 @@ import { EmailExportProductsController } from './controllers/sendEmails/EmailExp
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { DeleteALLPhotoVariacaoController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -302,8 +303,9 @@ router.get('/exactVariacao', ADMINisAuthenticated, new ListExactVariacaoControll
 router.get('/allPhotosVariacoes', ADMINisAuthenticated, new AllPhotosVariacoesController().handle);
 router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
 router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
-router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeleteALLPhotoVariacaoController().handle);
+router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeleteALLPhotoVariacaoProductController().handle);
 router.delete('/deleteAllVariacaoProduct', ADMINisAuthenticated, new DeleteAllVariacaoProductController().handle);
+router.delete('/deleteVariacaoAllPhotos', ADMINisAuthenticated, new DeleteALLPhotoVariacaoController().handle);
 router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
 router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
 router.put('/updateAllDescriptionVariacao', ADMINisAuthenticated, new UpdateAllDescriptionVariacaoController().handle);
