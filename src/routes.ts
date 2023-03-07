@@ -83,6 +83,7 @@ import { ExactPageListAllProductController } from './controllers/product/ExactPa
 import { ListExactProductController } from './controllers/product/ListExactProductController';
 import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
 import { DeleteAllPhotoProductController } from './controllers/product/photoproduct/DeleteAllPhotoProductController';
+import { DeleteAllVariacaoProductController } from './controllers/variacao/DeleteAllVariacaoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
 import { UpdateAllDescriptionProductController } from './controllers/product/UpdateAllDescriptionProductController';
@@ -122,7 +123,7 @@ import { AllPhotosVariacaoController } from './controllers/variacao/photoVariaca
 import { AllPhotosVariacoesController } from './controllers/variacao/photoVariacao/AllPhotosVariacoesController';
 import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
 import { DeletePhotoVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoVariacaoController';
-import { DeletePhotoALLVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoALLVariacaoController';
+import { DeleteALLPhotoVariacaoController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoController';
 import { UpdateAllDescriptionVariacaoController } from './controllers/variacao/UpdateAllDescriptionVariacaoController';
 import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
 import { UpdateDescriptionVariacao1Controller } from './controllers/variacao/UpdateDescriptionVariacao1Controller';
@@ -301,7 +302,8 @@ router.get('/exactVariacao', ADMINisAuthenticated, new ListExactVariacaoControll
 router.get('/allPhotosVariacoes', ADMINisAuthenticated, new AllPhotosVariacoesController().handle);
 router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
 router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
-router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeletePhotoALLVariacaoController().handle);
+router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeleteALLPhotoVariacaoController().handle);
+router.delete('/deleteAllVariacaoProduct', ADMINisAuthenticated, new DeleteAllVariacaoProductController().handle);
 router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
 router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
 router.put('/updateAllDescriptionVariacao', ADMINisAuthenticated, new UpdateAllDescriptionVariacaoController().handle);
