@@ -9,14 +9,14 @@ class DeleteALLPhotoVariacaoController {
         const variacao_id = req.query.variacao_id as string;
 
         const photosGet = new AllPhotosService();
-        const arrayPhotos = await photosGet.execute({variacao_id});
+        const arrayPhotos = await photosGet.execute({ variacao_id });
 
         arrayPhotos.forEach(element => {
             fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + element.photoVariacao);
         });
 
         const deletePhotoVariacaoService = new DeleteALLPhotoVariacaoService();
-        
+
         const photoVariates = await deletePhotoVariacaoService.execute({
             variacao_id,
         });
