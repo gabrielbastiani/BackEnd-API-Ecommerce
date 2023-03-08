@@ -85,6 +85,7 @@ import { DeletePhotoProductController } from './controllers/product/photoproduct
 import { DeleteAllPhotoProductController } from './controllers/product/photoproduct/DeleteAllPhotoProductController';
 import { DeleteAllVariacaoProductController } from './controllers/variacao/DeleteAllVariacaoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
+import { DeleteALLPhotoVariacaoController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
 import { UpdateAllDescriptionProductController } from './controllers/product/UpdateAllDescriptionProductController';
 import { Update1DescriptionProductController } from './controllers/product/Update1DescriptionProductController';
@@ -111,6 +112,7 @@ import { UpdateLojaProductController } from './controllers/product/UpdateLojaPro
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
 import { DeleteAvaliacaoController } from './controllers/avaliacao/DeleteAvaliacaoController';
 import { PageListAllAvaliacaoController } from './controllers/avaliacao/PageListAllAvaliacaoController';
+import { FindAvaliacaoController } from './controllers/avaliacao/FindAvaliacaoController';
 
 // -- ROTAS VARIAÇÃO --
 import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
@@ -176,7 +178,6 @@ import { EmailExportProductsController } from './controllers/sendEmails/EmailExp
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { DeleteALLPhotoVariacaoController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -292,6 +293,7 @@ router.put('/updateLoja', ADMINisAuthenticated, new UpdateLojaProductController(
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
 router.delete('/deleteAvaliacao', ADMINisAuthenticated, new DeleteAvaliacaoController().handle);
 router.get('/allAvaliacao', new PageListAllAvaliacaoController().handle);
+router.get('/avaliacaoDados', ADMINisAuthenticated, new FindAvaliacaoController().handle);
 
 // -- ROTAS VARIAÇÃO --
 router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);
