@@ -23,7 +23,8 @@ import { PageListAllUsersController } from './controllers/user/PageListAllUsersC
 import { ExportUsersController } from './controllers/user/ExportUsersController';
 import { UpdateUserNameController } from './controllers/user/UpdateUserNameController';
 import { UpdateUserEmailController } from './controllers/user/UpdateUserEmailController';
-import { UpdateUserCpfOrCnpjController } from './controllers/user/UpdateUserCpfOrCnpjController';
+import { UpdateUserCpfController } from './controllers/user/UpdateUserCpfController';
+import { UpdateUserCnpjController } from './controllers/user/UpdateUserCnpjController';
 import { UpdateUserInscricaoEstadualController } from './controllers/user/UpdateUserInscricaoEstadualController';
 import { UpdateUserPhoneController } from './controllers/user/UpdateUserPhoneController';
 import { UpdateUserDataDeNascimentoController } from './controllers/user/UpdateUserDataDeNascimentoController';
@@ -207,7 +208,8 @@ router.get('/allUsersPage', ADMINisAuthenticated, new PageListAllUsersController
 router.get('/exportUser', ADMINisAuthenticated, new ExportUsersController().handle);
 router.put('/nameUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserNameController().handle);
 router.put('/emailUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserEmailController().handle);
-router.put('/cpfOrConpjUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserCpfOrCnpjController().handle);
+router.put('/cpfUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserCpfController().handle);
+router.put('/cnpjUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserCnpjController().handle);
 router.put('/inscricaoEstadualUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserInscricaoEstadualController().handle);
 router.put('/phoneUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserPhoneController().handle);
 router.put('/dataDeNascimentoUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserDataDeNascimentoController().handle);

@@ -8,7 +8,8 @@ interface UserRequest {
   nameComplete: string;
   email: string;
   password: string;
-  cpfOrCnpj: string;
+  cpf: string;
+  cnpj: string;
   inscricaoEstadual: string;
   phone: string;
   dataNascimento: string;
@@ -29,7 +30,8 @@ class CreateUserService {
     nameComplete,
     email,
     password,
-    cpfOrCnpj,
+    cpf,
+    cnpj,
     inscricaoEstadual,
     phone,
     dataNascimento,
@@ -68,7 +70,8 @@ class CreateUserService {
         nameComplete: nameComplete,
         email: email,
         password: passwordHash,
-        cpfOrCnpj: cpfOrCnpj,
+        cpf: cpf,
+        cnpj: cnpj,
         inscricaoEstadual: inscricaoEstadual,
         phone: phone,
         dataNascimento: dataNascimento,
@@ -87,7 +90,8 @@ class CreateUserService {
         id: true,
         nameComplete: true,
         email: true,
-        cpfOrCnpj: true,
+        cpf: true,
+        cnpj: true,
         inscricaoEstadual: true,
         phone: true,
         dataNascimento: true,
