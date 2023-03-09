@@ -2,6 +2,9 @@
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
 -- CreateEnum
+CREATE TYPE "News" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
 CREATE TYPE "StatusCategory" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
@@ -31,7 +34,7 @@ CREATE TABLE "users" (
     "phone" VARCHAR(135),
     "dataNascimento" VARCHAR(125),
     "genero" VARCHAR(135),
-    "newslatter" BOOLEAN DEFAULT false,
+    "newslatter" "News" NOT NULL DEFAULT 'Nao',
     "local" VARCHAR(405),
     "numero" VARCHAR(125),
     "complemento" VARCHAR(155),

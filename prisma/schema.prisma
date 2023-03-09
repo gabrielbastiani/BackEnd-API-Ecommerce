@@ -13,24 +13,24 @@ datasource db {
 // criar uma migration: yarn prisma migrate dev
 
 model User {
-  id                String   @id @default(uuid())
-  nameComplete      String   @db.VarChar(195)
-  email             String   @unique @db.VarChar(180)
+  id                String  @id @default(uuid())
+  nameComplete      String  @db.VarChar(195)
+  email             String  @unique @db.VarChar(180)
   password          String
-  cpf               String?  @unique @db.VarChar(125)
-  cnpj              String?  @unique @db.VarChar(125)
-  inscricaoEstadual String?  @db.VarChar(155)
-  phone             String?  @db.VarChar(135)
-  dataNascimento    String?  @db.VarChar(125)
-  genero            String?  @db.VarChar(135)
-  newslatter        Boolean? @default(false)
-  local             String?  @db.VarChar(405)
-  numero            String?  @db.VarChar(125)
-  complemento       String?  @db.VarChar(155)
-  bairro            String?  @db.VarChar(185)
-  CEP               String?  @db.VarChar(125)
-  cidade            String?  @db.VarChar(185)
-  estado            String?  @db.VarChar(185)
+  cpf               String? @unique @db.VarChar(125)
+  cnpj              String? @unique @db.VarChar(125)
+  inscricaoEstadual String? @db.VarChar(155)
+  phone             String? @db.VarChar(135)
+  dataNascimento    String? @db.VarChar(125)
+  genero            String? @db.VarChar(135)
+  newslatter        News    @default(Nao)
+  local             String? @db.VarChar(405)
+  numero            String? @db.VarChar(125)
+  complemento       String? @db.VarChar(155)
+  bairro            String? @db.VarChar(185)
+  CEP               String? @db.VarChar(125)
+  cidade            String? @db.VarChar(185)
+  estado            String? @db.VarChar(185)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -50,6 +50,11 @@ model User {
 enum Role {
   USER
   ADMIN
+}
+
+enum News {
+  Sim
+  Nao
 }
 
 model PasswordRecovery {
