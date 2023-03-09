@@ -25,7 +25,8 @@ CREATE TABLE "users" (
     "nameComplete" VARCHAR(195) NOT NULL,
     "email" VARCHAR(180) NOT NULL,
     "password" TEXT NOT NULL,
-    "cpfOrCnpj" VARCHAR(125),
+    "cpf" VARCHAR(125),
+    "cnpj" VARCHAR(125),
     "inscricaoEstadual" VARCHAR(155),
     "phone" VARCHAR(135),
     "dataNascimento" VARCHAR(125),
@@ -284,7 +285,10 @@ CREATE TABLE "pedidos" (
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_cpfOrCnpj_key" ON "users"("cpfOrCnpj");
+CREATE UNIQUE INDEX "users_cpf_key" ON "users"("cpf");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_cnpj_key" ON "users"("cnpj");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName");

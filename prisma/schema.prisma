@@ -17,7 +17,8 @@ model User {
   nameComplete      String   @db.VarChar(195)
   email             String   @unique @db.VarChar(180)
   password          String
-  cpfOrCnpj         String?  @unique @db.VarChar(125)
+  cpf               String?  @unique @db.VarChar(125)
+  cnpj              String?  @unique @db.VarChar(125)
   inscricaoEstadual String?  @db.VarChar(155)
   phone             String?  @db.VarChar(135)
   dataNascimento    String?  @db.VarChar(125)
