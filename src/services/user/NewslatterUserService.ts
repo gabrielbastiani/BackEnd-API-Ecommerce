@@ -1,21 +1,47 @@
+import { News } from "@prisma/client";
 import prismaClient from "../../prisma";
 
-interface UserRequest{
+interface UserRequest {
   user_id: string;
 }
 
 class NewslatterUserService {
-  async execute({ user_id }: UserRequest){
-    const user = await prismaClient.user.update({
-      where:{
+  async execute({ user_id }: UserRequest) {
+    const active = await prismaClient.user.findUnique({
+      where: {
         id: user_id
       },
-      data:{
-         newslatter: true
-      },
+      select: {
+        newslatter: true
+      }
     })
 
-    return user;
+    if(active.newslatter === "Sim"){
+      const isFalse = await prismaClient.user.update({
+        where:{
+          id: user_id
+        },
+        data: {
+          newslatter: News.Nao
+        }
+      })
+
+      return isFalse;
+    }
+
+    if(active.newslatter === "Nao"){
+      const isTrue = await prismaClient.user.update({
+        where:{
+          id: user_id
+        },
+        data: {
+          newslatter: News.Sim
+        }
+      })
+
+      return isTrue;
+
+    }
 
   }
 }
