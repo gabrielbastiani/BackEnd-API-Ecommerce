@@ -1,3 +1,4 @@
+import { StatusPedido } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface PedidoRequest {
@@ -6,7 +7,7 @@ interface PedidoRequest {
 
 class CancelarPedidoAdminService {
   async execute({ pedido_id }: PedidoRequest) {
-    const activeTrue = await prismaClient.pedido.findUnique({
+    const active = await prismaClient.pedido.findUnique({
       where: {
         id: pedido_id
       },
@@ -15,35 +16,26 @@ class CancelarPedidoAdminService {
       }
     })
 
-    const activeFalse = await prismaClient.pedido.findUnique({
-      where: {
-        id: pedido_id
-      },
-      select: {
-        cancelado: true
-      }
-    })
-
-    if(activeTrue.cancelado === true){
+    if(active.cancelado === "Valido"){
       const isFalse = await prismaClient.pedido.update({
         where:{
           id: pedido_id
         },
         data: {
-          cancelado: false
+          cancelado: StatusPedido.Cancelado
         }
       })
 
       return isFalse;
     }
 
-    if(activeFalse.cancelado === false){
+    if(active.cancelado === "Cancelado"){
       const isTrue = await prismaClient.pedido.update({
         where:{
           id: pedido_id
         },
         data: {
-          cancelado: true
+          cancelado: StatusPedido.Valido
         }
       })
 

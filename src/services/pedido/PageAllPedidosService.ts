@@ -1,14 +1,11 @@
 import prismaClient from '../../prisma';
 
-class PageAllPedidosUserService {
-    async execute(page = 1, limit = 5, user_id) {
+class PageAllPedidosService {
+    async execute(page = 1, limit = 5) {
 
         const skip = limit * (page - 1);
 
         const allPedidos = await prismaClient.pedido.findMany({
-            where: {
-                user_id: user_id
-            },
             orderBy: {
                 created_at: 'desc'
             },
@@ -16,7 +13,7 @@ class PageAllPedidosUserService {
                 user: true,
                 carrinhos: true,
                 entregas: true,
-                pagamento: true,
+                pagamentos: true,
             },
         });
 
@@ -25,7 +22,7 @@ class PageAllPedidosUserService {
                 user: true,
                 carrinhos: true,
                 entregas: true,
-                pagamento: true,
+                pagamentos: true,
             },
             skip,
             take: limit,
@@ -47,4 +44,4 @@ class PageAllPedidosUserService {
     }
 }
 
-export { PageAllPedidosUserService }
+export { PageAllPedidosService }
