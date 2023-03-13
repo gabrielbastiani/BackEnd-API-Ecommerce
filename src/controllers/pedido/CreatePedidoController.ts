@@ -20,7 +20,8 @@ class CreatePedidoController {
             CEP,
             cidade,
             estado,
-            status
+            status,
+            pagamento_id
         } = req.body;
 
         const createPedidoService = new CreatePedidoService();
@@ -42,7 +43,8 @@ class CreatePedidoController {
             CEP,
             cidade,
             estado,
-            status
+            status,
+            pagamento_id
         })
 
         return res.json(pedido);

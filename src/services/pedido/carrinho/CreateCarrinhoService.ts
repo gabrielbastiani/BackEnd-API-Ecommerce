@@ -114,6 +114,7 @@ class CreateCarrinhoService {
                     custoEntrega: response[0].Valor,
                     prazoEntrega: response[0].PrazoEntrega,
                     tipoEntrega: response[0].Codigo,
+                    /* @ts-ignore */
                     valorPagamento: total
                 }
             })

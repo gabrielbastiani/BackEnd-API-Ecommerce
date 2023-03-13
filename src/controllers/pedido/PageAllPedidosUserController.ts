@@ -7,7 +7,7 @@ class PageAllPedidosUserController {
 
         const { page, limit, user_id } = req.query;
 
-        const pedidosPage = await pageAllPedidosUserService.execute(Number(page), Number(limit), String(user_id));
+        const pedidosPage = await pageAllPedidosUserService.execute(Number(page), Number(limit), user_id);
 
         return res.json(pedidosPage);
     }

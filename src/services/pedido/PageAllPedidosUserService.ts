@@ -21,6 +21,9 @@ class PageAllPedidosUserService {
         });
 
         const pedidos = await prismaClient.pedido.findMany({
+            where: {
+                user_id: user_id
+            },
             include: {
                 user: true,
                 carrinhos: true,

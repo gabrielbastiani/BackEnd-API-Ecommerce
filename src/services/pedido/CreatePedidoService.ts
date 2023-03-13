@@ -18,6 +18,7 @@ interface PedidoRequest {
     cidade: string;
     estado: string;
     status: string;
+    pagamento_id: string;
 }
 
 class CreatePedidoService {
@@ -38,12 +39,20 @@ class CreatePedidoService {
         CEP,
         cidade,
         estado,
-        status
+        status,
+        pagamento_id
     }: PedidoRequest) {
+        const pagamentoID = await prismaClient.pagamento.findFirst({
+            where: {
+                id: pagamento_id
+            }
+        })
+
         const pedido = await prismaClient.pedido.create({
             data: {
                 loja_id: loja_id,
                 user_id: user_id,
+                pagamento_id: pagamentoID.id
             },
             include: {
                 carrinhos: true,
