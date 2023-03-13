@@ -135,7 +135,7 @@ model Product {
   profundidadeCM      String?       @db.VarChar(15)
   disponibilidade     StatusProduct @default(Disponivel)
   promocao            Int?
-  category            Category?     @relation(fields: [category_id], references: [id])
+  category            Category?     @relation( fields: [category_id], references: [id])
   category_id         String?       @default("SEM CATEGORIA")
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
