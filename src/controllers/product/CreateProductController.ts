@@ -5,6 +5,7 @@ class CreateProductController {
     async handle(req: Request, res: Response) {
         const {
             nameProduct,
+            category_id,
             descriptionProduct1,
             descriptionProduct2,
             descriptionProduct3,
@@ -19,7 +20,6 @@ class CreateProductController {
             alturaCM,
             profundidadeCM,
             promocao,
-            category_id,
             loja_id
         } = req.body;
 
@@ -27,6 +27,7 @@ class CreateProductController {
 
         const product = await createProductService.execute({
             nameProduct,
+            category_id,
             descriptionProduct1,
             descriptionProduct2,
             descriptionProduct3,
@@ -41,7 +42,6 @@ class CreateProductController {
             alturaCM,
             profundidadeCM,
             promocao,
-            category_id,
             loja_id
         })
 

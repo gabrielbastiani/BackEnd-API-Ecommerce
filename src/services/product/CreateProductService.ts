@@ -2,6 +2,7 @@ import prismaClient from "../../prisma";
 
 interface ProductRequest {
     nameProduct: string;
+    category_id: string;
     descriptionProduct1: string;
     descriptionProduct2: string;
     descriptionProduct3: string;
@@ -16,13 +17,13 @@ interface ProductRequest {
     alturaCM: string;
     profundidadeCM: string;
     promocao: number;
-    category_id: string;
     loja_id: string;
 }
 
 class CreateProductService {
     async execute({
         nameProduct,
+        category_id,
         descriptionProduct1,
         descriptionProduct2,
         descriptionProduct3,
@@ -37,13 +38,13 @@ class CreateProductService {
         alturaCM,
         profundidadeCM,
         promocao,
-        category_id,
         loja_id,
     }: ProductRequest) {
 
         const product = await prismaClient.product.create({
             data: {
                 nameProduct: nameProduct,
+                category_id: category_id,
                 descriptionProduct1: descriptionProduct1,
                 descriptionProduct2: descriptionProduct2,
                 descriptionProduct3: descriptionProduct3,
@@ -58,33 +59,16 @@ class CreateProductService {
                 alturaCM: alturaCM,
                 profundidadeCM: profundidadeCM,
                 promocao: promocao,
-                category_id: category_id,
                 loja_id: loja_id
             },
-            select: {
-                id: true,
-                nameProduct: true,
-                descriptionProduct1: true,
-                descriptionProduct2: true,
-                descriptionProduct3: true,
-                descriptionProduct4: true,
-                descriptionProduct5: true,
-                descriptionProduct6: true,
-                preco: true,
-                sku: true,
-                estoque: true,
-                pesoKG: true,
-                larguraCM: true,
-                alturaCM: true,
-                profundidadeCM: true,
-                disponibilidade: true,
-                promocao: true,
-                category_id: true,
+            include: {
                 category: true,
-                loja_id: true,
-                created_at: true,
+                loja: true,
+                photoproducts: true,
                 variacoes: true,
-                photoproducts: true
+                photovariacoes: true,
+                avaliacoes: true,
+                item: true,
             }
         })
 
