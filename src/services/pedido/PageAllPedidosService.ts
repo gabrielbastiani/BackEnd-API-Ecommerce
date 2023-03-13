@@ -17,7 +17,7 @@ class PageAllPedidosService {
             },
         });
 
-        const pedidos = await prismaClient.pedido.findMany({
+        const pedidosAll = await prismaClient.pedido.findMany({
             include: {
                 user: true,
                 carrinhos: true,
@@ -33,7 +33,7 @@ class PageAllPedidosService {
 
         // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
-            pedidos,
+            pedidosAll,
             total: allPedidos.length,
             total_pages: Math.ceil(allPedidos.length / limit),
             current_page: page,

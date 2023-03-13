@@ -3,11 +3,11 @@ import { PageAllPedidosService } from '../../services/pedido/PageAllPedidosServi
 
 class PageAllPedidosController {
     async handle(req: Request, res: Response) {
-        const pageAllPedidosUserService = new PageAllPedidosService();
+        const pageAllPedidos = new PageAllPedidosService();
 
         const { page, limit } = req.query;
 
-        const pedidosPage = await pageAllPedidosUserService.execute(Number(page), Number(limit));
+        const pedidosPage = await pageAllPedidos.execute(Number(page), Number(limit));
 
         return res.json(pedidosPage);
     }
