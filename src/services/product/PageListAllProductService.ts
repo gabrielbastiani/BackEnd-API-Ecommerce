@@ -19,7 +19,7 @@ class PageListAllProductService {
             }
         });
         
-        const productsUser = await prismaClient.product.findMany({
+        const products = await prismaClient.product.findMany({
             include: {
                 photoproducts: true,
                 variacoes: true,
@@ -37,7 +37,7 @@ class PageListAllProductService {
 
         // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
-            productsUser,
+            products,
             total: allProducts.length,
             total_pages: Math.ceil(allProducts.length / limit),
             current_page: page,
