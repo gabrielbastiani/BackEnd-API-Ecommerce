@@ -112,7 +112,7 @@ CREATE TABLE "products" (
     "profundidadeCM" VARCHAR(15),
     "disponibilidade" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "promocao" INTEGER,
-    "category_id" TEXT,
+    "category_id" TEXT DEFAULT 'SEM CATEGORIA',
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
