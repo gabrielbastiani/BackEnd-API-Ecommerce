@@ -42,17 +42,11 @@ class CreatePedidoService {
         status,
         pagamento_id
     }: PedidoRequest) {
-        const pagamentoID = await prismaClient.pagamento.findFirst({
-            where: {
-                id: pagamento_id
-            }
-        })
-
         const pedido = await prismaClient.pedido.create({
             data: {
                 loja_id: loja_id,
                 user_id: user_id,
-                pagamento_id: pagamentoID.id
+                pagamento_id: pagamento_id
             },
             include: {
                 carrinhos: true,
