@@ -1,3 +1,4 @@
+import { Role } from '@prisma/client';
 import prismaClient from '../../prisma';
 
 class PageListAllUsersService {
@@ -6,6 +7,9 @@ class PageListAllUsersService {
         const skip = limit * (page - 1);
 
         const allUsers = await prismaClient.user.findMany({
+            where: {
+                role: Role.USER
+            },
             orderBy: {
                 created_at: 'desc'
             },
@@ -17,6 +21,9 @@ class PageListAllUsersService {
         });
 
         const users = await prismaClient.user.findMany({
+            where: {
+                role: Role.USER
+            },
             include: {
                 loja: true,
                 pagamentos: true,
