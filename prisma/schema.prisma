@@ -136,7 +136,7 @@ model Product {
   disponibilidade     StatusProduct @default(Disponivel)
   promocao            Int?
   category            Category?     @relation( fields: [category_id], references: [id])
-  category_id         String?       @default("SEM CATEGORIA")
+  category_id         String?       
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
