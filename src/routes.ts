@@ -193,7 +193,7 @@ router.post('/createUser', new CreateUserController().handle);
 router.put('/userAdmin', ADMINisAuthenticated, new AdminRoleUserController().handle);
 router.post('/createAdmin', new AdminCreateUserController().handle);
 router.post('/sessionAdmin', new AuthAdminController().handle);
-router.post('/session', new AuthUserController().handle);
+router.post('/session', USERisAuthenticated, new AuthUserController().handle);
 router.get('/me', ADMINisAuthenticated && USERisAuthenticated, new DetailuserController().handle);
 router.get('/listExactUser', ADMINisAuthenticated && USERisAuthenticated, new ListExactUserController().handle);
 router.put('/authenticated', new AuthenticatedEmailUserController().handle);
