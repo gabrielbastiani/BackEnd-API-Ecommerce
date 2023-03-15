@@ -14,7 +14,6 @@ interface UserRequest {
   phone: string;
   dataNascimento: string;
   genero: string;
-  newslatter: boolean;
   local: string;
   numero: string;
   complemento: string;
@@ -36,7 +35,6 @@ class CreateUserService {
     phone,
     dataNascimento,
     genero,
-    newslatter,
     local,
     numero,
     complemento,
@@ -76,7 +74,6 @@ class CreateUserService {
         phone: phone,
         dataNascimento: dataNascimento,
         genero: genero,
-        newslatter: newslatter,
         local: local,
         numero: numero,
         bairro: bairro,
@@ -86,29 +83,10 @@ class CreateUserService {
         estado: estado,
         loja_id: loja_id
       },
-      select: {
-        id: true,
-        nameComplete: true,
-        email: true,
-        cpf: true,
-        cnpj: true,
-        inscricaoEstadual: true,
-        phone: true,
-        dataNascimento: true,
-        genero: true,
-        newslatter: true,
-        local: true,
-        numero: true,
-        bairro: true,
-        complemento: true,
-        CEP: true,
-        cidade: true,
-        estado: true,
-        loja_id: true,
-        authenticated: true,
-        role: true,
-        created_at: true,
-        pedidos: true
+      include: {
+        loja: true,
+        pagamentos: true,
+        pedidos: true,
       }
     })
 
@@ -131,7 +109,7 @@ class CreateUserService {
             
             <article>
                 <p>Olá, ${user.nameComplete}!</p>
-                <p><a href="http://localhost:3000/userAuthenticated?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar sua conta junto a loja virtual Builder Seu Negócio Online, e poder acessa-la com os dados que cadastrou anteriormente.</p>
+                <p><a href="http://localhost:3001/userAuthenticated?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar sua conta junto a loja virtual Builder Seu Negócio Online, e poder acessa-la com os dados que cadastrou anteriormente.</p>
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">

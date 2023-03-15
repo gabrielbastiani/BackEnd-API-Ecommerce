@@ -41,15 +41,10 @@ class AdminCreateUserService {
         role: Role.ADMIN,
         loja_id: loja_id,
       },
-      select: {
-        id: true,
-        nameComplete: true,
-        email: true,
-        role: true,
-        authenticated: true,
-        created_at: true,
-        loja_id: true,
-        pedidos: true
+      include: {
+        loja: true,
+        pagamentos: true,
+        pedidos: true,
       }
     })
 
