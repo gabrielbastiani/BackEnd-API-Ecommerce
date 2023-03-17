@@ -18,7 +18,6 @@ import { DeletePasswordRecoveryIDController } from './controllers/user/PasswordR
 import { DetailuserController } from './controllers/user/DetailUserController';
 import { DeleteUserController } from './controllers/user/DeleteUserController';
 import { UserRoleUserController } from './controllers/user/UserRoleUserController';
-import { NewslatterUserController } from './controllers/user/NewslatterUserController';
 import { PageListAllUsersController } from './controllers/user/PageListAllUsersController';
 import { ExportUsersController } from './controllers/user/ExportUsersController';
 import { UpdateUserNameController } from './controllers/user/UpdateUserNameController';
@@ -206,7 +205,6 @@ router.get('/recoverFind', ADMINisAuthenticated && USERisAuthenticated, new Find
 router.delete('/deleteRecoverID', ADMINisAuthenticated && USERisAuthenticated, new DeletePasswordRecoveryIDController().handle);
 router.delete('/deleteUser', ADMINisAuthenticated, new DeleteUserController().handle);
 router.put('/roleUser', new UserRoleUserController().handle);
-router.put('/newslatter', new NewslatterUserController().handle);
 router.get('/allUsersPage', ADMINisAuthenticated, new PageListAllUsersController().handle);
 router.get('/exportUser', ADMINisAuthenticated, new ExportUsersController().handle);
 router.put('/nameUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserNameController().handle);

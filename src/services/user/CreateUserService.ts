@@ -14,6 +14,7 @@ interface UserRequest {
   phone: string;
   dataNascimento: string;
   genero: string;
+  newslatter: string;
   local: string;
   numero: string;
   complemento: string;
@@ -35,6 +36,7 @@ class CreateUserService {
     phone,
     dataNascimento,
     genero,
+    newslatter,
     local,
     numero,
     complemento,
@@ -74,6 +76,7 @@ class CreateUserService {
         phone: phone,
         dataNascimento: dataNascimento,
         genero: genero,
+        newslatter: newslatter,
         local: local,
         numero: numero,
         bairro: bairro,
