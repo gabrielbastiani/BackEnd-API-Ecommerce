@@ -7,16 +7,39 @@ interface UserRequest {
 
 class UserUpdateNewslatterService {
   async execute({ user_id, newslatter }: UserRequest) {
-    const userUpdated = await prismaClient.user.update({
+    const updateNews = await prismaClient.user.findUnique({
       where: {
         id: String(user_id),
       },
-      data: {
-        newslatter: newslatter,
+      select: {
+        newslatter: true,
       }
     })
 
-    return userUpdated;
+    if (updateNews.newslatter === "Sim") {
+      const newsSim = await prismaClient.user.update({
+        where: {
+          id: String(user_id),
+        },
+        data: {
+          newslatter: "Nao",
+        }
+      })
+      return newsSim;
+    }
+    
+    if (updateNews.newslatter === "Nao") {
+      const newsNao = await prismaClient.user.update({
+        where: {
+          id: String(user_id),
+        },
+        data: {
+          newslatter: "Sim",
+        }
+      })
+      return newsNao;
+    }
+    
   }
 }
 
