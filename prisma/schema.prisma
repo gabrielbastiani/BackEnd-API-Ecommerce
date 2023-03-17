@@ -23,7 +23,7 @@ model User {
   phone             String? @db.VarChar(135)
   dataNascimento    String? @db.VarChar(125)
   genero            String? @db.VarChar(135)
-  newslatter        News    @default(Nao)
+  newslatter        String? @db.VarChar(7)
   local             String? @db.VarChar(405)
   numero            String? @db.VarChar(125)
   complemento       String? @db.VarChar(155)
