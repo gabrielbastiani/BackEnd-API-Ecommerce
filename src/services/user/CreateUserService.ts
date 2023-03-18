@@ -23,6 +23,7 @@ interface UserRequest {
   cidade: string;
   estado: string;
   loja_id: string;
+  authenticated: boolean;
 }
 
 class CreateUserService {
@@ -44,7 +45,7 @@ class CreateUserService {
     CEP,
     cidade,
     estado,
-    loja_id
+    loja_id,
   }: UserRequest) {
 
     // verificar se ele enviou um email
@@ -84,7 +85,8 @@ class CreateUserService {
         CEP: CEP,
         cidade: cidade,
         estado: estado,
-        loja_id: loja_id
+        loja_id: loja_id,
+        authenticated: true
       },
       include: {
         loja: true,
@@ -101,24 +103,6 @@ class CreateUserService {
         pass: process.env.PASS_SMTP
       }
     })
-
-    await transporter.sendMail({
-      from: "Loja Virtual - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>",
-      to: user.email,
-      subject: "Confirme seu cadastro de usuario na loja virtual da Builder Seu Negócio Online",
-      html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h2>Confirme seu cadastro!</h2>
-            </div>
-            
-            <article>
-                <p>Olá, ${user.nameComplete}!</p>
-                <p><a href="http://localhost:3001/userAuthenticated?user_id=${user.id}">CLIQUE AQUI</a>, para confirmar sua conta junto a loja virtual Builder Seu Negócio Online, e poder acessa-la com os dados que cadastrou anteriormente.</p>
-            </article>
-            
-            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual Builder Seu Negocio Online</h5>
-            </div>`,
-    });
 
     await transporter.sendMail({
       from: "Loja Virtual - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>",

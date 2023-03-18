@@ -21,7 +21,8 @@ class CreateUserController {
             CEP,
             cidade,
             estado,
-            loja_id
+            loja_id,
+            authenticated
         } = req.body;
 
         const createUserService = new CreateUserService();
@@ -44,7 +45,8 @@ class CreateUserController {
             CEP,
             cidade,
             estado,
-            loja_id
+            loja_id,
+            authenticated
         });
 
         return res.json(user)
