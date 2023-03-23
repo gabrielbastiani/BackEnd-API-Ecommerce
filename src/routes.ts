@@ -110,6 +110,7 @@ import { UpdateCategoryIDProductController } from './controllers/product/UpdateC
 import { UpdateCategoryNameProductController } from './controllers/product/UpdateCategoryNameProductController';
 import { UpdateLojaProductController } from './controllers/product/UpdateLojaProductController';
 import { AllPhotosProductInStoreController } from './controllers/product/photoproduct/AllPhotosProductInStoreController';
+import { FirstPhotoProductInStoreController } from './controllers/product/photoproduct/FirstPhotoProductInStoreController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -296,6 +297,7 @@ router.put('/updateCategoryName', ADMINisAuthenticated, new UpdateCategoryNamePr
 router.put('/updateLoja', ADMINisAuthenticated, new UpdateLojaProductController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
+router.get('/firstPhotoProduct', new FirstPhotoProductInStoreController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
