@@ -1,12 +1,10 @@
 import prismaClient from '../../prisma';
 
-class AllProductFilterService {
+class AllProductInStoreService {
     async execute() {
         const allProduct = await prismaClient.product.findMany();
-
         return allProduct;
-
     }
 }
 
-export { AllProductFilterService }
+export { AllProductInStoreService }

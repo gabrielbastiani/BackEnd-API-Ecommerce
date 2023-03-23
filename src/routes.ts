@@ -79,7 +79,7 @@ import { UpdatePhotoProductController } from './controllers/product/photoproduct
 import { AllPhotosProductController } from './controllers/product/photoproduct/AllPhotosProductController';
 import { AllPhotosController } from './controllers/product/photoproduct/AllPhotosController';
 import { AllProductController } from './controllers/product/AllProductController';
-import { AllProductFilterController } from './controllers/product/AllProductFilterController';
+import { AllProductInStoreController } from './controllers/product/AllProductInStoreController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { ExactPageListAllProductController } from './controllers/product/ExactPageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
@@ -267,7 +267,6 @@ router.put('/updatePhoto', ADMINisAuthenticated, upload.single('file'), new Upda
 router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductController().handle);
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
 router.get('/allProduct', ADMINisAuthenticated, new AllProductController().handle);
-router.get('/allProductsFilter', new AllProductFilterController().handle);
 router.get('/allProductsPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllProductController().handle);
 router.get('/allProductsPageExact', ADMINisAuthenticated, new ExactPageListAllProductController().handle);
 router.get('/productExactCategory', ADMINisAuthenticated, new ExactCategoryProductController().handle);
@@ -294,6 +293,7 @@ router.put('/diponibilidadeProduct', ADMINisAuthenticated, new DisponibilidadeDo
 router.put('/updateCategory', ADMINisAuthenticated, new UpdateCategoryIDProductController().handle);
 router.put('/updateCategoryName', ADMINisAuthenticated, new UpdateCategoryNameProductController().handle);
 router.put('/updateLoja', ADMINisAuthenticated, new UpdateLojaProductController().handle);
+router.get('/allProductsStore', new AllProductInStoreController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
