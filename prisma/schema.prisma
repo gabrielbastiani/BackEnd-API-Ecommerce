@@ -160,7 +160,7 @@ enum StatusProduct {
 
 model PhotoProduct {
   id         String   @id @default(uuid())
-  photo      String
+  photo      String?
   product    Product? @relation(fields: [product_id], references: [id])
   product_id String?
 
