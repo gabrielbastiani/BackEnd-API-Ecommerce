@@ -138,7 +138,7 @@ model Product {
   category            Category?     @relation(fields: [category_id], references: [id])
   category_id         String?
   produtoDestaque     Boolean       @default(false)
-  oferta              Boolean       @default(false)
+  produtoOferta       Boolean       @default(false)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -231,6 +231,8 @@ model Variacao {
   quantidadeBloqueada     Int?           @default(0)
   product                 Product?       @relation(fields: [product_id], references: [id])
   product_id              String?
+  variacaoDestaque        Boolean        @default(false)
+  variacaoOferta          Boolean        @default(false)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?

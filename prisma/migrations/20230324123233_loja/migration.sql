@@ -113,6 +113,8 @@ CREATE TABLE "products" (
     "disponibilidade" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "promocao" INTEGER,
     "category_id" TEXT,
+    "produtoDestaque" BOOLEAN NOT NULL DEFAULT false,
+    "produtoOferta" BOOLEAN NOT NULL DEFAULT false,
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -123,12 +125,48 @@ CREATE TABLE "products" (
 -- CreateTable
 CREATE TABLE "photoproducts" (
     "id" TEXT NOT NULL,
-    "photo" TEXT NOT NULL,
+    "photo" TEXT,
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "photoproducts_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "bannerhomes" (
+    "id" TEXT NOT NULL,
+    "banner" TEXT,
+    "url" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "bannerhomes_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "bannerinpages" (
+    "id" TEXT NOT NULL,
+    "bannerPage" TEXT,
+    "url" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "bannerinpages_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "bannermosaicos" (
+    "id" TEXT NOT NULL,
+    "bannerMosaico" TEXT,
+    "url" TEXT,
+    "active" BOOLEAN NOT NULL DEFAULT false,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "bannermosaicos_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -154,6 +192,8 @@ CREATE TABLE "variacoes" (
     "quantidade" INTEGER,
     "quantidadeBloqueada" INTEGER DEFAULT 0,
     "product_id" TEXT,
+    "variacaoDestaque" BOOLEAN NOT NULL DEFAULT false,
+    "variacaoOferta" BOOLEAN NOT NULL DEFAULT false,
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
