@@ -180,6 +180,8 @@ import { UpdatePromocaoVariacaoController } from './controllers/variacao/UpdateP
 import { FreteGratisVariacaoController } from './controllers/variacao/FreteGratisVariacaoController';
 import { UpdateProductIdVariacaoController } from './controllers/variacao/UpdateProductIdVariacaoController';
 import { UpdateLojaIdVariacaoController } from './controllers/variacao/UpdateLojaIdVariacaoController';
+import { ListAllVariacaoDestaqueController } from './controllers/variacao/ListAllVariacaoDestaqueController';
+import { ListAllVariacaoOfertaController } from './controllers/variacao/ListAllVariacaoOfertaController';
 
 // -- ROTAS ENVIAR PEDIDO --
 import { CreateCarrinhoController } from './controllers/pedido/carrinho/CreateCarrinhoController';
@@ -399,6 +401,8 @@ router.put('/updatePromocaoVariacao', ADMINisAuthenticated, new UpdatePromocaoVa
 router.put('/freteGratisVariacao', ADMINisAuthenticated, new FreteGratisVariacaoController().handle);
 router.put('/updateProductIdVariacao', ADMINisAuthenticated, new UpdateProductIdVariacaoController().handle);
 router.put('/updateLojaIdVariacao', ADMINisAuthenticated, new UpdateLojaIdVariacaoController().handle);
+router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().handle);
+router.get('/listVariacaoOfertas', new ListAllVariacaoOfertaController().handle);
 
 // -- ROTAS PEDIDO --
 router.post('/carrinho', new CreateCarrinhoController().handle);
