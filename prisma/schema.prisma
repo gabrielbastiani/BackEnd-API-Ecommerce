@@ -183,6 +183,30 @@ model BannerHome {
   @@map("bannerhomes")
 }
 
+model BannerInPage {
+  id         String  @id @default(uuid())
+  bannerPage String?
+  url        String?
+  active     Boolean @default(false)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("bannerinpages")
+}
+
+model BannerMosaico {
+  id            String  @id @default(uuid())
+  bannerMosaico String?
+  url           String?
+  active        Boolean @default(false)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("bannermosaicos")
+}
+
 model Variacao {
   id                      String         @id @default(uuid())
   nameVariacao            String?        @db.VarChar(355)
