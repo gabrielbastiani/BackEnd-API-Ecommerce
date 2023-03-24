@@ -140,6 +140,7 @@ import { UpdateProductOfertaController } from './controllers/product/UpdateProdu
 import { UpdateLojaProductController } from './controllers/product/UpdateLojaProductController';
 import { AllPhotosProductInStoreController } from './controllers/product/photoproduct/AllPhotosProductInStoreController';
 import { ListAllProductDestaqueController } from './controllers/product/ListAllProductDestaqueController';
+import { ListAllProductOfertaController } from './controllers/product/ListAllProductOfertaController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -356,6 +357,7 @@ router.put('/oferta', ADMINisAuthenticated, new UpdateProductOfertaController().
 router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
 router.get('/listProductsDestaque', new ListAllProductDestaqueController().handle);
+router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
