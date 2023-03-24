@@ -180,6 +180,8 @@ import { UpdatePromocaoVariacaoController } from './controllers/variacao/UpdateP
 import { FreteGratisVariacaoController } from './controllers/variacao/FreteGratisVariacaoController';
 import { UpdateProductIdVariacaoController } from './controllers/variacao/UpdateProductIdVariacaoController';
 import { UpdateLojaIdVariacaoController } from './controllers/variacao/UpdateLojaIdVariacaoController';
+import { UpdateVariacaoDestqueController } from './controllers/variacao/UpdateVariacaoDestqueController';
+import { UpdateVariacaoOfertaController } from './controllers/variacao/UpdateVariacaoOfertaController';
 import { ListAllVariacaoDestaqueController } from './controllers/variacao/ListAllVariacaoDestaqueController';
 import { ListAllVariacaoOfertaController } from './controllers/variacao/ListAllVariacaoOfertaController';
 
@@ -401,6 +403,8 @@ router.put('/updatePromocaoVariacao', ADMINisAuthenticated, new UpdatePromocaoVa
 router.put('/freteGratisVariacao', ADMINisAuthenticated, new FreteGratisVariacaoController().handle);
 router.put('/updateProductIdVariacao', ADMINisAuthenticated, new UpdateProductIdVariacaoController().handle);
 router.put('/updateLojaIdVariacao', ADMINisAuthenticated, new UpdateLojaIdVariacaoController().handle);
+router.put('/destaqueVariacao', ADMINisAuthenticated, new UpdateVariacaoDestqueController().handle);
+router.put('/ofertaVariacao', ADMINisAuthenticated, new UpdateVariacaoOfertaController().handle);
 router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().handle);
 router.get('/listVariacaoOfertas', new ListAllVariacaoOfertaController().handle);
 
