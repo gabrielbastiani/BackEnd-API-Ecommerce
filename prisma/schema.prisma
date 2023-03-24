@@ -135,8 +135,9 @@ model Product {
   profundidadeCM      String?       @db.VarChar(15)
   disponibilidade     StatusProduct @default(Disponivel)
   promocao            Int?
-  category            Category?     @relation( fields: [category_id], references: [id])
-  category_id         String?       
+  category            Category?     @relation(fields: [category_id], references: [id])
+  category_id         String?
+  produtoDestaque     Boolean       @default(false)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -168,6 +169,18 @@ model PhotoProduct {
   updated_at DateTime? @default(now())
 
   @@map("photoproducts")
+}
+
+model BannerHome {
+  id     String  @id @default(uuid())
+  banner String?
+  url    String?
+  active Boolean @default(false)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("bannerhomes")
 }
 
 model Variacao {
