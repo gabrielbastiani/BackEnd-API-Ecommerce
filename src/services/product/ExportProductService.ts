@@ -24,7 +24,6 @@ class ExportProductService {
                 alturaCM: true,
                 profundidadeCM: true,
                 promocao: true,
-                categoryName: true,
                 loja_id: true,
             },
             orderBy: {
@@ -49,7 +48,6 @@ class ExportProductService {
             "Altura do Produto",
             "Profundidade do Produto",
             "Promoção do Produto",
-            "Categoria do Produto",
             "Loja do Produto"
         ]
 

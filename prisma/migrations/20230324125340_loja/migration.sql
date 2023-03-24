@@ -11,10 +11,31 @@ CREATE TYPE "StatusCategory" AS ENUM ('Disponivel', 'Indisponivel');
 CREATE TYPE "StatusProduct" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
+CREATE TYPE "StatusDestaque" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
+CREATE TYPE "StatusOferta" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
+CREATE TYPE "StatusBannerHome" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
+CREATE TYPE "StatusBannerPage" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
+CREATE TYPE "StatusBannerMosaico" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
 CREATE TYPE "StatusVariacao" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
 CREATE TYPE "StatusFrete" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
+CREATE TYPE "StatusDestaqueVariacao" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
+CREATE TYPE "StatusOfertaVariacao" AS ENUM ('Sim', 'Nao');
 
 -- CreateEnum
 CREATE TYPE "StatusPedido" AS ENUM ('Valido', 'Cancelado');
@@ -113,8 +134,8 @@ CREATE TABLE "products" (
     "disponibilidade" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "promocao" INTEGER,
     "category_id" TEXT,
-    "produtoDestaque" BOOLEAN NOT NULL DEFAULT false,
-    "produtoOferta" BOOLEAN NOT NULL DEFAULT false,
+    "produtoDestaque" "StatusDestaque" NOT NULL DEFAULT 'Nao',
+    "produtoOferta" "StatusOferta" NOT NULL DEFAULT 'Nao',
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -138,7 +159,7 @@ CREATE TABLE "bannerhomes" (
     "id" TEXT NOT NULL,
     "banner" TEXT,
     "url" TEXT,
-    "active" BOOLEAN NOT NULL DEFAULT false,
+    "active" "StatusBannerHome" NOT NULL DEFAULT 'Sim',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
@@ -150,7 +171,7 @@ CREATE TABLE "bannerinpages" (
     "id" TEXT NOT NULL,
     "bannerPage" TEXT,
     "url" TEXT,
-    "active" BOOLEAN NOT NULL DEFAULT false,
+    "active" "StatusBannerPage" NOT NULL DEFAULT 'Sim',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
@@ -162,7 +183,7 @@ CREATE TABLE "bannermosaicos" (
     "id" TEXT NOT NULL,
     "bannerMosaico" TEXT,
     "url" TEXT,
-    "active" BOOLEAN NOT NULL DEFAULT false,
+    "active" "StatusBannerMosaico" NOT NULL DEFAULT 'Sim',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
@@ -192,8 +213,8 @@ CREATE TABLE "variacoes" (
     "quantidade" INTEGER,
     "quantidadeBloqueada" INTEGER DEFAULT 0,
     "product_id" TEXT,
-    "variacaoDestaque" BOOLEAN NOT NULL DEFAULT false,
-    "variacaoOferta" BOOLEAN NOT NULL DEFAULT false,
+    "variacaoDestaque" "StatusDestaqueVariacao" NOT NULL DEFAULT 'Nao',
+    "variacaoOferta" "StatusOfertaVariacao" NOT NULL DEFAULT 'Nao',
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
