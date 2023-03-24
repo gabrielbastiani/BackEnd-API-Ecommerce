@@ -138,6 +138,7 @@ model Product {
   category            Category?     @relation(fields: [category_id], references: [id])
   category_id         String?
   produtoDestaque     Boolean       @default(false)
+  oferta              Boolean       @default(false)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
