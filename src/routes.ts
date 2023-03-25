@@ -218,6 +218,9 @@ import { EmailExportProductsController } from './controllers/sendEmails/EmailExp
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { ListExactBannerHomeController } from './controllers/bannerHome/ListExactBannerHomeController';
+import { ListExactBannerInPageController } from './controllers/bannerInPage/ListExactBannerInPageController';
+import { ListExactBannerMosaicoController } from './controllers/bannerMosaico/ListExactBannerMosaicoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -290,6 +293,7 @@ router.delete('/deleteBannerHome', ADMINisAuthenticated, new DeleteBannerHomeCon
 router.put('/updateBannerHome', ADMINisAuthenticated, upload.single('file'), new UpdateBannerHomeController().handle);
 router.put('/updateStatusBannerHome', ADMINisAuthenticated, new StatusBannerHomeController().handle);
 router.put('/updateUrlBannerHome', ADMINisAuthenticated, new UpdateUrlBannerHomeController().handle);
+router.get('/exactBannerHome', ADMINisAuthenticated, new ListExactBannerHomeController().handle);
 router.get('/activeBannerHome', new ActiveAllBannerHomeController().handle);
 
 // -- ROTAS BANNER EM PAGINAS --
@@ -299,6 +303,7 @@ router.delete('/deleteBannerInPage', ADMINisAuthenticated, new DeleteBannerInPag
 router.put('/updateBannerInPage', ADMINisAuthenticated, upload.single('file'), new UpdateBannerInPageController().handle);
 router.put('/updateStatusBannerInPage', ADMINisAuthenticated, new StatusBannerInPageController().handle);
 router.put('/updateUrlBannerInPage', ADMINisAuthenticated, new UpdateUrlBannerInPageController().handle);
+router.get('/exactBannerInPage', ADMINisAuthenticated, new ListExactBannerInPageController().handle);
 router.get('/activeBannerInPage', new ActiveAllBannerInPageController().handle);
 
 // -- ROTAS BANNER MOSAICO --
@@ -308,6 +313,7 @@ router.delete('/deleteBannerMosaico', ADMINisAuthenticated, new DeleteBannerMosa
 router.put('/updateBannerMosaico', ADMINisAuthenticated, upload.single('file'), new UpdateBannerMosaicoController().handle);
 router.put('/updateStatusBannerMosaico', ADMINisAuthenticated, new StatusBannerMosaicoController().handle);
 router.put('/updateUrlBannerMosaico', ADMINisAuthenticated, new UpdateUrlBannerMosaicoController().handle);
+router.get('/exactBannerMosaico', ADMINisAuthenticated, new ListExactBannerMosaicoController().handle);
 router.get('/activeBannerMosaico', new ActiveAllBannerMosaicoController().handle);
 
 // -- ROTAS CATEGORIAS --
