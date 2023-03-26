@@ -7,6 +7,12 @@ class ListAllProductDestaquesService {
             where: {
                 produtoDestaque: StatusDestaque.Sim
             },
+            include: {
+                photoproducts: true,
+                variacoes: true,
+                photovariacoes: true,
+                avaliacoes: true,
+            },
             orderBy: {
                 created_at: 'desc'
             }

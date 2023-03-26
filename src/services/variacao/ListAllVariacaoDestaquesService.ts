@@ -7,6 +7,9 @@ class ListAllVariacaoDestaquesService {
             where: {
                 variacaoDestaque: StatusDestaqueVariacao.Sim
             },
+            include: {
+                photovariacoes: true
+            },
             orderBy: {
                 created_at: 'desc'
             }
