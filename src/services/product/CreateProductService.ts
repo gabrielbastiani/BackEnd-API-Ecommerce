@@ -2,6 +2,7 @@ import prismaClient from "../../prisma";
 
 interface ProductRequest {
     nameProduct: string;
+    slug: string;
     category_id: string;
     descriptionProduct1: string;
     descriptionProduct2: string;
@@ -23,6 +24,7 @@ interface ProductRequest {
 class CreateProductService {
     async execute({
         nameProduct,
+        slug,
         category_id,
         descriptionProduct1,
         descriptionProduct2,
@@ -41,9 +43,19 @@ class CreateProductService {
         loja_id,
     }: ProductRequest) {
 
+        function removerAcentos(s: any) {
+            return s.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .replace(/ +/g, "-")
+                .replace(/-{2,}/g, "-")
+                .replace(/[/]/g, "-");
+        }
+
         const product = await prismaClient.product.create({
             data: {
                 nameProduct: nameProduct,
+                slug: removerAcentos(nameProduct),
                 category_id: category_id,
                 descriptionProduct1: descriptionProduct1,
                 descriptionProduct2: descriptionProduct2,

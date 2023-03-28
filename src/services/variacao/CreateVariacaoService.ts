@@ -2,6 +2,7 @@ import prismaClient from "../../prisma";
 
 interface VariacaoRequest {
     nameVariacao: string;
+    slug: string;
     descriptionVariacao1: string;
     descriptionVariacao2: string;
     descriptionVariacao3: string;
@@ -26,6 +27,7 @@ interface VariacaoRequest {
 class CreateVariacaoService {
     async execute({
         nameVariacao,
+        slug,
         descriptionVariacao1,
         descriptionVariacao2,
         descriptionVariacao3,
@@ -39,17 +41,25 @@ class CreateVariacaoService {
         larguraCm,
         alturaCm,
         profundidadeCm,
-        disponibilidadeVariacao,
         promocao,
-        freteGratis,
         quantidade,
         product_id,
         loja_id
     }: VariacaoRequest) {
 
+        function removerAcentos(s: any) {
+            return s.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .replace(/ +/g, "-")
+                .replace(/-{2,}/g, "-")
+                .replace(/[/]/g, "-");
+        }
+
         const variacao = await prismaClient.variacao.create({
             data: {
                 nameVariacao: nameVariacao,
+                slug: removerAcentos(nameVariacao),
                 descriptionVariacao1: descriptionVariacao1,
                 descriptionVariacao2: descriptionVariacao2,
                 descriptionVariacao3: descriptionVariacao3,
@@ -64,36 +74,9 @@ class CreateVariacaoService {
                 alturaCm: alturaCm,
                 profundidadeCm: profundidadeCm,
                 promocao: promocao,
-                freteGratis: freteGratis,
-                disponibilidadeVariacao: disponibilidadeVariacao,
                 quantidade: quantidade,
                 product_id: product_id,
                 loja_id: loja_id
-            },
-            select: {
-                id: true,
-                nameVariacao: true,
-                descriptionVariacao1: true,
-                descriptionVariacao2: true,
-                descriptionVariacao3: true,
-                descriptionVariacao4: true,
-                descriptionVariacao5: true,
-                descriptionVariacao6: true,
-                preco: true,
-                skuVariacao: true,
-                estoqueVariacao: true,
-                pesoKg: true,
-                larguraCm: true,
-                alturaCm: true,
-                profundidadeCm: true,
-                disponibilidadeVariacao: true,
-                promocao: true,
-                quantidade: true,
-                freteGratis: true,
-                created_at: true,
-                product_id: true,
-                loja_id: true,
-                photovariacoes: true,
             }
         })
 

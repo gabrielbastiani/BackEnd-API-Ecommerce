@@ -5,6 +5,7 @@ class CreateUserController {
     async handle(req: Request, res: Response) {
         const {
             nameComplete,
+            slug,
             email,
             password,
             cpf,
@@ -29,6 +30,7 @@ class CreateUserController {
 
         const user = await createUserService.execute({
             nameComplete,
+            slug,
             email,
             password,
             cpf,

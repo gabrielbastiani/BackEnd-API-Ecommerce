@@ -14,7 +14,8 @@ datasource db {
 
 model User {
   id                String  @id @default(uuid())
-  nameComplete      String  @db.VarChar(195)
+  nameComplete      String  @db.VarChar(295)
+  slug              String? @db.VarChar(295)
   email             String  @unique @db.VarChar(180)
   password          String
   cpf               String? @unique @db.VarChar(125)
@@ -98,6 +99,7 @@ model Loja {
 model Category {
   id              String         @id @default(uuid())
   categoryName    String         @unique @db.VarChar(300)
+  slug            String?        @db.VarChar(300)
   codigo          String?        @db.VarChar(300)
   disponibilidade StatusCategory @default(Disponivel)
 
@@ -120,6 +122,7 @@ enum StatusCategory {
 model Product {
   id                  String         @id @default(uuid())
   nameProduct         String         @db.VarChar(325)
+  slug                String?        @db.VarChar(325)
   descriptionProduct1 String?        @db.VarChar(1725)
   descriptionProduct2 String?        @db.VarChar(1725)
   descriptionProduct3 String?        @db.VarChar(1725)
@@ -236,6 +239,7 @@ enum StatusBannerMosaico {
 model Variacao {
   id                      String                 @id @default(uuid())
   nameVariacao            String?                @db.VarChar(355)
+  slug                    String?                @db.VarChar(355)
   descriptionVariacao1    String?                @db.VarChar(1725)
   descriptionVariacao2    String?                @db.VarChar(1725)
   descriptionVariacao3    String?                @db.VarChar(1725)

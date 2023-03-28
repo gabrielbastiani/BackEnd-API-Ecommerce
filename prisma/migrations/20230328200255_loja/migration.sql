@@ -46,7 +46,8 @@ CREATE TYPE "EnderecoEntrega" AS ENUM ('Sim', 'Nao');
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
-    "nameComplete" VARCHAR(195) NOT NULL,
+    "nameComplete" VARCHAR(295) NOT NULL,
+    "slug" VARCHAR(295),
     "email" VARCHAR(180) NOT NULL,
     "password" TEXT NOT NULL,
     "cpf" VARCHAR(125),
@@ -105,6 +106,7 @@ CREATE TABLE "lojas" (
 CREATE TABLE "categories" (
     "id" TEXT NOT NULL,
     "categoryName" VARCHAR(300) NOT NULL,
+    "slug" VARCHAR(300),
     "codigo" VARCHAR(300),
     "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -118,6 +120,7 @@ CREATE TABLE "categories" (
 CREATE TABLE "products" (
     "id" TEXT NOT NULL,
     "nameProduct" VARCHAR(325) NOT NULL,
+    "slug" VARCHAR(325),
     "descriptionProduct1" VARCHAR(1725),
     "descriptionProduct2" VARCHAR(1725),
     "descriptionProduct3" VARCHAR(1725),
@@ -194,6 +197,7 @@ CREATE TABLE "bannermosaicos" (
 CREATE TABLE "variacoes" (
     "id" TEXT NOT NULL,
     "nameVariacao" VARCHAR(355),
+    "slug" VARCHAR(355),
     "descriptionVariacao1" VARCHAR(1725),
     "descriptionVariacao2" VARCHAR(1725),
     "descriptionVariacao3" VARCHAR(1725),

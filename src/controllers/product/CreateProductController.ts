@@ -5,6 +5,7 @@ class CreateProductController {
     async handle(req: Request, res: Response) {
         const {
             nameProduct,
+            slug,
             category_id,
             descriptionProduct1,
             descriptionProduct2,
@@ -28,6 +29,7 @@ class CreateProductController {
         const product = await createProductService.execute({
             nameProduct,
             category_id,
+            slug,
             descriptionProduct1,
             descriptionProduct2,
             descriptionProduct3,

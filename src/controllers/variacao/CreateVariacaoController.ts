@@ -5,6 +5,7 @@ class CreateVariacaoController {
     async handle(req: Request, res: Response) {
         const {
             nameVariacao,
+            slug,
             descriptionVariacao1,
             descriptionVariacao2,
             descriptionVariacao3,
@@ -30,6 +31,7 @@ class CreateVariacaoController {
 
         const variacao = await createVariacaoService.execute({
             nameVariacao,
+            slug,
             descriptionVariacao1,
             descriptionVariacao2,
             descriptionVariacao3,

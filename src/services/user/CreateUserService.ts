@@ -6,6 +6,7 @@ require('dotenv/config');
 
 interface UserRequest {
   nameComplete: string;
+  slug: string;
   email: string;
   password: string;
   cpf: string;
@@ -29,6 +30,7 @@ interface UserRequest {
 class CreateUserService {
   async execute({
     nameComplete,
+    slug,
     email,
     password,
     cpf,
@@ -47,6 +49,15 @@ class CreateUserService {
     estado,
     loja_id,
   }: UserRequest) {
+
+    function removerAcentos(s: any) {
+      return s.normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .replace(/ +/g, "-")
+          .replace(/-{2,}/g, "-")
+          .replace(/[/]/g, "-");
+  }
 
     // verificar se ele enviou um email
     if (!email) {
@@ -69,6 +80,7 @@ class CreateUserService {
     const user = await prismaClient.user.create({
       data: {
         nameComplete: nameComplete,
+        slug: removerAcentos(nameComplete),
         email: email,
         password: passwordHash,
         cpf: cpf,
