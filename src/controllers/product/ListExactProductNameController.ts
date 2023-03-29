@@ -3,7 +3,7 @@ import { ListExactProductNameService } from '../../services/product/ListExactPro
 
 class ListExactProductNameController {
     async handle(req: Request, res: Response) {
-        const { slug } = req.query;
+        const slug = req.query.slug as string;
         const listExactProduct = new ListExactProductNameService();
         const product = await listExactProduct.execute({ slug });
 

@@ -369,7 +369,7 @@ router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
 router.get('/listProductsDestaque', new ListAllProductDestaqueController().handle);
 router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
-router.get('/exactProduct', new ListExactProductNameController().handle);
+router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);

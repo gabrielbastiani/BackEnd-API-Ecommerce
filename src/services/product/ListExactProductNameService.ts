@@ -1,10 +1,14 @@
 import prismaClient from '../../prisma';
 
+interface RequestProduct {
+    slug: string;
+}
+
 class ListExactProductNameService {
-    async execute({ slug }) {
+    async execute({ slug }: RequestProduct) {
         const exactProduct = await prismaClient.product.findUnique({
             where: {
-                slug
+                slug: slug
             }
         })
         return exactProduct;
