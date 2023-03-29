@@ -5,12 +5,6 @@ class ListExactProductNameService {
         const exactProduct = await prismaClient.product.findUnique({
             where: {
                 slug
-            },
-            include: {
-                photoproducts: true,
-                variacoes: true,
-                photovariacoes: true,
-                avaliacoes: true,
             }
         })
         return exactProduct;
