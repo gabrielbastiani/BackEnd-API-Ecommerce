@@ -38,6 +38,7 @@ import { UpdateUserEstadoController } from './controllers/user/UpdateUserEstadoC
 import { UpdateUserBairroController } from './controllers/user/UpdateUserBairroController';
 import { UpdateUserLojaController } from './controllers/user/UpdateUserLojaController';
 import { ListExactUserController } from './controllers/user/ListExactUserController';
+import { ListExactUserNameController } from './controllers/user/ListExactUserNameController';
 
 // -- ROTAS LOJA --
 import { CreateLojaController } from './controllers/loja/CreateLojaController';
@@ -101,6 +102,7 @@ import { ExactPageListAllCategoryController } from './controllers/category/Exact
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
 import { DeleteCategoryController } from './controllers/category/DeleteCategoryController';
+import { ListExactCategoryNameController } from './controllers/category/ListExactCategoryNameController';
 
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
@@ -188,6 +190,7 @@ import { UpdateVariacaoDestqueController } from './controllers/variacao/UpdateVa
 import { UpdateVariacaoOfertaController } from './controllers/variacao/UpdateVariacaoOfertaController';
 import { ListAllVariacaoDestaqueController } from './controllers/variacao/ListAllVariacaoDestaqueController';
 import { ListAllVariacaoOfertaController } from './controllers/variacao/ListAllVariacaoOfertaController';
+import { ListExactVariacaoNameController } from './controllers/variacao/ListExactVariacaoNameController';
 
 // -- ROTAS ENVIAR PEDIDO --
 import { CreateCarrinhoController } from './controllers/pedido/carrinho/CreateCarrinhoController';
@@ -265,6 +268,7 @@ router.put('/cepUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new Up
 router.put('/cityUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserCityController().handle);
 router.put('/estadoUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserEstadoController().handle);
 router.put('/lojaidUserUpdate', ADMINisAuthenticated, new UpdateUserLojaController().handle);
+router.get('/exactUserPage', new ListExactUserNameController().handle);
 
 // -- ROTAS LOJA --
 router.post('/loja', ADMINisAuthenticated, upload.single('file'), new CreateLojaController().handle);
@@ -324,9 +328,10 @@ router.put('/categoryCodigoUpdate', ADMINisAuthenticated, new UpdateCodigoCatego
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
-router.get('/allCategorys', new ListCategoryController().handle);
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryController().handle);
+router.get('/allCategorys', new ListCategoryController().handle);
+router.get('/exactCategoryPage', new ListExactCategoryNameController().handle);
 
 // -- ROTAS PRODUTOS --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
@@ -415,6 +420,7 @@ router.put('/destaqueVariacao', ADMINisAuthenticated, new UpdateVariacaoDestqueC
 router.put('/ofertaVariacao', ADMINisAuthenticated, new UpdateVariacaoOfertaController().handle);
 router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().handle);
 router.get('/listVariacaoOfertas', new ListAllVariacaoOfertaController().handle);
+router.get('/exactVariacaoPage', new ListExactVariacaoNameController().handle);
 
 // -- ROTAS PEDIDO --
 router.post('/carrinho', new CreateCarrinhoController().handle);
