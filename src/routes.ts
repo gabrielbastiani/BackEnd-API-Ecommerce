@@ -68,6 +68,7 @@ import { UpdateBannerHomeController } from './controllers/bannerHome/UpdateBanne
 import { StatusBannerHomeController } from './controllers/bannerHome/StatusBannerHomeController';
 import { UpdateUrlBannerHomeController } from './controllers/bannerHome/UpdateUrlBannerHomeController';
 import { ActiveAllBannerHomeController } from './controllers/bannerHome/ActiveAllBannerHomeController';
+import { ListExactBannerHomeController } from './controllers/bannerHome/ListExactBannerHomeController';
 
 // -- ROTAS BANNERS EM PAGINAS --
 import { CreateBannerInPageController } from './controllers/bannerInPage/CreateBannerInPageController';
@@ -77,6 +78,7 @@ import { UpdateBannerInPageController } from './controllers/bannerInPage/UpdateB
 import { StatusBannerInPageController } from './controllers/bannerInPage/StatusBannerInPageController';
 import { UpdateUrlBannerInPageController } from './controllers/bannerInPage/UpdateUrlBannerInPageController';
 import { ActiveAllBannerInPageController } from './controllers/bannerInPage/ActiveAllBannerInPageController';
+import { ListExactBannerInPageController } from './controllers/bannerInPage/ListExactBannerInPageController';
 
 // -- ROTAS BANNERS MOSAICO --
 import { CreateBannerMosaicoController } from './controllers/bannerMosaico/CreateBannerMosaicoController';
@@ -86,6 +88,7 @@ import { UpdateBannerMosaicoController } from './controllers/bannerMosaico/Updat
 import { StatusBannerMosaicoController } from './controllers/bannerMosaico/StatusBannerMosaicoController';
 import { UpdateUrlBannerMosaicoController } from './controllers/bannerMosaico/UpdateUrlBannerMosaicoController';
 import { ActiveAllBannerMosaicoController } from './controllers/bannerMosaico/ActiveAllBannerMosaicoController';
+import { ListExactBannerMosaicoController } from './controllers/bannerMosaico/ListExactBannerMosaicoController';
 
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -141,6 +144,7 @@ import { UpdateLojaProductController } from './controllers/product/UpdateLojaPro
 import { AllPhotosProductInStoreController } from './controllers/product/photoproduct/AllPhotosProductInStoreController';
 import { ListAllProductDestaqueController } from './controllers/product/ListAllProductDestaqueController';
 import { ListAllProductOfertaController } from './controllers/product/ListAllProductOfertaController';
+import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -218,9 +222,6 @@ import { EmailExportProductsController } from './controllers/sendEmails/EmailExp
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { ListExactBannerHomeController } from './controllers/bannerHome/ListExactBannerHomeController';
-import { ListExactBannerInPageController } from './controllers/bannerInPage/ListExactBannerInPageController';
-import { ListExactBannerMosaicoController } from './controllers/bannerMosaico/ListExactBannerMosaicoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -368,6 +369,7 @@ router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
 router.get('/listProductsDestaque', new ListAllProductDestaqueController().handle);
 router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
+router.get('/exactProduct', new ListExactProductNameController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);

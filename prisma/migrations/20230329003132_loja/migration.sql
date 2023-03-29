@@ -350,6 +350,9 @@ CREATE TABLE "pedidos" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "users_slug_key" ON "users"("slug");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
@@ -360,6 +363,15 @@ CREATE UNIQUE INDEX "users_cnpj_key" ON "users"("cnpj");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "categories_slug_key" ON "categories"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "products_slug_key" ON "products"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "variacoes_slug_key" ON "variacoes"("slug");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
