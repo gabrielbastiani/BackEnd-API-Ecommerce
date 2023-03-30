@@ -83,15 +83,17 @@ model Loja {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  users      User[]
-  categories Category[]
-  products   Product[]
-  variacoes  Variacao[]
-  avaliacoes Avaliacao[]
-  carrinhos  Carrinho[]
-  pagamentos Pagamento[]
-  entregas   Entrega[]
-  pedidos    Pedido[]
+  users       User[]
+  categories  Category[]
+  products    Product[]
+  variacoes   Variacao[]
+  avaliacoes  Avaliacao[]
+  newsletters Newsletter[]
+  contatos    Contato[]
+  carrinhos   Carrinho[]
+  pagamentos  Pagamento[]
+  entregas    Entrega[]
+  pedidos     Pedido[]
 
   @@map("lojas")
 }
@@ -324,6 +326,38 @@ model Avaliacao {
   updated_at DateTime? @default(now())
 
   @@map("avaliacoes")
+}
+
+model Newsletter {
+  id    String @id @default(uuid())
+  name  String @db.VarChar(125)
+  email String @db.VarChar(155)
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("newsletters")
+}
+
+model Contato {
+  id       String  @id @default(uuid())
+  name     String? @db.VarChar(125)
+  email    String? @db.VarChar(155)
+  phone    String? @db.VarChar(155)
+  empresa  String? @db.VarChar(255)
+  setor    String? @db.VarChar(355)
+  mensagem String? @db.VarChar(5555)
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("contatos")
 }
 
 model Item {

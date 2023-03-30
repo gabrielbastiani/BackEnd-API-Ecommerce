@@ -192,6 +192,22 @@ import { ListAllVariacaoDestaqueController } from './controllers/variacao/ListAl
 import { ListAllVariacaoOfertaController } from './controllers/variacao/ListAllVariacaoOfertaController';
 import { ListExactVariacaoNameController } from './controllers/variacao/ListExactVariacaoNameController';
 
+// -- ROTAS NEWSLETTERS --
+import { CreateNewslettersController } from './controllers/newsletters/CreateNewslettersController';
+import { DeleteNewslettersController } from './controllers/newsletters/DeleteNewslettersController';
+import { ListNewslettersController } from './controllers/newsletters/ListNewslettersController';
+import { ListExactNewslettersController } from './controllers/newsletters/ListExactNewslettersController';
+import { PageListAllNewslettersController } from './controllers/newsletters/PageListAllNewslettersController';
+import { ExportNewslettersController } from './controllers/newsletters/ExportNewslettersController';
+
+// -- ROTAS CONTATOS
+import { CreateContatoController } from './controllers/contatos/CreateContatoController';
+import { DeleteContatoController } from './controllers/contatos/DeleteContatoController';
+import { ListContatoController } from './controllers/contatos/ListContatoController';
+import { ListExactContatoController } from './controllers/contatos/ListExactContatoController';
+import { PageListAllContatoController } from './controllers/contatos/PageListAllContatoController';
+import { ExportContatoController } from './controllers/contatos/ExportContatoController';
+
 // -- ROTAS ENVIAR PEDIDO --
 import { CreateCarrinhoController } from './controllers/pedido/carrinho/CreateCarrinhoController';
 import { CreateItemInCarrinhoController } from './controllers/pedido/carrinho/item/CreateItemInCarrinhoController';
@@ -218,7 +234,8 @@ import { UpdatePagamentoController } from './controllers/pagamento/UpdatePagamen
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
-
+import { EmailExportNewslettersController } from './controllers/sendEmails/EmailExportNewslettersController';
+import { EmailExportContatoController } from './controllers/sendEmails/EmailExportContatoController';
 
 
 
@@ -422,6 +439,22 @@ router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().hand
 router.get('/listVariacaoOfertas', new ListAllVariacaoOfertaController().handle);
 router.get('/exactVariacaoPage', new ListExactVariacaoNameController().handle);
 
+// -- ROTAS NEWSLETTERS --
+router.post('/createNewsletter', new CreateNewslettersController().handle);
+router.delete('/deleteNewsletter', ADMINisAuthenticated, new DeleteNewslettersController().handle);
+router.get('/listNewsletter', ADMINisAuthenticated, new ListNewslettersController().handle);
+router.get('/listExactNewsletter', ADMINisAuthenticated, new ListExactNewslettersController().handle);
+router.get('/pageNewsletter', ADMINisAuthenticated, new PageListAllNewslettersController().handle);
+router.get('/exportNews', ADMINisAuthenticated, new ExportNewslettersController().handle);
+
+// -- ROTAS CONTATOS --
+router.post('/createContato', new CreateContatoController().handle);
+router.delete('/deleteContato', ADMINisAuthenticated, new DeleteContatoController().handle);
+router.get('/listContato', ADMINisAuthenticated, new ListContatoController().handle);
+router.get('/listExactContato', ADMINisAuthenticated, new ListExactContatoController().handle);
+router.get('/pageContato', ADMINisAuthenticated, new PageListAllContatoController().handle);
+router.get('/exportContatos', ADMINisAuthenticated, new ExportContatoController().handle);
+
 // -- ROTAS PEDIDO --
 router.post('/carrinho', new CreateCarrinhoController().handle);
 router.post('/itemInCarrinho', new CreateItemInCarrinhoController().handle);
@@ -448,6 +481,8 @@ router.put('/updatePagamento', ADMINisAuthenticated && USERisAuthenticated, new 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);
 router.get('/sendlistproduct', ADMINisAuthenticated, new EmailExportProductsController().handle);
+router.get('/sendEmailNewsletters', ADMINisAuthenticated, new EmailExportNewslettersController().handle);
+router.get('/sendEmailContatos', ADMINisAuthenticated, new EmailExportContatoController().handle);
 
 
 export { router };
