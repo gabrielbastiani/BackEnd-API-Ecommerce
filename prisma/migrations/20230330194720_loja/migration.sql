@@ -253,6 +253,34 @@ CREATE TABLE "avaliacoes" (
 );
 
 -- CreateTable
+CREATE TABLE "newsletters" (
+    "id" TEXT NOT NULL,
+    "name" VARCHAR(125) NOT NULL,
+    "email" VARCHAR(155) NOT NULL,
+    "loja_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "newsletters_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "contatos" (
+    "id" TEXT NOT NULL,
+    "name" VARCHAR(125),
+    "email" VARCHAR(155),
+    "phone" VARCHAR(155),
+    "empresa" VARCHAR(255),
+    "setor" VARCHAR(355),
+    "mensagem" VARCHAR(5555),
+    "loja_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "contatos_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "itens" (
     "id" TEXT NOT NULL,
     "carrinho_id" TEXT,
@@ -405,6 +433,12 @@ ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_product_id_fkey" FOREIGN KEY
 
 -- AddForeignKey
 ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "newsletters" ADD CONSTRAINT "newsletters_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "contatos" ADD CONSTRAINT "contatos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "itens" ADD CONSTRAINT "itens_carrinho_id_fkey" FOREIGN KEY ("carrinho_id") REFERENCES "carrinhos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
