@@ -80,7 +80,6 @@ class CreateProductService {
                 variacoes: true,
                 photovariacoes: true,
                 avaliacoes: true,
-                item: true,
             }
         })
 

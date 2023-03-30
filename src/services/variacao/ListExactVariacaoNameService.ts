@@ -9,6 +9,9 @@ class ListExactVariacaoNameService {
         const exactVariacao = await prismaClient.variacao.findUnique({
             where: {
                 slug: slug
+            },
+            include: {
+                photovariacoes: true
             }
         })
         return exactVariacao;
