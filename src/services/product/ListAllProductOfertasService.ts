@@ -1,11 +1,12 @@
-import { StatusOferta } from "@prisma/client";
+import { StatusOferta, StatusProduct } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 class ListAllProductOfertasService {
     async execute() {
         const ofertasProducts = await prismaClient.product.findMany({
             where: {
-                produtoOferta: StatusOferta.Sim
+                produtoOferta: StatusOferta.Sim,
+                disponibilidade: StatusProduct.Disponivel
             },
             include: {
                 photoproducts: true,

@@ -1,8 +1,12 @@
+import { StatusProduct } from '@prisma/client';
 import prismaClient from '../../prisma';
 
 class AllProductInStoreService {
     async execute() {
         const allProduct = await prismaClient.product.findMany({
+            where: {
+                disponibilidade: StatusProduct.Disponivel
+            },
             include: {
                 category: true,
                 loja: true,
