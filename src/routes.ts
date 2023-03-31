@@ -348,7 +348,7 @@ router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCateg
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryController().handle);
 router.get('/allCategorys', new ListCategoryController().handle);
-router.get('/exactCategoryPage', new ListExactCategoryNameController().handle);
+router.get('/exactCategoryProducts', new ListExactCategoryNameController().handle);
 
 // -- ROTAS PRODUTOS --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
