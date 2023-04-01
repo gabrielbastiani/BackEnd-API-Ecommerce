@@ -33,9 +33,20 @@ class ListExactCategoryNameService {
             }
         });
 
+        const findUnique = await prismaClient.category.findUnique({
+            where: {
+                slug: slug
+            },
+            include: {
+                loja: true,
+                products: true,
+            }
+        });
+
         // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
             categorys,
+            findUnique,
             total: categorysAll.length,
             total_pages: Math.ceil(categorysAll.length / limit),
             current_page: page,
