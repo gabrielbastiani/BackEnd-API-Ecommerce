@@ -1,20 +1,48 @@
 import prismaClient from '../../prisma';
 
-interface RequestCategory {
-    slug: string;
-}
-
 class ListExactCategoryNameService {
-    async execute({ slug }: RequestCategory) {
-        const exactCategory = await prismaClient.category.findUnique({
+    async execute(page = 1, limit = 21, slug) {
+
+        const skip = limit * (page - 1);
+
+        const categorysAll = await prismaClient.category.findMany({
+            where: {
+                slug: slug
+            },
+            orderBy: {
+                created_at: 'desc'
+            },
+            include: {
+                loja: true,
+                products: true,
+            }
+        });
+
+        const categorys = await prismaClient.category.findMany({
             where: {
                 slug: slug
             },
             include: {
-                products: true
+                loja: true,
+                products: true,
+            },
+            skip,
+            take: limit,
+            orderBy: {
+                created_at: 'desc'
             }
-        })
-        return exactCategory;
+        });
+
+        // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
+        const data = {
+            categorys,
+            total: categorysAll.length,
+            total_pages: Math.ceil(categorysAll.length / limit),
+            current_page: page,
+        }
+
+        return data;
+
     }
 }
 

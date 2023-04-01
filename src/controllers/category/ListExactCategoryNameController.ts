@@ -3,11 +3,13 @@ import { ListExactCategoryNameService } from '../../services/category/ListExactC
 
 class ListExactCategoryNameController {
     async handle(req: Request, res: Response) {
-        const slug = req.query.slug as string;
-        const listExactCategory = new ListExactCategoryNameService();
-        const category = await listExactCategory.execute({ slug });
+        const pageListAllCategorysService = new ListExactCategoryNameService();
 
-        return res.json(category);
+        const { page, limit, slug } = req.query;
+
+        const categoyPage = await pageListAllCategorysService.execute(Number(page), Number(limit), slug);
+
+        return res.json(categoyPage);
     }
 }
 
