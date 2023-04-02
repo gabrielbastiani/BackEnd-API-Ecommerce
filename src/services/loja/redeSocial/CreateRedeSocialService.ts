@@ -5,17 +5,19 @@ interface LojaRequest {
   link: string;
   imageRede: string;
   order: number;
+  posicao: string;
   loja_id: string;
 }
 
 class CreateRedeSocialService {
-  async execute({ redeName, link, imageRede, order, loja_id }: LojaRequest) {
+  async execute({ redeName, link, imageRede, order, posicao, loja_id }: LojaRequest) {
     const loja = await prismaClient.redeSocial.create({
       data: {
         redeName: redeName,
         link: link,
         imageRede: imageRede,
         order: Number(order),
+        posicao: posicao,
         loja_id: loja_id
       }
     })

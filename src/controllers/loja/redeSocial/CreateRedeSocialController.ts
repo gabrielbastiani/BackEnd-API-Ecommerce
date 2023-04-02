@@ -7,6 +7,7 @@ class CreateRedeSocialController {
             redeName,
             link,
             order,
+            posicao,
             loja_id
         } = req.body;
 
@@ -19,6 +20,7 @@ class CreateRedeSocialController {
             link,
             imageRede,
             order,
+            posicao,
             loja_id
         });
 

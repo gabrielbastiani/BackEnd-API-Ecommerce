@@ -107,7 +107,9 @@ model RedeSocial {
   redeName        String?          @db.VarChar(325)
   link            String?          @db.VarChar(2725)
   imageRede       String?
-  order           Int?             @unique
+  order           Int?
+  posicao         String?          @db.VarChar(300)
+  slug            String?          @unique @db.VarChar(295)
   disponibilidade StatusRedeSocial @default(Disponivel)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
@@ -125,8 +127,9 @@ model TextoInstitucional {
   id              String                   @id @default(uuid())
   title           String                   @db.VarChar(325)
   slug            String?                  @unique @db.VarChar(325)
-  order           Int?                     @unique
+  order           Int?
   posicao         String?                  @db.VarChar(300)
+  slugPosicao     String?                  @unique @db.VarChar(325)
   description     String?                  @db.VarChar(95725)
   disponibilidade StatusTextoInstitucional @default(Disponivel)
 
@@ -147,8 +150,9 @@ model ImageLoja {
   id         String  @id @default(uuid())
   titleImage String? @db.VarChar(425)
   image      String?
-  order      Int?    @unique
+  order      Int?
   posicao    String? @db.VarChar(300)
+  slug       String? @unique @db.VarChar(325)
 
   textoInstitucional    TextoInstitucional? @relation(fields: [textoinstitucional_id], references: [id])
   textoinstitucional_id String?
@@ -160,8 +164,9 @@ model Product {
   id                  String         @id @default(uuid())
   nameProduct         String         @db.VarChar(325)
   slug                String?        @unique @db.VarChar(325)
-  order               Int?           @unique
+  order               Int?
   posicao             String?        @db.VarChar(300)
+  slugPosicao         String?        @unique @db.VarChar(325)
   descriptionProduct1 String?        @db.VarChar(1725)
   descriptionProduct2 String?        @db.VarChar(1725)
   descriptionProduct3 String?        @db.VarChar(1725)
@@ -211,10 +216,12 @@ enum StatusOferta {
 model Atributo {
   id              String         @id @default(uuid())
   nameAtributo    String?        @unique @db.VarChar(300)
-  order           Int?           @unique
+  order           Int?
   linkProduct     String?
   linkVariante    String?
   disponibilidade StatusAtributo @default(Disponivel)
+  posicao         String?        @db.VarChar(300)
+  slug            String?        @unique @db.VarChar(325)
 
   product     Product?  @relation(fields: [product_id], references: [id])
   product_id  String?
@@ -236,8 +243,9 @@ model Category {
   id              String         @id @default(uuid())
   categoryName    String         @unique @db.VarChar(300)
   slug            String?        @unique @db.VarChar(300)
-  order           Int?           @unique
+  order           Int?
   posicao         String?        @db.VarChar(300)
+  slugPosicao     String?        @unique @db.VarChar(325)
   disponibilidade StatusCategory @default(Disponivel)
 
   product    Product? @relation(fields: [product_id], references: [id])
@@ -263,8 +271,9 @@ model SubCategory {
   id              String            @id @default(uuid())
   subCategoryName String            @unique @db.VarChar(300)
   slug            String?           @unique @db.VarChar(300)
-  order           Int?              @unique
+  order           Int?
   posicao         String?           @db.VarChar(300)
+  slugPosicao     String?           @unique @db.VarChar(325)
   disponibilidade StatusSubCategory @default(Disponivel)
 
   category    Category? @relation(fields: [category_id], references: [id])
@@ -288,11 +297,13 @@ enum StatusSubCategory {
 }
 
 model PhotoProduct {
-  id         String   @id @default(uuid())
-  photo      String?
-  order      Int?     @unique
-  product    Product? @relation(fields: [product_id], references: [id])
-  product_id String?
+  id          String   @id @default(uuid())
+  photo       String?
+  order       Int?
+  posicao     String?  @db.VarChar(325)
+  slugPosicao String?  @unique @db.VarChar(325)
+  product     Product? @relation(fields: [product_id], references: [id])
+  product_id  String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -309,9 +320,10 @@ model Banner {
   dateInicio       String?      @default("01/01/3075 00:00")
   dateFim          String?      @default("01/01/5575 00:00")
   banner           String?
-  order            Int?         @unique
+  order            Int?
   url              String?
-  posicao          String?      @db.VarChar(300)
+  posicao          String?      @db.VarChar(325)
+  slugPosicao      String?      @unique @db.VarChar(325)
   active           StatusBanner @default(Sim)
 
   created_at DateTime? @default(now())
@@ -329,8 +341,9 @@ model Variacao {
   id                      String                 @id @default(uuid())
   nameVariacao            String?                @db.VarChar(355)
   slug                    String?                @unique @db.VarChar(355)
-  order                   Int?                   @unique
-  posicao                 String?                @db.VarChar(300)
+  order                   Int?
+  posicao                 String?                @db.VarChar(325)
+  slugPosicao             String?                @unique @db.VarChar(325)
   descriptionVariacao1    String?                @db.VarChar(1725)
   descriptionVariacao2    String?                @db.VarChar(1725)
   descriptionVariacao3    String?                @db.VarChar(1725)
@@ -390,7 +403,9 @@ enum StatusOfertaVariacao {
 model PhotoVariacao {
   id            String    @id @default(uuid())
   photoVariacao String
-  order         Int?      @unique
+  order         Int?
+  posicao       String?   @db.VarChar(325)
+  slugPosicao   String?   @unique @db.VarChar(325)
   variacao      Variacao? @relation(fields: [variacao_id], references: [id])
   variacao_id   String?
   product       Product?  @relation(fields: [product_id], references: [id])

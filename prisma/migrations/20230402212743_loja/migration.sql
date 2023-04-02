@@ -116,6 +116,8 @@ CREATE TABLE "redessociais" (
     "link" VARCHAR(2725),
     "imageRede" TEXT,
     "order" INTEGER,
+    "posicao" VARCHAR(300),
+    "slug" VARCHAR(295),
     "disponibilidade" "StatusRedeSocial" NOT NULL DEFAULT 'Disponivel',
     "loja_id" TEXT,
 
@@ -129,6 +131,7 @@ CREATE TABLE "textosinstitucionais" (
     "slug" VARCHAR(325),
     "order" INTEGER,
     "posicao" VARCHAR(300),
+    "slugPosicao" VARCHAR(325),
     "description" VARCHAR(95725),
     "disponibilidade" "StatusTextoInstitucional" NOT NULL DEFAULT 'Disponivel',
     "loja_id" TEXT,
@@ -143,6 +146,7 @@ CREATE TABLE "imagesloja" (
     "image" TEXT,
     "order" INTEGER,
     "posicao" VARCHAR(300),
+    "slug" VARCHAR(325),
     "textoinstitucional_id" TEXT,
 
     CONSTRAINT "imagesloja_pkey" PRIMARY KEY ("id")
@@ -155,6 +159,7 @@ CREATE TABLE "products" (
     "slug" VARCHAR(325),
     "order" INTEGER,
     "posicao" VARCHAR(300),
+    "slugPosicao" VARCHAR(325),
     "descriptionProduct1" VARCHAR(1725),
     "descriptionProduct2" VARCHAR(1725),
     "descriptionProduct3" VARCHAR(1725),
@@ -182,6 +187,8 @@ CREATE TABLE "atributos" (
     "linkProduct" TEXT,
     "linkVariante" TEXT,
     "disponibilidade" "StatusAtributo" NOT NULL DEFAULT 'Disponivel',
+    "posicao" VARCHAR(300),
+    "slug" VARCHAR(325),
     "product_id" TEXT,
     "variacao_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -197,6 +204,7 @@ CREATE TABLE "categories" (
     "slug" VARCHAR(300),
     "order" INTEGER,
     "posicao" VARCHAR(300),
+    "slugPosicao" VARCHAR(325),
     "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -213,6 +221,7 @@ CREATE TABLE "subcategories" (
     "slug" VARCHAR(300),
     "order" INTEGER,
     "posicao" VARCHAR(300),
+    "slugPosicao" VARCHAR(325),
     "disponibilidade" "StatusSubCategory" NOT NULL DEFAULT 'Disponivel',
     "category_id" TEXT,
     "product_id" TEXT,
@@ -228,6 +237,8 @@ CREATE TABLE "photoproducts" (
     "id" TEXT NOT NULL,
     "photo" TEXT,
     "order" INTEGER,
+    "posicao" VARCHAR(325),
+    "slugPosicao" VARCHAR(325),
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -247,7 +258,8 @@ CREATE TABLE "banners" (
     "banner" TEXT,
     "order" INTEGER,
     "url" TEXT,
-    "posicao" VARCHAR(300),
+    "posicao" VARCHAR(325),
+    "slugPosicao" VARCHAR(325),
     "active" "StatusBanner" NOT NULL DEFAULT 'Sim',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -261,7 +273,8 @@ CREATE TABLE "variacoes" (
     "nameVariacao" VARCHAR(355),
     "slug" VARCHAR(355),
     "order" INTEGER,
-    "posicao" VARCHAR(300),
+    "posicao" VARCHAR(325),
+    "slugPosicao" VARCHAR(325),
     "descriptionVariacao1" VARCHAR(1725),
     "descriptionVariacao2" VARCHAR(1725),
     "descriptionVariacao3" VARCHAR(1725),
@@ -295,6 +308,8 @@ CREATE TABLE "photovariacoes" (
     "id" TEXT NOT NULL,
     "photoVariacao" TEXT NOT NULL,
     "order" INTEGER,
+    "posicao" VARCHAR(325),
+    "slugPosicao" VARCHAR(325),
     "variacao_id" TEXT,
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -455,28 +470,28 @@ CREATE UNIQUE INDEX "users_cpf_key" ON "users"("cpf");
 CREATE UNIQUE INDEX "users_cnpj_key" ON "users"("cnpj");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "redessociais_order_key" ON "redessociais"("order");
+CREATE UNIQUE INDEX "redessociais_slug_key" ON "redessociais"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "textosinstitucionais_slug_key" ON "textosinstitucionais"("slug");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "textosinstitucionais_order_key" ON "textosinstitucionais"("order");
+CREATE UNIQUE INDEX "textosinstitucionais_slugPosicao_key" ON "textosinstitucionais"("slugPosicao");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "imagesloja_order_key" ON "imagesloja"("order");
+CREATE UNIQUE INDEX "imagesloja_slug_key" ON "imagesloja"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "products_slug_key" ON "products"("slug");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "products_order_key" ON "products"("order");
+CREATE UNIQUE INDEX "products_slugPosicao_key" ON "products"("slugPosicao");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "atributos_nameAtributo_key" ON "atributos"("nameAtributo");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "atributos_order_key" ON "atributos"("order");
+CREATE UNIQUE INDEX "atributos_slug_key" ON "atributos"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName");
@@ -485,7 +500,7 @@ CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName"
 CREATE UNIQUE INDEX "categories_slug_key" ON "categories"("slug");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "categories_order_key" ON "categories"("order");
+CREATE UNIQUE INDEX "categories_slugPosicao_key" ON "categories"("slugPosicao");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "subcategories_subCategoryName_key" ON "subcategories"("subCategoryName");
@@ -494,22 +509,22 @@ CREATE UNIQUE INDEX "subcategories_subCategoryName_key" ON "subcategories"("subC
 CREATE UNIQUE INDEX "subcategories_slug_key" ON "subcategories"("slug");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "subcategories_order_key" ON "subcategories"("order");
+CREATE UNIQUE INDEX "subcategories_slugPosicao_key" ON "subcategories"("slugPosicao");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "photoproducts_order_key" ON "photoproducts"("order");
+CREATE UNIQUE INDEX "photoproducts_slugPosicao_key" ON "photoproducts"("slugPosicao");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "banners_order_key" ON "banners"("order");
+CREATE UNIQUE INDEX "banners_slugPosicao_key" ON "banners"("slugPosicao");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "variacoes_slug_key" ON "variacoes"("slug");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "variacoes_order_key" ON "variacoes"("order");
+CREATE UNIQUE INDEX "variacoes_slugPosicao_key" ON "variacoes"("slugPosicao");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "photovariacoes_order_key" ON "photovariacoes"("order");
+CREATE UNIQUE INDEX "photovariacoes_slugPosicao_key" ON "photovariacoes"("slugPosicao");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -226,6 +226,8 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { CreateRedeSocialController } from './controllers/loja/redeSocial/CreateRedeSocialController';
+import { UpdateOrderRedeSocialController } from './controllers/loja/redeSocial/UpdateOrderRedeSocialController';
+import { ListAllRedesSociaisOrderAndPosicaoController } from './controllers/loja/redeSocial/ListAllRedesSociaisOrderAndPosicaoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -295,6 +297,8 @@ router.put('/updateAllDateLoja', ADMINisAuthenticated, new UpdateAllDateLojaCont
 
 // -- ROTAS REDES SOCIAIS DA LOJA --
 router.post('/createRedeSocialLoja', ADMINisAuthenticated, upload.single('file'), new CreateRedeSocialController().handle);
+router.put('/updateOrderRedeSocial', ADMINisAuthenticated, new UpdateOrderRedeSocialController().handle);
+router.get('/listRedesSociaisOrder', new ListAllRedesSociaisOrderAndPosicaoController().handle);
 
 // -- ROTAS BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
