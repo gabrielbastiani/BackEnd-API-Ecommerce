@@ -103,6 +103,7 @@ model Category {
   categoryName    String         @unique @db.VarChar(300)
   slug            String?        @unique @db.VarChar(300)
   order           Int?           @unique
+  posicao         String?        @db.VarChar(300)
   codigo          String?        @db.VarChar(300)
   disponibilidade StatusCategory @default(Disponivel)
 
@@ -127,6 +128,7 @@ model Product {
   nameProduct         String         @db.VarChar(325)
   slug                String?        @unique @db.VarChar(325)
   order               Int?           @unique
+  posicao             String?        @db.VarChar(300)
   descriptionProduct1 String?        @db.VarChar(1725)
   descriptionProduct2 String?        @db.VarChar(1725)
   descriptionProduct3 String?        @db.VarChar(1725)
@@ -212,6 +214,7 @@ model BannerInPage {
   id         String           @id @default(uuid())
   bannerPage String?
   order      Int?             @unique
+  posicao    String?          @db.VarChar(300)
   url        String?
   active     StatusBannerPage @default(Sim)
 
@@ -230,6 +233,7 @@ model BannerMosaico {
   id            String              @id @default(uuid())
   bannerMosaico String?
   order         Int?                @unique
+  posicao       String?             @db.VarChar(300)
   url           String?
   active        StatusBannerMosaico @default(Sim)
 
@@ -249,6 +253,7 @@ model Variacao {
   nameVariacao            String?                @db.VarChar(355)
   slug                    String?                @unique @db.VarChar(355)
   order                   Int?                   @unique
+  posicao                 String?                @db.VarChar(300)
   descriptionVariacao1    String?                @db.VarChar(1725)
   descriptionVariacao2    String?                @db.VarChar(1725)
   descriptionVariacao3    String?                @db.VarChar(1725)
