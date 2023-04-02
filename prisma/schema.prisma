@@ -237,7 +237,6 @@ model Category {
   slug            String?        @unique @db.VarChar(300)
   order           Int?           @unique
   posicao         String?        @db.VarChar(300)
-  codigo          String?        @db.VarChar(300)
   disponibilidade StatusCategory @default(Disponivel)
 
   product    Product? @relation(fields: [product_id], references: [id])
@@ -265,7 +264,6 @@ model SubCategory {
   slug            String?           @unique @db.VarChar(300)
   order           Int?              @unique
   posicao         String?           @db.VarChar(300)
-  codigo          String?           @db.VarChar(300)
   disponibilidade StatusSubCategory @default(Disponivel)
 
   category    Category? @relation(fields: [category_id], references: [id])
@@ -301,58 +299,27 @@ model PhotoProduct {
   @@map("photoproducts")
 }
 
-model BannerHome {
-  id     String           @id @default(uuid())
-  banner String?
-  order  Int?             @unique
-  url    String?
-  active StatusBannerHome @default(Sim)
+model Banner {
+  id               String       @id @default(uuid())
+  title            String?      @db.VarChar(355)
+  alternativeTitle String?      @db.VarChar(355)
+  width            String?      @db.VarChar(55)
+  height           String?      @db.VarChar(55)
+  dateInicio       String?      @default("01/01/3075 00:00")
+  dateFim          String?      @default("01/01/5575 00:00")
+  banner           String?
+  order            Int?         @unique
+  url              String?
+  posicao          String?      @db.VarChar(300)
+  active           StatusBanner @default(Sim)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  @@map("bannerhomes")
+  @@map("banners")
 }
 
-enum StatusBannerHome {
-  Sim
-  Nao
-}
-
-model BannerInPage {
-  id         String           @id @default(uuid())
-  bannerPage String?
-  order      Int?             @unique
-  posicao    String?          @db.VarChar(300)
-  url        String?
-  active     StatusBannerPage @default(Sim)
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  @@map("bannerinpages")
-}
-
-enum StatusBannerPage {
-  Sim
-  Nao
-}
-
-model BannerMosaico {
-  id            String              @id @default(uuid())
-  bannerMosaico String?
-  order         Int?                @unique
-  posicao       String?             @db.VarChar(300)
-  url           String?
-  active        StatusBannerMosaico @default(Sim)
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  @@map("bannermosaicos")
-}
-
-enum StatusBannerMosaico {
+enum StatusBanner {
   Sim
   Nao
 }

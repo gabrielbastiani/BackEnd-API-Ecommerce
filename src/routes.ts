@@ -46,6 +46,7 @@ import { UpdateNameLojaController } from './controllers/loja/UpdateNameLojaContr
 import { UpdateCNPJLojaController } from './controllers/loja/UpdateCNPJLojaController';
 import { UpdateEmailLojaController } from './controllers/loja/UpdateEmailLojaController';
 import { UpdatePhoneLojaController } from './controllers/loja/UpdatePhoneLojaController';
+import { UpdateCellPhoneLojaController } from './controllers/loja/UpdateCellPhoneLojaController';
 import { UpdateRuaLojaController } from './controllers/loja/UpdateRuaLojaController';
 import { UpdateNumeroLojaController } from './controllers/loja/UpdateNumeroLojaController';
 import { UpdateBairroLojaController } from './controllers/loja/UpdateBairroLojaController';
@@ -61,41 +62,21 @@ import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
 import { UpdateLogoLojaController } from './controllers/loja/UpdateLogoLojaController';
 import { UpdateAllDateLojaController } from './controllers/loja/UpdateAllDateLojaController';
 
-// -- ROTAS BANNERS HOME --
-import { CreateBannerHomeController } from './controllers/bannerHome/CreateBannerHomeController';
-import { PageListAllBannerHomeController } from './controllers/bannerHome/PageListAllBannerHomeController';
-import { DeleteBannerHomeController } from './controllers/bannerHome/DeleteBannerHomeController';
-import { UpdateBannerHomeController } from './controllers/bannerHome/UpdateBannerHomeController';
-import { StatusBannerHomeController } from './controllers/bannerHome/StatusBannerHomeController';
-import { UpdateUrlBannerHomeController } from './controllers/bannerHome/UpdateUrlBannerHomeController';
-import { ActiveAllBannerHomeController } from './controllers/bannerHome/ActiveAllBannerHomeController';
-import { ListExactBannerHomeController } from './controllers/bannerHome/ListExactBannerHomeController';
-
-// -- ROTAS BANNERS EM PAGINAS --
-import { CreateBannerInPageController } from './controllers/bannerInPage/CreateBannerInPageController';
-import { PageListAllBannerInPageController } from './controllers/bannerInPage/PageListAllBannerInPageController';
-import { DeleteBannerInPageController } from './controllers/bannerInPage/DeleteBannerInPageController';
-import { UpdateBannerInPageController } from './controllers/bannerInPage/UpdateBannerInPageController';
-import { StatusBannerInPageController } from './controllers/bannerInPage/StatusBannerInPageController';
-import { UpdateUrlBannerInPageController } from './controllers/bannerInPage/UpdateUrlBannerInPageController';
-import { ActiveAllBannerInPageController } from './controllers/bannerInPage/ActiveAllBannerInPageController';
-import { ListExactBannerInPageController } from './controllers/bannerInPage/ListExactBannerInPageController';
-
-// -- ROTAS BANNERS MOSAICO --
-import { CreateBannerMosaicoController } from './controllers/bannerMosaico/CreateBannerMosaicoController';
-import { PageListAllBannerMosaicoController } from './controllers/bannerMosaico/PageListAllBannerMosaicoController';
-import { DeleteBannerMosaicoController } from './controllers/bannerMosaico/DeleteBannerMosaicoController';
-import { UpdateBannerMosaicoController } from './controllers/bannerMosaico/UpdateBannerMosaicoController';
-import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
-import { StatusBannerMosaicoController } from './controllers/bannerMosaico/StatusBannerMosaicoController';
-import { UpdateUrlBannerMosaicoController } from './controllers/bannerMosaico/UpdateUrlBannerMosaicoController';
-import { ActiveAllBannerMosaicoController } from './controllers/bannerMosaico/ActiveAllBannerMosaicoController';
-import { ListExactBannerMosaicoController } from './controllers/bannerMosaico/ListExactBannerMosaicoController';
+// -- ROTAS BANNERS --
+import { CreateBannerController } from './controllers/banner/CreateBannerController';
+import { PageListAllBannerController } from './controllers/banner/PageListAllBannerController';
+import { DeleteBannerController } from './controllers/banner/DeleteBannerController';
+import { UpdateBannerController } from './controllers/banner/UpdateBannerController';
+import { StatusBannerController } from './controllers/banner/StatusBannerController';
+import { UpdateUrlBannerController } from './controllers/banner/UpdateUrlBannerController';
+import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerController';
+import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
 
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
 import { UpdateCodigoCategoryController } from './controllers/category/UpdateCodigoCategoryController';
+import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
 import { UpdatePosicaoCategoryController } from './controllers/category/UpdatePosicaoCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
@@ -295,6 +276,7 @@ router.put('/nameLojaUpdate', ADMINisAuthenticated, new UpdateNameLojaController
 router.put('/cnpjLojaUpdate', ADMINisAuthenticated, new UpdateCNPJLojaController().handle);
 router.put('/emailLojaUpdate', ADMINisAuthenticated, new UpdateEmailLojaController().handle);
 router.put('/phoneLojaUpdate', ADMINisAuthenticated, new UpdatePhoneLojaController().handle);
+router.put('/cellPhoneLojaUpdate', ADMINisAuthenticated, new UpdateCellPhoneLojaController().handle);
 router.put('/ruaLojaUpdate', ADMINisAuthenticated, new UpdateRuaLojaController().handle);
 router.put('/numeroLojaUpdate', ADMINisAuthenticated, new UpdateNumeroLojaController().handle);
 router.put('/bairroLojaUpdate', ADMINisAuthenticated, new UpdateBairroLojaController().handle);
@@ -310,35 +292,19 @@ router.delete('/deleteLoja', ADMINisAuthenticated, new DeleteLojaController().ha
 router.put('/logoLojaUpdate', ADMINisAuthenticated, upload.single('file'), new UpdateLogoLojaController().handle);
 router.put('/updateAllDateLoja', ADMINisAuthenticated, new UpdateAllDateLojaController().handle);
 
-// -- ROTAS BANNER HOME --
-router.post('/createBannerHome', ADMINisAuthenticated, upload.single('file'), new CreateBannerHomeController().handle);
-router.get('/pageListBannerHome', ADMINisAuthenticated, new PageListAllBannerHomeController().handle);
-router.delete('/deleteBannerHome', ADMINisAuthenticated, new DeleteBannerHomeController().handle);
-router.put('/updateBannerHome', ADMINisAuthenticated, upload.single('file'), new UpdateBannerHomeController().handle);
-router.put('/updateStatusBannerHome', ADMINisAuthenticated, new StatusBannerHomeController().handle);
-router.put('/updateUrlBannerHome', ADMINisAuthenticated, new UpdateUrlBannerHomeController().handle);
-router.get('/exactBannerHome', ADMINisAuthenticated, new ListExactBannerHomeController().handle);
-router.get('/activeBannerHome', new ActiveAllBannerHomeController().handle);
+// -- ROTAS REDES SOCIAIS DA LOJA --
 
-// -- ROTAS BANNER EM PAGINAS --
-router.post('/createBannerInPage', ADMINisAuthenticated, upload.single('file'), new CreateBannerInPageController().handle);
-router.get('/pageListBannerInPage', ADMINisAuthenticated, new PageListAllBannerInPageController().handle);
-router.delete('/deleteBannerInPage', ADMINisAuthenticated, new DeleteBannerInPageController().handle);
-router.put('/updateBannerInPage', ADMINisAuthenticated, upload.single('file'), new UpdateBannerInPageController().handle);
-router.put('/updateStatusBannerInPage', ADMINisAuthenticated, new StatusBannerInPageController().handle);
-router.put('/updateUrlBannerInPage', ADMINisAuthenticated, new UpdateUrlBannerInPageController().handle);
-router.get('/exactBannerInPage', ADMINisAuthenticated, new ListExactBannerInPageController().handle);
-router.get('/activeBannerInPage', new ActiveAllBannerInPageController().handle);
 
-// -- ROTAS BANNER MOSAICO --
-router.post('/createBannerMosaico', ADMINisAuthenticated, upload.single('file'), new CreateBannerMosaicoController().handle);
-router.get('/pageListBannerMosaico', ADMINisAuthenticated, new PageListAllBannerMosaicoController().handle);
-router.delete('/deleteBannerMosaico', ADMINisAuthenticated, new DeleteBannerMosaicoController().handle);
-router.put('/updateBannerMosaico', ADMINisAuthenticated, upload.single('file'), new UpdateBannerMosaicoController().handle);
-router.put('/updateStatusBannerMosaico', ADMINisAuthenticated, new StatusBannerMosaicoController().handle);
-router.put('/updateUrlBannerMosaico', ADMINisAuthenticated, new UpdateUrlBannerMosaicoController().handle);
-router.get('/exactBannerMosaico', ADMINisAuthenticated, new ListExactBannerMosaicoController().handle);
-router.get('/activeBannerMosaico', new ActiveAllBannerMosaicoController().handle);
+// -- ROTAS BANNER --
+router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
+router.get('/pageListBanner', ADMINisAuthenticated, new PageListAllBannerController().handle);
+router.delete('/deleteBanner', ADMINisAuthenticated, new DeleteBannerController().handle);
+router.put('/updateBannerHome', ADMINisAuthenticated, upload.single('file'), new UpdateBannerController().handle);
+router.put('/updateStatusBanner', ADMINisAuthenticated, new StatusBannerController().handle);
+router.put('/updateUrlBanner', ADMINisAuthenticated, new UpdateUrlBannerController().handle);
+router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController().handle);
+router.get('/activeBanner', new ActiveAllBannerController().handle);
+
 
 // -- ROTAS CATEGORIAS --
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
