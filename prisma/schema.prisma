@@ -83,44 +83,20 @@ model Loja {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  users       User[]
-  categories  Category[]
-  products    Product[]
-  variacoes   Variacao[]
-  avaliacoes  Avaliacao[]
-  newsletters Newsletter[]
-  contatos    Contato[]
-  carrinhos   Carrinho[]
-  pagamentos  Pagamento[]
-  entregas    Entrega[]
-  pedidos     Pedido[]
+  users         User[]
+  categories    Category[]
+  subcategories SubCategory[]
+  products      Product[]
+  variacoes     Variacao[]
+  avaliacoes    Avaliacao[]
+  newsletters   Newsletter[]
+  contatos      Contato[]
+  carrinhos     Carrinho[]
+  pagamentos    Pagamento[]
+  entregas      Entrega[]
+  pedidos       Pedido[]
 
   @@map("lojas")
-}
-
-model Category {
-  id              String         @id @default(uuid())
-  categoryName    String         @unique @db.VarChar(300)
-  slug            String?        @unique @db.VarChar(300)
-  order           Int?           @unique
-  posicao         String?        @db.VarChar(300)
-  codigo          String?        @db.VarChar(300)
-  disponibilidade StatusCategory @default(Disponivel)
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  products Product[]
-
-  @@map("categories")
-}
-
-enum StatusCategory {
-  Disponivel
-  Indisponivel
 }
 
 model Product {
@@ -144,8 +120,6 @@ model Product {
   profundidadeCM      String?        @db.VarChar(15)
   disponibilidade     StatusProduct  @default(Disponivel)
   promocao            Int?
-  category            Category?      @relation(fields: [category_id], references: [id])
-  category_id         String?
   produtoDestaque     StatusDestaque @default(Nao)
   produtoOferta       StatusOferta   @default(Nao)
 
@@ -155,7 +129,10 @@ model Product {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
+  categories     Category[]
+  subcategories  SubCategory[]
   photoproducts  PhotoProduct[]
+  atributos      Atributo[]
   variacoes      Variacao[]
   photovariacoes PhotoVariacao[]
   avaliacoes     Avaliacao[]
@@ -177,6 +154,87 @@ enum StatusDestaque {
 enum StatusOferta {
   Sim
   Nao
+}
+
+model Atributo {
+  id              String         @id @default(uuid())
+  nameAtributo    String?        @unique @db.VarChar(300)
+  order           Int?           @unique
+  linkProduct     String?
+  linkVariante    String?
+  disponibilidade StatusAtributo @default(Disponivel)
+
+  product     Product?  @relation(fields: [product_id], references: [id])
+  product_id  String?
+  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("atributos")
+}
+
+enum StatusAtributo {
+  Disponivel
+  Indisponivel
+}
+
+model Category {
+  id              String         @id @default(uuid())
+  categoryName    String         @unique @db.VarChar(300)
+  slug            String?        @unique @db.VarChar(300)
+  order           Int?           @unique
+  posicao         String?        @db.VarChar(300)
+  codigo          String?        @db.VarChar(300)
+  disponibilidade StatusCategory @default(Disponivel)
+
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  subcategories SubCategory[]
+
+  @@map("categories")
+}
+
+enum StatusCategory {
+  Disponivel
+  Indisponivel
+}
+
+model SubCategory {
+  id              String            @id @default(uuid())
+  subCategoryName String            @unique @db.VarChar(300)
+  slug            String?           @unique @db.VarChar(300)
+  order           Int?              @unique
+  posicao         String?           @db.VarChar(300)
+  codigo          String?           @db.VarChar(300)
+  disponibilidade StatusSubCategory @default(Disponivel)
+
+  category    Category? @relation(fields: [category_id], references: [id])
+  category_id String?
+
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("subcategories")
+}
+
+enum StatusSubCategory {
+  Disponivel
+  Indisponivel
 }
 
 model PhotoProduct {
@@ -281,6 +339,7 @@ model Variacao {
   loja_id String?
 
   photovariacoes PhotoVariacao[]
+  atributos      Atributo[]
   item           Item[]
 
   created_at DateTime? @default(now())

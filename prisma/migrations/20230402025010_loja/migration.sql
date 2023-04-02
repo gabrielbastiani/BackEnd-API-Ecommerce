@@ -5,9 +5,6 @@ CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 CREATE TYPE "News" AS ENUM ('Sim', 'Nao');
 
 -- CreateEnum
-CREATE TYPE "StatusCategory" AS ENUM ('Disponivel', 'Indisponivel');
-
--- CreateEnum
 CREATE TYPE "StatusProduct" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
@@ -15,6 +12,15 @@ CREATE TYPE "StatusDestaque" AS ENUM ('Sim', 'Nao');
 
 -- CreateEnum
 CREATE TYPE "StatusOferta" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
+CREATE TYPE "StatusAtributo" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
+CREATE TYPE "StatusCategory" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
+CREATE TYPE "StatusSubCategory" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
 CREATE TYPE "StatusBannerHome" AS ENUM ('Sim', 'Nao');
@@ -103,22 +109,6 @@ CREATE TABLE "lojas" (
 );
 
 -- CreateTable
-CREATE TABLE "categories" (
-    "id" TEXT NOT NULL,
-    "categoryName" VARCHAR(300) NOT NULL,
-    "slug" VARCHAR(300),
-    "order" INTEGER,
-    "posicao" VARCHAR(300),
-    "codigo" VARCHAR(300),
-    "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "loja_id" TEXT,
-
-    CONSTRAINT "categories_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "products" (
     "id" TEXT NOT NULL,
     "nameProduct" VARCHAR(325) NOT NULL,
@@ -140,7 +130,6 @@ CREATE TABLE "products" (
     "profundidadeCM" VARCHAR(15),
     "disponibilidade" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "promocao" INTEGER,
-    "category_id" TEXT,
     "produtoDestaque" "StatusDestaque" NOT NULL DEFAULT 'Nao',
     "produtoOferta" "StatusOferta" NOT NULL DEFAULT 'Nao',
     "loja_id" TEXT,
@@ -148,6 +137,57 @@ CREATE TABLE "products" (
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "atributos" (
+    "id" TEXT NOT NULL,
+    "nameAtributo" VARCHAR(300),
+    "order" INTEGER,
+    "linkProduct" TEXT,
+    "linkVariante" TEXT,
+    "disponibilidade" "StatusAtributo" NOT NULL DEFAULT 'Disponivel',
+    "product_id" TEXT,
+    "variacao_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "atributos_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "categories" (
+    "id" TEXT NOT NULL,
+    "categoryName" VARCHAR(300) NOT NULL,
+    "slug" VARCHAR(300),
+    "order" INTEGER,
+    "posicao" VARCHAR(300),
+    "codigo" VARCHAR(300),
+    "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
+    "product_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "loja_id" TEXT,
+
+    CONSTRAINT "categories_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "subcategories" (
+    "id" TEXT NOT NULL,
+    "subCategoryName" VARCHAR(300) NOT NULL,
+    "slug" VARCHAR(300),
+    "order" INTEGER,
+    "posicao" VARCHAR(300),
+    "codigo" VARCHAR(300),
+    "disponibilidade" "StatusSubCategory" NOT NULL DEFAULT 'Disponivel',
+    "category_id" TEXT,
+    "product_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "loja_id" TEXT,
+
+    CONSTRAINT "subcategories_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -403,6 +443,18 @@ CREATE UNIQUE INDEX "users_cpf_key" ON "users"("cpf");
 CREATE UNIQUE INDEX "users_cnpj_key" ON "users"("cnpj");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "products_slug_key" ON "products"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "products_order_key" ON "products"("order");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "atributos_nameAtributo_key" ON "atributos"("nameAtributo");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "atributos_order_key" ON "atributos"("order");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName");
 
 -- CreateIndex
@@ -412,10 +464,13 @@ CREATE UNIQUE INDEX "categories_slug_key" ON "categories"("slug");
 CREATE UNIQUE INDEX "categories_order_key" ON "categories"("order");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "products_slug_key" ON "products"("slug");
+CREATE UNIQUE INDEX "subcategories_subCategoryName_key" ON "subcategories"("subCategoryName");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "products_order_key" ON "products"("order");
+CREATE UNIQUE INDEX "subcategories_slug_key" ON "subcategories"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "subcategories_order_key" ON "subcategories"("order");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "photoproducts_order_key" ON "photoproducts"("order");
@@ -442,13 +497,28 @@ CREATE UNIQUE INDEX "photovariacoes_order_key" ON "photovariacoes"("order");
 ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "atributos" ADD CONSTRAINT "atributos_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "atributos" ADD CONSTRAINT "atributos_variacao_id_fkey" FOREIGN KEY ("variacao_id") REFERENCES "variacoes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "categories" ADD CONSTRAINT "categories_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "categories" ADD CONSTRAINT "categories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "subcategories" ADD CONSTRAINT "subcategories_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "subcategories" ADD CONSTRAINT "subcategories_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "subcategories" ADD CONSTRAINT "subcategories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "photoproducts" ADD CONSTRAINT "photoproducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
