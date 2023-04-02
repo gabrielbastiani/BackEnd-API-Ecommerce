@@ -72,6 +72,7 @@ model Loja {
   cnpjLoja        String? @db.VarChar(85)
   emailLoja       String? @db.VarChar(95)
   phoneLoja       String? @db.VarChar(85)
+  cellPhoneLoja   String? @db.VarChar(85)
   ruaLoja         String? @db.VarChar(405)
   numeroLoja      String? @db.VarChar(8)
   bairroLoja      String? @db.VarChar(95)
@@ -105,6 +106,7 @@ model RedeSocial {
   id              String           @id @default(uuid())
   redeName        String?          @db.VarChar(325)
   link            String?          @db.VarChar(2725)
+  imageRede       String?
   order           Int?             @unique
   disponibilidade StatusRedeSocial @default(Disponivel)
 
@@ -130,12 +132,27 @@ model TextoInstitucional {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
+  imagesloja ImageLoja[]
+
   @@map("textosinstitucionais")
 }
 
 enum StatusTextoInstitucional {
   Disponivel
   Indisponivel
+}
+
+model ImageLoja {
+  id         String  @id @default(uuid())
+  titleImage String? @db.VarChar(425)
+  image      String?
+  order      Int?    @unique
+  posicao    String? @db.VarChar(300)
+
+  textoInstitucional    TextoInstitucional? @relation(fields: [textoinstitucional_id], references: [id])
+  textoinstitucional_id String?
+
+  @@map("imagesloja")
 }
 
 model Product {

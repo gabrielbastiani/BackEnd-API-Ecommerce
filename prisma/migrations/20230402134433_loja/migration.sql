@@ -101,6 +101,7 @@ CREATE TABLE "lojas" (
     "cnpjLoja" VARCHAR(85),
     "emailLoja" VARCHAR(95),
     "phoneLoja" VARCHAR(85),
+    "cellPhoneLoja" VARCHAR(85),
     "ruaLoja" VARCHAR(405),
     "numeroLoja" VARCHAR(8),
     "bairroLoja" VARCHAR(95),
@@ -119,6 +120,7 @@ CREATE TABLE "redessociais" (
     "id" TEXT NOT NULL,
     "redeName" VARCHAR(325),
     "link" VARCHAR(2725),
+    "imageRede" TEXT,
     "order" INTEGER,
     "disponibilidade" "StatusRedeSocial" NOT NULL DEFAULT 'Disponivel',
     "loja_id" TEXT,
@@ -137,6 +139,18 @@ CREATE TABLE "textosinstitucionais" (
     "loja_id" TEXT,
 
     CONSTRAINT "textosinstitucionais_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "imagesloja" (
+    "id" TEXT NOT NULL,
+    "titleImage" VARCHAR(425),
+    "image" TEXT,
+    "order" INTEGER,
+    "posicao" VARCHAR(300),
+    "textoinstitucional_id" TEXT,
+
+    CONSTRAINT "imagesloja_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -478,6 +492,9 @@ CREATE UNIQUE INDEX "textosinstitucionais_slug_key" ON "textosinstitucionais"("s
 CREATE UNIQUE INDEX "textosinstitucionais_order_key" ON "textosinstitucionais"("order");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "imagesloja_order_key" ON "imagesloja"("order");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "products_slug_key" ON "products"("slug");
 
 -- CreateIndex
@@ -536,6 +553,9 @@ ALTER TABLE "redessociais" ADD CONSTRAINT "redessociais_loja_id_fkey" FOREIGN KE
 
 -- AddForeignKey
 ALTER TABLE "textosinstitucionais" ADD CONSTRAINT "textosinstitucionais_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "imagesloja" ADD CONSTRAINT "imagesloja_textoinstitucional_id_fkey" FOREIGN KEY ("textoinstitucional_id") REFERENCES "textosinstitucionais"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
