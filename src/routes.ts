@@ -97,6 +97,7 @@ import { CreateCategoryController } from './controllers/category/CreateCategoryC
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
 import { UpdateCodigoCategoryController } from './controllers/category/UpdateCodigoCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
+import { UpdatePosicaoCategoryController } from './controllers/category/UpdatePosicaoCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
 import { ExactCategoryProductController } from './controllers/product/ExactCategoryProductController';
 import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
@@ -344,6 +345,7 @@ router.post('/category', ADMINisAuthenticated, new CreateCategoryController().ha
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
 router.put('/categoryCodigoUpdate', ADMINisAuthenticated, new UpdateCodigoCategoryController().handle);
 router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
+router.put('/updatePosicaoCategory', ADMINisAuthenticated, new UpdatePosicaoCategoryController().handle);
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
