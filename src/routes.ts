@@ -86,6 +86,7 @@ import { CreateBannerMosaicoController } from './controllers/bannerMosaico/Creat
 import { PageListAllBannerMosaicoController } from './controllers/bannerMosaico/PageListAllBannerMosaicoController';
 import { DeleteBannerMosaicoController } from './controllers/bannerMosaico/DeleteBannerMosaicoController';
 import { UpdateBannerMosaicoController } from './controllers/bannerMosaico/UpdateBannerMosaicoController';
+import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { StatusBannerMosaicoController } from './controllers/bannerMosaico/StatusBannerMosaicoController';
 import { UpdateUrlBannerMosaicoController } from './controllers/bannerMosaico/UpdateUrlBannerMosaicoController';
 import { ActiveAllBannerMosaicoController } from './controllers/bannerMosaico/ActiveAllBannerMosaicoController';
@@ -342,6 +343,7 @@ router.get('/activeBannerMosaico', new ActiveAllBannerMosaicoController().handle
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
 router.put('/categoryCodigoUpdate', ADMINisAuthenticated, new UpdateCodigoCategoryController().handle);
+router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);

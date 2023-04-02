@@ -10,9 +10,6 @@ class ListCategoryService {
          include: {
             loja: true,
             products: true,
-         },
-         orderBy: {
-            created_at: 'desc'
          }
       })
 

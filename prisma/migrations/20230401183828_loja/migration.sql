@@ -107,6 +107,7 @@ CREATE TABLE "categories" (
     "id" TEXT NOT NULL,
     "categoryName" VARCHAR(300) NOT NULL,
     "slug" VARCHAR(300),
+    "order" INTEGER,
     "codigo" VARCHAR(300),
     "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -121,6 +122,7 @@ CREATE TABLE "products" (
     "id" TEXT NOT NULL,
     "nameProduct" VARCHAR(325) NOT NULL,
     "slug" VARCHAR(325),
+    "order" INTEGER,
     "descriptionProduct1" VARCHAR(1725),
     "descriptionProduct2" VARCHAR(1725),
     "descriptionProduct3" VARCHAR(1725),
@@ -150,6 +152,7 @@ CREATE TABLE "products" (
 CREATE TABLE "photoproducts" (
     "id" TEXT NOT NULL,
     "photo" TEXT,
+    "order" INTEGER,
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -161,6 +164,7 @@ CREATE TABLE "photoproducts" (
 CREATE TABLE "bannerhomes" (
     "id" TEXT NOT NULL,
     "banner" TEXT,
+    "order" INTEGER,
     "url" TEXT,
     "active" "StatusBannerHome" NOT NULL DEFAULT 'Sim',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -173,6 +177,7 @@ CREATE TABLE "bannerhomes" (
 CREATE TABLE "bannerinpages" (
     "id" TEXT NOT NULL,
     "bannerPage" TEXT,
+    "order" INTEGER,
     "url" TEXT,
     "active" "StatusBannerPage" NOT NULL DEFAULT 'Sim',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -185,6 +190,7 @@ CREATE TABLE "bannerinpages" (
 CREATE TABLE "bannermosaicos" (
     "id" TEXT NOT NULL,
     "bannerMosaico" TEXT,
+    "order" INTEGER,
     "url" TEXT,
     "active" "StatusBannerMosaico" NOT NULL DEFAULT 'Sim',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -198,6 +204,7 @@ CREATE TABLE "variacoes" (
     "id" TEXT NOT NULL,
     "nameVariacao" VARCHAR(355),
     "slug" VARCHAR(355),
+    "order" INTEGER,
     "descriptionVariacao1" VARCHAR(1725),
     "descriptionVariacao2" VARCHAR(1725),
     "descriptionVariacao3" VARCHAR(1725),
@@ -230,6 +237,7 @@ CREATE TABLE "variacoes" (
 CREATE TABLE "photovariacoes" (
     "id" TEXT NOT NULL,
     "photoVariacao" TEXT NOT NULL,
+    "order" INTEGER,
     "variacao_id" TEXT,
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -396,10 +404,34 @@ CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName"
 CREATE UNIQUE INDEX "categories_slug_key" ON "categories"("slug");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "categories_order_key" ON "categories"("order");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "products_slug_key" ON "products"("slug");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "products_order_key" ON "products"("order");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "photoproducts_order_key" ON "photoproducts"("order");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "bannerhomes_order_key" ON "bannerhomes"("order");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "bannerinpages_order_key" ON "bannerinpages"("order");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "bannermosaicos_order_key" ON "bannermosaicos"("order");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "variacoes_slug_key" ON "variacoes"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "variacoes_order_key" ON "variacoes"("order");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "photovariacoes_order_key" ON "photovariacoes"("order");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;

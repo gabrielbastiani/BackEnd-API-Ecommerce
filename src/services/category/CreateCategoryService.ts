@@ -3,34 +3,42 @@ import prismaClient from "../../prisma";
 interface CategoryRequest {
   categoryName: string;
   slug: string;
+  order: number;
   codigo: string;
   loja_id: string;
 }
 
 class CreateCategoryService {
-  async execute({ categoryName, slug, codigo, loja_id }: CategoryRequest){
+  async execute({ categoryName, order, codigo, loja_id }: CategoryRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, "")
-          .toLowerCase()
-          .replace(/ +/g, "-")
-          .replace(/-{2,}/g, "-")
-          .replace(/[/]/g, "-");
-  }
-    
-    if(categoryName === ''){
-      throw new Error('categoryName invalid')
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/ +/g, "-")
+        .replace(/-{2,}/g, "-")
+        .replace(/[/]/g, "-");
     }
 
+    const userOrderExist = await prismaClient.category.findFirst({
+      where: {
+        order: order,
+      }
+    });
+
+    if (userOrderExist) {
+      throw new Error("Order already exists");
+    };
+
     const category = await prismaClient.category.create({
-      data:{
+      data: {
         categoryName: categoryName,
         slug: removerAcentos(categoryName),
+        order: order,
         codigo: codigo,
         loja_id: loja_id
       }
-    })
+    });
 
     return category;
 

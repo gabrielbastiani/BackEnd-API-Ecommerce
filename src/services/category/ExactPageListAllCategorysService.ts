@@ -9,9 +9,6 @@ class ExactPageListAllCategorysService {
             where: {
                 id: category_id
             },
-            orderBy: {
-                created_at: 'desc'
-            },
             include: {
                 loja: true,
                 products: true,
@@ -27,10 +24,7 @@ class ExactPageListAllCategorysService {
                 products: true,
             },
             skip,
-            take: limit,
-            orderBy: {
-                created_at: 'desc'
-            }
+            take: limit
         });
 
         // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu

@@ -102,6 +102,7 @@ model Category {
   id              String         @id @default(uuid())
   categoryName    String         @unique @db.VarChar(300)
   slug            String?        @unique @db.VarChar(300)
+  order           Int?           @unique
   codigo          String?        @db.VarChar(300)
   disponibilidade StatusCategory @default(Disponivel)
 
@@ -125,6 +126,7 @@ model Product {
   id                  String         @id @default(uuid())
   nameProduct         String         @db.VarChar(325)
   slug                String?        @unique @db.VarChar(325)
+  order               Int?           @unique
   descriptionProduct1 String?        @db.VarChar(1725)
   descriptionProduct2 String?        @db.VarChar(1725)
   descriptionProduct3 String?        @db.VarChar(1725)
@@ -178,6 +180,7 @@ enum StatusOferta {
 model PhotoProduct {
   id         String   @id @default(uuid())
   photo      String?
+  order      Int?     @unique
   product    Product? @relation(fields: [product_id], references: [id])
   product_id String?
 
@@ -190,6 +193,7 @@ model PhotoProduct {
 model BannerHome {
   id     String           @id @default(uuid())
   banner String?
+  order  Int?             @unique
   url    String?
   active StatusBannerHome @default(Sim)
 
@@ -207,6 +211,7 @@ enum StatusBannerHome {
 model BannerInPage {
   id         String           @id @default(uuid())
   bannerPage String?
+  order      Int?             @unique
   url        String?
   active     StatusBannerPage @default(Sim)
 
@@ -224,6 +229,7 @@ enum StatusBannerPage {
 model BannerMosaico {
   id            String              @id @default(uuid())
   bannerMosaico String?
+  order         Int?                @unique
   url           String?
   active        StatusBannerMosaico @default(Sim)
 
@@ -242,6 +248,7 @@ model Variacao {
   id                      String                 @id @default(uuid())
   nameVariacao            String?                @db.VarChar(355)
   slug                    String?                @unique @db.VarChar(355)
+  order                   Int?                   @unique
   descriptionVariacao1    String?                @db.VarChar(1725)
   descriptionVariacao2    String?                @db.VarChar(1725)
   descriptionVariacao3    String?                @db.VarChar(1725)
@@ -300,6 +307,7 @@ enum StatusOfertaVariacao {
 model PhotoVariacao {
   id            String    @id @default(uuid())
   photoVariacao String
+  order         Int?      @unique
   variacao      Variacao? @relation(fields: [variacao_id], references: [id])
   variacao_id   String?
   product       Product?  @relation(fields: [product_id], references: [id])
