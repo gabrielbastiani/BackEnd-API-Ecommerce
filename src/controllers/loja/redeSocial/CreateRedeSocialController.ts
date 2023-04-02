@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateRedeSocialService } from '../../../services/loja/redeSocial/CreateRedeSocialService';
 
-class CreateLojaController {
+class CreateRedeSocialController {
     async handle(req: Request, res: Response) {
         const {
             redeName,
@@ -26,4 +26,4 @@ class CreateLojaController {
     }
 }
 
-export { CreateLojaController }
+export { CreateRedeSocialController }

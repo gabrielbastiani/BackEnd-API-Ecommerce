@@ -128,6 +128,7 @@ CREATE TABLE "textosinstitucionais" (
     "title" VARCHAR(325) NOT NULL,
     "slug" VARCHAR(325),
     "order" INTEGER,
+    "posicao" VARCHAR(300),
     "description" VARCHAR(95725),
     "disponibilidade" "StatusTextoInstitucional" NOT NULL DEFAULT 'Disponivel',
     "loja_id" TEXT,

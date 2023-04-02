@@ -15,7 +15,7 @@ class CreateRedeSocialService {
         redeName: redeName,
         link: link,
         imageRede: imageRede,
-        order: order,
+        order: Number(order),
         loja_id: loja_id
       }
     })

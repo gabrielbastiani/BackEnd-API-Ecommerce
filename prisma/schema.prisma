@@ -126,6 +126,7 @@ model TextoInstitucional {
   title           String                   @db.VarChar(325)
   slug            String?                  @unique @db.VarChar(325)
   order           Int?                     @unique
+  posicao         String?                  @db.VarChar(300)
   description     String?                  @db.VarChar(95725)
   disponibilidade StatusTextoInstitucional @default(Disponivel)
 

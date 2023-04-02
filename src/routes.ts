@@ -225,6 +225,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { CreateRedeSocialController } from './controllers/loja/redeSocial/CreateRedeSocialController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -293,7 +294,7 @@ router.put('/logoLojaUpdate', ADMINisAuthenticated, upload.single('file'), new U
 router.put('/updateAllDateLoja', ADMINisAuthenticated, new UpdateAllDateLojaController().handle);
 
 // -- ROTAS REDES SOCIAIS DA LOJA --
-
+router.post('/createRedeSocialLoja', ADMINisAuthenticated, upload.single('file'), new CreateRedeSocialController().handle);
 
 // -- ROTAS BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
