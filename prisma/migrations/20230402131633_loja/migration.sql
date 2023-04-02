@@ -5,6 +5,12 @@ CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 CREATE TYPE "News" AS ENUM ('Sim', 'Nao');
 
 -- CreateEnum
+CREATE TYPE "StatusRedeSocial" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
+CREATE TYPE "StatusTextoInstitucional" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
 CREATE TYPE "StatusProduct" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
@@ -109,6 +115,31 @@ CREATE TABLE "lojas" (
 );
 
 -- CreateTable
+CREATE TABLE "redessociais" (
+    "id" TEXT NOT NULL,
+    "redeName" VARCHAR(325),
+    "link" VARCHAR(2725),
+    "order" INTEGER,
+    "disponibilidade" "StatusRedeSocial" NOT NULL DEFAULT 'Disponivel',
+    "loja_id" TEXT,
+
+    CONSTRAINT "redessociais_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "textosinstitucionais" (
+    "id" TEXT NOT NULL,
+    "title" VARCHAR(325) NOT NULL,
+    "slug" VARCHAR(325),
+    "order" INTEGER,
+    "description" VARCHAR(95725),
+    "disponibilidade" "StatusTextoInstitucional" NOT NULL DEFAULT 'Disponivel',
+    "loja_id" TEXT,
+
+    CONSTRAINT "textosinstitucionais_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "products" (
     "id" TEXT NOT NULL,
     "nameProduct" VARCHAR(325) NOT NULL,
@@ -122,14 +153,9 @@ CREATE TABLE "products" (
     "descriptionProduct5" VARCHAR(1725),
     "descriptionProduct6" VARCHAR(1725),
     "preco" INTEGER,
-    "sku" VARCHAR(25),
-    "estoque" INTEGER,
-    "pesoKG" VARCHAR(15),
-    "larguraCM" VARCHAR(15),
-    "alturaCM" VARCHAR(15),
-    "profundidadeCM" VARCHAR(15),
-    "disponibilidade" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "promocao" INTEGER,
+    "sku" VARCHAR(25),
+    "disponibilidade" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "produtoDestaque" "StatusDestaque" NOT NULL DEFAULT 'Nao',
     "produtoOferta" "StatusOferta" NOT NULL DEFAULT 'Nao',
     "loja_id" TEXT,
@@ -257,6 +283,7 @@ CREATE TABLE "variacoes" (
     "descriptionVariacao5" VARCHAR(1725),
     "descriptionVariacao6" VARCHAR(1725),
     "preco" INTEGER,
+    "promocao" INTEGER,
     "skuVariacao" VARCHAR(25),
     "estoqueVariacao" INTEGER,
     "pesoKg" VARCHAR(15),
@@ -264,7 +291,6 @@ CREATE TABLE "variacoes" (
     "alturaCm" VARCHAR(15),
     "profundidadeCm" VARCHAR(15),
     "disponibilidadeVariacao" "StatusVariacao" NOT NULL DEFAULT 'Disponivel',
-    "promocao" INTEGER,
     "freteGratis" "StatusFrete" NOT NULL DEFAULT 'Sim',
     "quantidade" INTEGER,
     "quantidadeBloqueada" INTEGER DEFAULT 0,
@@ -443,6 +469,15 @@ CREATE UNIQUE INDEX "users_cpf_key" ON "users"("cpf");
 CREATE UNIQUE INDEX "users_cnpj_key" ON "users"("cnpj");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "redessociais_order_key" ON "redessociais"("order");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "textosinstitucionais_slug_key" ON "textosinstitucionais"("slug");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "textosinstitucionais_order_key" ON "textosinstitucionais"("order");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "products_slug_key" ON "products"("slug");
 
 -- CreateIndex
@@ -495,6 +530,12 @@ CREATE UNIQUE INDEX "photovariacoes_order_key" ON "photovariacoes"("order");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "redessociais" ADD CONSTRAINT "redessociais_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "textosinstitucionais" ADD CONSTRAINT "textosinstitucionais_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -83,20 +83,59 @@ model Loja {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  users         User[]
-  categories    Category[]
-  subcategories SubCategory[]
-  products      Product[]
-  variacoes     Variacao[]
-  avaliacoes    Avaliacao[]
-  newsletters   Newsletter[]
-  contatos      Contato[]
-  carrinhos     Carrinho[]
-  pagamentos    Pagamento[]
-  entregas      Entrega[]
-  pedidos       Pedido[]
+  users                User[]
+  redessociais         RedeSocial[]
+  textosinstitucionais TextoInstitucional[]
+  categories           Category[]
+  subcategories        SubCategory[]
+  products             Product[]
+  variacoes            Variacao[]
+  avaliacoes           Avaliacao[]
+  newsletters          Newsletter[]
+  contatos             Contato[]
+  carrinhos            Carrinho[]
+  pagamentos           Pagamento[]
+  entregas             Entrega[]
+  pedidos              Pedido[]
 
   @@map("lojas")
+}
+
+model RedeSocial {
+  id              String           @id @default(uuid())
+  redeName        String?          @db.VarChar(325)
+  link            String?          @db.VarChar(2725)
+  order           Int?             @unique
+  disponibilidade StatusRedeSocial @default(Disponivel)
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("redessociais")
+}
+
+enum StatusRedeSocial {
+  Disponivel
+  Indisponivel
+}
+
+model TextoInstitucional {
+  id              String                   @id @default(uuid())
+  title           String                   @db.VarChar(325)
+  slug            String?                  @unique @db.VarChar(325)
+  order           Int?                     @unique
+  description     String?                  @db.VarChar(95725)
+  disponibilidade StatusTextoInstitucional @default(Disponivel)
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("textosinstitucionais")
+}
+
+enum StatusTextoInstitucional {
+  Disponivel
+  Indisponivel
 }
 
 model Product {
@@ -112,14 +151,9 @@ model Product {
   descriptionProduct5 String?        @db.VarChar(1725)
   descriptionProduct6 String?        @db.VarChar(1725)
   preco               Int?
-  sku                 String?        @db.VarChar(25)
-  estoque             Int?
-  pesoKG              String?        @db.VarChar(15)
-  larguraCM           String?        @db.VarChar(15)
-  alturaCM            String?        @db.VarChar(15)
-  profundidadeCM      String?        @db.VarChar(15)
-  disponibilidade     StatusProduct  @default(Disponivel)
   promocao            Int?
+  sku                 String?        @db.VarChar(25)
+  disponibilidade     StatusProduct  @default(Disponivel)
   produtoDestaque     StatusDestaque @default(Nao)
   produtoOferta       StatusOferta   @default(Nao)
 
@@ -319,6 +353,7 @@ model Variacao {
   descriptionVariacao5    String?                @db.VarChar(1725)
   descriptionVariacao6    String?                @db.VarChar(1725)
   preco                   Int?
+  promocao                Int?
   skuVariacao             String?                @db.VarChar(25)
   estoqueVariacao         Int?
   pesoKg                  String?                @db.VarChar(15)
@@ -326,7 +361,6 @@ model Variacao {
   alturaCm                String?                @db.VarChar(15)
   profundidadeCm          String?                @db.VarChar(15)
   disponibilidadeVariacao StatusVariacao         @default(Disponivel)
-  promocao                Int?
   freteGratis             StatusFrete            @default(Sim)
   quantidade              Int?
   quantidadeBloqueada     Int?                   @default(0)
