@@ -236,6 +236,16 @@ import { UpdateDisponibilidadeRedeSocialController } from './controllers/loja/re
 import { DeleteRedeSocialController } from './controllers/loja/redeSocial/DeleteRedeSocialController';
 import { PageListRedesSocialController } from './controllers/loja/redeSocial/PageListRedesSocialController';
 import { ListExactRedeSocialController } from './controllers/loja/redeSocial/ListExactRedeSocialController';
+import { CreateTextInstitucionalController } from './controllers/loja/textoInstitucional/CreateTextInstitucionalController';
+import { DeleteTextoInstitucionalController } from './controllers/loja/textoInstitucional/DeleteTextoInstitucionalController';
+import { ListAllTextosOrderAndPosicaoController } from './controllers/loja/textoInstitucional/ListAllTextosOrderAndPosicaoController';
+import { ListExactTextoInstitucionalController } from './controllers/loja/textoInstitucional/ListExactTextoInstitucionalController';
+import { PageListTextoInstitucionalController } from './controllers/loja/textoInstitucional/PageListTextoInstitucionalController';
+import { UpdateDisponibilidadeTextoController } from './controllers/loja/textoInstitucional/UpdateDisponibilidadeTextoController';
+import { UpdateOrderTextoInstitucionalController } from './controllers/loja/textoInstitucional/UpdateOrderTextoInstitucionalController';
+import { UpdatePosicaoTextoController } from './controllers/loja/textoInstitucional/UpdatePosicaoTextoController';
+import { UpdateTitleTextoController } from './controllers/loja/textoInstitucional/UpdateTitleTextoController';
+import { UpdateDescriptionTextoController } from './controllers/loja/textoInstitucional/UpdateDescriptionTextoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -316,6 +326,18 @@ router.get('/pageListRedesSociais', ADMINisAuthenticated, new PageListRedesSocia
 router.get('/listExactRedesSociais', ADMINisAuthenticated, new ListExactRedeSocialController().handle);
 router.get('/listRedesSociaisOrder', new ListAllRedesSociaisOrderAndPosicaoController().handle);
 
+// -- ROTAS TEXTOS INSTITUCIONAIS --
+router.post('/createTextoInstitucional', ADMINisAuthenticated, new CreateTextInstitucionalController().handle);
+router.delete('/deleteTextoInstitucional', ADMINisAuthenticated, new DeleteTextoInstitucionalController().handle);
+router.get('/listExactTextoInstitucional', ADMINisAuthenticated, new ListExactTextoInstitucionalController().handle);
+router.get('/pageListTextoInstitucional', ADMINisAuthenticated, new PageListTextoInstitucionalController().handle);
+router.put('/updateDisponibilidadeTexto', ADMINisAuthenticated, new UpdateDisponibilidadeTextoController().handle);
+router.put('/updateOrderTextoInstitucional', ADMINisAuthenticated, new UpdateOrderTextoInstitucionalController().handle);
+router.put('/updatePosicaoTextoInstitucional', ADMINisAuthenticated, new UpdatePosicaoTextoController().handle);
+router.put('/updateTitleTextoInstitucional', ADMINisAuthenticated, new UpdateTitleTextoController().handle);
+router.put('/updateDescriptionTextoInstitucional', ADMINisAuthenticated, new UpdateDescriptionTextoController().handle);
+router.get('/listTextosInstitucionais', new ListAllTextosOrderAndPosicaoController().handle);
+
 // -- ROTAS BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
 router.get('/pageListBanner', ADMINisAuthenticated, new PageListAllBannerController().handle);
@@ -325,7 +347,6 @@ router.put('/updateStatusBanner', ADMINisAuthenticated, new StatusBannerControll
 router.put('/updateUrlBanner', ADMINisAuthenticated, new UpdateUrlBannerController().handle);
 router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController().handle);
 router.get('/activeBanner', new ActiveAllBannerController().handle);
-
 
 // -- ROTAS CATEGORIAS --
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
