@@ -249,6 +249,12 @@ import { UpdateDescriptionTextoController } from './controllers/loja/textoInstit
 import { CreatePhotoTextoInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/CreatePhotoTextoInstitucionalController';
 import { AllPhotosTextoInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/AllPhotosTextoInstitucionalController';
 import { AllPhotosTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/AllPhotosTextosController';
+import { DeleteAllPhotoTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeleteAllPhotoTextosController';
+import { DeletePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeletePhotoTextoController';
+import { UpdatePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePhotoTextoController';
+import { UpdateTitlePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateTitlePhotoTextoController';
+import { UpdateOrderPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
+import { UpdatePosicaoPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -342,8 +348,12 @@ router.put('/updateDescriptionTextoInstitucional', ADMINisAuthenticated, new Upd
 router.post('/createImageTextoInstitucional', ADMINisAuthenticated, upload.single('file'), new CreatePhotoTextoInstitucionalController().handle);
 router.get('/allImages', ADMINisAuthenticated, new AllPhotosTextoInstitucionalController().handle);
 router.get('/allImagesTextoInstitucional', ADMINisAuthenticated, new AllPhotosTextosController().handle);
-
-
+router.delete('/deleteAllImagesTextos', ADMINisAuthenticated, new DeleteAllPhotoTextosController().handle);
+router.delete('/deleteImageTextoInstitucional', ADMINisAuthenticated, new DeletePhotoTextoController().handle);
+router.put('/updateImageTextoInstitucional', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoTextoController().handle);
+router.put('/updateTitleImageTextoInstitucional', ADMINisAuthenticated, new UpdateTitlePhotoTextoController().handle);
+router.put('/updateOrderImageTextoInstitucional', ADMINisAuthenticated, new UpdateOrderPhotoTextoController().handle);
+router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new UpdatePosicaoPhotoTextoController().handle);
 router.get('/listTextosInstitucionais', new ListAllTextosOrderAndPosicaoController().handle);
 
 // -- ROTAS BANNER --
