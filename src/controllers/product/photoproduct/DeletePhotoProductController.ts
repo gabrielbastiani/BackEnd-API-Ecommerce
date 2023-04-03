@@ -1,21 +1,28 @@
-import { Request, Response } from "express";
-import { DeletePhotoProductService } from "../../../services/product/photoproduct/DeletePhotoProductService";
+import { Request, Response } from 'express';
+import { DeletePhotoProductService } from '../../../services/product/photoproduct/DeletePhotoProductService';
+import { RemovePhotoProductService } from '../../../services/product/photoproduct/RemovePhotoProductService';
 import fs from 'fs';
 
 class DeletePhotoProductController {
   async handle(req: Request, res: Response) {
     const photoProduts_id = req.query.photoProduts_id as string;
 
-    const deletePhotoProductService = new DeletePhotoProductService();
+    const updatePhoto = new DeletePhotoProductService();
+    const deletePhoto = new RemovePhotoProductService();
 
-    const photoProducts = await deletePhotoProductService.execute({
+    const productPhoto = await deletePhoto.execute({
+      photoProduts_id
+    })
+
+    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + productPhoto.photo);
+
+    const deletePhotoProduct = await updatePhoto.execute({
       photoProduts_id,
     });
 
-    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + photoProducts.photo);
+    return res.json([productPhoto, deletePhotoProduct]);
 
-    return res.json(photoProducts);
   }
 }
 
-export { DeletePhotoProductController };
+export { DeletePhotoProductController }

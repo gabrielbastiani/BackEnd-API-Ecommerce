@@ -2,17 +2,17 @@ import prismaClient from "../../../prisma";
 
 interface LojaRequest {
     redesocial_id: any;
-    order: number;
+    imageRede: string;
 }
 
-class UpdateOrderRedeSocialService {
-    async execute({ redesocial_id, order }: LojaRequest) {
+class UpdateImageRedeSocialService {
+    async execute({ redesocial_id, imageRede }: LojaRequest) {
         const loja = await prismaClient.redeSocial.update({
             where: {
                 id: String(redesocial_id),
             },
             data: {
-                order: Number(order)
+                imageRede: imageRede
             }
         })
 
@@ -21,4 +21,4 @@ class UpdateOrderRedeSocialService {
     }
 }
 
-export { UpdateOrderRedeSocialService }
+export { UpdateImageRedeSocialService }

@@ -228,6 +228,14 @@ import uploadConfig from './config/multer';
 import { CreateRedeSocialController } from './controllers/loja/redeSocial/CreateRedeSocialController';
 import { UpdateOrderRedeSocialController } from './controllers/loja/redeSocial/UpdateOrderRedeSocialController';
 import { ListAllRedesSociaisOrderAndPosicaoController } from './controllers/loja/redeSocial/ListAllRedesSociaisOrderAndPosicaoController';
+import { UpdateRedeNameController } from './controllers/loja/redeSocial/UpdateRedeNameController';
+import { UpdateLinkRedeSocialController } from './controllers/loja/redeSocial/UpdateLinkRedeSocialController';
+import { UpdateImageRedeSocialController } from './controllers/loja/redeSocial/UpdateImageRedeSocialController';
+import { UpdatePosicaoRedeSocialController } from './controllers/loja/redeSocial/UpdatePosicaoRedeSocialController';
+import { UpdateDisponibilidadeRedeSocialController } from './controllers/loja/redeSocial/UpdateDisponibilidadeRedeSocialController';
+import { DeleteRedeSocialController } from './controllers/loja/redeSocial/DeleteRedeSocialController';
+import { PageListRedesSocialController } from './controllers/loja/redeSocial/PageListRedesSocialController';
+import { ListExactRedeSocialController } from './controllers/loja/redeSocial/ListExactRedeSocialController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -298,13 +306,21 @@ router.put('/updateAllDateLoja', ADMINisAuthenticated, new UpdateAllDateLojaCont
 // -- ROTAS REDES SOCIAIS DA LOJA --
 router.post('/createRedeSocialLoja', ADMINisAuthenticated, upload.single('file'), new CreateRedeSocialController().handle);
 router.put('/updateOrderRedeSocial', ADMINisAuthenticated, new UpdateOrderRedeSocialController().handle);
+router.put('/updateRedeName', ADMINisAuthenticated, new UpdateRedeNameController().handle);
+router.put('/updateLinkRedeSocial', ADMINisAuthenticated, new UpdateLinkRedeSocialController().handle);
+router.put('/updateImageRedeSocial', ADMINisAuthenticated, upload.single('file'), new UpdateImageRedeSocialController().handle);
+router.put('/updatePosicaoRedeSocial', ADMINisAuthenticated, new UpdatePosicaoRedeSocialController().handle);
+router.put('/updateDisponibilidadeRedeSocial', ADMINisAuthenticated, new UpdateDisponibilidadeRedeSocialController().handle);
+router.delete('/deleteRedeSocial', ADMINisAuthenticated, new DeleteRedeSocialController().handle);
+router.get('/pageListRedesSociais', ADMINisAuthenticated, new PageListRedesSocialController().handle);
+router.get('/listExactRedesSociais', ADMINisAuthenticated, new ListExactRedeSocialController().handle);
 router.get('/listRedesSociaisOrder', new ListAllRedesSociaisOrderAndPosicaoController().handle);
 
 // -- ROTAS BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
 router.get('/pageListBanner', ADMINisAuthenticated, new PageListAllBannerController().handle);
 router.delete('/deleteBanner', ADMINisAuthenticated, new DeleteBannerController().handle);
-router.put('/updateBannerHome', ADMINisAuthenticated, upload.single('file'), new UpdateBannerController().handle);
+router.put('/updateBanner', ADMINisAuthenticated, upload.single('file'), new UpdateBannerController().handle);
 router.put('/updateStatusBanner', ADMINisAuthenticated, new StatusBannerController().handle);
 router.put('/updateUrlBanner', ADMINisAuthenticated, new UpdateUrlBannerController().handle);
 router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController().handle);

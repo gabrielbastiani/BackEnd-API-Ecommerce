@@ -2,15 +2,15 @@ import { StatusRedeSocial } from "@prisma/client";
 import prismaClient from "../../../prisma";
 
 interface RequestRedes {
-   posicao: string;
+   slugPosicao: string;
 }
 
 class ListAllRedesSociaisOrderAndPosicaoService {
-   async execute({ posicao }: RequestRedes) {
+   async execute({ slugPosicao }: RequestRedes) {
       const allRedesFilter = await prismaClient.redeSocial.findMany({
          where: {
             disponibilidade: StatusRedeSocial.Disponivel,
-            posicao: posicao
+            slugPosicao: slugPosicao
          },
          orderBy: {
             order: 'asc'

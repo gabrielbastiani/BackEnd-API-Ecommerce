@@ -3,13 +3,13 @@ import { UpdateOrderRedeSocialService } from '../../../services/loja/redeSocial/
 
 class UpdateOrderRedeSocialController {
   async handle(req: Request, res: Response) {
-    const redesocial_id = req.query.redesocial_id;
+    const { redesocial_id } = req.query;
 
     const { order } = req.body;
 
-    const updatecepLoja = new UpdateOrderRedeSocialService();
+    const updateOrder = new UpdateOrderRedeSocialService();
 
-    const loja = await updatecepLoja.execute({
+    const loja = await updateOrder.execute({
       redesocial_id,
       order,
     });
