@@ -9,13 +9,17 @@ class ListAllProductOfertasService {
                 disponibilidade: StatusProduct.Disponivel
             },
             include: {
+                categories: true,
+                subcategories: true,
+                atributos: true,
+                loja: true,
                 photoproducts: true,
                 variacoes: true,
                 photovariacoes: true,
                 avaliacoes: true,
             },
             orderBy: {
-                created_at: 'desc'
+                order: 'asc'
             }
         })
 

@@ -18,11 +18,6 @@ class ExportProductService {
                 descriptionProduct6: true,
                 preco: true,
                 sku: true,
-                estoque: true,
-                pesoKG: true,
-                larguraCM: true,
-                alturaCM: true,
-                profundidadeCM: true,
                 promocao: true,
                 loja_id: true,
             },
@@ -42,11 +37,6 @@ class ExportProductService {
             "Sexta Descrição",
             "Preço do Produto",
             "SKU do Produto",
-            "Estoque do Produto",
-            "Peso do Produto",
-            "Largura do Produto",
-            "Altura do Produto",
-            "Profundidade do Produto",
             "Promoção do Produto",
             "Loja do Produto"
         ]

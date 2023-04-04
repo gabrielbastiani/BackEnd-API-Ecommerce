@@ -7,12 +7,15 @@ class ListExactProductService {
                 id: String(product_id)
             },
             include: {
-                category: true,
+                categories: true,
+                subcategories: true,
+                atributos: true,
                 loja: true,
                 photoproducts: true,
                 variacoes: true,
+                photovariacoes: true,
                 avaliacoes: true,
-            },
+            }
         })
         return exactProduct;
     }

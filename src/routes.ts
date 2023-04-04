@@ -62,6 +62,40 @@ import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
 import { UpdateLogoLojaController } from './controllers/loja/UpdateLogoLojaController';
 import { UpdateAllDateLojaController } from './controllers/loja/UpdateAllDateLojaController';
 
+// -- ROTAS REDES SOCIAIS DA LOJA --
+import { CreateRedeSocialController } from './controllers/loja/redeSocial/CreateRedeSocialController';
+import { UpdateOrderRedeSocialController } from './controllers/loja/redeSocial/UpdateOrderRedeSocialController';
+import { ListAllRedesSociaisOrderAndPosicaoController } from './controllers/loja/redeSocial/ListAllRedesSociaisOrderAndPosicaoController';
+import { UpdateRedeNameController } from './controllers/loja/redeSocial/UpdateRedeNameController';
+import { UpdateLinkRedeSocialController } from './controllers/loja/redeSocial/UpdateLinkRedeSocialController';
+import { UpdateImageRedeSocialController } from './controllers/loja/redeSocial/UpdateImageRedeSocialController';
+import { UpdatePosicaoRedeSocialController } from './controllers/loja/redeSocial/UpdatePosicaoRedeSocialController';
+import { UpdateDisponibilidadeRedeSocialController } from './controllers/loja/redeSocial/UpdateDisponibilidadeRedeSocialController';
+import { DeleteRedeSocialController } from './controllers/loja/redeSocial/DeleteRedeSocialController';
+import { PageListRedesSocialController } from './controllers/loja/redeSocial/PageListRedesSocialController';
+import { ListExactRedeSocialController } from './controllers/loja/redeSocial/ListExactRedeSocialController';
+
+// -- ROTAS TEXTOS INSTITUCIONAIS --
+import { CreateTextInstitucionalController } from './controllers/loja/textoInstitucional/CreateTextInstitucionalController';
+import { DeleteTextoInstitucionalController } from './controllers/loja/textoInstitucional/DeleteTextoInstitucionalController';
+import { ListAllTextosOrderAndPosicaoController } from './controllers/loja/textoInstitucional/ListAllTextosOrderAndPosicaoController';
+import { ListExactTextoInstitucionalController } from './controllers/loja/textoInstitucional/ListExactTextoInstitucionalController';
+import { PageListTextoInstitucionalController } from './controllers/loja/textoInstitucional/PageListTextoInstitucionalController';
+import { UpdateDisponibilidadeTextoController } from './controllers/loja/textoInstitucional/UpdateDisponibilidadeTextoController';
+import { UpdateOrderTextoInstitucionalController } from './controllers/loja/textoInstitucional/UpdateOrderTextoInstitucionalController';
+import { UpdatePosicaoTextoController } from './controllers/loja/textoInstitucional/UpdatePosicaoTextoController';
+import { UpdateTitleTextoController } from './controllers/loja/textoInstitucional/UpdateTitleTextoController';
+import { UpdateDescriptionTextoController } from './controllers/loja/textoInstitucional/UpdateDescriptionTextoController';
+import { CreatePhotoTextoInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/CreatePhotoTextoInstitucionalController';
+import { AllPhotosTextoInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/AllPhotosTextoInstitucionalController';
+import { AllPhotosTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/AllPhotosTextosController';
+import { DeleteAllPhotoTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeleteAllPhotoTextosController';
+import { DeletePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeletePhotoTextoController';
+import { UpdatePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePhotoTextoController';
+import { UpdateTitlePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateTitlePhotoTextoController';
+import { UpdateOrderPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
+import { UpdatePosicaoPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
+
 // -- ROTAS BANNERS --
 import { CreateBannerController } from './controllers/banner/CreateBannerController';
 import { PageListAllBannerController } from './controllers/banner/PageListAllBannerController';
@@ -80,7 +114,6 @@ import { UpdateOrderCategoryController } from './controllers/category/UpdateOrde
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
 import { UpdatePosicaoCategoryController } from './controllers/category/UpdatePosicaoCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
-import { ExactCategoryProductController } from './controllers/product/ExactCategoryProductController';
 import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
@@ -96,7 +129,6 @@ import { AllPhotosController } from './controllers/product/photoproduct/AllPhoto
 import { AllProductController } from './controllers/product/AllProductController';
 import { AllProductInStoreController } from './controllers/product/AllProductInStoreController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
-import { ExactPageListAllProductController } from './controllers/product/ExactPageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
 import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
 import { DeleteAllPhotoProductController } from './controllers/product/photoproduct/DeleteAllPhotoProductController';
@@ -113,16 +145,9 @@ import { Update5DescriptionProductController } from './controllers/product/Updat
 import { Update6DescriptionProductController } from './controllers/product/Update6DescriptionProductController';
 import { UpdatePriceProductController } from './controllers/product/UpdatePriceProductController';
 import { UpdateSKUProductController } from './controllers/product/UpdateSKUProductController';
-import { UpdateEstoqueProductController } from './controllers/product/UpdateEstoqueProductController';
-import { UpdatePesoProductController } from './controllers/product/UpdatePesoProductController';
-import { UpdateLarguraProductController } from './controllers/product/UpdateLarguraProductController';
-import { UpdateAlturaProductController } from './controllers/product/UpdateAlturaProductController';
-import { UpdateProfundidadeProductController } from './controllers/product/UpdateProfundidadeProductController';
 import { PromocaoProductController } from './controllers/product/PromocaoProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
 import { DisponibilidadeDoProductController } from './controllers/product/DisponibilidadeDoProductController';
-import { UpdateCategoryIDProductController } from './controllers/product/UpdateCategoryIDProductController';
-import { UpdateCategoryNameProductController } from './controllers/product/UpdateCategoryNameProductController';
 import { UpdateProductDestqueController } from './controllers/product/UpdateProductDestqueController';
 import { UpdateProductOfertaController } from './controllers/product/UpdateProductOfertaController';
 import { UpdateLojaProductController } from './controllers/product/UpdateLojaProductController';
@@ -225,36 +250,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { CreateRedeSocialController } from './controllers/loja/redeSocial/CreateRedeSocialController';
-import { UpdateOrderRedeSocialController } from './controllers/loja/redeSocial/UpdateOrderRedeSocialController';
-import { ListAllRedesSociaisOrderAndPosicaoController } from './controllers/loja/redeSocial/ListAllRedesSociaisOrderAndPosicaoController';
-import { UpdateRedeNameController } from './controllers/loja/redeSocial/UpdateRedeNameController';
-import { UpdateLinkRedeSocialController } from './controllers/loja/redeSocial/UpdateLinkRedeSocialController';
-import { UpdateImageRedeSocialController } from './controllers/loja/redeSocial/UpdateImageRedeSocialController';
-import { UpdatePosicaoRedeSocialController } from './controllers/loja/redeSocial/UpdatePosicaoRedeSocialController';
-import { UpdateDisponibilidadeRedeSocialController } from './controllers/loja/redeSocial/UpdateDisponibilidadeRedeSocialController';
-import { DeleteRedeSocialController } from './controllers/loja/redeSocial/DeleteRedeSocialController';
-import { PageListRedesSocialController } from './controllers/loja/redeSocial/PageListRedesSocialController';
-import { ListExactRedeSocialController } from './controllers/loja/redeSocial/ListExactRedeSocialController';
-import { CreateTextInstitucionalController } from './controllers/loja/textoInstitucional/CreateTextInstitucionalController';
-import { DeleteTextoInstitucionalController } from './controllers/loja/textoInstitucional/DeleteTextoInstitucionalController';
-import { ListAllTextosOrderAndPosicaoController } from './controllers/loja/textoInstitucional/ListAllTextosOrderAndPosicaoController';
-import { ListExactTextoInstitucionalController } from './controllers/loja/textoInstitucional/ListExactTextoInstitucionalController';
-import { PageListTextoInstitucionalController } from './controllers/loja/textoInstitucional/PageListTextoInstitucionalController';
-import { UpdateDisponibilidadeTextoController } from './controllers/loja/textoInstitucional/UpdateDisponibilidadeTextoController';
-import { UpdateOrderTextoInstitucionalController } from './controllers/loja/textoInstitucional/UpdateOrderTextoInstitucionalController';
-import { UpdatePosicaoTextoController } from './controllers/loja/textoInstitucional/UpdatePosicaoTextoController';
-import { UpdateTitleTextoController } from './controllers/loja/textoInstitucional/UpdateTitleTextoController';
-import { UpdateDescriptionTextoController } from './controllers/loja/textoInstitucional/UpdateDescriptionTextoController';
-import { CreatePhotoTextoInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/CreatePhotoTextoInstitucionalController';
-import { AllPhotosTextoInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/AllPhotosTextoInstitucionalController';
-import { AllPhotosTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/AllPhotosTextosController';
-import { DeleteAllPhotoTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeleteAllPhotoTextosController';
-import { DeletePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeletePhotoTextoController';
-import { UpdatePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePhotoTextoController';
-import { UpdateTitlePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateTitlePhotoTextoController';
-import { UpdateOrderPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
-import { UpdatePosicaoPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
+
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -390,8 +386,6 @@ router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductContr
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
 router.get('/allProduct', ADMINisAuthenticated, new AllProductController().handle);
 router.get('/allProductsPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllProductController().handle);
-router.get('/allProductsPageExact', ADMINisAuthenticated, new ExactPageListAllProductController().handle);
-router.get('/productExactCategory', ADMINisAuthenticated, new ExactCategoryProductController().handle);
 router.get('/exactProduct', ADMINisAuthenticated, new ListExactProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
@@ -404,16 +398,9 @@ router.put('/updateDescription5', ADMINisAuthenticated, new Update5DescriptionPr
 router.put('/updateDescription6', ADMINisAuthenticated, new Update6DescriptionProductController().handle);
 router.put('/updatePrice', ADMINisAuthenticated, new UpdatePriceProductController().handle);
 router.put('/updateSKU', ADMINisAuthenticated, new UpdateSKUProductController().handle);
-router.put('/updateEstoque', ADMINisAuthenticated, new UpdateEstoqueProductController().handle);
-router.put('/updatePeso', ADMINisAuthenticated, new UpdatePesoProductController().handle);
-router.put('/updateLargura', ADMINisAuthenticated, new UpdateLarguraProductController().handle);
-router.put('/updateAltura', ADMINisAuthenticated, new UpdateAlturaProductController().handle);
-router.put('/updateProfundidade', ADMINisAuthenticated, new UpdateProfundidadeProductController().handle);
 router.put('/productPromocao', ADMINisAuthenticated, new PromocaoProductController().handle);
 router.get('/exportProduct', ADMINisAuthenticated, new ExportProductController().handle);
 router.put('/diponibilidadeProduct', ADMINisAuthenticated, new DisponibilidadeDoProductController().handle);
-router.put('/updateCategory', ADMINisAuthenticated, new UpdateCategoryIDProductController().handle);
-router.put('/updateCategoryName', ADMINisAuthenticated, new UpdateCategoryNameProductController().handle);
 router.put('/updateLoja', ADMINisAuthenticated, new UpdateLojaProductController().handle);
 router.put('/destaque', ADMINisAuthenticated, new UpdateProductDestqueController().handle);
 router.put('/oferta', ADMINisAuthenticated, new UpdateProductOfertaController().handle);

@@ -3,7 +3,9 @@ import prismaClient from "../../prisma";
 interface ProductRequest {
     nameProduct: string;
     slug: string;
-    category_id: string;
+    posicao: string;
+    slugPosicao: string;
+    order: number;
     descriptionProduct1: string;
     descriptionProduct2: string;
     descriptionProduct3: string;
@@ -12,11 +14,6 @@ interface ProductRequest {
     descriptionProduct6: string;
     preco: number;
     sku: string;
-    estoque: number;
-    pesoKG: string;
-    larguraCM: string;
-    alturaCM: string;
-    profundidadeCM: string;
     promocao: number;
     loja_id: string;
 }
@@ -24,8 +21,8 @@ interface ProductRequest {
 class CreateProductService {
     async execute({
         nameProduct,
-        slug,
-        category_id,
+        posicao,
+        order,
         descriptionProduct1,
         descriptionProduct2,
         descriptionProduct3,
@@ -34,11 +31,6 @@ class CreateProductService {
         descriptionProduct6,
         preco,
         sku,
-        estoque,
-        pesoKG,
-        larguraCM,
-        alturaCM,
-        profundidadeCM,
         promocao,
         loja_id,
     }: ProductRequest) {
@@ -56,7 +48,9 @@ class CreateProductService {
             data: {
                 nameProduct: nameProduct,
                 slug: removerAcentos(nameProduct),
-                category_id: category_id,
+                posicao: posicao,
+                slugPosicao: removerAcentos(posicao),
+                order: Number(order),
                 descriptionProduct1: descriptionProduct1,
                 descriptionProduct2: descriptionProduct2,
                 descriptionProduct3: descriptionProduct3,
@@ -65,16 +59,13 @@ class CreateProductService {
                 descriptionProduct6: descriptionProduct6,
                 preco: preco,
                 sku: sku,
-                estoque: estoque,
-                pesoKG: pesoKG,
-                larguraCM: larguraCM,
-                alturaCM: alturaCM,
-                profundidadeCM: profundidadeCM,
                 promocao: promocao,
                 loja_id: loja_id
             },
             include: {
-                category: true,
+                categories: true,
+                subcategories: true,
+                atributos: true,
                 loja: true,
                 photoproducts: true,
                 variacoes: true,

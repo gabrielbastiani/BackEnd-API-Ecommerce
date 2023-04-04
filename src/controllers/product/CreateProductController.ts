@@ -6,7 +6,9 @@ class CreateProductController {
         const {
             nameProduct,
             slug,
-            category_id,
+            posicao,
+            slugPosicao,
+            order,
             descriptionProduct1,
             descriptionProduct2,
             descriptionProduct3,
@@ -15,11 +17,6 @@ class CreateProductController {
             descriptionProduct6,
             preco,
             sku,
-            estoque,
-            pesoKG,
-            larguraCM,
-            alturaCM,
-            profundidadeCM,
             promocao,
             loja_id
         } = req.body;
@@ -28,8 +25,10 @@ class CreateProductController {
 
         const product = await createProductService.execute({
             nameProduct,
-            category_id,
             slug,
+            posicao,
+            slugPosicao,
+            order,
             descriptionProduct1,
             descriptionProduct2,
             descriptionProduct3,
@@ -38,11 +37,6 @@ class CreateProductController {
             descriptionProduct6,
             preco,
             sku,
-            estoque,
-            pesoKG,
-            larguraCM,
-            alturaCM,
-            profundidadeCM,
             promocao,
             loja_id
         })
