@@ -22,78 +22,22 @@ class UpdateAllDateBannerService {
         order,
         url
     }: BannerRequest) {
-        const updateTitle = await prismaClient.banner.update({
+        const updateBanner = await prismaClient.banner.update({
             where: {
                 id: String(banner_id)
             },
             data: {
                 title: title,
-            }
-        })
-
-        const updateWidth = await prismaClient.banner.update({
-            where: {
-                id: String(banner_id)
-            },
-            data: {
                 width: width,
-            }
-        })
-
-        const updateHeight = await prismaClient.banner.update({
-            where: {
-                id: String(banner_id)
-            },
-            data: {
                 height: height,
-            }
-        })
-
-        const updateDataInicio = await prismaClient.banner.update({
-            where: {
-                id: String(banner_id)
-            },
-            data: {
                 dateInicio: dateInicio,
-            }
-        })
-
-        const updateDataFim = await prismaClient.banner.update({
-            where: {
-                id: String(banner_id)
-            },
-            data: {
                 dateFim: dateFim,
-            }
-        })
-
-        const updateOrder = await prismaClient.banner.update({
-            where: {
-                id: String(banner_id)
-            },
-            data: {
-                order: order
-            }
-        })
-
-        const updateUrl = await prismaClient.banner.update({
-            where: {
-                id: String(banner_id)
-            },
-            data: {
+                order: order,
                 url: url
             }
         })
 
-        return [
-            updateTitle,
-            updateWidth,
-            updateHeight,
-            updateDataInicio,
-            updateDataFim,
-            updateOrder,
-            updateUrl
-        ]
+        return updateBanner;
 
     }
 }

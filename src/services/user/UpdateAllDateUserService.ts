@@ -39,158 +39,30 @@ class UpdateAllDateUserService {
         loja_id
     }: UserRequest) {
 
-        const userEmail = await prismaClient.user.update({
+        const updateUserDate = await prismaClient.user.update({
             where: {
                 id: String(user_id),
             },
             data: {
                 email: email,
-            }
-        })
-
-        const userCpf = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 cpf: cpf,
-            }
-        })
-
-        const userCpnj = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 cnpj: cnpj,
-            }
-        })
-
-        const userInscricaoEstadual = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 inscricaoEstadual: inscricaoEstadual,
-            }
-        })
-
-        const userPhone = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 phone: phone,
-            }
-        })
-
-        const userDataNascimento = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 dataNascimento: dataNascimento,
-            }
-        })
-
-        const userGenero = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 genero: genero,
-            }
-        })
-
-        const userLocal = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 local: local,
-            }
-        })
-
-        const userNumero = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 numero: numero,
-            }
-        })
-
-        const userComplemento = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 complemento: complemento,
-            }
-        })
-
-        const userBairro = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 bairro: bairro,
-            }
-        })
-
-        const userCep = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 CEP: CEP,
-            }
-        })
-
-        const userCidade = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 cidade: cidade,
-            }
-        })
-
-        const userEstado = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
                 estado: estado,
+                loja_id: loja_id
             }
         })
 
-        const userLoja = await prismaClient.user.update({
-            where: {
-                id: String(user_id),
-            },
-            data: {
-                loja_id: loja_id,
-            }
-        })
-
-        return [
-            userEmail,
-            userCpf,
-            userCpnj,
-            userInscricaoEstadual,
-            userPhone,
-            userDataNascimento,
-            userGenero,
-            userLocal,
-            userNumero,
-            userComplemento,
-            userBairro,
-            userCep,
-            userCidade,
-            userEstado,
-            userLoja
-        ]
+        return updateUserDate;
 
     }
 

@@ -94,10 +94,17 @@ import { ListExactCategoryController } from './controllers/category/ListExactCat
 import { DeleteCategoryController } from './controllers/category/DeleteCategoryController';
 import { ListExactCategoryNameController } from './controllers/category/ListExactCategoryNameController';
 
+// -- ROTAS SUB CATEGORIAS --
+import { CreateSubCategoryController } from './controllers/category/subCategory/CreateSubCategoryController';
+
+
+
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
 import { PhotoProductController } from './controllers/product/photoproduct/PhotoProductController';
 import { UpdatePhotoProductController } from './controllers/product/photoproduct/UpdatePhotoProductController';
+import { UpdateAllDateProductController } from './controllers/product/UpdateAllDateProductController';
+import { UpdatePosicaoProductController } from './controllers/product/UpdatePosicaoProductController';
 import { AllPhotosProductController } from './controllers/product/photoproduct/AllPhotosProductController';
 import { AllPhotosController } from './controllers/product/photoproduct/AllPhotosController';
 import { AllProductController } from './controllers/product/AllProductController';
@@ -110,21 +117,10 @@ import { DeleteAllVariacaoProductController } from './controllers/variacao/Delet
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { DeleteALLPhotoVariacaoController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
-import { UpdateAllDescriptionProductController } from './controllers/product/UpdateAllDescriptionProductController';
-import { Update1DescriptionProductController } from './controllers/product/Update1DescriptionProductController';
-import { Update2DescriptionProductController } from './controllers/product/Update2DescriptionProductController';
-import { Update3DescriptionProductController } from './controllers/product/Update3DescriptionProductController';
-import { Update4DescriptionProductController } from './controllers/product/Update4DescriptionProductController';
-import { Update5DescriptionProductController } from './controllers/product/Update5DescriptionProductController';
-import { Update6DescriptionProductController } from './controllers/product/Update6DescriptionProductController';
-import { UpdatePriceProductController } from './controllers/product/UpdatePriceProductController';
-import { UpdateSKUProductController } from './controllers/product/UpdateSKUProductController';
-import { PromocaoProductController } from './controllers/product/PromocaoProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
 import { DisponibilidadeDoProductController } from './controllers/product/DisponibilidadeDoProductController';
 import { UpdateProductDestqueController } from './controllers/product/UpdateProductDestqueController';
 import { UpdateProductOfertaController } from './controllers/product/UpdateProductOfertaController';
-import { UpdateLojaProductController } from './controllers/product/UpdateLojaProductController';
 import { AllPhotosProductInStoreController } from './controllers/product/photoproduct/AllPhotosProductInStoreController';
 import { ListAllProductDestaqueController } from './controllers/product/ListAllProductDestaqueController';
 import { ListAllProductOfertaController } from './controllers/product/ListAllProductOfertaController';
@@ -224,6 +220,18 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { DeleteSubCategoryController } from './controllers/category/subCategory/DeleteSubCategoryController';
+import { ExactPageListAllSubCategoryController } from './controllers/category/subCategory/ExactPageListAllSubCategoryController';
+import { ListSubCategoryController } from './controllers/category/subCategory/ListSubCategoryController';
+import { ListExactSubCategoryNameController } from './controllers/category/subCategory/ListExactSubCategoryNameController';
+import { ListExactSubCategoryController } from './controllers/category/subCategory/ListExactSubCategoryController';
+import { PageListAllSubCategorysController } from './controllers/category/subCategory/PageListAllSubCategorysController';
+import { UpdateDisponibilidadeSubCategoryController } from './controllers/category/subCategory/UpdateDisponibilidadeSubCategoryController';
+import { UpdateNameSubCategoryController } from './controllers/category/subCategory/UpdateNameSubCategoryController';
+import { UpdateOrderSubCategoryController } from './controllers/category/subCategory/UpdateOrderSubCategoryController';
+import { UpdatePosicaoSubCategoryController } from './controllers/category/subCategory/UpdatePosicaoSubCategoryController';
+import { UpdateProductSubCategoryController } from './controllers/category/subCategory/UpdateProductSubCategoryController';
+import { UpdateCategorySubCategoryController } from './controllers/category/subCategory/UpdateCategorySubCategoryController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -323,12 +331,29 @@ router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryControl
 router.get('/allCategorys', new ListCategoryController().handle);
 router.get('/exactCategoryProducts', new ListExactCategoryNameController().handle);
 
+// -- ROTAS SUB CATEGORIAS --
+router.post('/createSubCategory', ADMINisAuthenticated, new CreateSubCategoryController().handle);
+router.delete('/deleteSubCategory', ADMINisAuthenticated, new DeleteSubCategoryController().handle);
+router.get('/exactAllPageSubCategory', ADMINisAuthenticated, new ExactPageListAllSubCategoryController().handle);
+router.get('/listExactSubCategory', ADMINisAuthenticated, new ListExactSubCategoryController().handle);
+router.get('/pageListAllSubCategorys', ADMINisAuthenticated, new PageListAllSubCategorysController().handle);
+router.put('/updateDisponibilidadeSubCategory', ADMINisAuthenticated, new UpdateDisponibilidadeSubCategoryController().handle);
+router.put('/updateNameSubCategory', ADMINisAuthenticated, new UpdateNameSubCategoryController().handle);
+router.put('/updateOrderSubCategory', ADMINisAuthenticated, new UpdateOrderSubCategoryController().handle);
+router.put('/updatePosicaoSubCategory', ADMINisAuthenticated, new UpdatePosicaoSubCategoryController().handle);
+router.put('/updateProductSubCategory', ADMINisAuthenticated, new UpdateProductSubCategoryController().handle);
+router.put('/updateCategorySubCategory', ADMINisAuthenticated, new UpdateCategorySubCategoryController().handle);
+router.get('/pageListExactSubCategoryName', new ListExactSubCategoryNameController().handle);
+router.get('/listSubCategoryDisponivel', new ListSubCategoryController().handle);
+
 // -- ROTAS PRODUTOS --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
 router.post('/photo', ADMINisAuthenticated, upload.single('file'), new PhotoProductController().handle);
+router.put('/updateAllDateProduct', ADMINisAuthenticated, new UpdateAllDateProductController().handle);
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
 router.delete('/deleteAllPhotos', ADMINisAuthenticated, new DeleteAllPhotoProductController().handle);
 router.put('/updatePhoto', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoProductController().handle);
+router.put('/updatePosicaoProduct', ADMINisAuthenticated, new UpdatePosicaoProductController().handle);
 router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductController().handle);
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
 router.get('/allProduct', ADMINisAuthenticated, new AllProductController().handle);
@@ -336,19 +361,8 @@ router.get('/allProductsPage', ADMINisAuthenticated && USERisAuthenticated, new 
 router.get('/exactProduct', ADMINisAuthenticated, new ListExactProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
-router.put('/updateAllDescription', ADMINisAuthenticated, new UpdateAllDescriptionProductController().handle);
-router.put('/updateDescription1', ADMINisAuthenticated, new Update1DescriptionProductController().handle);
-router.put('/updateDescription2', ADMINisAuthenticated, new Update2DescriptionProductController().handle);
-router.put('/updateDescription3', ADMINisAuthenticated, new Update3DescriptionProductController().handle);
-router.put('/updateDescription4', ADMINisAuthenticated, new Update4DescriptionProductController().handle);
-router.put('/updateDescription5', ADMINisAuthenticated, new Update5DescriptionProductController().handle);
-router.put('/updateDescription6', ADMINisAuthenticated, new Update6DescriptionProductController().handle);
-router.put('/updatePrice', ADMINisAuthenticated, new UpdatePriceProductController().handle);
-router.put('/updateSKU', ADMINisAuthenticated, new UpdateSKUProductController().handle);
-router.put('/productPromocao', ADMINisAuthenticated, new PromocaoProductController().handle);
 router.get('/exportProduct', ADMINisAuthenticated, new ExportProductController().handle);
 router.put('/diponibilidadeProduct', ADMINisAuthenticated, new DisponibilidadeDoProductController().handle);
-router.put('/updateLoja', ADMINisAuthenticated, new UpdateLojaProductController().handle);
 router.put('/destaque', ADMINisAuthenticated, new UpdateProductDestqueController().handle);
 router.put('/oferta', ADMINisAuthenticated, new UpdateProductOfertaController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);

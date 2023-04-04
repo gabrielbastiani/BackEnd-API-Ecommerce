@@ -1,17 +1,18 @@
-import prismaClient from "../../prisma";
+import prismaClient from "../../../prisma";
 
-interface CategoryRequest {
-  categoryName: string;
+interface SubCategoryRequest {
+  subCategoryName: string;
   slug: string;
   order: number;
   posicao: string;
   slugPosicao: string;
+  category_id: string;
   product_id: string;
   loja_id: string;
 }
 
-class CreateCategoryService {
-  async execute({ categoryName, order, posicao, product_id, loja_id }: CategoryRequest) {
+class CreateSubCategoryService {
+  async execute({ subCategoryName, order, posicao, product_id, category_id, loja_id }: SubCategoryRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -22,19 +23,21 @@ class CreateCategoryService {
         .replace(/[/]/g, "-");
     }
 
-    const category = await prismaClient.category.create({
+    const category = await prismaClient.subCategory.create({
       data: {
-        categoryName: categoryName,
-        slug: removerAcentos(categoryName),
+        subCategoryName: subCategoryName,
+        slug: removerAcentos(subCategoryName),
         order: order,
         posicao: posicao,
         slugPosicao: removerAcentos(posicao),
         product_id: product_id,
+        category_id: category_id,
         loja_id: loja_id
       },
       include: {
+        category: true,
         product: true,
-        subcategories: true
+        loja: true
       }
     });
 
@@ -43,4 +46,4 @@ class CreateCategoryService {
   }
 }
 
-export { CreateCategoryService }
+export { CreateSubCategoryService }
