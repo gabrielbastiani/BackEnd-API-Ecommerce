@@ -250,7 +250,6 @@ CREATE TABLE "photoproducts" (
 CREATE TABLE "banners" (
     "id" TEXT NOT NULL,
     "title" VARCHAR(355),
-    "alternativeTitle" VARCHAR(355),
     "width" VARCHAR(55),
     "height" VARCHAR(55),
     "dateInicio" TEXT DEFAULT '01/01/3075 00:00',
