@@ -8,7 +8,7 @@ class ListAllVariacaoOfertasService {
                 variacaoOferta: StatusOfertaVariacao.Sim
             },
             orderBy: {
-                created_at: 'desc'
+                order: 'asc'
             }
         })
 

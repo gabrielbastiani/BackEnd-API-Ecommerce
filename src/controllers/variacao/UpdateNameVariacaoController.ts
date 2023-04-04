@@ -7,16 +7,16 @@ class UpdateNameVariacaoController {
 
     const { nameVariacao, slug } = req.body;
 
-    const updateNameVariacaoService = new UpdateNameVariacaoService();
+    const updateName = new UpdateNameVariacaoService();
 
-    const variacao = await updateNameVariacaoService.execute({
+    const variacao = await updateName.execute({
       variacao_id,
       nameVariacao,
       slug
     });
 
     return res.json(variacao);
-    
+
   }
 }
 

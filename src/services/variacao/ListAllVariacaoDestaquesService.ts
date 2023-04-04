@@ -11,7 +11,7 @@ class ListAllVariacaoDestaquesService {
                 photovariacoes: true
             },
             orderBy: {
-                created_at: 'desc'
+                order: 'asc'
             }
         })
 

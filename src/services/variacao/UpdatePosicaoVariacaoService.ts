@@ -2,12 +2,12 @@ import prismaClient from '../../prisma';
 
 interface VariacaoRequest {
     variacao_id: any;
-    nameVariacao: string;
-    slug: string;
+    posicao: string;
+    slugPosicao: string;
 }
 
-class UpdateNameVariacaoService {
-    async execute({ variacao_id, nameVariacao }: VariacaoRequest) {
+class UpdatePosicaoVariacaoService {
+    async execute({ variacao_id, posicao }: VariacaoRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -23,12 +23,12 @@ class UpdateNameVariacaoService {
                 id: String(variacao_id)
             },
             data: {
-                nameVariacao: nameVariacao,
-                slug: removerAcentos(nameVariacao)
+                posicao: posicao,
+                slugPosicao: removerAcentos(posicao)
             }
         })
         return exactVariacao;
     }
 }
 
-export { UpdateNameVariacaoService }
+export { UpdatePosicaoVariacaoService }

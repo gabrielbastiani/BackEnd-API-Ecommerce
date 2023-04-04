@@ -7,7 +7,7 @@ interface ProductRequest {
 }
 
 class UpdateNameProductService {
-  async execute({ product_id, slug, nameProduct }: ProductRequest){
+  async execute({ product_id, nameProduct }: ProductRequest){
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')

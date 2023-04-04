@@ -15,7 +15,7 @@ class AllPhotosVariacoesService {
                 photoVariacao: true
             },
             orderBy: {
-                created_at: 'desc'
+                order: 'asc'
             }
         });
 

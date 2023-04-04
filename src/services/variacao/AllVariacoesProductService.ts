@@ -11,7 +11,7 @@ class AllVariacoesProductService {
                 product_id: product_id
             },
             orderBy: {
-                created_at: 'asc'
+                order: 'asc'
             },
             include: {
                 product: true,

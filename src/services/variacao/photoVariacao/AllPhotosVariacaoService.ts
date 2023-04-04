@@ -9,10 +9,6 @@ class AllPhotosVariacaoService {
         const allPhotos = await prismaClient.photoVariacao.findMany({
             where: {
                 id: photoVariacao_id
-            },
-            select: {
-                id: true,
-                variacao: true
             }
         });
 

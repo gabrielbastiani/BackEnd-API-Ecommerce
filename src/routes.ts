@@ -147,6 +147,9 @@ import { FindAvaliacaoController } from './controllers/avaliacao/FindAvaliacaoCo
 // -- ROTAS VARIAÇÃO --
 import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
 import { DeleteVariacaoController } from './controllers/variacao/DeleteVariacaoController';
+import { UpdateAllDateVariacaoController } from './controllers/variacao/UpdateAllDateVariacaoController';
+import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
+import { UpdatePosicaoVariacaoController } from './controllers/variacao/UpdatePosicaoVariacaoController';
 import { PageListAllVariacaoController } from './controllers/variacao/PageListAllVariacaoController';
 import { ListExactVariacaoController } from './controllers/variacao/ListExactVariacaoController';
 import { AllVariacoesProductController } from './controllers/variacao/AllVariacoesProductController';
@@ -156,26 +159,8 @@ import { AllPhotosVariacoesController } from './controllers/variacao/photoVariac
 import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
 import { DeletePhotoVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoVariacaoController';
 import { DeleteALLPhotoVariacaoProductController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoProductController';
-import { UpdateAllDescriptionVariacaoController } from './controllers/variacao/UpdateAllDescriptionVariacaoController';
-import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
-import { UpdateDescriptionVariacao1Controller } from './controllers/variacao/UpdateDescriptionVariacao1Controller';
-import { UpdateDescriptionVariacao2Controller } from './controllers/variacao/UpdateDescriptionVariacao2Controller';
-import { UpdateDescriptionVariacao3Controller } from './controllers/variacao/UpdateDescriptionVariacao3Controller';
-import { UpdateDescriptionVariacao4Controller } from './controllers/variacao/UpdateDescriptionVariacao4Controller';
-import { UpdateDescriptionVariacao5Controller } from './controllers/variacao/UpdateDescriptionVariacao5Controller';
-import { UpdateDescriptionVariacao6Controller } from './controllers/variacao/UpdateDescriptionVariacao6Controller';
-import { UpdatePriceVariacaoController } from './controllers/variacao/UpdatePriceVariacaoController';
-import { UpdateSkuVariacaoController } from './controllers/variacao/UpdateSkuVariacaoController';
-import { UpdateEstoqueVariacaoController } from './controllers/variacao/UpdateEstoqueVariacaoController';
-import { UpdatePesoVariacaoController } from './controllers/variacao/UpdatePesoVariacaoController';
-import { UpdateLarguraVariacaoController } from './controllers/variacao/UpdateLarguraVariacaoController';
-import { UpdateAlturaVariacaoController } from './controllers/variacao/UpdateAlturaVariacaoController';
-import { UpdateProfundidadeVariacaoController } from './controllers/variacao/UpdateProfundidadeVariacaoController';
 import { UpdateDisponibilidadeVariacaoController } from './controllers/variacao/DisponibilidadeVariacaoController';
-import { UpdatePromocaoVariacaoController } from './controllers/variacao/UpdatePromocaoVariacaoController';
 import { FreteGratisVariacaoController } from './controllers/variacao/FreteGratisVariacaoController';
-import { UpdateProductIdVariacaoController } from './controllers/variacao/UpdateProductIdVariacaoController';
-import { UpdateLojaIdVariacaoController } from './controllers/variacao/UpdateLojaIdVariacaoController';
 import { UpdateVariacaoDestqueController } from './controllers/variacao/UpdateVariacaoDestqueController';
 import { UpdateVariacaoOfertaController } from './controllers/variacao/UpdateVariacaoOfertaController';
 import { ListAllVariacaoDestaqueController } from './controllers/variacao/ListAllVariacaoDestaqueController';
@@ -232,6 +217,9 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { UpdateOrderVariacaoController } from './controllers/variacao/UpdateOrderVariacaoController';
+import { UpdateOrderPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdateOrderPhotoVariacaoController';
+import { UpdatePosicaoPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdatePosicaoPhotoVariacaoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -382,6 +370,10 @@ router.get('/avaliacaoDados', ADMINisAuthenticated, new FindAvaliacaoController(
 // -- ROTAS VARIAÇÃO --
 router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);
 router.delete('/deleteVariacao', ADMINisAuthenticated, new DeleteVariacaoController().handle);
+router.put('/updateAllDateVariacao', ADMINisAuthenticated, new UpdateAllDateVariacaoController().handle);
+router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
+router.put('/updatePosicaoVariacao', ADMINisAuthenticated, new UpdatePosicaoVariacaoController().handle);
+router.put('/updateOrderVariacao', ADMINisAuthenticated, new UpdateOrderVariacaoController().handle);
 router.get('/allVariacaoPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllVariacaoController().handle);
 router.get('/variacoesProduct', ADMINisAuthenticated, new AllVariacoesProductController().handle);
 router.get('/variacoes', ADMINisAuthenticated, new AllVariacoesController().handle);
@@ -393,26 +385,10 @@ router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeleteALLPho
 router.delete('/deleteAllVariacaoProduct', ADMINisAuthenticated, new DeleteAllVariacaoProductController().handle);
 router.delete('/deleteVariacaoAllPhotos', ADMINisAuthenticated, new DeleteALLPhotoVariacaoController().handle);
 router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
-router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
-router.put('/updateAllDescriptionVariacao', ADMINisAuthenticated, new UpdateAllDescriptionVariacaoController().handle);
-router.put('/updateDescriptionVariacao1', ADMINisAuthenticated, new UpdateDescriptionVariacao1Controller().handle);
-router.put('/updateDescriptionVariacao2', ADMINisAuthenticated, new UpdateDescriptionVariacao2Controller().handle);
-router.put('/updateDescriptionVariacao3', ADMINisAuthenticated, new UpdateDescriptionVariacao3Controller().handle);
-router.put('/updateDescriptionVariacao4', ADMINisAuthenticated, new UpdateDescriptionVariacao4Controller().handle);
-router.put('/updateDescriptionVariacao5', ADMINisAuthenticated, new UpdateDescriptionVariacao5Controller().handle);
-router.put('/updateDescriptionVariacao6', ADMINisAuthenticated, new UpdateDescriptionVariacao6Controller().handle);
-router.put('/updatePriceVariacao', ADMINisAuthenticated, new UpdatePriceVariacaoController().handle);
-router.put('/updateSkuVariacao', ADMINisAuthenticated, new UpdateSkuVariacaoController().handle);
-router.put('/updateEstoqueVariacao', ADMINisAuthenticated, new UpdateEstoqueVariacaoController().handle);
-router.put('/updatePesoVariacao', ADMINisAuthenticated, new UpdatePesoVariacaoController().handle);
-router.put('/updateLarguraVariacao', ADMINisAuthenticated, new UpdateLarguraVariacaoController().handle);
-router.put('/updateAlturaVariacao', ADMINisAuthenticated, new UpdateAlturaVariacaoController().handle);
-router.put('/updateProfundidadeVariacao', ADMINisAuthenticated, new UpdateProfundidadeVariacaoController().handle);
+router.put('/updateOrderPhotoVariacao', ADMINisAuthenticated, new UpdateOrderPhotoVariacaoController().handle);
+router.put('/updatePosicaoPhotoVariacao', ADMINisAuthenticated, new UpdatePosicaoPhotoVariacaoController().handle);
 router.put('/updateDisponibilidadeVariacao', ADMINisAuthenticated, new UpdateDisponibilidadeVariacaoController().handle);
-router.put('/updatePromocaoVariacao', ADMINisAuthenticated, new UpdatePromocaoVariacaoController().handle);
 router.put('/freteGratisVariacao', ADMINisAuthenticated, new FreteGratisVariacaoController().handle);
-router.put('/updateProductIdVariacao', ADMINisAuthenticated, new UpdateProductIdVariacaoController().handle);
-router.put('/updateLojaIdVariacao', ADMINisAuthenticated, new UpdateLojaIdVariacaoController().handle);
 router.put('/destaqueVariacao', ADMINisAuthenticated, new UpdateVariacaoDestqueController().handle);
 router.put('/ofertaVariacao', ADMINisAuthenticated, new UpdateVariacaoOfertaController().handle);
 router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().handle);
