@@ -8,8 +8,11 @@ class ListCategoryService {
             disponibilidade: StatusCategory.Disponivel
          },
          include: {
-            loja: true,
-            products: true,
+            product: true,
+            subcategories: true
+         },
+         orderBy: {
+            order: 'asc'
          }
       })
 

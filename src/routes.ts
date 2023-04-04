@@ -28,18 +28,6 @@ import { ListExactUserNameController } from './controllers/user/ListExactUserNam
 
 // -- ROTAS LOJA --
 import { CreateLojaController } from './controllers/loja/CreateLojaController';
-import { UpdateNameLojaController } from './controllers/loja/UpdateNameLojaController';
-import { UpdateCNPJLojaController } from './controllers/loja/UpdateCNPJLojaController';
-import { UpdateEmailLojaController } from './controllers/loja/UpdateEmailLojaController';
-import { UpdatePhoneLojaController } from './controllers/loja/UpdatePhoneLojaController';
-import { UpdateCellPhoneLojaController } from './controllers/loja/UpdateCellPhoneLojaController';
-import { UpdateRuaLojaController } from './controllers/loja/UpdateRuaLojaController';
-import { UpdateNumeroLojaController } from './controllers/loja/UpdateNumeroLojaController';
-import { UpdateBairroLojaController } from './controllers/loja/UpdateBairroLojaController';
-import { UpdateComplementoLojaController } from './controllers/loja/UpdateComplementoLojaController';
-import { UpdateCEPLojaController } from './controllers/loja/UpdateCEPLojaController';
-import { UpdateCidadeLojaController } from './controllers/loja/UpdateCidadeLojaController';
-import { UpdateEstadoLojaController } from './controllers/loja/UpdateEstadoLojaController';
 import { PageListAllLojaController } from './controllers/loja/PageListAllLojaController';
 import { UserLojaController } from './controllers/loja/UserLojaController';
 import { LojaController } from './controllers/loja/LojaController';
@@ -91,14 +79,14 @@ import { UpdateBannerController } from './controllers/banner/UpdateBannerControl
 import { StatusBannerController } from './controllers/banner/StatusBannerController';
 import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerController';
 import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
+import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosicaoBannerController';
 
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
-import { UpdateCodigoCategoryController } from './controllers/category/UpdateCodigoCategoryController';
 import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
-import { UpdatePosicaoCategoryController } from './controllers/category/UpdatePosicaoCategoryController';
+import { UpdateProductCategoryController } from './controllers/category/UpdateProductCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
 import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
@@ -236,8 +224,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosicaoBannerController';
-
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -271,18 +257,6 @@ router.get('/exactUserPage', new ListExactUserNameController().handle);
 
 // -- ROTAS LOJA --
 router.post('/loja', ADMINisAuthenticated, upload.single('file'), new CreateLojaController().handle);
-router.put('/nameLojaUpdate', ADMINisAuthenticated, new UpdateNameLojaController().handle);
-router.put('/cnpjLojaUpdate', ADMINisAuthenticated, new UpdateCNPJLojaController().handle);
-router.put('/emailLojaUpdate', ADMINisAuthenticated, new UpdateEmailLojaController().handle);
-router.put('/phoneLojaUpdate', ADMINisAuthenticated, new UpdatePhoneLojaController().handle);
-router.put('/cellPhoneLojaUpdate', ADMINisAuthenticated, new UpdateCellPhoneLojaController().handle);
-router.put('/ruaLojaUpdate', ADMINisAuthenticated, new UpdateRuaLojaController().handle);
-router.put('/numeroLojaUpdate', ADMINisAuthenticated, new UpdateNumeroLojaController().handle);
-router.put('/bairroLojaUpdate', ADMINisAuthenticated, new UpdateBairroLojaController().handle);
-router.put('/complementoLojaUpdate', ADMINisAuthenticated, new UpdateComplementoLojaController().handle);
-router.put('/cepLojaUpdate', ADMINisAuthenticated, new UpdateCEPLojaController().handle);
-router.put('/cidadeLojaUpdate', ADMINisAuthenticated, new UpdateCidadeLojaController().handle);
-router.put('/estadoLojaUpdate', ADMINisAuthenticated, new UpdateEstadoLojaController().handle);
 router.get('/allLojasPage', ADMINisAuthenticated, new PageListAllLojaController().handle);
 router.get('/userLoja', ADMINisAuthenticated, new UserLojaController().handle);
 router.get('/lojaCreateFind', ADMINisAuthenticated, new UserCreateLojaController().handle);
@@ -339,9 +313,8 @@ router.get('/activeBanner', new ActiveAllBannerController().handle);
 // -- ROTAS CATEGORIAS --
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
-router.put('/categoryCodigoUpdate', ADMINisAuthenticated, new UpdateCodigoCategoryController().handle);
 router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
-router.put('/updatePosicaoCategory', ADMINisAuthenticated, new UpdatePosicaoCategoryController().handle);
+router.put('/updateProductCategory', ADMINisAuthenticated, new UpdateProductCategoryController().handle);
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);

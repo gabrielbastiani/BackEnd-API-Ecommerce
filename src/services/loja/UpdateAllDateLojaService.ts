@@ -6,6 +6,7 @@ interface LojaRequest {
   cnpjLoja: string;
   emailLoja: string;
   phoneLoja: string;
+  cellPhoneLoja: string;
   ruaLoja: string;
   numeroLoja: string;
   bairroLoja: string;
@@ -21,6 +22,7 @@ class UpdateAllDateLojaService {
     cnpjLoja,
     emailLoja,
     phoneLoja,
+    cellPhoneLoja,
     ruaLoja,
     numeroLoja,
     bairroLoja,
@@ -37,6 +39,7 @@ class UpdateAllDateLojaService {
         cnpjLoja: cnpjLoja,
         emailLoja: emailLoja,
         phoneLoja: phoneLoja,
+        cellPhoneLoja: cellPhoneLoja,
         ruaLoja: ruaLoja,
         numeroLoja: numeroLoja,
         bairroLoja: bairroLoja,

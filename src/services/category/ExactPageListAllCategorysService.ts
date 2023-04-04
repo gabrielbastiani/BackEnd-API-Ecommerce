@@ -10,8 +10,11 @@ class ExactPageListAllCategorysService {
                 id: category_id
             },
             include: {
-                loja: true,
-                products: true,
+                product: true,
+                subcategories: true
+            },
+            orderBy: {
+                order: 'asc'
             }
         });
 
@@ -20,8 +23,11 @@ class ExactPageListAllCategorysService {
                 id: category_id
             },
             include: {
-                loja: true,
-                products: true,
+                product: true,
+                subcategories: true
+            },
+            orderBy: {
+                order: 'asc'
             },
             skip,
             take: limit

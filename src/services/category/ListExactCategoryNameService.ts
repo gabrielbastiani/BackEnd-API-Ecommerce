@@ -10,8 +10,11 @@ class ListExactCategoryNameService {
                 slug: slug
             },
             include: {
-                loja: true,
-                products: true,
+                product: true,
+                subcategories: true
+            },
+            orderBy: {
+                order: 'asc'
             }
         });
 
@@ -20,8 +23,11 @@ class ListExactCategoryNameService {
                 slug: slug
             },
             include: {
-                loja: true,
-                products: true,
+                product: true,
+                subcategories: true
+            },
+            orderBy: {
+                order: 'asc'
             },
             skip,
             take: limit
@@ -32,8 +38,8 @@ class ListExactCategoryNameService {
                 slug: slug
             },
             include: {
-                loja: true,
-                products: true,
+                product: true,
+                subcategories: true
             }
         });
 

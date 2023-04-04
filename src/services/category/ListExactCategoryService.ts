@@ -7,9 +7,9 @@ class ListExactCategoryService {
                 id: String(category_id)
             },
             include: {
-                loja: true,
-                products: true,
-            },
+                product: true,
+                subcategories: true
+            }
         })
         return exactCategory;
     }

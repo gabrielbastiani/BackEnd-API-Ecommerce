@@ -7,15 +7,21 @@ class PageListAllCategorysService {
 
         const categorysAll = await prismaClient.category.findMany({
             include: {
-                loja: true,
-                products: true,
+                product: true,
+                subcategories: true
+            },
+            orderBy: {
+                order: 'asc'
             }
         });
 
         const categorys = await prismaClient.category.findMany({
             include: {
-                loja: true,
-                products: true,
+                product: true,
+                subcategories: true
+            },
+            orderBy: {
+                order: 'asc'
             },
             skip,
             take: limit
