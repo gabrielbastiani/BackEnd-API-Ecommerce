@@ -3,6 +3,9 @@ import prismaClient from "../../prisma";
 interface VariacaoRequest {
     nameVariacao: string;
     slug: string;
+    order: number;
+    posicao: string;
+    slugPosicao: string;
     descriptionVariacao1: string;
     descriptionVariacao2: string;
     descriptionVariacao3: string;
@@ -27,7 +30,8 @@ interface VariacaoRequest {
 class CreateVariacaoService {
     async execute({
         nameVariacao,
-        slug,
+        order,
+        posicao,
         descriptionVariacao1,
         descriptionVariacao2,
         descriptionVariacao3,
@@ -60,6 +64,9 @@ class CreateVariacaoService {
             data: {
                 nameVariacao: nameVariacao,
                 slug: removerAcentos(nameVariacao),
+                order: order,
+                posicao: posicao,
+                slugPosicao: removerAcentos(posicao),
                 descriptionVariacao1: descriptionVariacao1,
                 descriptionVariacao2: descriptionVariacao2,
                 descriptionVariacao3: descriptionVariacao3,

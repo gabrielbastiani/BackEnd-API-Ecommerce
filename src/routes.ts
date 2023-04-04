@@ -96,8 +96,18 @@ import { ListExactCategoryNameController } from './controllers/category/ListExac
 
 // -- ROTAS SUB CATEGORIAS --
 import { CreateSubCategoryController } from './controllers/category/subCategory/CreateSubCategoryController';
-
-
+import { DeleteSubCategoryController } from './controllers/category/subCategory/DeleteSubCategoryController';
+import { ExactPageListAllSubCategoryController } from './controllers/category/subCategory/ExactPageListAllSubCategoryController';
+import { ListSubCategoryController } from './controllers/category/subCategory/ListSubCategoryController';
+import { ListExactSubCategoryNameController } from './controllers/category/subCategory/ListExactSubCategoryNameController';
+import { ListExactSubCategoryController } from './controllers/category/subCategory/ListExactSubCategoryController';
+import { PageListAllSubCategorysController } from './controllers/category/subCategory/PageListAllSubCategorysController';
+import { UpdateDisponibilidadeSubCategoryController } from './controllers/category/subCategory/UpdateDisponibilidadeSubCategoryController';
+import { UpdateNameSubCategoryController } from './controllers/category/subCategory/UpdateNameSubCategoryController';
+import { UpdateOrderSubCategoryController } from './controllers/category/subCategory/UpdateOrderSubCategoryController';
+import { UpdatePosicaoSubCategoryController } from './controllers/category/subCategory/UpdatePosicaoSubCategoryController';
+import { UpdateProductSubCategoryController } from './controllers/category/subCategory/UpdateProductSubCategoryController';
+import { UpdateCategorySubCategoryController } from './controllers/category/subCategory/UpdateCategorySubCategoryController';
 
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
@@ -121,7 +131,9 @@ import { ExportProductController } from './controllers/product/ExportProductCont
 import { DisponibilidadeDoProductController } from './controllers/product/DisponibilidadeDoProductController';
 import { UpdateProductDestqueController } from './controllers/product/UpdateProductDestqueController';
 import { UpdateProductOfertaController } from './controllers/product/UpdateProductOfertaController';
+import { UpdateOrderPhotoProductController } from './controllers/product/photoproduct/UpdateOrderPhotoProductController';
 import { AllPhotosProductInStoreController } from './controllers/product/photoproduct/AllPhotosProductInStoreController';
+import { UpdatePosicaoPhotoProductController } from './controllers/product/photoproduct/UpdatePosicaoPhotoProductController';
 import { ListAllProductDestaqueController } from './controllers/product/ListAllProductDestaqueController';
 import { ListAllProductOfertaController } from './controllers/product/ListAllProductOfertaController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
@@ -220,18 +232,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { DeleteSubCategoryController } from './controllers/category/subCategory/DeleteSubCategoryController';
-import { ExactPageListAllSubCategoryController } from './controllers/category/subCategory/ExactPageListAllSubCategoryController';
-import { ListSubCategoryController } from './controllers/category/subCategory/ListSubCategoryController';
-import { ListExactSubCategoryNameController } from './controllers/category/subCategory/ListExactSubCategoryNameController';
-import { ListExactSubCategoryController } from './controllers/category/subCategory/ListExactSubCategoryController';
-import { PageListAllSubCategorysController } from './controllers/category/subCategory/PageListAllSubCategorysController';
-import { UpdateDisponibilidadeSubCategoryController } from './controllers/category/subCategory/UpdateDisponibilidadeSubCategoryController';
-import { UpdateNameSubCategoryController } from './controllers/category/subCategory/UpdateNameSubCategoryController';
-import { UpdateOrderSubCategoryController } from './controllers/category/subCategory/UpdateOrderSubCategoryController';
-import { UpdatePosicaoSubCategoryController } from './controllers/category/subCategory/UpdatePosicaoSubCategoryController';
-import { UpdateProductSubCategoryController } from './controllers/category/subCategory/UpdateProductSubCategoryController';
-import { UpdateCategorySubCategoryController } from './controllers/category/subCategory/UpdateCategorySubCategoryController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -353,6 +353,8 @@ router.put('/updateAllDateProduct', ADMINisAuthenticated, new UpdateAllDateProdu
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
 router.delete('/deleteAllPhotos', ADMINisAuthenticated, new DeleteAllPhotoProductController().handle);
 router.put('/updatePhoto', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoProductController().handle);
+router.put('/updatePosicaoPhotoProduct', ADMINisAuthenticated, new UpdatePosicaoPhotoProductController().handle);
+router.put('/updateOrderPhotoProduct', ADMINisAuthenticated, new UpdateOrderPhotoProductController().handle);
 router.put('/updatePosicaoProduct', ADMINisAuthenticated, new UpdatePosicaoProductController().handle);
 router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductController().handle);
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);

@@ -6,6 +6,9 @@ class CreateVariacaoController {
         const {
             nameVariacao,
             slug,
+            order,
+            posicao,
+            slugPosicao,
             descriptionVariacao1,
             descriptionVariacao2,
             descriptionVariacao3,
@@ -32,6 +35,9 @@ class CreateVariacaoController {
         const variacao = await createVariacaoService.execute({
             nameVariacao,
             slug,
+            order,
+            posicao,
+            slugPosicao,
             descriptionVariacao1,
             descriptionVariacao2,
             descriptionVariacao3,

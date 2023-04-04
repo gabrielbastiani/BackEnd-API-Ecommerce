@@ -13,6 +13,9 @@ class AllPhotosService {
             select: {
                 id: true,
                 photo: true
+            },
+            orderBy: {
+                order: 'asc'
             }
         });
 

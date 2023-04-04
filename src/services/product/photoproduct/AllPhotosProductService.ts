@@ -10,12 +10,8 @@ class AllPhotosProductService {
             where: {
                 product_id: product_id
             },
-            select: {
-                id: true,
-                photo: true
-            },
             orderBy: {
-                created_at: 'desc'
+                order: 'asc'
             }
         });
 
