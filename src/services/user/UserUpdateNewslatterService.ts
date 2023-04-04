@@ -27,7 +27,7 @@ class UserUpdateNewslatterService {
       })
       return newsSim;
     }
-    
+
     if (updateNews.newslatter === "Nao") {
       const newsNao = await prismaClient.user.update({
         where: {
@@ -39,7 +39,7 @@ class UserUpdateNewslatterService {
       })
       return newsNao;
     }
-    
+
   }
 }
 

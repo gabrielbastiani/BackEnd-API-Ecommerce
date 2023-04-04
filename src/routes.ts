@@ -8,6 +8,7 @@ import { AdminRoleUserController } from './controllers/user/AdminRoleUserControl
 import { AdminCreateUserController } from './controllers/user/AdminCreateUserController';
 import { AuthAdminController } from './controllers/user/AuthAdminController';
 import { AuthUserController } from './controllers/user/AuthUserController';
+import { UpdateAllDateUserController } from './controllers/user/UpdateAllDateUserController';
 import { AuthenticatedEmailUserController } from './controllers/user/AuthenticatedEmailUserController';
 import { ActiveOrDesactiveUserController } from './controllers/user/ActiveOrDesactiveUserController';
 import { EmailPasswordController } from './controllers/user/PasswordRecovery/EmailPasswordController';
@@ -265,6 +266,9 @@ router.post('/createAdmin', new AdminCreateUserController().handle);
 router.post('/sessionAdmin', new AuthAdminController().handle);
 router.post('/session', new AuthUserController().handle);
 router.get('/me', ADMINisAuthenticated && USERisAuthenticated, new DetailuserController().handle);
+
+router.put('/updateAllDateUser', ADMINisAuthenticated && USERisAuthenticated, new UpdateAllDateUserController().handle);
+
 router.get('/listExactUser', ADMINisAuthenticated && USERisAuthenticated, new ListExactUserController().handle);
 router.put('/authenticated', new AuthenticatedEmailUserController().handle);
 router.put('/activeOrDesactiveUser', ADMINisAuthenticated, new ActiveOrDesactiveUserController().handle);
