@@ -3,20 +3,41 @@ import { CreateBannerService } from "../../services/banners/CreateBannerService"
 
 class CreateBannerController {
     async handle(req: Request, res: Response) {
-        const { url } = req.body;
+        const {
+            title,
+            width,
+            height,
+            dateInicio,
+            dateFim,
+            order,
+            url,
+            posicao,
+            slugPosicao
+        } = req.body;
+
         const banners = new CreateBannerService();
 
         if (!req.file) {
-            throw new Error("error upload file")
+            throw new Error("error upload file");
         } else {
 
             const { originalname, filename: banner } = req.file;
 
             const bannersCreate = await banners.execute({
                 banner,
-                url
-            })
-            return res.json(bannersCreate)
+                title,
+                width,
+                height,
+                dateInicio,
+                dateFim,
+                order,
+                url,
+                posicao,
+                slugPosicao
+            });
+
+            return res.json(bannersCreate);
+
         }
 
     }

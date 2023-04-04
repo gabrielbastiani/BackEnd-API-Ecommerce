@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { DeleteBannerService } from '../../services/banners/DeleteBannerService';
-import { RemoveBannerService } from '../../services/banners/RemoveBannerService';
+import { ListExactBannerService } from '../../services/banners/ListExactBannerService';
 import fs from 'fs';
 
 class DeleteBannerController {
@@ -8,7 +8,7 @@ class DeleteBannerController {
     const banner_id = req.query.banner_id as string;
 
     const updatePhoto = new DeleteBannerService();
-    const deletePhoto = new RemoveBannerService();
+    const deletePhoto = new ListExactBannerService();
 
     const banners = await deletePhoto.execute({
       banner_id

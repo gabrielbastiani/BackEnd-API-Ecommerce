@@ -5,47 +5,42 @@ class UpdateAllDateUserController {
   async handle(req: Request, res: Response) {
     const user_id = req.query.user_id;
 
-    const { userName } = req.body;
-    const { userEmail } = req.body;
-    const { userCpf } = req.body;
-    const { userRole } = req.body;
-    const { userCpnj } = req.body;
-    const { userInscricaoEstadual } = req.body;
-    const { userPhone } = req.body;
-    const { userDataNascimento } = req.body;
-    const { userGenero } = req.body;
-    const { userLocal } = req.body;
-    const { userNumero } = req.body;
-    const { userComplemento } = req.body;
-    const { userBairro } = req.body;
-    const { userCep } = req.body;
-    const { userCidade } = req.body;
-    const { userEstado } = req.body;
-    const { userLoja } = req.body;
-    const { userAuth } = req.body;
+    const { email } = req.body;
+    const { cpf } = req.body;
+    const { cnpj } = req.body;
+    const { inscricaoEstadual } = req.body;
+    const { phone } = req.body;
+    const { dataNascimento } = req.body;
+    const { genero } = req.body;
+    const { local } = req.body;
+    const { numero } = req.body;
+    const { complemento } = req.body;
+    const { bairro } = req.body;
+    const { CEP } = req.body;
+    const { cidade } = req.body;
+    const { estado } = req.body;
+    const { loja_id } = req.body;
+    
 
     const updateAllDateUser = new UpdateAllDateUserService();
 
     const updateUser = await updateAllDateUser.execute({
       user_id,
-      userName,
-      userEmail,
-      userCpf,
-      userRole,
-      userCpnj,
-      userInscricaoEstadual,
-      userPhone,
-      userDataNascimento,
-      userGenero,
-      userLocal,
-      userNumero,
-      userComplemento,
-      userBairro,
-      userCep,
-      userCidade,
-      userEstado,
-      userLoja,
-      userAuth
+      email,
+      cpf,
+      cnpj,
+      inscricaoEstadual,
+      phone,
+      dataNascimento,
+      genero,
+      local,
+      numero,
+      complemento,
+      bairro,
+      CEP,
+      cidade,
+      estado,
+      loja_id,
     });
 
     return res.json(updateUser);

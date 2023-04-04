@@ -314,7 +314,6 @@ model PhotoProduct {
 model Banner {
   id               String       @id @default(uuid())
   title            String?      @db.VarChar(355)
-  alternativeTitle String?      @db.VarChar(355)
   width            String?      @db.VarChar(55)
   height           String?      @db.VarChar(55)
   dateInicio       String?      @default("01/01/3075 00:00")

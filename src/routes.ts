@@ -22,22 +22,7 @@ import { UserRoleUserController } from './controllers/user/UserRoleUserControlle
 import { PageListAllUsersController } from './controllers/user/PageListAllUsersController';
 import { ExportUsersController } from './controllers/user/ExportUsersController';
 import { UpdateUserNameController } from './controllers/user/UpdateUserNameController';
-import { UpdateUserEmailController } from './controllers/user/UpdateUserEmailController';
-import { UpdateUserCpfController } from './controllers/user/UpdateUserCpfController';
-import { UpdateUserCnpjController } from './controllers/user/UpdateUserCnpjController';
-import { UpdateUserInscricaoEstadualController } from './controllers/user/UpdateUserInscricaoEstadualController';
-import { UpdateUserPhoneController } from './controllers/user/UpdateUserPhoneController';
-import { UpdateUserDataDeNascimentoController } from './controllers/user/UpdateUserDataDeNascimentoController';
-import { UpdateUserGeneroController } from './controllers/user/UpdateUserGeneroController';
 import { UpdateUserNewslatterController } from './controllers/user/UpdateUserNewslatterController';
-import { UpdateUserRuaController } from './controllers/user/UpdateUserRuaController';
-import { UpdateUserNumeroController } from './controllers/user/UpdateUserNumeroController';
-import { UpdateUserComplementoController } from './controllers/user/UpdateUserComplementoController';
-import { UpdateUserCepController } from './controllers/user/UpdateUserCepController';
-import { UpdateUserCityController } from './controllers/user/UpdateUserCityController';
-import { UpdateUserEstadoController } from './controllers/user/UpdateUserEstadoController';
-import { UpdateUserBairroController } from './controllers/user/UpdateUserBairroController';
-import { UpdateUserLojaController } from './controllers/user/UpdateUserLojaController';
 import { ListExactUserController } from './controllers/user/ListExactUserController';
 import { ListExactUserNameController } from './controllers/user/ListExactUserNameController';
 
@@ -99,11 +84,11 @@ import { UpdatePosicaoPhotoTextoController } from './controllers/loja/textoInsti
 
 // -- ROTAS BANNERS --
 import { CreateBannerController } from './controllers/banner/CreateBannerController';
+import { UpdateAllDateBannerController } from './controllers/banner/UpdateAllDateBannerController';
 import { PageListAllBannerController } from './controllers/banner/PageListAllBannerController';
 import { DeleteBannerController } from './controllers/banner/DeleteBannerController';
 import { UpdateBannerController } from './controllers/banner/UpdateBannerController';
 import { StatusBannerController } from './controllers/banner/StatusBannerController';
-import { UpdateUrlBannerController } from './controllers/banner/UpdateUrlBannerController';
 import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerController';
 import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
 
@@ -251,6 +236,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosicaoBannerController';
 
 
 const router = Router();
@@ -266,9 +252,7 @@ router.post('/createAdmin', new AdminCreateUserController().handle);
 router.post('/sessionAdmin', new AuthAdminController().handle);
 router.post('/session', new AuthUserController().handle);
 router.get('/me', ADMINisAuthenticated && USERisAuthenticated, new DetailuserController().handle);
-
 router.put('/updateAllDateUser', ADMINisAuthenticated && USERisAuthenticated, new UpdateAllDateUserController().handle);
-
 router.get('/listExactUser', ADMINisAuthenticated && USERisAuthenticated, new ListExactUserController().handle);
 router.put('/authenticated', new AuthenticatedEmailUserController().handle);
 router.put('/activeOrDesactiveUser', ADMINisAuthenticated, new ActiveOrDesactiveUserController().handle);
@@ -282,22 +266,7 @@ router.put('/roleUser', new UserRoleUserController().handle);
 router.get('/allUsersPage', ADMINisAuthenticated, new PageListAllUsersController().handle);
 router.get('/exportUser', ADMINisAuthenticated, new ExportUsersController().handle);
 router.put('/nameUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserNameController().handle);
-router.put('/emailUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserEmailController().handle);
-router.put('/cpfUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserCpfController().handle);
-router.put('/cnpjUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserCnpjController().handle);
-router.put('/inscricaoEstadualUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserInscricaoEstadualController().handle);
-router.put('/phoneUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserPhoneController().handle);
-router.put('/dataDeNascimentoUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserDataDeNascimentoController().handle);
-router.put('/generoUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserGeneroController().handle);
 router.put('/newslatterUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserNewslatterController().handle);
-router.put('/ruaUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserRuaController().handle);
-router.put('/numeroUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserNumeroController().handle);
-router.put('/bairroUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserBairroController().handle);
-router.put('/complementoUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserComplementoController().handle);
-router.put('/cepUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserCepController().handle);
-router.put('/cityUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserCityController().handle);
-router.put('/estadoUserUpdate', ADMINisAuthenticated && USERisAuthenticated, new UpdateUserEstadoController().handle);
-router.put('/lojaidUserUpdate', ADMINisAuthenticated, new UpdateUserLojaController().handle);
 router.get('/exactUserPage', new ListExactUserNameController().handle);
 
 // -- ROTAS LOJA --
@@ -358,11 +327,12 @@ router.get('/listTextosInstitucionais', new ListAllTextosOrderAndPosicaoControll
 
 // -- ROTAS BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
+router.put('/updateAllDateBanner', ADMINisAuthenticated, new UpdateAllDateBannerController().handle);
 router.get('/pageListBanner', ADMINisAuthenticated, new PageListAllBannerController().handle);
 router.delete('/deleteBanner', ADMINisAuthenticated, new DeleteBannerController().handle);
 router.put('/updateBanner', ADMINisAuthenticated, upload.single('file'), new UpdateBannerController().handle);
+router.put('/updatePosicaoBanner', ADMINisAuthenticated, new UpdatePosicaoBannerController().handle);
 router.put('/updateStatusBanner', ADMINisAuthenticated, new StatusBannerController().handle);
-router.put('/updateUrlBanner', ADMINisAuthenticated, new UpdateUrlBannerController().handle);
 router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController().handle);
 router.get('/activeBanner', new ActiveAllBannerController().handle);
 

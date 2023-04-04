@@ -7,7 +7,7 @@ interface UserRequest {
 }
 
 class UserUpdateNameService {
-  async execute({ user_id, slug, nameComplete }: UserRequest) {
+  async execute({ user_id, nameComplete }: UserRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
