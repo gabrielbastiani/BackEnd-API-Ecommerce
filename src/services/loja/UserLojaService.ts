@@ -1,36 +1,23 @@
 import prismaClient from '../../prisma';
 
-
 class UserLojaService {
-    async execute({loja_id}) {
+    async execute({ loja_id }) {
         const userLoja = await prismaClient.loja.findUnique({
             where: {
                 id: String(loja_id),
             },
-            select: {
-                id: true,
-                logoLoja: true,
-                nameLoja: true,
-                cnpjLoja: true,
-                emailLoja: true,
-                phoneLoja: true,
-                ruaLoja: true,
-                numeroLoja: true,
-                bairroLoja: true,
-                complementoLoja: true,
-                cepLoja: true,
-                cityLoja: true,
-                stateLoja: true,
-                created_at: true,
+            include: {
                 users: true,
+                redessociais: true,
+                textosinstitucionais: true,
                 categories: true,
+                subcategories: true,
                 products: true,
                 variacoes: true,
                 avaliacoes: true,
-                pedidos: true,
-                pagamentos: true,
-                entregas: true,
-            },
+                newsletters: true,
+                contatos: true,
+            }
         });
 
         return userLoja;
