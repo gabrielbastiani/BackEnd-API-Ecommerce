@@ -46,12 +46,14 @@ import { UpdateImageRedeSocialController } from './controllers/loja/redeSocial/U
 import { UpdatePosicaoRedeSocialController } from './controllers/loja/redeSocial/UpdatePosicaoRedeSocialController';
 import { UpdateDisponibilidadeRedeSocialController } from './controllers/loja/redeSocial/UpdateDisponibilidadeRedeSocialController';
 import { DeleteRedeSocialController } from './controllers/loja/redeSocial/DeleteRedeSocialController';
+import { ListAllRedeSocialController } from './controllers/loja/redeSocial/ListAllRedeSocialController';
 import { PageListRedesSocialController } from './controllers/loja/redeSocial/PageListRedesSocialController';
 import { ListExactRedeSocialController } from './controllers/loja/redeSocial/ListExactRedeSocialController';
 
 // -- ROTAS TEXTOS INSTITUCIONAIS --
 import { CreateTextInstitucionalController } from './controllers/loja/textoInstitucional/CreateTextInstitucionalController';
 import { DeleteTextoInstitucionalController } from './controllers/loja/textoInstitucional/DeleteTextoInstitucionalController';
+import { ListAllTextosController } from './controllers/loja/textoInstitucional/ListAllTextosController';
 import { ListAllTextosOrderAndPosicaoController } from './controllers/loja/textoInstitucional/ListAllTextosOrderAndPosicaoController';
 import { ListExactTextoInstitucionalController } from './controllers/loja/textoInstitucional/ListExactTextoInstitucionalController';
 import { PageListTextoInstitucionalController } from './controllers/loja/textoInstitucional/PageListTextoInstitucionalController';
@@ -154,6 +156,9 @@ import { PageListAllVariacaoController } from './controllers/variacao/PageListAl
 import { ListExactVariacaoController } from './controllers/variacao/ListExactVariacaoController';
 import { AllVariacoesProductController } from './controllers/variacao/AllVariacoesProductController';
 import { AllVariacoesController } from './controllers/variacao/AllVariacoesController';
+import { UpdateOrderVariacaoController } from './controllers/variacao/UpdateOrderVariacaoController';
+import { UpdateOrderPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdateOrderPhotoVariacaoController';
+import { UpdatePosicaoPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdatePosicaoPhotoVariacaoController';
 import { AllPhotosVariacaoController } from './controllers/variacao/photoVariacao/AllPhotosVariacaoController';
 import { AllPhotosVariacoesController } from './controllers/variacao/photoVariacao/AllPhotosVariacoesController';
 import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
@@ -214,16 +219,15 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 
 
 
+
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { UpdateOrderVariacaoController } from './controllers/variacao/UpdateOrderVariacaoController';
-import { UpdateOrderPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdateOrderPhotoVariacaoController';
-import { UpdatePosicaoPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdatePosicaoPhotoVariacaoController';
-import { ListAllRedeSocialController } from './controllers/loja/redeSocial/ListAllRedeSocialController';
+
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
+
 
 
 
@@ -280,6 +284,7 @@ router.get('/listRedesSociaisOrder', new ListAllRedesSociaisOrderAndPosicaoContr
 router.post('/createTextoInstitucional', ADMINisAuthenticated, new CreateTextInstitucionalController().handle);
 router.delete('/deleteTextoInstitucional', ADMINisAuthenticated, new DeleteTextoInstitucionalController().handle);
 router.get('/listExactTextoInstitucional', ADMINisAuthenticated, new ListExactTextoInstitucionalController().handle);
+router.get('/listAllTextos', ADMINisAuthenticated, new ListAllTextosController().handle);
 router.get('/pageListTextoInstitucional', ADMINisAuthenticated, new PageListTextoInstitucionalController().handle);
 router.put('/updateDisponibilidadeTexto', ADMINisAuthenticated, new UpdateDisponibilidadeTextoController().handle);
 router.put('/updateOrderTextoInstitucional', ADMINisAuthenticated, new UpdateOrderTextoInstitucionalController().handle);
