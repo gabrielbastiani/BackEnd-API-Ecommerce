@@ -1,15 +1,10 @@
 import prismaClient from "../../prisma";
 
-interface LojaRequest {
-  loja_id: string;
-}
-
 class DeleteLogomarcaService {
-  async execute({ loja_id }: LojaRequest){
-
+  async execute({ loja_id }){
     const logomarcaLoja = await prismaClient.loja.findUnique({
       where:{
-        id: loja_id
+        id: String(loja_id)
       }
     })
 
