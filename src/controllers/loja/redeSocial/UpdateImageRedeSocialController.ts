@@ -12,12 +12,12 @@ class UpdateImageRedeSocialController {
 
         const imageRedes = await deletePhoto.execute({
             redesocial_id
-        })
+        });
 
         fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageRedes.imageRede);
 
         if (!req.file) {
-            throw new Error('error upload file')
+            throw new Error('error upload file');
         } else {
             const { originalname, filename: imageRede } = req.file;
 
