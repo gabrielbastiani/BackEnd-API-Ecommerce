@@ -220,6 +220,7 @@ import uploadConfig from './config/multer';
 import { UpdateOrderVariacaoController } from './controllers/variacao/UpdateOrderVariacaoController';
 import { UpdateOrderPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdateOrderPhotoVariacaoController';
 import { UpdatePosicaoPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdatePosicaoPhotoVariacaoController';
+import { ListAllRedeSocialController } from './controllers/loja/redeSocial/ListAllRedeSocialController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -272,6 +273,7 @@ router.put('/updateDisponibilidadeRedeSocial', ADMINisAuthenticated, new UpdateD
 router.delete('/deleteRedeSocial', ADMINisAuthenticated, new DeleteRedeSocialController().handle);
 router.get('/pageListRedesSociais', ADMINisAuthenticated, new PageListRedesSocialController().handle);
 router.get('/listExactRedesSociais', ADMINisAuthenticated, new ListExactRedeSocialController().handle);
+router.get('/listAllRedesSociais', ADMINisAuthenticated, new ListAllRedeSocialController().handle);
 router.get('/listRedesSociaisOrder', new ListAllRedesSociaisOrderAndPosicaoController().handle);
 
 // -- ROTAS TEXTOS INSTITUCIONAIS --
