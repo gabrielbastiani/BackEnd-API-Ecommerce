@@ -69,6 +69,7 @@ import { DeleteAllPhotoTextosController } from './controllers/loja/textoInstituc
 import { DeletePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeletePhotoTextoController';
 import { UpdatePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePhotoTextoController';
 import { UpdateTitlePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateTitlePhotoTextoController';
+import { ListExactPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/ListExactPhotoTextoController';
 import { UpdateOrderPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
 import { UpdatePosicaoPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
 
@@ -300,6 +301,7 @@ router.put('/updateImageTextoInstitucional', ADMINisAuthenticated, upload.single
 router.put('/updateTitleImageTextoInstitucional', ADMINisAuthenticated, new UpdateTitlePhotoTextoController().handle);
 router.put('/updateOrderImageTextoInstitucional', ADMINisAuthenticated, new UpdateOrderPhotoTextoController().handle);
 router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new UpdatePosicaoPhotoTextoController().handle);
+router.get('/listExactPhotoTextoInstitucional', ADMINisAuthenticated, new ListExactPhotoTextoController().handle);
 router.get('/listTextosInstitucionais', new ListAllTextosOrderAndPosicaoController().handle);
 
 // -- ROTAS BANNER --
