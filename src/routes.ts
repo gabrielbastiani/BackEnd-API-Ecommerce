@@ -93,6 +93,7 @@ import { UpdateDisponibilidadeCategoryController } from './controllers/category/
 import { UpdateProductCategoryController } from './controllers/category/UpdateProductCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
 import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
+import { FindFirstCategoryController } from './controllers/category/FindFirstCategoryController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
 import { DeleteCategoryController } from './controllers/category/DeleteCategoryController';
@@ -123,6 +124,8 @@ import { AllPhotosProductController } from './controllers/product/photoproduct/A
 import { AllPhotosController } from './controllers/product/photoproduct/AllPhotosController';
 import { AllProductController } from './controllers/product/AllProductController';
 import { AllProductInStoreController } from './controllers/product/AllProductInStoreController';
+import { FindFirstProductController } from './controllers/product/FindFirstProductController';
+import { AllProductExistController } from './controllers/product/AllProductExistController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
 import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
@@ -325,9 +328,10 @@ router.put('/updateProductCategory', ADMINisAuthenticated, new UpdateProductCate
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
+router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryController().handle);
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryController().handle);
-router.get('/allCategorys', new ListCategoryController().handle);
+router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/exactCategoryProducts', new ListExactCategoryNameController().handle);
 
 // -- ROTAS SUB CATEGORIAS --
@@ -358,8 +362,10 @@ router.put('/updatePosicaoProduct', ADMINisAuthenticated, new UpdatePosicaoProdu
 router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductController().handle);
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
 router.get('/allProduct', ADMINisAuthenticated, new AllProductController().handle);
+router.get('/allExistProducts', ADMINisAuthenticated, new AllProductExistController().handle);
 router.get('/allProductsPage', ADMINisAuthenticated && USERisAuthenticated, new PageListAllProductController().handle);
 router.get('/exactProduct', ADMINisAuthenticated, new ListExactProductController().handle);
+router.get('/findFirstProduct', ADMINisAuthenticated, new FindFirstProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
 router.get('/exportProduct', ADMINisAuthenticated, new ExportProductController().handle);
