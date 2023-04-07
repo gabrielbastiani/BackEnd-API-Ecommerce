@@ -68,6 +68,7 @@ import { AllPhotosTextosController } from './controllers/loja/textoInstitucional
 import { DeleteAllPhotoTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeleteAllPhotoTextosController';
 import { DeletePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeletePhotoTextoController';
 import { UpdatePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePhotoTextoController';
+import { UpdateDisponibilidadePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateDisponibilidadePhotoTextoController';
 import { UpdateTitlePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateTitlePhotoTextoController';
 import { ListExactPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/ListExactPhotoTextoController';
 import { UpdateOrderPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
@@ -300,6 +301,7 @@ router.delete('/deleteImageTextoInstitucional', ADMINisAuthenticated, new Delete
 router.put('/updateImageTextoInstitucional', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoTextoController().handle);
 router.put('/updateTitleImageTextoInstitucional', ADMINisAuthenticated, new UpdateTitlePhotoTextoController().handle);
 router.put('/updateOrderImageTextoInstitucional', ADMINisAuthenticated, new UpdateOrderPhotoTextoController().handle);
+router.put('/updateDisponibilidadePhotoTexto', ADMINisAuthenticated, new UpdateDisponibilidadePhotoTextoController().handle);
 router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new UpdatePosicaoPhotoTextoController().handle);
 router.get('/listExactPhotoTextoInstitucional', ADMINisAuthenticated, new ListExactPhotoTextoController().handle);
 router.get('/listTextosInstitucionais', new ListAllTextosOrderAndPosicaoController().handle);
