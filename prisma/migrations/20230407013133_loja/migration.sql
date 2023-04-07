@@ -11,6 +11,9 @@ CREATE TYPE "StatusRedeSocial" AS ENUM ('Disponivel', 'Indisponivel');
 CREATE TYPE "StatusTextoInstitucional" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
+CREATE TYPE "StatusImagemLoja" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
 CREATE TYPE "StatusProduct" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
@@ -147,6 +150,8 @@ CREATE TABLE "imagesloja" (
     "order" INTEGER,
     "posicao" VARCHAR(300),
     "slugPosicao" VARCHAR(325),
+    "disponibilidade" "StatusImagemLoja" NOT NULL DEFAULT 'Disponivel',
+    "someImage" BOOLEAN NOT NULL DEFAULT false,
     "textoinstitucional_id" TEXT,
 
     CONSTRAINT "imagesloja_pkey" PRIMARY KEY ("id")

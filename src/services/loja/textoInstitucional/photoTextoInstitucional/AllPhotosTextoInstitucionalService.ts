@@ -1,10 +1,18 @@
 import prismaClient from '../../../../prisma';
 
+
 class AllPhotosTextoInstitucionalService {
     async execute() {
-        const allImagesTextos = await prismaClient.imageLoja.findMany();
+        const someImagens = await prismaClient.imageLoja.findMany({
+            where: {
+                someImage: true
+            },
+            orderBy: {
+                order: 'asc'
+            }
+        });
 
-        return allImagesTextos;
+        return someImagens;
 
     }
 }

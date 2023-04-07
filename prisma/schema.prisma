@@ -147,17 +147,24 @@ enum StatusTextoInstitucional {
 }
 
 model ImageLoja {
-  id          String  @id @default(uuid())
-  titleImage  String? @db.VarChar(425)
-  image       String?
-  order       Int?
-  posicao     String? @db.VarChar(300)
-  slugPosicao String? @db.VarChar(325)
+  id              String           @id @default(uuid())
+  titleImage      String?          @db.VarChar(425)
+  image           String?
+  order           Int?
+  posicao         String?          @db.VarChar(300)
+  slugPosicao     String?          @db.VarChar(325)
+  disponibilidade StatusImagemLoja @default(Disponivel)
+  someImage       Boolean          @default(false)
 
   textoInstitucional    TextoInstitucional? @relation(fields: [textoinstitucional_id], references: [id])
   textoinstitucional_id String?
 
   @@map("imagesloja")
+}
+
+enum StatusImagemLoja {
+  Disponivel
+  Indisponivel
 }
 
 model Product {
@@ -312,18 +319,18 @@ model PhotoProduct {
 }
 
 model Banner {
-  id               String       @id @default(uuid())
-  title            String?      @db.VarChar(355)
-  width            String?      @db.VarChar(55)
-  height           String?      @db.VarChar(55)
-  dateInicio       String?      @default("01/01/3075 00:00")
-  dateFim          String?      @default("01/01/5575 00:00")
-  banner           String?
-  order            Int?
-  url              String?
-  posicao          String?      @db.VarChar(325)
-  slugPosicao      String?      @db.VarChar(325)
-  active           StatusBanner @default(Sim)
+  id          String       @id @default(uuid())
+  title       String?      @db.VarChar(355)
+  width       String?      @db.VarChar(55)
+  height      String?      @db.VarChar(55)
+  dateInicio  String?      @default("01/01/3075 00:00")
+  dateFim     String?      @default("01/01/5575 00:00")
+  banner      String?
+  order       Int?
+  url         String?
+  posicao     String?      @db.VarChar(325)
+  slugPosicao String?      @db.VarChar(325)
+  active      StatusBanner @default(Sim)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
