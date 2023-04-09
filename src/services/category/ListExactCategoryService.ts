@@ -5,10 +5,6 @@ class ListExactCategoryService {
         const exactCategory = await prismaClient.category.findUnique({
             where: {
                 id: String(category_id)
-            },
-            include: {
-                product: true,
-                subcategories: true
             }
         })
         return exactCategory;

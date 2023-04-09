@@ -9,10 +9,6 @@ class ExactPageListAllCategorysService {
             where: {
                 id: category_id
             },
-            include: {
-                product: true,
-                subcategories: true
-            },
             orderBy: {
                 order: 'asc'
             }
@@ -21,10 +17,6 @@ class ExactPageListAllCategorysService {
         const categorys = await prismaClient.category.findMany({
             where: {
                 id: category_id
-            },
-            include: {
-                product: true,
-                subcategories: true
             },
             orderBy: {
                 order: 'asc'

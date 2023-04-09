@@ -7,10 +7,6 @@ class ListCategoryService {
          where: {
             disponibilidade: StatusCategory.Disponivel
          },
-         include: {
-            product: true,
-            subcategories: true
-         },
          orderBy: {
             order: 'asc'
          }

@@ -9,8 +9,6 @@ class ListAllProductOfertasService {
                 disponibilidade: StatusProduct.Disponivel
             },
             include: {
-                categories: true,
-                subcategories: true,
                 atributos: true,
                 loja: true,
                 photoproducts: true,

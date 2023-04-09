@@ -5,11 +5,6 @@ class FindFirstCategoryService {
         const findFirstCategory = await prismaClient.category.findFirst({
             orderBy: {
                 created_at: 'desc'
-            },
-            include: {
-                subcategories: true,
-                product: true,
-                loja: true
             }
         })
         return findFirstCategory;

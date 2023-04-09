@@ -7,8 +7,6 @@ class ListExactProductService {
                 id: String(product_id)
             },
             include: {
-                categories: true,
-                subcategories: true,
                 atributos: true,
                 loja: true,
                 photoproducts: true,

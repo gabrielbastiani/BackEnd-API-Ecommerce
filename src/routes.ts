@@ -90,7 +90,6 @@ import { CreateCategoryController } from './controllers/category/CreateCategoryC
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
 import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
-import { UpdateProductCategoryController } from './controllers/category/UpdateProductCategoryController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
 import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
 import { FindFirstCategoryController } from './controllers/category/FindFirstCategoryController';
@@ -98,21 +97,6 @@ import { ListCategoryController } from './controllers/category/ListCategoryContr
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
 import { DeleteCategoryController } from './controllers/category/DeleteCategoryController';
 import { ListExactCategoryNameController } from './controllers/category/ListExactCategoryNameController';
-
-// -- ROTAS SUB CATEGORIAS --
-import { CreateSubCategoryController } from './controllers/category/subCategory/CreateSubCategoryController';
-import { DeleteSubCategoryController } from './controllers/category/subCategory/DeleteSubCategoryController';
-import { ExactPageListAllSubCategoryController } from './controllers/category/subCategory/ExactPageListAllSubCategoryController';
-import { ListSubCategoryController } from './controllers/category/subCategory/ListSubCategoryController';
-import { ListExactSubCategoryNameController } from './controllers/category/subCategory/ListExactSubCategoryNameController';
-import { ListExactSubCategoryController } from './controllers/category/subCategory/ListExactSubCategoryController';
-import { PageListAllSubCategorysController } from './controllers/category/subCategory/PageListAllSubCategorysController';
-import { UpdateDisponibilidadeSubCategoryController } from './controllers/category/subCategory/UpdateDisponibilidadeSubCategoryController';
-import { UpdateNameSubCategoryController } from './controllers/category/subCategory/UpdateNameSubCategoryController';
-import { UpdateOrderSubCategoryController } from './controllers/category/subCategory/UpdateOrderSubCategoryController';
-import { UpdatePosicaoSubCategoryController } from './controllers/category/subCategory/UpdatePosicaoSubCategoryController';
-import { UpdateProductSubCategoryController } from './controllers/category/subCategory/UpdateProductSubCategoryController';
-import { UpdateCategorySubCategoryController } from './controllers/category/subCategory/UpdateCategorySubCategoryController';
 
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
@@ -324,7 +308,6 @@ router.get('/activeBanner', new ActiveAllBannerController().handle);
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
 router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
-router.put('/updateProductCategory', ADMINisAuthenticated, new UpdateProductCategoryController().handle);
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
@@ -333,21 +316,6 @@ router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryControll
 router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/exactCategoryProducts', new ListExactCategoryNameController().handle);
-
-// -- ROTAS SUB CATEGORIAS --
-router.post('/createSubCategory', ADMINisAuthenticated, new CreateSubCategoryController().handle);
-router.delete('/deleteSubCategory', ADMINisAuthenticated, new DeleteSubCategoryController().handle);
-router.get('/exactAllPageSubCategory', ADMINisAuthenticated, new ExactPageListAllSubCategoryController().handle);
-router.get('/listExactSubCategory', ADMINisAuthenticated, new ListExactSubCategoryController().handle);
-router.get('/pageListAllSubCategorys', ADMINisAuthenticated, new PageListAllSubCategorysController().handle);
-router.put('/updateDisponibilidadeSubCategory', ADMINisAuthenticated, new UpdateDisponibilidadeSubCategoryController().handle);
-router.put('/updateNameSubCategory', ADMINisAuthenticated, new UpdateNameSubCategoryController().handle);
-router.put('/updateOrderSubCategory', ADMINisAuthenticated, new UpdateOrderSubCategoryController().handle);
-router.put('/updatePosicaoSubCategory', ADMINisAuthenticated, new UpdatePosicaoSubCategoryController().handle);
-router.put('/updateProductSubCategory', ADMINisAuthenticated, new UpdateProductSubCategoryController().handle);
-router.put('/updateCategorySubCategory', ADMINisAuthenticated, new UpdateCategorySubCategoryController().handle);
-router.get('/pageListExactSubCategoryName', new ListExactSubCategoryNameController().handle);
-router.get('/listSubCategoryDisponivel', new ListSubCategoryController().handle);
 
 // -- ROTAS PRODUTOS --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);

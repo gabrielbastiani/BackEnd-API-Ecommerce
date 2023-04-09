@@ -6,20 +6,12 @@ class PageListAllCategorysService {
         const skip = limit * (page - 1);
 
         const categorysAll = await prismaClient.category.findMany({
-            include: {
-                product: true,
-                subcategories: true
-            },
             orderBy: {
                 order: 'asc'
             }
         });
 
         const categorys = await prismaClient.category.findMany({
-            include: {
-                product: true,
-                subcategories: true
-            },
             orderBy: {
                 order: 'asc'
             },

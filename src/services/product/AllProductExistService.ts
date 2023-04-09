@@ -4,9 +4,6 @@ class AllProductExistService {
     async execute() {
         const allProduct = await prismaClient.product.findMany({
             include: {
-                category: true,
-                categories: true,
-                subcategories: true,
                 atributos: true,
                 photoproducts: true,
                 variacoes: true,

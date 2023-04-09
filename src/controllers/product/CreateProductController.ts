@@ -18,7 +18,6 @@ class CreateProductController {
             preco,
             sku,
             promocao,
-            category_id,
             loja_id
         } = req.body;
 
@@ -39,7 +38,6 @@ class CreateProductController {
             preco,
             sku,
             promocao,
-            category_id,
             loja_id
         })
 

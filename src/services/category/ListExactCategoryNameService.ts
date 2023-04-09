@@ -9,10 +9,6 @@ class ListExactCategoryNameService {
             where: {
                 slug: slug
             },
-            include: {
-                product: true,
-                subcategories: true
-            },
             orderBy: {
                 order: 'asc'
             }
@@ -26,9 +22,6 @@ class ListExactCategoryNameService {
                 product: true,
                 subcategories: true
             },
-            orderBy: {
-                order: 'asc'
-            },
             skip,
             take: limit
         });
@@ -36,10 +29,6 @@ class ListExactCategoryNameService {
         const findUnique = await prismaClient.category.findUnique({
             where: {
                 slug: slug
-            },
-            include: {
-                product: true,
-                subcategories: true
             }
         });
 

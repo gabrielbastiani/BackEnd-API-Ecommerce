@@ -7,8 +7,6 @@ class FindFirstProductService {
                 created_at: 'desc'
             },
             include: {
-                categories: true,
-                subcategories: true,
                 atributos: true,
                 loja: true,
                 photoproducts: true,

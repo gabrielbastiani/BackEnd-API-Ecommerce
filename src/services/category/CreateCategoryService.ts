@@ -6,12 +6,11 @@ interface CategoryRequest {
   order: number;
   posicao: string;
   slugPosicao: string;
-  product_id: string;
   loja_id: string;
 }
 
 class CreateCategoryService {
-  async execute({ categoryName, order, posicao, product_id, loja_id }: CategoryRequest) {
+  async execute({ categoryName, order, posicao, loja_id }: CategoryRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -29,13 +28,7 @@ class CreateCategoryService {
         order: order,
         posicao: posicao,
         slugPosicao: removerAcentos(posicao),
-        product_id: product_id,
         loja_id: loja_id
-      },
-      include: {
-        products: true,
-        product: true,
-        subcategories: true,
       }
     });
 
