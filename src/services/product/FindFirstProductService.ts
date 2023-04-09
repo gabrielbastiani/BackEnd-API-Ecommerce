@@ -7,6 +7,7 @@ class FindFirstProductService {
                 created_at: 'desc'
             },
             include: {
+                relationproductcategories: true,
                 atributos: true,
                 loja: true,
                 photoproducts: true,

@@ -192,13 +192,13 @@ model Product {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
+  relationproductcategories RelationProductCategory[]
   photoproducts             PhotoProduct[]
   atributos                 Atributo[]
   variacoes                 Variacao[]
   photovariacoes            PhotoVariacao[]
   avaliacoes                Avaliacao[]
   item                      Item[]
-  relationproductcategories RelationProductCategory[]
 
   @@map("products")
 }

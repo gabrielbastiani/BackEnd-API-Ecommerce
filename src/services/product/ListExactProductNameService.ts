@@ -11,6 +11,7 @@ class ListExactProductNameService {
                 slug: slug
             },
             include: {
+                relationproductcategories: true,
                 atributos: true,
                 loja: true,
                 photoproducts: true,

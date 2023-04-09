@@ -8,6 +8,7 @@ class AllProductInStoreService {
                 disponibilidade: StatusProduct.Disponivel
             },
             include: {
+                relationproductcategories: true,
                 atributos: true,
                 loja: true,
                 photoproducts: true,

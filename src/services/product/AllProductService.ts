@@ -9,6 +9,9 @@ class AllProductService {
         const allProduct = await prismaClient.product.findMany({
             where: {
                 id: product_id
+            },
+            include: {
+                relationproductcategories: true,
             }
         });
 

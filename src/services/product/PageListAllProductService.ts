@@ -10,6 +10,7 @@ class PageListAllProductService {
                 order: 'asc'
             },
             include: {
+                relationproductcategories: true,
                 atributos: true,
                 loja: true,
                 photoproducts: true,
@@ -21,6 +22,7 @@ class PageListAllProductService {
         
         const products = await prismaClient.product.findMany({
             include: {
+                relationproductcategories: true,
                 atributos: true,
                 loja: true,
                 photoproducts: true,

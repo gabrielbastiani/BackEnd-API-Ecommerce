@@ -63,6 +63,7 @@ class CreateProductService {
                 loja_id: loja_id
             },
             include: {
+                relationproductcategories: true,
                 atributos: true,
                 photoproducts: true,
                 variacoes: true,
