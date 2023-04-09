@@ -129,6 +129,11 @@ import { ListAllProductDestaqueController } from './controllers/product/ListAllP
 import { ListAllProductOfertaController } from './controllers/product/ListAllProductOfertaController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
+// ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS
+import { CreateRelationProductCategoryController } from './controllers/relationProductCategory/CreateRelationProductCategoryController';
+import { UpdateRelationIDProductCategoryController } from './controllers/relationProductCategory/UpdateRelationIDProductCategoryController';
+import { AllRelationProductCategoryController } from './controllers/relationProductCategory/AllRelationProductCategoryController';
+
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
 import { DeleteAvaliacaoController } from './controllers/avaliacao/DeleteAvaliacaoController';
@@ -345,6 +350,11 @@ router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().ha
 router.get('/listProductsDestaque', new ListAllProductDestaqueController().handle);
 router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
+
+// ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS
+router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
+router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
+router.get('/allRelationsProductCategory', ADMINisAuthenticated, new AllRelationProductCategoryController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);

@@ -70,7 +70,7 @@ class CreateProductService {
                 photovariacoes: true,
                 avaliacoes: true,
             }
-        })
+        });
 
         return product;
 

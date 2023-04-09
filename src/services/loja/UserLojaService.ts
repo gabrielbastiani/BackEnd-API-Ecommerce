@@ -10,8 +10,6 @@ class UserLojaService {
                 users: true,
                 redessociais: true,
                 textosinstitucionais: true,
-                categories: true,
-                subcategories: true,
                 products: true,
                 variacoes: true,
                 avaliacoes: true,
