@@ -33,8 +33,9 @@ class CreateCategoryService {
         loja_id: loja_id
       },
       include: {
+        products: true,
         product: true,
-        subcategories: true
+        subcategories: true,
       }
     });
 

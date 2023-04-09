@@ -16,6 +16,7 @@ class UpdateAllDateProductController {
             preco,
             promocao,
             sku,
+            category_id,
             loja_id,
         } = req.body;
 
@@ -33,6 +34,7 @@ class UpdateAllDateProductController {
             preco,
             promocao,
             sku,
+            category_id,
             loja_id,
         });
 

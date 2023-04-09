@@ -170,7 +170,7 @@ enum StatusImagemLoja {
 model Product {
   id                  String         @id @default(uuid())
   nameProduct         String         @db.VarChar(325)
-  slug                String?        @unique @db.VarChar(325)
+  slug                String?        @db.VarChar(325)
   order               Int?
   posicao             String?        @db.VarChar(300)
   slugPosicao         String?        @db.VarChar(325)
@@ -186,6 +186,12 @@ model Product {
   disponibilidade     StatusProduct  @default(Disponivel)
   produtoDestaque     StatusDestaque @default(Nao)
   produtoOferta       StatusOferta   @default(Nao)
+
+  category    Category? @relation(name: "products", fields: [category_id], references: [id])
+  category_id String?
+
+  subCategory    SubCategory? @relation(name: "products", fields: [subCategory_id], references: [id])
+  subCategory_id String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -220,42 +226,18 @@ enum StatusOferta {
   Nao
 }
 
-model Atributo {
-  id              String         @id @default(uuid())
-  nameAtributo    String?        @db.VarChar(300)
-  order           Int?
-  linkProduct     String?
-  linkVariante    String?
-  disponibilidade StatusAtributo @default(Disponivel)
-  posicao         String?        @db.VarChar(300)
-  slug            String?        @db.VarChar(325)
-
-  product     Product?  @relation(fields: [product_id], references: [id])
-  product_id  String?
-  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
-  variacao_id String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  @@map("atributos")
-}
-
-enum StatusAtributo {
-  Disponivel
-  Indisponivel
-}
-
 model Category {
   id              String         @id @default(uuid())
-  categoryName    String         @unique @db.VarChar(300)
-  slug            String?        @unique @db.VarChar(300)
+  categoryName    String?        @db.VarChar(300)
+  slug            String?        @db.VarChar(300)
   order           Int?
   posicao         String?        @db.VarChar(300)
   slugPosicao     String?        @db.VarChar(325)
   disponibilidade StatusCategory @default(Disponivel)
+  imageCategory   String?
 
-  product    Product? @relation(fields: [product_id], references: [id])
+  products   Product[] @relation("products")
+  product    Product?  @relation(fields: [product_id], references: [id])
   product_id String?
 
   created_at DateTime? @default(now())
@@ -275,18 +257,20 @@ enum StatusCategory {
 }
 
 model SubCategory {
-  id              String            @id @default(uuid())
-  subCategoryName String            @unique @db.VarChar(300)
-  slug            String?           @unique @db.VarChar(300)
-  order           Int?
-  posicao         String?           @db.VarChar(300)
-  slugPosicao     String?           @db.VarChar(325)
-  disponibilidade StatusSubCategory @default(Disponivel)
+  id               String            @id @default(uuid())
+  subCategoryName  String?           @db.VarChar(300)
+  slug             String?           @db.VarChar(300)
+  order            Int?
+  posicao          String?           @db.VarChar(300)
+  slugPosicao      String?           @db.VarChar(325)
+  disponibilidade  StatusSubCategory @default(Disponivel)
+  imageSubCategory String?
 
   category    Category? @relation(fields: [category_id], references: [id])
   category_id String?
 
-  product    Product? @relation(fields: [product_id], references: [id])
+  products   Product[] @relation("products")
+  product    Product?  @relation(fields: [product_id], references: [id])
   product_id String?
 
   created_at DateTime? @default(now())
@@ -318,6 +302,32 @@ model PhotoProduct {
   @@map("photoproducts")
 }
 
+model Atributo {
+  id              String         @id @default(uuid())
+  nameAtributo    String?        @db.VarChar(300)
+  order           Int?
+  linkProduct     String?
+  linkVariante    String?
+  disponibilidade StatusAtributo @default(Disponivel)
+  posicao         String?        @db.VarChar(300)
+  slug            String?        @db.VarChar(325)
+
+  product     Product?  @relation(fields: [product_id], references: [id])
+  product_id  String?
+  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("atributos")
+}
+
+enum StatusAtributo {
+  Disponivel
+  Indisponivel
+}
+
 model Banner {
   id          String       @id @default(uuid())
   title       String?      @db.VarChar(355)
@@ -346,7 +356,7 @@ enum StatusBanner {
 model Variacao {
   id                      String                 @id @default(uuid())
   nameVariacao            String?                @db.VarChar(355)
-  slug                    String?                @unique @db.VarChar(355)
+  slug                    String?                @db.VarChar(355)
   order                   Int?
   posicao                 String?                @db.VarChar(325)
   slugPosicao             String?                @db.VarChar(325)

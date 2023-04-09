@@ -15,6 +15,7 @@ interface ProductRequest {
     preco: number;
     sku: string;
     promocao: number;
+    category_id: string;
     loja_id: string;
 }
 
@@ -32,6 +33,7 @@ class CreateProductService {
         preco,
         sku,
         promocao,
+        category_id,
         loja_id,
     }: ProductRequest) {
 
@@ -60,13 +62,15 @@ class CreateProductService {
                 preco: preco,
                 sku: sku,
                 promocao: promocao,
+                category_id: category_id,
                 loja_id: loja_id
             },
             include: {
                 categories: true,
+                category: true,
                 subcategories: true,
+                subCategory: true,
                 atributos: true,
-                loja: true,
                 photoproducts: true,
                 variacoes: true,
                 photovariacoes: true,

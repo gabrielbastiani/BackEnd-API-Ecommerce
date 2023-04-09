@@ -7,7 +7,7 @@ class PageListAllProductService {
 
         const allProducts = await prismaClient.product.findMany({
             orderBy: {
-                created_at: 'desc'
+                order: 'asc'
             },
             include: {
                 categories: true,
@@ -35,7 +35,7 @@ class PageListAllProductService {
             skip,
             take: limit,
             orderBy: {
-                created_at: 'desc'
+                order: 'asc'
             }
         });
 
