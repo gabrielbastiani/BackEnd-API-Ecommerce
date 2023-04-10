@@ -84,19 +84,20 @@ model Loja {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  users                User[]
-  redessociais         RedeSocial[]
-  textosinstitucionais TextoInstitucional[]
-  categories           Category[]
-  products             Product[]
-  variacoes            Variacao[]
-  avaliacoes           Avaliacao[]
-  newsletters          Newsletter[]
-  contatos             Contato[]
-  carrinhos            Carrinho[]
-  pagamentos           Pagamento[]
-  entregas             Entrega[]
-  pedidos              Pedido[]
+  users                     User[]
+  redessociais              RedeSocial[]
+  textosinstitucionais      TextoInstitucional[]
+  categories                Category[]
+  products                  Product[]
+  variacoes                 Variacao[]
+  relationproductcategories RelationProductCategory[]
+  avaliacoes                Avaliacao[]
+  newsletters               Newsletter[]
+  contatos                  Contato[]
+  carrinhos                 Carrinho[]
+  pagamentos                Pagamento[]
+  entregas                  Entrega[]
+  pedidos                   Pedido[]
 
   @@map("lojas")
 }
@@ -252,6 +253,12 @@ model RelationProductCategory {
   category_id String?
   nivel       Int?
   relationId  String?
+  order       Int?
+  posicao     String?   @db.VarChar(300)
+  slugPosicao String?   @db.VarChar(325)
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   status StatusRelation @default(Ativo)
 

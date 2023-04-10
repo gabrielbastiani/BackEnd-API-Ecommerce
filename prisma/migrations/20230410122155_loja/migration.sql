@@ -208,6 +208,10 @@ CREATE TABLE "relationproductcategories" (
     "category_id" TEXT,
     "nivel" INTEGER,
     "relationId" TEXT,
+    "order" INTEGER,
+    "posicao" VARCHAR(300),
+    "slugPosicao" VARCHAR(325),
+    "loja_id" TEXT,
     "status" "StatusRelation" NOT NULL DEFAULT 'Ativo',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -492,6 +496,9 @@ ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategorie
 
 -- AddForeignKey
 ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategories_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "photoproducts" ADD CONSTRAINT "photoproducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
