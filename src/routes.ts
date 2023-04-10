@@ -135,6 +135,7 @@ import { UpdateRelationIDProductCategoryController } from './controllers/relatio
 import { AllRelationProductCategoryController } from './controllers/relationProductCategory/AllRelationProductCategoryController';
 import { FindFirstRelationProductCategoryController } from './controllers/relationProductCategory/FindFirstRelationProductCategoryController';
 import { NextCategoryRelationBlockController } from './controllers/relationProductCategory/NextCategoryRelationBlockController';
+import { AllIDFirstRelationProductCategoryController } from './controllers/relationProductCategory/AllIDFirstRelationProductCategoryController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -359,6 +360,7 @@ router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProduc
 router.get('/allRelationsProductCategory', ADMINisAuthenticated, new AllRelationProductCategoryController().handle);
 router.get('/findFirstRelation', ADMINisAuthenticated, new FindFirstRelationProductCategoryController().handle);
 router.get('/nextBlockRelationCategory', ADMINisAuthenticated, new NextCategoryRelationBlockController().handle);
+router.get('/allIDRelation', ADMINisAuthenticated, new AllIDFirstRelationProductCategoryController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
