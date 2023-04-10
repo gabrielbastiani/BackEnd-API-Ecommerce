@@ -8,10 +8,11 @@ interface RelationRequest {
     order: number;
     posicao: string;
     slugPosicao: string;
+    loja_id: string;
 }
 
 class CreateRelationProductCategoryService {
-    async execute({ product_id, category_id, nivel, relationId, order, posicao }: RelationRequest) {
+    async execute({ product_id, category_id, nivel, relationId, order, posicao, loja_id }: RelationRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -30,7 +31,8 @@ class CreateRelationProductCategoryService {
                 relationId: relationId,
                 order: Number(order),
                 posicao: posicao,
-                slugPosicao: removerAcentos(posicao)
+                slugPosicao: removerAcentos(posicao),
+                loja_id: loja_id
             }
         });
 
