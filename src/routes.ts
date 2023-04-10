@@ -133,6 +133,8 @@ import { ListExactProductNameController } from './controllers/product/ListExactP
 import { CreateRelationProductCategoryController } from './controllers/relationProductCategory/CreateRelationProductCategoryController';
 import { UpdateRelationIDProductCategoryController } from './controllers/relationProductCategory/UpdateRelationIDProductCategoryController';
 import { AllRelationProductCategoryController } from './controllers/relationProductCategory/AllRelationProductCategoryController';
+import { FindFirstRelationProductCategoryController } from './controllers/relationProductCategory/FindFirstRelationProductCategoryController';
+import { NextCategoryRelationBlockController } from './controllers/relationProductCategory/NextCategoryRelationBlockController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -355,6 +357,8 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
 router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
 router.get('/allRelationsProductCategory', ADMINisAuthenticated, new AllRelationProductCategoryController().handle);
+router.get('/findFirstRelation', ADMINisAuthenticated, new FindFirstRelationProductCategoryController().handle);
+router.get('/nextBlockRelationCategory', ADMINisAuthenticated, new NextCategoryRelationBlockController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);

@@ -6,7 +6,8 @@ class CreateRelationProductCategoryController {
         const {
             product_id,
             category_id,
-            nivel
+            nivel,
+            relationId
         } = req.body;
 
         const createRelations = new CreateRelationProductCategoryService();
@@ -14,7 +15,8 @@ class CreateRelationProductCategoryController {
         const relation = await createRelations.execute({
             product_id,
             category_id,
-            nivel
+            nivel,
+            relationId
         });
 
         return res.json(relation)
