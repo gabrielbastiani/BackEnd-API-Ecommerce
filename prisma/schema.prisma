@@ -251,7 +251,7 @@ model RelationProductCategory {
   category    Category? @relation(fields: [category_id], references: [id])
   category_id String?
   nivel       Int?
-  relationId  String? //Precisa ser o ID do pai/anterior
+  relationId  String?
 
   status StatusRelation @default(Ativo)
 
