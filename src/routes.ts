@@ -219,6 +219,7 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { FindIDRelationBlockController } from './controllers/relationProductCategory/FindIDRelationBlockController';
 import { FindLastIDRelationBlockController } from './controllers/relationProductCategory/FindLastIDRelationBlockController';
+import { ListCategoryNameController } from './controllers/category/ListCategoryNameController';
 
 
 const router = Router();
@@ -321,6 +322,7 @@ router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCateg
 router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryController().handle);
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryController().handle);
+router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/exactCategoryProducts', new ListExactCategoryNameController().handle);
 
