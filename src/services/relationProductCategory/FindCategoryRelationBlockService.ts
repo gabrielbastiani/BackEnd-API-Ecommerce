@@ -52,7 +52,8 @@ class FindCategoryRelationBlockService {
 
         const allFindAsc = await prismaClient.relationProductCategory.findMany({
             where: {
-                product_id: product_id
+                product_id: product_id,
+                relationId: ""
             },
             orderBy: {
                 created_at: 'asc'

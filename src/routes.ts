@@ -217,6 +217,8 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { FindIDRelationBlockController } from './controllers/relationProductCategory/FindIDRelationBlockController';
+import { FindLastIDRelationBlockController } from './controllers/relationProductCategory/FindLastIDRelationBlockController';
 
 
 const router = Router();
@@ -355,6 +357,8 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
 router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
 router.get('/findRelationCategoryProduct', ADMINisAuthenticated, new FindCategoryRelationBlockController().handle);
+router.get('/findIdsRelations', ADMINisAuthenticated, new FindIDRelationBlockController().handle);
+router.get('/findLastIdRelations', ADMINisAuthenticated, new FindLastIDRelationBlockController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
