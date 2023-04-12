@@ -90,6 +90,7 @@ import { CreateCategoryController } from './controllers/category/CreateCategoryC
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
 import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
+import { ListCategoryNameController } from './controllers/category/ListCategoryNameController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
 import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
 import { FindFirstCategoryController } from './controllers/category/FindFirstCategoryController';
@@ -133,6 +134,8 @@ import { ListExactProductNameController } from './controllers/product/ListExactP
 import { CreateRelationProductCategoryController } from './controllers/relationProductCategory/CreateRelationProductCategoryController';
 import { UpdateRelationIDProductCategoryController } from './controllers/relationProductCategory/UpdateRelationIDProductCategoryController';
 import { FindCategoryRelationBlockController } from './controllers/relationProductCategory/FindCategoryRelationBlockController';
+import { FindIDRelationBlockController } from './controllers/relationProductCategory/FindIDRelationBlockController';
+import { FindLastIDRelationBlockController } from './controllers/relationProductCategory/FindLastIDRelationBlockController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -217,9 +220,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { FindIDRelationBlockController } from './controllers/relationProductCategory/FindIDRelationBlockController';
-import { FindLastIDRelationBlockController } from './controllers/relationProductCategory/FindLastIDRelationBlockController';
-import { ListCategoryNameController } from './controllers/category/ListCategoryNameController';
+import { UpdateOrderProductCategoryController } from './controllers/relationProductCategory/UpdateOrderProductCategoryController';
 
 
 const router = Router();
@@ -361,6 +362,7 @@ router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProduc
 router.get('/findRelationCategoryProduct', ADMINisAuthenticated, new FindCategoryRelationBlockController().handle);
 router.get('/findIdsRelations', ADMINisAuthenticated, new FindIDRelationBlockController().handle);
 router.get('/findLastIdRelations', ADMINisAuthenticated, new FindLastIDRelationBlockController().handle);
+router.put('/updateOrderRelation', ADMINisAuthenticated, new UpdateOrderProductCategoryController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
