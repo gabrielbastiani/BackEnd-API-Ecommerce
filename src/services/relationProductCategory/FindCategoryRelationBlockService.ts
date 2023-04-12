@@ -174,6 +174,38 @@ class FindCategoryRelationBlockService {
             }
         });
 
+        // --- TODA TABELA ORGANIZADA POR ORDEM DESCENDENTE --- //
+
+        const allFindOrderDesc = await prismaClient.relationProductCategory.findMany({
+            where: {
+                product_id: product_id,
+                relationId: ""
+            },
+            orderBy: {
+                order: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
+            }
+        });
+
+        // --- TODA TABELA ORGANIZADA POR ORDEM ASCENDENTE --- //
+
+        const allFindOrderAsc = await prismaClient.relationProductCategory.findMany({
+            where: {
+                product_id: product_id,
+                relationId: ""
+            },
+            orderBy: {
+                order: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
+            }
+        });
+
         const data = {
             findFirstDesc,
             findFirstAsc,
@@ -186,7 +218,9 @@ class FindCategoryRelationBlockService {
             findFirstNivelDesc,
             findFirstNivelAsc,
             findFirstOrderDesc,
-            findFirstOrderAsc
+            findFirstOrderAsc,
+            allFindOrderDesc,
+            allFindOrderAsc
         }
 
         return data;
