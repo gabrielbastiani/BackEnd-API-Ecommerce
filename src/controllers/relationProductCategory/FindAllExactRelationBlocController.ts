@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { FindExactRelationBlockService } from '../../services/relationProductCategory/FindExactRelationBlockService';
+import { FindAllExactRelationBlockService } from '../../services/relationProductCategory/FindAllExactRelationBlockService';
 
-class FindExactRelationBlocController {
+class FindAllExactRelationBlocController {
     async handle(req: Request, res: Response) {
-        const findsRelations = new FindExactRelationBlockService();
+        const findsRelations = new FindAllExactRelationBlockService();
 
         const relationProductCategory_id = req.query.relationProductCategory_id as string;
 
@@ -13,4 +13,4 @@ class FindExactRelationBlocController {
     }
 }
 
-export { FindExactRelationBlocController }
+export { FindAllExactRelationBlocController }

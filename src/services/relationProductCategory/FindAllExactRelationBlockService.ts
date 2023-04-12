@@ -4,11 +4,11 @@ interface FindsRequest {
     relationProductCategory_id: string;
 }
 
-class FindExactRelationBlockService {
+class FindAllExactRelationBlockService {
     async execute({ relationProductCategory_id }: FindsRequest) {
-        const findUniqueRelation = await prismaClient.relationProductCategory.findUnique({
+        const findUniqueRelation = await prismaClient.relationProductCategory.findMany({
             where: {
-                id: String(relationProductCategory_id)
+                id: relationProductCategory_id
             }
         });
 
@@ -17,4 +17,4 @@ class FindExactRelationBlockService {
     }
 }
 
-export { FindExactRelationBlockService }
+export { FindAllExactRelationBlockService }
