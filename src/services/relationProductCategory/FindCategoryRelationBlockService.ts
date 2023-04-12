@@ -49,6 +49,14 @@ class FindCategoryRelationBlockService {
             }
         });
 
+        // --- UNICO ID DA TABELA PELO PRODUTO SEM ORGANIZAÇÃO --- //
+
+        const findUniqueProduct = await prismaClient.product.findUnique({
+            where: {
+                id: product_id
+            }
+        });
+
         // --- TODA TABELA ORGANIZADA POR DATA DESCENDENTE PELO PRODUTO --- //
 
         const allFindDesc = await prismaClient.relationProductCategory.findMany({
@@ -172,6 +180,7 @@ class FindCategoryRelationBlockService {
             findFirstProduct,
             allFindDesc,
             allFindAsc,
+            findUniqueProduct,
             allFindNivelDesc,
             allFindNivelAsc,
             findFirstNivelDesc,
