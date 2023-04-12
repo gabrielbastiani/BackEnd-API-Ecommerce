@@ -221,6 +221,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { UpdateOrderProductCategoryController } from './controllers/relationProductCategory/UpdateOrderProductCategoryController';
+import { DeleteRelationProductCategoryController } from './controllers/relationProductCategory/DeleteRelationProductCategoryController';
 
 
 const router = Router();
@@ -363,6 +364,7 @@ router.get('/findRelationCategoryProduct', ADMINisAuthenticated, new FindCategor
 router.get('/findIdsRelations', ADMINisAuthenticated, new FindIDRelationBlockController().handle);
 router.get('/findLastIdRelations', ADMINisAuthenticated, new FindLastIDRelationBlockController().handle);
 router.put('/updateOrderRelation', ADMINisAuthenticated, new UpdateOrderProductCategoryController().handle);
+router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProductCategoryController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
