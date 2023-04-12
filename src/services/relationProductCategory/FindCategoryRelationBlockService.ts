@@ -15,6 +15,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -26,6 +30,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 created_at: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -34,6 +42,10 @@ class FindCategoryRelationBlockService {
         const findFirstProduct = await prismaClient.relationProductCategory.findFirst({
             where: {
                 product_id: product_id
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -57,6 +69,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 created_at: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -68,6 +84,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 nivel: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -79,6 +99,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 nivel: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -90,6 +114,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 nivel: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -101,6 +129,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 nivel: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -112,6 +144,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 order: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -123,6 +159,10 @@ class FindCategoryRelationBlockService {
             },
             orderBy: {
                 order: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 

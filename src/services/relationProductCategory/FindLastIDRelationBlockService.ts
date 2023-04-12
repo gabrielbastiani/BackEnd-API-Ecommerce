@@ -15,6 +15,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -26,6 +30,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 created_at: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -34,6 +42,10 @@ class FindLastIDRelationBlockService {
         const findFirstRelationID = await prismaClient.relationProductCategory.findFirst({
             where: {
                 relationId: relationId
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -45,6 +57,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -56,6 +72,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 created_at: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -67,6 +87,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 nivel: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -78,6 +102,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 nivel: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -89,6 +117,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 nivel: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -100,6 +132,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 nivel: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -111,6 +147,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 order: 'desc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
@@ -122,6 +162,10 @@ class FindLastIDRelationBlockService {
             },
             orderBy: {
                 order: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
             }
         });
 
