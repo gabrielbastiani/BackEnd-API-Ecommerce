@@ -7,6 +7,14 @@ interface FindsRequest {
 class FindIDRelationBlockService {
     async execute({ relationProductCategory_id }: FindsRequest) {
 
+        // --- ID UNICA COM O RELATION --- //
+
+        const findUniqueRelation = await prismaClient.relationProductCategory.findUnique({
+            where: {
+                id: relationProductCategory_id
+            }
+        });
+
         // --- PRIMEIRA ID DA TABELA ORGANIZADAS COM O RELATION POR DATA DESCENDENTE --- //
 
         const findFirstRelationDesc = await prismaClient.relationProductCategory.findFirst({
@@ -170,6 +178,7 @@ class FindIDRelationBlockService {
         });
 
         const data = {
+            findUniqueRelation,
             findFirstRelationDesc,
             findFirstRelationAsc,
             findFirstRelation,
