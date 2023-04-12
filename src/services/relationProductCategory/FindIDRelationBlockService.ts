@@ -11,7 +11,7 @@ class FindIDRelationBlockService {
 
         const findUniqueRelation = await prismaClient.relationProductCategory.findUnique({
             where: {
-                id: relationProductCategory_id
+                id: String(relationProductCategory_id)
             }
         });
 

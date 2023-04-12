@@ -222,6 +222,7 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { UpdateOrderProductCategoryController } from './controllers/relationProductCategory/UpdateOrderProductCategoryController';
 import { DeleteRelationProductCategoryController } from './controllers/relationProductCategory/DeleteRelationProductCategoryController';
+import { FindExactRelationBlocController } from './controllers/relationProductCategory/FindExactRelationBlocController';
 
 
 const router = Router();
@@ -363,6 +364,7 @@ router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProduc
 router.get('/findRelationCategoryProduct', ADMINisAuthenticated, new FindCategoryRelationBlockController().handle);
 router.get('/findIdsRelations', ADMINisAuthenticated, new FindIDRelationBlockController().handle);
 router.get('/findLastIdRelations', ADMINisAuthenticated, new FindLastIDRelationBlockController().handle);
+router.get('/findExactRelationID', ADMINisAuthenticated, new FindExactRelationBlocController().handle);
 router.put('/updateOrderRelation', ADMINisAuthenticated, new UpdateOrderProductCategoryController().handle);
 router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProductCategoryController().handle);
 
