@@ -223,6 +223,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { DeleteRelationIDProductCategoryController } from './controllers/relationProductCategory/DeleteRelationIDProductCategoryController';
 
 
 const router = Router();
@@ -367,6 +368,7 @@ router.get('/findLastIdRelations', ADMINisAuthenticated, new FindLastIDRelationB
 router.get('/findAllExactRelationID', ADMINisAuthenticated, new FindAllExactRelationBlocController().handle);
 router.put('/updateOrderRelation', ADMINisAuthenticated, new UpdateOrderProductCategoryController().handle);
 router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProductCategoryController().handle);
+router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDProductCategoryController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);

@@ -1,14 +1,14 @@
 import prismaClient from "../../prisma";
 
 interface RelationRequest {
-    relationProductCategory_id: string;
+    relationId: string;
 }
 
 class DeleteRelationProductCategoryService {
-    async execute({ relationProductCategory_id }: RelationRequest) {
-        const relation = await prismaClient.relationProductCategory.delete({
+    async execute({ relationId }: RelationRequest) {
+        const relation = await prismaClient.relationProductCategory.deleteMany({
             where: {
-                id: relationProductCategory_id
+                relationId: relationId
             }
         });
 
