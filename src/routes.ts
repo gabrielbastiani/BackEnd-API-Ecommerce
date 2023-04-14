@@ -225,6 +225,7 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { DeleteRelationIDProductCategoryController } from './controllers/relationProductCategory/DeleteRelationIDProductCategoryController';
 import { PageRelationsCategorysController } from './controllers/relationProductCategory/PageRelationsCategorysController';
+import { UpdateStatusRelationCategoryController } from './controllers/relationProductCategory/UpdateStatusRelationCategoryController';
 
 
 const router = Router();
@@ -325,6 +326,7 @@ router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDis
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
 router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryController().handle);
+router.put('/updateStatusRelation', ADMINisAuthenticated, new UpdateStatusRelationCategoryController().handle);
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryController().handle);
 router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
