@@ -247,8 +247,8 @@ enum StatusCategory {
 
 model RelationProductCategory {
   id          String    @id @default(uuid())
-  product     Product  @relation(fields: [product_id], references: [id])
-  product_id  String
+  product     Product?  @relation(fields: [product_id], references: [id])
+  product_id  String?
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
   nivel       Int?
