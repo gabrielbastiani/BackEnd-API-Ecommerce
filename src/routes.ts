@@ -224,6 +224,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { DeleteRelationIDProductCategoryController } from './controllers/relationProductCategory/DeleteRelationIDProductCategoryController';
+import { PageRelationsCategorysController } from './controllers/relationProductCategory/PageRelationsCategorysController';
 
 
 const router = Router();
@@ -363,6 +364,7 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
 router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
 router.get('/findRelationCategoryProduct', ADMINisAuthenticated, new FindCategoryRelationBlockController().handle);
+router.get('/pageRelationsCategorys', ADMINisAuthenticated, new PageRelationsCategorysController().handle);
 router.get('/findIdsRelations', ADMINisAuthenticated, new FindIDRelationBlockController().handle);
 router.get('/findLastIdRelations', ADMINisAuthenticated, new FindLastIDRelationBlockController().handle);
 router.get('/findAllExactRelationID', ADMINisAuthenticated, new FindAllExactRelationBlocController().handle);

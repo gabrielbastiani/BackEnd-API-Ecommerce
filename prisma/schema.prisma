@@ -246,16 +246,16 @@ enum StatusCategory {
 }
 
 model RelationProductCategory {
-  id          String    @id @default(uuid())
-  product     Product?  @relation(fields: [product_id], references: [id])
+  id          String   @id @default(uuid())
+  product     Product? @relation(fields: [product_id], references: [id])
   product_id  String?
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
   nivel       Int?
   relationId  String?
   order       Int?
-  posicao     String?   @db.VarChar(300)
-  slugPosicao String?   @db.VarChar(325)
+  posicao     String?  @db.VarChar(300)
+  slugPosicao String?  @db.VarChar(325)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
