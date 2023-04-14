@@ -6,7 +6,7 @@ class FindFirstCategoryService {
             orderBy: {
                 created_at: 'desc'
             }
-        })
+        });
         return findFirstCategory;
     }
 }

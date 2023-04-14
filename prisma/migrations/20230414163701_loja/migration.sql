@@ -205,7 +205,7 @@ CREATE TABLE "categories" (
 CREATE TABLE "relationproductcategories" (
     "id" TEXT NOT NULL,
     "product_id" TEXT,
-    "category_id" TEXT,
+    "category_id" TEXT NOT NULL,
     "nivel" INTEGER,
     "relationId" TEXT,
     "order" INTEGER,
@@ -495,7 +495,7 @@ ALTER TABLE "categories" ADD CONSTRAINT "categories_loja_id_fkey" FOREIGN KEY ("
 ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategories_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategories_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategories_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
