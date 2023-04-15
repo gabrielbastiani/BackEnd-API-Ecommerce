@@ -9,6 +9,9 @@ class ListCategoryService {
          },
          orderBy: {
             order: 'asc'
+         },
+         include: {
+            relationproductcategories: true
          }
       })
 

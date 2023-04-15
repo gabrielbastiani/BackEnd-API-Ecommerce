@@ -10,7 +10,7 @@ class PageRelationsCategorysService {
                 relationId: ""
             },
             orderBy: {
-                created_at: 'asc'
+                order: 'asc'
             },
             include: {
                 product: true,
@@ -23,7 +23,7 @@ class PageRelationsCategorysService {
                 relationId: ""
             },
             orderBy: {
-                created_at: 'asc'
+                order: 'asc'
             },
             include: {
                 product: true,
@@ -34,9 +34,9 @@ class PageRelationsCategorysService {
         });
 
         const data = {
-            allFindAsc,
-            total: allFindAscCategorys.length,
-            total_pages: Math.ceil(allFindAscCategorys.length / limit),
+            allFindAscCategorys,
+            total: allFindAsc.length,
+            total_pages: Math.ceil(allFindAsc.length / limit),
             current_page: page,
         }
 

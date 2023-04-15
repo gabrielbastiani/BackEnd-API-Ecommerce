@@ -199,6 +199,13 @@ class FindLastIDRelationBlockService {
             }
         });
 
+        const allRelation = await prismaClient.relationProductCategory.findMany({
+            include: {
+                product: true,
+                category: true
+            }
+        });
+
         const data = {
             findFirstRelationIDDesc,
             findFirstRelationIDAsc,
@@ -212,7 +219,8 @@ class FindLastIDRelationBlockService {
             findFirstRelationIDOrderDesc,
             findFirstRelationIDOrderAsc,
             allRelationIDOrderDesc,
-            allRelationIDOrderAsc
+            allRelationIDOrderAsc,
+            allRelation
         }
 
         return data;

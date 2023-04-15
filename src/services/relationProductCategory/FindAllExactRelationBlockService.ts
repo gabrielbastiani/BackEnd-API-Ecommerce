@@ -8,7 +8,7 @@ class FindAllExactRelationBlockService {
     async execute({ relationProductCategory_id }: FindsRequest) {
         const findUniqueRelation = await prismaClient.relationProductCategory.findMany({
             where: {
-                id: relationProductCategory_id
+                id: relationProductCategory_id,
             }
         });
 
