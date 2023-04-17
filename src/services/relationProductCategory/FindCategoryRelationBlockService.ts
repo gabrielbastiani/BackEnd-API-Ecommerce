@@ -195,6 +195,19 @@ class FindCategoryRelationBlockService {
         const allFindOrderAsc = await prismaClient.relationProductCategory.findMany({
             where: {
                 product_id: product_id,
+            },
+            orderBy: {
+                order: 'asc'
+            },
+            include: {
+                product: true,
+                category: true
+            }
+        });
+
+        const allFindOrderRelationIDAsc = await prismaClient.relationProductCategory.findMany({
+            where: {
+                product_id: product_id,
                 relationId: ""
             },
             orderBy: {
@@ -220,7 +233,8 @@ class FindCategoryRelationBlockService {
             findFirstOrderDesc,
             findFirstOrderAsc,
             allFindOrderDesc,
-            allFindOrderAsc
+            allFindOrderAsc,
+            allFindOrderRelationIDAsc
         }
 
         return data;
