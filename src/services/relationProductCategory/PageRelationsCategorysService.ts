@@ -1,13 +1,13 @@
 import prismaClient from '../../prisma';
 
 class PageRelationsCategorysService {
-    async execute(page = 1, limit = 5) {
+    async execute(page = 1, limit = 5, category_id: string) {
 
         const skip = limit * (page - 1);
 
         const allFindAsc = await prismaClient.relationProductCategory.findMany({
             where: {
-                relationId: ""
+                category_id: category_id
             },
             orderBy: {
                 order: 'asc'
@@ -20,7 +20,7 @@ class PageRelationsCategorysService {
 
         const allFindAscCategorys = await prismaClient.relationProductCategory.findMany({
             where: {
-                relationId: ""
+                category_id: category_id
             },
             orderBy: {
                 order: 'asc'

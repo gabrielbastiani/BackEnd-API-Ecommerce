@@ -5,9 +5,9 @@ class PageRelationsCategorysController {
     async handle(req: Request, res: Response) {
         const pageListAllCategorysService = new PageRelationsCategorysService();
 
-        const { page, limit } = req.query;
+        const { page, limit, category_id } = req.query;
 
-        const categoyPage = await pageListAllCategorysService.execute(Number(page), Number(limit));
+        const categoyPage = await pageListAllCategorysService.execute(Number(page), Number(limit), category_id);
 
         return res.json(categoyPage);
     }
