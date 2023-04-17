@@ -227,6 +227,7 @@ import { DeleteRelationIDProductCategoryController } from './controllers/relatio
 import { PageRelationsCategorysController } from './controllers/relationProductCategory/PageRelationsCategorysController';
 import { UpdateStatusRelationCategoryController } from './controllers/relationProductCategory/UpdateStatusRelationCategoryController';
 import { UpdateCategoryIDProductCategoryController } from './controllers/relationProductCategory/UpdateCategoryIDProductCategoryController';
+import { FindCategoryIDRelationController } from './controllers/relationProductCategory/FindCategoryIDRelationController';
 
 
 const router = Router();
@@ -372,6 +373,7 @@ router.get('/pageRelationsCategorys', ADMINisAuthenticated, new PageRelationsCat
 router.get('/findIdsRelations', ADMINisAuthenticated, new FindIDRelationBlockController().handle);
 router.get('/findLastIdRelations', ADMINisAuthenticated, new FindLastIDRelationBlockController().handle);
 router.get('/findAllExactRelationID', ADMINisAuthenticated, new FindAllExactRelationBlocController().handle);
+router.get('/findCategoryRelation', ADMINisAuthenticated, new FindCategoryIDRelationController().handle);
 router.put('/updateOrderRelation', ADMINisAuthenticated, new UpdateOrderProductCategoryController().handle);
 router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProductCategoryController().handle);
 router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDProductCategoryController().handle);
