@@ -228,6 +228,7 @@ import { PageRelationsCategorysController } from './controllers/relationProductC
 import { UpdateStatusRelationCategoryController } from './controllers/relationProductCategory/UpdateStatusRelationCategoryController';
 import { UpdateCategoryIDProductCategoryController } from './controllers/relationProductCategory/UpdateCategoryIDProductCategoryController';
 import { FindCategoryIDRelationController } from './controllers/relationProductCategory/FindCategoryIDRelationController';
+import { DeleteRelationIDController } from './controllers/relationProductCategory/DeleteRelationIDController';
 
 
 const router = Router();
@@ -377,6 +378,7 @@ router.get('/findCategoryRelation', ADMINisAuthenticated, new FindCategoryIDRela
 router.put('/updateOrderRelation', ADMINisAuthenticated, new UpdateOrderProductCategoryController().handle);
 router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProductCategoryController().handle);
 router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDProductCategoryController().handle);
+router.delete('/deleteNivelProncipal', ADMINisAuthenticated, new DeleteRelationIDController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
