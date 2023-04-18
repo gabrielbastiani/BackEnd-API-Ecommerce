@@ -3,12 +3,11 @@ import { DeleteRelationProductCategoryService } from '../../services/relationPro
 
 class DeleteRelationProductCategoryController {
     async handle(req: Request, res: Response) {
+        const { relationId } = req.query;
+
         const findsRelations = new DeleteRelationProductCategoryService();
 
-        /* const relationProductCategory_id = req.query.relationProductCategory_id as string; */
-        const relationId = req.query.relationId as string;
-
-        const finds = await findsRelations.execute({ /* relationProductCategory_id, */ relationId });
+        const finds = await findsRelations.execute({ relationId });
 
         return res.json(finds);
     }
