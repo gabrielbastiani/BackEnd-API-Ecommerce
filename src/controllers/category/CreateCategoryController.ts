@@ -7,18 +7,28 @@ class CreateCategoryController {
 
     const createCategoryService = new CreateCategoryService();
 
-    const category = await createCategoryService.execute({
-      categoryName,
-      slug,
-      order,
-      posicao,
-      slugPosicao,
-      loja_id
-    });
+    if (!req.file) {
+      throw new Error("error upload file");
+    } else {
 
-    return res.json(category);
+      const { originalname, filename: imageCategory } = req.file;
+
+      const category = await createCategoryService.execute({
+        categoryName,
+        slug,
+        order,
+        posicao,
+        slugPosicao,
+        imageCategory,
+        loja_id
+      });
+
+      return res.json(category);
+
+    }
 
   }
+
 }
 
 export { CreateCategoryController }

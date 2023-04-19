@@ -326,7 +326,7 @@ router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController()
 router.get('/activeBanner', new ActiveAllBannerController().handle);
 
 // -- ROTAS CATEGORIAS --
-router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
+router.post('/category', ADMINisAuthenticated, upload.single('file'), new CreateCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
 router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);

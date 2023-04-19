@@ -1,7 +1,7 @@
 import prismaClient from '../../prisma';
 
 class PageRelationsCategorysService {
-    async execute(page = 1, limit = 5, category_id: string) {
+    async execute(page = 1, limit = 10, category_id: string) {
 
         const skip = limit * (page - 1);
 
