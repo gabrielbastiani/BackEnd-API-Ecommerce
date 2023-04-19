@@ -144,12 +144,15 @@ import { PageRelationsCategorysController } from './controllers/relationProductC
 import { UpdateStatusRelationCategoryController } from './controllers/relationProductCategory/UpdateStatusRelationCategoryController';
 import { UpdateCategoryIDProductCategoryController } from './controllers/relationProductCategory/UpdateCategoryIDProductCategoryController';
 import { FindCategoryIDRelationController } from './controllers/relationProductCategory/FindCategoryIDRelationController';
+import { DeleteRelationProductIDController } from './controllers/relationProductCategory/DeleteRelationProductIDController';
 import { DeleteRelationIDController } from './controllers/relationProductCategory/DeleteRelationIDController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
 import { DeleteAvaliacaoController } from './controllers/avaliacao/DeleteAvaliacaoController';
 import { PageListAllAvaliacaoController } from './controllers/avaliacao/PageListAllAvaliacaoController';
+import { DeleteAvaliacaoProductIDController } from './controllers/avaliacao/DeleteAvaliacaoProductIDController';
+import { PageListAllAvaliacaoProductIDController } from './controllers/avaliacao/PageListAllAvaliacaoProductIDController';
 import { FindAvaliacaoController } from './controllers/avaliacao/FindAvaliacaoController';
 
 // -- ROTAS VARIAÇÃO --
@@ -229,8 +232,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { DeleteRelationProductIDController } from './controllers/relationProductCategory/DeleteRelationProductIDController';
-import { DeleteAvaliacaoProductIDController } from './controllers/avaliacao/DeleteAvaliacaoProductIDController';
 
 
 const router = Router();
@@ -388,6 +389,7 @@ router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new Creat
 router.delete('/deleteAvaliacao', ADMINisAuthenticated, new DeleteAvaliacaoController().handle);
 router.delete('/deleteAvaliacaoProductID', ADMINisAuthenticated, new DeleteAvaliacaoProductIDController().handle);
 router.get('/allAvaliacao', new PageListAllAvaliacaoController().handle);
+router.get('/pageAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoProductIDController().handle);
 router.get('/avaliacaoDados', ADMINisAuthenticated, new FindAvaliacaoController().handle);
 
 // -- ROTAS VARIAÇÃO --

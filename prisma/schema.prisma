@@ -168,25 +168,25 @@ enum StatusImagemLoja {
 }
 
 model Product {
-  id                         String                   @id @default(uuid())
-  nameProduct                String                   @db.VarChar(325)
-  slug                       String?                  @db.VarChar(325)
-  order                      Int?
-  posicao                    String?                  @db.VarChar(300)
-  slugPosicao                String?                  @db.VarChar(325)
-  descriptionProduct1        String?                  @db.VarChar(1725)
-  descriptionProduct2        String?                  @db.VarChar(1725)
-  descriptionProduct3        String?                  @db.VarChar(1725)
-  descriptionProduct4        String?                  @db.VarChar(1725)
-  descriptionProduct5        String?                  @db.VarChar(1725)
-  descriptionProduct6        String?                  @db.VarChar(1725)
-  preco                      Int?
-  promocao                   Int?
-  sku                        String?                  @db.VarChar(25)
-  disponibilidade            StatusProduct            @default(Disponivel)
-  produtoDestaque            StatusDestaque           @default(Nao)
-  produtoOferta              StatusOferta             @default(Nao)
-  
+  id                  String         @id @default(uuid())
+  nameProduct         String         @db.VarChar(325)
+  slug                String?        @db.VarChar(325)
+  order               Int?
+  posicao             String?        @db.VarChar(300)
+  slugPosicao         String?        @db.VarChar(325)
+  descriptionProduct1 String?        @db.VarChar(1725)
+  descriptionProduct2 String?        @db.VarChar(1725)
+  descriptionProduct3 String?        @db.VarChar(1725)
+  descriptionProduct4 String?        @db.VarChar(1725)
+  descriptionProduct5 String?        @db.VarChar(1725)
+  descriptionProduct6 String?        @db.VarChar(1725)
+  preco               Int?
+  promocao            Int?
+  sku                 String?        @db.VarChar(25)
+  disponibilidade     StatusProduct  @default(Disponivel)
+  produtoDestaque     StatusDestaque @default(Nao)
+  produtoOferta       StatusOferta   @default(Nao)
+
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
@@ -220,14 +220,14 @@ enum StatusOferta {
 }
 
 model Category {
-  id                         String                   @id @default(uuid())
-  categoryName               String?                  @db.VarChar(300)
-  slug                       String?                  @db.VarChar(300)
-  order                      Int?
-  posicao                    String?                  @db.VarChar(300)
-  slugPosicao                String?                  @db.VarChar(325)
-  disponibilidade            StatusCategory           @default(Disponivel)
-  imageCategory              String?
+  id              String         @id @default(uuid())
+  categoryName    String?        @db.VarChar(300)
+  slug            String?        @db.VarChar(300)
+  order           Int?
+  posicao         String?        @db.VarChar(300)
+  slugPosicao     String?        @db.VarChar(325)
+  disponibilidade StatusCategory @default(Disponivel)
+  imageCategory   String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -423,9 +423,10 @@ model Avaliacao {
   id          String   @id @default(uuid())
   clientName  String?  @db.VarChar(225)
   description String?  @db.VarChar(1225)
-  pontuacao   String?  @db.VarChar(75)
+  pontuacao   String?  @db.VarChar(175)
   product     Product? @relation(fields: [product_id], references: [id])
   product_id  String?
+  status      String?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
