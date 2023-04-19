@@ -10,13 +10,8 @@ class FindAvaliacaoService {
             where: {
                 id: avaliacao_id
             },
-            select: {
-                id: true,
-                clientName: true,
-                description: true,
-                pontuacao: true,
-                product_id: true,
-                created_at: true,
+            include: {
+                product: true
             }
         });
 

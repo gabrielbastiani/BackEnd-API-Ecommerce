@@ -8,23 +8,20 @@ class PageListAllAvaliacaoService {
         const allAval = await prismaClient.avaliacao.findMany({
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                product: true
             }
         });
 
         const allAvaliacao = await prismaClient.avaliacao.findMany({
-            select: {
-                id: true,
-                clientName: true,
-                description: true,
-                pontuacao: true,
-                product_id: true,
-                loja_id: true,
-                created_at: true,
-            },
             skip,
             take: limit,
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                product: true
             }
         });
 

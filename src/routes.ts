@@ -139,6 +139,12 @@ import { FindLastIDRelationBlockController } from './controllers/relationProduct
 import { UpdateOrderProductCategoryController } from './controllers/relationProductCategory/UpdateOrderProductCategoryController';
 import { DeleteRelationProductCategoryController } from './controllers/relationProductCategory/DeleteRelationProductCategoryController';
 import { FindAllExactRelationBlocController } from './controllers/relationProductCategory/FindAllExactRelationBlocController';
+import { DeleteRelationIDProductCategoryController } from './controllers/relationProductCategory/DeleteRelationIDProductCategoryController';
+import { PageRelationsCategorysController } from './controllers/relationProductCategory/PageRelationsCategorysController';
+import { UpdateStatusRelationCategoryController } from './controllers/relationProductCategory/UpdateStatusRelationCategoryController';
+import { UpdateCategoryIDProductCategoryController } from './controllers/relationProductCategory/UpdateCategoryIDProductCategoryController';
+import { FindCategoryIDRelationController } from './controllers/relationProductCategory/FindCategoryIDRelationController';
+import { DeleteRelationIDController } from './controllers/relationProductCategory/DeleteRelationIDController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -223,12 +229,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { DeleteRelationIDProductCategoryController } from './controllers/relationProductCategory/DeleteRelationIDProductCategoryController';
-import { PageRelationsCategorysController } from './controllers/relationProductCategory/PageRelationsCategorysController';
-import { UpdateStatusRelationCategoryController } from './controllers/relationProductCategory/UpdateStatusRelationCategoryController';
-import { UpdateCategoryIDProductCategoryController } from './controllers/relationProductCategory/UpdateCategoryIDProductCategoryController';
-import { FindCategoryIDRelationController } from './controllers/relationProductCategory/FindCategoryIDRelationController';
-import { DeleteRelationIDController } from './controllers/relationProductCategory/DeleteRelationIDController';
 
 
 const router = Router();
