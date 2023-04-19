@@ -42,6 +42,7 @@ model User {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
+  avaliacoes Avaliacao[]
   pagamentos Pagamento[]
   pedidos    Pedido[]
 
@@ -421,7 +422,8 @@ model PhotoVariacao {
 
 model Avaliacao {
   id          String   @id @default(uuid())
-  clientName  String?  @db.VarChar(225)
+  user        User?    @relation(fields: [user_id], references: [id])
+  user_id     String?
   description String?  @db.VarChar(1225)
   pontuacao   String?  @db.VarChar(175)
   product     Product? @relation(fields: [product_id], references: [id])

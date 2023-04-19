@@ -325,7 +325,7 @@ CREATE TABLE "photovariacoes" (
 -- CreateTable
 CREATE TABLE "avaliacoes" (
     "id" TEXT NOT NULL,
-    "clientName" VARCHAR(225),
+    "user_id" TEXT,
     "description" VARCHAR(1225),
     "pontuacao" VARCHAR(175),
     "product_id" TEXT,
@@ -521,6 +521,9 @@ ALTER TABLE "photovariacoes" ADD CONSTRAINT "photovariacoes_variacao_id_fkey" FO
 
 -- AddForeignKey
 ALTER TABLE "photovariacoes" ADD CONSTRAINT "photovariacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "avaliacoes" ADD CONSTRAINT "avaliacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
