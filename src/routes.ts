@@ -232,6 +232,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { UpdateStatusAvaliacaoController } from './controllers/avaliacao/UpdateStatusAvaliacaoController';
 
 
 const router = Router();
@@ -391,6 +392,7 @@ router.delete('/deleteAvaliacaoProductID', ADMINisAuthenticated, new DeleteAvali
 router.get('/allAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoController().handle);
 router.get('/pageAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoProductIDController().handle);
 router.get('/avaliacaoDados', ADMINisAuthenticated, new FindAvaliacaoController().handle);
+router.put('/updateStatusAvaliacao', ADMINisAuthenticated, new UpdateStatusAvaliacaoController().handle);
 
 // -- ROTAS VARIAÇÃO --
 router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);

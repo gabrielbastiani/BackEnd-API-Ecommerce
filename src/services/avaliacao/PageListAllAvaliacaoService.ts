@@ -10,6 +10,7 @@ class PageListAllAvaliacaoService {
                 created_at: 'desc'
             },
             include: {
+                user: true,
                 product: true
             }
         });
@@ -21,6 +22,7 @@ class PageListAllAvaliacaoService {
                 created_at: 'desc'
             },
             include: {
+                user: true,
                 product: true
             }
         });

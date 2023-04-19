@@ -13,6 +13,7 @@ class PageListAllAvaliacaoProductIDService {
                 created_at: 'desc'
             },
             include: {
+                user: true,
                 product: true
             }
         });
@@ -25,6 +26,7 @@ class PageListAllAvaliacaoProductIDService {
                 created_at: 'desc'
             },
             include: {
+                user: true,
                 product: true
             },
             skip,

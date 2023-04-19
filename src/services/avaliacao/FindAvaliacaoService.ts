@@ -11,6 +11,7 @@ class FindAvaliacaoService {
                 id: avaliacao_id
             },
             include: {
+                user: true,
                 product: true
             }
         });
