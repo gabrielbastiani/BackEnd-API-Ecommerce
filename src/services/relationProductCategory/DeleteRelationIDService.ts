@@ -12,14 +12,13 @@ class DeleteRelationIDService {
                 id: relationProductCategory_id
             }
         });
-        const ids = idNivel.id;
 
         const idNivelRelations = await prismaClient.relationProductCategory.findMany();
         const idsRelat = idNivelRelations.map((item) => item.relationId);
 
-        const filtrado = idsRelat.filter(function (obj) { return ids === obj });
+        const filtrado = idsRelat.filter(function (obj) { return idNivel.id === obj });
 
-        if (String(filtrado) === ids) {
+        if (filtrado.length >= 1) {
             throw new Error("Delete as categorias filhas desta de trás para frente antes!!!");
         }
 
