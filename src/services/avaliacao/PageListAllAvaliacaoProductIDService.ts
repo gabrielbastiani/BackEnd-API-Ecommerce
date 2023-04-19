@@ -5,7 +5,7 @@ class PageListAllAvaliacaoProductIDService {
 
         const skip = limit * (page - 1);
 
-        const allAval = await prismaClient.avaliacao.findMany({
+        const allAvaliacaoProduct = await prismaClient.avaliacao.findMany({
             where: {
                 product_id: product_id
             },
@@ -17,7 +17,7 @@ class PageListAllAvaliacaoProductIDService {
             }
         });
 
-        const allAvaliacao = await prismaClient.avaliacao.findMany({
+        const productAvaliacao = await prismaClient.avaliacao.findMany({
             where: {
                 product_id: product_id
             },
@@ -33,9 +33,9 @@ class PageListAllAvaliacaoProductIDService {
 
         // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
-            allAvaliacao,
-            total: allAval.length,
-            total_pages: Math.ceil(allAval.length / limit),
+            productAvaliacao,
+            total: allAvaliacaoProduct.length,
+            total_pages: Math.ceil(allAvaliacaoProduct.length / limit),
             current_page: page,
         }
 

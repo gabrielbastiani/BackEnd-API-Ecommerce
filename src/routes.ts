@@ -388,7 +388,7 @@ router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelat
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
 router.delete('/deleteAvaliacao', ADMINisAuthenticated, new DeleteAvaliacaoController().handle);
 router.delete('/deleteAvaliacaoProductID', ADMINisAuthenticated, new DeleteAvaliacaoProductIDController().handle);
-router.get('/allAvaliacao', new PageListAllAvaliacaoController().handle);
+router.get('/allAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoController().handle);
 router.get('/pageAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoProductIDController().handle);
 router.get('/avaliacaoDados', ADMINisAuthenticated, new FindAvaliacaoController().handle);
 

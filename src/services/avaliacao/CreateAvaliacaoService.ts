@@ -10,13 +10,13 @@ interface AvaliacaoRequest {
 }
 
 class CreateAvaliacaoService {
-    async execute({ clientName, description, pontuacao, status, product_id, loja_id }: AvaliacaoRequest) {
+    async execute({ clientName, description, pontuacao, product_id, loja_id }: AvaliacaoRequest) {
         const avaliacao = await prismaClient.avaliacao.create({
             data: {
                 clientName: clientName,
                 description: description,
                 pontuacao: pontuacao,
-                status: status,
+                status: "Pendente",
                 product_id: product_id,
                 loja_id: loja_id
             }
