@@ -230,6 +230,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { DeleteRelationProductIDController } from './controllers/relationProductCategory/DeleteRelationProductIDController';
+import { DeleteAvaliacaoProductIDController } from './controllers/avaliacao/DeleteAvaliacaoProductIDController';
 
 
 const router = Router();
@@ -385,6 +386,7 @@ router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelat
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
 router.delete('/deleteAvaliacao', ADMINisAuthenticated, new DeleteAvaliacaoController().handle);
+router.delete('/deleteAvaliacaoProductID', ADMINisAuthenticated, new DeleteAvaliacaoProductIDController().handle);
 router.get('/allAvaliacao', new PageListAllAvaliacaoController().handle);
 router.get('/avaliacaoDados', ADMINisAuthenticated, new FindAvaliacaoController().handle);
 
