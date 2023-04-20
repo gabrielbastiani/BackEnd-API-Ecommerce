@@ -17,8 +17,6 @@ class UpdateStatusRelationCategoryService {
       }
     })
 
-    console.log(active.status)
-
     if (active.status === "Inativo") {
       const isFalse = await prismaClient.relationProductCategory.update({
         where: {

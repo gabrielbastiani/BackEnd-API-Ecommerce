@@ -335,7 +335,6 @@ router.put('/updateImageCategory', ADMINisAuthenticated, upload.single('file'), 
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
 router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryController().handle);
-router.put('/updateStatusRelation', ADMINisAuthenticated, new UpdateStatusRelationCategoryController().handle);
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
@@ -374,6 +373,7 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
 router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
 router.put('/updateCategoryIDrelation', ADMINisAuthenticated, new UpdateCategoryIDProductCategoryController().handle);
+router.put('/updateStatusRelation', ADMINisAuthenticated, new UpdateStatusRelationCategoryController().handle);
 router.get('/findRelationCategoryProduct', ADMINisAuthenticated, new FindCategoryRelationBlockController().handle);
 router.get('/pageRelationsCategorys', ADMINisAuthenticated, new PageRelationsCategorysController().handle);
 router.get('/findIdsRelations', ADMINisAuthenticated, new FindIDRelationBlockController().handle);
