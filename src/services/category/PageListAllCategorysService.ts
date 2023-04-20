@@ -10,7 +10,8 @@ class PageListAllCategorysService {
                 order: 'asc'
             },
             include: {
-                relationproductcategories: true
+                relationproductcategories: true,
+                imagecategories: true
             }
         });
 
@@ -19,7 +20,8 @@ class PageListAllCategorysService {
                 order: 'asc'
             },
             include: {
-                relationproductcategories: true
+                relationproductcategories: true,
+                imagecategories: true
             },
             skip,
             take: limit
