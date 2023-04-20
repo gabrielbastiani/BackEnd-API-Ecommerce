@@ -88,8 +88,8 @@ import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosica
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
-import { UpdateImageCategoryController } from './controllers/category/UpdateImageCategoryController';
-import { CreateImageCategoryController } from './controllers/category/imageCategory/CreateImageCategoryController';
+import { UpdateImageCategoryController } from './controllers/category/imagesCategories/UpdateImageCategoryController';
+import { CreateImageCategoryController } from './controllers/category/imagesCategories/CreateImageCategoryController';
 import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
 import { ListCategoryNameController } from './controllers/category/ListCategoryNameController';

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { UpdateImageCategoryService } from '../../../services/category/imageCategory/UpdateImageCategoryService';
-import { ListExactImageCategoryService } from '../../../services/category/imageCategory/ListExactImageCategoryService';
+import { UpdateImageCategoryService } from '../../../services/category/imagesCategories/UpdateImageCategoryService';
+import { ListExactImageCategoryService } from '../../../services/category/imagesCategories/ListExactImageCategoryService';
 import fs from 'fs';
 
 class UpdateImageCategoryController {
