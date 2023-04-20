@@ -3,20 +3,23 @@ import { PhotoVariacaoService } from "../../../services/variacao/photoVariacao/P
 
 class PhotoVariacaoController {
     async handle(req: Request, res: Response) {
-        const { variacao_id, product_id } = req.body;
+        const { variacao_id, product_id, order, posicao, slugPosicao } = req.body;
 
         const photoVariacaoService = new PhotoVariacaoService();
 
         if (!req.file) {
             throw new Error("error upload file")
         } else {
-            
+
             const { originalname, filename: photoVariacao } = req.file;
 
             const photoVariacaoProduct = await photoVariacaoService.execute({
                 photoVariacao,
                 variacao_id,
-                product_id
+                product_id,
+                order,
+                posicao,
+                slugPosicao
             })
             return res.json(photoVariacaoProduct)
         }

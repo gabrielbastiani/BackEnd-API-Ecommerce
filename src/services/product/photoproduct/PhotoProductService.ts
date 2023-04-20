@@ -27,11 +27,6 @@ class PhotoProductService {
         order: order,
         posicao: posicao,
         slugPosicao: removerAcentos(posicao)
-      },
-      select: {
-        id: true,
-        photo: true,
-        product_id: true
       }
     })
 
