@@ -228,7 +228,6 @@ model Category {
   posicao         String?        @db.VarChar(300)
   slugPosicao     String?        @db.VarChar(325)
   disponibilidade StatusCategory @default(Disponivel)
-  imageCategory   String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -236,6 +235,7 @@ model Category {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
+  imagecategories           ImageCategory[]
   relationproductcategories RelationProductCategory[]
 
   @@map("categories")
@@ -244,6 +244,23 @@ model Category {
 enum StatusCategory {
   Disponivel
   Indisponivel
+}
+
+model ImageCategory {
+  id            String    @id @default(uuid())
+  title         String?   @db.VarChar(300)
+  slug          String?   @db.VarChar(300)
+  categoryImage String?
+  order         Int?
+  posicao       String?   @db.VarChar(300)
+  slugPosicao   String?   @db.VarChar(325)
+  category      Category? @relation(fields: [category_id], references: [id])
+  category_id   String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("imagecategories")
 }
 
 model RelationProductCategory {

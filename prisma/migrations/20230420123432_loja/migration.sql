@@ -193,12 +193,27 @@ CREATE TABLE "categories" (
     "posicao" VARCHAR(300),
     "slugPosicao" VARCHAR(325),
     "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
-    "imageCategory" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "loja_id" TEXT,
 
     CONSTRAINT "categories_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "imagecategories" (
+    "id" TEXT NOT NULL,
+    "title" VARCHAR(300),
+    "slug" VARCHAR(300),
+    "categoryImage" TEXT,
+    "order" INTEGER,
+    "posicao" VARCHAR(300),
+    "slugPosicao" VARCHAR(325),
+    "category_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "imagecategories_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -491,6 +506,9 @@ ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja
 
 -- AddForeignKey
 ALTER TABLE "categories" ADD CONSTRAINT "categories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "imagecategories" ADD CONSTRAINT "imagecategories_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategories_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;

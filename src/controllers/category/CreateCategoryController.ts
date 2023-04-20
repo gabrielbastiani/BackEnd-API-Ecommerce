@@ -1,13 +1,20 @@
-import { Request, Response } from 'express'
-import { CreateCategoryService } from '../../services/category/CreateCategoryService'
+import { Request, Response } from "express";
+import { CreateCategoryService } from "../../services/category/CreateCategoryService";
 
 class CreateCategoryController {
   async handle(req: Request, res: Response) {
-    const { categoryName, slug, order, posicao, slugPosicao, loja_id } = req.body;
+    const {
+      categoryName,
+      slug,
+      order,
+      posicao,
+      slugPosicao,
+      loja_id
+    } = req.body;
 
-    const createCategoryService = new CreateCategoryService();
+    const categorys = new CreateCategoryService();
 
-    const category = await createCategoryService.execute({
+    const category = await categorys.execute({
       categoryName,
       slug,
       order,
@@ -19,7 +26,6 @@ class CreateCategoryController {
     return res.json(category);
 
   }
-
 }
 
 export { CreateCategoryController }
