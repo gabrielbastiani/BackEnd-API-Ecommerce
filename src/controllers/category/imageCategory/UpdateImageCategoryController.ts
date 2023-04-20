@@ -7,26 +7,26 @@ class UpdateImageCategoryController {
     async handle(req: Request, res: Response) {
         const imageCategory_id = req.query.imageCategory_id as string;
 
-        const updatePhoto = new UpdateImageCategoryService();
+        const updateImage = new UpdateImageCategoryService();
         const removeImage = new ListExactImageCategoryService();
 
-        const imageCategory = await removeImage.execute({
+        const imagesUpdateCateg = await removeImage.execute({
             imageCategory_id
         });
 
-        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageCategory.categoryImage);
+        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imagesUpdateCateg.categoryImage);
 
         if (!req.file) {
             throw new Error('error upload file');
         } else {
             const { originalname, filename: categoryImage } = req.file;
 
-            const updateImages = await updatePhoto.execute({
+            const updateBanner = await updateImage.execute({
                 imageCategory_id,
                 categoryImage,
             });
 
-            return res.json([imageCategory, updateImages]);
+            return res.json([imagesUpdateCateg, updateBanner]);
 
         }
 

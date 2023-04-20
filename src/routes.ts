@@ -88,6 +88,8 @@ import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosica
 // -- ROTAS CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
+import { UpdateImageCategoryController } from './controllers/category/UpdateImageCategoryController';
+import { CreateImageCategoryController } from './controllers/category/imageCategory/CreateImageCategoryController';
 import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
 import { ListCategoryNameController } from './controllers/category/ListCategoryNameController';
@@ -149,6 +151,7 @@ import { DeleteRelationIDController } from './controllers/relationProductCategor
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
 import { DeleteAvaliacaoController } from './controllers/avaliacao/DeleteAvaliacaoController';
+import { UpdateStatusAvaliacaoController } from './controllers/avaliacao/UpdateStatusAvaliacaoController';
 import { PageListAllAvaliacaoController } from './controllers/avaliacao/PageListAllAvaliacaoController';
 import { DeleteAvaliacaoProductIDController } from './controllers/avaliacao/DeleteAvaliacaoProductIDController';
 import { PageListAllAvaliacaoProductIDController } from './controllers/avaliacao/PageListAllAvaliacaoProductIDController';
@@ -231,10 +234,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { UpdateStatusAvaliacaoController } from './controllers/avaliacao/UpdateStatusAvaliacaoController';
-import { UpdateImageCategoryController } from './controllers/category/UpdateImageCategoryController';
-import { CreateImageCategoryController } from './controllers/category/imageCategory/CreateImageCategoryController';
-
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));

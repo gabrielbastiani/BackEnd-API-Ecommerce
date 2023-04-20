@@ -17,7 +17,7 @@ class UpdateLogoLojaController {
     fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + logomarcaLoja.logoLoja);
 
     if (!req.file) {
-      throw new Error('error upload file')
+      throw new Error('error upload file');
     } else {
       const { originalname, filename: logoLoja } = req.file;
 
