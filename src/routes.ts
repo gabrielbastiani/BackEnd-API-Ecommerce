@@ -96,7 +96,6 @@ import { ExactPageListAllCategoryController } from './controllers/category/Exact
 import { FindFirstCategoryController } from './controllers/category/FindFirstCategoryController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
-import { DeleteCategoryController } from './controllers/category/DeleteCategoryController';
 import { ListExactCategoryNameController } from './controllers/category/ListExactCategoryNameController';
 
 // -- ROTAS PRODUTOS --
@@ -233,6 +232,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { UpdateStatusAvaliacaoController } from './controllers/avaliacao/UpdateStatusAvaliacaoController';
+import { UpdateImageCategoryController } from './controllers/category/UpdateImageCategoryController';
 
 
 const router = Router();
@@ -326,16 +326,16 @@ router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController()
 router.get('/activeBanner', new ActiveAllBannerController().handle);
 
 // -- ROTAS CATEGORIAS --
-router.post('/category', ADMINisAuthenticated, upload.single('file'), new CreateCategoryController().handle);
+router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
 router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
+router.put('/updateImageCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
 router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryController().handle);
 router.put('/updateStatusRelation', ADMINisAuthenticated, new UpdateStatusRelationCategoryController().handle);
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
-router.delete('/deleteCategory', ADMINisAuthenticated, new DeleteCategoryController().handle);
 router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/exactCategoryProducts', new ListExactCategoryNameController().handle);
