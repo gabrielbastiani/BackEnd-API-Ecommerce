@@ -233,7 +233,7 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { UpdateStatusAvaliacaoController } from './controllers/avaliacao/UpdateStatusAvaliacaoController';
 import { UpdateImageCategoryController } from './controllers/category/UpdateImageCategoryController';
-import { CreateImageCategoryController } from './controllers/category/CreateImageCategoryController';
+import { CreateImageCategoryController } from './controllers/category/imageCategory/CreateImageCategoryController';
 
 
 const router = Router();

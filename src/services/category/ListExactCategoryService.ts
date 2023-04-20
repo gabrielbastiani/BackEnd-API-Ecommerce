@@ -5,6 +5,10 @@ class ListExactCategoryService {
         const exactCategory = await prismaClient.category.findUnique({
             where: {
                 id: String(category_id)
+            },
+            include: {
+                imagecategories: true,
+                relationproductcategories: true,
             }
         })
         return exactCategory;

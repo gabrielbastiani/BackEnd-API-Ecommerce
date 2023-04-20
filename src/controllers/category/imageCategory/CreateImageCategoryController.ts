@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateImageCategoryService } from "../../services/category/CreateImageCategoryService";
+import { CreateImageCategoryService } from "../../../services/category/imageCategory/CreateImageCategoryService";
 
 class CreateImageCategoryController {
     async handle(req: Request, res: Response) {
