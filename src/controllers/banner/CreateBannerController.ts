@@ -11,6 +11,7 @@ class CreateBannerController {
             dateFim,
             order,
             url,
+            active,
             posicao,
             slugPosicao
         } = req.body;
@@ -32,6 +33,7 @@ class CreateBannerController {
                 dateFim,
                 order,
                 url,
+                active,
                 posicao,
                 slugPosicao
             });

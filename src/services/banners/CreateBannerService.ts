@@ -10,6 +10,7 @@ interface BannerRequest {
   order: number;
   url: string;
   posicao: string;
+  active: string;
   slugPosicao: string;
 }
 
@@ -23,6 +24,7 @@ class CreateBannerService {
     banner,
     order,
     url,
+    active,
     posicao
   }: BannerRequest) {
 
@@ -45,6 +47,7 @@ class CreateBannerService {
         banner: banner,
         order: Number(order),
         url: url,
+        active: active,
         posicao: posicao,
         slugPosicao: removerAcentos(posicao)
       }
