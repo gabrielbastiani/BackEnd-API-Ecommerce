@@ -1,7 +1,7 @@
 import prismaClient from '../../prisma';
 
 class PageListAllBannerService {
-    async execute(page = 1, limit = 5) {
+    async execute(page = 1, limit = 999999) {
 
         const skip = limit * (page - 1);
 
