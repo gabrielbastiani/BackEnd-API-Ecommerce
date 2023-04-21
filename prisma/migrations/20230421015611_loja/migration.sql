@@ -2,9 +2,6 @@
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
 -- CreateEnum
-CREATE TYPE "News" AS ENUM ('Sim', 'Nao');
-
--- CreateEnum
 CREATE TYPE "StatusRedeSocial" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
@@ -274,6 +271,7 @@ CREATE TABLE "banners" (
     "height" VARCHAR(55),
     "dateInicio" TEXT DEFAULT '01/01/3075 00:00',
     "dateFim" TEXT DEFAULT '01/01/5575 00:00',
+    "publicar" BOOLEAN NOT NULL DEFAULT false,
     "banner" TEXT,
     "order" INTEGER,
     "url" TEXT,

@@ -6,6 +6,7 @@ interface BannerRequest {
   height: string;
   dateInicio: string;
   dateFim: string;
+  publicar: boolean;
   banner: string;
   order: number;
   url: string;
@@ -44,6 +45,7 @@ class CreateBannerService {
         height: height,
         dateInicio: dateInicio,
         dateFim: dateFim,
+        publicar: true,
         banner: banner,
         order: Number(order),
         url: url,

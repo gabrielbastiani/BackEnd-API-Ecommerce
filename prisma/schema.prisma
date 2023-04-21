@@ -334,6 +334,7 @@ model Banner {
   height      String?      @db.VarChar(55)
   dateInicio  String?      @default("01/01/3075 00:00")
   dateFim     String?      @default("01/01/5575 00:00")
+  publicar    Boolean      @default(false)
   banner      String?
   order       Int?
   url         String?
