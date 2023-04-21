@@ -7,7 +7,7 @@ class PageListAllCategorysService {
 
         const categorysAll = await prismaClient.category.findMany({
             orderBy: {
-                order: 'asc'
+                created_at: 'desc'
             },
             include: {
                 relationproductcategories: true,
@@ -17,7 +17,7 @@ class PageListAllCategorysService {
 
         const categorys = await prismaClient.category.findMany({
             orderBy: {
-                order: 'asc'
+                created_at: 'desc'
             },
             include: {
                 relationproductcategories: true,

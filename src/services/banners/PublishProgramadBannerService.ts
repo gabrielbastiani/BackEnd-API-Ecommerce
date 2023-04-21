@@ -43,8 +43,6 @@ class PublishProgramadBannerService {
 
             if (firstDate === dateNow) {
 
-                console.log('Publicado na data')
-
                 await prismaClient.banner.update({
                     where: {
                         id: banner_id,
@@ -85,8 +83,6 @@ class PublishProgramadBannerService {
 
 
             if (dateFuture === dateNow) {
-
-                console.log('Despublicado na data')
 
                 await prismaClient.banner.update({
                     where: {

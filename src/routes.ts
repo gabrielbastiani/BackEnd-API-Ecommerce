@@ -324,7 +324,7 @@ router.put('/updateBanner', ADMINisAuthenticated, upload.single('file'), new Upd
 router.put('/updatePosicaoBanner', ADMINisAuthenticated, new UpdatePosicaoBannerController().handle);
 router.put('/updateStatusBanner', ADMINisAuthenticated, new StatusBannerController().handle);
 router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController().handle);
-router.get('/publishBanner', ADMINisAuthenticated, new PublishProgramadBannerController().handle);
+router.get('/updatePublishBanner', ADMINisAuthenticated, new PublishProgramadBannerController().handle);
 router.get('/activeBanner', new ActiveAllBannerController().handle);
 
 // -- ROTAS CATEGORIAS --
