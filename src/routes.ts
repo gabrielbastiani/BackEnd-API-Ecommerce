@@ -234,6 +234,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { PublishProgramadBannerController } from './controllers/banner/PublishProgramadBannerController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -323,6 +324,7 @@ router.put('/updateBanner', ADMINisAuthenticated, upload.single('file'), new Upd
 router.put('/updatePosicaoBanner', ADMINisAuthenticated, new UpdatePosicaoBannerController().handle);
 router.put('/updateStatusBanner', ADMINisAuthenticated, new StatusBannerController().handle);
 router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController().handle);
+router.get('/publishBanner', ADMINisAuthenticated, new PublishProgramadBannerController().handle);
 router.get('/activeBanner', new ActiveAllBannerController().handle);
 
 // -- ROTAS CATEGORIAS --
