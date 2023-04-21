@@ -54,11 +54,6 @@ enum Role {
   ADMIN
 }
 
-enum News {
-  Sim
-  Nao
-}
-
 model PasswordRecovery {
   id    String @id @default(uuid())
   email String
