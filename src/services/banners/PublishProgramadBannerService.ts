@@ -1,3 +1,4 @@
+import { StatusBanner } from '@prisma/client';
 import prismaClient from '../../prisma';
 const CronJob = require('cron').CronJob;
 import moment from 'moment';
@@ -48,7 +49,7 @@ class PublishProgramadBannerService {
                         id: banner_id,
                     },
                     data: {
-                        publicar: true,
+                        active: StatusBanner.Sim
                     }
                 });
 
@@ -89,7 +90,7 @@ class PublishProgramadBannerService {
                         id: banner_id,
                     },
                     data: {
-                        publicar: false,
+                        active: StatusBanner.Nao
                     }
                 });
 

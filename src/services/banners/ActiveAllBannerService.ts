@@ -1,14 +1,19 @@
 import { StatusBanner } from '@prisma/client';
 import prismaClient from "../../prisma";
 
+interface BannerRequest {
+    slugPosicao: string;
+}
+
 class ActiveAllBannerService {
-    async execute() {
+    async execute({ slugPosicao }: BannerRequest) {
         const banners = await prismaClient.banner.findMany({
             where: {
-                active: StatusBanner.Sim
+                active: StatusBanner.Sim,
+                slugPosicao: slugPosicao
             },
             orderBy: {
-                created_at: 'desc'
+                order: 'asc'
             }
         })
 
