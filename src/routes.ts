@@ -132,21 +132,21 @@ import { ListAllProductOfertaController } from './controllers/product/ListAllPro
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS
-import { CreateRelationProductCategoryController } from './controllers/relationProductCategory/CreateRelationProductCategoryController';
-import { UpdateRelationIDProductCategoryController } from './controllers/relationProductCategory/UpdateRelationIDProductCategoryController';
-import { FindCategoryRelationBlockController } from './controllers/relationProductCategory/FindCategoryRelationBlockController';
-import { FindIDRelationBlockController } from './controllers/relationProductCategory/FindIDRelationBlockController';
-import { FindLastIDRelationBlockController } from './controllers/relationProductCategory/FindLastIDRelationBlockController';
-import { UpdateOrderProductCategoryController } from './controllers/relationProductCategory/UpdateOrderProductCategoryController';
-import { DeleteRelationProductCategoryController } from './controllers/relationProductCategory/DeleteRelationProductCategoryController';
-import { FindAllExactRelationBlocController } from './controllers/relationProductCategory/FindAllExactRelationBlocController';
-import { DeleteRelationIDProductCategoryController } from './controllers/relationProductCategory/DeleteRelationIDProductCategoryController';
-import { PageRelationsCategorysController } from './controllers/relationProductCategory/PageRelationsCategorysController';
-import { UpdateStatusRelationCategoryController } from './controllers/relationProductCategory/UpdateStatusRelationCategoryController';
-import { UpdateCategoryIDProductCategoryController } from './controllers/relationProductCategory/UpdateCategoryIDProductCategoryController';
-import { FindCategoryIDRelationController } from './controllers/relationProductCategory/FindCategoryIDRelationController';
-import { DeleteRelationProductIDController } from './controllers/relationProductCategory/DeleteRelationProductIDController';
-import { DeleteRelationIDController } from './controllers/relationProductCategory/DeleteRelationIDController';
+import { CreateRelationProductCategoryController } from './controllers/product/relationProductCategory/CreateRelationProductCategoryController';
+import { UpdateRelationIDProductCategoryController } from './controllers/product/relationProductCategory/UpdateRelationIDProductCategoryController';
+import { FindCategoryRelationBlockController } from './controllers/product/relationProductCategory/FindCategoryRelationBlockController';
+import { FindIDRelationBlockController } from './controllers/product/relationProductCategory/FindIDRelationBlockController';
+import { FindLastIDRelationBlockController } from './controllers/product/relationProductCategory/FindLastIDRelationBlockController';
+import { UpdateOrderProductCategoryController } from './controllers/product/relationProductCategory/UpdateOrderProductCategoryController';
+import { DeleteRelationProductCategoryController } from './controllers/product/relationProductCategory/DeleteRelationProductCategoryController';
+import { FindAllExactRelationBlocController } from './controllers/product/relationProductCategory/FindAllExactRelationBlocController';
+import { DeleteRelationIDProductCategoryController } from './controllers/product/relationProductCategory/DeleteRelationIDProductCategoryController';
+import { PageRelationsCategorysController } from './controllers/product/relationProductCategory/PageRelationsCategorysController';
+import { UpdateStatusRelationCategoryController } from './controllers/product/relationProductCategory/UpdateStatusRelationCategoryController';
+import { UpdateCategoryIDProductCategoryController } from './controllers/product/relationProductCategory/UpdateCategoryIDProductCategoryController';
+import { FindCategoryIDRelationController } from './controllers/product/relationProductCategory/FindCategoryIDRelationController';
+import { DeleteRelationProductIDController } from './controllers/product/relationProductCategory/DeleteRelationProductIDController';
+import { DeleteRelationIDController } from './controllers/product/relationProductCategory/DeleteRelationIDController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -235,7 +235,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { PublishProgramadBannerController } from './controllers/banner/PublishProgramadBannerController';
-import { FindCategorysRelationController } from './controllers/relationProductCategory/FindCategorysRelationController';
+import { FindCategorysRelationController } from './controllers/product/relationProductCategory/FindCategorysRelationController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));

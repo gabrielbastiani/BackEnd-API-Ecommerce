@@ -243,15 +243,28 @@ enum StatusCategory {
   Indisponivel
 }
 
+model ImageCategory {
+  id            String    @id @default(uuid())
+  categoryImage String?
+  category      Category? @relation(fields: [category_id], references: [id])
+  category_id   String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("imagecategories")
+}
+
 model GroupCategoy {
   id          String      @id @default(uuid())
-  nameGroup   String?
+  nameGroup   String?     @db.VarChar(385)
   posicao     String?     @db.VarChar(300)
   slugPosicao String?     @db.VarChar(325)
   order       Int?
-  category    Category    @relation(fields: [category_id], references: [id])
-  category_id String
-  imageGroup  String?
+  nivel       Int?
+  category    Category?   @relation(fields: [category_id], references: [id])
+  category_id String?
+  groupId     String?
   status      StatusGroup @default(Ativo)
 
   created_at DateTime? @default(now())
@@ -259,6 +272,8 @@ model GroupCategoy {
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
+
+  imagegroupcategories ImageGroupCategory[]
 
   @@map("groupcategories")
 }
@@ -268,21 +283,16 @@ enum StatusGroup {
   Inativo
 }
 
-model ImageCategory {
-  id            String    @id @default(uuid())
-  title         String?   @db.VarChar(300)
-  slug          String?   @db.VarChar(300)
-  categoryImage String?
-  order         Int?
-  posicao       String?   @db.VarChar(300)
-  slugPosicao   String?   @db.VarChar(325)
-  category      Category? @relation(fields: [category_id], references: [id])
-  category_id   String?
+model ImageGroupCategory {
+  id              String        @id @default(uuid())
+  imageGroup      String?
+  groupCategoy    GroupCategoy? @relation(fields: [groupCategoy_id], references: [id])
+  groupCategoy_id String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  @@map("imagecategories")
+  @@map("imagegroupcategories")
 }
 
 model RelationProductCategory {
