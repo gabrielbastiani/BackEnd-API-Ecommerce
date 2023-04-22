@@ -84,6 +84,7 @@ model Loja {
   redessociais              RedeSocial[]
   textosinstitucionais      TextoInstitucional[]
   categories                Category[]
+  groupcategories           GroupCategoy[]
   products                  Product[]
   variacoes                 Variacao[]
   relationproductcategories RelationProductCategory[]
@@ -231,6 +232,7 @@ model Category {
   loja_id String?
 
   imagecategories           ImageCategory[]
+  groupcategories           GroupCategoy[]
   relationproductcategories RelationProductCategory[]
 
   @@map("categories")
@@ -239,6 +241,31 @@ model Category {
 enum StatusCategory {
   Disponivel
   Indisponivel
+}
+
+model GroupCategoy {
+  id          String      @id @default(uuid())
+  nameGroup   String?
+  posicao     String?     @db.VarChar(300)
+  slugPosicao String?     @db.VarChar(325)
+  order       Int?
+  category    Category    @relation(fields: [category_id], references: [id])
+  category_id String
+  imageGroup  String?
+  status      StatusGroup @default(Ativo)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("groupcategories")
+}
+
+enum StatusGroup {
+  Ativo
+  Inativo
 }
 
 model ImageCategory {
