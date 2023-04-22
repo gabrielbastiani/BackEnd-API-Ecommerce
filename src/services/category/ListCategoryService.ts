@@ -11,7 +11,8 @@ class ListCategoryService {
             order: 'asc'
          },
          include: {
-            relationproductcategories: true
+            relationproductcategories: true,
+            imagecategories: true
          }
       })
 

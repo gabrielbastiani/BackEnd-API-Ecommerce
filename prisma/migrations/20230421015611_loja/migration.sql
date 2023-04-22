@@ -277,7 +277,7 @@ CREATE TABLE "banners" (
     "url" TEXT,
     "posicao" VARCHAR(325),
     "slugPosicao" VARCHAR(325),
-    "active" "StatusBanner" NOT NULL DEFAULT 'Sim',
+    "active" "StatusBanner" NOT NULL DEFAULT 'Nao',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 

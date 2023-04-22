@@ -339,7 +339,7 @@ model Banner {
   url         String?
   posicao     String?      @db.VarChar(325)
   slugPosicao String?      @db.VarChar(325)
-  active      StatusBanner @default(Sim)
+  active      StatusBanner @default(Nao)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

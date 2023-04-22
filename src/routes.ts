@@ -235,6 +235,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { PublishProgramadBannerController } from './controllers/banner/PublishProgramadBannerController';
+import { FindCategorysRelationController } from './controllers/relationProductCategory/FindCategorysRelationController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -387,6 +388,7 @@ router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProduct
 router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDProductCategoryController().handle);
 router.delete('/deleteNivelPrincipal', ADMINisAuthenticated, new DeleteRelationIDController().handle);
 router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelationProductIDController().handle);
+router.get('/categorys', new FindCategorysRelationController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
