@@ -5,6 +5,7 @@ class CreateGroupCategoryController {
     async handle(req: Request, res: Response) {
         const {
             nameGroup,
+            itemName,
             category_id,
             nivel,
             groupId,
@@ -18,6 +19,7 @@ class CreateGroupCategoryController {
 
         const relationGroup = await createGroup.execute({
             nameGroup,
+            itemName,
             category_id,
             nivel,
             groupId,

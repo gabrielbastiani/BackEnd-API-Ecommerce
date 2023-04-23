@@ -236,6 +236,9 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { PublishProgramadBannerController } from './controllers/banner/PublishProgramadBannerController';
 import { FindCategorysRelationController } from './controllers/product/relationProductCategory/FindCategorysRelationController';
+import { CreateGroupCategoryController } from './controllers/category/groupCategory/CreateGroupCategoryController';
+import { ListPosicaoCategoriesGroupController } from './controllers/category/groupCategory/ListPosicaoCategoriesGroupController';
+import { ListCategoriesGroupController } from './controllers/category/groupCategory/ListCategoriesGroupController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -342,6 +345,11 @@ router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryControll
 router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/exactCategoryProducts', new ListExactCategoryNameController().handle);
+
+// -- ROTAS GRUPOS DE CATEGORIAS --
+router.post('/group', ADMINisAuthenticated, new CreateGroupCategoryController().handle);
+router.get('/pocisaoListGroup', new ListPosicaoCategoriesGroupController().handle);
+router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
 
 // -- ROTAS PRODUTOS --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);

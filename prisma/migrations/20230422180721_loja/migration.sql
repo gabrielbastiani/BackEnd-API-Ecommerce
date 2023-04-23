@@ -215,6 +215,7 @@ CREATE TABLE "imagecategories" (
 CREATE TABLE "groupcategories" (
     "id" TEXT NOT NULL,
     "nameGroup" VARCHAR(385),
+    "itemName" VARCHAR(385),
     "posicao" VARCHAR(300),
     "slugPosicao" VARCHAR(325),
     "order" INTEGER,

@@ -258,6 +258,7 @@ model ImageCategory {
 model GroupCategoy {
   id          String      @id @default(uuid())
   nameGroup   String?     @db.VarChar(385)
+  itemName    String?     @db.VarChar(385)
   posicao     String?     @db.VarChar(300)
   slugPosicao String?     @db.VarChar(325)
   order       Int?

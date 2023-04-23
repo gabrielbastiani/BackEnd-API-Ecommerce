@@ -2,6 +2,7 @@ import prismaClient from "../../../prisma";
 
 interface GroupRequest {
     nameGroup: string;
+    itemName: string;
     category_id: string;
     nivel: number;
     groupId: string;
@@ -12,7 +13,7 @@ interface GroupRequest {
 }
 
 class CreateGroupCategoryService {
-    async execute({ nameGroup, category_id, nivel, groupId, order, posicao, loja_id }: GroupRequest) {
+    async execute({ nameGroup, itemName, category_id, nivel, groupId, order, posicao, loja_id }: GroupRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -26,6 +27,7 @@ class CreateGroupCategoryService {
         const relationGroup = await prismaClient.groupCategoy.create({
             data: {
                 nameGroup: nameGroup,
+                itemName: itemName,
                 category_id: category_id,
                 nivel: nivel,
                 groupId: groupId,
