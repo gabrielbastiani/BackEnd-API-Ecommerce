@@ -239,6 +239,18 @@ import { FindCategorysRelationController } from './controllers/product/relationP
 import { CreateGroupCategoryController } from './controllers/category/groupCategory/CreateGroupCategoryController';
 import { ListPosicaoCategoriesGroupController } from './controllers/category/groupCategory/ListPosicaoCategoriesGroupController';
 import { ListCategoriesGroupController } from './controllers/category/groupCategory/ListCategoriesGroupController';
+import { PageListAllGroupsCategoriesController } from './controllers/category/groupCategory/PageListAllGroupsCategoriesController';
+import { FindFirstGroupController } from './controllers/category/groupCategory/FindFirstGroupController';
+import { FindGroupIDController } from './controllers/category/groupCategory/FindGroupIDController';
+import { FindUniqueGroupIDController } from './controllers/category/groupCategory/FindUniqueGroupIDController';
+import { UpdateOrderCategoryGroupController } from './controllers/category/groupCategory/UpdateOrderCategoryGroupController';
+import { StatusItemCategoryGroupController } from './controllers/category/groupCategory/StatusItemCategoryGroupController';
+import { DeleteCategoriesGroupIDController } from './controllers/category/groupCategory/DeleteCategoriesGroupIDController';
+import { DeleteGroupsIDController } from './controllers/category/groupCategory/DeleteGroupsIDController';
+import { UpdateNameGrupoController } from './controllers/category/groupCategory/UpdateNameGrupoController';
+import { UpdatePosicaoGroupController } from './controllers/category/groupCategory/UpdatePosicaoGroupController';
+import { UpdateCategoryGrupoController } from './controllers/category/groupCategory/UpdateCategoryGrupoController';
+import { CreateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/CreateImageCategoryGroupController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -348,6 +360,18 @@ router.get('/exactCategoryProducts', new ListExactCategoryNameController().handl
 
 // -- ROTAS GRUPOS DE CATEGORIAS --
 router.post('/group', ADMINisAuthenticated, new CreateGroupCategoryController().handle);
+router.get('/pageGroups', ADMINisAuthenticated, new PageListAllGroupsCategoriesController().handle);
+router.get('/findFirstGroup', ADMINisAuthenticated, new FindFirstGroupController().handle);
+router.get('/findGroupID', ADMINisAuthenticated, new FindGroupIDController().handle);
+router.get('/findUniqueGroup', ADMINisAuthenticated, new FindUniqueGroupIDController().handle);
+router.put('/updateOrderItemGroup', ADMINisAuthenticated, new UpdateOrderCategoryGroupController().handle);
+router.put('/updateStatusGroup', ADMINisAuthenticated, new StatusItemCategoryGroupController().handle);
+router.put('/updateNameGroup', ADMINisAuthenticated, new UpdateNameGrupoController().handle);
+router.put('/updatePosicaoGroup', ADMINisAuthenticated, new UpdatePosicaoGroupController().handle);
+router.put('/updateCategoryGroup', ADMINisAuthenticated, new UpdateCategoryGrupoController().handle);
+router.delete('/deleteCategoriesGroups', ADMINisAuthenticated, new DeleteCategoriesGroupIDController().handle);
+router.delete('/deleteGroups', ADMINisAuthenticated, new DeleteGroupsIDController().handle);
+router.post('/createImageGroup', ADMINisAuthenticated, upload.single('file'), new CreateImageCategoryGroupController().handle);
 router.get('/pocisaoListGroup', new ListPosicaoCategoriesGroupController().handle);
 router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
 

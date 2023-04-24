@@ -24,6 +24,16 @@ class CreateGroupCategoryService {
                 .replace(/[/]/g, "-");
         }
 
+        const posicaoAlredyExist = await prismaClient.groupCategoy.findFirst({
+            where: {
+                posicao: posicao
+            }
+        })
+
+        if (posicaoAlredyExist) {
+            throw new Error("Já existe um grupo nessa posição");
+        }
+
         const relationGroup = await prismaClient.groupCategoy.create({
             data: {
                 nameGroup: nameGroup,
