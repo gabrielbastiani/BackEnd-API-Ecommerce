@@ -252,6 +252,8 @@ import { UpdatePosicaoGroupController } from './controllers/category/groupCatego
 import { UpdateCategoryGrupoController } from './controllers/category/groupCategory/UpdateCategoryGrupoController';
 import { CreateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/CreateImageCategoryGroupController';
 import { UpdateItemNameGrupoController } from './controllers/category/groupCategory/UpdateItemNameGrupoController';
+import { UpdateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/UpdateImageCategoryGroupController';
+import { DeletetImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/DeletetImageCategoryGroupController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -373,7 +375,9 @@ router.put('/updateCategoryGroup', ADMINisAuthenticated, new UpdateCategoryGrupo
 router.put('/updateItemName', ADMINisAuthenticated, new UpdateItemNameGrupoController().handle);
 router.delete('/deleteCategoriesGroups', ADMINisAuthenticated, new DeleteCategoriesGroupIDController().handle);
 router.delete('/deleteGroups', ADMINisAuthenticated, new DeleteGroupsIDController().handle);
+router.delete('/deleteImageGroup', ADMINisAuthenticated, new DeletetImageCategoryGroupController().handle);
 router.post('/createImageGroup', ADMINisAuthenticated, upload.single('file'), new CreateImageCategoryGroupController().handle);
+router.put('/updateImageGroup', ADMINisAuthenticated, upload.single('file'), new UpdateImageCategoryGroupController().handle);
 router.get('/pocisaoListGroup', new ListPosicaoCategoriesGroupController().handle);
 router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
 

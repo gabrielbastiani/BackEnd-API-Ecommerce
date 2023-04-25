@@ -18,16 +18,6 @@ class UpdatePosicaoGroupService {
         .replace(/[/]/g, "-");
     }
 
-    const posicaoAlredyExist = await prismaClient.groupCategoy.findFirst({
-      where: {
-        posicao: posicao
-      }
-    })
-
-    if (posicaoAlredyExist) {
-      throw new Error("Já existe um grupo nessa posição");
-    }
-
     const updatePosicao = await prismaClient.groupCategoy.update({
       where: {
         id: groupCategoy_id
