@@ -80,6 +80,7 @@ import { UpdateAllDateBannerController } from './controllers/banner/UpdateAllDat
 import { PageListAllBannerController } from './controllers/banner/PageListAllBannerController';
 import { DeleteBannerController } from './controllers/banner/DeleteBannerController';
 import { UpdateBannerController } from './controllers/banner/UpdateBannerController';
+import { PublishProgramadBannerController } from './controllers/banner/PublishProgramadBannerController';
 import { StatusBannerController } from './controllers/banner/StatusBannerController';
 import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerController';
 import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
@@ -99,6 +100,26 @@ import { FindFirstCategoryController } from './controllers/category/FindFirstCat
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
 import { ListExactCategoryNameController } from './controllers/category/ListExactCategoryNameController';
+
+// -- ROTAS GRUPOS DE CATEGORIAS --
+import { CreateGroupCategoryController } from './controllers/category/groupCategory/CreateGroupCategoryController';
+import { ListPosicaoCategoriesGroupController } from './controllers/category/groupCategory/ListPosicaoCategoriesGroupController';
+import { ListCategoriesGroupController } from './controllers/category/groupCategory/ListCategoriesGroupController';
+import { PageListAllGroupsCategoriesController } from './controllers/category/groupCategory/PageListAllGroupsCategoriesController';
+import { FindFirstGroupController } from './controllers/category/groupCategory/FindFirstGroupController';
+import { FindGroupIDController } from './controllers/category/groupCategory/FindGroupIDController';
+import { FindUniqueGroupIDController } from './controllers/category/groupCategory/FindUniqueGroupIDController';
+import { UpdateOrderCategoryGroupController } from './controllers/category/groupCategory/UpdateOrderCategoryGroupController';
+import { StatusItemCategoryGroupController } from './controllers/category/groupCategory/StatusItemCategoryGroupController';
+import { DeleteCategoriesGroupIDController } from './controllers/category/groupCategory/DeleteCategoriesGroupIDController';
+import { DeleteGroupsIDController } from './controllers/category/groupCategory/DeleteGroupsIDController';
+import { UpdateNameGrupoController } from './controllers/category/groupCategory/UpdateNameGrupoController';
+import { UpdatePosicaoGroupController } from './controllers/category/groupCategory/UpdatePosicaoGroupController';
+import { UpdateCategoryGrupoController } from './controllers/category/groupCategory/UpdateCategoryGrupoController';
+import { CreateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/CreateImageCategoryGroupController';
+import { UpdateItemNameGrupoController } from './controllers/category/groupCategory/UpdateItemNameGrupoController';
+import { UpdateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/UpdateImageCategoryGroupController';
+import { DeletetImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/DeletetImageCategoryGroupController';
 
 // -- ROTAS PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
@@ -142,6 +163,7 @@ import { DeleteRelationProductCategoryController } from './controllers/product/r
 import { FindAllExactRelationBlocController } from './controllers/product/relationProductCategory/FindAllExactRelationBlocController';
 import { DeleteRelationIDProductCategoryController } from './controllers/product/relationProductCategory/DeleteRelationIDProductCategoryController';
 import { PageRelationsCategorysController } from './controllers/product/relationProductCategory/PageRelationsCategorysController';
+import { FindCategorysRelationController } from './controllers/product/relationProductCategory/FindCategorysRelationController';
 import { UpdateStatusRelationCategoryController } from './controllers/product/relationProductCategory/UpdateStatusRelationCategoryController';
 import { UpdateCategoryIDProductCategoryController } from './controllers/product/relationProductCategory/UpdateCategoryIDProductCategoryController';
 import { FindCategoryIDRelationController } from './controllers/product/relationProductCategory/FindCategoryIDRelationController';
@@ -234,26 +256,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { PublishProgramadBannerController } from './controllers/banner/PublishProgramadBannerController';
-import { FindCategorysRelationController } from './controllers/product/relationProductCategory/FindCategorysRelationController';
-import { CreateGroupCategoryController } from './controllers/category/groupCategory/CreateGroupCategoryController';
-import { ListPosicaoCategoriesGroupController } from './controllers/category/groupCategory/ListPosicaoCategoriesGroupController';
-import { ListCategoriesGroupController } from './controllers/category/groupCategory/ListCategoriesGroupController';
-import { PageListAllGroupsCategoriesController } from './controllers/category/groupCategory/PageListAllGroupsCategoriesController';
-import { FindFirstGroupController } from './controllers/category/groupCategory/FindFirstGroupController';
-import { FindGroupIDController } from './controllers/category/groupCategory/FindGroupIDController';
-import { FindUniqueGroupIDController } from './controllers/category/groupCategory/FindUniqueGroupIDController';
-import { UpdateOrderCategoryGroupController } from './controllers/category/groupCategory/UpdateOrderCategoryGroupController';
-import { StatusItemCategoryGroupController } from './controllers/category/groupCategory/StatusItemCategoryGroupController';
-import { DeleteCategoriesGroupIDController } from './controllers/category/groupCategory/DeleteCategoriesGroupIDController';
-import { DeleteGroupsIDController } from './controllers/category/groupCategory/DeleteGroupsIDController';
-import { UpdateNameGrupoController } from './controllers/category/groupCategory/UpdateNameGrupoController';
-import { UpdatePosicaoGroupController } from './controllers/category/groupCategory/UpdatePosicaoGroupController';
-import { UpdateCategoryGrupoController } from './controllers/category/groupCategory/UpdateCategoryGrupoController';
-import { CreateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/CreateImageCategoryGroupController';
-import { UpdateItemNameGrupoController } from './controllers/category/groupCategory/UpdateItemNameGrupoController';
-import { UpdateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/UpdateImageCategoryGroupController';
-import { DeletetImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/DeletetImageCategoryGroupController';
+
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
