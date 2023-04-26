@@ -3,7 +3,7 @@ import { CreatePhotoTextoInstitucionalService } from "../../../../services/loja/
 
 class CreatePhotoTextoInstitucionalController {
     async handle(req: Request, res: Response) {
-        const { textoinstitucional_id, titleImage, order, posicao, slugPosicao } = req.body;
+        const { textoinstitucional_id, titleImage, order, posicao, slugPosicao, someImage } = req.body;
 
         const photoTexto = new CreatePhotoTextoInstitucionalService();
 
@@ -20,6 +20,7 @@ class CreatePhotoTextoInstitucionalController {
                 order,
                 posicao,
                 slugPosicao,
+                someImage
             })
             return res.json(textoPhoto)
         }

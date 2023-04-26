@@ -256,6 +256,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { ListImagesInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/ListImagesInstitucionalController';
 
 
 const router = Router();
@@ -336,6 +337,7 @@ router.put('/updateDisponibilidadePhotoTexto', ADMINisAuthenticated, new UpdateD
 router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new UpdatePosicaoPhotoTextoController().handle);
 router.get('/listExactPhotoTextoInstitucional', ADMINisAuthenticated, new ListExactPhotoTextoController().handle);
 router.get('/listTextosInstitucionais', new ListAllTextosOrderAndPosicaoController().handle);
+router.get('/listImagesLoja', new ListImagesInstitucionalController().handle);
 
 // -- ROTAS BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);

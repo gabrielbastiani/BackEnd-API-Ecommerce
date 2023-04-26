@@ -7,10 +7,11 @@ interface PhotoRequest {
   order: number;
   posicao: string;
   slugPosicao: string;
+  someImage: boolean;
 }
 
 class CreatePhotoTextoInstitucionalService {
-  async execute({ image, textoinstitucional_id, titleImage, order, posicao }: PhotoRequest) {
+  async execute({ image, textoinstitucional_id, titleImage, order, posicao, someImage }: PhotoRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -28,7 +29,8 @@ class CreatePhotoTextoInstitucionalService {
         titleImage: titleImage,
         order: Number(order),
         posicao: posicao,
-        slugPosicao: removerAcentos(posicao)
+        slugPosicao: removerAcentos(posicao),
+        someImage: true
       }
     })
 
