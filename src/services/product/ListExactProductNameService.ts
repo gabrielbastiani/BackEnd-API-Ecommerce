@@ -6,7 +6,7 @@ interface RequestProduct {
 
 class ListExactProductNameService {
     async execute({ slug }: RequestProduct) {
-        const exactProduct = await prismaClient.product.findUnique({
+        const exactProduct = await prismaClient.product.findFirst({
             where: {
                 slug: slug
             },
