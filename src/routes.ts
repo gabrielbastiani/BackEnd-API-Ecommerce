@@ -100,7 +100,6 @@ import { ExactPageListAllCategoryController } from './controllers/category/Exact
 import { FindFirstCategoryController } from './controllers/category/FindFirstCategoryController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
-import { ListExactCategoryNameController } from './controllers/category/ListExactCategoryNameController';
 
 // -- ROTAS GRUPOS DE CATEGORIAS --
 import { CreateGroupCategoryController } from './controllers/category/groupCategory/CreateGroupCategoryController';
@@ -364,7 +363,6 @@ router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryCont
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
-router.get('/exactCategoryProducts', new ListExactCategoryNameController().handle);
 
 // -- ROTAS GRUPOS DE CATEGORIAS --
 router.post('/group', ADMINisAuthenticated, new CreateGroupCategoryController().handle);
