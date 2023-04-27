@@ -73,6 +73,7 @@ import { UpdateTitlePhotoTextoController } from './controllers/loja/textoInstitu
 import { ListExactPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/ListExactPhotoTextoController';
 import { UpdateOrderPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
 import { UpdatePosicaoPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
+import { ListImagesInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/ListImagesInstitucionalController';
 
 // -- ROTAS BANNERS --
 import { CreateBannerController } from './controllers/banner/CreateBannerController';
@@ -256,7 +257,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { ListImagesInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/ListImagesInstitucionalController';
 
 
 const router = Router();

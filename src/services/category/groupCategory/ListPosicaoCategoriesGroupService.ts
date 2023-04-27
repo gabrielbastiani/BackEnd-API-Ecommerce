@@ -19,7 +19,7 @@ class ListPosicaoCategoriesGroupService {
             where: {
                 groupId: ids.id,
                 slugPosicao: slugPosicao,
-                status: StatusGroup.Ativo,
+                status: StatusGroup.Ativo
             },
             orderBy: {
                 order: 'asc'

@@ -8,7 +8,7 @@ class ListPosicaoCategoriesGroupController {
     const group = new ListPosicaoCategoriesGroupService();
 
     const categoiesGroup = await group.execute({
-      slugPosicao,
+      slugPosicao
     });
 
     return res.json(categoiesGroup);
