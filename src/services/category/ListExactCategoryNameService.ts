@@ -11,6 +11,11 @@ class ListExactCategoryNameService {
             },
             orderBy: {
                 order: 'asc'
+            },
+            include: {
+                groupcategories: true,
+                imagecategories: true,
+                relationproductcategories: true
             }
         });
 
@@ -19,23 +24,29 @@ class ListExactCategoryNameService {
                 slug: slug
             },
             include: {
-                product: true,
-                subcategories: true
+                groupcategories: true,
+                imagecategories: true,
+                relationproductcategories: true
             },
             skip,
             take: limit
         });
 
-        const findUnique = await prismaClient.category.findUnique({
+        const findFirst = await prismaClient.category.findFirst({
             where: {
                 slug: slug
+            },
+            include: {
+                groupcategories: true,
+                imagecategories: true,
+                relationproductcategories: true
             }
         });
 
         // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
             categorys,
-            findUnique,
+            findFirst,
             total: categorysAll.length,
             total_pages: Math.ceil(categorysAll.length / limit),
             current_page: page,
