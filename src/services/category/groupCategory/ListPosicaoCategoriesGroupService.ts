@@ -2,23 +2,37 @@ import { StatusGroup } from "@prisma/client";
 import prismaClient from "../../../prisma";
 
 interface GroupRequest {
-    slugPosicao: string;
+    slugPosicao: any;
+    slugCategoryOrItem: any;
 }
 
 class ListPosicaoCategoriesGroupService {
-    async execute({ slugPosicao }: GroupRequest) {
+    async execute({ slugPosicao, slugCategoryOrItem }: GroupRequest) {
 
         const ids = await prismaClient.groupCategoy.findFirst({
             where: {
                 slugPosicao: slugPosicao,
+                slugCategoryOrItem: slugCategoryOrItem,
                 status: StatusGroup.Ativo
             }
-        })
+        });
+
+        const gruopId = ids.id;
+
+        const names = await prismaClient.groupCategoy.findFirst({
+            where: {
+                groupId: gruopId,
+                status: StatusGroup.Ativo
+            },
+            include: {
+                category: true,
+                imagegroupcategories: true
+            }
+        });
 
         const group = await prismaClient.groupCategoy.findMany({
             where: {
-                groupId: ids.id,
-                slugPosicao: slugPosicao,
+                groupId: gruopId,
                 status: StatusGroup.Ativo
             },
             orderBy: {
@@ -28,9 +42,14 @@ class ListPosicaoCategoriesGroupService {
                 category: true,
                 imagegroupcategories: true
             }
-        })
+        });
 
-        return group;
+        const data = {
+            names,
+            group
+        };
+
+        return data;
     }
 }
 

@@ -3,12 +3,13 @@ import { ListPosicaoCategoriesGroupService } from "../../../services/category/gr
 
 class ListPosicaoCategoriesGroupController {
   async handle(req: Request, res: Response) {
-    const slugPosicao = req.query.slugPosicao as string;
-
     const group = new ListPosicaoCategoriesGroupService();
 
+    const { slugPosicao, slugCategoryOrItem } = req.query;
+
     const categoiesGroup = await group.execute({
-      slugPosicao
+      slugPosicao,
+      slugCategoryOrItem
     });
 
     return res.json(categoiesGroup);

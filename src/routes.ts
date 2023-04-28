@@ -256,6 +256,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { UpdateSlugGrupoController } from './controllers/category/groupCategory/UpdateSlugGrupoController';
 
 
 const router = Router();
@@ -381,6 +382,7 @@ router.delete('/deleteGroups', ADMINisAuthenticated, new DeleteGroupsIDControlle
 router.delete('/deleteImageGroup', ADMINisAuthenticated, new DeletetImageCategoryGroupController().handle);
 router.post('/createImageGroup', ADMINisAuthenticated, upload.single('file'), new CreateImageCategoryGroupController().handle);
 router.put('/updateImageGroup', ADMINisAuthenticated, upload.single('file'), new UpdateImageCategoryGroupController().handle);
+router.put('/updateSlugGroup', ADMINisAuthenticated, new UpdateSlugGrupoController().handle);
 router.get('/pocisaoListGroup', new ListPosicaoCategoriesGroupController().handle);
 router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
 
