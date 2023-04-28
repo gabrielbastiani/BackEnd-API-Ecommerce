@@ -221,8 +221,6 @@ model Category {
   categoryName    String?        @db.VarChar(300)
   slug            String?        @db.VarChar(300)
   order           Int?
-  posicao         String?        @db.VarChar(300)
-  slugPosicao     String?        @db.VarChar(325)
   disponibilidade StatusCategory @default(Disponivel)
 
   created_at DateTime? @default(now())
@@ -256,17 +254,18 @@ model ImageCategory {
 }
 
 model GroupCategoy {
-  id          String      @id @default(uuid())
-  nameGroup   String?     @db.VarChar(385)
-  itemName    String?     @db.VarChar(385)
-  posicao     String?     @db.VarChar(300)
-  slugPosicao String?     @db.VarChar(325)
-  order       Int?
-  nivel       Int?
-  category    Category?   @relation(fields: [category_id], references: [id])
-  category_id String?
-  groupId     String?
-  status      StatusGroup @default(Ativo)
+  id                 String      @id @default(uuid())
+  nameGroup          String?     @db.VarChar(385)
+  itemName           String?     @db.VarChar(385)
+  slugCategoryOrItem String?     @db.VarChar(400)
+  posicao            String?     @db.VarChar(300)
+  slugPosicao        String?     @db.VarChar(325)
+  order              Int?
+  nivel              Int?
+  category           Category?   @relation(fields: [category_id], references: [id])
+  category_id        String?
+  groupId            String?
+  status             StatusGroup @default(Ativo)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

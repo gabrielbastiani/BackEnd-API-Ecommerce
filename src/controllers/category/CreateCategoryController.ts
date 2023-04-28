@@ -7,8 +7,6 @@ class CreateCategoryController {
       categoryName,
       slug,
       order,
-      posicao,
-      slugPosicao,
       loja_id
     } = req.body;
 
@@ -18,8 +16,6 @@ class CreateCategoryController {
       categoryName,
       slug,
       order,
-      posicao,
-      slugPosicao,
       loja_id
     });
 
