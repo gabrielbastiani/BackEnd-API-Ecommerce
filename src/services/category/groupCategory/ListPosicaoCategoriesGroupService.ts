@@ -1,4 +1,4 @@
-import { StatusGroup } from "@prisma/client";
+import { StatusCategory, StatusGroup } from "@prisma/client";
 import prismaClient from "../../../prisma";
 
 interface GroupRequest {
@@ -19,17 +19,6 @@ class ListPosicaoCategoriesGroupService {
 
         const gruopId = ids.id;
 
-        const names = await prismaClient.groupCategoy.findFirst({
-            where: {
-                groupId: gruopId,
-                status: StatusGroup.Ativo
-            },
-            include: {
-                category: true,
-                imagegroupcategories: true
-            }
-        });
-
         const group = await prismaClient.groupCategoy.findMany({
             where: {
                 groupId: gruopId,
@@ -44,8 +33,15 @@ class ListPosicaoCategoriesGroupService {
             }
         });
 
+        const dados = await prismaClient.category.findFirst({
+            where: {
+                slug: slugCategoryOrItem,
+                disponibilidade: StatusCategory.Disponivel
+            }
+        });
+
         const data = {
-            names,
+            dados,
             group
         };
 
