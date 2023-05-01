@@ -276,18 +276,32 @@ CREATE TABLE "photoproducts" (
 CREATE TABLE "atributos" (
     "id" TEXT NOT NULL,
     "nameAtributo" VARCHAR(300),
+    "tipo" VARCHAR(325),
+    "slugTipo" VARCHAR(325),
+    "slugCategory" VARCHAR(325),
     "order" INTEGER,
-    "linkProduct" TEXT,
-    "linkVariante" TEXT,
+    "nivel" INTEGER,
+    "atributoId" TEXT,
     "disponibilidade" "StatusAtributo" NOT NULL DEFAULT 'Disponivel',
-    "posicao" VARCHAR(300),
-    "slug" VARCHAR(325),
+    "category_id" TEXT,
     "product_id" TEXT,
     "variacao_id" TEXT,
+    "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "atributos_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "imageatributos" (
+    "id" TEXT NOT NULL,
+    "image" TEXT,
+    "atributo_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "imageatributos_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -556,10 +570,19 @@ ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategorie
 ALTER TABLE "photoproducts" ADD CONSTRAINT "photoproducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "atributos" ADD CONSTRAINT "atributos_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "atributos" ADD CONSTRAINT "atributos_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "atributos" ADD CONSTRAINT "atributos_variacao_id_fkey" FOREIGN KEY ("variacao_id") REFERENCES "variacoes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "atributos" ADD CONSTRAINT "atributos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "imageatributos" ADD CONSTRAINT "imageatributos_atributo_id_fkey" FOREIGN KEY ("atributo_id") REFERENCES "atributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "variacoes" ADD CONSTRAINT "variacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -87,6 +87,7 @@ model Loja {
   groupcategories           GroupCategoy[]
   products                  Product[]
   variacoes                 Variacao[]
+  atributos                 Atributo[]
   relationproductcategories RelationProductCategory[]
   avaliacoes                Avaliacao[]
   newsletters               Newsletter[]
@@ -232,6 +233,7 @@ model Category {
   imagecategories           ImageCategory[]
   groupcategories           GroupCategoy[]
   relationproductcategories RelationProductCategory[]
+  atributos                 Atributo[]
 
   @@map("categories")
 }
@@ -341,17 +343,24 @@ model PhotoProduct {
 model Atributo {
   id              String         @id @default(uuid())
   nameAtributo    String?        @db.VarChar(300)
+  tipo            String?        @db.VarChar(325)
+  slugTipo        String?        @db.VarChar(325)
+  slugCategory    String?        @db.VarChar(325)
   order           Int?
-  linkProduct     String?
-  linkVariante    String?
+  nivel           Int?
+  atributoId      String?
   disponibilidade StatusAtributo @default(Disponivel)
-  posicao         String?        @db.VarChar(300)
-  slug            String?        @db.VarChar(325)
 
+  category    Category? @relation(fields: [category_id], references: [id])
+  category_id String?
   product     Product?  @relation(fields: [product_id], references: [id])
   product_id  String?
   variacao    Variacao? @relation(fields: [variacao_id], references: [id])
   variacao_id String?
+  loja        Loja?     @relation(fields: [loja_id], references: [id])
+  loja_id     String?
+
+  imageatributos ImageAtributo[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
@@ -362,6 +371,18 @@ model Atributo {
 enum StatusAtributo {
   Disponivel
   Indisponivel
+}
+
+model ImageAtributo {
+  id          String    @id @default(uuid())
+  image       String?
+  atributo    Atributo? @relation(fields: [atributo_id], references: [id])
+  atributo_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("imageatributos")
 }
 
 model Banner {
