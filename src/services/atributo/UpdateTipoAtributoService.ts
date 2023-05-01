@@ -3,7 +3,7 @@ import prismaClient from "../../prisma";
 interface AtributoRequest {
     atributo_id: string;
     tipo: string;
-    slugTipo: string;
+    slug: string;
 }
 
 class UpdateTipoAtributoService {
@@ -27,7 +27,7 @@ class UpdateTipoAtributoService {
             },
             data: {
                 tipo: tipo,
-                slugTipo: removerAcentos(tipo)
+                slug: removerAcentos(tipo)
             }
         })
 

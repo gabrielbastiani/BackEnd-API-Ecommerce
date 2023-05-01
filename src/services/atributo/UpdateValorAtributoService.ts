@@ -2,14 +2,14 @@ import prismaClient from "../../prisma";
 
 interface AtributoRequest {
     atributo_id: string;
-    nameAtributo: string;
-    slug: string;
+    valor: string;
+    slugValor: string;
 }
 
-class UpdateNameAtributoService {
+class UpdateValorAtributoService {
     async execute({
         atributo_id,
-        nameAtributo,
+        valor,
     }: AtributoRequest) {
 
         function removerAcentos(s: any) {
@@ -26,8 +26,8 @@ class UpdateNameAtributoService {
                 id: atributo_id
             },
             data: {
-                nameAtributo: nameAtributo,
-                slug: removerAcentos(nameAtributo)
+                valor: valor,
+                slugValor: removerAcentos(valor)
             }
         })
 
@@ -36,4 +36,4 @@ class UpdateNameAtributoService {
     }
 }
 
-export { UpdateNameAtributoService }
+export { UpdateValorAtributoService }

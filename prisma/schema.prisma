@@ -345,10 +345,10 @@ model PhotoProduct {
 
 model Atributo {
   id              String         @id @default(uuid())
-  nameAtributo    String?        @db.VarChar(325)
-  slug            String?        @db.VarChar(325)
   tipo            String?        @db.VarChar(325)
-  slugTipo        String?        @db.VarChar(325)
+  slug            String?        @db.VarChar(325)
+  valor           String?        @db.VarChar(325)
+  slugValor       String?        @db.VarChar(325)
   order           Int?
   disponibilidade StatusAtributo @default(Disponivel)
 

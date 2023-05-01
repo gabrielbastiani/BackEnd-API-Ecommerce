@@ -4,10 +4,10 @@ import { CreateAtributoService } from "../../services/atributo/CreateAtributoSer
 class CreateAtributoController {
     async handle(req: Request, res: Response) {
         const {
-            nameAtributo,
+            valor,
             slug,
             tipo,
-            slugTipo,
+            slugValor,
             order,
             loja_id
         } = req.body;
@@ -15,10 +15,10 @@ class CreateAtributoController {
         const createAtributo = new CreateAtributoService();
 
         const atributo = await createAtributo.execute({
-            nameAtributo,
+            valor,
             slug,
             tipo,
-            slugTipo,
+            slugValor,
             order,
             loja_id
         });

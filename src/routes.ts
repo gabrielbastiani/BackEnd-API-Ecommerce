@@ -155,7 +155,7 @@ import { ListExactProductNameController } from './controllers/product/ListExactP
 
 // ROTAS ATRIBUTOS --
 import { CreateAtributoController } from './controllers/atributo/CreateAtributoController';
-import { UpdateNameAtributoController } from './controllers/atributo/UpdateNameAtributoController';
+import { UpdateValorAtributoController } from './controllers/atributo/UpdateValorAtributoController';
 import { UpdateTipoAtributoController } from './controllers/atributo/UpdateTipoAtributoController';
 import { UpdateOrderAtributoController } from './controllers/atributo/UpdateOrderAtributoController';
 import { UpdateDisponibilidadeAtributoController } from './controllers/atributo/UpdateDisponibilidadeAtributoController';
@@ -264,6 +264,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { CreateRelationAtributosController } from './controllers/atributo/relationProductAtributo/CreateRelationAtributosController';
 
 
 const router = Router();
@@ -424,10 +425,13 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // ROTAS ATRIBUTOS --
 router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
-router.put('/updateNameAtribute', ADMINisAuthenticated, new UpdateNameAtributoController().handle);
+router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
 router.put('/updateOrderAtributo', ADMINisAuthenticated, new UpdateOrderAtributoController().handle);
 router.put('/updateStatusAtributo', ADMINisAuthenticated, new UpdateDisponibilidadeAtributoController().handle);
+
+// ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
+router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);

@@ -282,10 +282,10 @@ CREATE TABLE "photoproducts" (
 -- CreateTable
 CREATE TABLE "atributos" (
     "id" TEXT NOT NULL,
-    "nameAtributo" VARCHAR(325),
-    "slug" VARCHAR(325),
     "tipo" VARCHAR(325),
-    "slugTipo" VARCHAR(325),
+    "slug" VARCHAR(325),
+    "valor" VARCHAR(325),
+    "slugValor" VARCHAR(325),
     "order" INTEGER,
     "disponibilidade" "StatusAtributo" NOT NULL DEFAULT 'Disponivel',
     "loja_id" TEXT,
