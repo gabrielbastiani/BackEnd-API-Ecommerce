@@ -292,10 +292,8 @@ model ImageGroupCategory {
   groupCategoy    GroupCategoy? @relation(fields: [groupCategoy_id], references: [id])
   groupCategoy_id String?
 
-  created_at            DateTime?            @default(now())
-  updated_at            DateTime?            @default(now())
-  GroupFilterAtributo   GroupFilterAtributo? @relation(fields: [groupFilterAtributoId], references: [id])
-  groupFilterAtributoId String?
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
   @@map("imagegroupcategories")
 }
@@ -360,7 +358,7 @@ model Atributo {
 
   relationProductAtributos RelationProductAtributo[]
   imageatributos           ImageAtributo[]
-  GroupFilterAtributo      GroupFilterAtributo[]
+  groupFilterAtributos     GroupFilterAtributo[]
 
   @@map("atributos")
 }
@@ -371,18 +369,14 @@ enum StatusAtributo {
 }
 
 model RelationProductAtributo {
-  id                 String    @id @default(uuid())
-  atributo           Atributo? @relation(fields: [atributo_id], references: [id])
-  atributo_id        String?
-  product            Product?  @relation(fields: [product_id], references: [id])
-  product_id         String?
-  variacao           Variacao? @relation(fields: [variacao_id], references: [id])
-  variacao_id        String?
-  relationAtributoID String?
-  nivel              Int?
-  order              Int?
-  posicao            String?   @db.VarChar(300)
-  slugPosicao        String?   @db.VarChar(325)
+  id          String    @id @default(uuid())
+  atributo    Atributo? @relation(fields: [atributo_id], references: [id])
+  atributo_id String?
+  product     Product?  @relation(fields: [product_id], references: [id])
+  product_id  String?
+  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id String?
+  order       Int?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -416,14 +410,12 @@ model GroupFilterAtributo {
   id                 String               @id @default(uuid())
   nameGroup          String?              @db.VarChar(385)
   itemName           String?              @db.VarChar(385)
+  atributo           Atributo?            @relation(fields: [atributo_id], references: [id])
+  atributo_id        String?
   slugCategoryOrItem String?              @db.VarChar(400)
-  posicao            String?              @db.VarChar(300)
-  slugPosicao        String?              @db.VarChar(325)
   order              Int?
   nivel              Int?
   groupId            String?
-  atributo           Atributo?            @relation(fields: [atributo_id], references: [id])
-  atributo_id        String?
   status             StatusGroupAtributos @default(Ativo)
 
   created_at DateTime? @default(now())
@@ -432,8 +424,7 @@ model GroupFilterAtributo {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  imagegroupcategories ImageGroupCategory[]
-  imageAtributoGroups  ImageAtributoGroup[]
+  imageAtributoGroups ImageAtributoGroup[]
 
   @@map("groupfilteratributos")
 }

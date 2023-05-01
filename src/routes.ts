@@ -265,6 +265,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { CreateRelationAtributosController } from './controllers/atributo/relationProductAtributo/CreateRelationAtributosController';
+import { CreateFilterAtributosController } from './controllers/atributo/filterGroupAtributo/CreateFilterAtributosController';
 
 
 const router = Router();
@@ -432,6 +433,9 @@ router.put('/updateStatusAtributo', ADMINisAuthenticated, new UpdateDisponibilid
 
 // ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
 router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);
+
+// ROTAS GRUPO FILTROS ATRIBUTOS --
+router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosController().handle);
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);

@@ -242,7 +242,6 @@ CREATE TABLE "imagegroupcategories" (
     "groupCategoy_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "groupFilterAtributoId" TEXT,
 
     CONSTRAINT "imagegroupcategories_pkey" PRIMARY KEY ("id")
 );
@@ -301,11 +300,7 @@ CREATE TABLE "relationproductatributos" (
     "atributo_id" TEXT,
     "product_id" TEXT,
     "variacao_id" TEXT,
-    "relationAtributoID" TEXT,
-    "nivel" INTEGER,
     "order" INTEGER,
-    "posicao" VARCHAR(300),
-    "slugPosicao" VARCHAR(325),
     "loja_id" TEXT,
     "status" "StatusRelationAtributo" NOT NULL DEFAULT 'Ativo',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -330,13 +325,11 @@ CREATE TABLE "groupfilteratributos" (
     "id" TEXT NOT NULL,
     "nameGroup" VARCHAR(385),
     "itemName" VARCHAR(385),
+    "atributo_id" TEXT,
     "slugCategoryOrItem" VARCHAR(400),
-    "posicao" VARCHAR(300),
-    "slugPosicao" VARCHAR(325),
     "order" INTEGER,
     "nivel" INTEGER,
     "groupId" TEXT,
-    "atributo_id" TEXT,
     "status" "StatusGroupAtributos" NOT NULL DEFAULT 'Ativo',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -608,9 +601,6 @@ ALTER TABLE "groupcategories" ADD CONSTRAINT "groupcategories_loja_id_fkey" FORE
 
 -- AddForeignKey
 ALTER TABLE "imagegroupcategories" ADD CONSTRAINT "imagegroupcategories_groupCategoy_id_fkey" FOREIGN KEY ("groupCategoy_id") REFERENCES "groupcategories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "imagegroupcategories" ADD CONSTRAINT "imagegroupcategories_groupFilterAtributoId_fkey" FOREIGN KEY ("groupFilterAtributoId") REFERENCES "groupfilteratributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "relationproductcategories" ADD CONSTRAINT "relationproductcategories_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;

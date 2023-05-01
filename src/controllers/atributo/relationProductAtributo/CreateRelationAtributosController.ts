@@ -7,11 +7,7 @@ class CreateRelationAtributosController {
             atributo_id,
             product_id,
             variacao_id,
-            relationAtributoID,
-            nivel,
             order,
-            posicao,
-            slugPosicao,
             loja_id
         } = req.body;
 
@@ -21,11 +17,7 @@ class CreateRelationAtributosController {
             atributo_id,
             product_id,
             variacao_id,
-            relationAtributoID,
-            nivel,
             order,
-            posicao,
-            slugPosicao,
             loja_id
         });
 
