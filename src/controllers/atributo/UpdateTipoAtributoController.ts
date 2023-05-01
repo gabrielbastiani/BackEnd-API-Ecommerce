@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UpdateTipoAtributoService } from '../../../services/product/atributo/UpdateTipoAtributoService';
+import { UpdateTipoAtributoService } from '../../services/atributo/UpdateTipoAtributoService';
 
 class UpdateTipoAtributoController {
     async handle(req: Request, res: Response) {

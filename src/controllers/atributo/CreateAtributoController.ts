@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateAtributoService } from "../../../services/product/atributo/CreateAtributoService";
+import { CreateAtributoService } from "../../services/atributo/CreateAtributoService";
 
 class CreateAtributoController {
     async handle(req: Request, res: Response) {

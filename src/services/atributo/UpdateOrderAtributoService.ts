@@ -1,4 +1,4 @@
-import prismaClient from "../../../prisma";
+import prismaClient from "../../prisma";
 
 interface AtributoRequest {
     atributo_id: string;

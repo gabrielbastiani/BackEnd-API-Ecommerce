@@ -118,6 +118,7 @@ import { UpdatePosicaoGroupController } from './controllers/category/groupCatego
 import { UpdateCategoryGrupoController } from './controllers/category/groupCategory/UpdateCategoryGrupoController';
 import { CreateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/CreateImageCategoryGroupController';
 import { UpdateItemNameGrupoController } from './controllers/category/groupCategory/UpdateItemNameGrupoController';
+import { UpdateSlugGrupoController } from './controllers/category/groupCategory/UpdateSlugGrupoController';
 import { UpdateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/UpdateImageCategoryGroupController';
 import { DeletetImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/DeletetImageCategoryGroupController';
 
@@ -152,7 +153,14 @@ import { ListAllProductDestaqueController } from './controllers/product/ListAllP
 import { ListAllProductOfertaController } from './controllers/product/ListAllProductOfertaController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
-// ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS
+// ROTAS ATRIBUTOS --
+import { CreateAtributoController } from './controllers/atributo/CreateAtributoController';
+import { UpdateNameAtributoController } from './controllers/atributo/UpdateNameAtributoController';
+import { UpdateTipoAtributoController } from './controllers/atributo/UpdateTipoAtributoController';
+import { UpdateOrderAtributoController } from './controllers/atributo/UpdateOrderAtributoController';
+import { UpdateDisponibilidadeAtributoController } from './controllers/atributo/UpdateDisponibilidadeAtributoController';
+
+// ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 import { CreateRelationProductCategoryController } from './controllers/product/relationProductCategory/CreateRelationProductCategoryController';
 import { UpdateRelationIDProductCategoryController } from './controllers/product/relationProductCategory/UpdateRelationIDProductCategoryController';
 import { FindCategoryRelationBlockController } from './controllers/product/relationProductCategory/FindCategoryRelationBlockController';
@@ -213,7 +221,7 @@ import { ListExactNewslettersController } from './controllers/newsletters/ListEx
 import { PageListAllNewslettersController } from './controllers/newsletters/PageListAllNewslettersController';
 import { ExportNewslettersController } from './controllers/newsletters/ExportNewslettersController';
 
-// -- ROTAS CONTATOS
+// -- ROTAS CONTATOS --
 import { CreateContatoController } from './controllers/contatos/CreateContatoController';
 import { DeleteContatoController } from './controllers/contatos/DeleteContatoController';
 import { ListContatoController } from './controllers/contatos/ListContatoController';
@@ -256,11 +264,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { UpdateSlugGrupoController } from './controllers/category/groupCategory/UpdateSlugGrupoController';
-import { CreateAtributoController } from './controllers/product/atributo/CreateAtributoController';
-import { UpdateNameAtributoController } from './controllers/product/atributo/UpdateNameAtributoController';
-import { UpdateTipoAtributoController } from './controllers/product/atributo/UpdateTipoAtributoController';
-import { UpdateOrderAtributoController } from './controllers/product/atributo/UpdateOrderAtributoController';
 
 
 const router = Router();
@@ -424,6 +427,7 @@ router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoControlle
 router.put('/updateNameAtribute', ADMINisAuthenticated, new UpdateNameAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
 router.put('/updateOrderAtributo', ADMINisAuthenticated, new UpdateOrderAtributoController().handle);
+router.put('/updateStatusAtributo', ADMINisAuthenticated, new UpdateDisponibilidadeAtributoController().handle);
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
