@@ -96,6 +96,8 @@ model Loja {
   pagamentos                Pagamento[]
   entregas                  Entrega[]
   pedidos                   Pedido[]
+  RelationProductAtributo   RelationProductAtributo[]
+  GroupFilterAtributo       GroupFilterAtributo[]
 
   @@map("lojas")
 }
@@ -193,11 +195,11 @@ model Product {
 
   relationproductcategories RelationProductCategory[]
   photoproducts             PhotoProduct[]
-  atributos                 Atributo[]
   variacoes                 Variacao[]
   photovariacoes            PhotoVariacao[]
   avaliacoes                Avaliacao[]
   item                      Item[]
+  relationProductAtributos  RelationProductAtributo[]
 
   @@map("products")
 }
@@ -233,7 +235,6 @@ model Category {
   imagecategories           ImageCategory[]
   groupcategories           GroupCategoy[]
   relationproductcategories RelationProductCategory[]
-  atributos                 Atributo[]
 
   @@map("categories")
 }
@@ -264,9 +265,9 @@ model GroupCategoy {
   slugPosicao        String?     @db.VarChar(325)
   order              Int?
   nivel              Int?
+  groupId            String?
   category           Category?   @relation(fields: [category_id], references: [id])
   category_id        String?
-  groupId            String?
   status             StatusGroup @default(Ativo)
 
   created_at DateTime? @default(now())
@@ -291,8 +292,10 @@ model ImageGroupCategory {
   groupCategoy    GroupCategoy? @relation(fields: [groupCategoy_id], references: [id])
   groupCategoy_id String?
 
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  created_at            DateTime?            @default(now())
+  updated_at            DateTime?            @default(now())
+  GroupFilterAtributo   GroupFilterAtributo? @relation(fields: [groupFilterAtributoId], references: [id])
+  groupFilterAtributoId String?
 
   @@map("imagegroupcategories")
 }
@@ -342,28 +345,22 @@ model PhotoProduct {
 
 model Atributo {
   id              String         @id @default(uuid())
-  nameAtributo    String?        @db.VarChar(300)
+  nameAtributo    String?        @db.VarChar(325)
+  slug            String?        @db.VarChar(325)
   tipo            String?        @db.VarChar(325)
   slugTipo        String?        @db.VarChar(325)
-  slugCategory    String?        @db.VarChar(325)
   order           Int?
-  nivel           Int?
-  atributoId      String?
   disponibilidade StatusAtributo @default(Disponivel)
 
-  category    Category? @relation(fields: [category_id], references: [id])
-  category_id String?
-  product     Product?  @relation(fields: [product_id], references: [id])
-  product_id  String?
-  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
-  variacao_id String?
-  loja        Loja?     @relation(fields: [loja_id], references: [id])
-  loja_id     String?
-
-  imageatributos ImageAtributo[]
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
+
+  relationProductAtributos RelationProductAtributo[]
+  imageatributos           ImageAtributo[]
+  GroupFilterAtributo      GroupFilterAtributo[]
 
   @@map("atributos")
 }
@@ -373,16 +370,89 @@ enum StatusAtributo {
   Indisponivel
 }
 
+model RelationProductAtributo {
+  id                 String    @id @default(uuid())
+  atributo           Atributo? @relation(fields: [atributo_id], references: [id])
+  atributo_id        String?
+  product            Product?  @relation(fields: [product_id], references: [id])
+  product_id         String?
+  variacao           Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id        String?
+  relationAtributoID String?
+  nivel              Int?
+  order              Int?
+  posicao            String?   @db.VarChar(300)
+  slugPosicao        String?   @db.VarChar(325)
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  status StatusRelationAtributo @default(Ativo)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("relationproductatributos")
+}
+
+enum StatusRelationAtributo {
+  Ativo
+  Inativo
+}
+
 model ImageAtributo {
-  id          String    @id @default(uuid())
-  image       String?
-  atributo    Atributo? @relation(fields: [atributo_id], references: [id])
-  atributo_id String?
+  id            String    @id @default(uuid())
+  imageAtributo String?
+  atributo      Atributo? @relation(fields: [atributo_id], references: [id])
+  atributo_id   String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
   @@map("imageatributos")
+}
+
+model GroupFilterAtributo {
+  id                 String               @id @default(uuid())
+  nameGroup          String?              @db.VarChar(385)
+  itemName           String?              @db.VarChar(385)
+  slugCategoryOrItem String?              @db.VarChar(400)
+  posicao            String?              @db.VarChar(300)
+  slugPosicao        String?              @db.VarChar(325)
+  order              Int?
+  nivel              Int?
+  groupId            String?
+  atributo           Atributo?            @relation(fields: [atributo_id], references: [id])
+  atributo_id        String?
+  status             StatusGroupAtributos @default(Ativo)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  imagegroupcategories ImageGroupCategory[]
+  imageAtributoGroups  ImageAtributoGroup[]
+
+  @@map("groupfilteratributos")
+}
+
+enum StatusGroupAtributos {
+  Ativo
+  Inativo
+}
+
+model ImageAtributoGroup {
+  id                     String               @id @default(uuid())
+  imageAtributo          String?
+  groupFilterAtributo    GroupFilterAtributo? @relation(fields: [groupFilterAtributo_id], references: [id])
+  groupFilterAtributo_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("imageatributogroups")
 }
 
 model Banner {
@@ -443,9 +513,9 @@ model Variacao {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  photovariacoes PhotoVariacao[]
-  atributos      Atributo[]
-  item           Item[]
+  photovariacoes           PhotoVariacao[]
+  relationProductAtributos RelationProductAtributo[]
+  item                     Item[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

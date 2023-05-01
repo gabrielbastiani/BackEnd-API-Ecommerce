@@ -257,6 +257,10 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { UpdateSlugGrupoController } from './controllers/category/groupCategory/UpdateSlugGrupoController';
+import { CreateAtributoController } from './controllers/product/atributo/CreateAtributoController';
+import { UpdateNameAtributoController } from './controllers/product/atributo/UpdateNameAtributoController';
+import { UpdateTipoAtributoController } from './controllers/product/atributo/UpdateTipoAtributoController';
+import { UpdateOrderAtributoController } from './controllers/product/atributo/UpdateOrderAtributoController';
 
 
 const router = Router();
@@ -415,7 +419,13 @@ router.get('/listProductsDestaque', new ListAllProductDestaqueController().handl
 router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 
-// ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS
+// ROTAS ATRIBUTOS --
+router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
+router.put('/updateNameAtribute', ADMINisAuthenticated, new UpdateNameAtributoController().handle);
+router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
+router.put('/updateOrderAtributo', ADMINisAuthenticated, new UpdateOrderAtributoController().handle);
+
+// ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
 router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
 router.put('/updateCategoryIDrelation', ADMINisAuthenticated, new UpdateCategoryIDProductCategoryController().handle);
