@@ -42,7 +42,8 @@ class ListPosicaoCategoriesGroupService {
 
         const data = {
             dados,
-            group
+            group,
+            gruopId
         };
 
         return data;
