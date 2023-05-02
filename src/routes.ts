@@ -266,6 +266,12 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { CreateRelationAtributosController } from './controllers/atributo/relationProductAtributo/CreateRelationAtributosController';
 import { CreateFilterAtributosController } from './controllers/atributo/filterGroupAtributo/CreateFilterAtributosController';
+import { PageListAllAtributosController } from './controllers/atributo/PageListAllAtributosController';
+import { ListAtributosController } from './controllers/atributo/ListAtributosController';
+import { ListExactAtributoController } from './controllers/atributo/ListExactAtributoController';
+import { PageRelationAtributosController } from './controllers/atributo/relationProductAtributo/PageRelationAtributosController';
+import { CreateImageAtributoController } from './controllers/atributo/imageAtributo/CreateImageAtributoController';
+import { UpdateImageAtributoController } from './controllers/atributo/imageAtributo/UpdateImageAtributoController';
 
 
 const router = Router();
@@ -430,9 +436,15 @@ router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributo
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
 router.put('/updateOrderAtributo', ADMINisAuthenticated, new UpdateOrderAtributoController().handle);
 router.put('/updateStatusAtributo', ADMINisAuthenticated, new UpdateDisponibilidadeAtributoController().handle);
+router.get('/pageListAtributos', ADMINisAuthenticated, new PageListAllAtributosController().handle);
+router.get('/exactAtributo', ADMINisAuthenticated, new ListExactAtributoController().handle);
+router.post('/createImageAtributo', ADMINisAuthenticated, upload.single('file'), new CreateImageAtributoController().handle);
+router.put('/updateImageAtributo', ADMINisAuthenticated, upload.single('file'), new UpdateImageAtributoController().handle);
+router.get('/allAtributos', new ListAtributosController().handle);
 
 // ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
 router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);
+router.get('/pageListAtributos', ADMINisAuthenticated, new PageRelationAtributosController().handle);
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
 router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosController().handle);

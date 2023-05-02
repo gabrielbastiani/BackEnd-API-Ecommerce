@@ -7,7 +7,7 @@ class PageRelationsCategorysController {
 
         const { page, limit, category_id } = req.query;
 
-        const categoyPage = await pageListAllCategorysService.execute(Number(page), Number(limit), category_id);
+        const categoyPage = await pageListAllCategorysService.execute(Number(page), Number(limit), String(category_id));
 
         return res.json(categoyPage);
     }
