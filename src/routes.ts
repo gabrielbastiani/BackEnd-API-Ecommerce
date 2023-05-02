@@ -272,6 +272,10 @@ import { ListExactAtributoController } from './controllers/atributo/ListExactAtr
 import { PageRelationAtributosController } from './controllers/atributo/relationProductAtributo/PageRelationAtributosController';
 import { CreateImageAtributoController } from './controllers/atributo/imageAtributo/CreateImageAtributoController';
 import { UpdateImageAtributoController } from './controllers/atributo/imageAtributo/UpdateImageAtributoController';
+import { PageListAllGroupsAtributosController } from './controllers/atributo/filterGroupAtributo/PageListAllGroupsAtributosController';
+import { FindFirstGroupFiltroController } from './controllers/atributo/filterGroupAtributo/FindFirstGroupFiltroController';
+import { FindUniqueFilterGroupIDController } from './controllers/atributo/filterGroupAtributo/FindUniqueFilterGroupIDController';
+import { FindGroupFiltroIDController } from './controllers/atributo/filterGroupAtributo/FindGroupFiltroIDController';
 
 
 const router = Router();
@@ -444,10 +448,14 @@ router.get('/allAtributos', new ListAtributosController().handle);
 
 // ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
 router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);
-router.get('/pageListAtributos', ADMINisAuthenticated, new PageRelationAtributosController().handle);
+router.get('/pageListAtributosRelations', ADMINisAuthenticated, new PageRelationAtributosController().handle);
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
 router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosController().handle);
+router.get('/listPageFilterGroups', ADMINisAuthenticated, new PageListAllGroupsAtributosController().handle);
+router.get('/filterFirstGroupFiltro', ADMINisAuthenticated, new FindFirstGroupFiltroController().handle);
+router.get('/filterUniqueGroup', ADMINisAuthenticated, new FindUniqueFilterGroupIDController().handle);
+router.get('/findIDGroupFilter', ADMINisAuthenticated, new FindGroupFiltroIDController().handle);
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
