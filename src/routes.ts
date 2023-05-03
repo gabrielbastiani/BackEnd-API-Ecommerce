@@ -293,6 +293,9 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { AllAtributosProductRelationController } from './controllers/atributo/relationProductAtributo/AllAtributosProductRelationController';
+import { UpdateOrderAtributoRelationController } from './controllers/atributo/relationProductAtributo/UpdateOrderAtributoRelationController';
+import { FindIDRelationBlockAtributoController } from './controllers/atributo/relationProductAtributo/FindIDRelationBlockAtributoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -465,6 +468,9 @@ router.get('/allAtributos', new ListAtributosController().handle);
 // ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
 router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);
 router.get('/pageListAtributosRelations', ADMINisAuthenticated, new PageRelationAtributosController().handle);
+router.get('/allAtributosProductRelation', ADMINisAuthenticated, new AllAtributosProductRelationController().handle);
+router.get('/findUniqueRelationAtributoProduct', ADMINisAuthenticated, new FindIDRelationBlockAtributoController().handle);
+router.put('/updateOrderRelationProductAtributo', ADMINisAuthenticated, new UpdateOrderAtributoRelationController().handle);
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
 router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosController().handle);
