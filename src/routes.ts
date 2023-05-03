@@ -154,11 +154,40 @@ import { ListAllProductOfertaController } from './controllers/product/ListAllPro
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
 // ROTAS ATRIBUTOS --
+import { PageListAllAtributosController } from './controllers/atributo/PageListAllAtributosController';
+import { ListAtributosController } from './controllers/atributo/ListAtributosController';
+import { ListExactAtributoController } from './controllers/atributo/ListExactAtributoController';
 import { CreateAtributoController } from './controllers/atributo/CreateAtributoController';
 import { UpdateValorAtributoController } from './controllers/atributo/UpdateValorAtributoController';
 import { UpdateTipoAtributoController } from './controllers/atributo/UpdateTipoAtributoController';
 import { UpdateOrderAtributoController } from './controllers/atributo/UpdateOrderAtributoController';
 import { UpdateDisponibilidadeAtributoController } from './controllers/atributo/UpdateDisponibilidadeAtributoController';
+import { CreateImageAtributoController } from './controllers/atributo/imageAtributo/CreateImageAtributoController';
+import { UpdateImageAtributoController } from './controllers/atributo/imageAtributo/UpdateImageAtributoController';
+
+// ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
+import { CreateRelationAtributosController } from './controllers/atributo/relationProductAtributo/CreateRelationAtributosController';
+import { PageRelationAtributosController } from './controllers/atributo/relationProductAtributo/PageRelationAtributosController';
+
+// ROTAS GRUPO FILTROS ATRIBUTOS --
+import { CreateFilterAtributosController } from './controllers/atributo/filterGroupAtributo/CreateFilterAtributosController';
+import { PageListAllGroupsAtributosController } from './controllers/atributo/filterGroupAtributo/PageListAllGroupsAtributosController';
+import { FindFirstGroupFiltroController } from './controllers/atributo/filterGroupAtributo/FindFirstGroupFiltroController';
+import { FindUniqueFilterGroupIDController } from './controllers/atributo/filterGroupAtributo/FindUniqueFilterGroupIDController';
+import { FindGroupFiltroIDController } from './controllers/atributo/filterGroupAtributo/FindGroupFiltroIDController';
+import { UpdateAtributoValorController } from './controllers/atributo/filterGroupAtributo/UpdateAtributoValorController';
+import { UpdateOrderFiltroGrupoAtributoController } from './controllers/atributo/filterGroupAtributo/UpdateOrderFiltroGrupoAtributoController';
+import { UpdateStatusAtributoFiltroGrupoController } from './controllers/atributo/filterGroupAtributo/UpdateStatusAtributoFiltroGrupoController';
+import { CreateImageFiltroAtributoGroupController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/CreateImageFiltroAtributoGroupController';
+import { UpdateImageAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/UpdateImageAtributoFiltroGroupController';
+import { DeleteAtributoFiltroController } from './controllers/atributo/filterGroupAtributo/DeleteAtributoFiltroController';
+import { DeleteImageFiltroAtributeGrupoController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/DeleteImageFiltroAtributeGrupoController';
+import { AllImageFiltroAtributoGrupoController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/AllImageFiltroAtributoGrupoController';
+import { DeletetImageFiltroController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/DeletetImageFiltroController';
+import { UpdateNameGrupoFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateNameGrupoFiltroController';
+import { UpdateItemNameFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateItemNameFiltroController';
+import { UpdateSlugCategoryFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateSlugCategoryFiltroController';
+import { DeleteGroupsIDFiltroController } from './controllers/atributo/filterGroupAtributo/DeleteGroupsIDFiltroController';
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 import { CreateRelationProductCategoryController } from './controllers/product/relationProductCategory/CreateRelationProductCategoryController';
@@ -264,32 +293,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { CreateRelationAtributosController } from './controllers/atributo/relationProductAtributo/CreateRelationAtributosController';
-import { CreateFilterAtributosController } from './controllers/atributo/filterGroupAtributo/CreateFilterAtributosController';
-import { PageListAllAtributosController } from './controllers/atributo/PageListAllAtributosController';
-import { ListAtributosController } from './controllers/atributo/ListAtributosController';
-import { ListExactAtributoController } from './controllers/atributo/ListExactAtributoController';
-import { PageRelationAtributosController } from './controllers/atributo/relationProductAtributo/PageRelationAtributosController';
-import { CreateImageAtributoController } from './controllers/atributo/imageAtributo/CreateImageAtributoController';
-import { UpdateImageAtributoController } from './controllers/atributo/imageAtributo/UpdateImageAtributoController';
-import { PageListAllGroupsAtributosController } from './controllers/atributo/filterGroupAtributo/PageListAllGroupsAtributosController';
-import { FindFirstGroupFiltroController } from './controllers/atributo/filterGroupAtributo/FindFirstGroupFiltroController';
-import { FindUniqueFilterGroupIDController } from './controllers/atributo/filterGroupAtributo/FindUniqueFilterGroupIDController';
-import { FindGroupFiltroIDController } from './controllers/atributo/filterGroupAtributo/FindGroupFiltroIDController';
-import { UpdateAtributoValorController } from './controllers/atributo/filterGroupAtributo/UpdateAtributoValorController';
-import { UpdateOrderFiltroGrupoAtributoController } from './controllers/atributo/filterGroupAtributo/UpdateOrderFiltroGrupoAtributoController';
-import { UpdateStatusAtributoFiltroGrupoController } from './controllers/atributo/filterGroupAtributo/UpdateStatusAtributoFiltroGrupoController';
-import { CreateImageFiltroAtributoGroupController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/CreateImageFiltroAtributoGroupController';
-import { UpdateImageAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/UpdateImageAtributoFiltroGroupController';
-import { DeleteAtributoFiltroController } from './controllers/atributo/filterGroupAtributo/DeleteAtributoFiltroController';
-import { DeleteImageFiltroAtributeGrupoController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/DeleteImageFiltroAtributeGrupoController';
-import { AllImageFiltroAtributoGrupoController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/AllImageFiltroAtributoGrupoController';
-import { DeletetImageFiltroController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/DeletetImageFiltroController';
-import { UpdateNameGrupoFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateNameGrupoFiltroController';
-import { UpdateItemNameFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateItemNameFiltroController';
-import { UpdateSlugCategoryFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateSlugCategoryFiltroController';
-import { DeleteGroupsIDFiltroController } from './controllers/atributo/filterGroupAtributo/DeleteGroupsIDFiltroController';
-
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
