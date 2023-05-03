@@ -7,7 +7,7 @@ class PageListAllGroupsAtributosService {
 
         const groupsAllAtributos = await prismaClient.groupFilterAtributo.findMany({
             where: {
-                itemName: ""
+                groupId: ""
             },
             orderBy: {
                 created_at: 'desc'
@@ -20,7 +20,7 @@ class PageListAllGroupsAtributosService {
 
         const filter = await prismaClient.groupFilterAtributo.findMany({
             where: {
-                itemName: ""
+                groupId: ""
             },
             orderBy: {
                 created_at: 'desc'

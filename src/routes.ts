@@ -281,6 +281,10 @@ import { UpdateOrderFiltroGrupoAtributoController } from './controllers/atributo
 import { UpdateStatusAtributoFiltroGrupoController } from './controllers/atributo/filterGroupAtributo/UpdateStatusAtributoFiltroGrupoController';
 import { CreateImageFiltroAtributoGroupController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/CreateImageFiltroAtributoGroupController';
 import { UpdateImageAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/UpdateImageAtributoFiltroGroupController';
+import { DeleteAtributoFiltroController } from './controllers/atributo/filterGroupAtributo/DeleteAtributoFiltroController';
+import { DeleteImageFiltroAtributeGrupoController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/DeleteImageFiltroAtributeGrupoController';
+import { AllImageFiltroAtributoGrupoController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/AllImageFiltroAtributoGrupoController';
+import { DeletetImageFiltroController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/DeletetImageFiltroController';
 
 
 const router = Router();
@@ -460,12 +464,16 @@ router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosCont
 router.get('/listPageFilterGroups', ADMINisAuthenticated, new PageListAllGroupsAtributosController().handle);
 router.get('/filterFirstGroupFiltro', ADMINisAuthenticated, new FindFirstGroupFiltroController().handle);
 router.get('/filterUniqueGroup', ADMINisAuthenticated, new FindUniqueFilterGroupIDController().handle);
+router.get('/allImagesFiltroGrupo', ADMINisAuthenticated, new AllImageFiltroAtributoGrupoController().handle);
 router.get('/findIDGroupFilter', ADMINisAuthenticated, new FindGroupFiltroIDController().handle);
 router.put('/updateAtributoValorFilterGrupo', ADMINisAuthenticated, new UpdateAtributoValorController().handle);
 router.put('/updateOrderFiltro', ADMINisAuthenticated, new UpdateOrderFiltroGrupoAtributoController().handle);
 router.put('/updateStatusFiltroGrupo', ADMINisAuthenticated, new UpdateStatusAtributoFiltroGrupoController().handle);
 router.post('/createImageFitroAtributoGrupo', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroAtributoGroupController().handle);
 router.put('/updateImageFitroAtributoGrupo', ADMINisAuthenticated, upload.single('file'), new UpdateImageAtributoFiltroGroupController().handle);
+router.delete('/deleteFiltroAtributo', ADMINisAuthenticated, new DeleteAtributoFiltroController().handle);
+router.delete('/deleteImagesAndFiltroAtributo', ADMINisAuthenticated, new DeleteImageFiltroAtributeGrupoController().handle);
+router.delete('/deleteImageFiltro', ADMINisAuthenticated, new DeletetImageFiltroController().handle);
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
