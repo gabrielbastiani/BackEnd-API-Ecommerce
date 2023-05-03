@@ -1,11 +1,11 @@
 import prismaClient from "../../../prisma";
 
-interface GroupRequest {
+interface GroupsRequest {
     groupFilterAtributo_id: string;
 }
 
 class DeleteGroupsIDFiltroService {
-    async execute({ groupFilterAtributo_id }: GroupRequest) {
+    async execute({ groupFilterAtributo_id }: GroupsRequest) {
 
         const idNivel = await prismaClient.groupFilterAtributo.findUnique({
             where: {
@@ -18,17 +18,17 @@ class DeleteGroupsIDFiltroService {
 
         const filtrado = idsRelat.filter(function (obj) { return idNivel.id === obj });
 
-        if (String(filtrado) === idNivel.id) {
-            throw new Error("Delete os filtros desse grupo filhos desta de trás para frente antes!!!");
+        if (filtrado.length >= 1) {
+            throw new Error("Delete as categorias filhas desta de trás para frente antes!!!");
         }
 
-        const groups = await prismaClient.groupFilterAtributo.delete({
+        const relation = await prismaClient.groupFilterAtributo.delete({
             where: {
                 id: groupFilterAtributo_id
             }
         });
 
-        return groups;
+        return relation;
 
     }
 }

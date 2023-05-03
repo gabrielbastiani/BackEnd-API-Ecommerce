@@ -412,7 +412,6 @@ router.put('/updateNameGroup', ADMINisAuthenticated, new UpdateNameGrupoControll
 router.put('/updatePosicaoGroup', ADMINisAuthenticated, new UpdatePosicaoGroupController().handle);
 router.put('/updateCategoryGroup', ADMINisAuthenticated, new UpdateCategoryGrupoController().handle);
 router.put('/updateItemName', ADMINisAuthenticated, new UpdateItemNameGrupoController().handle);
-router.delete('/deleteFiltroGrupo', ADMINisAuthenticated, new DeleteGroupsIDFiltroController().handle);
 router.delete('/deleteCategoriesGroups', ADMINisAuthenticated, new DeleteCategoriesGroupIDController().handle);
 router.delete('/deleteGroups', ADMINisAuthenticated, new DeleteGroupsIDController().handle);
 router.delete('/deleteImageGroup', ADMINisAuthenticated, new DeletetImageCategoryGroupController().handle);
@@ -479,6 +478,7 @@ router.put('/updateOrderFiltro', ADMINisAuthenticated, new UpdateOrderFiltroGrup
 router.put('/updateStatusFiltroGrupo', ADMINisAuthenticated, new UpdateStatusAtributoFiltroGrupoController().handle);
 router.post('/createImageFitroAtributoGrupo', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroAtributoGroupController().handle);
 router.put('/updateImageFitroAtributoGrupo', ADMINisAuthenticated, upload.single('file'), new UpdateImageAtributoFiltroGroupController().handle);
+router.delete('/deleteFiltroGrupo', ADMINisAuthenticated, new DeleteGroupsIDFiltroController().handle);
 router.delete('/deleteFiltroAtributo', ADMINisAuthenticated, new DeleteAtributoFiltroController().handle);
 router.delete('/deleteImagesAndFiltroAtributo', ADMINisAuthenticated, new DeleteImageFiltroAtributeGrupoController().handle);
 router.delete('/deleteImageFiltro', ADMINisAuthenticated, new DeletetImageFiltroController().handle);
