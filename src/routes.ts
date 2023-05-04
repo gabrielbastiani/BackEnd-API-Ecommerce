@@ -299,6 +299,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { ListPosicaoAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/ListPosicaoAtributoFiltroGroupController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -497,6 +498,7 @@ router.delete('/deleteImageFiltro', ADMINisAuthenticated, new DeletetImageFiltro
 router.put('/updateNameGrupoFiltro', ADMINisAuthenticated, new UpdateNameGrupoFiltroController().handle);
 router.put('/updateItemNameGrupoFiltro', ADMINisAuthenticated, new UpdateItemNameFiltroController().handle);
 router.put('/updateSlugCategoryGrupoFiltro', ADMINisAuthenticated, new UpdateSlugCategoryFiltroController().handle);
+router.get('/pocisaoListAtributoFiltro', new ListPosicaoAtributoFiltroGroupController().handle);
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
