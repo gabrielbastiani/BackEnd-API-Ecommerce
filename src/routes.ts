@@ -296,6 +296,8 @@ import uploadConfig from './config/multer';
 import { AllAtributosProductRelationController } from './controllers/atributo/relationProductAtributo/AllAtributosProductRelationController';
 import { UpdateOrderAtributoRelationController } from './controllers/atributo/relationProductAtributo/UpdateOrderAtributoRelationController';
 import { FindIDRelationBlockAtributoController } from './controllers/atributo/relationProductAtributo/FindIDRelationBlockAtributoController';
+import { DeleteRelationProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteRelationProductAtributoController';
+import { FirstAtributosProductRelationController } from './controllers/atributo/relationProductAtributo/FirstAtributosProductRelationController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -469,8 +471,10 @@ router.get('/allAtributos', new ListAtributosController().handle);
 router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);
 router.get('/pageListAtributosRelations', ADMINisAuthenticated, new PageRelationAtributosController().handle);
 router.get('/allAtributosProductRelation', ADMINisAuthenticated, new AllAtributosProductRelationController().handle);
+router.get('/firstAtributoRelationProduct', ADMINisAuthenticated, new FirstAtributosProductRelationController().handle);
 router.get('/findUniqueRelationAtributoProduct', ADMINisAuthenticated, new FindIDRelationBlockAtributoController().handle);
 router.put('/updateOrderRelationProductAtributo', ADMINisAuthenticated, new UpdateOrderAtributoRelationController().handle);
+router.delete('/deleteRelationAtributoProduct', ADMINisAuthenticated, new DeleteRelationProductAtributoController().handle);
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
 router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosController().handle);
