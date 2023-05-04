@@ -300,6 +300,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { ListPosicaoAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/ListPosicaoAtributoFiltroGroupController';
+import { FindFirstCategorySlugController } from './controllers/category/FindFirstCategorySlugController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -406,6 +407,7 @@ router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryCont
 router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
 router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
+router.get('/findDateSlugCategory', new FindFirstCategorySlugController().handle);
 
 // -- ROTAS GRUPOS DE CATEGORIAS --
 router.post('/group', ADMINisAuthenticated, new CreateGroupCategoryController().handle);

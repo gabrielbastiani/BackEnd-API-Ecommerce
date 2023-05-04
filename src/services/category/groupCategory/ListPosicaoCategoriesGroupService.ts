@@ -1,4 +1,4 @@
-import { StatusCategory, StatusGroup } from "@prisma/client";
+import { StatusGroup } from "@prisma/client";
 import prismaClient from "../../../prisma";
 
 interface GroupRequest {
@@ -33,15 +33,7 @@ class ListPosicaoCategoriesGroupService {
             }
         });
 
-        const dados = await prismaClient.category.findFirst({
-            where: {
-                slug: slugCategoryOrItem,
-                disponibilidade: StatusCategory.Disponivel
-            }
-        });
-
         const data = {
-            dados,
             group,
             gruopId
         };

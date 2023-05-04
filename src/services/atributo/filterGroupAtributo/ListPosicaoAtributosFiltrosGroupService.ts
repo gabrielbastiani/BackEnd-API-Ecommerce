@@ -1,6 +1,4 @@
-import { StatusAtributo } from '@prisma/client';
 import { StatusGroupAtributos } from '@prisma/client';
-
 import prismaClient from "../../../prisma";
 
 interface GroupRequest {
@@ -10,18 +8,19 @@ interface GroupRequest {
 class ListPosicaoAtributosFiltrosGroupService {
     async execute({ slugCategoryOrItem }: GroupRequest) {
 
-        const ids = await prismaClient.groupFilterAtributo.findFirst({
+        /* const ids = await prismaClient.groupFilterAtributo.findFirst({
             where: {
                 slugCategoryOrItem: slugCategoryOrItem,
                 status: StatusGroupAtributos.Ativo
             }
         });
 
-        const gruopId = ids.id;
+        const gruopId = ids.id; */
 
         const group = await prismaClient.groupFilterAtributo.findMany({
             where: {
-                groupId: gruopId,
+                /* groupId: gruopId, */
+                slugCategoryOrItem: slugCategoryOrItem,
                 status: StatusGroupAtributos.Ativo
             },
             orderBy: {
@@ -33,16 +32,9 @@ class ListPosicaoAtributosFiltrosGroupService {
             }
         });
 
-        const dados = await prismaClient.atributo.findFirst({
-            where: {
-                disponibilidade: StatusAtributo.Disponivel
-            }
-        });
-
         const data = {
-            dados,
             group,
-            gruopId
+            /* gruopId */
         };
 
         return data;
