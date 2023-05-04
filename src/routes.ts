@@ -301,6 +301,7 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { ListPosicaoAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/ListPosicaoAtributoFiltroGroupController';
 import { FindFirstCategorySlugController } from './controllers/category/FindFirstCategorySlugController';
+import { ListAtributoGroupIDController } from './controllers/atributo/filterGroupAtributo/ListAtributoGroupIDController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -501,6 +502,7 @@ router.put('/updateNameGrupoFiltro', ADMINisAuthenticated, new UpdateNameGrupoFi
 router.put('/updateItemNameGrupoFiltro', ADMINisAuthenticated, new UpdateItemNameFiltroController().handle);
 router.put('/updateSlugCategoryGrupoFiltro', ADMINisAuthenticated, new UpdateSlugCategoryFiltroController().handle);
 router.get('/pocisaoListAtributoFiltro', new ListPosicaoAtributoFiltroGroupController().handle);
+router.get('/listGrupoIDAtributoFilter', new ListAtributoGroupIDController().handle);
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
