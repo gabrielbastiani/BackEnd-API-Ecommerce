@@ -303,6 +303,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { FiltroAtributosAndCategoriesController } from './controllers/filtro/FiltroAtributosAndCategoriesController';
+import { ProductsPageCategoriesController } from './controllers/product/relationProductCategory/ProductsPageCategoriesController';
 
 
 const router = Router();
@@ -523,6 +524,7 @@ router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDPro
 router.delete('/deleteNivelPrincipal', ADMINisAuthenticated, new DeleteRelationIDController().handle);
 router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelationProductIDController().handle);
 router.get('/categorys', new FindCategorysRelationController().handle);
+router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 
 // -- ROTAS FILTROS --
 router.get('/filter', new FiltroAtributosAndCategoriesController().handle);
