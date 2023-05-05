@@ -7,19 +7,9 @@ interface GroupRequest {
 
 class ListPosicaoAtributosFiltrosGroupService {
     async execute({ slugCategoryOrItem }: GroupRequest) {
-
-        /* const ids = await prismaClient.groupFilterAtributo.findFirst({
-            where: {
-                slugCategoryOrItem: slugCategoryOrItem,
-                status: StatusGroupAtributos.Ativo
-            }
-        });
-
-        const gruopId = ids.id; */
-
         const group = await prismaClient.groupFilterAtributo.findMany({
             where: {
-                /* groupId: gruopId, */
+                groupId: "",
                 slugCategoryOrItem: slugCategoryOrItem,
                 status: StatusGroupAtributos.Ativo
             },
@@ -33,8 +23,7 @@ class ListPosicaoAtributosFiltrosGroupService {
         });
 
         const data = {
-            group,
-            /* gruopId */
+            group
         };
 
         return data;
