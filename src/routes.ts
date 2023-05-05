@@ -100,6 +100,7 @@ import { ExactPageListAllCategoryController } from './controllers/category/Exact
 import { FindFirstCategoryController } from './controllers/category/FindFirstCategoryController';
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
+import { FindFirstCategorySlugController } from './controllers/category/FindFirstCategorySlugController';
 
 // -- ROTAS GRUPOS DE CATEGORIAS --
 import { CreateGroupCategoryController } from './controllers/category/groupCategory/CreateGroupCategoryController';
@@ -174,6 +175,8 @@ import { FindIDRelationBlockAtributoController } from './controllers/atributo/re
 import { DeleteRelationProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteRelationProductAtributoController';
 import { FirstAtributosProductRelationController } from './controllers/atributo/relationProductAtributo/FirstAtributosProductRelationController';
 import { UpdateAtributoProductRelationController } from './controllers/atributo/relationProductAtributo/UpdateAtributoProductRelationController';
+import { ListPosicaoAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/ListPosicaoAtributoFiltroGroupController';
+import { ListAtributoGroupIDController } from './controllers/atributo/filterGroupAtributo/ListAtributoGroupIDController';
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
 import { CreateFilterAtributosController } from './controllers/atributo/filterGroupAtributo/CreateFilterAtributosController';
@@ -299,9 +302,8 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { ListPosicaoAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/ListPosicaoAtributoFiltroGroupController';
-import { FindFirstCategorySlugController } from './controllers/category/FindFirstCategorySlugController';
-import { ListAtributoGroupIDController } from './controllers/atributo/filterGroupAtributo/ListAtributoGroupIDController';
+import { FiltroAtributosAndCategoriesController } from './controllers/filtro/FiltroAtributosAndCategoriesController';
+
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -521,6 +523,9 @@ router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDPro
 router.delete('/deleteNivelPrincipal', ADMINisAuthenticated, new DeleteRelationIDController().handle);
 router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelationProductIDController().handle);
 router.get('/categorys', new FindCategorysRelationController().handle);
+
+// -- ROTAS FILTROS --
+router.get('/filter', new FiltroAtributosAndCategoriesController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
