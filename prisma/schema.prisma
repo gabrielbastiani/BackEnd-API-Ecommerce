@@ -299,16 +299,18 @@ model ImageGroupCategory {
 }
 
 model RelationProductCategory {
-  id          String   @id @default(uuid())
-  product     Product? @relation(fields: [product_id], references: [id])
-  product_id  String?
-  category    Category @relation(fields: [category_id], references: [id])
-  category_id String
-  nivel       Int?
-  relationId  String?
-  order       Int?
-  posicao     String?  @db.VarChar(300)
-  slugPosicao String?  @db.VarChar(325)
+  id              String        @id @default(uuid())
+  product         Product?      @relation(fields: [product_id], references: [id])
+  product_id      String?
+  photoProduct    PhotoProduct? @relation(fields: [photoProduct_id], references: [id])
+  photoProduct_id String?
+  category        Category      @relation(fields: [category_id], references: [id])
+  category_id     String
+  nivel           Int?
+  relationId      String?
+  order           Int?
+  posicao         String?       @db.VarChar(300)
+  slugPosicao     String?       @db.VarChar(325)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -335,8 +337,10 @@ model PhotoProduct {
   product     Product? @relation(fields: [product_id], references: [id])
   product_id  String?
 
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  created_at              DateTime?                 @default(now())
+  updated_at              DateTime?                 @default(now())
+
+  relationproductcategories RelationProductCategory[]
 
   @@map("photoproducts")
 }
