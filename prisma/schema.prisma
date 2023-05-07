@@ -330,13 +330,6 @@ enum StatusRelation {
   Inativo
 }
 
-model Filter {
-  id          String   @id @default(uuid())
-  
-
-  @@map("filters")
-}
-
 model PhotoProduct {
   id          String   @id @default(uuid())
   photo       String?
