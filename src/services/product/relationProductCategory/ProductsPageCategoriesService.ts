@@ -18,7 +18,8 @@ class ProductsPageCategoriesService {
             include: {
                 product: true,
                 category: true,
-                photoProduct: true
+                photoProduct: true,
+                photoProduct1: true
             }
         });
 

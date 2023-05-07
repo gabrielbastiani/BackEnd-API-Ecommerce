@@ -304,6 +304,9 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { FiltroAtributosAndCategoriesController } from './controllers/filtro/FiltroAtributosAndCategoriesController';
 import { ProductsPageCategoriesController } from './controllers/product/relationProductCategory/ProductsPageCategoriesController';
+import { UpdatePhotoProductCategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProductCategoryController';
+import { UpdatePhotoProduct1CategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProduct1CategoryController';
+import { DeleteGrupoProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteGrupoProductAtributoController';
 
 
 const router = Router();
@@ -484,6 +487,7 @@ router.get('/findUniqueRelationAtributoProduct', ADMINisAuthenticated, new FindI
 router.put('/updateOrderRelationProductAtributo', ADMINisAuthenticated, new UpdateOrderAtributoRelationController().handle);
 router.put('/updateAtributoIDProduct', ADMINisAuthenticated, new UpdateAtributoProductRelationController().handle);
 router.delete('/deleteRelationAtributoProduct', ADMINisAuthenticated, new DeleteRelationProductAtributoController().handle);
+router.delete('/deleteGrupoAtributosProduct', ADMINisAuthenticated, new DeleteGrupoProductAtributoController().handle);
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
 router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosController().handle);
@@ -523,6 +527,8 @@ router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProduct
 router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDProductCategoryController().handle);
 router.delete('/deleteNivelPrincipal', ADMINisAuthenticated, new DeleteRelationIDController().handle);
 router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelationProductIDController().handle);
+router.put('/updateFirstPhotoProduct', ADMINisAuthenticated, new UpdatePhotoProductCategoryController().handle);
+router.put('/updateFirstPhotoProduct1', ADMINisAuthenticated, new UpdatePhotoProduct1CategoryController().handle);
 router.get('/categorys', new FindCategorysRelationController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 
