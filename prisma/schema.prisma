@@ -200,6 +200,7 @@ model Product {
   avaliacoes                Avaliacao[]
   item                      Item[]
   relationProductAtributos  RelationProductAtributo[]
+  filterPages               FilterPage[]
 
   @@map("products")
 }
@@ -235,6 +236,7 @@ model Category {
   imagecategories           ImageCategory[]
   groupcategories           GroupCategoy[]
   relationproductcategories RelationProductCategory[]
+  filterPages               FilterPage[]
 
   @@map("categories")
 }
@@ -299,20 +301,16 @@ model ImageGroupCategory {
 }
 
 model RelationProductCategory {
-  id               String        @id @default(uuid())
-  product          Product?      @relation(fields: [product_id], references: [id])
-  product_id       String?
-  photoProduct     PhotoProduct? @relation(name: "photos", fields: [photoProduct_id], references: [id])
-  photoProduct_id  String?
-  photoProduct1    PhotoProduct? @relation(fields: [photoProduct_id1], references: [id])
-  photoProduct_id1 String?
-  category         Category      @relation(fields: [category_id], references: [id])
-  category_id      String
-  nivel            Int?
-  relationId       String?
-  order            Int?
-  posicao          String?       @db.VarChar(300)
-  slugPosicao      String?       @db.VarChar(325)
+  id          String   @id @default(uuid())
+  product     Product? @relation(fields: [product_id], references: [id])
+  product_id  String?
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id String
+  nivel       Int?
+  relationId  String?
+  order       Int?
+  posicao     String?  @db.VarChar(300)
+  slugPosicao String?  @db.VarChar(325)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -339,11 +337,10 @@ model PhotoProduct {
   product     Product? @relation(fields: [product_id], references: [id])
   product_id  String?
 
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  relationproductcategories  RelationProductCategory[] @relation("photos")
-  relationproductcategories1 RelationProductCategory[]
+  created_at   DateTime?    @default(now())
+  updated_at   DateTime?    @default(now())
+  filterPages  FilterPage[] @relation("photos")
+  filterPages1 FilterPage[]
 
   @@map("photoproducts")
 }
@@ -366,6 +363,7 @@ model Atributo {
   relationProductAtributos RelationProductAtributo[]
   imageatributos           ImageAtributo[]
   groupFilterAtributos     GroupFilterAtributo[]
+  filterPages              FilterPage[]
 
   @@map("atributos")
 }
@@ -515,8 +513,9 @@ model Variacao {
   relationProductAtributos RelationProductAtributo[]
   item                     Item[]
 
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  created_at  DateTime?    @default(now())
+  updated_at  DateTime?    @default(now())
+  filterPages FilterPage[]
 
   @@map("variacoes")
 }
@@ -556,6 +555,24 @@ model PhotoVariacao {
   updated_at DateTime? @default(now())
 
   @@map("photovariacoes")
+}
+
+model FilterPage {
+  id               String        @id @default(uuid())
+  category         Category      @relation(fields: [category_id], references: [id])
+  category_id      String
+  atributo         Atributo?     @relation(fields: [atributo_id], references: [id])
+  atributo_id      String?
+  product          Product?      @relation(fields: [product_id], references: [id])
+  product_id       String?
+  photoProduct     PhotoProduct? @relation(name: "photos", fields: [photoProduct_id], references: [id])
+  photoProduct_id  String?
+  photoProduct1    PhotoProduct? @relation(fields: [photoProduct_id1], references: [id])
+  photoProduct_id1 String?
+  variacao         Variacao?     @relation(fields: [variacao_id], references: [id])
+  variacao_id      String?
+
+  @@map("filterpages")
 }
 
 model Avaliacao {

@@ -31,7 +31,9 @@ class FiltroAtributosAndCategoriesServices {
             include: {
                 atributo: true,
                 product: true,
-                variacao: true
+                variacao: true,
+                photoProduct: true,
+                photoProduct1: true
             }
         });
 
