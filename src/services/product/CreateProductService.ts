@@ -72,18 +72,6 @@ class CreateProductService {
             }
         });
 
-        const findProduct = await prismaClient.product.findFirst({
-            orderBy: {
-                created_at: 'desc'
-            }
-        });
-
-        await prismaClient.filterPage.create({
-            data: {
-                product_id: findProduct.id
-            }
-        });
-
         return product;
 
     }
