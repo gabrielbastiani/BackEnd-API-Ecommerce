@@ -16,15 +16,15 @@ class FiltroAtributosAndCategoriesServices {
             }
         });
 
-        await prismaClient.relationProductAtributo.findMany({
+        const atrubuto = await prismaClient.relationProductAtributo.findMany({
             where: {
                 atributo: {
                     slugValor: slugValor
                 }
             }
-        })
+        });
 
-        return (filterCategory);
+        return ([filterCategory, atrubuto]);
 
     }
 
