@@ -85,7 +85,7 @@ class CreateVariacaoService {
                 product_id: product_id,
                 loja_id: loja_id
             }
-        })
+        });
 
         return variacao;
 

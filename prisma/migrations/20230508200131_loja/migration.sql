@@ -423,7 +423,7 @@ CREATE TABLE "photovariacoes" (
 -- CreateTable
 CREATE TABLE "filterpages" (
     "id" TEXT NOT NULL,
-    "category_id" TEXT NOT NULL,
+    "category_id" TEXT,
     "atributo_id" TEXT,
     "product_id" TEXT,
     "photoProduct_id" TEXT,
@@ -667,7 +667,7 @@ ALTER TABLE "photovariacoes" ADD CONSTRAINT "photovariacoes_variacao_id_fkey" FO
 ALTER TABLE "photovariacoes" ADD CONSTRAINT "photovariacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "filterpages" ADD CONSTRAINT "filterpages_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "filterpages" ADD CONSTRAINT "filterpages_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "filterpages" ADD CONSTRAINT "filterpages_atributo_id_fkey" FOREIGN KEY ("atributo_id") REFERENCES "atributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;

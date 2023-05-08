@@ -28,6 +28,18 @@ class CreateCategoryService {
       }
     });
 
+    const findCategory = await prismaClient.category.findFirst({
+      orderBy: {
+        created_at: 'desc'
+      }
+    });
+
+    await prismaClient.filterPage.create({
+      data: {
+        category_id: findCategory.id
+      }
+    });
+
     return category;
 
   }

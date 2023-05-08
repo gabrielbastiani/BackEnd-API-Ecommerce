@@ -37,6 +37,18 @@ class CreateAtributoService {
             }
         });
 
+        const findAtributo = await prismaClient.atributo.findFirst({
+            orderBy: {
+                created_at: 'desc'
+            }
+        });
+
+        await prismaClient.filterPage.create({
+            data: {
+                atributo_id: findAtributo.id
+            }
+        });
+
         return atributo;
 
     }
