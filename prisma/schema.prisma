@@ -344,6 +344,8 @@ model PhotoProduct {
 
   relationproductcategories  RelationProductCategory[] @relation("photos")
   relationproductcategories1 RelationProductCategory[]
+  relationProductAtributos   RelationProductAtributo[] @relation("photos")
+  relationProductAtributos1  RelationProductAtributo[]
 
   @@map("photoproducts")
 }
@@ -376,14 +378,18 @@ enum StatusAtributo {
 }
 
 model RelationProductAtributo {
-  id          String    @id @default(uuid())
-  atributo    Atributo? @relation(fields: [atributo_id], references: [id])
-  atributo_id String?
-  product     Product?  @relation(fields: [product_id], references: [id])
-  product_id  String?
-  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
-  variacao_id String?
-  order       Int?
+  id               String        @id @default(uuid())
+  atributo         Atributo?     @relation(fields: [atributo_id], references: [id])
+  atributo_id      String?
+  product          Product?      @relation(fields: [product_id], references: [id])
+  product_id       String?
+  photoProduct     PhotoProduct? @relation(name: "photos", fields: [photoProduct_id], references: [id])
+  photoProduct_id  String?
+  photoProduct1    PhotoProduct? @relation(fields: [photoProduct_id1], references: [id])
+  photoProduct_id1 String?
+  variacao         Variacao?     @relation(fields: [variacao_id], references: [id])
+  variacao_id      String?
+  order            Int?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
