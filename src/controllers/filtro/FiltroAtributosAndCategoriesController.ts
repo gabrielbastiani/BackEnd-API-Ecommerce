@@ -4,7 +4,8 @@ import { FiltroAtributosAndCategoriesServices } from "../../services/filtro/Filt
 class FiltroAtributosAndCategoriesController {
   async handle(req: Request, res: Response) {
     
-    const {slug, slugValor} = req.body;
+    const slug = req.query.slug as string;
+    const slugValor = req.query.slugValor as string;
 
     const filters = new FiltroAtributosAndCategoriesServices();
 

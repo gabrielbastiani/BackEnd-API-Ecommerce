@@ -1,8 +1,8 @@
 import prismaClient from "../../prisma";
 
 interface FilterRequest {
-    slug: any;
-    slugValor: any;
+    slug: string;
+    slugValor: string;
 }
 
 class FiltroAtributosAndCategoriesServices {
@@ -22,7 +22,7 @@ class FiltroAtributosAndCategoriesServices {
             }
         });
 
-        const atrubuto = await prismaClient.relationProductAtributo.findMany({
+        const filterAtrubuto = await prismaClient.relationProductAtributo.findMany({
             where: {
                 atributo: {
                     slugValor: slugValor
@@ -35,7 +35,7 @@ class FiltroAtributosAndCategoriesServices {
             }
         });
 
-        return ([filterCategory, atrubuto]);
+        return ([filterCategory, filterAtrubuto]);
 
     }
 
