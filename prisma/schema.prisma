@@ -559,8 +559,8 @@ model PhotoVariacao {
 
 model FilterPage {
   id               String        @id @default(uuid())
-  category         Category      @relation(fields: [category_id], references: [id])
-  category_id      String
+  category         Category?     @relation(fields: [category_id], references: [id])
+  category_id      String?
   atributo         Atributo?     @relation(fields: [atributo_id], references: [id])
   atributo_id      String?
   product          Product?      @relation(fields: [product_id], references: [id])
