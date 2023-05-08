@@ -222,7 +222,7 @@ enum StatusOferta {
 model Category {
   id              String         @id @default(uuid())
   categoryName    String?        @db.VarChar(300)
-  slug            String?        @unique @db.VarChar(300)
+  slug            String?        @db.VarChar(300)
   order           Int?
   disponibilidade StatusCategory @default(Disponivel)
 
@@ -353,7 +353,7 @@ model Atributo {
   tipo            String?        @db.VarChar(325)
   slug            String?        @db.VarChar(325)
   valor           String?        @db.VarChar(325)
-  slugValor       String?        @unique @db.VarChar(325)
+  slugValor       String?        @db.VarChar(325)
   order           Int?
   disponibilidade StatusAtributo @default(Disponivel)
 
