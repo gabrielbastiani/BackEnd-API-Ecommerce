@@ -13,6 +13,12 @@ class FiltroAtributosAndCategoriesServices {
                 category: {
                     slug: slug
                 }
+            },
+            include: {
+                product: true,
+                category: true,
+                photoProduct: true,
+                photoProduct1: true
             }
         });
 
@@ -21,6 +27,11 @@ class FiltroAtributosAndCategoriesServices {
                 atributo: {
                     slugValor: slugValor
                 }
+            },
+            include: {
+                atributo: true,
+                product: true,
+                variacao: true
             }
         });
 
