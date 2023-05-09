@@ -40,7 +40,7 @@ model User {
   role          Role    @default(USER)
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   avaliacoes Avaliacao[]
   pagamentos Pagamento[]
@@ -78,7 +78,7 @@ model Loja {
   stateLoja       String? @db.VarChar(155)
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   users                     User[]
   redessociais              RedeSocial[]
@@ -112,6 +112,9 @@ model RedeSocial {
   slugPosicao     String?          @db.VarChar(295)
   disponibilidade StatusRedeSocial @default(Disponivel)
 
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
@@ -132,6 +135,9 @@ model TextoInstitucional {
   slugPosicao     String?                  @db.VarChar(325)
   description     String?                  @db.VarChar(95725)
   disponibilidade StatusTextoInstitucional @default(Disponivel)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -158,6 +164,9 @@ model ImageLoja {
 
   textoInstitucional    TextoInstitucional? @relation(fields: [textoinstitucional_id], references: [id])
   textoinstitucional_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("imagesloja")
 }
@@ -191,7 +200,7 @@ model Product {
   loja_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   relationproductcategories RelationProductCategory[]
   photoproducts             PhotoProduct[]
@@ -227,7 +236,7 @@ model Category {
   disponibilidade StatusCategory @default(Disponivel)
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -251,7 +260,7 @@ model ImageCategory {
   category_id   String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("imagecategories")
 }
@@ -271,7 +280,7 @@ model GroupCategoy {
   status             StatusGroup @default(Ativo)
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -293,7 +302,7 @@ model ImageGroupCategory {
   groupCategoy_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("imagegroupcategories")
 }
@@ -320,7 +329,7 @@ model RelationProductCategory {
   status StatusRelation @default(Ativo)
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("relationproductcategories")
 }
@@ -340,7 +349,7 @@ model PhotoProduct {
   product_id  String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   relationproductcategories  RelationProductCategory[] @relation("photos")
   relationproductcategories1 RelationProductCategory[]
@@ -363,7 +372,7 @@ model Atributo {
   loja_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   relationProductAtributos RelationProductAtributo[]
   imageatributos           ImageAtributo[]
@@ -397,7 +406,7 @@ model RelationProductAtributo {
   status StatusRelationAtributo @default(Ativo)
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("relationproductatributos")
 }
@@ -414,7 +423,7 @@ model ImageAtributo {
   atributo_id   String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("imageatributos")
 }
@@ -432,7 +441,7 @@ model GroupFilterAtributo {
   status             StatusGroupAtributos @default(Ativo)
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -454,7 +463,7 @@ model ImageAtributoGroup {
   groupFilterAtributo_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("imageatributogroups")
 }
@@ -474,7 +483,7 @@ model Banner {
   active      StatusBanner @default(Nao)
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("banners")
 }
@@ -522,7 +531,7 @@ model Variacao {
   item                     Item[]
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("variacoes")
 }
@@ -559,7 +568,7 @@ model PhotoVariacao {
   product_id    String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("photovariacoes")
 }
@@ -578,7 +587,7 @@ model Avaliacao {
   loja_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("avaliacoes")
 }
@@ -592,7 +601,7 @@ model Newsletter {
   loja_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("newsletters")
 }
@@ -610,7 +619,7 @@ model Contato {
   loja_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("contatos")
 }
@@ -627,7 +636,7 @@ model Item {
   precoUnitario Int?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("itens")
 }
@@ -643,7 +652,7 @@ model Carrinho {
   valorPagamento Int?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -673,7 +682,7 @@ model Entrega {
   loja_id   String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("entregas")
 }
@@ -711,7 +720,7 @@ model Pagamento {
   loja_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   pedidos Pedido[]
 
@@ -734,7 +743,7 @@ model Pedido {
   loja_id String?
 
   created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("pedidos")
 }

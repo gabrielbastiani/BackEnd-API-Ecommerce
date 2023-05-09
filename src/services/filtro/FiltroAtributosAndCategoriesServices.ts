@@ -10,7 +10,9 @@ class FiltroAtributosAndCategoriesServices {
 
         const filterCategory = await prismaClient.relationProductCategory.findMany({
             where: {
-                category: {slug: slug}
+                category: {
+                    slug: slug
+                }
             },
             include: {
                 product: true,
