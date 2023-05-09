@@ -1,18 +1,16 @@
 import prismaClient from "../../prisma";
 
 interface FilterRequest {
-    slug: string;
-    slugValor: string;
+    slug: any;
+    /* slugValor: string; */
 }
 
 class FiltroAtributosAndCategoriesServices {
-    async execute({ slug, slugValor }: FilterRequest) {
+    async execute({ slug /* slugValor */ }: FilterRequest) {
 
         const filterCategory = await prismaClient.relationProductCategory.findMany({
             where: {
-                category: {
-                    slug: slug
-                }
+                category: {slug: slug}
             },
             include: {
                 product: true,
@@ -22,7 +20,7 @@ class FiltroAtributosAndCategoriesServices {
             }
         });
 
-        const filterAtrubuto = await prismaClient.relationProductAtributo.findMany({
+        /* const filterAtrubuto = await prismaClient.relationProductAtributo.findMany({
             where: {
                 atributo: {
                     slugValor: slugValor
@@ -35,9 +33,9 @@ class FiltroAtributosAndCategoriesServices {
                 photoProduct: true,
                 photoProduct1: true
             }
-        });
+        }); */
 
-        return ([filterCategory, filterAtrubuto]);
+        return filterCategory;
 
     }
 
