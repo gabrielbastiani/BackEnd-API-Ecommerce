@@ -307,6 +307,9 @@ import { ProductsPageCategoriesController } from './controllers/product/relation
 import { UpdatePhotoProductCategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProductCategoryController';
 import { UpdatePhotoProduct1CategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProduct1CategoryController';
 import { DeleteGrupoProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteGrupoProductAtributoController';
+import { UpdatePhotoProductAtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProductAtributoController';
+import { UpdatePhotoProduct1AtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProduct1AtributoController';
+import { FindAtributosRelationBlockController } from './controllers/atributo/relationProductAtributo/FindAtributosRelationBlockController';
 
 
 const router = Router();
@@ -486,8 +489,11 @@ router.get('/firstAtributoRelationProduct', ADMINisAuthenticated, new FirstAtrib
 router.get('/findUniqueRelationAtributoProduct', ADMINisAuthenticated, new FindIDRelationBlockAtributoController().handle);
 router.put('/updateOrderRelationProductAtributo', ADMINisAuthenticated, new UpdateOrderAtributoRelationController().handle);
 router.put('/updateAtributoIDProduct', ADMINisAuthenticated, new UpdateAtributoProductRelationController().handle);
+router.get('/findAllAtributosProduct', ADMINisAuthenticated, new FindAtributosRelationBlockController().handle);
 router.delete('/deleteRelationAtributoProduct', ADMINisAuthenticated, new DeleteRelationProductAtributoController().handle);
 router.delete('/deleteGrupoAtributosProduct', ADMINisAuthenticated, new DeleteGrupoProductAtributoController().handle);
+router.put('/updateFirstPhotoProductAtributo', ADMINisAuthenticated, new UpdatePhotoProduct1AtributoController().handle);
+router.put('/updateFirstPhotoProduct1Atributo', ADMINisAuthenticated, new UpdatePhotoProductAtributoController().handle);
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
 router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosController().handle);

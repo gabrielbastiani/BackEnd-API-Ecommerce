@@ -6,6 +6,8 @@ class CreateRelationAtributosController {
         const {
             atributo_id,
             product_id,
+            photoProduct_id,
+            photoProduct_id1,
             variacao_id,
             order,
             loja_id
@@ -16,6 +18,8 @@ class CreateRelationAtributosController {
         const relation = await createRelations.execute({
             atributo_id,
             product_id,
+            photoProduct_id,
+            photoProduct_id1,
             variacao_id,
             order,
             loja_id
