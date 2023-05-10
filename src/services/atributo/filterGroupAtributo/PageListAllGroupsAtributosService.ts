@@ -10,7 +10,7 @@ class PageListAllGroupsAtributosService {
                 groupId: ""
             },
             orderBy: {
-                created_at: 'desc'
+                groupNumber: 'asc'
             },
             include: {
                 atributo: true,
@@ -23,7 +23,7 @@ class PageListAllGroupsAtributosService {
                 groupId: ""
             },
             orderBy: {
-                created_at: 'desc'
+                groupNumber: 'asc'
             },
             include: {
                 atributo: true,
