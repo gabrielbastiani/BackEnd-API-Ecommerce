@@ -3,13 +3,12 @@ import { FiltroAtributosAndCategoriesServices } from "../../services/filtro/Filt
 
 class FiltroAtributosAndCategoriesController {
   async handle(req: Request, res: Response) {
-    
-    const { slug } = req.query;
-    /* const slugValor = req.query.slugValor as string; */
+    const { slug } = req.query
+    const { slugValor } = req.query;
 
     const filters = new FiltroAtributosAndCategoriesServices();
 
-    const filter = await filters.execute({ slug });
+    const filter = await filters.execute({ slug, slugValor });
 
     return res.json(filter);
   }
