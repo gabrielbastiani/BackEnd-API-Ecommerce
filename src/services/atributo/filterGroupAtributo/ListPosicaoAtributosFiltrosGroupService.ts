@@ -12,6 +12,9 @@ class ListPosicaoAtributosFiltrosGroupService {
                 slugCategoryOrItem: slugCategoryOrItem,
                 status: StatusGroupAtributos.Ativo
             },
+            orderBy: {
+                groupNumber: 'asc'
+            },
             include: {
                 atributo: true,
                 imageAtributoGroups: true
