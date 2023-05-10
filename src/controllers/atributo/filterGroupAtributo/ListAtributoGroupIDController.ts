@@ -3,7 +3,7 @@ import { ListAtributoGroupIDService } from "../../../services/atributo/filterGro
 
 class ListAtributoGroupIDController {
   async handle(req: Request, res: Response) {
-    const groupId = req.query.groupId as string;
+    const {groupId} = req.query;
 
     const group = new ListAtributoGroupIDService();
 

@@ -83,7 +83,7 @@ CREATE TABLE "users" (
     "authenticated" BOOLEAN NOT NULL DEFAULT false,
     "role" "Role" NOT NULL DEFAULT 'USER',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
@@ -113,7 +113,7 @@ CREATE TABLE "lojas" (
     "cityLoja" VARCHAR(185),
     "stateLoja" VARCHAR(155),
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "lojas_pkey" PRIMARY KEY ("id")
 );
@@ -128,6 +128,8 @@ CREATE TABLE "redessociais" (
     "posicao" VARCHAR(300),
     "slugPosicao" VARCHAR(295),
     "disponibilidade" "StatusRedeSocial" NOT NULL DEFAULT 'Disponivel',
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
     "loja_id" TEXT,
 
     CONSTRAINT "redessociais_pkey" PRIMARY KEY ("id")
@@ -143,6 +145,8 @@ CREATE TABLE "textosinstitucionais" (
     "slugPosicao" VARCHAR(325),
     "description" VARCHAR(95725),
     "disponibilidade" "StatusTextoInstitucional" NOT NULL DEFAULT 'Disponivel',
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
     "loja_id" TEXT,
 
     CONSTRAINT "textosinstitucionais_pkey" PRIMARY KEY ("id")
@@ -159,6 +163,8 @@ CREATE TABLE "imagesloja" (
     "disponibilidade" "StatusImagemLoja" NOT NULL DEFAULT 'Disponivel',
     "someImage" BOOLEAN NOT NULL DEFAULT false,
     "textoinstitucional_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "imagesloja_pkey" PRIMARY KEY ("id")
 );
@@ -185,7 +191,7 @@ CREATE TABLE "products" (
     "produtoOferta" "StatusOferta" NOT NULL DEFAULT 'Nao',
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("id")
 );
@@ -198,7 +204,7 @@ CREATE TABLE "categories" (
     "order" INTEGER,
     "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
     "loja_id" TEXT,
 
     CONSTRAINT "categories_pkey" PRIMARY KEY ("id")
@@ -210,7 +216,7 @@ CREATE TABLE "imagecategories" (
     "categoryImage" TEXT,
     "category_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "imagecategories_pkey" PRIMARY KEY ("id")
 );
@@ -229,7 +235,7 @@ CREATE TABLE "groupcategories" (
     "category_id" TEXT,
     "status" "StatusGroup" NOT NULL DEFAULT 'Ativo',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
     "loja_id" TEXT,
 
     CONSTRAINT "groupcategories_pkey" PRIMARY KEY ("id")
@@ -241,7 +247,7 @@ CREATE TABLE "imagegroupcategories" (
     "imageGroup" TEXT,
     "groupCategoy_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "imagegroupcategories_pkey" PRIMARY KEY ("id")
 );
@@ -261,7 +267,7 @@ CREATE TABLE "relationproductcategories" (
     "loja_id" TEXT,
     "status" "StatusRelation" NOT NULL DEFAULT 'Ativo',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "relationproductcategories_pkey" PRIMARY KEY ("id")
 );
@@ -275,7 +281,7 @@ CREATE TABLE "photoproducts" (
     "slugPosicao" VARCHAR(325),
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "photoproducts_pkey" PRIMARY KEY ("id")
 );
@@ -291,7 +297,7 @@ CREATE TABLE "atributos" (
     "disponibilidade" "StatusAtributo" NOT NULL DEFAULT 'Disponivel',
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "atributos_pkey" PRIMARY KEY ("id")
 );
@@ -308,7 +314,7 @@ CREATE TABLE "relationproductatributos" (
     "loja_id" TEXT,
     "status" "StatusRelationAtributo" NOT NULL DEFAULT 'Ativo',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "relationproductatributos_pkey" PRIMARY KEY ("id")
 );
@@ -319,7 +325,7 @@ CREATE TABLE "imageatributos" (
     "imageAtributo" TEXT,
     "atributo_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "imageatributos_pkey" PRIMARY KEY ("id")
 );
@@ -327,6 +333,7 @@ CREATE TABLE "imageatributos" (
 -- CreateTable
 CREATE TABLE "groupfilteratributos" (
     "id" TEXT NOT NULL,
+    "groupNumber" INTEGER,
     "nameGroup" VARCHAR(385),
     "itemName" VARCHAR(385),
     "atributo_id" TEXT,
@@ -336,7 +343,7 @@ CREATE TABLE "groupfilteratributos" (
     "groupId" TEXT,
     "status" "StatusGroupAtributos" NOT NULL DEFAULT 'Ativo',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
     "loja_id" TEXT,
 
     CONSTRAINT "groupfilteratributos_pkey" PRIMARY KEY ("id")
@@ -348,7 +355,7 @@ CREATE TABLE "imageatributogroups" (
     "imageAtributo" TEXT,
     "groupFilterAtributo_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "imageatributogroups_pkey" PRIMARY KEY ("id")
 );
@@ -368,7 +375,7 @@ CREATE TABLE "banners" (
     "slugPosicao" VARCHAR(325),
     "active" "StatusBanner" NOT NULL DEFAULT 'Nao',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "banners_pkey" PRIMARY KEY ("id")
 );
@@ -404,7 +411,7 @@ CREATE TABLE "variacoes" (
     "variacaoOferta" "StatusOfertaVariacao" NOT NULL DEFAULT 'Nao',
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "variacoes_pkey" PRIMARY KEY ("id")
 );
@@ -419,7 +426,7 @@ CREATE TABLE "photovariacoes" (
     "variacao_id" TEXT,
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "photovariacoes_pkey" PRIMARY KEY ("id")
 );
@@ -434,7 +441,7 @@ CREATE TABLE "avaliacoes" (
     "status" TEXT,
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "avaliacoes_pkey" PRIMARY KEY ("id")
 );
@@ -446,7 +453,7 @@ CREATE TABLE "newsletters" (
     "email" VARCHAR(155) NOT NULL,
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "newsletters_pkey" PRIMARY KEY ("id")
 );
@@ -462,7 +469,7 @@ CREATE TABLE "contatos" (
     "mensagem" VARCHAR(5555),
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "contatos_pkey" PRIMARY KEY ("id")
 );
@@ -476,7 +483,7 @@ CREATE TABLE "itens" (
     "quantidade" INTEGER,
     "precoUnitario" INTEGER,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "itens_pkey" PRIMARY KEY ("id")
 );
@@ -490,7 +497,7 @@ CREATE TABLE "carrinhos" (
     "tipoEntrega" TEXT,
     "valorPagamento" INTEGER,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
     "loja_id" TEXT,
 
     CONSTRAINT "carrinhos_pkey" PRIMARY KEY ("id")
@@ -514,7 +521,7 @@ CREATE TABLE "entregas" (
     "pedido_id" TEXT,
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "entregas_pkey" PRIMARY KEY ("id")
 );
@@ -545,7 +552,7 @@ CREATE TABLE "pagamentos" (
     "pagSeguroCode" TEXT,
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "pagamentos_pkey" PRIMARY KEY ("id")
 );
@@ -559,7 +566,7 @@ CREATE TABLE "pedidos" (
     "cancelado" "StatusPedido" NOT NULL DEFAULT 'Valido',
     "loja_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "pedidos_pkey" PRIMARY KEY ("id")
 );

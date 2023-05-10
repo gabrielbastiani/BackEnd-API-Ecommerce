@@ -2,14 +2,14 @@ import { StatusGroupAtributos } from "@prisma/client";
 import prismaClient from "../../../prisma";
 
 interface GroupRequest {
-    groupId: string;
+    groupId: any;
 }
 
 class ListAtributoGroupIDService {
     async execute({ groupId }: GroupRequest) {
         const grupoAtributos = await prismaClient.groupFilterAtributo.findMany({
             where: {
-                groupId: groupId,
+                groupId: {in: groupId},
                 status: StatusGroupAtributos.Ativo
             },
             orderBy: {

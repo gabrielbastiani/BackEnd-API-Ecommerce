@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -430,6 +431,7 @@ model ImageAtributo {
 
 model GroupFilterAtributo {
   id                 String               @id @default(uuid())
+  groupNumber        Int?
   nameGroup          String?              @db.VarChar(385)
   itemName           String?              @db.VarChar(385)
   atributo           Atributo?            @relation(fields: [atributo_id], references: [id])

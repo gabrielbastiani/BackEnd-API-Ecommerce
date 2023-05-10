@@ -9,12 +9,8 @@ class ListPosicaoAtributosFiltrosGroupService {
     async execute({ slugCategoryOrItem }: GroupRequest) {
         const group = await prismaClient.groupFilterAtributo.findMany({
             where: {
-                groupId: "",
                 slugCategoryOrItem: slugCategoryOrItem,
                 status: StatusGroupAtributos.Ativo
-            },
-            orderBy: {
-                order: 'asc'
             },
             include: {
                 atributo: true,
@@ -22,11 +18,7 @@ class ListPosicaoAtributosFiltrosGroupService {
             }
         });
 
-        const data = {
-            group
-        };
-
-        return data;
+        return group;
     }
 }
 

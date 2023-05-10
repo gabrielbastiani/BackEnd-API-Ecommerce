@@ -1,6 +1,7 @@
 import prismaClient from "../../../prisma";
 
 interface RelationRequest {
+    groupNumber: number;
     nameGroup: string;
     itemName: string;
     atributo_id: string;
@@ -13,6 +14,7 @@ interface RelationRequest {
 
 class CreateFilterAtributosServices {
     async execute({
+        groupNumber,
         nameGroup,
         itemName,
         atributo_id,
@@ -24,6 +26,7 @@ class CreateFilterAtributosServices {
     }: RelationRequest) {
         const relation = await prismaClient.groupFilterAtributo.create({
             data: {
+                groupNumber: groupNumber,
                 nameGroup: nameGroup,
                 itemName: itemName,
                 atributo_id: atributo_id,

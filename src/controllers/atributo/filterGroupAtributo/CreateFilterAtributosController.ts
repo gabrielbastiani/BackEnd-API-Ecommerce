@@ -4,6 +4,7 @@ import { CreateFilterAtributosServices } from "../../../services/atributo/filter
 class CreateFilterAtributosController {
     async handle(req: Request, res: Response) {
         const {
+            groupNumber,
             nameGroup,
             itemName,
             atributo_id,
@@ -17,6 +18,7 @@ class CreateFilterAtributosController {
         const createRelations = new CreateFilterAtributosServices();
 
         const relation = await createRelations.execute({
+            groupNumber,
             nameGroup,
             itemName,
             atributo_id,
