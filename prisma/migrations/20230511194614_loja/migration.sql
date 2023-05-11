@@ -333,7 +333,7 @@ CREATE TABLE "imageatributos" (
 -- CreateTable
 CREATE TABLE "groupfilteratributos" (
     "id" TEXT NOT NULL,
-    "groupNumber" INTEGER,
+    "groupNumber" INTEGER DEFAULT 1,
     "nameGroup" VARCHAR(385),
     "itemName" VARCHAR(385),
     "atributo_id" TEXT,
