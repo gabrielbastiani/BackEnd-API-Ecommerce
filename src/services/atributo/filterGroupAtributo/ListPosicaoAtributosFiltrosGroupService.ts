@@ -13,7 +13,8 @@ class ListPosicaoAtributosFiltrosGroupService {
                 status: StatusGroupAtributos.Ativo
             },
             orderBy: {
-                groupNumber: 'asc'
+                /* groupNumber: 'asc', */
+                order: 'asc'
             },
             include: {
                 atributo: true,
