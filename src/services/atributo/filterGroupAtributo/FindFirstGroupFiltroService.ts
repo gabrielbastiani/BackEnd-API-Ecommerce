@@ -10,7 +10,7 @@ class FindFirstGroupFiltroService {
                 atributo: true,
                 imageAtributoGroups: true,
             }
-        })
+        });
         return findGroupFirst;
     }
 }
