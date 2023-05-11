@@ -10,6 +10,7 @@ class ListAtributoGroupIDService {
         const grupoAtributos = await prismaClient.groupFilterAtributo.findMany({
             where: {
                 groupId: {in: groupId},
+                nivel: 1,
                 status: StatusGroupAtributos.Ativo
             },
             orderBy: {
@@ -19,7 +20,7 @@ class ListAtributoGroupIDService {
                 atributo: true,
                 imageAtributoGroups: true
             }
-        })
+        });
 
         return grupoAtributos;
     }
