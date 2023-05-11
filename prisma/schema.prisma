@@ -431,7 +431,7 @@ model ImageAtributo {
 
 model GroupFilterAtributo {
   id                 String               @id @default(uuid())
-  groupNumber        Int?                 @default(1)
+  groupNumber        Int?
   nameGroup          String?              @db.VarChar(385)
   itemName           String?              @db.VarChar(385)
   atributo           Atributo?            @relation(fields: [atributo_id], references: [id])
