@@ -364,7 +364,6 @@ model Atributo {
   slug            String?        @db.VarChar(325)
   valor           String?        @unique @db.VarChar(325)
   slugValor       String?        @db.VarChar(325)
-  order           Int?
   disponibilidade StatusAtributo @default(Disponivel)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])

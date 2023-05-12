@@ -304,6 +304,15 @@ import { DeleteAtributoFiltroController } from './controllers/filtros/atributoFi
 import { PageAtributoFiltroController } from './controllers/filtros/atributoFilter/PageAtributoFiltroController';
 import { UpdateAtributoNameFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoNameFiltroController';
 import { UpdateAtributoValorFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoValorFiltroController';
+import { UpdateAtributoOrderFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoOrderFiltroController';
+import { UpdateAtributoStatusFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoStatusFiltroController';
+import { CreateFiltroCategoryController } from './controllers/filtros/categoryFilter/CreateFiltroCategoryController';
+import { DeleteCategoryFiltroController } from './controllers/filtros/categoryFilter/DeleteCategoryFiltroController';
+import { PageCategoryFiltroController } from './controllers/filtros/categoryFilter/PageCategoryFiltroController';
+import { UpdateNameGroupFiltroController } from './controllers/filtros/categoryFilter/UpdateNameGroupFiltroController';
+import { UpdateCategoryNameFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryNameFiltroController';
+import { UpdateCategoryStatusFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryStatusFiltroController';
+import { UpdateCategoryOrderFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryOrderFiltroController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -513,9 +522,9 @@ router.put('/updateAtributoName', ADMINisAuthenticated, new UpdateAtributoNameCo
 router.put('/updateSlugGroupFilter', ADMINisAuthenticated, new UpdateSlugGroupFilterController().handle);
 router.put('/updateStatusGroupFilter', ADMINisAuthenticated, new UpdateStatusGroupFilterController().handle);
 router.get('/pagesGroupFilter', ADMINisAuthenticated, new PageGroupsFiltersController().handle);
-router.get('/findsNameGroupFilter', ADMINisAuthenticated, new FindsNameGroupFilterController().handle);
-router.get('/findsAtributoNameGroupFilter', ADMINisAuthenticated, new FindsAtributoNameFilterController().handle);
 router.delete('/deleteGroupFilter', ADMINisAuthenticated, new DeleteGroupFilterController().handle);
+router.get('/findsNameGroupFilter', new FindsNameGroupFilterController().handle);
+router.get('/findsAtributoNameGroupFilter', new FindsAtributoNameFilterController().handle);
 
 // -- ROTAS FILTRO ATRIBUTOS --
 router.post('/createFiltroAtributo', ADMINisAuthenticated, new CreateFiltroAtributoController().handle);
@@ -523,6 +532,17 @@ router.delete('/deleteFiltroAtributo', ADMINisAuthenticated, new DeleteAtributoF
 router.get('/pagesFiltrosAtributos', ADMINisAuthenticated, new PageAtributoFiltroController().handle);
 router.put('/updateFiltroAtributoName', ADMINisAuthenticated, new UpdateAtributoNameFiltroController().handle);
 router.put('/updateFiltroValorAtributo', ADMINisAuthenticated, new UpdateAtributoValorFiltroController().handle);
+router.put('/updateFiltroOrderAtributo', ADMINisAuthenticated, new UpdateAtributoOrderFiltroController().handle);
+router.put('/updateFiltroStatusAtributo', ADMINisAuthenticated, new UpdateAtributoStatusFiltroController().handle);
+
+// -- ROTAS FILTRO CATEGORIAS --
+router.post('/createFiltroCategory', ADMINisAuthenticated, new CreateFiltroCategoryController().handle);
+router.delete('/deleteFiltroCategory', ADMINisAuthenticated, new DeleteCategoryFiltroController().handle);
+router.get('/pagesFiltrosCategory', ADMINisAuthenticated, new PageCategoryFiltroController().handle);
+router.put('/updateFiltroNameGroupCategory', ADMINisAuthenticated, new UpdateNameGroupFiltroController().handle);
+router.put('/updateCategoryNameFiltro', ADMINisAuthenticated, new UpdateCategoryNameFiltroController().handle);
+router.put('/updateFiltroStatusCategory', ADMINisAuthenticated, new UpdateCategoryStatusFiltroController().handle);
+router.put('/updateFiltroOrderCategory', ADMINisAuthenticated, new UpdateCategoryOrderFiltroController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
