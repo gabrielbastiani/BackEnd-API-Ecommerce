@@ -459,7 +459,7 @@ model FilterAtributo {
   valor                String?
   order                Int?
   status               StatusFilterAtributo  @default(Ativo)
-  Imagefilteratributos ImageFilterAtributo[]
+  imagefilteratributos ImageFilterAtributo[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt

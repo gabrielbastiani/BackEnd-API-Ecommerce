@@ -289,6 +289,16 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 
+
+import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
+import { UpdateNameGroupFilterController } from './controllers/filtros/UpdateNameGroupFilterController';
+import { UpdateAtributoNameController } from './controllers/filtros/UpdateAtributoNameController';
+import { UpdateSlugGroupFilterController } from './controllers/filtros/UpdateSlugGroupFilterController';
+import { UpdateStatusGroupFilterController } from './controllers/filtros/UpdateStatusGroupFilterController';
+import { PageGroupsFiltersController } from './controllers/filtros/PageGroupsFiltersController';
+import { FindsNameGroupFilterController } from './controllers/filtros/FindsNameGroupFilterController';
+import { FindsAtributoNameFilterController } from './controllers/filtros/FindsAtributoNameFilterController';
+
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
 
@@ -469,9 +479,6 @@ router.delete('/deleteGrupoAtributosProduct', ADMINisAuthenticated, new DeleteGr
 router.put('/updateFirstPhotoProductAtributo', ADMINisAuthenticated, new UpdatePhotoProduct1AtributoController().handle);
 router.put('/updateFirstPhotoProduct1Atributo', ADMINisAuthenticated, new UpdatePhotoProductAtributoController().handle);
 
-// ROTAS GRUPO FILTROS ATRIBUTOS --
-
-
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
 router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
@@ -493,8 +500,15 @@ router.put('/updateFirstPhotoProduct1', ADMINisAuthenticated, new UpdatePhotoPro
 router.get('/categorys', new FindCategorysRelationController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 
-// -- ROTAS FILTROS --
-
+// -- ROTAS GRUPOS FILTROS --
+router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
+router.put('/updateNameGroupFilter', ADMINisAuthenticated, new UpdateNameGroupFilterController().handle);
+router.put('/updateAtributoName', ADMINisAuthenticated, new UpdateAtributoNameController().handle);
+router.put('/updateSlugGroupFilter', ADMINisAuthenticated, new UpdateSlugGroupFilterController().handle);
+router.put('/updateStatusGroupFilter', ADMINisAuthenticated, new UpdateStatusGroupFilterController().handle);
+router.get('/pagesGroupFilter', ADMINisAuthenticated, new PageGroupsFiltersController().handle);
+router.get('/findsNameGroupFilter', ADMINisAuthenticated, new FindsNameGroupFilterController().handle);
+router.get('/findsAtributoNameGroupFilter', ADMINisAuthenticated, new FindsAtributoNameFilterController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);

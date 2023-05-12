@@ -1,29 +1,29 @@
 import { Request, Response } from 'express';
-import { UpdateImageCategoryService } from '../../services/category/UpdateImageCategoryService';
-import { ListExactCategoryService } from '../../services/category/ListExactCategoryService';
+import { UpdateImageCategoryService } from '../../services/category/imagesCategories/UpdateImageCategoryService';
+import { ListExactImageCategoryService } from '../../services/category/imagesCategories/ListExactImageCategoryService';
 import fs from 'fs';
 
 class UpdateImageCategoryController {
   async handle(req: Request, res: Response) {
-    const category_id = req.query.category_id as string;
+    const imageCategory_id = req.query.imageCategory_id as string;
 
     const updateImage = new UpdateImageCategoryService();
-    const findImage = new ListExactCategoryService();
+    const findImage = new ListExactImageCategoryService();
 
     const images = await findImage.execute({
-      category_id,
+      imageCategory_id,
     })
 
-    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + images.imageCategory);
+    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + images.categoryImage);
 
     if (!req.file) {
       throw new Error('error upload file');
     } else {
-      const { originalname, filename: imageCategory } = req.file;
+      const { originalname, filename: categoryImage } = req.file;
 
       const imageDeleted = await updateImage.execute({
-        category_id,
-        imageCategory
+        imageCategory_id,
+        categoryImage
       });
 
       return res.json([images, imageDeleted]);
