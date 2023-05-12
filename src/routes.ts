@@ -300,6 +300,10 @@ import { FindsNameGroupFilterController } from './controllers/filtros/FindsNameG
 import { FindsAtributoNameFilterController } from './controllers/filtros/FindsAtributoNameFilterController';
 import { DeleteGroupFilterController } from './controllers/filtros/DeleteGroupFilterController';
 import { CreateFiltroAtributoController } from './controllers/filtros/atributoFilter/CreateFiltroAtributoController';
+import { DeleteAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAtributoFiltroController';
+import { PageAtributoFiltroController } from './controllers/filtros/atributoFilter/PageAtributoFiltroController';
+import { UpdateAtributoNameFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoNameFiltroController';
+import { UpdateAtributoValorFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoValorFiltroController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -515,6 +519,10 @@ router.delete('/deleteGroupFilter', ADMINisAuthenticated, new DeleteGroupFilterC
 
 // -- ROTAS FILTRO ATRIBUTOS --
 router.post('/createFiltroAtributo', ADMINisAuthenticated, new CreateFiltroAtributoController().handle);
+router.delete('/deleteFiltroAtributo', ADMINisAuthenticated, new DeleteAtributoFiltroController().handle);
+router.get('/pagesFiltrosAtributos', ADMINisAuthenticated, new PageAtributoFiltroController().handle);
+router.put('/updateFiltroAtributoName', ADMINisAuthenticated, new UpdateAtributoNameFiltroController().handle);
+router.put('/updateFiltroValorAtributo', ADMINisAuthenticated, new UpdateAtributoValorFiltroController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
