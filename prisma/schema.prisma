@@ -97,8 +97,10 @@ model Loja {
   pagamentos                Pagamento[]
   entregas                  Entrega[]
   pedidos                   Pedido[]
-  RelationProductAtributo   RelationProductAtributo[]
-  GroupFilterAtributo       GroupFilterAtributo[]
+  relationproductAtributos  RelationProductAtributo[]
+  groupfilters              GroupFilter[]
+  filterAtributos           FilterAtributo[]
+  FilterCategory            FilterCategory[]
 
   @@map("lojas")
 }
@@ -231,7 +233,7 @@ enum StatusOferta {
 
 model Category {
   id              String         @id @default(uuid())
-  categoryName    String?        @db.VarChar(300)
+  categoryName    String?        @unique @db.VarChar(300)
   slug            String?        @db.VarChar(300)
   order           Int?
   disponibilidade StatusCategory @default(Disponivel)
@@ -245,6 +247,7 @@ model Category {
   imagecategories           ImageCategory[]
   groupcategories           GroupCategoy[]
   relationproductcategories RelationProductCategory[]
+  filtercategory            FilterCategory[]
 
   @@map("categories")
 }
@@ -364,7 +367,7 @@ model Atributo {
   id              String         @id @default(uuid())
   tipo            String?        @db.VarChar(325)
   slug            String?        @db.VarChar(325)
-  valor           String?        @db.VarChar(325)
+  valor           String?        @unique @db.VarChar(325)
   slugValor       String?        @db.VarChar(325)
   order           Int?
   disponibilidade StatusAtributo @default(Disponivel)
@@ -377,7 +380,7 @@ model Atributo {
 
   relationProductAtributos RelationProductAtributo[]
   imageatributos           ImageAtributo[]
-  groupFilterAtributos     GroupFilterAtributo[]
+  filteratributos          FilterAtributo[]
 
   @@map("atributos")
 }
@@ -429,18 +432,39 @@ model ImageAtributo {
   @@map("imageatributos")
 }
 
-model GroupFilterAtributo {
-  id                 String               @id @default(uuid())
-  groupNumber        Int?                 @default(1)
-  nameGroup          String?              @db.VarChar(385)
-  itemName           String?              @db.VarChar(385)
-  atributo           Atributo?            @relation(fields: [atributo_id], references: [id])
-  atributo_id        String?
-  slugCategoryOrItem String?              @db.VarChar(400)
-  order              Int?
-  nivel              Int?
-  groupId            String?
-  status             StatusGroupAtributos @default(Ativo)
+model GroupFilter {
+  id                 String            @id @default(uuid())
+  nameGroup          String?           @unique @db.VarChar(385)
+  atributoName       String?           @unique @db.VarChar(385)
+  slugCategoryOrItem String?           @db.VarChar(400)
+  status             StatusGroupFilter @default(Ativo)
+
+  filteratributos    FilterAtributo[]
+  filtercategories   FilterCategory[]
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("groupfilteratributos")
+}
+
+enum StatusGroupFilter {
+  Ativo
+  Inativo
+}
+
+model FilterAtributo {
+  id                   String                @id @default(uuid())
+  groupFilter          GroupFilter?          @relation(fields: [atributoName], references: [atributoName])
+  atributoName         String?
+  atributo             Atributo?             @relation(fields: [valor], references: [valor])
+  valor                String?
+  order                Int?
+  status               StatusFilterAtributo  @default(Ativo)
+  Imagefilteratributos ImageFilterAtributo[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -448,26 +472,60 @@ model GroupFilterAtributo {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  imageAtributoGroups ImageAtributoGroup[]
-
-  @@map("groupfilteratributos")
+  @@map("filteratributos")
 }
 
-enum StatusGroupAtributos {
+enum StatusFilterAtributo {
   Ativo
   Inativo
 }
 
-model ImageAtributoGroup {
-  id                     String               @id @default(uuid())
-  imageAtributo          String?
-  groupFilterAtributo    GroupFilterAtributo? @relation(fields: [groupFilterAtributo_id], references: [id])
-  groupFilterAtributo_id String?
+model FilterCategory {
+  id                  String                @id @default(uuid())
+  groupFilter         GroupFilter?          @relation(fields: [nameGroup], references: [nameGroup])
+  nameGroup           String?
+  category            Category?             @relation(fields: [categoryName], references: [categoryName])
+  categoryName        String?
+  order               Int?
+  status              StatusFilterCategory  @default(Ativo)
+  imageFilterCategory ImageFilterCategory[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
-  @@map("imageatributogroups")
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("filtercategories")
+}
+
+enum StatusFilterCategory {
+  Ativo
+  Inativo
+}
+
+model ImageFilterCategory {
+  id                String          @id @default(uuid())
+  imageCategory     String?
+  filterCategory    FilterCategory? @relation(fields: [filterCategory_id], references: [id])
+  filterCategory_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("imagefiltercategories")
+}
+
+model ImageFilterAtributo {
+  id             String          @id @default(uuid())
+  imageAtributo  String?
+  filterAtributo FilterAtributo? @relation(fields: [filter_id], references: [id])
+  filter_id      String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("imagefilteratributos")
 }
 
 model Banner {

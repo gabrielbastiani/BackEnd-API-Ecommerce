@@ -11,14 +11,12 @@ class ListPosicaoAtributosFiltrosGroupService {
         const group = await prismaClient.groupFilterAtributo.findMany({
             where: {
                 slugCategoryOrItem: slugCategoryOrItem,
-                status: StatusGroupAtributos.Ativo
-            },
-            orderBy: {
-                groupNumber: 'asc'
+                status: StatusGroupAtributos.Ativo,
             },
             include: {
-                atributo: true,
-                imageAtributoGroups: true
+                atributo: {
+                    select: {valor: true}
+                }
             }
         });
 
