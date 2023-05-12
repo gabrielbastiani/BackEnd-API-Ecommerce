@@ -476,10 +476,10 @@ enum StatusFilterAtributo {
 }
 
 model ImageFilterAtributo {
-  id             String          @id @default(uuid())
-  imageAtributo  String?
-  filterAtributo FilterAtributo? @relation(fields: [filter_id], references: [id])
-  filter_id      String?
+  id                String          @id @default(uuid())
+  imageAtributo     String?
+  filterAtributo    FilterAtributo? @relation(fields: [filterAtributo_id], references: [id])
+  filterAtributo_id String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt

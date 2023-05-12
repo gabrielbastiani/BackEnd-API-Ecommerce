@@ -363,7 +363,7 @@ CREATE TABLE "filteratributos" (
 CREATE TABLE "imagefilteratributos" (
     "id" TEXT NOT NULL,
     "imageAtributo" TEXT,
-    "filter_id" TEXT,
+    "filterAtributo_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
@@ -715,7 +715,7 @@ ALTER TABLE "filteratributos" ADD CONSTRAINT "filteratributos_valor_fkey" FOREIG
 ALTER TABLE "filteratributos" ADD CONSTRAINT "filteratributos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "imagefilteratributos" ADD CONSTRAINT "imagefilteratributos_filter_id_fkey" FOREIGN KEY ("filter_id") REFERENCES "filteratributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "imagefilteratributos" ADD CONSTRAINT "imagefilteratributos_filterAtributo_id_fkey" FOREIGN KEY ("filterAtributo_id") REFERENCES "filteratributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "filtercategories" ADD CONSTRAINT "filtercategories_nameGroup_fkey" FOREIGN KEY ("nameGroup") REFERENCES "groupfilters"("nameGroup") ON DELETE SET NULL ON UPDATE CASCADE;

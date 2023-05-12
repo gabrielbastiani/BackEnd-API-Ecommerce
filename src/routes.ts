@@ -298,6 +298,8 @@ import { UpdateStatusGroupFilterController } from './controllers/filtros/UpdateS
 import { PageGroupsFiltersController } from './controllers/filtros/PageGroupsFiltersController';
 import { FindsNameGroupFilterController } from './controllers/filtros/FindsNameGroupFilterController';
 import { FindsAtributoNameFilterController } from './controllers/filtros/FindsAtributoNameFilterController';
+import { DeleteGroupFilterController } from './controllers/filtros/DeleteGroupFilterController';
+import { CreateFiltroAtributoController } from './controllers/filtros/atributoFilter/CreateFiltroAtributoController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -509,6 +511,10 @@ router.put('/updateStatusGroupFilter', ADMINisAuthenticated, new UpdateStatusGro
 router.get('/pagesGroupFilter', ADMINisAuthenticated, new PageGroupsFiltersController().handle);
 router.get('/findsNameGroupFilter', ADMINisAuthenticated, new FindsNameGroupFilterController().handle);
 router.get('/findsAtributoNameGroupFilter', ADMINisAuthenticated, new FindsAtributoNameFilterController().handle);
+router.delete('/deleteGroupFilter', ADMINisAuthenticated, new DeleteGroupFilterController().handle);
+
+// -- ROTAS FILTRO ATRIBUTOS --
+router.post('/createFiltroAtributo', ADMINisAuthenticated, new CreateFiltroAtributoController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
