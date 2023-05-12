@@ -235,7 +235,6 @@ model Category {
   id              String         @id @default(uuid())
   categoryName    String?        @unique @db.VarChar(300)
   slug            String?        @db.VarChar(300)
-  order           Int?
   disponibilidade StatusCategory @default(Disponivel)
 
   created_at DateTime? @default(now())
@@ -321,11 +320,9 @@ model RelationProductCategory {
   photoProduct_id1 String?
   category         Category      @relation(fields: [category_id], references: [id])
   category_id      String
-  nivel            Int?
   relationId       String?
+  nivel            Int?
   order            Int?
-  posicao          String?       @db.VarChar(300)
-  slugPosicao      String?       @db.VarChar(325)
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -344,13 +341,11 @@ enum StatusRelation {
 }
 
 model PhotoProduct {
-  id          String   @id @default(uuid())
-  photo       String?
-  order       Int?
-  posicao     String?  @db.VarChar(325)
-  slugPosicao String?  @db.VarChar(325)
-  product     Product? @relation(fields: [product_id], references: [id])
-  product_id  String?
+  id         String   @id @default(uuid())
+  photo      String?
+  order      Int?
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -390,6 +385,18 @@ enum StatusAtributo {
   Indisponivel
 }
 
+model ImageAtributo {
+  id            String    @id @default(uuid())
+  imageAtributo String?
+  atributo      Atributo? @relation(fields: [atributo_id], references: [id])
+  atributo_id   String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("imageatributos")
+}
+
 model RelationProductAtributo {
   id               String        @id @default(uuid())
   atributo         Atributo?     @relation(fields: [atributo_id], references: [id])
@@ -420,18 +427,6 @@ enum StatusRelationAtributo {
   Inativo
 }
 
-model ImageAtributo {
-  id            String    @id @default(uuid())
-  imageAtributo String?
-  atributo      Atributo? @relation(fields: [atributo_id], references: [id])
-  atributo_id   String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  @@map("imageatributos")
-}
-
 model GroupFilter {
   id                 String            @id @default(uuid())
   nameGroup          String?           @unique @db.VarChar(385)
@@ -439,8 +434,8 @@ model GroupFilter {
   slugCategoryOrItem String?           @db.VarChar(400)
   status             StatusGroupFilter @default(Ativo)
 
-  filteratributos    FilterAtributo[]
-  filtercategories   FilterCategory[]
+  filteratributos  FilterAtributo[]
+  filtercategories FilterCategory[]
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -448,7 +443,7 @@ model GroupFilter {
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
-  @@map("groupfilteratributos")
+  @@map("groupfilters")
 }
 
 enum StatusGroupFilter {
@@ -478,6 +473,18 @@ model FilterAtributo {
 enum StatusFilterAtributo {
   Ativo
   Inativo
+}
+
+model ImageFilterAtributo {
+  id             String          @id @default(uuid())
+  imageAtributo  String?
+  filterAtributo FilterAtributo? @relation(fields: [filter_id], references: [id])
+  filter_id      String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("imagefilteratributos")
 }
 
 model FilterCategory {
@@ -514,18 +521,6 @@ model ImageFilterCategory {
   updated_at DateTime? @updatedAt
 
   @@map("imagefiltercategories")
-}
-
-model ImageFilterAtributo {
-  id             String          @id @default(uuid())
-  imageAtributo  String?
-  filterAtributo FilterAtributo? @relation(fields: [filter_id], references: [id])
-  filter_id      String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  @@map("imagefilteratributos")
 }
 
 model Banner {

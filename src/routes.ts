@@ -92,7 +92,6 @@ import { CreateCategoryController } from './controllers/category/CreateCategoryC
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
 import { UpdateImageCategoryController } from './controllers/category/imagesCategories/UpdateImageCategoryController';
 import { CreateImageCategoryController } from './controllers/category/imagesCategories/CreateImageCategoryController';
-import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
 import { ListCategoryNameController } from './controllers/category/ListCategoryNameController';
 import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
@@ -175,28 +174,13 @@ import { FindIDRelationBlockAtributoController } from './controllers/atributo/re
 import { DeleteRelationProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteRelationProductAtributoController';
 import { FirstAtributosProductRelationController } from './controllers/atributo/relationProductAtributo/FirstAtributosProductRelationController';
 import { UpdateAtributoProductRelationController } from './controllers/atributo/relationProductAtributo/UpdateAtributoProductRelationController';
-import { ListPosicaoAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/ListPosicaoAtributoFiltroGroupController';
-import { ListAtributoGroupIDController } from './controllers/atributo/filterGroupAtributo/ListAtributoGroupIDController';
+import { DeleteGrupoProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteGrupoProductAtributoController';
+import { UpdatePhotoProductAtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProductAtributoController';
+import { UpdatePhotoProduct1AtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProduct1AtributoController';
+import { FindAtributosRelationBlockController } from './controllers/atributo/relationProductAtributo/FindAtributosRelationBlockController';
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
-import { CreateFilterAtributosController } from './controllers/atributo/filterGroupAtributo/CreateFilterAtributosController';
-import { PageListAllGroupsAtributosController } from './controllers/atributo/filterGroupAtributo/PageListAllGroupsAtributosController';
-import { FindFirstGroupFiltroController } from './controllers/atributo/filterGroupAtributo/FindFirstGroupFiltroController';
-import { FindUniqueFilterGroupIDController } from './controllers/atributo/filterGroupAtributo/FindUniqueFilterGroupIDController';
-import { FindGroupFiltroIDController } from './controllers/atributo/filterGroupAtributo/FindGroupFiltroIDController';
-import { UpdateAtributoValorController } from './controllers/atributo/filterGroupAtributo/UpdateAtributoValorController';
-import { UpdateOrderFiltroGrupoAtributoController } from './controllers/atributo/filterGroupAtributo/UpdateOrderFiltroGrupoAtributoController';
-import { UpdateStatusAtributoFiltroGrupoController } from './controllers/atributo/filterGroupAtributo/UpdateStatusAtributoFiltroGrupoController';
-import { CreateImageFiltroAtributoGroupController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/CreateImageFiltroAtributoGroupController';
-import { UpdateImageAtributoFiltroGroupController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/UpdateImageAtributoFiltroGroupController';
-import { DeleteAtributoFiltroController } from './controllers/atributo/filterGroupAtributo/DeleteAtributoFiltroController';
-import { DeleteImageFiltroAtributeGrupoController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/DeleteImageFiltroAtributeGrupoController';
-import { AllImageFiltroAtributoGrupoController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/AllImageFiltroAtributoGrupoController';
-import { DeletetImageFiltroController } from './controllers/atributo/filterGroupAtributo/imageFiltroAtributo/DeletetImageFiltroController';
-import { UpdateNameGrupoFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateNameGrupoFiltroController';
-import { UpdateItemNameFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateItemNameFiltroController';
-import { UpdateSlugCategoryFiltroController } from './controllers/atributo/filterGroupAtributo/UpdateSlugCategoryFiltroController';
-import { DeleteGroupsIDFiltroController } from './controllers/atributo/filterGroupAtributo/DeleteGroupsIDFiltroController';
+
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 import { CreateRelationProductCategoryController } from './controllers/product/relationProductCategory/CreateRelationProductCategoryController';
@@ -215,6 +199,9 @@ import { UpdateCategoryIDProductCategoryController } from './controllers/product
 import { FindCategoryIDRelationController } from './controllers/product/relationProductCategory/FindCategoryIDRelationController';
 import { DeleteRelationProductIDController } from './controllers/product/relationProductCategory/DeleteRelationProductIDController';
 import { DeleteRelationIDController } from './controllers/product/relationProductCategory/DeleteRelationIDController';
+import { ProductsPageCategoriesController } from './controllers/product/relationProductCategory/ProductsPageCategoriesController';
+import { UpdatePhotoProductCategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProductCategoryController';
+import { UpdatePhotoProduct1CategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProduct1CategoryController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -298,24 +285,12 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 
 
 
-
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-import { FiltroAtributosAndCategoriesController } from './controllers/filtro/FiltroAtributosAndCategoriesController';
-import { ProductsPageCategoriesController } from './controllers/product/relationProductCategory/ProductsPageCategoriesController';
-import { UpdatePhotoProductCategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProductCategoryController';
-import { UpdatePhotoProduct1CategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProduct1CategoryController';
-import { DeleteGrupoProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteGrupoProductAtributoController';
-import { UpdatePhotoProductAtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProductAtributoController';
-import { UpdatePhotoProduct1AtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProduct1AtributoController';
-import { FindAtributosRelationBlockController } from './controllers/atributo/relationProductAtributo/FindAtributosRelationBlockController';
-
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
-
-
 
 
 
@@ -408,7 +383,6 @@ router.get('/activeBanner', new ActiveAllBannerController().handle);
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
 router.post('/createImageCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
-router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
 router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
 router.put('/updateImageCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
@@ -496,26 +470,7 @@ router.put('/updateFirstPhotoProductAtributo', ADMINisAuthenticated, new UpdateP
 router.put('/updateFirstPhotoProduct1Atributo', ADMINisAuthenticated, new UpdatePhotoProductAtributoController().handle);
 
 // ROTAS GRUPO FILTROS ATRIBUTOS --
-router.post('/createFilter', ADMINisAuthenticated, new CreateFilterAtributosController().handle);
-router.get('/listPageFilterGroups', ADMINisAuthenticated, new PageListAllGroupsAtributosController().handle);
-router.get('/filterFirstGroupFiltro', ADMINisAuthenticated, new FindFirstGroupFiltroController().handle);
-router.get('/filterUniqueGroup', ADMINisAuthenticated, new FindUniqueFilterGroupIDController().handle);
-router.get('/allImagesFiltroGrupo', ADMINisAuthenticated, new AllImageFiltroAtributoGrupoController().handle);
-router.get('/findIDGroupFilter', ADMINisAuthenticated, new FindGroupFiltroIDController().handle);
-router.put('/updateAtributoValorFilterGrupo', ADMINisAuthenticated, new UpdateAtributoValorController().handle);
-router.put('/updateOrderFiltro', ADMINisAuthenticated, new UpdateOrderFiltroGrupoAtributoController().handle);
-router.put('/updateStatusFiltroGrupo', ADMINisAuthenticated, new UpdateStatusAtributoFiltroGrupoController().handle);
-router.post('/createImageFitroAtributoGrupo', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroAtributoGroupController().handle);
-router.put('/updateImageFitroAtributoGrupo', ADMINisAuthenticated, upload.single('file'), new UpdateImageAtributoFiltroGroupController().handle);
-router.delete('/deleteFiltroGrupo', ADMINisAuthenticated, new DeleteGroupsIDFiltroController().handle);
-router.delete('/deleteFiltroAtributo', ADMINisAuthenticated, new DeleteAtributoFiltroController().handle);
-router.delete('/deleteImagesAndFiltroAtributo', ADMINisAuthenticated, new DeleteImageFiltroAtributeGrupoController().handle);
-router.delete('/deleteImageFiltro', ADMINisAuthenticated, new DeletetImageFiltroController().handle);
-router.put('/updateNameGrupoFiltro', ADMINisAuthenticated, new UpdateNameGrupoFiltroController().handle);
-router.put('/updateItemNameGrupoFiltro', ADMINisAuthenticated, new UpdateItemNameFiltroController().handle);
-router.put('/updateSlugCategoryGrupoFiltro', ADMINisAuthenticated, new UpdateSlugCategoryFiltroController().handle);
-router.get('/pocisaoListAtributoFiltro', new ListPosicaoAtributoFiltroGroupController().handle);
-router.get('/listGrupoIDAtributoFilter', new ListAtributoGroupIDController().handle);
+
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
@@ -539,7 +494,7 @@ router.get('/categorys', new FindCategorysRelationController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 
 // -- ROTAS FILTROS --
-router.get('/filter', new FiltroAtributosAndCategoriesController().handle);
+
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);

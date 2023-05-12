@@ -207,7 +207,6 @@ CREATE TABLE "categories" (
     "id" TEXT NOT NULL,
     "categoryName" VARCHAR(300),
     "slug" VARCHAR(300),
-    "order" INTEGER,
     "disponibilidade" "StatusCategory" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
@@ -265,11 +264,9 @@ CREATE TABLE "relationproductcategories" (
     "photoProduct_id" TEXT,
     "photoProduct_id1" TEXT,
     "category_id" TEXT NOT NULL,
-    "nivel" INTEGER,
     "relationId" TEXT,
+    "nivel" INTEGER,
     "order" INTEGER,
-    "posicao" VARCHAR(300),
-    "slugPosicao" VARCHAR(325),
     "loja_id" TEXT,
     "status" "StatusRelation" NOT NULL DEFAULT 'Ativo',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -283,8 +280,6 @@ CREATE TABLE "photoproducts" (
     "id" TEXT NOT NULL,
     "photo" TEXT,
     "order" INTEGER,
-    "posicao" VARCHAR(325),
-    "slugPosicao" VARCHAR(325),
     "product_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
@@ -309,6 +304,17 @@ CREATE TABLE "atributos" (
 );
 
 -- CreateTable
+CREATE TABLE "imageatributos" (
+    "id" TEXT NOT NULL,
+    "imageAtributo" TEXT,
+    "atributo_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+
+    CONSTRAINT "imageatributos_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "relationproductatributos" (
     "id" TEXT NOT NULL,
     "atributo_id" TEXT,
@@ -326,18 +332,7 @@ CREATE TABLE "relationproductatributos" (
 );
 
 -- CreateTable
-CREATE TABLE "imageatributos" (
-    "id" TEXT NOT NULL,
-    "imageAtributo" TEXT,
-    "atributo_id" TEXT,
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3),
-
-    CONSTRAINT "imageatributos_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "groupfilteratributos" (
+CREATE TABLE "groupfilters" (
     "id" TEXT NOT NULL,
     "nameGroup" VARCHAR(385),
     "atributoName" VARCHAR(385),
@@ -347,7 +342,7 @@ CREATE TABLE "groupfilteratributos" (
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
-    CONSTRAINT "groupfilteratributos_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "groupfilters_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -362,6 +357,17 @@ CREATE TABLE "filteratributos" (
     "loja_id" TEXT,
 
     CONSTRAINT "filteratributos_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "imagefilteratributos" (
+    "id" TEXT NOT NULL,
+    "imageAtributo" TEXT,
+    "filter_id" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+
+    CONSTRAINT "imagefilteratributos_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -387,17 +393,6 @@ CREATE TABLE "imagefiltercategories" (
     "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "imagefiltercategories_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "imagefilteratributos" (
-    "id" TEXT NOT NULL,
-    "imageAtributo" TEXT,
-    "filter_id" TEXT,
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3),
-
-    CONSTRAINT "imagefilteratributos_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -630,10 +625,10 @@ CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName"
 CREATE UNIQUE INDEX "atributos_valor_key" ON "atributos"("valor");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "groupfilteratributos_nameGroup_key" ON "groupfilteratributos"("nameGroup");
+CREATE UNIQUE INDEX "groupfilters_nameGroup_key" ON "groupfilters"("nameGroup");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "groupfilteratributos_atributoName_key" ON "groupfilteratributos"("atributoName");
+CREATE UNIQUE INDEX "groupfilters_atributoName_key" ON "groupfilters"("atributoName");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -687,6 +682,9 @@ ALTER TABLE "photoproducts" ADD CONSTRAINT "photoproducts_product_id_fkey" FOREI
 ALTER TABLE "atributos" ADD CONSTRAINT "atributos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "imageatributos" ADD CONSTRAINT "imageatributos_atributo_id_fkey" FOREIGN KEY ("atributo_id") REFERENCES "atributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "relationproductatributos" ADD CONSTRAINT "relationproductatributos_atributo_id_fkey" FOREIGN KEY ("atributo_id") REFERENCES "atributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -705,13 +703,10 @@ ALTER TABLE "relationproductatributos" ADD CONSTRAINT "relationproductatributos_
 ALTER TABLE "relationproductatributos" ADD CONSTRAINT "relationproductatributos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "imageatributos" ADD CONSTRAINT "imageatributos_atributo_id_fkey" FOREIGN KEY ("atributo_id") REFERENCES "atributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "groupfilters" ADD CONSTRAINT "groupfilters_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "groupfilteratributos" ADD CONSTRAINT "groupfilteratributos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "filteratributos" ADD CONSTRAINT "filteratributos_atributoName_fkey" FOREIGN KEY ("atributoName") REFERENCES "groupfilteratributos"("atributoName") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "filteratributos" ADD CONSTRAINT "filteratributos_atributoName_fkey" FOREIGN KEY ("atributoName") REFERENCES "groupfilters"("atributoName") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "filteratributos" ADD CONSTRAINT "filteratributos_valor_fkey" FOREIGN KEY ("valor") REFERENCES "atributos"("valor") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -720,7 +715,10 @@ ALTER TABLE "filteratributos" ADD CONSTRAINT "filteratributos_valor_fkey" FOREIG
 ALTER TABLE "filteratributos" ADD CONSTRAINT "filteratributos_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "filtercategories" ADD CONSTRAINT "filtercategories_nameGroup_fkey" FOREIGN KEY ("nameGroup") REFERENCES "groupfilteratributos"("nameGroup") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "imagefilteratributos" ADD CONSTRAINT "imagefilteratributos_filter_id_fkey" FOREIGN KEY ("filter_id") REFERENCES "filteratributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "filtercategories" ADD CONSTRAINT "filtercategories_nameGroup_fkey" FOREIGN KEY ("nameGroup") REFERENCES "groupfilters"("nameGroup") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "filtercategories" ADD CONSTRAINT "filtercategories_categoryName_fkey" FOREIGN KEY ("categoryName") REFERENCES "categories"("categoryName") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -730,9 +728,6 @@ ALTER TABLE "filtercategories" ADD CONSTRAINT "filtercategories_loja_id_fkey" FO
 
 -- AddForeignKey
 ALTER TABLE "imagefiltercategories" ADD CONSTRAINT "imagefiltercategories_filterCategory_id_fkey" FOREIGN KEY ("filterCategory_id") REFERENCES "filtercategories"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "imagefilteratributos" ADD CONSTRAINT "imagefilteratributos_filter_id_fkey" FOREIGN KEY ("filter_id") REFERENCES "filteratributos"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "variacoes" ADD CONSTRAINT "variacoes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
