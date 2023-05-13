@@ -13,7 +13,7 @@ class ListAtributosService {
          include: {
             relationProductAtributos: true,
             imageatributos: true,
-            groupFilterAtributos: true
+            filteratributos: true
          }
       })
 

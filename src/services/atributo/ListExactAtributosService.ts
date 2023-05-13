@@ -13,7 +13,7 @@ class ListExactAtributosService {
             include: {
                 relationProductAtributos: true,
                 imageatributos: true,
-                groupFilterAtributos: true
+                filteratributos: true
             }
         })
         return exactAtributo;

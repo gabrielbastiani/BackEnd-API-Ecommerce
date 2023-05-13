@@ -8,7 +8,6 @@ class CreateAtributoController {
             slug,
             tipo,
             slugValor,
-            order,
             loja_id
         } = req.body;
 
@@ -19,7 +18,6 @@ class CreateAtributoController {
             slug,
             tipo,
             slugValor,
-            order,
             loja_id
         });
 

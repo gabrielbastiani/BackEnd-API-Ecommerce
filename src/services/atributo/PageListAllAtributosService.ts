@@ -12,7 +12,7 @@ class PageListAllAtributosService {
             include: {
                 relationProductAtributos: true,
                 imageatributos: true,
-                groupFilterAtributos: true
+                filteratributos: true
             }
         });
 
@@ -23,13 +23,12 @@ class PageListAllAtributosService {
             include: {
                 relationProductAtributos: true,
                 imageatributos: true,
-                groupFilterAtributos: true
+                filteratributos: true
             },
             skip,
             take: limit
         });
 
-        // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
             atributos,
             total: atributosAll.length,

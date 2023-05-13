@@ -160,7 +160,6 @@ import { ListExactAtributoController } from './controllers/atributo/ListExactAtr
 import { CreateAtributoController } from './controllers/atributo/CreateAtributoController';
 import { UpdateValorAtributoController } from './controllers/atributo/UpdateValorAtributoController';
 import { UpdateTipoAtributoController } from './controllers/atributo/UpdateTipoAtributoController';
-import { UpdateOrderAtributoController } from './controllers/atributo/UpdateOrderAtributoController';
 import { UpdateDisponibilidadeAtributoController } from './controllers/atributo/UpdateDisponibilidadeAtributoController';
 import { CreateImageAtributoController } from './controllers/atributo/imageAtributo/CreateImageAtributoController';
 import { UpdateImageAtributoController } from './controllers/atributo/imageAtributo/UpdateImageAtributoController';
@@ -481,7 +480,6 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
 router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
-router.put('/updateOrderAtributo', ADMINisAuthenticated, new UpdateOrderAtributoController().handle);
 router.put('/updateStatusAtributo', ADMINisAuthenticated, new UpdateDisponibilidadeAtributoController().handle);
 router.get('/pageListAtributos', ADMINisAuthenticated, new PageListAllAtributosController().handle);
 router.get('/exactAtributo', ADMINisAuthenticated, new ListExactAtributoController().handle);

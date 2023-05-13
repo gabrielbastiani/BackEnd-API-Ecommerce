@@ -5,7 +5,6 @@ interface AtributoRequest {
     slug: string;
     tipo: string;
     slugValor: string;
-    order: number;
     loja_id: string;
 }
 
@@ -13,7 +12,6 @@ class CreateAtributoService {
     async execute({
         valor,
         tipo,
-        order,
         loja_id
     }: AtributoRequest) {
 
@@ -32,7 +30,6 @@ class CreateAtributoService {
                 slug: removerAcentos(tipo),
                 valor: valor,
                 slugValor: removerAcentos(valor),
-                order: order,
                 loja_id: loja_id
             }
         });
