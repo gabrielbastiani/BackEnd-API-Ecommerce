@@ -8,7 +8,7 @@ class ListCategoryService {
             disponibilidade: StatusCategory.Disponivel
          },
          orderBy: {
-            order: 'asc'
+            created_at: 'asc'
          },
          include: {
             relationproductcategories: true,

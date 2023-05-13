@@ -13,7 +13,7 @@ class ListCategoryNameService {
             disponibilidade: StatusCategory.Disponivel
          },
          orderBy: {
-            order: 'asc'
+            created_at: 'asc'
          }
       })
 

@@ -10,7 +10,7 @@ class ExactPageListAllCategorysService {
                 id: category_id
             },
             orderBy: {
-                order: 'asc'
+                created_at: 'asc'
             }
         });
 
@@ -19,13 +19,12 @@ class ExactPageListAllCategorysService {
                 id: category_id
             },
             orderBy: {
-                order: 'asc'
+                created_at: 'asc'
             },
             skip,
             take: limit
         });
 
-        // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
             categorys,
             total: categorysAll.length,
