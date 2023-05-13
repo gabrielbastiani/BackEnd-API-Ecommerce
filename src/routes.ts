@@ -179,9 +179,6 @@ import { UpdatePhotoProductAtributoController } from './controllers/atributo/rel
 import { UpdatePhotoProduct1AtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProduct1AtributoController';
 import { FindAtributosRelationBlockController } from './controllers/atributo/relationProductAtributo/FindAtributosRelationBlockController';
 
-// ROTAS GRUPO FILTROS ATRIBUTOS --
-
-
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 import { CreateRelationProductCategoryController } from './controllers/product/relationProductCategory/CreateRelationProductCategoryController';
 import { UpdateRelationIDProductCategoryController } from './controllers/product/relationProductCategory/UpdateRelationIDProductCategoryController';
@@ -202,6 +199,41 @@ import { DeleteRelationIDController } from './controllers/product/relationProduc
 import { ProductsPageCategoriesController } from './controllers/product/relationProductCategory/ProductsPageCategoriesController';
 import { UpdatePhotoProductCategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProductCategoryController';
 import { UpdatePhotoProduct1CategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProduct1CategoryController';
+
+// -- ROTAS GRUPOS FILTROS --
+import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
+import { UpdateNameGroupFilterController } from './controllers/filtros/UpdateNameGroupFilterController';
+import { UpdateAtributoNameController } from './controllers/filtros/UpdateAtributoNameController';
+import { UpdateSlugGroupFilterController } from './controllers/filtros/UpdateSlugGroupFilterController';
+import { UpdateStatusGroupFilterController } from './controllers/filtros/UpdateStatusGroupFilterController';
+import { PageGroupsFiltersController } from './controllers/filtros/PageGroupsFiltersController';
+import { FindsNameGroupFilterController } from './controllers/filtros/FindsNameGroupFilterController';
+import { FindsAtributoNameFilterController } from './controllers/filtros/FindsAtributoNameFilterController';
+import { DeleteGroupFilterController } from './controllers/filtros/DeleteGroupFilterController';
+
+// -- ROTAS FILTRO ATRIBUTOS --
+import { CreateFiltroAtributoController } from './controllers/filtros/atributoFilter/CreateFiltroAtributoController';
+import { DeleteAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAtributoFiltroController';
+import { PageAtributoFiltroController } from './controllers/filtros/atributoFilter/PageAtributoFiltroController';
+import { UpdateAtributoNameFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoNameFiltroController';
+import { UpdateAtributoValorFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoValorFiltroController';
+import { UpdateAtributoOrderFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoOrderFiltroController';
+import { UpdateAtributoStatusFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoStatusFiltroController';
+import { CreateImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/CreateImageFiltroAtributoController';
+import { UpdateImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/UpdateImageFiltroAtributoController';
+
+// -- ROTAS FILTRO CATEGORIAS --
+import { CreateFiltroCategoryController } from './controllers/filtros/categoryFilter/CreateFiltroCategoryController';
+import { DeleteCategoryFiltroController } from './controllers/filtros/categoryFilter/DeleteCategoryFiltroController';
+import { PageCategoryFiltroController } from './controllers/filtros/categoryFilter/PageCategoryFiltroController';
+import { UpdateNameGroupFiltroController } from './controllers/filtros/categoryFilter/UpdateNameGroupFiltroController';
+import { UpdateCategoryNameFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryNameFiltroController';
+import { UpdateCategoryStatusFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryStatusFiltroController';
+import { UpdateCategoryOrderFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryOrderFiltroController';
+import { DeleteImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/DeleteImageFiltroAtributoController';
+import { CreateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/CreateImageFiltroCategoryController';
+import { UpdateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/UpdateImageFiltroCategoryController';
+import { DeleteImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/DeleteImageFiltroCategoryController';
 
 // -- ROTAS AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
@@ -290,35 +322,6 @@ import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 
 
-import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
-import { UpdateNameGroupFilterController } from './controllers/filtros/UpdateNameGroupFilterController';
-import { UpdateAtributoNameController } from './controllers/filtros/UpdateAtributoNameController';
-import { UpdateSlugGroupFilterController } from './controllers/filtros/UpdateSlugGroupFilterController';
-import { UpdateStatusGroupFilterController } from './controllers/filtros/UpdateStatusGroupFilterController';
-import { PageGroupsFiltersController } from './controllers/filtros/PageGroupsFiltersController';
-import { FindsNameGroupFilterController } from './controllers/filtros/FindsNameGroupFilterController';
-import { FindsAtributoNameFilterController } from './controllers/filtros/FindsAtributoNameFilterController';
-import { DeleteGroupFilterController } from './controllers/filtros/DeleteGroupFilterController';
-import { CreateFiltroAtributoController } from './controllers/filtros/atributoFilter/CreateFiltroAtributoController';
-import { DeleteAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAtributoFiltroController';
-import { PageAtributoFiltroController } from './controllers/filtros/atributoFilter/PageAtributoFiltroController';
-import { UpdateAtributoNameFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoNameFiltroController';
-import { UpdateAtributoValorFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoValorFiltroController';
-import { UpdateAtributoOrderFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoOrderFiltroController';
-import { UpdateAtributoStatusFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoStatusFiltroController';
-import { CreateFiltroCategoryController } from './controllers/filtros/categoryFilter/CreateFiltroCategoryController';
-import { DeleteCategoryFiltroController } from './controllers/filtros/categoryFilter/DeleteCategoryFiltroController';
-import { PageCategoryFiltroController } from './controllers/filtros/categoryFilter/PageCategoryFiltroController';
-import { UpdateNameGroupFiltroController } from './controllers/filtros/categoryFilter/UpdateNameGroupFiltroController';
-import { UpdateCategoryNameFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryNameFiltroController';
-import { UpdateCategoryStatusFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryStatusFiltroController';
-import { UpdateCategoryOrderFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryOrderFiltroController';
-import { CreateImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/CreateImageFiltroAtributoController';
-import { UpdateImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/UpdateImageFiltroAtributoController';
-import { DeleteImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/DeleteImageFiltroAtributoController';
-import { CreateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/CreateImageFiltroCategoryController';
-import { UpdateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/UpdateImageFiltroCategoryController';
-import { DeleteImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/DeleteImageFiltroCategoryController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -540,7 +543,7 @@ router.put('/updateFiltroAtributoName', ADMINisAuthenticated, new UpdateAtributo
 router.put('/updateFiltroValorAtributo', ADMINisAuthenticated, new UpdateAtributoValorFiltroController().handle);
 router.put('/updateFiltroOrderAtributo', ADMINisAuthenticated, new UpdateAtributoOrderFiltroController().handle);
 router.put('/updateFiltroStatusAtributo', ADMINisAuthenticated, new UpdateAtributoStatusFiltroController().handle);
-router.post('/createImageFilterAtributo', ADMINisAuthenticated, upload.single('file'), new CreateImageAtributoController().handle);
+router.post('/createImageFilterAtributo', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroAtributoController().handle);
 router.put('/updateImageFilterAtributo', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroAtributoController().handle);
 router.delete('/deleteImageFiltroAtributo', ADMINisAuthenticated, new DeleteImageFiltroAtributoController().handle);
 
