@@ -4,7 +4,7 @@ import { CreateFiltroAtributoService } from "../../../services/filtros/atributoF
 class CreateFiltroAtributoController {
     async handle(req: Request, res: Response) {
         const {
-            atributoName,
+            groupFilter_id,
             valor,
             order,
             loja_id
@@ -13,7 +13,7 @@ class CreateFiltroAtributoController {
         const filtroAtributo = new CreateFiltroAtributoService();
 
         const filtro = await filtroAtributo.execute({
-            atributoName,
+            groupFilter_id,
             valor,
             order,
             loja_id

@@ -1,17 +1,17 @@
 import prismaClient from "../../../prisma";
 
 interface FiltroAtributoRequest {
-    atributoName: string;
+    groupFilter_id: string;
     valor: string;
     order: number;
     loja_id: string;
 }
 
 class CreateFiltroAtributoService {
-    async execute({ atributoName, valor, order, loja_id }: FiltroAtributoRequest) {
+    async execute({ groupFilter_id, valor, order, loja_id }: FiltroAtributoRequest) {
         const filterAtributo = await prismaClient.filterAtributo.create({
             data: {
-                atributoName: atributoName,
+                groupFilter_id: groupFilter_id,
                 valor: valor,
                 order: order,
                 loja_id: loja_id

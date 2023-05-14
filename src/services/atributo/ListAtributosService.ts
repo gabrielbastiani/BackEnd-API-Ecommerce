@@ -7,9 +7,6 @@ class ListAtributosService {
          where: {
             disponibilidade: StatusAtributo.Disponivel
          },
-         orderBy: {
-            order: 'asc'
-         },
          include: {
             relationProductAtributos: true,
             imageatributos: true,

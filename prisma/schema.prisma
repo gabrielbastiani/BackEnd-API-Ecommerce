@@ -428,8 +428,8 @@ enum StatusRelationAtributo {
 
 model GroupFilter {
   id                 String            @id @default(uuid())
-  nameGroup          String?           @unique @db.VarChar(385)
-  atributoName       String?           @unique @db.VarChar(385)
+  nameGroup          String?           @db.VarChar(385)
+  atributoName       String?           @db.VarChar(385)
   slugCategoryOrItem String?           @db.VarChar(400)
   status             StatusGroupFilter @default(Ativo)
 
@@ -452,8 +452,8 @@ enum StatusGroupFilter {
 
 model FilterAtributo {
   id                   String                @id @default(uuid())
-  groupFilter          GroupFilter?          @relation(fields: [atributoName], references: [atributoName])
-  atributoName         String?
+  groupFilter          GroupFilter?          @relation(fields: [groupFilter_id], references: [id])
+  groupFilter_id       String?
   atributo             Atributo?             @relation(fields: [valor], references: [valor])
   valor                String?
   order                Int?
@@ -488,8 +488,8 @@ model ImageFilterAtributo {
 
 model FilterCategory {
   id                  String                @id @default(uuid())
-  groupFilter         GroupFilter?          @relation(fields: [nameGroup], references: [nameGroup])
-  nameGroup           String?
+  groupFilter         GroupFilter?          @relation(fields: [groupFilter_id], references: [id])
+  groupFilter_id      String?
   category            Category?             @relation(fields: [categoryName], references: [categoryName])
   categoryName        String?
   order               Int?

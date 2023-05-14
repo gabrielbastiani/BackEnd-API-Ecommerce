@@ -319,6 +319,11 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { FindFirstGroupsController } from './controllers/filtros/FindFirstGroupsController';
+import { FindIDGroupFilterController } from './controllers/filtros/FindIDGroupFilterController';
+import { FindUniqueAtributoFiltroController } from './controllers/filtros/atributoFilter/FindUniqueAtributoFiltroController';
+import { FindManyAtributoFiltroNameController } from './controllers/filtros/atributoFilter/FindManyAtributoFiltroNameController';
+import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
 
 
 
@@ -529,13 +534,16 @@ router.put('/updateAtributoName', ADMINisAuthenticated, new UpdateAtributoNameCo
 router.put('/updateSlugGroupFilter', ADMINisAuthenticated, new UpdateSlugGroupFilterController().handle);
 router.put('/updateStatusGroupFilter', ADMINisAuthenticated, new UpdateStatusGroupFilterController().handle);
 router.get('/pagesGroupFilter', ADMINisAuthenticated, new PageGroupsFiltersController().handle);
+router.get('/filterFirstGroupFiltro', ADMINisAuthenticated, new FindFirstGroupsController().handle);
 router.delete('/deleteGroupFilter', ADMINisAuthenticated, new DeleteGroupFilterController().handle);
 router.get('/findsNameGroupFilter', new FindsNameGroupFilterController().handle);
 router.get('/findsAtributoNameGroupFilter', new FindsAtributoNameFilterController().handle);
+router.get('/findUniqueIDGroup', ADMINisAuthenticated, new FindIDGroupFilterController().handle);
 
 // -- ROTAS FILTRO ATRIBUTOS --
 router.post('/createFiltroAtributo', ADMINisAuthenticated, new CreateFiltroAtributoController().handle);
 router.delete('/deleteFiltroAtributo', ADMINisAuthenticated, new DeleteAtributoFiltroController().handle);
+router.delete('/deleteAllFiltrosAtributosGrupo', ADMINisAuthenticated, new DeleteAllAtributoFiltroController().handle);
 router.get('/pagesFiltrosAtributos', ADMINisAuthenticated, new PageAtributoFiltroController().handle);
 router.put('/updateFiltroAtributoName', ADMINisAuthenticated, new UpdateAtributoNameFiltroController().handle);
 router.put('/updateFiltroValorAtributo', ADMINisAuthenticated, new UpdateAtributoValorFiltroController().handle);
@@ -544,6 +552,8 @@ router.put('/updateFiltroStatusAtributo', ADMINisAuthenticated, new UpdateAtribu
 router.post('/createImageFilterAtributo', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroAtributoController().handle);
 router.put('/updateImageFilterAtributo', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroAtributoController().handle);
 router.delete('/deleteImageFiltroAtributo', ADMINisAuthenticated, new DeleteImageFiltroAtributoController().handle);
+router.get('/findUniqueFiltroAtributo', ADMINisAuthenticated, new FindUniqueAtributoFiltroController().handle);
+router.get('/findManyNameFiltroAtributo', ADMINisAuthenticated, new FindManyAtributoFiltroNameController().handle);
 
 // -- ROTAS FILTRO CATEGORIAS --
 router.post('/createFiltroCategory', ADMINisAuthenticated, new CreateFiltroCategoryController().handle);

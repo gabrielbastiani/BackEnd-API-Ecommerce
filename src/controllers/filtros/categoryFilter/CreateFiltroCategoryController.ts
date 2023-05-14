@@ -4,7 +4,7 @@ import { CreateFiltroCategoryService } from "../../../services/filtros/categoryF
 class CreateFiltroCategoryController {
     async handle(req: Request, res: Response) {
         const {
-            nameGroup,
+            groupFilter_id,
             categoryName,
             order,
             loja_id
@@ -13,7 +13,7 @@ class CreateFiltroCategoryController {
         const filtrosCategory = new CreateFiltroCategoryService();
 
         const filtro = await filtrosCategory.execute({
-            nameGroup,
+            groupFilter_id,
             categoryName,
             order,
             loja_id

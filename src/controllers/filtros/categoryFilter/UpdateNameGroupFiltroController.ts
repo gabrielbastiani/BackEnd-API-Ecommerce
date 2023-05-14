@@ -5,13 +5,13 @@ class UpdateNameGroupFiltroController {
     async handle(req: Request, res: Response) {
         const filterCategory_id = req.query.filterCategory_id as string;
 
-        const { nameGroup } = req.body;
+        const { groupFilter_id } = req.body;
 
         const updateName = new UpdateNameGroupFiltroService();
 
         const filtro = await updateName.execute({
             filterCategory_id,
-            nameGroup,
+            groupFilter_id,
         });
 
         return res.json(filtro);

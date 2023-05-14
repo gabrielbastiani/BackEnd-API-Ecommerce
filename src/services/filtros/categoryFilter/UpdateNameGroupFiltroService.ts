@@ -2,17 +2,17 @@ import prismaClient from "../../../prisma";
 
 interface FiltroCategoryRequest {
     filterCategory_id: string;
-    nameGroup: string;
+    groupFilter_id: string;
 }
 
 class UpdateNameGroupFiltroService {
-    async execute({ nameGroup, filterCategory_id }: FiltroCategoryRequest) {
+    async execute({ groupFilter_id, filterCategory_id }: FiltroCategoryRequest) {
         const filter = await prismaClient.filterCategory.update({
             where: {
                 id: filterCategory_id
             },
             data: {
-                nameGroup: nameGroup,
+                groupFilter_id: groupFilter_id,
             }
         });
 
