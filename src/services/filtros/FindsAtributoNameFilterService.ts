@@ -8,16 +8,6 @@ interface GroupRequest {
 class FindsAtributoNameFilterService {
     async execute({ atributoName }: GroupRequest) {
 
-        const atributoNameFindUnique = await prismaClient.groupFilter.findUnique({
-            where: {
-                atributoName: atributoName,
-            },
-            include: {
-                filteratributos: true,
-                filtercategories: true
-            }
-        });
-
         const atributoNameFindFirst = await prismaClient.groupFilter.findFirst({
             where: {
                 atributoName: atributoName,
@@ -42,7 +32,6 @@ class FindsAtributoNameFilterService {
 
         const data = {
             atributoNameFindFirst,
-            atributoNameFindUnique,
             atributoNameFindMany
         }
 

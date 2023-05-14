@@ -324,6 +324,7 @@ import { FindIDGroupFilterController } from './controllers/filtros/FindIDGroupFi
 import { FindUniqueAtributoFiltroController } from './controllers/filtros/atributoFilter/FindUniqueAtributoFiltroController';
 import { FindManyAtributoFiltroNameController } from './controllers/filtros/atributoFilter/FindManyAtributoFiltroNameController';
 import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
+import { FindSlugGroupFilterController } from './controllers/filtros/FindSlugGroupFilterController';
 
 
 
@@ -539,6 +540,7 @@ router.delete('/deleteGroupFilter', ADMINisAuthenticated, new DeleteGroupFilterC
 router.get('/findsNameGroupFilter', new FindsNameGroupFilterController().handle);
 router.get('/findsAtributoNameGroupFilter', new FindsAtributoNameFilterController().handle);
 router.get('/findUniqueIDGroup', ADMINisAuthenticated, new FindIDGroupFilterController().handle);
+router.get('/listFilterGroup', new FindSlugGroupFilterController().handle);
 
 // -- ROTAS FILTRO ATRIBUTOS --
 router.post('/createFiltroAtributo', ADMINisAuthenticated, new CreateFiltroAtributoController().handle);
