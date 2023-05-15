@@ -16,8 +16,6 @@ class FindAtributoRelationBlockService {
             include: {
                 atributo: true,
                 product: true,
-                photoProduct: true,
-                photoProduct1: true,
                 variacao: true
             }
         });

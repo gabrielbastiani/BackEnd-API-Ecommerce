@@ -174,8 +174,6 @@ import { DeleteRelationProductAtributoController } from './controllers/atributo/
 import { FirstAtributosProductRelationController } from './controllers/atributo/relationProductAtributo/FirstAtributosProductRelationController';
 import { UpdateAtributoProductRelationController } from './controllers/atributo/relationProductAtributo/UpdateAtributoProductRelationController';
 import { DeleteGrupoProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteGrupoProductAtributoController';
-import { UpdatePhotoProductAtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProductAtributoController';
-import { UpdatePhotoProduct1AtributoController } from './controllers/atributo/relationProductAtributo/UpdatePhotoProduct1AtributoController';
 import { FindAtributosRelationBlockController } from './controllers/atributo/relationProductAtributo/FindAtributosRelationBlockController';
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
@@ -505,8 +503,6 @@ router.put('/updateAtributoIDProduct', ADMINisAuthenticated, new UpdateAtributoP
 router.get('/findAllAtributosProduct', ADMINisAuthenticated, new FindAtributosRelationBlockController().handle);
 router.delete('/deleteRelationAtributoProduct', ADMINisAuthenticated, new DeleteRelationProductAtributoController().handle);
 router.delete('/deleteGrupoAtributosProduct', ADMINisAuthenticated, new DeleteGrupoProductAtributoController().handle);
-router.put('/updateFirstPhotoProductAtributo', ADMINisAuthenticated, new UpdatePhotoProduct1AtributoController().handle);
-router.put('/updateFirstPhotoProduct1Atributo', ADMINisAuthenticated, new UpdatePhotoProductAtributoController().handle);
 
 // ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);

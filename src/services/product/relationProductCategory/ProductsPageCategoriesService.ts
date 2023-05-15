@@ -9,17 +9,15 @@ class ProductsPageCategoriesService {
         const products = await prismaClient.relationProductCategory.findMany({
             where: {
                 category: {
-                    slug: slug,
+                    slug: "maquinas-de-solda",
                 }
             },
             orderBy: {
                 order: 'asc'
             },
             include: {
-                product: {include: {photoproducts: true}},
+                product: {include: {photoproducts: true, relationProductAtributos: {include: {atributo: true}}}},
                 category: true,
-                photoProduct: true,
-                photoProduct1: true
             }
         });
 

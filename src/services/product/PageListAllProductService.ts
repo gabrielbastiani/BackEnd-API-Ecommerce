@@ -37,7 +37,6 @@ class PageListAllProductService {
             }
         });
 
-        // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
             products,
             total: allProducts.length,

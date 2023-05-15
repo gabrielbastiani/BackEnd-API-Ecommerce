@@ -314,10 +314,6 @@ model RelationProductCategory {
   id               String        @id @default(uuid())
   product          Product?      @relation(fields: [product_id], references: [id])
   product_id       String?
-  photoProduct     PhotoProduct? @relation(name: "photos", fields: [photoProduct_id], references: [id])
-  photoProduct_id  String?
-  photoProduct1    PhotoProduct? @relation(fields: [photoProduct_id1], references: [id])
-  photoProduct_id1 String?
   category         Category      @relation(fields: [category_id], references: [id])
   category_id      String
   relationId       String?
@@ -349,11 +345,6 @@ model PhotoProduct {
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
-
-  relationproductcategories  RelationProductCategory[] @relation("photos")
-  relationproductcategories1 RelationProductCategory[]
-  relationProductAtributos   RelationProductAtributo[] @relation("photos")
-  relationProductAtributos1  RelationProductAtributo[]
 
   @@map("photoproducts")
 }
@@ -402,10 +393,6 @@ model RelationProductAtributo {
   atributo_id      String?
   product          Product?      @relation(fields: [product_id], references: [id])
   product_id       String?
-  photoProduct     PhotoProduct? @relation(name: "photos", fields: [photoProduct_id], references: [id])
-  photoProduct_id  String?
-  photoProduct1    PhotoProduct? @relation(fields: [photoProduct_id1], references: [id])
-  photoProduct_id1 String?
   variacao         Variacao?     @relation(fields: [variacao_id], references: [id])
   variacao_id      String?
   order            Int?

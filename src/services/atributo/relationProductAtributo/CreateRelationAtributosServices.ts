@@ -3,8 +3,6 @@ import prismaClient from "../../../prisma";
 interface RelationRequest {
     atributo_id: string;
     product_id: string;
-    photoProduct_id: string;
-    photoProduct_id1: string;
     variacao_id: string;
     order: number;
     loja_id: string;
@@ -14,8 +12,6 @@ class CreateRelationAtributosServices {
     async execute({
         atributo_id,
         product_id,
-        photoProduct_id,
-        photoProduct_id1,
         variacao_id,
         order,
         loja_id
@@ -25,8 +21,6 @@ class CreateRelationAtributosServices {
             data: {
                 atributo_id: atributo_id,
                 product_id: product_id,
-                photoProduct_id: photoProduct_id,
-                photoProduct_id1: photoProduct_id1,
                 variacao_id: variacao_id,
                 order: Number(order),
                 loja_id: loja_id
