@@ -3,7 +3,7 @@ import { PhotoProductService } from "../../../services/product/photoproduct/Phot
 
 class PhotoProductController {
     async handle(req: Request, res: Response) {
-        const { product_id, order, posicao, slugPosicao } = req.body;
+        const { product_id, order } = req.body;
 
         const photoProductService = new PhotoProductService();
 
@@ -16,9 +16,7 @@ class PhotoProductController {
             const photoProducts = await photoProductService.execute({
                 photo,
                 product_id,
-                order,
-                posicao,
-                slugPosicao
+                order
             })
             return res.json(photoProducts)
         }

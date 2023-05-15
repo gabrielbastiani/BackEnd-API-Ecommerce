@@ -9,14 +9,14 @@ class ProductsPageCategoriesService {
         const products = await prismaClient.relationProductCategory.findMany({
             where: {
                 category: {
-                    slug: slug
+                    slug: slug,
                 }
             },
             orderBy: {
                 order: 'asc'
             },
             include: {
-                product: true,
+                product: {include: {photoproducts: true}},
                 category: true,
                 photoProduct: true,
                 photoProduct1: true

@@ -457,7 +457,6 @@ model FilterAtributo {
   atributo             Atributo?             @relation(fields: [valor], references: [valor])
   valor                String?
   order                Int?
-  slugCategoryOrItem   String?               @db.VarChar(400)
   status               StatusFilterAtributo  @default(Ativo)
   imagefilteratributos ImageFilterAtributo[]
 
@@ -494,7 +493,6 @@ model FilterCategory {
   category            Category?             @relation(fields: [categoryName], references: [categoryName])
   categoryName        String?
   order               Int?
-  slugCategoryOrItem  String?               @db.VarChar(400)
   status              StatusFilterCategory  @default(Ativo)
   imageFilterCategory ImageFilterCategory[]
 

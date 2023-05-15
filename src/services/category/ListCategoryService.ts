@@ -14,7 +14,7 @@ class ListCategoryService {
             relationproductcategories: true,
             imagecategories: true
          }
-      })
+      });
 
       return category;
    }

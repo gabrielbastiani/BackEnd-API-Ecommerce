@@ -11,8 +11,6 @@ class CreateRelationProductCategoryController {
             nivel,
             relationId,
             order,
-            posicao,
-            slugPosicao,
             loja_id
         } = req.body;
 
@@ -26,8 +24,6 @@ class CreateRelationProductCategoryController {
             nivel,
             relationId,
             order,
-            posicao,
-            slugPosicao,
             loja_id
         });
 

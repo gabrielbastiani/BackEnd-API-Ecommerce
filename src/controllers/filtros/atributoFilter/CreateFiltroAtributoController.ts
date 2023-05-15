@@ -7,7 +7,6 @@ class CreateFiltroAtributoController {
             groupFilter_id,
             valor,
             order,
-            slugCategoryOrItem,
             loja_id
         } = req.body;
 
@@ -17,7 +16,6 @@ class CreateFiltroAtributoController {
             groupFilter_id,
             valor,
             order,
-            slugCategoryOrItem,
             loja_id
         });
 

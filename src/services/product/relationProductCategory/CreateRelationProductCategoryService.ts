@@ -8,22 +8,11 @@ interface RelationRequest {
     nivel: number;
     relationId: string;
     order: number;
-    posicao: string;
-    slugPosicao: string;
     loja_id: string;
 }
 
 class CreateRelationProductCategoryService {
-    async execute({ product_id, photoProduct_id, photoProduct_id1, category_id, nivel, relationId, order, posicao, loja_id }: RelationRequest) {
-
-        function removerAcentos(s: any) {
-            return s.normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, "")
-                .toLowerCase()
-                .replace(/ +/g, "-")
-                .replace(/-{2,}/g, "-")
-                .replace(/[/]/g, "-");
-        }
+    async execute({ product_id, photoProduct_id, photoProduct_id1, category_id, nivel, relationId, order, loja_id }: RelationRequest) {
 
         const categoryAlredyExist = await prismaClient.relationProductCategory.findFirst({
             where: {
@@ -45,8 +34,6 @@ class CreateRelationProductCategoryService {
                 nivel: nivel,
                 relationId: relationId,
                 order: Number(order),
-                posicao: posicao,
-                slugPosicao: removerAcentos(posicao),
                 loja_id: loja_id
             }
         });
