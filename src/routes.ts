@@ -325,6 +325,7 @@ import { FindUniqueAtributoFiltroController } from './controllers/filtros/atribu
 import { FindManyAtributoFiltroNameController } from './controllers/filtros/atributoFilter/FindManyAtributoFiltroNameController';
 import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
 import { FindSlugGroupFilterController } from './controllers/filtros/FindSlugGroupFilterController';
+import { FindAtributoFiltroController } from './controllers/filtros/atributoFilter/FindAtributoFiltroController';
 
 
 
@@ -556,6 +557,7 @@ router.put('/updateImageFilterAtributo', ADMINisAuthenticated, upload.single('fi
 router.delete('/deleteImageFiltroAtributo', ADMINisAuthenticated, new DeleteImageFiltroAtributoController().handle);
 router.get('/findUniqueFiltroAtributo', ADMINisAuthenticated, new FindUniqueAtributoFiltroController().handle);
 router.get('/findManyNameFiltroAtributo', ADMINisAuthenticated, new FindManyAtributoFiltroNameController().handle);
+router.get('/allAtributosGroups', new FindAtributoFiltroController().handle);
 
 // -- ROTAS FILTRO CATEGORIAS --
 router.post('/createFiltroCategory', ADMINisAuthenticated, new CreateFiltroCategoryController().handle);
