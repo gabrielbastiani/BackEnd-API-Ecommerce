@@ -8,7 +8,7 @@ class PhotoProductController {
         const photoProductService = new PhotoProductService();
 
         if (!req.file) {
-            throw new Error("error upload file")
+            throw new Error("error upload file");
         } else {
 
             const { originalname, filename: photo } = req.file;

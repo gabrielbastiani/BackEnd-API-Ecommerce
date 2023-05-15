@@ -2,8 +2,6 @@ import prismaClient from "../../../prisma";
 
 interface RelationRequest {
     product_id: string;
-    photoProduct_id: string;
-    photoProduct_id1: string;
     category_id: string;
     nivel: number;
     relationId: string;
@@ -12,7 +10,7 @@ interface RelationRequest {
 }
 
 class CreateRelationProductCategoryService {
-    async execute({ product_id, photoProduct_id, photoProduct_id1, category_id, nivel, relationId, order, loja_id }: RelationRequest) {
+    async execute({ product_id, category_id, nivel, relationId, order, loja_id }: RelationRequest) {
 
         const categoryAlredyExist = await prismaClient.relationProductCategory.findFirst({
             where: {
@@ -28,8 +26,6 @@ class CreateRelationProductCategoryService {
         const relation = await prismaClient.relationProductCategory.create({
             data: {
                 product_id: product_id,
-                photoProduct_id: photoProduct_id,
-                photoProduct_id1: photoProduct_id1,
                 category_id: category_id,
                 nivel: nivel,
                 relationId: relationId,

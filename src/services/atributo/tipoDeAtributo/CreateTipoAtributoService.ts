@@ -1,16 +1,13 @@
-import prismaClient from "../../prisma";
+import prismaClient from "../../../prisma";
 
 interface AtributoRequest {
-    valor: string;
     slug: string;
     tipo: string;
-    slugValor: string;
     loja_id: string;
 }
 
-class CreateAtributoService {
+class CreateTipoAtributoService {
     async execute({
-        valor,
         tipo,
         loja_id
     }: AtributoRequest) {
@@ -24,12 +21,10 @@ class CreateAtributoService {
                 .replace(/[/]/g, "-");
         }
 
-        const atributo = await prismaClient.atributo.create({
+        const atributo = await prismaClient.atributoTipo.create({
             data: {
                 tipo: tipo,
                 slug: removerAcentos(tipo),
-                valor: valor,
-                slugValor: removerAcentos(valor),
                 loja_id: loja_id
             }
         });
@@ -39,4 +34,4 @@ class CreateAtributoService {
     }
 }
 
-export { CreateAtributoService }
+export { CreateTipoAtributoService }

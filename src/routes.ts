@@ -157,7 +157,7 @@ import { ListExactProductNameController } from './controllers/product/ListExactP
 import { PageListAllAtributosController } from './controllers/atributo/PageListAllAtributosController';
 import { ListAtributosController } from './controllers/atributo/ListAtributosController';
 import { ListExactAtributoController } from './controllers/atributo/ListExactAtributoController';
-import { CreateAtributoController } from './controllers/atributo/CreateAtributoController';
+import { CreateTipoAtributoController } from './controllers/atributo/tipoDeAtributo/CreateTipoAtributoController';
 import { UpdateValorAtributoController } from './controllers/atributo/UpdateValorAtributoController';
 import { UpdateTipoAtributoController } from './controllers/atributo/UpdateTipoAtributoController';
 import { UpdateDisponibilidadeAtributoController } from './controllers/atributo/UpdateDisponibilidadeAtributoController';
@@ -324,6 +324,7 @@ import { FindManyAtributoFiltroNameController } from './controllers/filtros/atri
 import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
 import { FindSlugGroupFilterController } from './controllers/filtros/FindSlugGroupFilterController';
 import { FindAtributoFiltroController } from './controllers/filtros/atributoFilter/FindAtributoFiltroController';
+import { CreateValorAtributoController } from './controllers/atributo/valorDeAtributo/CreateValorAtributoController';
 
 
 
@@ -482,7 +483,9 @@ router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // ROTAS ATRIBUTOS --
-router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
+router.post('/createTypeAtributo', ADMINisAuthenticated, new CreateTipoAtributoController().handle);
+router.post('/createValorAtributo', ADMINisAuthenticated, new CreateValorAtributoController().handle);
+
 router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
 router.put('/updateStatusAtributo', ADMINisAuthenticated, new UpdateDisponibilidadeAtributoController().handle);

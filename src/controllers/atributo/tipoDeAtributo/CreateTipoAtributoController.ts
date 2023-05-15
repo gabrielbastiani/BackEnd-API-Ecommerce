@@ -1,23 +1,19 @@
 import { Request, Response } from "express";
-import { CreateAtributoService } from "../../services/atributo/CreateAtributoService";
+import { CreateTipoAtributoService } from "../../../services/atributo/tipoDeAtributo/CreateTipoAtributoService";
 
-class CreateAtributoController {
+class CreateTipoAtributoController {
     async handle(req: Request, res: Response) {
         const {
-            valor,
             slug,
             tipo,
-            slugValor,
             loja_id
         } = req.body;
 
-        const createAtributo = new CreateAtributoService();
+        const createAtributo = new CreateTipoAtributoService();
 
         const atributo = await createAtributo.execute({
-            valor,
             slug,
             tipo,
-            slugValor,
             loja_id
         });
 
@@ -26,4 +22,4 @@ class CreateAtributoController {
     }
 }
 
-export { CreateAtributoController }
+export { CreateTipoAtributoController }

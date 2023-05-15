@@ -16,10 +16,25 @@ class ProductsPageCategoriesService {
                 order: 'asc'
             },
             include: {
-                product: {include: {photoproducts: true, relationProductAtributos: {include: {atributo: true}}}},
+                product: {include: {photoproducts: true, relationProductAtributos: {include: {atributoTipo: {include: {atributoValores: true}}}}}},
                 category: true,
             }
         });
+
+        console.log(products.map((item) => {
+            return(
+                item.product.relationProductAtributos.map((tip) => {
+                    return(
+                        tip.tipo,
+                        tip.atributoTipo.atributoValores.map((val) => {
+                            return(
+                                val.valor
+                            )
+                        })
+                    )
+                })
+            )
+        }))
 
         return products;
 
