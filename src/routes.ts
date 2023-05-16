@@ -154,6 +154,7 @@ import { ListAllProductOfertaController } from './controllers/product/ListAllPro
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
 // ROTAS ATRIBUTOS --
+import { CreateAtributoController } from './controllers/atributo/CreateAtributoController';
 import { PageListAllAtributosController } from './controllers/atributo/PageListAllAtributosController';
 import { ListAtributosController } from './controllers/atributo/ListAtributosController';
 import { ListExactAtributoController } from './controllers/atributo/ListExactAtributoController';
@@ -323,7 +324,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-
+import { ListNotDistinctAtributosController } from './controllers/atributo/ListNotDistinctAtributosController';
 
 
 const router = Router();
@@ -481,8 +482,7 @@ router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // ROTAS ATRIBUTOS --
-
-
+router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
 router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
 router.put('/updateStatusAtributo', ADMINisAuthenticated, new UpdateDisponibilidadeAtributoController().handle);
@@ -490,7 +490,8 @@ router.get('/pageListAtributos', ADMINisAuthenticated, new PageListAllAtributosC
 router.get('/exactAtributo', ADMINisAuthenticated, new ListExactAtributoController().handle);
 router.post('/createImageAtributo', ADMINisAuthenticated, upload.single('file'), new CreateImageAtributoController().handle);
 router.put('/updateImageAtributo', ADMINisAuthenticated, upload.single('file'), new UpdateImageAtributoController().handle);
-router.get('/allAtributos', new ListAtributosController().handle);
+router.get('/allAtributos', ADMINisAuthenticated, new ListAtributosController().handle);
+router.get('/listAtributosNotDistinct', ADMINisAuthenticated, new ListNotDistinctAtributosController().handle);
 
 // ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
 router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);

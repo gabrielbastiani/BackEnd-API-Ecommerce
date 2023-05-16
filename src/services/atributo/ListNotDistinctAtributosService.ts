@@ -1,7 +1,7 @@
 import { StatusAtributo } from "@prisma/client";
 import prismaClient from "../../prisma";
 
-class ListAtributosService {
+class ListNotDistinctAtributosService {
    async execute() {
       const atributos = await prismaClient.atributo.findMany({
          where: {
@@ -11,12 +11,11 @@ class ListAtributosService {
             relationProductAtributos: true,
             imageatributos: true,
             filteratributos: true
-         },
-         distinct: ['tipo']
+         }
       })
 
       return atributos;
    }
 }
 
-export { ListAtributosService }
+export { ListNotDistinctAtributosService }
