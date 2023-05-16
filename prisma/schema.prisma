@@ -482,6 +482,7 @@ model FilterCategory {
   categoryName        String?
   order               Int?
   status              StatusFilterCategory  @default(Ativo)
+  
   imageFilterCategory ImageFilterCategory[]
 
   created_at DateTime? @default(now())

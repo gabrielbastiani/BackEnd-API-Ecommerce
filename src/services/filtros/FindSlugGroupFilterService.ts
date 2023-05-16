@@ -13,7 +13,7 @@ class FindSlugGroupFilterService {
                 status: StatusGroupFilter.Ativo
             },
             include: {
-                filteratributos: true,
+                filteratributos: {orderBy: {order: 'asc'}},
                 filtercategories: true
             }
         });
