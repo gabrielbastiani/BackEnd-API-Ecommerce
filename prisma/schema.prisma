@@ -311,14 +311,14 @@ model ImageGroupCategory {
 }
 
 model RelationProductCategory {
-  id               String        @id @default(uuid())
-  product          Product?      @relation(fields: [product_id], references: [id])
-  product_id       String?
-  category         Category      @relation(fields: [category_id], references: [id])
-  category_id      String
-  relationId       String?
-  nivel            Int?
-  order            Int?
+  id          String   @id @default(uuid())
+  product     Product? @relation(fields: [product_id], references: [id])
+  product_id  String?
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id String
+  relationId  String?
+  nivel       Int?
+  order       Int?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -388,14 +388,14 @@ model ImageAtributo {
 }
 
 model RelationProductAtributo {
-  id               String        @id @default(uuid())
-  atributo         Atributo?     @relation(fields: [atributo_id], references: [id])
-  atributo_id      String?
-  product          Product?      @relation(fields: [product_id], references: [id])
-  product_id       String?
-  variacao         Variacao?     @relation(fields: [variacao_id], references: [id])
-  variacao_id      String?
-  order            Int?
+  id          String    @id @default(uuid())
+  atributo    Atributo? @relation(fields: [atributo_id], references: [id])
+  atributo_id String?
+  product     Product?  @relation(fields: [product_id], references: [id])
+  product_id  String?
+  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
+  variacao_id String?
+  order       Int?
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
@@ -418,6 +418,7 @@ model GroupFilter {
   nameGroup          String?           @db.VarChar(385)
   atributoName       String?           @db.VarChar(385)
   slugCategoryOrItem String?           @db.VarChar(400)
+  order              Int?
   status             StatusGroupFilter @default(Ativo)
 
   filteratributos  FilterAtributo[]
