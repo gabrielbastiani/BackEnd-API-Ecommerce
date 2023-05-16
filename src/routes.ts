@@ -206,6 +206,9 @@ import { PageGroupsFiltersController } from './controllers/filtros/PageGroupsFil
 import { FindsNameGroupFilterController } from './controllers/filtros/FindsNameGroupFilterController';
 import { FindsAtributoNameFilterController } from './controllers/filtros/FindsAtributoNameFilterController';
 import { DeleteGroupFilterController } from './controllers/filtros/DeleteGroupFilterController';
+import { FindSlugGroupFilterController } from './controllers/filtros/FindSlugGroupFilterController';
+import { FindFirstGroupsController } from './controllers/filtros/FindFirstGroupsController';
+import { FindIDGroupFilterController } from './controllers/filtros/FindIDGroupFilterController';
 
 // -- ROTAS FILTRO ATRIBUTOS --
 import { CreateFiltroAtributoController } from './controllers/filtros/atributoFilter/CreateFiltroAtributoController';
@@ -217,6 +220,10 @@ import { UpdateAtributoOrderFiltroController } from './controllers/filtros/atrib
 import { UpdateAtributoStatusFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoStatusFiltroController';
 import { CreateImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/CreateImageFiltroAtributoController';
 import { UpdateImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/UpdateImageFiltroAtributoController';
+import { FindAtributoFiltroController } from './controllers/filtros/atributoFilter/FindAtributoFiltroController';
+import { FindUniqueAtributoFiltroController } from './controllers/filtros/atributoFilter/FindUniqueAtributoFiltroController';
+import { FindManyAtributoFiltroNameController } from './controllers/filtros/atributoFilter/FindManyAtributoFiltroNameController';
+import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
 
 // -- ROTAS FILTRO CATEGORIAS --
 import { CreateFiltroCategoryController } from './controllers/filtros/categoryFilter/CreateFiltroCategoryController';
@@ -316,14 +323,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
-
-import { FindFirstGroupsController } from './controllers/filtros/FindFirstGroupsController';
-import { FindIDGroupFilterController } from './controllers/filtros/FindIDGroupFilterController';
-import { FindUniqueAtributoFiltroController } from './controllers/filtros/atributoFilter/FindUniqueAtributoFiltroController';
-import { FindManyAtributoFiltroNameController } from './controllers/filtros/atributoFilter/FindManyAtributoFiltroNameController';
-import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
-import { FindSlugGroupFilterController } from './controllers/filtros/FindSlugGroupFilterController';
-import { FindAtributoFiltroController } from './controllers/filtros/atributoFilter/FindAtributoFiltroController';
 
 
 
