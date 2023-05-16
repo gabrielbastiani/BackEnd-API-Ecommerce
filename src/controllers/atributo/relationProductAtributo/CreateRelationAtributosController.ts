@@ -4,7 +4,7 @@ import { CreateRelationAtributosServices } from "../../../services/atributo/rela
 class CreateRelationAtributosController {
     async handle(req: Request, res: Response) {
         const {
-            tipo,
+            atributo_id,
             product_id,
             variacao_id,
             order,
@@ -14,7 +14,7 @@ class CreateRelationAtributosController {
         const createRelations = new CreateRelationAtributosServices();
 
         const relation = await createRelations.execute({
-            tipo,
+            atributo_id,
             product_id,
             variacao_id,
             order,

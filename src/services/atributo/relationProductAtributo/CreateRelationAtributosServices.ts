@@ -1,7 +1,7 @@
 import prismaClient from "../../../prisma";
 
 interface RelationRequest {
-    tipo: string;
+    atributo_id: string;
     product_id: string;
     variacao_id: string;
     order: number;
@@ -10,7 +10,7 @@ interface RelationRequest {
 
 class CreateRelationAtributosServices {
     async execute({
-        tipo,
+        atributo_id,
         product_id,
         variacao_id,
         order,
@@ -19,7 +19,7 @@ class CreateRelationAtributosServices {
 
         const relation = await prismaClient.relationProductAtributo.create({
             data: {
-                tipo: tipo,
+                atributo_id: atributo_id,
                 product_id: product_id,
                 variacao_id: variacao_id,
                 order: Number(order),

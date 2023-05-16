@@ -157,7 +157,6 @@ import { ListExactProductNameController } from './controllers/product/ListExactP
 import { PageListAllAtributosController } from './controllers/atributo/PageListAllAtributosController';
 import { ListAtributosController } from './controllers/atributo/ListAtributosController';
 import { ListExactAtributoController } from './controllers/atributo/ListExactAtributoController';
-import { CreateTipoAtributoController } from './controllers/atributo/tipoDeAtributo/CreateTipoAtributoController';
 import { UpdateValorAtributoController } from './controllers/atributo/UpdateValorAtributoController';
 import { UpdateTipoAtributoController } from './controllers/atributo/UpdateTipoAtributoController';
 import { UpdateDisponibilidadeAtributoController } from './controllers/atributo/UpdateDisponibilidadeAtributoController';
@@ -317,6 +316,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+
 import { FindFirstGroupsController } from './controllers/filtros/FindFirstGroupsController';
 import { FindIDGroupFilterController } from './controllers/filtros/FindIDGroupFilterController';
 import { FindUniqueAtributoFiltroController } from './controllers/filtros/atributoFilter/FindUniqueAtributoFiltroController';
@@ -324,7 +324,6 @@ import { FindManyAtributoFiltroNameController } from './controllers/filtros/atri
 import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
 import { FindSlugGroupFilterController } from './controllers/filtros/FindSlugGroupFilterController';
 import { FindAtributoFiltroController } from './controllers/filtros/atributoFilter/FindAtributoFiltroController';
-import { CreateValorAtributoController } from './controllers/atributo/valorDeAtributo/CreateValorAtributoController';
 
 
 
@@ -483,8 +482,7 @@ router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // ROTAS ATRIBUTOS --
-router.post('/createTypeAtributo', ADMINisAuthenticated, new CreateTipoAtributoController().handle);
-router.post('/createValorAtributo', ADMINisAuthenticated, new CreateValorAtributoController().handle);
+
 
 router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
