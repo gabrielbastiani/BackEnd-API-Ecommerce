@@ -25,16 +25,17 @@ class ProductsPageCategoriesService {
             return(
                 item.product.relationProductAtributos.map((tip) => {
                     return(
-                        tip.tipo,
-                        tip.atributoTipo.atributoValores.map((val) => {
-                            return(
-                                val.valor
-                            )
-                        })
+                        tip.atributoTipo.tipo
                     )
                 })
             )
         }))
+
+        /* console.log(products.map((val) => {
+            return(
+                val.product.relationProductAtributos.map
+            )
+        })) */
 
         return products;
 
