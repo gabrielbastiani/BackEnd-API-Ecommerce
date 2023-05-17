@@ -235,28 +235,6 @@ enum StatusOferta {
   Nao
 }
 
-model ProductAtribute {
-  id              String                @id @default(uuid())
-  product         Product               @relation(fields: [product_id], references: [id])
-  product_id      String
-  typeAtribute    TypeAtribute          @relation(fields: [typeAtribute_id], references: [id])
-  typeAtribute_id String
-  status          StatusProductAtribute @default(Ativo)
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  @@map("productatributes")
-}
-
-enum StatusProductAtribute {
-  Ativo
-  Inativo
-}
-
 model TypeAtribute {
   id     String             @id @default(uuid())
   tipo   String?            @db.VarChar(385)
@@ -296,6 +274,28 @@ model ValueAtribute {
 }
 
 enum StatusValueAtribute {
+  Ativo
+  Inativo
+}
+
+model ProductAtribute {
+  id              String                @id @default(uuid())
+  product         Product               @relation(fields: [product_id], references: [id])
+  product_id      String
+  typeAtribute    TypeAtribute          @relation(fields: [typeAtribute_id], references: [id])
+  typeAtribute_id String
+  status          StatusProductAtribute @default(Ativo)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("productatributes")
+}
+
+enum StatusProductAtribute {
   Ativo
   Inativo
 }
