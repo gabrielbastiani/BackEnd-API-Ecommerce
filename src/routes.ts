@@ -325,6 +325,8 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
 import { ListNotDistinctAtributosController } from './controllers/atributo/ListNotDistinctAtributosController';
+import { CreateTypeAtributoController } from './controllers/atributo/CreateTypeAtributoController';
+import { CreateValueAtributoController } from './controllers/atributo/CreateValueAtributoController';
 
 
 const router = Router();
@@ -482,6 +484,10 @@ router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // ROTAS ATRIBUTOS --
+router.post('/createTypeAtribute', ADMINisAuthenticated, new CreateTypeAtributoController().handle);
+router.post('/createValueAtribute', ADMINisAuthenticated, new CreateValueAtributoController().handle);
+
+
 router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
 router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);

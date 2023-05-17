@@ -103,7 +103,6 @@ model Loja {
   filterCategories          FilterCategory[]
   typeAtributes             TypeAtribute[]
   valueAtributes            ValueAtribute[]
-  productAtributes          ProductAtribute[]
 
   @@map("lojas")
 }
@@ -215,7 +214,8 @@ model Product {
   avaliacoes                Avaliacao[]
   item                      Item[]
   relationProductAtributos  RelationProductAtributo[]
-  productAtributes          ProductAtribute[]
+  typeAtributes             TypeAtribute[]
+  valueAtributes            ValueAtribute[]
 
   @@map("products")
 }
@@ -236,12 +236,14 @@ enum StatusOferta {
 }
 
 model TypeAtribute {
-  id     String             @id @default(uuid())
-  tipo   String?            @db.VarChar(385)
-  status StatusTypeAtribute @default(Ativo)
+  id         String             @id @default(uuid())
+  product    Product            @relation(fields: [product_id], references: [id])
+  product_id String
+  tipo       String             @db.VarChar(385)
+  order      Int?
+  status     StatusTypeAtribute @default(Ativo)
 
-  productAtributes ProductAtribute[]
-  valueAtributes   ValueAtribute[]
+  valueAtributes ValueAtribute[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -259,9 +261,12 @@ enum StatusTypeAtribute {
 
 model ValueAtribute {
   id              String              @id @default(uuid())
-  typeAtribute    TypeAtribute?       @relation(fields: [typeAtribute_id], references: [id])
-  typeAtribute_id String?
+  product         Product             @relation(fields: [product_id], references: [id])
+  product_id      String
+  typeAtribute    TypeAtribute        @relation(fields: [typeAtribute_id], references: [id])
+  typeAtribute_id String
   valor           String?             @db.VarChar(385)
+  order           Int?
   status          StatusValueAtribute @default(Ativo)
 
   created_at DateTime? @default(now())
@@ -274,28 +279,6 @@ model ValueAtribute {
 }
 
 enum StatusValueAtribute {
-  Ativo
-  Inativo
-}
-
-model ProductAtribute {
-  id              String                @id @default(uuid())
-  product         Product               @relation(fields: [product_id], references: [id])
-  product_id      String
-  typeAtribute    TypeAtribute          @relation(fields: [typeAtribute_id], references: [id])
-  typeAtribute_id String
-  status          StatusProductAtribute @default(Ativo)
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  @@map("productatributes")
-}
-
-enum StatusProductAtribute {
   Ativo
   Inativo
 }
