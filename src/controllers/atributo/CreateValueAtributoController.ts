@@ -6,7 +6,6 @@ class CreateValueAtributoController {
     const {
       order,
       typeAtribute_id,
-      product_id,
       valor,
       loja_id
     } = req.body;
@@ -15,7 +14,6 @@ class CreateValueAtributoController {
 
     const createAtributo = await atributos.execute({
       order,
-      product_id,
       typeAtribute_id,
       valor,
       loja_id
