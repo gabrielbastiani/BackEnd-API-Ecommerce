@@ -195,8 +195,6 @@ import { FindCategoryIDRelationController } from './controllers/product/relation
 import { DeleteRelationProductIDController } from './controllers/product/relationProductCategory/DeleteRelationProductIDController';
 import { DeleteRelationIDController } from './controllers/product/relationProductCategory/DeleteRelationIDController';
 import { ProductsPageCategoriesController } from './controllers/product/relationProductCategory/ProductsPageCategoriesController';
-import { UpdatePhotoProductCategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProductCategoryController';
-import { UpdatePhotoProduct1CategoryController } from './controllers/product/relationProductCategory/UpdatePhotoProduct1CategoryController';
 
 // -- ROTAS GRUPOS FILTROS --
 import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
@@ -521,8 +519,6 @@ router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProduct
 router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDProductCategoryController().handle);
 router.delete('/deleteNivelPrincipal', ADMINisAuthenticated, new DeleteRelationIDController().handle);
 router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelationProductIDController().handle);
-router.put('/updateFirstPhotoProduct', ADMINisAuthenticated, new UpdatePhotoProductCategoryController().handle);
-router.put('/updateFirstPhotoProduct1', ADMINisAuthenticated, new UpdatePhotoProduct1CategoryController().handle);
 router.get('/categorys', new FindCategorysRelationController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 

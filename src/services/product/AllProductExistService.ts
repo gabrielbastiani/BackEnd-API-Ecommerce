@@ -5,7 +5,7 @@ class AllProductExistService {
         const allProduct = await prismaClient.product.findMany({
             include: {
                 relationproductcategories: true,
-                relationProductAtributos: true,
+                relationproductatributos: true,
                 photoproducts: true,
                 variacoes: true,
                 photovariacoes: true,

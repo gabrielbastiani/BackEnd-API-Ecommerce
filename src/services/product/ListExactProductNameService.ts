@@ -12,7 +12,7 @@ class ListExactProductNameService {
             },
             include: {
                 relationproductcategories: true,
-                relationProductAtributos: true,
+                relationproductatributos: true,
                 loja: true,
                 photoproducts: true,
                 variacoes: true,

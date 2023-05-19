@@ -64,7 +64,7 @@ class CreateProductService {
             },
             include: {
                 relationproductcategories: true,
-                relationProductAtributos: true,
+                relationproductatributos: true,
                 photoproducts: true,
                 variacoes: true,
                 photovariacoes: true,
