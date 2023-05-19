@@ -323,6 +323,8 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { USERisAuthenticated } from './middlewares/USERisAuthenticated';
 import uploadConfig from './config/multer';
+import { FindManyCategoriesFiltroNameController } from './controllers/filtros/categoryFilter/FindManyCategoriesFiltroNameController';
+import { FindUniqueCategoryFiltroController } from './controllers/filtros/categoryFilter/FindUniqueCategoryFiltroController';
 
 
 const router = Router();
@@ -563,6 +565,8 @@ router.put('/updateFiltroOrderCategory', ADMINisAuthenticated, new UpdateCategor
 router.post('/createImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroCategoryController().handle);
 router.put('/updateImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroCategoryController().handle);
 router.delete('/deleteImageFiltroCategory', ADMINisAuthenticated, new DeleteImageFiltroCategoryController().handle);
+router.get('/findManyNameFiltroCategory', ADMINisAuthenticated, new FindManyCategoriesFiltroNameController().handle);
+router.get('/findUniqueFiltroCategory', ADMINisAuthenticated, new FindUniqueCategoryFiltroController().handle);
 
 // -- ROTAS AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated && USERisAuthenticated, new CreateAvaliacaoController().handle);
