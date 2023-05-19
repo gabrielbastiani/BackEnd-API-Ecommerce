@@ -1,18 +1,20 @@
 import prismaClient from "../../prisma";
 
 interface AtributoRequest {
+  product_id: string;
   valor: [];
-  typeAtribute_id: string;
+  tipo: string;
   order: number;
   loja_id: string;
 }
 
 class CreateValueAtributoService {
-  async execute({ typeAtribute_id, valor, order, loja_id }: AtributoRequest) {
+  async execute({ product_id, tipo, valor, order, loja_id }: AtributoRequest) {
     const atributo = await prismaClient.valueAtribute.create({
       data: {
+        product_id: product_id,
         order: order,
-        typeAtribute_id: typeAtribute_id,
+        tipo: tipo,
         valor: valor,
         loja_id: loja_id
       }

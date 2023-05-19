@@ -5,7 +5,6 @@ class CreateTypeAtributoController {
   async handle(req: Request, res: Response) {
     const {
       tipo,
-      product_id,
       order,
       loja_id
     } = req.body;
@@ -14,7 +13,6 @@ class CreateTypeAtributoController {
 
     const createAtributo = await atributos.execute({
       tipo,
-      product_id,
       order,
       loja_id
     });
