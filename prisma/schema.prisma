@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// criar uma migration: yarn prisma migrate dev
+// criar uma migration: yarn prisma migrate devloja
 
 model User {
   id                String  @id @default(uuid())
@@ -97,12 +97,10 @@ model Loja {
   pagamentos                Pagamento[]
   entregas                  Entrega[]
   pedidos                   Pedido[]
-  relationproductAtributos  RelationProductAtributo[]
+  relationproductatributos  RelationProductAtributo[]
   groupfilters              GroupFilter[]
-  filterAtributos           FilterAtributo[]
-  filterCategories          FilterCategory[]
-  typeAtributes             TypeAtribute[]
-  valueAtributes            ValueAtribute[]
+  filteratributos           FilterAtributo[]
+  filtercategories          FilterCategory[]
 
   @@map("lojas")
 }
@@ -141,13 +139,13 @@ model TextoInstitucional {
   description     String?                  @db.VarChar(95725)
   disponibilidade StatusTextoInstitucional @default(Disponivel)
 
+  imagesloja ImageLoja[]
+
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
-
-  imagesloja ImageLoja[]
 
   @@map("textosinstitucionais")
 }
@@ -213,8 +211,7 @@ model Product {
   photovariacoes            PhotoVariacao[]
   avaliacoes                Avaliacao[]
   item                      Item[]
-  relationProductAtributos  RelationProductAtributo[]
-  valueAtributes            ValueAtribute[]
+  relationproductatributos  RelationProductAtributo[]
 
   @@map("products")
 }
@@ -232,52 +229,6 @@ enum StatusDestaque {
 enum StatusOferta {
   Sim
   Nao
-}
-
-model TypeAtribute {
-  id     String             @id @default(uuid())
-  tipo   String?            @db.VarChar(385)
-  order  Int?
-  status StatusTypeAtribute @default(Ativo)
-
-  valueAtributes ValueAtribute[]
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  @@map("typeatributes")
-}
-
-enum StatusTypeAtribute {
-  Ativo
-  Inativo
-}
-
-model ValueAtribute {
-  id              String              @id @default(uuid())
-  product         Product?            @relation(fields: [product_id], references: [id])
-  product_id      String?
-  typeAtribute    TypeAtribute?       @relation(fields: [typeAtribute_id], references: [id])
-  typeAtribute_id String?
-  valor           Json?
-  order           Int?
-  status          StatusValueAtribute @default(Ativo)
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  @@map("valueatributes")
-}
-
-enum StatusValueAtribute {
-  Ativo
-  Inativo
 }
 
 model Category {
