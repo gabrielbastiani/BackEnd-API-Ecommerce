@@ -101,6 +101,8 @@ model Loja {
   groupfilters              GroupFilter[]
   filteratributos           FilterAtributo[]
   filtercategories          FilterCategory[]
+  typeatributes             TypeAtribute[]
+  valueatributes            ValueAtribute[]
 
   @@map("lojas")
 }
@@ -212,6 +214,7 @@ model Product {
   avaliacoes                Avaliacao[]
   item                      Item[]
   relationproductatributos  RelationProductAtributo[]
+  valueatributes            ValueAtribute[]
 
   @@map("products")
 }
@@ -229,6 +232,38 @@ enum StatusDestaque {
 enum StatusOferta {
   Sim
   Nao
+}
+
+model TypeAtribute {
+  id   String  @id @default(uuid())
+  tipo String? @unique @db.VarChar(300)
+
+  valueatributes ValueAtribute[]
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("typeatributes")
+}
+
+model ValueAtribute {
+  id           String        @id @default(uuid())
+  typeAtribute TypeAtribute? @relation(fields: [tipo], references: [tipo])
+  tipo         String?
+  product      Product?      @relation(fields: [product_id], references: [id])
+  product_id   String?
+  valor        String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("valueatributes")
 }
 
 model Category {

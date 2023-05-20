@@ -203,6 +203,30 @@ CREATE TABLE "products" (
 );
 
 -- CreateTable
+CREATE TABLE "typeatributes" (
+    "id" TEXT NOT NULL,
+    "tipo" VARCHAR(300),
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+    "loja_id" TEXT,
+
+    CONSTRAINT "typeatributes_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "valueatributes" (
+    "id" TEXT NOT NULL,
+    "tipo" TEXT,
+    "product_id" TEXT,
+    "valor" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+    "loja_id" TEXT,
+
+    CONSTRAINT "valueatributes_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "categories" (
     "id" TEXT NOT NULL,
     "categoryName" VARCHAR(300),
@@ -615,6 +639,9 @@ CREATE UNIQUE INDEX "users_cnpj_key" ON "users"("cnpj");
 CREATE UNIQUE INDEX "textosinstitucionais_slug_key" ON "textosinstitucionais"("slug");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "typeatributes_tipo_key" ON "typeatributes"("tipo");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "categories_categoryName_key" ON "categories"("categoryName");
 
 -- CreateIndex
@@ -634,6 +661,18 @@ ALTER TABLE "imagesloja" ADD CONSTRAINT "imagesloja_textoinstitucional_id_fkey" 
 
 -- AddForeignKey
 ALTER TABLE "products" ADD CONSTRAINT "products_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "typeatributes" ADD CONSTRAINT "typeatributes_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "valueatributes" ADD CONSTRAINT "valueatributes_tipo_fkey" FOREIGN KEY ("tipo") REFERENCES "typeatributes"("tipo") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "valueatributes" ADD CONSTRAINT "valueatributes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "valueatributes" ADD CONSTRAINT "valueatributes_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "categories" ADD CONSTRAINT "categories_loja_id_fkey" FOREIGN KEY ("loja_id") REFERENCES "lojas"("id") ON DELETE SET NULL ON UPDATE CASCADE;
