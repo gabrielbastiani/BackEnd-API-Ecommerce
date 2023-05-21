@@ -327,6 +327,7 @@ import { FindManyCategoriesFiltroNameController } from './controllers/filtros/ca
 import { FindUniqueCategoryFiltroController } from './controllers/filtros/categoryFilter/FindUniqueCategoryFiltroController';
 import { CreateTypeAtributoController } from './controllers/atributo/CreateTypeAtributoController';
 import { CreateValueAtributoController } from './controllers/atributo/CreateValueAtributoController';
+import { CreateProductAtributoController } from './controllers/atributo/CreateProductAtributoController';
 
 
 const router = Router();
@@ -486,6 +487,7 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 // ROTAS ATRIBUTOS --
 router.post('/createTypeAtribute', ADMINisAuthenticated, new CreateTypeAtributoController().handle);
 router.post('/createValueAtribute', ADMINisAuthenticated, new CreateValueAtributoController().handle);
+router.post('/createProductAtribute', ADMINisAuthenticated, new CreateProductAtributoController().handle);
 
 router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
 router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);

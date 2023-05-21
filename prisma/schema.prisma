@@ -103,6 +103,7 @@ model Loja {
   filtercategories          FilterCategory[]
   typeatributes             TypeAtribute[]
   valueatributes            ValueAtribute[]
+  atributesproduct          AtributesProduct[]
 
   @@map("lojas")
 }
@@ -215,6 +216,7 @@ model Product {
   item                      Item[]
   relationproductatributos  RelationProductAtributo[]
   valueatributes            ValueAtribute[]
+  atributesproduct          AtributesProduct[]
 
   @@map("products")
 }
@@ -238,7 +240,8 @@ model TypeAtribute {
   id   String  @id @default(uuid())
   tipo String? @unique @db.VarChar(300)
 
-  valueatributes ValueAtribute[]
+  valueatributes    ValueAtribute[]
+  atributesproducts AtributesProduct[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -264,6 +267,22 @@ model ValueAtribute {
   loja_id String?
 
   @@map("valueatributes")
+}
+
+model AtributesProduct {
+  id           String        @id @default(uuid())
+  product      Product?      @relation(fields: [product_id], references: [id])
+  product_id   String?
+  typeAtribute TypeAtribute? @relation(fields: [tipo], references: [tipo])
+  tipo         String?       @unique
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
+
+  @@map("atributesproducts")
 }
 
 model Category {
