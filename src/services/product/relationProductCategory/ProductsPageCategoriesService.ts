@@ -16,7 +16,7 @@ class ProductsPageCategoriesService {
                 order: 'asc'
             },
             include: {
-                product: {include: {photoproducts: true, atributesproduct: {distinct: 'typeAtribute_id'}, valueatributes: {distinct: 'valor'}}},
+                product: {include: {photoproducts: true}},
                 category: true,
             }
         });
