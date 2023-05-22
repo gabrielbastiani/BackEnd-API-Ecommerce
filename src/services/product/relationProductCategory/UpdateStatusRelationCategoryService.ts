@@ -17,26 +17,26 @@ class UpdateStatusRelationCategoryService {
       }
     })
 
-    if (active.status === "Inativo") {
+    if (active.status === "Indisponivel") {
       const isFalse = await prismaClient.relationProductCategory.update({
         where: {
           id: relationProductCategory_id
         },
         data: {
-          status: StatusRelation.Ativo
+          status: StatusRelation.Disponivel
         }
       })
 
       return isFalse;
     }
 
-    if (active.status === "Ativo") {
+    if (active.status === "Disponivel") {
       const isTrue = await prismaClient.relationProductCategory.update({
         where: {
           id: relationProductCategory_id
         },
         data: {
-          status: StatusRelation.Inativo
+          status: StatusRelation.Indisponivel
         }
       })
 

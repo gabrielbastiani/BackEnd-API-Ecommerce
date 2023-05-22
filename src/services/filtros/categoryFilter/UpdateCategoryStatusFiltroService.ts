@@ -16,26 +16,26 @@ class UpdateCategoryStatusFiltroService {
       }
     })
 
-    if (status.status === "Ativo") {
+    if (status.status === "Disponivel") {
       const isFalse = await prismaClient.filterCategory.update({
         where: {
           id: filterCategory_id
         },
         data: {
-          status: StatusFilterCategory.Inativo
+          status: StatusFilterCategory.Indisponivel
         }
       })
 
       return isFalse;
     }
 
-    if (status.status === "Inativo") {
+    if (status.status === "Indisponivel") {
       const isTrue = await prismaClient.filterCategory.update({
         where: {
           id: filterCategory_id
         },
         data: {
-          status: StatusFilterCategory.Ativo
+          status: StatusFilterCategory.Disponivel
         }
       })
 

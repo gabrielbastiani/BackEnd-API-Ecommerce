@@ -13,7 +13,7 @@ class ListPosicaoCategoriesGroupService {
             where: {
                 slugPosicao: slugPosicao,
                 slugCategory: slugCategory,
-                status: StatusGroup.Ativo
+                status: StatusGroup.Disponivel
             }
         });
 
@@ -22,7 +22,7 @@ class ListPosicaoCategoriesGroupService {
         const group = await prismaClient.groupCategoy.findMany({
             where: {
                 groupId: gruopId,
-                status: StatusGroup.Ativo
+                status: StatusGroup.Disponivel
             },
             orderBy: {
                 order: 'asc'

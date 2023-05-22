@@ -2,12 +2,12 @@ import prismaClient from "../../prisma";
 
 interface CategoryRequest{
    category_id: any;
-   categoryName: string;
+   name: string;
    slug: string;
 }
 
 class UpdateNameCategoryService {
-  async execute({ category_id, categoryName }: CategoryRequest){
+  async execute({ category_id, name }: CategoryRequest){
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -23,8 +23,8 @@ class UpdateNameCategoryService {
         id: String(category_id)
       },
       data:{
-        categoryName: categoryName,
-        slug: removerAcentos(categoryName)
+        name: name,
+        slug: removerAcentos(name)
       }
     })
 

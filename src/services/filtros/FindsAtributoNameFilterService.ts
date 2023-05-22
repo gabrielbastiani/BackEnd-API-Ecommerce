@@ -11,7 +11,7 @@ class FindsAtributoNameFilterService {
         const atributoNameFindFirst = await prismaClient.groupFilter.findFirst({
             where: {
                 atributoName: atributoName,
-                status: StatusGroupFilter.Ativo
+                status: StatusGroupFilter.Disponivel
             },
             include: {
                 filteratributos: true,
@@ -22,7 +22,7 @@ class FindsAtributoNameFilterService {
         const atributoNameFindMany = await prismaClient.groupFilter.findMany({
             where: {
                 atributoName: atributoName,
-                status: StatusGroupFilter.Ativo
+                status: StatusGroupFilter.Disponivel
             },
             include: {
                 filteratributos: true,

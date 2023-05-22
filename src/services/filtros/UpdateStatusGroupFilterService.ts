@@ -16,26 +16,26 @@ class UpdateStatusGroupFilterService {
       }
     })
 
-    if (status.status === "Ativo") {
+    if (status.status === "Disponivel") {
       const isFalse = await prismaClient.groupFilter.update({
         where: {
           id: groupFilter_id
         },
         data: {
-          status: StatusGroupFilter.Inativo
+          status: StatusGroupFilter.Indisponivel
         }
       })
 
       return isFalse;
     }
 
-    if (status.status === "Inativo") {
+    if (status.status === "Indisponivel") {
       const isTrue = await prismaClient.groupFilter.update({
         where: {
           id: groupFilter_id
         },
         data: {
-          status: StatusGroupFilter.Ativo
+          status: StatusGroupFilter.Disponivel
         }
       })
 

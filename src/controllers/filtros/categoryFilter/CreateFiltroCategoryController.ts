@@ -5,7 +5,7 @@ class CreateFiltroCategoryController {
     async handle(req: Request, res: Response) {
         const {
             groupFilter_id,
-            categoryName,
+            name,
             order,
             slugCategory,
             loja_id
@@ -15,7 +15,7 @@ class CreateFiltroCategoryController {
 
         const filtro = await filtrosCategory.execute({
             groupFilter_id,
-            categoryName,
+            name,
             order,
             slugCategory,
             loja_id

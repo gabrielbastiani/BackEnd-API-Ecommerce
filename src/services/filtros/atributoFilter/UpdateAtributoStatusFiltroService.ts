@@ -16,26 +16,26 @@ class UpdateAtributoStatusFiltroService {
       }
     })
 
-    if (status.status === "Ativo") {
+    if (status.status === "Disponivel") {
       const isFalse = await prismaClient.filterAtributo.update({
         where: {
           id: filterAtributo_id
         },
         data: {
-          status: StatusFilterAtributo.Inativo
+          status: StatusFilterAtributo.Indisponivel
         }
       })
 
       return isFalse;
     }
 
-    if (status.status === "Inativo") {
+    if (status.status === "Indisponivel") {
       const isTrue = await prismaClient.filterAtributo.update({
         where: {
           id: filterAtributo_id
         },
         data: {
-          status: StatusFilterAtributo.Ativo
+          status: StatusFilterAtributo.Disponivel
         }
       })
 

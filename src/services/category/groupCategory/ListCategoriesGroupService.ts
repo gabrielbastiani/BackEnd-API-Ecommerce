@@ -10,7 +10,7 @@ class ListCategoriesGroupService {
         const groupCategories = await prismaClient.groupCategoy.findMany({
             where: {
                 groupId: groupId,
-                status: StatusGroup.Ativo,
+                status: StatusGroup.Disponivel,
             },
             orderBy: {
                 order: 'asc'

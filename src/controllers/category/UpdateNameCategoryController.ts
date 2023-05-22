@@ -5,13 +5,13 @@ class UpdateNameCategoryController {
   async handle(req: Request, res: Response) {
     const category_id = req.query.category_id;
 
-    const { categoryName, slug } = req.body;
+    const { name, slug } = req.body;
 
     const updateCategory = new UpdateNameCategoryService();
 
     const category = await updateCategory.execute({
       category_id,
-      categoryName,
+      name,
       slug
     });
 

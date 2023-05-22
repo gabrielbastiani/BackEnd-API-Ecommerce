@@ -10,7 +10,7 @@ class FindSlugGroupFilterService {
         const atributoFindMany = await prismaClient.groupFilter.findMany({
             where: {
                 slugCategory: slugCategory,
-                status: StatusGroupFilter.Ativo
+                status: StatusGroupFilter.Disponivel
             },
             include: {
                 filteratributos: {orderBy: {order: 'asc'}},

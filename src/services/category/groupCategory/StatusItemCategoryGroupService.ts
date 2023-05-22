@@ -16,26 +16,26 @@ class StatusItemCategoryGroupService {
       }
     })
 
-    if (status.status === "Ativo") {
+    if (status.status === "Disponivel") {
       const isFalse = await prismaClient.groupCategoy.update({
         where: {
           id: groupCategoy_id
         },
         data: {
-          status: StatusGroup.Inativo
+          status: StatusGroup.Indisponivel
         }
       })
 
       return isFalse;
     }
 
-    if (status.status === "Inativo") {
+    if (status.status === "Indisponivel") {
       const isTrue = await prismaClient.groupCategoy.update({
         where: {
           id: groupCategoy_id
         },
         data: {
-          status: StatusGroup.Ativo
+          status: StatusGroup.Disponivel
         }
       })
 

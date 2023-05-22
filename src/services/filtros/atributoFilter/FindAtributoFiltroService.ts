@@ -10,7 +10,7 @@ class FindAtributoFiltroService {
         const filtroAtributos = await prismaClient.filterAtributo.findMany({
             where: {
                 groupFilter_id: groupFilter_id,
-                status: StatusFilterAtributo.Ativo 
+                status: StatusFilterAtributo.Disponivel 
             },
             orderBy: {
                 order: 'asc'
