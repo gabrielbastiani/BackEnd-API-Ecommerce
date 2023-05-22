@@ -5,13 +5,13 @@ class UpdateSlugGrupoController {
     async handle(req: Request, res: Response) {
         const groupCategoy_id = req.query.groupCategoy_id as string;
 
-        const { slugCategoryOrItem } = req.body;
+        const { slugCategory } = req.body;
 
         const slugUpdate = new UpdateSlugGrupoService();
 
         const slugs = await slugUpdate.execute({
             groupCategoy_id,
-            slugCategoryOrItem
+            slugCategory
         });
 
         return res.json(slugs);

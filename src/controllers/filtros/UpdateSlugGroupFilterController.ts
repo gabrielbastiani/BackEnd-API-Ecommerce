@@ -5,13 +5,13 @@ class UpdateSlugGroupFilterController {
     async handle(req: Request, res: Response) {
         const groupFilter_id = req.query.groupFilter_id as string;
 
-        const { slugCategoryOrItem } = req.body;
+        const { slugCategory } = req.body;
 
         const updateSlug = new UpdateSlugGroupFilterService();
 
         const group = await updateSlug.execute({
             groupFilter_id,
-            slugCategoryOrItem,
+            slugCategory,
         });
 
         return res.json(group);

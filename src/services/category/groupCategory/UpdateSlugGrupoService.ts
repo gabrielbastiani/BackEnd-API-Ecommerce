@@ -2,17 +2,17 @@ import prismaClient from "../../../prisma";
 
 interface GroupRequest {
   groupCategoy_id: string;
-  slugCategoryOrItem: string;
+  slugCategory: string;
 }
 
 class UpdateSlugGrupoService {
-  async execute({ groupCategoy_id, slugCategoryOrItem }: GroupRequest) {
+  async execute({ groupCategoy_id, slugCategory }: GroupRequest) {
     const updateSlug = await prismaClient.groupCategoy.update({
       where: {
         id: groupCategoy_id
       },
       data: {
-        slugCategoryOrItem: slugCategoryOrItem,
+        slugCategory: slugCategory,
       }
     });
 

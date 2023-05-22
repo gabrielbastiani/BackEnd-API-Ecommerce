@@ -3,12 +3,12 @@ import { FindSlugGroupFilterService } from "../../services/filtros/FindSlugGroup
 
 class FindSlugGroupFilterController {
   async handle(req: Request, res: Response) {
-    const slugCategoryOrItem = req.query.slugCategoryOrItem as string;
+    const slugCategory = req.query.slugCategory as string;
 
     const group = new FindSlugGroupFilterService();
 
     const filter = await group.execute({
-      slugCategoryOrItem,
+      slugCategory,
     });
 
     return res.json(filter);

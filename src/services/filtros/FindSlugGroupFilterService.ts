@@ -2,14 +2,14 @@ import { StatusGroupFilter } from '@prisma/client';
 import prismaClient from '../../prisma';
 
 interface GroupRequest {
-    slugCategoryOrItem: string;
+    slugCategory: string;
 }
 
 class FindSlugGroupFilterService {
-    async execute({ slugCategoryOrItem }: GroupRequest) {
+    async execute({ slugCategory }: GroupRequest) {
         const atributoFindMany = await prismaClient.groupFilter.findMany({
             where: {
-                slugCategoryOrItem: slugCategoryOrItem,
+                slugCategory: slugCategory,
                 status: StatusGroupFilter.Ativo
             },
             include: {

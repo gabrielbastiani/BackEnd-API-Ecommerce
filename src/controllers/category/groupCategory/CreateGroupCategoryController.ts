@@ -6,7 +6,7 @@ class CreateGroupCategoryController {
         const {
             nameGroup,
             itemName,
-            slugCategoryOrItem,
+            slugCategory,
             category_id,
             nivel,
             groupId,
@@ -21,7 +21,7 @@ class CreateGroupCategoryController {
         const relationGroup = await createGroup.execute({
             nameGroup,
             itemName,
-            slugCategoryOrItem,
+            slugCategory,
             category_id,
             nivel,
             groupId,

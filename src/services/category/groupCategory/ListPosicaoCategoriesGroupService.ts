@@ -3,16 +3,16 @@ import prismaClient from "../../../prisma";
 
 interface GroupRequest {
     slugPosicao: any;
-    slugCategoryOrItem: any;
+    slugCategory: any;
 }
 
 class ListPosicaoCategoriesGroupService {
-    async execute({ slugPosicao, slugCategoryOrItem }: GroupRequest) {
+    async execute({ slugPosicao, slugCategory }: GroupRequest) {
 
         const ids = await prismaClient.groupCategoy.findFirst({
             where: {
                 slugPosicao: slugPosicao,
-                slugCategoryOrItem: slugCategoryOrItem,
+                slugCategory: slugCategory,
                 status: StatusGroup.Ativo
             }
         });

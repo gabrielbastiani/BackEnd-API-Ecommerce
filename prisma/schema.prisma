@@ -88,7 +88,6 @@ model Loja {
   groupcategories           GroupCategoy[]
   products                  Product[]
   variacoes                 Variacao[]
-  atributos                 Atributo[]
   relationproductcategories RelationProductCategory[]
   avaliacoes                Avaliacao[]
   newsletters               Newsletter[]
@@ -97,12 +96,11 @@ model Loja {
   pagamentos                Pagamento[]
   entregas                  Entrega[]
   pedidos                   Pedido[]
-  relationproductatributos  RelationProductAtributo[]
   groupfilters              GroupFilter[]
   filteratributos           FilterAtributo[]
   filtercategories          FilterCategory[]
-  typeatributes             TypeAtribute[]
   valueatributes            ValueAtribute[]
+  TypeAtribute              TypeAtribute[]
 
   @@map("lojas")
 }
@@ -158,15 +156,14 @@ enum StatusTextoInstitucional {
 }
 
 model ImageLoja {
-  id              String           @id @default(uuid())
-  titleImage      String?          @db.VarChar(425)
-  image           String?
-  order           Int?
-  posicao         String?          @db.VarChar(300)
-  slugPosicao     String?          @db.VarChar(325)
-  disponibilidade StatusImagemLoja @default(Disponivel)
-  someImage       Boolean          @default(false)
-
+  id                    String              @id @default(uuid())
+  titleImage            String?             @db.VarChar(425)
+  image                 String?
+  order                 Int?
+  posicao               String?             @db.VarChar(300)
+  slugPosicao           String?             @db.VarChar(325)
+  disponibilidade       StatusImagemLoja    @default(Disponivel)
+  someImage             Boolean             @default(false)
   textoInstitucional    TextoInstitucional? @relation(fields: [textoinstitucional_id], references: [id])
   textoinstitucional_id String?
 
@@ -201,20 +198,19 @@ model Product {
   produtoDestaque     StatusDestaque @default(Nao)
   produtoOferta       StatusOferta   @default(Nao)
 
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
   relationproductcategories RelationProductCategory[]
   photoproducts             PhotoProduct[]
   variacoes                 Variacao[]
   photovariacoes            PhotoVariacao[]
   avaliacoes                Avaliacao[]
   item                      Item[]
-  relationproductatributos  RelationProductAtributo[]
   valueatributes            ValueAtribute[]
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   @@map("products")
 }
@@ -235,10 +231,13 @@ enum StatusOferta {
 }
 
 model TypeAtribute {
-  id   String  @id @default(uuid())
-  tipo String? @unique @db.VarChar(300)
+  id     String             @id @default(uuid())
+  tipo   String?            @unique @db.VarChar(300)
+  slug   String?            @db.VarChar(300)
+  status StatusTypeAtribute @default(Disponivel)
 
-  valueatributes    ValueAtribute[]
+  valueatributes ValueAtribute[]
+  groupfilters   GroupFilter[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -249,13 +248,24 @@ model TypeAtribute {
   @@map("typeatributes")
 }
 
+enum StatusTypeAtribute {
+  Disponivel
+  Indisponivel
+}
+
 model ValueAtribute {
-  id           String        @id @default(uuid())
-  typeAtribute TypeAtribute? @relation(fields: [tipo], references: [tipo])
+  id           String              @id @default(uuid())
+  typeAtribute TypeAtribute?       @relation(fields: [tipo], references: [tipo])
   tipo         String?
-  product      Product?      @relation(fields: [product_id], references: [id])
+  slugType     String?             @db.VarChar(300)
+  product      Product?            @relation(fields: [product_id], references: [id])
   product_id   String?
   valor        String?
+  slugValor    String?             @db.VarChar(300)
+  status       StatusValueAtribute @default(Disponivel)
+
+  imageatributos  ImageAtributo[]
+  filteratributos FilterAtributo[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -266,22 +276,39 @@ model ValueAtribute {
   @@map("valueatributes")
 }
 
+enum StatusValueAtribute {
+  Disponivel
+  Indisponivel
+}
+
+model ImageAtributo {
+  id               String         @id @default(uuid())
+  imageAtributo    String?
+  valueAtribute    ValueAtribute? @relation(fields: [valueAtribute_id], references: [id])
+  valueAtribute_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("imageatributos")
+}
+
 model Category {
   id              String         @id @default(uuid())
   categoryName    String?        @unique @db.VarChar(300)
   slug            String?        @db.VarChar(300)
   disponibilidade StatusCategory @default(Disponivel)
 
+  imagecategories           ImageCategory[]
+  groupcategories           GroupCategoy[]
+  relationproductcategories RelationProductCategory[]
+  filtercategories          FilterCategory[]
+
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
-
-  imagecategories           ImageCategory[]
-  groupcategories           GroupCategoy[]
-  relationproductcategories RelationProductCategory[]
-  filtercategory            FilterCategory[]
 
   @@map("categories")
 }
@@ -304,26 +331,26 @@ model ImageCategory {
 }
 
 model GroupCategoy {
-  id                 String      @id @default(uuid())
-  nameGroup          String?     @db.VarChar(385)
-  itemName           String?     @db.VarChar(385)
-  slugCategoryOrItem String?     @db.VarChar(400)
-  posicao            String?     @db.VarChar(300)
-  slugPosicao        String?     @db.VarChar(325)
-  order              Int?
-  nivel              Int?
-  groupId            String?
-  category           Category?   @relation(fields: [category_id], references: [id])
-  category_id        String?
-  status             StatusGroup @default(Ativo)
+  id           String      @id @default(uuid())
+  nameGroup    String?     @db.VarChar(385)
+  itemName     String?     @db.VarChar(385)
+  slugCategory String?     @db.VarChar(400)
+  posicao      String?     @db.VarChar(300)
+  slugPosicao  String?     @db.VarChar(325)
+  order        Int?
+  nivel        Int?
+  groupId      String?
+  category     Category?   @relation(fields: [categoryName], references: [categoryName])
+  categoryName String?
+  status       StatusGroup @default(Ativo)
+
+  imagegroupcategories ImageGroupCategory[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
-
-  imagegroupcategories ImageGroupCategory[]
 
   @@map("groupcategories")
 }
@@ -346,22 +373,22 @@ model ImageGroupCategory {
 }
 
 model RelationProductCategory {
-  id          String   @id @default(uuid())
-  product     Product? @relation(fields: [product_id], references: [id])
-  product_id  String?
-  category    Category @relation(fields: [category_id], references: [id])
-  category_id String
-  relationId  String?
-  nivel       Int?
-  order       Int?
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
+  id           String   @id @default(uuid())
+  product      Product? @relation(fields: [product_id], references: [id])
+  product_id   String?
+  category     Category @relation(fields: [categoryName], references: [categoryName])
+  categoryName String
+  relationId   String?
+  nivel        Int?
+  order        Int?
 
   status StatusRelation @default(Ativo)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   @@map("relationproductcategories")
 }
@@ -384,86 +411,23 @@ model PhotoProduct {
   @@map("photoproducts")
 }
 
-model Atributo {
-  id              String         @id @default(uuid())
-  tipo            String?        @db.VarChar(325)
-  slug            String?        @db.VarChar(325)
-  valor           String?        @unique @db.VarChar(325)
-  slugValor       String?        @db.VarChar(325)
-  disponibilidade StatusAtributo @default(Disponivel)
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  relationProductAtributos RelationProductAtributo[]
-  imageatributos           ImageAtributo[]
-  filteratributos          FilterAtributo[]
-
-  @@map("atributos")
-}
-
-enum StatusAtributo {
-  Disponivel
-  Indisponivel
-}
-
-model ImageAtributo {
-  id            String    @id @default(uuid())
-  imageAtributo String?
-  atributo      Atributo? @relation(fields: [atributo_id], references: [id])
-  atributo_id   String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  @@map("imageatributos")
-}
-
-model RelationProductAtributo {
-  id          String    @id @default(uuid())
-  atributo    Atributo? @relation(fields: [atributo_id], references: [id])
-  atributo_id String?
-  product     Product?  @relation(fields: [product_id], references: [id])
-  product_id  String?
-  variacao    Variacao? @relation(fields: [variacao_id], references: [id])
-  variacao_id String?
-  order       Int?
-
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
-  status StatusRelationAtributo @default(Ativo)
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  @@map("relationproductatributos")
-}
-
-enum StatusRelationAtributo {
-  Ativo
-  Inativo
-}
-
 model GroupFilter {
-  id                 String            @id @default(uuid())
-  nameGroup          String?           @db.VarChar(385)
-  atributoName       String?           @db.VarChar(385)
-  slugCategoryOrItem String?           @db.VarChar(400)
-  order              Int?
-  status             StatusGroupFilter @default(Ativo)
+  id           String            @id @default(uuid())
+  nameGroup    String?           @db.VarChar(385)
+  typeAtribute TypeAtribute?     @relation(fields: [tipo], references: [tipo])
+  tipo         String?
+  slugCategory String?           @db.VarChar(400)
+  order        Int?
+  status       StatusGroupFilter @default(Ativo)
 
   filteratributos  FilterAtributo[]
   filtercategories FilterCategory[]
 
-  loja    Loja?   @relation(fields: [loja_id], references: [id])
-  loja_id String?
-
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
+
+  loja    Loja?   @relation(fields: [loja_id], references: [id])
+  loja_id String?
 
   @@map("groupfilters")
 }
@@ -474,13 +438,14 @@ enum StatusGroupFilter {
 }
 
 model FilterAtributo {
-  id                   String                @id @default(uuid())
-  groupFilter          GroupFilter?          @relation(fields: [groupFilter_id], references: [id])
-  groupFilter_id       String?
-  atributo             Atributo?             @relation(fields: [valor], references: [valor])
-  valor                String?
-  order                Int?
-  status               StatusFilterAtributo  @default(Ativo)
+  id               String               @id @default(uuid())
+  groupFilter      GroupFilter?         @relation(fields: [groupFilter_id], references: [id])
+  groupFilter_id   String?
+  valueAtribute    ValueAtribute?       @relation(fields: [valueAtribute_id], references: [id])
+  valueAtribute_id String?
+  order            Int?
+  status           StatusFilterAtributo @default(Ativo)
+
   imagefilteratributos ImageFilterAtributo[]
 
   created_at DateTime? @default(now())
@@ -604,9 +569,8 @@ model Variacao {
   loja    Loja?   @relation(fields: [loja_id], references: [id])
   loja_id String?
 
-  photovariacoes           PhotoVariacao[]
-  relationProductAtributos RelationProductAtributo[]
-  item                     Item[]
+  photovariacoes PhotoVariacao[]
+  item           Item[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -638,8 +602,6 @@ model PhotoVariacao {
   id            String    @id @default(uuid())
   photoVariacao String
   order         Int?
-  posicao       String?   @db.VarChar(325)
-  slugPosicao   String?   @db.VarChar(325)
   variacao      Variacao? @relation(fields: [variacao_id], references: [id])
   variacao_id   String?
   product       Product?  @relation(fields: [product_id], references: [id])

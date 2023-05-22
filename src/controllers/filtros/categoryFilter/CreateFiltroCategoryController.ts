@@ -7,7 +7,7 @@ class CreateFiltroCategoryController {
             groupFilter_id,
             categoryName,
             order,
-            slugCategoryOrItem,
+            slugCategory,
             loja_id
         } = req.body;
 
@@ -17,7 +17,7 @@ class CreateFiltroCategoryController {
             groupFilter_id,
             categoryName,
             order,
-            slugCategoryOrItem,
+            slugCategory,
             loja_id
         });
 

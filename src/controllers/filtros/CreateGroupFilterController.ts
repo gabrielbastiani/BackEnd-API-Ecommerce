@@ -6,7 +6,7 @@ class CreateGroupFilterController {
         const {
             nameGroup,
             atributoName,
-            slugCategoryOrItem,
+            slugCategory,
             loja_id
         } = req.body;
 
@@ -15,7 +15,7 @@ class CreateGroupFilterController {
         const group = await createGroup.execute({
             nameGroup,
             atributoName,
-            slugCategoryOrItem,
+            slugCategory,
             loja_id
         });
 

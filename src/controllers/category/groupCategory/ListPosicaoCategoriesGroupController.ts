@@ -5,11 +5,11 @@ class ListPosicaoCategoriesGroupController {
   async handle(req: Request, res: Response) {
     const group = new ListPosicaoCategoriesGroupService();
 
-    const { slugPosicao, slugCategoryOrItem } = req.query;
+    const { slugPosicao, slugCategory } = req.query;
 
     const categoiesGroup = await group.execute({
       slugPosicao,
-      slugCategoryOrItem
+      slugCategory
     });
 
     return res.json(categoiesGroup);
