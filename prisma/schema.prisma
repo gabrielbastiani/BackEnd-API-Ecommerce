@@ -264,6 +264,19 @@ enum StatusOffer {
   Nao
 }
 
+model PhotoProduct {
+  id         String   @id @default(uuid())
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
+  photo      String?
+  order      Int?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("photoproducts")
+}
+
 model DescriptionProduct {
   id     String             @id @default(uuid())
   product Product @relation(fields: [product_id], references: [id])
@@ -354,12 +367,26 @@ model ImageAttribute {
   @@map("imageattributes")
 }
 
-model Variant {
+model Variation {
   id               String         @id @default(uuid())
   product      Product?            @relation(fields: [product_id], references: [id])
   product_id   String?
-  name String?     @db.VarChar(385)
-  sku String?     @db.VarChar(385)
+  name         String         @db.VarChar(325)
+  slug                String?        @db.VarChar(325)
+  price               Int?
+  promotion            Int?
+  sku                 String?        @db.VarChar(25)
+  stock         Int?
+  weight                  String?                @db.VarChar(15)
+  width               String?                @db.VarChar(15)
+  height                String?                @db.VarChar(15)
+  depth          String?                @db.VarChar(15)
+  amount              Int?
+  reservedAmount     Int?
+  freeShipping             StatusFreeShipping            @default(Sim)
+  status     StatusProduct  @default(Disponivel)
+  emphasis     StatusEmphasis @default(Nao)
+  offer       StatusOffer   @default(Nao)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -367,7 +394,20 @@ model Variant {
   store    Store?   @relation(fields: [store_id], references: [id])
   store_id String?
 
-  @@map("variants")
+  @@map("variations")
+}
+
+model PhotoVariation {
+  id            String    @id @default(uuid())
+  variation      Variation? @relation(fields: [variation_id], references: [id])
+  variation_id   String?
+  photo String
+  order         Int?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("photovariations")
 }
 
 model GroupCategoy {
@@ -435,19 +475,6 @@ model RelationProductCategory {
 enum StatusRelation {
   Disponivel
   Indisponivel
-}
-
-model PhotoProduct {
-  id         String   @id @default(uuid())
-  photo      String?
-  order      Int?
-  product    Product? @relation(fields: [product_id], references: [id])
-  product_id String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  @@map("photoproducts")
 }
 
 model GroupFilter {
