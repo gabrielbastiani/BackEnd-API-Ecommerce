@@ -37,7 +37,7 @@ class RequestPasswordRecovery {
       }
     })
 
-    if(user.role === "USER") {
+    if(user.role === "CUSTOMER") {
       await transporter.sendMail({
         from: 'Loja virtual Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
         to: user.email,

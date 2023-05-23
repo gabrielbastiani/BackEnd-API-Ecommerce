@@ -16,7 +16,7 @@ class AuthUserService {
       where: {
         email: email,
         authenticated: true,
-        role: Role.USER
+        role: Role.CUSTOMER
       }
     })
 

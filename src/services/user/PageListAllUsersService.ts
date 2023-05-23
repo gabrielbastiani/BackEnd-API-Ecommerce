@@ -8,7 +8,7 @@ class PageListAllUsersService {
 
         const allUsers = await prismaClient.user.findMany({
             where: {
-                role: Role.USER
+                role: Role.CUSTOMER
             },
             orderBy: {
                 created_at: 'desc'
@@ -22,7 +22,7 @@ class PageListAllUsersService {
 
         const users = await prismaClient.user.findMany({
             where: {
-                role: Role.USER
+                role: Role.CUSTOMER
             },
             include: {
                 loja: true,

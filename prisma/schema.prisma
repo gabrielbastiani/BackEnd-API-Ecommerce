@@ -20,7 +20,8 @@ model Admin {
   email    String  @unique @db.VarChar(180)
   password String
 
-  authenticated Boolean @default(false)
+  authenticated Boolean   @default(false)
+  role          RoleAdmin @default(ADMIN)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -31,6 +32,11 @@ model Admin {
   @@map("admins")
 }
 
+enum RoleAdmin {
+  EMPLOYEE
+  ADMIN
+}
+
 model PasswordRecoveryAdmin {
   id    String @id @default(uuid())
   email String
@@ -39,25 +45,26 @@ model PasswordRecoveryAdmin {
 }
 
 model Customer {
-  id                String  @id @default(uuid())
-  name              String  @db.VarChar(295)
-  slug              String? @db.VarChar(295)
-  email             String  @unique @db.VarChar(180)
+  id                String       @id @default(uuid())
+  name              String       @db.VarChar(295)
+  slug              String?      @db.VarChar(295)
+  email             String       @unique @db.VarChar(180)
   password          String
-  cpf               String? @unique @db.VarChar(125)
-  cnpj              String? @unique @db.VarChar(125)
-  stateRegistration String  @db.VarChar(155)
-  phone             String? @db.VarChar(135)
-  dateOfBirth       String? @db.VarChar(125)
-  gender            String? @db.VarChar(135)
-  newslatter        String? @db.VarChar(7)
-  address           String? @db.VarChar(405)
-  number            String? @db.VarChar(125)
-  complement        String? @db.VarChar(155)
-  neighborhood      String? @db.VarChar(185)
-  cep               String? @db.VarChar(125)
-  city              String? @db.VarChar(185)
-  state             String? @db.VarChar(185)
+  cpf               String?      @unique @db.VarChar(125)
+  cnpj              String?      @unique @db.VarChar(125)
+  stateRegistration String       @db.VarChar(155)
+  phone             String?      @db.VarChar(135)
+  dateOfBirth       String?      @db.VarChar(125)
+  gender            String?      @db.VarChar(135)
+  newslatter        String?      @db.VarChar(7)
+  address           String?      @db.VarChar(405)
+  number            String?      @db.VarChar(125)
+  complement        String?      @db.VarChar(155)
+  neighborhood      String?      @db.VarChar(185)
+  cep               String?      @db.VarChar(125)
+  city              String?      @db.VarChar(185)
+  state             String?      @db.VarChar(185)
+  role              RoleCustomer @default(CUSTOMER)
 
   deliveryaddresscustomers DeliveryAddressCustomer[]
   avalietions              Avalietion[]
@@ -69,6 +76,10 @@ model Customer {
   store_id String?
 
   @@map("customers")
+}
+
+enum RoleCustomer {
+  CUSTOMER
 }
 
 model DeliveryAddressCustomer {

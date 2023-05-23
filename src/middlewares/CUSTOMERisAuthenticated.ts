@@ -5,7 +5,7 @@ interface Payload {
   sub: string;
 }
 
-export async function USERisAuthenticated (
+export async function CUSTOMERisAuthenticated (
   req: Request,
   res: Response,
   next: NextFunction
