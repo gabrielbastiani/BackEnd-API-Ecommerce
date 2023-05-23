@@ -53,6 +53,7 @@ model Customer {
   state             String? @db.VarChar(185)
 
   deliveryaddresscustomers DeliveryAddressCustomer[]
+  avalietions              Avalietion[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -112,13 +113,26 @@ model Store {
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
-  admins                   Admin[]
-  customers                Customer[]
-  deliveryaddresscustomers DeliveryAddressCustomer[]
-  socialmedias             SocialMedia[]
-  institutionaltexts       InstitutionalText[]
-  categories               Category[]
-  products                 Product[]
+  admins                    Admin[]
+  customers                 Customer[]
+  deliveryaddresscustomers  DeliveryAddressCustomer[]
+  socialmedias              SocialMedia[]
+  institutionaltexts        InstitutionalText[]
+  categories                Category[]
+  products                  Product[]
+  imagestores               ImageStore[]
+  tags                      Tag[]
+  typeattributes            TypeAttribute[]
+  relationattributeproducts RelationAttributeProduct[]
+  variations                Variation[]
+  groupcategories           GroupCategoy[]
+  relationproductcategories RelationProductCategory[]
+  groupfilters              GroupFilter[]
+  filterattributes          FilterAttribute[]
+  filtercategories          FilterCategory[]
+  avalietions               Avalietion[]
+  newsletters               Newsletter[]
+  contacts                  Contact[]
 
   @@map("stores")
 }
@@ -195,8 +209,13 @@ model Category {
   id          String         @id @default(uuid())
   name        String?        @unique @db.VarChar(300)
   slug        String?        @db.VarChar(300)
-  description String?        @db.VarChar(95725)
+  description String?        @db.VarChar(15725)
   status      StatusCategory @default(Disponivel)
+
+  imagecategories           ImageCategory[]
+  groupcategories           GroupCategoy[]
+  relationproductcategories RelationProductCategory[]
+  filtercategories          FilterCategory[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -243,6 +262,14 @@ model Product {
   emphasis       StatusEmphasis     @default(Nao)
   offer          StatusOffer        @default(Nao)
 
+  photoproducts             PhotoProduct[]
+  descriptionproducts       DescriptionProduct[]
+  tags                      Tag[]
+  relationattributeproducts RelationAttributeProduct[]
+  variations                Variation[]
+  relationproductcategories RelationProductCategory[]
+  avalietions               Avalietion[]
+
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
@@ -273,9 +300,9 @@ enum StatusOffer {
 }
 
 model PhotoProduct {
-  id         String   @id @default(uuid())
-  product    Product? @relation(fields: [product_id], references: [id])
-  product_id String?
+  id         String  @id @default(uuid())
+  product    Product @relation(fields: [product_id], references: [id])
+  product_id String
   image      String?
   order      Int?
 
@@ -288,7 +315,8 @@ model PhotoProduct {
 model DescriptionProduct {
   id          String                   @id @default(uuid())
   product     Product                  @relation(fields: [product_id], references: [id])
-  product_id  String?
+  product_id  String
+  title       String?                  @db.VarChar(500)
   description String?
   status      StatusDescriptionProduct @default(Disponivel)
 
@@ -306,7 +334,7 @@ enum StatusDescriptionProduct {
 model Tag {
   id         String  @id @default(uuid())
   product    Product @relation(fields: [product_id], references: [id])
-  product_id String?
+  product_id String
   tagName    String? @db.VarChar(100)
 
   created_at DateTime? @default(now())
@@ -322,6 +350,9 @@ model TypeAttribute {
   id   String  @id @default(uuid())
   type String? @unique @db.VarChar(300)
   slug String? @db.VarChar(300)
+
+  relationattributeproducts RelationAttributeProduct[]
+  groupFilters              GroupFilter[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -344,6 +375,8 @@ model RelationAttributeProduct {
   order         Int?
   status        StatusRelationAttributeProduct @default(Disponivel)
 
+  imageattributes ImageAttribute[]
+
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
@@ -359,10 +392,10 @@ enum StatusRelationAttributeProduct {
 }
 
 model ImageAttribute {
-  id                          String                    @id @default(uuid())
+  id                          String                   @id @default(uuid())
+  relationAttributeProduct    RelationAttributeProduct @relation(fields: [relationAttributeProduct_id], references: [id])
+  relationAttributeProduct_id String
   image                       String?
-  relationAttributeProduct    RelationAttributeProduct? @relation(fields: [relationAttributeProduct_id], references: [id])
-  relationAttributeProduct_id String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -372,11 +405,13 @@ model ImageAttribute {
 
 model Variation {
   id         String          @id @default(uuid())
-  product    Product?        @relation(fields: [product_id], references: [id])
-  product_id String?
+  product    Product         @relation(fields: [product_id], references: [id])
+  product_id String
   name       String          @db.VarChar(325)
   slug       String?         @db.VarChar(325)
   status     StatusVariation @default(Disponivel)
+
+  photovariations PhotoVariation[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -393,10 +428,10 @@ enum StatusVariation {
 }
 
 model PhotoVariation {
-  id           String     @id @default(uuid())
-  variation    Variation? @relation(fields: [variation_id], references: [id])
-  variation_id String?
-  image        String
+  id           String    @id @default(uuid())
+  variation    Variation @relation(fields: [variation_id], references: [id])
+  variation_id String
+  image        String?
   order        Int?
 
   created_at DateTime? @default(now())
@@ -451,7 +486,7 @@ model RelationProductCategory {
   id         String         @id @default(uuid())
   product    Product?       @relation(fields: [product_id], references: [id])
   product_id String?
-  category   Category       @relation(fields: [name], references: [name])
+  category   Category?      @relation(fields: [name], references: [name])
   name       String?
   relationId String?
   nivel      Int?
@@ -482,6 +517,7 @@ model GroupFilter {
   status        StatusGroupFilter @default(Disponivel)
 
   filtercategories FilterCategory[]
+  filterattributes FilterAttribute[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -498,13 +534,12 @@ enum StatusGroupFilter {
 }
 
 model FilterAttribute {
-  id                String                @id @default(uuid())
-  groupFilter       GroupFilter?          @relation(fields: [groupFilter_id], references: [id])
-  groupFilter_id    String?
-  valueAttribute    ValueAttribute?       @relation(fields: [valueAttribute_id], references: [id])
-  valueAttribute_id String?
-  order             Int?
-  status            StatusFilterAttribute @default(Disponivel)
+  id             String                @id @default(uuid())
+  groupFilter    GroupFilter?          @relation(fields: [groupFilter_id], references: [id])
+  groupFilter_id String?
+  value          String?               @db.VarChar(80)
+  order          Int?
+  status         StatusFilterAttribute @default(Disponivel)
 
   imagefilteratributos ImageFilterAtributo[]
 
