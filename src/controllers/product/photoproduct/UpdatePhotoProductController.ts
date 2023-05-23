@@ -14,16 +14,16 @@ class UpdatePhotoProductController {
       photoProduts_id
     })
 
-    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + photoProducts.photo);
+    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + photoProducts.image);
 
     if (!req.file) {
       throw new Error('error upload file')
     } else {
-      const { originalname, filename: photo } = req.file;
+      const { originalname, filename: image } = req.file;
 
       const updatePhotoProduct = await updatePhoto.execute({
         photoProduts_id,
-        photo,
+        image,
       });
 
       return res.json([photoProducts, updatePhotoProduct]);

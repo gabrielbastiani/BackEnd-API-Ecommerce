@@ -2,17 +2,17 @@ import prismaClient from "../../../prisma";
 
 interface PhotoRequest {
    photoProduts_id: any;
-   photo: string;
+   image: string;
 }
 
 class UpdatePhotoProductService {
-  async execute({ photoProduts_id, photo }: PhotoRequest){
+  async execute({ photoProduts_id, image }: PhotoRequest){
     const updatePhoto = await prismaClient.photoProduct.update({
       where:{
         id: String(photoProduts_id)
       },
       data:{
-        photo: photo,
+        image: image,
       }
     })
 

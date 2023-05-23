@@ -6,13 +6,13 @@ interface VariacaoRequest {
 
 class AllPhotosProductlVariacaoService {
     async execute({ photoVariacao_id }: VariacaoRequest) {
-        const photo = await prismaClient.photoVariacao.deleteMany({
+        const image = await prismaClient.photoVariacao.deleteMany({
             where: {
                 id: photoVariacao_id
             }
         })
 
-        return photo;
+        return image;
 
     }
 

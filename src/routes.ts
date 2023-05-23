@@ -456,7 +456,7 @@ router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
 
 // -- ROTAS PRODUTOS --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
-router.post('/photo', ADMINisAuthenticated, upload.single('file'), new PhotoProductController().handle);
+router.post('/image', ADMINisAuthenticated, upload.single('file'), new PhotoProductController().handle);
 router.put('/updateAllDateProduct', ADMINisAuthenticated, new UpdateAllDateProductController().handle);
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
 router.delete('/deleteAllPhotos', ADMINisAuthenticated, new DeleteAllPhotoProductController().handle);

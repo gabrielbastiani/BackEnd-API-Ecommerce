@@ -11,10 +11,10 @@ class PhotoProductController {
             throw new Error("error upload file");
         } else {
 
-            const { originalname, filename: photo } = req.file;
+            const { originalname, filename: image } = req.file;
 
             const photoProducts = await photoProductService.execute({
-                photo,
+                image,
                 product_id,
                 order
             })

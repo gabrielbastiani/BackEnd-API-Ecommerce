@@ -11,7 +11,7 @@ class DeleteAllPhotoProductController {
     const arrayPhotos = await photosGet.execute({ product_id });
 
     arrayPhotos.forEach(element => {
-      fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + element.photo);
+      fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + element.image);
     });
 
     const deletePhotoProductService = new DeleteAllPhotoProductService();

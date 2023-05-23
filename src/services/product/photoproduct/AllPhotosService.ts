@@ -12,7 +12,7 @@ class AllPhotosService {
             },
             select: {
                 id: true,
-                photo: true
+                image: true
             },
             orderBy: {
                 order: 'asc'

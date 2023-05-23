@@ -14,7 +14,7 @@ class DeletePhotoProductController {
       photoProduts_id
     })
 
-    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + productPhoto.photo);
+    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + productPhoto.image);
 
     const deletePhotoProduct = await updatePhoto.execute({
       photoProduts_id,
