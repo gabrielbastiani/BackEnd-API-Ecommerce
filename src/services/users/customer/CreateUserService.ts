@@ -5,7 +5,7 @@ require('dotenv/config');
 
 
 interface UserRequest {
-  nameComplete: string;
+  name: string;
   slug: string;
   email: string;
   password: string;
@@ -29,7 +29,7 @@ interface UserRequest {
 
 class CreateUserService {
   async execute({
-    nameComplete,
+    name,
     slug,
     email,
     password,
@@ -79,8 +79,8 @@ class CreateUserService {
 
     const user = await prismaClient.user.create({
       data: {
-        nameComplete: nameComplete,
-        slug: removerAcentos(nameComplete),
+        name: name,
+        slug: removerAcentos(name),
         email: email,
         password: passwordHash,
         cpf: cpf,
@@ -126,7 +126,7 @@ class CreateUserService {
             
             <article>
                 <p>Olá!</p>
-                <p>Um cliente de nome <b>${user.nameComplete}</b> se cadastrou na Loja Virtual.</p>
+                <p>Um cliente de nome <b>${user.name}</b> se cadastrou na Loja Virtual.</p>
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">

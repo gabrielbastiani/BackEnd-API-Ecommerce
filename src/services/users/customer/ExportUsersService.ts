@@ -9,7 +9,7 @@ class ExportUsersService {
         const findAll = await prismaClient.user.findMany({
             select: {
                 id: true,
-                nameComplete: true,
+                name: true,
                 email: true,
                 cpf: true,
                 cnpj: true,
@@ -69,7 +69,7 @@ class ExportUsersService {
             rowIndex++; //incrementa o contador para ir para a próxima linha
         });
 
-        return wb.write('ListagemDeClientesDaLojaVirtual.xlsx');
+        return wb.write('ListagemUsuariosAdmins.xlsx');
 
     }
 }

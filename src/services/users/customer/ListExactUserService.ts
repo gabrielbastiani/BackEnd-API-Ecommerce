@@ -1,10 +1,10 @@
 import prismaClient from '../../prisma';
 
 class ListExactUserService {
-    async execute({ user_id }) {
+    async execute({ admin_id }) {
         const exactUser = await prismaClient.user.findUnique({
             where: {
-                id: String(user_id)
+                id: String(admin_id)
             },
             include: {
                 pagamentos: true,

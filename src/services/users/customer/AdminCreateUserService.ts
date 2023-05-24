@@ -6,7 +6,7 @@ require('dotenv/config');
 
 
 interface UserRequest {
-  nameComplete: string;
+  name: string;
   slug: string;
   email: string;
   password: string;
@@ -14,7 +14,7 @@ interface UserRequest {
 }
 
 class AdminCreateUserService {
-  async execute({ nameComplete, slug, email, password, store_id }: UserRequest) {
+  async execute({ name, slug, email, password, store_id }: UserRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -45,8 +45,8 @@ class AdminCreateUserService {
 
     const user = await prismaClient.user.create({
       data: {
-        nameComplete: nameComplete,
-        slug: removerAcentos(nameComplete),
+        name: name,
+        slug: removerAcentos(name),
         email: email,
         password: passwordHash,
         role: Role.ADMIN,
@@ -78,7 +78,7 @@ class AdminCreateUserService {
             
             <article>
                 <p>Olá!</p>
-                <p>O usuario, ${user.nameComplete} está se cadastrando como administrador na loja virtual!</p>
+                <p>O usuario, ${user.name} está se cadastrando como administrador na loja virtual!</p>
                 <p><a href="http://localhost:3000/authenticated/${user.id}">CLIQUE AQUI</a>, para confirmar a conta junto a Loja Virtual desse novo usuario.</p>
             </article>
             

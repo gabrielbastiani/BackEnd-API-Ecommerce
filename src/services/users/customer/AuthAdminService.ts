@@ -34,7 +34,7 @@ class AuthAdminService {
     // Se deu tudo certo vamos gerar o token pro usuario.
     const token = sign(
       {
-        name: user.nameComplete,
+        name: user.name,
         email: user.email,
       },
       process.env.JWT_SECRET,
@@ -46,7 +46,7 @@ class AuthAdminService {
 
     return {
       id: user.id,
-      name: user.nameComplete,
+      name: user.name,
       email: user.email,
       role: user.role,
       token: token,

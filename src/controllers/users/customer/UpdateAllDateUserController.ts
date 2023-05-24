@@ -3,7 +3,7 @@ import { UpdateAllDateUserService } from '../../services/user/UpdateAllDateUserS
 
 class UpdateAllDateUserController {
   async handle(req: Request, res: Response) {
-    const user_id = req.query.user_id;
+    const admin_id = req.query.admin_id;
 
     const {
       email,
@@ -26,7 +26,7 @@ class UpdateAllDateUserController {
     const updateAllDateUser = new UpdateAllDateUserService();
 
     const updateUser = await updateAllDateUser.execute({
-      user_id,
+      admin_id,
       email,
       cpf,
       cnpj,

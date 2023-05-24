@@ -1,15 +1,15 @@
 import prismaClient from "../../prisma";
 
 interface UserRequest{
-  user_id: string;
+  admin_id: string;
 }
 
 class ActiveOrDesactiveUserService {
-  async execute({ user_id }: UserRequest) {
+  async execute({ admin_id }: UserRequest) {
 
     const activeTrue = await prismaClient.user.findUnique({
       where: {
-        id: user_id
+        id: admin_id
       },
       select: {
         authenticated: true
@@ -18,7 +18,7 @@ class ActiveOrDesactiveUserService {
 
     const activeFalse = await prismaClient.user.findUnique({
       where: {
-        id: user_id
+        id: admin_id
       },
       select: {
         authenticated: true
@@ -28,7 +28,7 @@ class ActiveOrDesactiveUserService {
     if(activeTrue.authenticated === true){
       const isFalse = await prismaClient.user.update({
         where:{
-          id: user_id
+          id: admin_id
         },
         data: {
           authenticated: false
@@ -41,7 +41,7 @@ class ActiveOrDesactiveUserService {
     if(activeFalse.authenticated === false){
       const isTrue = await prismaClient.user.update({
         where:{
-          id: user_id
+          id: admin_id
         },
         data: {
           authenticated: true

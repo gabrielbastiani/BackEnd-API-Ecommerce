@@ -3,13 +3,13 @@ import { UserUpdateNewslatterService } from '../../services/user/UserUpdateNewsl
 
 class UpdateUserNewslatterController {
   async handle(req: Request, res: Response){
-    const user_id = req.query.user_id as string;
+    const admin_id = req.query.admin_id as string;
     const { newslatter } = req.body;
 
     const userUpdateNewslatterService = new UserUpdateNewslatterService();
 
     const user = await userUpdateNewslatterService.execute({
-      user_id,
+      admin_id,
       newslatter
     });
 

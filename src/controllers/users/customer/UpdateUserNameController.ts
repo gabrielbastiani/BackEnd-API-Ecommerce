@@ -3,15 +3,15 @@ import { UserUpdateNameService } from '../../services/user/UserUpdateNameService
 
 class UpdateUserNameController {
   async handle(req: Request, res: Response) {
-    const user_id = req.query.user_id;
+    const admin_id = req.query.admin_id;
 
-    const { nameComplete, slug } = req.body;
+    const { name, slug } = req.body;
 
     const updateUserService = new UserUpdateNameService();
 
     const userUpdated = await updateUserService.execute({
-      user_id,
-      nameComplete,
+      admin_id,
+      name,
       slug
     });
     return res.json(userUpdated);

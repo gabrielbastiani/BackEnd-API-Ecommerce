@@ -3,12 +3,12 @@ import { AdminCreateUserService } from '../../services/user/AdminCreateUserServi
 
 class AdminCreateUserController {
   async handle(req: Request, res: Response) {
-    const { nameComplete, slug, email, password, store_id } = req.body;
+    const { name, slug, email, password, store_id } = req.body;
 
     const adminCreateUserService = new AdminCreateUserService();
 
     const user = await adminCreateUserService.execute({
-      nameComplete,
+      name,
       slug,
       email,
       password,

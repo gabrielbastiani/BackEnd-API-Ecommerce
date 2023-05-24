@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface UserRequest {
-    user_id: any;
+    admin_id: any;
     email: string;
     cpf: string;
     cnpj: string;
@@ -21,7 +21,7 @@ interface UserRequest {
 
 class UpdateAllDateUserService {
     async execute({
-        user_id,
+        admin_id,
         email,
         cpf,
         cnpj,
@@ -41,7 +41,7 @@ class UpdateAllDateUserService {
 
         const updateUserDate = await prismaClient.user.update({
             where: {
-                id: String(user_id),
+                id: String(admin_id),
             },
             data: {
                 email: email,

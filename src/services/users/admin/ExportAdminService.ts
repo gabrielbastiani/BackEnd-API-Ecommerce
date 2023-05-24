@@ -1,29 +1,15 @@
-import prismaClient from '../../prisma';
+import prismaClient from '../../../prisma';
 import xl from 'excel4node';
 const wb = new xl.Workbook();
 const ws = wb.addWorksheet('lista-de-usuarios');
 
-
-class ExportUsersService {
+class ExportAdminService {
     async execute() {
-        const findAll = await prismaClient.user.findMany({
+        const findAll = await prismaClient.admin.findMany({
             select: {
                 id: true,
-                nameComplete: true,
+                name: true,
                 email: true,
-                cpf: true,
-                cnpj: true,
-                inscricaoEstadual: true,
-                phone: true,
-                dataNascimento: true,
-                genero: true,
-                local: true,
-                numero: true,
-                bairro: true,
-                complemento: true,
-                CEP: true,
-                cidade: true,
-                estado: true,
                 store_id: true,
             },
             orderBy: {
@@ -33,21 +19,8 @@ class ExportUsersService {
 
         const headingColumnNames = [
             "ID do Usuario",
-            "Nome Completo",
+            "Nome",
             "Email",
-            "CPF",
-            "CNPJ",
-            "Inscrição Estadual",
-            "Telefone",
-            "Data de Nascimento",
-            "Genero",
-            "Rua",
-            "Numero",
-            "Bairro",
-            "Complemento",
-            "CEP",
-            "Cidade",
-            "Estado",
             "ID Loja",
         ]
 
@@ -69,9 +42,9 @@ class ExportUsersService {
             rowIndex++; //incrementa o contador para ir para a próxima linha
         });
 
-        return wb.write('ListagemDeClientesDaLojaVirtual.xlsx');
+        return wb.write('ListagemUsuariosAdmins.xlsx');
 
     }
 }
 
-export { ExportUsersService }
+export { ExportAdminService }

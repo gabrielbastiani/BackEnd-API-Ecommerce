@@ -2,8 +2,23 @@ import { Router } from 'express';
 import multer from 'multer';
 
 // -- ROTAS ADMIN --
-
-
+import { ActiveOrDesactiveAdminController } from './controllers/users/admin/ActiveOrDesactiveAdminController';
+import { AdminCreateController } from './controllers/users/admin/AdminCreateController';
+import { AdminRoleController } from './controllers/users/admin/AdminRoleController';
+import { AuthAdminController } from './controllers/users/admin/AuthAdminController';
+import { AuthenticatedEmailAdminController } from './controllers/users/admin/AuthenticatedEmailAdminController';
+import { DeleteAdminOrEmployeController } from './controllers/users/admin/DeleteAdminOrEmployeController';
+import { DetailAdminController } from './controllers/users/admin/DetailAdminController';
+import { ExportAdminController } from './controllers/users/admin/ExportAdminController';
+import { ListExactAdminNameController } from './controllers/users/admin/ListExactAdminNameController';
+import { ListExactAdminController } from './controllers/users/admin/ListExactAdminController';
+import { PageListAllAdminsController } from './controllers/users/admin/PageListAllAdminsController';
+import { UpdateAllDateAdminController } from './controllers/users/admin/UpdateAllDateAdminController';
+import { AdminRoleEmployeeController } from './controllers/users/admin/AdminRoleEmployeeController';
+import { AdminUpdateNameController } from './controllers/users/admin/AdminUpdateNameController';
+import { DeleteAdminPasswordRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/DeleteAdminPasswordRecoveryIDController';
+import { FindAdminRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/FindAdminRecoveryIDController';
+import { RecoveryPasswordAdminController } from './controllers/users/admin/PasswordRecoveryAdmin/RecoveryPasswordAdminController';
 
 // -- ROTAS CUSTOMER --
 
@@ -284,13 +299,6 @@ import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 
 
-import { ActiveOrDesactiveAdminController } from './controllers/users/admin/ActiveOrDesactiveAdminController';
-import { AdminCreateController } from './controllers/users/admin/AdminCreateController';
-import { AdminRoleController } from './controllers/users/admin/AdminRoleController';
-import { AuthAdminController } from './controllers/users/admin/AuthAdminController';
-import { AuthenticatedEmailAdminController } from './controllers/users/admin/AuthenticatedEmailAdminController';
-
-
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
 
@@ -303,11 +311,20 @@ router.post('/admin/createAdmin', new AdminCreateController().handle);
 router.put('/admin/updateRoleAdmin', ADMINisAuthenticated, new AdminRoleController().handle);
 router.post('/admin/session', new AuthAdminController().handle);
 router.put('/admin/authenticatedEmailAdmin', new AuthenticatedEmailAdminController().handle);
-/* router.get('/me', isAuthenticated, new DetailuserController().handle) */
+router.delete('/admin/deleteAdminUser', ADMINisAuthenticated, new DeleteAdminOrEmployeController().handle);
+router.get('/admin/me', ADMINisAuthenticated, new DetailAdminController().handle);
+router.get('/admin/exportAdmins', ADMINisAuthenticated, new ExportAdminController().handle);
+router.get('/admin/listExactAdminName', ADMINisAuthenticated, new ListExactAdminNameController().handle);
+router.get('/admin/listExactAdminID', ADMINisAuthenticated, new ListExactAdminController().handle);
+router.get('/admin/listForPageEmployes', ADMINisAuthenticated, new PageListAllAdminsController().handle);
+router.put('/admin/updateDateAdmin', ADMINisAuthenticated, new UpdateAllDateAdminController().handle);
+router.put('/admin/updateRoleEmployee', ADMINisAuthenticated, new AdminRoleEmployeeController().handle);
+router.put('/admin/updateNameAdminOrEmployee', ADMINisAuthenticated, new AdminUpdateNameController().handle);
+router.delete('/admin/deleteRecoveryIDAdmin', ADMINisAuthenticated, new DeleteAdminPasswordRecoveryIDController().handle);
+router.get('/admin/findFirstAdmin', ADMINisAuthenticated, new FindAdminRecoveryIDController().handle);
+router.put('/admin/recoverAdmin', new RecoveryPasswordAdminController().handle);
 
-
-
-// -- ROTAS CUSTOMER --
+// -- ROTAS CUSTOMERS --
 
 
 

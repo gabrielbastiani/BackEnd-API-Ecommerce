@@ -24,7 +24,7 @@ export async function isAuthenticated(
       process.env.JWT_SECRET
     ) as Payload;
 
-    req.user_id = sub;
+    req.customer_id = sub;
 
     return next();
 

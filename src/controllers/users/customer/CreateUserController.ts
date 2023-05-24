@@ -4,7 +4,7 @@ import { CreateUserService } from '../../services/user/CreateUserService'
 class CreateUserController {
     async handle(req: Request, res: Response) {
         const {
-            nameComplete,
+            name,
             slug,
             email,
             password,
@@ -29,7 +29,7 @@ class CreateUserController {
         const createUserService = new CreateUserService();
 
         const user = await createUserService.execute({
-            nameComplete,
+            name,
             slug,
             email,
             password,

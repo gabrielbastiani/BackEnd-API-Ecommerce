@@ -3,12 +3,12 @@ import { AuthenticatedEmailUserService } from '../../services/user/Authenticated
 
 class AuthenticatedEmailUserController{
   async handle(req: Request, res: Response){
-    const user_id = req.query.user_id as string;
+    const admin_id = req.query.admin_id as string;
 
     const authenticatedEmailUserService = new AuthenticatedEmailUserService();
 
     const user = await authenticatedEmailUserService.execute({
-      user_id
+      admin_id
     });
 
     return res.json(user);

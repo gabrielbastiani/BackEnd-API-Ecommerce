@@ -47,7 +47,7 @@ class RequestPasswordRecovery {
               </div>
               
               <article>
-                  <p>Olá, ${user.nameComplete}!</p>
+                  <p>Olá, ${user.name}!</p>
                   <p>Voce esqueceu a sua senha?</p>
                   <p><a href="http://localhost:3001/recover/${recovery.id}">CLIQUE AQUI</a>, para crair uma nova senha de acesso.</p>
                   <p>Você será redirecionado a uma página em nossa Loja virtual onde poderá cadastrar uma nova senha com segurança!</p>
@@ -71,7 +71,7 @@ class RequestPasswordRecovery {
             </div>
             
             <article>
-                <p>Olá, ${user.nameComplete}!</p>
+                <p>Olá, ${user.name}!</p>
                 <p>Voce esqueceu a sua senha?</p>
                 <p><a href="http://localhost:3000/recover/${recovery.id}">CLIQUE AQUI</a>, para crair uma nova senha de acesso.</p>
                 <p>Você será redirecionado a uma página em nossa Loja virtual onde poderá cadastrar uma nova senha com segurança!</p>

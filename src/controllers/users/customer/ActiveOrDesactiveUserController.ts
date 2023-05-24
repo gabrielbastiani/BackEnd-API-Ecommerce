@@ -3,12 +3,12 @@ import { ActiveOrDesactiveUserService } from '../../services/user/ActiveOrDesact
 
 class ActiveOrDesactiveUserController {
   async handle(req: Request, res: Response){
-    const user_id = req.query.user_id as string;
+    const admin_id = req.query.admin_id as string;
 
     const activeOrDesactiveUserService = new ActiveOrDesactiveUserService();
 
     const user = await activeOrDesactiveUserService.execute({
-      user_id
+      admin_id
     });
 
     return res.json(user);

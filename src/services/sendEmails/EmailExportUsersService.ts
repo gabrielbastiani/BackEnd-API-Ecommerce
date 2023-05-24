@@ -30,8 +30,8 @@ class EmailExportUsersService {
                       <h5>Loja Virtual Builder Seu Negocio Online</h5>
                   </div>`,
             attachments: [{
-                filename: 'ListagemDeClientesDaLojaVirtual.xlsx',
-                path: 'ListagemDeClientesDaLojaVirtual.xlsx'
+                filename: 'ListagemUsuariosAdmins.xlsx',
+                path: 'ListagemUsuariosAdmins.xlsx'
             }]
         });
 

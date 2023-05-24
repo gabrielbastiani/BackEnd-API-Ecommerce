@@ -1,13 +1,13 @@
 import prismaClient from '../../prisma';
 
 interface UserRequest {
-  user_id: any;
+  admin_id: any;
   slug: string;
-  nameComplete: string;
+  name: string;
 }
 
 class UserUpdateNameService {
-  async execute({ user_id, nameComplete }: UserRequest) {
+  async execute({ admin_id, name }: UserRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -20,11 +20,11 @@ class UserUpdateNameService {
 
     const userUpdated = await prismaClient.user.update({
       where: {
-        id: String(user_id),
+        id: String(admin_id),
       },
       data: {
-        nameComplete: nameComplete,
-        slug: removerAcentos(nameComplete)
+        name: name,
+        slug: removerAcentos(name)
       }
     })
 

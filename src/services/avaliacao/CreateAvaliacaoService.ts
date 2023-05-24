@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface AvaliacaoRequest {
-    user_id: string;
+    admin_id: string;
     description: string;
     pontuacao: string;
     status: string;
@@ -10,10 +10,10 @@ interface AvaliacaoRequest {
 }
 
 class CreateAvaliacaoService {
-    async execute({ user_id, description, pontuacao, product_id, store_id }: AvaliacaoRequest) {
+    async execute({ admin_id, description, pontuacao, product_id, store_id }: AvaliacaoRequest) {
         const avaliacao = await prismaClient.avaliacao.create({
             data: {
-                user_id: user_id,
+                admin_id: admin_id,
                 description: description,
                 pontuacao: pontuacao,
                 status: "Pendente",
