@@ -3,7 +3,7 @@ import { CreateContatoService } from '../../services/contatos/CreateContatoServi
 
 class CreateContatoController {
   async handle(req: Request, res: Response){
-    const { name, email, phone, empresa, setor, mensagem, loja_id } = req.body;
+    const { name, email, phone, empresa, setor, mensagem, store_id } = req.body;
 
     const createContato = new CreateContatoService();
 
@@ -14,7 +14,7 @@ class CreateContatoController {
       empresa,
       setor,
       mensagem,
-      loja_id
+      store_id
     });
 
     return res.json(contatos);

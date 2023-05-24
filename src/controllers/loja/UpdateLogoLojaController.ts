@@ -5,13 +5,13 @@ import fs from 'fs';
 
 class UpdateLogoLojaController {
   async handle(req: Request, res: Response) {
-    const loja_id = req.query.loja_id as string;
+    const store_id = req.query.store_id as string;
 
     const updateLogo = new UpdateLogoLojaService();
     const deleteLogo = new DeleteLogomarcaService();
 
     const logomarcaLoja = await deleteLogo.execute({
-      loja_id
+      store_id
     })
 
     fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + logomarcaLoja.logoLoja);
@@ -22,7 +22,7 @@ class UpdateLogoLojaController {
       const { originalname, filename: logoLoja } = req.file;
 
     const loja = await updateLogo.execute({
-      loja_id,
+      store_id,
       logoLoja,
     });
 

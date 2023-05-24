@@ -1,30 +1,12 @@
 import { Router } from 'express';
 import multer from 'multer';
 
+// -- ROTAS ADMIN --
+
+
 
 // -- ROTAS CUSTOMER --
-import { CreateUserController } from './controllers/user/CreateUserController';
-import { AdminRoleUserController } from './controllers/user/AdminRoleUserController';
-import { AdminCreateUserController } from './controllers/user/AdminCreateUserController';
-import { AuthAdminController } from './controllers/user/AuthAdminController';
-import { AuthUserController } from './controllers/user/AuthUserController';
-import { UpdateAllDateUserController } from './controllers/user/UpdateAllDateUserController';
-import { AuthenticatedEmailUserController } from './controllers/user/AuthenticatedEmailUserController';
-import { ActiveOrDesactiveUserController } from './controllers/user/ActiveOrDesactiveUserController';
-import { EmailPasswordController } from './controllers/user/PasswordRecovery/EmailPasswordController';
-import { EmailPasswordDashboardController } from './controllers/user/PasswordRecovery/EmailPasswordDashboardController';
-import { RecoveryPasswordController } from './controllers/user/PasswordRecovery/RecoveryPasswordController';
-import { FindRecoveryIDController } from './controllers/user/PasswordRecovery/FindRecoveryIDController';
-import { DeletePasswordRecoveryIDController } from './controllers/user/PasswordRecovery/DeletePasswordRecoveryIDController';
-import { DetailuserController } from './controllers/user/DetailUserController';
-import { DeleteUserController } from './controllers/user/DeleteUserController';
-import { UserRoleUserController } from './controllers/user/UserRoleUserController';
-import { PageListAllUsersController } from './controllers/user/PageListAllUsersController';
-import { ExportUsersController } from './controllers/user/ExportUsersController';
-import { UpdateUserNameController } from './controllers/user/UpdateUserNameController';
-import { UpdateUserNewslatterController } from './controllers/user/UpdateUserNewslatterController';
-import { ListExactUserController } from './controllers/user/ListExactUserController';
-import { ListExactUserNameController } from './controllers/user/ListExactUserNameController';
+
 
 // -- ROTAS LOJA --
 import { CreateLojaController } from './controllers/loja/CreateLojaController';
@@ -289,29 +271,6 @@ import { ListExactContatoController } from './controllers/contatos/ListExactCont
 import { PageListAllContatoController } from './controllers/contatos/PageListAllContatoController';
 import { ExportContatoController } from './controllers/contatos/ExportContatoController';
 
-// -- ROTAS ENVIAR PEDIDO --
-import { CreateCarrinhoController } from './controllers/pedido/carrinho/CreateCarrinhoController';
-import { CreateItemInCarrinhoController } from './controllers/pedido/carrinho/item/CreateItemInCarrinhoController';
-import { CreateCarrinhoSemFreteController } from './controllers/pedido/carrinho/CreateCarrinhoSemFreteController';
-import { CreatePedidoController } from './controllers/pedido/CreatePedidoController';
-import { UpdatePedidoCarrinhoController } from './controllers/pedido/carrinho/UpdatePedidoCarrinhoController';
-import { PageAllPedidosUserController } from './controllers/pedido/PageAllPedidosUserController';
-import { PageAllPedidosController } from './controllers/pedido/PageAllPedidosController';
-import { ExactPedidoUserController } from './controllers/pedido/ExactPedidoUserController';
-import { DeleteCarrinhoController } from './controllers/pedido/carrinho/DeleteCarrinhoController';
-import { CancelarPedidoAdminController } from './controllers/pedido/CancelarPedidoAdminController';
-import { CancelarPedidoClienteController } from './controllers/pedido/CancelarPedidoClienteController';
-import { EntregaEnderecoMesmoPedidoController } from './controllers/pedido/entrega/EntregaEnderecoMesmoPedidoController';
-import { CreateEntregaController } from './controllers/pedido/entrega/CreateEntregaController';
-import { DeleteEntregaController } from './controllers/pedido/entrega/DeleteEntregaController';
-import { PageAllListEntregaController } from './controllers/pedido/entrega/PageAllListEntregaController';
-import { CreateItemController } from './controllers/pedido/carrinho/item/CreateItemController';
-import { PageAllCarrinhoController } from './controllers/pedido/carrinho/PageAllCarrinhoController';
-import { DeleteItemController } from './controllers/pedido/carrinho/item/DeleteItemController';
-import { CreatePagamentoController } from './controllers/pagamento/CreatePagamentoController';
-import { DeletePagamentoController } from './controllers/pagamento/DeletePagamentoController';
-import { UpdatePagamentoController } from './controllers/pagamento/UpdatePagamentoController';
-
 // -- ROTAS ENVIAR EMAILS --
 import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
@@ -321,12 +280,15 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 
 
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
-import { CUSTOMERisAuthenticated } from './middlewares/CUSTOMERisAuthenticated';
+import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { FindManyCategoriesFiltroNameController } from './controllers/filtros/categoryFilter/FindManyCategoriesFiltroNameController';
-import { FindUniqueCategoryFiltroController } from './controllers/filtros/categoryFilter/FindUniqueCategoryFiltroController';
-import { CreateTypeAtributoController } from './controllers/atributo/CreateTypeAtributoController';
-import { CreateValueAtributoController } from './controllers/atributo/CreateValueAtributoController';
+
+
+import { ActiveOrDesactiveAdminController } from './controllers/users/admin/ActiveOrDesactiveAdminController';
+import { AdminCreateController } from './controllers/users/admin/AdminCreateController';
+import { AdminRoleController } from './controllers/users/admin/AdminRoleController';
+import { AuthAdminController } from './controllers/users/admin/AuthAdminController';
+import { AuthenticatedEmailAdminController } from './controllers/users/admin/AuthenticatedEmailAdminController';
 
 
 const router = Router();
@@ -334,29 +296,23 @@ const upload = multer(uploadConfig.upload("./images"));
 
 
 
+
+// -- ROTAS ADMIN --
+router.put('/admin/activeOrDesactiveAdmin', ADMINisAuthenticated, new ActiveOrDesactiveAdminController().handle);
+router.post('/admin/createAdmin', new AdminCreateController().handle);
+router.put('/admin/updateRoleAdmin', ADMINisAuthenticated, new AdminRoleController().handle);
+router.post('/admin/session', new AuthAdminController().handle);
+router.put('/admin/authenticatedEmailAdmin', new AuthenticatedEmailAdminController().handle);
+/* router.get('/me', isAuthenticated, new DetailuserController().handle) */
+
+
+
 // -- ROTAS CUSTOMER --
-router.post('/createUser', new CreateUserController().handle);
-router.put('/userAdmin', ADMINisAuthenticated, new AdminRoleUserController().handle);
-router.post('/createAdmin', new AdminCreateUserController().handle);
-router.post('/sessionAdmin', new AuthAdminController().handle);
-router.post('/session', new AuthUserController().handle);
-router.get('/me', ADMINisAuthenticated && CUSTOMERisAuthenticated, new DetailuserController().handle);
-router.put('/updateAllDateUser', ADMINisAuthenticated && CUSTOMERisAuthenticated, new UpdateAllDateUserController().handle);
-router.get('/listExactUser', ADMINisAuthenticated && CUSTOMERisAuthenticated, new ListExactUserController().handle);
-router.put('/authenticated', new AuthenticatedEmailUserController().handle);
-router.put('/activeOrDesactiveUser', ADMINisAuthenticated, new ActiveOrDesactiveUserController().handle);
-router.post('/recover', new EmailPasswordController().handle);
-router.post('/recoverDashboard', ADMINisAuthenticated && CUSTOMERisAuthenticated, new EmailPasswordDashboardController().handle);
-router.put('/recover', new RecoveryPasswordController().handle);
-router.get('/recoverFind', ADMINisAuthenticated && CUSTOMERisAuthenticated, new FindRecoveryIDController().handle);
-router.delete('/deleteRecoverID', ADMINisAuthenticated && CUSTOMERisAuthenticated, new DeletePasswordRecoveryIDController().handle);
-router.delete('/deleteUser', ADMINisAuthenticated, new DeleteUserController().handle);
-router.put('/roleUser', new UserRoleUserController().handle);
-router.get('/allUsersPage', ADMINisAuthenticated, new PageListAllUsersController().handle);
-router.get('/exportUser', ADMINisAuthenticated, new ExportUsersController().handle);
-router.put('/nameUserUpdate', ADMINisAuthenticated && CUSTOMERisAuthenticated, new UpdateUserNameController().handle);
-router.put('/newslatterUserUpdate', ADMINisAuthenticated && CUSTOMERisAuthenticated, new UpdateUserNewslatterController().handle);
-router.get('/exactUserPage', new ListExactUserNameController().handle);
+
+
+
+
+
 
 // -- ROTAS LOJA --
 router.post('/loja', ADMINisAuthenticated, upload.single('file'), new CreateLojaController().handle);
@@ -468,7 +424,7 @@ router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductContr
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
 router.get('/allProduct', ADMINisAuthenticated, new AllProductController().handle);
 router.get('/allExistProducts', ADMINisAuthenticated, new AllProductExistController().handle);
-router.get('/allProductsPage', ADMINisAuthenticated && CUSTOMERisAuthenticated, new PageListAllProductController().handle);
+router.get('/allProductsPage', ADMINisAuthenticated, new PageListAllProductController().handle);
 router.get('/exactProduct', ADMINisAuthenticated, new ListExactProductController().handle);
 router.get('/findFirstProduct', ADMINisAuthenticated, new FindFirstProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
@@ -484,10 +440,6 @@ router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // ROTAS ATRIBUTOS --
-router.post('/createTypeAtribute', ADMINisAuthenticated, new CreateTypeAtributoController().handle);
-router.post('/createValueAtribute', ADMINisAuthenticated, new CreateValueAtributoController().handle);
-
-
 router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
 router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
@@ -571,11 +523,9 @@ router.put('/updateFiltroOrderCategory', ADMINisAuthenticated, new UpdateCategor
 router.post('/createImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroCategoryController().handle);
 router.put('/updateImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroCategoryController().handle);
 router.delete('/deleteImageFiltroCategory', ADMINisAuthenticated, new DeleteImageFiltroCategoryController().handle);
-router.get('/findManyNameFiltroCategory', ADMINisAuthenticated, new FindManyCategoriesFiltroNameController().handle);
-router.get('/findUniqueFiltroCategory', ADMINisAuthenticated, new FindUniqueCategoryFiltroController().handle);
 
 // -- ROTAS AVALIACAO --
-router.post('/avaliacao', ADMINisAuthenticated && CUSTOMERisAuthenticated, new CreateAvaliacaoController().handle);
+router.post('/avaliacao', ADMINisAuthenticated, new CreateAvaliacaoController().handle);
 router.delete('/deleteAvaliacao', ADMINisAuthenticated, new DeleteAvaliacaoController().handle);
 router.delete('/deleteAvaliacaoProductID', ADMINisAuthenticated, new DeleteAvaliacaoProductIDController().handle);
 router.get('/allAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoController().handle);
@@ -590,7 +540,7 @@ router.put('/updateAllDateVariacao', ADMINisAuthenticated, new UpdateAllDateVari
 router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
 router.put('/updatePosicaoVariacao', ADMINisAuthenticated, new UpdatePosicaoVariacaoController().handle);
 router.put('/updateOrderVariacao', ADMINisAuthenticated, new UpdateOrderVariacaoController().handle);
-router.get('/allVariacaoPage', ADMINisAuthenticated && CUSTOMERisAuthenticated, new PageListAllVariacaoController().handle);
+router.get('/allVariacaoPage', ADMINisAuthenticated, new PageListAllVariacaoController().handle);
 router.get('/variacoesProduct', ADMINisAuthenticated, new AllVariacoesProductController().handle);
 router.get('/variacoes', ADMINisAuthenticated, new AllVariacoesController().handle);
 router.get('/exactVariacao', ADMINisAuthenticated, new ListExactVariacaoController().handle);
@@ -626,29 +576,6 @@ router.get('/listContato', ADMINisAuthenticated, new ListContatoController().han
 router.get('/listExactContato', ADMINisAuthenticated, new ListExactContatoController().handle);
 router.get('/pageContato', ADMINisAuthenticated, new PageListAllContatoController().handle);
 router.get('/exportContatos', ADMINisAuthenticated, new ExportContatoController().handle);
-
-// -- ROTAS PEDIDO --
-router.post('/carrinho', new CreateCarrinhoController().handle);
-router.post('/itemInCarrinho', new CreateItemInCarrinhoController().handle);
-router.post('/carrinhoItem', new CreateCarrinhoSemFreteController().handle);
-router.post('/pedido', ADMINisAuthenticated && CUSTOMERisAuthenticated, new CreatePedidoController().handle);
-router.put('/updatePedidoCarrinho', ADMINisAuthenticated && CUSTOMERisAuthenticated, new UpdatePedidoCarrinhoController().handle);
-router.get('/allPedidosPageUser', ADMINisAuthenticated && CUSTOMERisAuthenticated, new PageAllPedidosUserController().handle);
-router.get('/allPedidosPage', ADMINisAuthenticated, new PageAllPedidosController().handle);
-router.get('/exactPedidoUser', ADMINisAuthenticated && CUSTOMERisAuthenticated, new ExactPedidoUserController().handle);
-router.delete('/deleteCarrinho', ADMINisAuthenticated && CUSTOMERisAuthenticated, new DeleteCarrinhoController().handle);
-router.put('/cancelarPedidoAdmin', ADMINisAuthenticated, new CancelarPedidoAdminController().handle);
-router.put('/cancelarPedidoCliente', ADMINisAuthenticated && CUSTOMERisAuthenticated, new CancelarPedidoClienteController().handle);
-router.put('/entregaPedidoEndereco', ADMINisAuthenticated && CUSTOMERisAuthenticated, new EntregaEnderecoMesmoPedidoController().handle);
-router.post('/entregaPedido', new CreateEntregaController().handle);
-router.delete('/deleteEntrega', new DeleteEntregaController().handle);
-router.get('/allEntregaPedido', new PageAllListEntregaController().handle);
-router.post('/item', new CreateItemController().handle);
-router.get('/allItemPage', new PageAllCarrinhoController().handle);
-router.delete('/deleteItem', new DeleteItemController().handle);
-router.post('/pagamento', ADMINisAuthenticated && CUSTOMERisAuthenticated, new CreatePagamentoController().handle);
-router.delete('/deletePagamento', ADMINisAuthenticated && CUSTOMERisAuthenticated, new DeletePagamentoController().handle);
-router.put('/updatePagamento', ADMINisAuthenticated && CUSTOMERisAuthenticated, new UpdatePagamentoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
 router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);

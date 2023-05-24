@@ -5,9 +5,9 @@ class UserLojaController {
     async handle(req: Request, res: Response) {
         const userLoja = new UserLojaService();
 
-        const { loja_id } = req.query;
+        const { store_id } = req.query;
 
-        const lojaPage = await userLoja.execute({ loja_id });
+        const lojaPage = await userLoja.execute({ store_id });
 
         return res.json(lojaPage);
     }

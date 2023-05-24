@@ -6,11 +6,11 @@ interface RelationRequest {
     nivel: number;
     relationId: string;
     order: number;
-    loja_id: string;
+    store_id: string;
 }
 
 class CreateRelationProductCategoryService {
-    async execute({ product_id, category_id, nivel, relationId, order, loja_id }: RelationRequest) {
+    async execute({ product_id, category_id, nivel, relationId, order, store_id }: RelationRequest) {
 
         const categoryAlredyExist = await prismaClient.relationProductCategory.findFirst({
             where: {
@@ -30,7 +30,7 @@ class CreateRelationProductCategoryService {
                 nivel: nivel,
                 relationId: relationId,
                 order: Number(order),
-                loja_id: loja_id
+                store_id: store_id
             }
         });
 

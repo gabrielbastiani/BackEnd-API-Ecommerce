@@ -8,7 +8,7 @@ class CreateFiltroCategoryController {
             name,
             order,
             slugCategory,
-            loja_id
+            store_id
         } = req.body;
 
         const filtrosCategory = new CreateFiltroCategoryService();
@@ -18,7 +18,7 @@ class CreateFiltroCategoryController {
             name,
             order,
             slugCategory,
-            loja_id
+            store_id
         });
 
         return res.json(filtro)

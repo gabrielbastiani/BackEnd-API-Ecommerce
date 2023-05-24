@@ -23,7 +23,7 @@ class UpdateAllDateVariacaoController {
             profundidadeCm,
             quantidade,
             product_id,
-            loja_id
+            store_id
         } = req.body;
 
         const updateVariacao = new UpdateAllDateVariacaoService();
@@ -47,7 +47,7 @@ class UpdateAllDateVariacaoController {
             profundidadeCm,
             quantidade,
             product_id,
-            loja_id
+            store_id
         });
 
         return res.json(variacao);

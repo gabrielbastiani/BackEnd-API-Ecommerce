@@ -1,7 +1,7 @@
 import prismaClient from "../../prisma";
 
 interface LojaRequest {
-  loja_id: any;
+  store_id: any;
   nameLoja: string;
   cnpjLoja: string;
   emailLoja: string;
@@ -17,7 +17,7 @@ interface LojaRequest {
 
 class UpdateAllDateLojaService {
   async execute({
-    loja_id,
+    store_id,
     nameLoja,
     cnpjLoja,
     emailLoja,
@@ -32,7 +32,7 @@ class UpdateAllDateLojaService {
   }: LojaRequest) {
     const updateLoja = await prismaClient.loja.update({
       where: {
-        id: String(loja_id)
+        id: String(store_id)
       },
       data: {
         nameLoja: nameLoja,

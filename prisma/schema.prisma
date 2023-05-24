@@ -64,7 +64,6 @@ model Customer {
   cep               String?      @db.VarChar(125)
   city              String?      @db.VarChar(185)
   state             String?      @db.VarChar(185)
-  role              RoleCustomer @default(CUSTOMER)
 
   deliveryaddresscustomers DeliveryAddressCustomer[]
   avalietions              Avalietion[]
@@ -76,10 +75,6 @@ model Customer {
   store_id String?
 
   @@map("customers")
-}
-
-enum RoleCustomer {
-  CUSTOMER
 }
 
 model DeliveryAddressCustomer {

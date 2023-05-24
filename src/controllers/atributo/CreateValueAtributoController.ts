@@ -7,7 +7,7 @@ class CreateValueAtributoController {
       tipo,
       product_id,
       valor,
-      loja_id
+      store_id
     } = req.body;
 
     const atributos = new CreateValueAtributoService();
@@ -16,7 +16,7 @@ class CreateValueAtributoController {
       tipo,
       product_id,
       valor,
-      loja_id
+      store_id
     });
 
     return res.json(createValue);

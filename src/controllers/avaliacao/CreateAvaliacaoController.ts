@@ -3,7 +3,7 @@ import { CreateAvaliacaoService } from '../../services/avaliacao/CreateAvaliacao
 
 class CreateAvaliacaoController {
     async handle(req: Request, res: Response) {
-        const { user_id, description, pontuacao, status, product_id, loja_id } = req.body;
+        const { user_id, description, pontuacao, status, product_id, store_id } = req.body;
 
         const createAvaliacaoService = new CreateAvaliacaoService();
 
@@ -13,7 +13,7 @@ class CreateAvaliacaoController {
             pontuacao,
             status,
             product_id,
-            loja_id
+            store_id
         });
 
         return res.json(avaliacao);

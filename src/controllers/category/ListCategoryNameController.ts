@@ -5,9 +5,9 @@ class ListCategoryNameController {
   async handle(req: Request, res: Response) {
     const category_id = req.query.category_id as string;
 
-    const name = new ListCategoryNameService();
+    const names = new ListCategoryNameService();
 
-    const name = await name.execute({
+    const name = await names.execute({
       category_id,
     });
 

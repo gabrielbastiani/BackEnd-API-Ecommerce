@@ -16,7 +16,7 @@ class UpdateAllDateProductController {
             preco,
             promocao,
             sku,
-            loja_id,
+            store_id,
         } = req.body;
 
         const updateDataProduct = new UpdateAllDateProductService();
@@ -33,7 +33,7 @@ class UpdateAllDateProductController {
             preco,
             promocao,
             sku,
-            loja_id,
+            store_id,
         });
 
         return res.json(productUpdate);

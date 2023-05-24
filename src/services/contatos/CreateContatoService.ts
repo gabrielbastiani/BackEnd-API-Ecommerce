@@ -10,11 +10,11 @@ interface ContatoRequest {
   empresa: string;
   setor: string;
   mensagem: string;
-  loja_id: string;
+  store_id: string;
 }
 
 class CreateContatoService {
-  async execute({ name, email, phone, empresa, setor, mensagem, loja_id }: ContatoRequest){
+  async execute({ name, email, phone, empresa, setor, mensagem, store_id }: ContatoRequest){
     const contato = await prismaClient.contato.create({
       data:{
         name: name,
@@ -23,7 +23,7 @@ class CreateContatoService {
         empresa: empresa,
         setor: setor,
         mensagem: mensagem,
-        loja_id: loja_id
+        store_id: store_id
       }
     })
 

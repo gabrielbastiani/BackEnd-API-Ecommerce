@@ -6,7 +6,7 @@ class CreateCategoryController {
     const {
       name,
       slug,
-      loja_id
+      store_id
     } = req.body;
 
     const categorys = new CreateCategoryService();
@@ -14,7 +14,7 @@ class CreateCategoryController {
     const category = await categorys.execute({
       name,
       slug,
-      loja_id
+      store_id
     });
 
     return res.json(category);

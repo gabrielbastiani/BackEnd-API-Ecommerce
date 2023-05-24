@@ -7,7 +7,7 @@ class CreateGroupFilterController {
             nameGroup,
             atributoName,
             slugCategory,
-            loja_id
+            store_id
         } = req.body;
 
         const createGroup = new CreateGroupFilterService();
@@ -16,7 +16,7 @@ class CreateGroupFilterController {
             nameGroup,
             atributoName,
             slugCategory,
-            loja_id
+            store_id
         });
 
         return res.json(group)

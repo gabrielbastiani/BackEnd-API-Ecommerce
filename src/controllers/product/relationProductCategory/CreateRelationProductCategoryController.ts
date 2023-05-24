@@ -9,7 +9,7 @@ class CreateRelationProductCategoryController {
             nivel,
             relationId,
             order,
-            loja_id
+            store_id
         } = req.body;
 
         const createRelations = new CreateRelationProductCategoryService();
@@ -20,7 +20,7 @@ class CreateRelationProductCategoryController {
             nivel,
             relationId,
             order,
-            loja_id
+            store_id
         });
 
         return res.json(relation)

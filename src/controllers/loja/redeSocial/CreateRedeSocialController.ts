@@ -9,7 +9,7 @@ class CreateRedeSocialController {
             order,
             posicao,
             slugPosicao,
-            loja_id
+            store_id
         } = req.body;
 
         const createLojaService = new CreateRedeSocialService();
@@ -23,7 +23,7 @@ class CreateRedeSocialController {
             order,
             posicao,
             slugPosicao,
-            loja_id
+            store_id
         });
 
         return res.json(loja)

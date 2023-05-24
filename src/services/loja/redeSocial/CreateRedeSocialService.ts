@@ -7,11 +7,11 @@ interface LojaRequest {
   order: number;
   posicao: string;
   slugPosicao: string;
-  loja_id: string;
+  store_id: string;
 }
 
 class CreateRedeSocialService {
-  async execute({ redeName, link, imageRede, order, posicao, loja_id }: LojaRequest) {
+  async execute({ redeName, link, imageRede, order, posicao, store_id }: LojaRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -30,7 +30,7 @@ class CreateRedeSocialService {
         order: Number(order),
         posicao: posicao,
         slugPosicao: removerAcentos(posicao),
-        loja_id: loja_id
+        store_id: store_id
       }
     })
 

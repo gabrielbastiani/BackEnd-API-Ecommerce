@@ -12,7 +12,7 @@ interface ProductRequest {
     preco: number;
     promocao: number;
     sku: string;
-    loja_id: string;
+    store_id: string;
 }
 
 class UpdateAllDateProductService {
@@ -28,7 +28,7 @@ class UpdateAllDateProductService {
         preco,
         promocao,
         sku,
-        loja_id,
+        store_id,
     }: ProductRequest) {
         const updateProduct = await prismaClient.product.update({
             where: {
@@ -45,7 +45,7 @@ class UpdateAllDateProductService {
                 preco: preco,
                 promocao: promocao,
                 sku: sku,
-                loja_id: loja_id
+                store_id: store_id
             }
         })
 

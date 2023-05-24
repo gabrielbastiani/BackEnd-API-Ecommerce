@@ -7,7 +7,7 @@ class CreateFiltroAtributoController {
             groupFilter_id,
             valor,
             order,
-            loja_id
+            store_id
         } = req.body;
 
         const filtroAtributo = new CreateFiltroAtributoService();
@@ -16,7 +16,7 @@ class CreateFiltroAtributoController {
             groupFilter_id,
             valor,
             order,
-            loja_id
+            store_id
         });
 
         return res.json(filtro)

@@ -13,7 +13,7 @@ class CreateGroupCategoryController {
             order,
             posicao,
             slugPosicao,
-            loja_id
+            store_id
         } = req.body;
 
         const createGroup = new CreateGroupCategoryService();
@@ -28,7 +28,7 @@ class CreateGroupCategoryController {
             order,
             posicao,
             slugPosicao,
-            loja_id
+            store_id
         });
 
         return res.json(relationGroup)

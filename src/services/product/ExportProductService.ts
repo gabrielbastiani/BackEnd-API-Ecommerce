@@ -19,7 +19,7 @@ class ExportProductService {
                 preco: true,
                 sku: true,
                 promocao: true,
-                loja_id: true,
+                store_id: true,
             },
             orderBy: {
                 created_at: 'desc'

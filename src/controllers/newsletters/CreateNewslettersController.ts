@@ -3,14 +3,14 @@ import { CreateNewslettersService } from '../../services/newsletters/CreateNewsl
 
 class CreateNewslettersController {
   async handle(req: Request, res: Response){
-    const { name, email, loja_id } = req.body;
+    const { name, email, store_id } = req.body;
 
     const createNews = new CreateNewslettersService();
 
     const news = await createNews.execute({
       name,
       email,
-      loja_id
+      store_id
     });
 
     return res.json(news);

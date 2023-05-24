@@ -24,7 +24,7 @@ interface VariacaoRequest {
     freteGratis: boolean;
     quantidade: number;
     product_id: string;
-    loja_id: string;
+    store_id: string;
 }
 
 class CreateVariacaoService {
@@ -48,7 +48,7 @@ class CreateVariacaoService {
         promocao,
         quantidade,
         product_id,
-        loja_id
+        store_id
     }: VariacaoRequest) {
 
         function removerAcentos(s: any) {
@@ -83,7 +83,7 @@ class CreateVariacaoService {
                 promocao: promocao,
                 quantidade: quantidade,
                 product_id: product_id,
-                loja_id: loja_id
+                store_id: store_id
             }
         });
 

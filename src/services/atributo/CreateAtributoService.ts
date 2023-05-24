@@ -5,11 +5,11 @@ interface AtributoRequest {
   slug: string;
   valor: string;
   slugValor: string;
-  loja_id: string;
+  store_id: string;
 }
 
 class CreateAtributoService {
-  async execute({ tipo, valor, loja_id }: AtributoRequest) {
+  async execute({ tipo, valor, store_id }: AtributoRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -26,7 +26,7 @@ class CreateAtributoService {
         slug: removerAcentos(tipo),
         valor: valor,
         slugValor: removerAcentos(valor),
-        loja_id: loja_id
+        store_id: store_id
       }
     });
 

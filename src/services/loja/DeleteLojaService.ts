@@ -1,14 +1,14 @@
 import prismaClient from "../../prisma";
 
 interface LojaRequest {
-    loja_id: string;
+    store_id: string;
 }
 
 class DeleteLojaService {
-    async execute({ loja_id }: LojaRequest) {
+    async execute({ store_id }: LojaRequest) {
         const loja = await prismaClient.loja.delete({
             where: {
-                id: loja_id
+                id: store_id
             }
         })
 

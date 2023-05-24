@@ -6,16 +6,16 @@ require('dotenv/config');
 interface NewsRequest {
   name: string;
   email: string;
-  loja_id: string;
+  store_id: string;
 }
 
 class CreateNewslettersService {
-  async execute({ name, email, loja_id }: NewsRequest){
+  async execute({ name, email, store_id }: NewsRequest){
     const newsletter = await prismaClient.newsletter.create({
       data:{
         name: name,
         email: email,
-        loja_id: loja_id
+        store_id: store_id
       }
     })
 

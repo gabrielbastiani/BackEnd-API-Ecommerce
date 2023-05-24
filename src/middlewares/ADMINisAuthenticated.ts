@@ -28,10 +28,10 @@ export async function ADMINisAuthenticated (
       process.env.JWT_SECRET
     ) as Payload;
 
-    //Recuperar o id do token e colocar dentro de uma variavel user_id dentro do req.
-    req.user_id = sub;
+    //Recuperar o id do token e colocar dentro de uma variavel admin_id dentro do req.
+    req.admin_id = sub;
 
-    const userRole = await prismaClient.user.findUnique({
+    const userRole = await prismaClient.admin.findUnique({
       where: {
         id: sub
       }

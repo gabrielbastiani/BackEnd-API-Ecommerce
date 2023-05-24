@@ -5,18 +5,18 @@ interface FiltroCategoryRequest {
     name: string;
     order: number;
     slugCategory: string;
-    loja_id: string;
+    store_id: string;
 }
 
 class CreateFiltroCategoryService {
-    async execute({ groupFilter_id, slugCategory, name, order, loja_id }: FiltroCategoryRequest) {
+    async execute({ groupFilter_id, slugCategory, name, order, store_id }: FiltroCategoryRequest) {
         const filterCategory = await prismaClient.filterCategory.create({
             data: {
                 groupFilter_id: groupFilter_id,
                 name: name,
                 order: order,
                 slugCategory: slugCategory,
-                loja_id: loja_id
+                store_id: store_id
             }
         });
 

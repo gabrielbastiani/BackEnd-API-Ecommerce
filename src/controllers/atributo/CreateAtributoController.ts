@@ -8,7 +8,7 @@ class CreateAtributoController {
       slug,
       valor,
       slugValor,
-      loja_id
+      store_id
     } = req.body;
 
     const atributos = new CreateAtributoService();
@@ -18,7 +18,7 @@ class CreateAtributoController {
       slug,
       valor,
       slugValor,
-      loja_id
+      store_id
     });
 
     return res.json(createAtributo);

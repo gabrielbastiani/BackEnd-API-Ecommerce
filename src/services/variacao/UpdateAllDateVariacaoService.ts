@@ -19,7 +19,7 @@ interface VariacaoRequest {
     profundidadeCm: string;
     quantidade: number;
     product_id: string;
-    loja_id: string;
+    store_id: string;
 }
 
 class UpdateAllDateVariacaoService {
@@ -42,7 +42,7 @@ class UpdateAllDateVariacaoService {
         profundidadeCm,
         quantidade,
         product_id,
-        loja_id
+        store_id
     }: VariacaoRequest) {
         const updateVariacao = await prismaClient.variacao.update({
             where: {
@@ -66,7 +66,7 @@ class UpdateAllDateVariacaoService {
                 profundidadeCm: profundidadeCm,
                 quantidade: quantidade,
                 product_id: product_id,
-                loja_id: loja_id
+                store_id: store_id
             }
         })
 

@@ -8,7 +8,7 @@ class CreateRelationAtributosController {
             product_id,
             variacao_id,
             order,
-            loja_id
+            store_id
         } = req.body;
 
         const createRelations = new CreateRelationAtributosServices();
@@ -18,7 +18,7 @@ class CreateRelationAtributosController {
             product_id,
             variacao_id,
             order,
-            loja_id
+            store_id
         });
 
         return res.json(relation)

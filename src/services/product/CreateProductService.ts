@@ -15,7 +15,7 @@ interface ProductRequest {
     preco: number;
     sku: string;
     promocao: number;
-    loja_id: string;
+    store_id: string;
 }
 
 class CreateProductService {
@@ -32,7 +32,7 @@ class CreateProductService {
         preco,
         sku,
         promocao,
-        loja_id,
+        store_id,
     }: ProductRequest) {
 
         function removerAcentos(s: any) {
@@ -60,7 +60,7 @@ class CreateProductService {
                 preco: preco,
                 sku: sku,
                 promocao: promocao,
-                loja_id: loja_id
+                store_id: store_id
             },
             include: {
                 relationproductcategories: true,

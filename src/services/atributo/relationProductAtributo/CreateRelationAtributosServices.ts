@@ -5,7 +5,7 @@ interface RelationRequest {
     product_id: string;
     variacao_id: string;
     order: number;
-    loja_id: string;
+    store_id: string;
 }
 
 class CreateRelationAtributosServices {
@@ -14,7 +14,7 @@ class CreateRelationAtributosServices {
         product_id,
         variacao_id,
         order,
-        loja_id
+        store_id
     }: RelationRequest) {
 
         const relation = await prismaClient.relationProductAtributo.create({
@@ -23,7 +23,7 @@ class CreateRelationAtributosServices {
                 product_id: product_id,
                 variacao_id: variacao_id,
                 order: Number(order),
-                loja_id: loja_id
+                store_id: store_id
             }
         });
 

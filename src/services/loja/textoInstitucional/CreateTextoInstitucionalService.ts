@@ -7,7 +7,7 @@ interface LojaRequest {
   posicao: string;
   slugPosicao: string;
   description: string;
-  loja_id: string;
+  store_id: string;
 }
 
 class CreateTextoInstitucionalService {
@@ -16,7 +16,7 @@ class CreateTextoInstitucionalService {
     order,
     posicao,
     description,
-    loja_id
+    store_id
   }: LojaRequest) {
 
     function removerAcentos(s: any) {
@@ -36,7 +36,7 @@ class CreateTextoInstitucionalService {
         posicao: posicao,
         slugPosicao: removerAcentos(posicao),
         description: description,
-        loja_id: loja_id
+        store_id: store_id
       }
     })
 

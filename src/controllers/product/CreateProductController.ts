@@ -18,7 +18,7 @@ class CreateProductController {
             preco,
             sku,
             promocao,
-            loja_id
+            store_id
         } = req.body;
 
         const createProductService = new CreateProductService();
@@ -38,7 +38,7 @@ class CreateProductController {
             preco,
             sku,
             promocao,
-            loja_id
+            store_id
         })
 
         return res.json(product)

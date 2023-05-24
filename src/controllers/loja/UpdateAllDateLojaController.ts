@@ -3,7 +3,7 @@ import { UpdateAllDateLojaService } from '../../services/loja/UpdateAllDateLojaS
 
 class UpdateAllDateLojaController {
   async handle(req: Request, res: Response) {
-    const loja_id = req.query.loja_id;
+    const store_id = req.query.store_id;
 
     const {
       nameLoja,
@@ -22,7 +22,7 @@ class UpdateAllDateLojaController {
     const updateDateLoja = new UpdateAllDateLojaService();
 
     const loja = await updateDateLoja.execute({
-      loja_id,
+      store_id,
       nameLoja,
       cnpjLoja,
       emailLoja,

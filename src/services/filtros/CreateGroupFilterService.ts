@@ -4,17 +4,17 @@ interface GroupRequest {
     nameGroup: string;
     atributoName: string;
     slugCategory: string;
-    loja_id: string;
+    store_id: string;
 }
 
 class CreateGroupFilterService {
-    async execute({ nameGroup, atributoName, slugCategory, loja_id }: GroupRequest) {
+    async execute({ nameGroup, atributoName, slugCategory, store_id }: GroupRequest) {
         const group = await prismaClient.groupFilter.create({
             data: {
                 nameGroup: nameGroup,
                 atributoName: atributoName,
                 slugCategory: slugCategory,
-                loja_id: loja_id
+                store_id: store_id
             }
         });
 

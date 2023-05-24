@@ -10,11 +10,11 @@ interface GroupRequest {
     order: number;
     posicao: string;
     slugPosicao: string;
-    loja_id: string;
+    store_id: string;
 }
 
 class CreateGroupCategoryService {
-    async execute({ nameGroup, itemName, slugCategory, category_id, nivel, groupId, order, posicao, loja_id }: GroupRequest) {
+    async execute({ nameGroup, itemName, slugCategory, category_id, nivel, groupId, order, posicao, store_id }: GroupRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -36,7 +36,7 @@ class CreateGroupCategoryService {
                 order: Number(order),
                 posicao: posicao,
                 slugPosicao: removerAcentos(posicao),
-                loja_id: loja_id
+                store_id: store_id
             }
         });
 

@@ -10,7 +10,7 @@ class CreateTextInstitucionalController {
             posicao,
             slugPosicao,
             description,
-            loja_id,
+            store_id,
         } = req.body;
 
         const createLojaService = new CreateTextoInstitucionalService();
@@ -22,7 +22,7 @@ class CreateTextInstitucionalController {
             posicao,
             slugPosicao,
             description,
-            loja_id,
+            store_id,
         });
 
         return res.json(loja)

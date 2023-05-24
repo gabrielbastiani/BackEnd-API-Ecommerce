@@ -27,7 +27,7 @@ class CreateVariacaoController {
             disponibilidadeVariacao,
             quantidade,
             product_id,
-            loja_id
+            store_id
         } = req.body;
 
         const createVariacaoService = new CreateVariacaoService();
@@ -56,7 +56,7 @@ class CreateVariacaoController {
             disponibilidadeVariacao,
             quantidade,
             product_id,
-            loja_id
+            store_id
         })
 
         return res.json(variacao)
