@@ -1,83 +1,78 @@
-import prismaClient from '../../prisma'
-import { hash } from 'bcryptjs'
+import prismaClient from '../../../prisma';
+import { hash } from 'bcryptjs';
 import nodemailer from "nodemailer";
 require('dotenv/config');
 
-
-interface UserRequest {
+interface CustomerRequest {
   name: string;
   slug: string;
   email: string;
   password: string;
   cpf: string;
   cnpj: string;
-  inscricaoEstadual: string;
+  stateRegistration: string;
   phone: string;
-  dataNascimento: string;
-  genero: string;
+  dateOfBirth: string;
+  gender: string;
   newslatter: string;
-  local: string;
-  numero: string;
-  complemento: string;
-  bairro: string;
-  CEP: string;
-  cidade: string;
-  estado: string;
+  address: string;
+  number: string;
+  complement: string;
+  neighborhood: string;
+  cep: string;
+  city: string;
+  state: string;
   store_id: string;
-  authenticated: boolean;
 }
 
-class CreateUserService {
+class CreateCustomerService {
   async execute({
     name,
-    slug,
     email,
     password,
     cpf,
     cnpj,
-    inscricaoEstadual,
+    stateRegistration,
     phone,
-    dataNascimento,
-    genero,
+    dateOfBirth,
+    gender,
     newslatter,
-    local,
-    numero,
-    complemento,
-    bairro,
-    CEP,
-    cidade,
-    estado,
-    store_id,
-  }: UserRequest) {
+    address,
+    number,
+    complement,
+    neighborhood,
+    cep,
+    city,
+    state,
+    store_id
+  }: CustomerRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, "")
-          .toLowerCase()
-          .replace(/ +/g, "-")
-          .replace(/-{2,}/g, "-")
-          .replace(/[/]/g, "-");
-  }
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/ +/g, "-")
+        .replace(/-{2,}/g, "-")
+        .replace(/[/]/g, "-");
+    }
 
-    // verificar se ele enviou um email
     if (!email) {
       throw new Error("Email incorrect")
     }
 
-    //Verificar se esse email já está cadastrado na plataforma
-    const userAlreadyExists = await prismaClient.user.findFirst({
+    const customerAlreadyExists = await prismaClient.customer.findFirst({
       where: {
         email: email,
       }
     })
 
-    if (userAlreadyExists) {
-      throw new Error("Já existe um usuario com esse e-mail!")
+    if (customerAlreadyExists) {
+      throw new Error("Já existe um cliente com esse e-mail!")
     }
 
     const passwordHash = await hash(password, 8);
 
-    const user = await prismaClient.user.create({
+    const customer = await prismaClient.customer.create({
       data: {
         name: name,
         slug: removerAcentos(name),
@@ -85,27 +80,21 @@ class CreateUserService {
         password: passwordHash,
         cpf: cpf,
         cnpj: cnpj,
-        inscricaoEstadual: inscricaoEstadual,
+        stateRegistration: stateRegistration,
         phone: phone,
-        dataNascimento: dataNascimento,
-        genero: genero,
+        dateOfBirth: dateOfBirth,
+        gender: gender,
         newslatter: newslatter,
-        local: local,
-        numero: numero,
-        bairro: bairro,
-        complemento: complemento,
-        CEP: CEP,
-        cidade: cidade,
-        estado: estado,
-        store_id: store_id,
-        authenticated: true
-      },
-      include: {
-        loja: true,
-        pagamentos: true,
-        pedidos: true,
+        address: address,
+        number: number,
+        complement: complement,
+        neighborhood: neighborhood,
+        cep: cep,
+        city: city,
+        state: state,
+        store_id: store_id
       }
-    })
+    });
 
     const transporter = nodemailer.createTransport({
       host: process.env.HOST_SMTP,
@@ -126,7 +115,7 @@ class CreateUserService {
             
             <article>
                 <p>Olá!</p>
-                <p>Um cliente de nome <b>${user.name}</b> se cadastrou na Loja Virtual.</p>
+                <p>Um cliente de nome <b>${customer.name}</b> se cadastrou na Loja Virtual.</p>
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
@@ -134,8 +123,8 @@ class CreateUserService {
             </div>`,
     });
 
-    return user;
+    return customer;
   }
 }
 
-export { CreateUserService }
+export { CreateCustomerService }

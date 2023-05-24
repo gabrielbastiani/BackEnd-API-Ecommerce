@@ -287,7 +287,8 @@ import { PageListAllContatoController } from './controllers/contatos/PageListAll
 import { ExportContatoController } from './controllers/contatos/ExportContatoController';
 
 // -- ROTAS ENVIAR EMAILS --
-import { EmailExportUsersController } from './controllers/sendEmails/EmailExportUsersController';
+import { EmailExportAdminUserController } from './controllers/sendEmails/EmailExportAdminUserController';
+import { EmailExportCustomerUserController } from './controllers/sendEmails/EmailExportCustomerUserController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
 import { EmailExportNewslettersController } from './controllers/sendEmails/EmailExportNewslettersController';
 import { EmailExportContatoController } from './controllers/sendEmails/EmailExportContatoController';
@@ -297,6 +298,16 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+
+
+
+import { ActiveOrDesactiveCustomerController } from './controllers/users/customer/ActiveOrDesactiveCustomerController';
+import { AuthCustomerController } from './controllers/users/customer/AuthCustomerController';
+import { CreateCustomerController } from './controllers/users/customer/CreateCustomerController';
+import { DeleteCustomerController } from './controllers/users/customer/DeleteCustomerController';
+import { DetailCustomerController } from './controllers/users/customer/DetailCustomerController';
+import { ExportCustomerController } from './controllers/users/customer/ExportCustomerController';
+
 
 
 const router = Router();
@@ -325,7 +336,12 @@ router.get('/admin/findFirstAdmin', ADMINisAuthenticated, new FindAdminRecoveryI
 router.put('/admin/recoverAdmin', new RecoveryPasswordAdminController().handle);
 
 // -- ROTAS CUSTOMERS --
-
+router.post('/customer/createCustomer', new CreateCustomerController().handle);
+router.put('/customer/activeOrDesactiveCustomer', isAuthenticated, new ActiveOrDesactiveCustomerController().handle);
+router.post('/customer/session', new AuthCustomerController().handle);
+router.delete('/customer/deleteCustomer', ADMINisAuthenticated && isAuthenticated, new DeleteCustomerController().handle);
+router.get('/customer/me', ADMINisAuthenticated && isAuthenticated, new DetailCustomerController().handle);
+router.get('/customer/exportCustomer', ADMINisAuthenticated, new ExportCustomerController().handle);
 
 
 
@@ -595,7 +611,8 @@ router.get('/pageContato', ADMINisAuthenticated, new PageListAllContatoControlle
 router.get('/exportContatos', ADMINisAuthenticated, new ExportContatoController().handle);
 
 // -- ROTAS ENVIAR EMAILS --
-router.get('/sendlistuser', ADMINisAuthenticated, new EmailExportUsersController().handle);
+router.get('/admin/sendlistuser', ADMINisAuthenticated, new EmailExportAdminUserController().handle);
+router.get('/sendListCustomer', ADMINisAuthenticated, new EmailExportCustomerUserController().handle);
 router.get('/sendlistproduct', ADMINisAuthenticated, new EmailExportProductsController().handle);
 router.get('/sendEmailNewsletters', ADMINisAuthenticated, new EmailExportNewslettersController().handle);
 router.get('/sendEmailContatos', ADMINisAuthenticated, new EmailExportContatoController().handle);

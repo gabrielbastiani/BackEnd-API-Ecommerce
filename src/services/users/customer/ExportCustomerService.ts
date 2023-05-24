@@ -1,29 +1,29 @@
-import prismaClient from '../../prisma';
+import prismaClient from '../../../prisma';
 import xl from 'excel4node';
 const wb = new xl.Workbook();
 const ws = wb.addWorksheet('lista-de-usuarios');
 
 
-class ExportUsersService {
+class ExportCustomerService {
     async execute() {
-        const findAll = await prismaClient.user.findMany({
+        const findAll = await prismaClient.customer.findMany({
             select: {
                 id: true,
                 name: true,
                 email: true,
                 cpf: true,
                 cnpj: true,
-                inscricaoEstadual: true,
+                stateRegistration: true,
                 phone: true,
-                dataNascimento: true,
-                genero: true,
-                local: true,
-                numero: true,
-                bairro: true,
-                complemento: true,
-                CEP: true,
-                cidade: true,
-                estado: true,
+                dateOfBirth: true,
+                gender: true,
+                address: true,
+                number: true,
+                neighborhood: true,
+                complement: true,
+                cep: true,
+                city: true,
+                state: true,
                 store_id: true,
             },
             orderBy: {
@@ -33,7 +33,7 @@ class ExportUsersService {
 
         const headingColumnNames = [
             "ID do Usuario",
-            "Nome Completo",
+            "Nome",
             "Email",
             "CPF",
             "CNPJ",
@@ -41,7 +41,7 @@ class ExportUsersService {
             "Telefone",
             "Data de Nascimento",
             "Genero",
-            "Rua",
+            "Endereço",
             "Numero",
             "Bairro",
             "Complemento",
@@ -69,9 +69,9 @@ class ExportUsersService {
             rowIndex++; //incrementa o contador para ir para a próxima linha
         });
 
-        return wb.write('ListagemUsuariosAdmins.xlsx');
+        return wb.write('ListagemDeClientes.xlsx');
 
     }
 }
 
-export { ExportUsersService }
+export { ExportCustomerService }
