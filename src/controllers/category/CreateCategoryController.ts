@@ -6,6 +6,10 @@ class CreateCategoryController {
     const {
       name,
       slug,
+      description,
+      nivel,
+      relationId,
+      order,
       store_id
     } = req.body;
 
@@ -14,6 +18,10 @@ class CreateCategoryController {
     const category = await categorys.execute({
       name,
       slug,
+      description,
+      nivel,
+      relationId,
+      order,
       store_id
     });
 

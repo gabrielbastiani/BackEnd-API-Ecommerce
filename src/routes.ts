@@ -73,18 +73,18 @@ import { UpdateOrderInstitutionalTextController } from './controllers/store/inst
 import { UpdatePositionInstitutionalTextController } from './controllers/store/institutionalText/UpdatePositionInstitutionalTextController';
 import { UpdateTitleInstitutionalTextController } from './controllers/store/institutionalText/UpdateTitleInstitutionalTextController';
 import { UpdateDescriptionInstitutionalTextController } from './controllers/store/institutionalText/UpdateDescriptionInstitutionalTextController';
-import { CreateImageStoreController } from './controllers/store/photoTextoInstitucional/CreateImageStoreController';
-import { AllPhotosTextoInstitucionalController } from './controllers/store/photoTextoInstitucional/AllPhotosTextoInstitucionalController';
-import { AllImageStoreController } from './controllers/store/photoTextoInstitucional/AllImageStoreController';
-import { DeleteAllPhotoTextosController } from './controllers/store/photoTextoInstitucional/DeleteAllPhotoTextosController';
-import { DeleteImageStoreController } from './controllers/store/photoTextoInstitucional/DeleteImageStoreController';
-import { UpdatePhotoTextoController } from './controllers/store/photoTextoInstitucional/UpdatePhotoTextoController';
-import { UpdateStatusImageStoreController } from './controllers/store/photoTextoInstitucional/UpdateStatusImageStoreController';
-import { UpdateTitlePhotoTextoController } from './controllers/store/photoTextoInstitucional/UpdateTitlePhotoTextoController';
-import { FindUniqueImageStoreController } from './controllers/store/photoTextoInstitucional/FindUniqueImageStoreController';
-import { UpdateOrderImageStoreController } from './controllers/store/photoTextoInstitucional/UpdateOrderImageStoreController';
-import { UpdatePosicaoPhotoTextoController } from './controllers/store/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
-import { ListAllImageStoreController } from './controllers/store/photoTextoInstitucional/ListAllImageStoreController';
+
+// -- ROUTES IMAGE STORE
+import { CreateImageStoreController } from './controllers/store/imageStore/CreateImageStoreController';
+import { AllImageStoreController } from './controllers/store/imageStore/AllImageStoreController';
+import { DeleteImageStoreController } from './controllers/store/imageStore/DeleteImageStoreController';
+import { UpdateStatusImageStoreController } from './controllers/store/imageStore/UpdateStatusImageStoreController';
+import { FindUniqueImageStoreController } from './controllers/store/imageStore/FindUniqueImageStoreController';
+import { UpdateOrderImageStoreController } from './controllers/store/imageStore/UpdateOrderImageStoreController';
+import { ListAllImageStoreController } from './controllers/store/imageStore/ListAllImageStoreController';
+import { UpdateImageStoreController } from './controllers/store/imageStore/UpdateImageStoreController';
+import { UpdateTitleImageStoreController } from './controllers/store/imageStore/UpdateTitleImageStoreController';
+import { UpdatePositionImageStoreController } from './controllers/store/imageStore/UpdatePositionImageStoreController';
 
 // -- ROUTES BANNERS --
 import { CreateBannerController } from './controllers/banner/CreateBannerController';
@@ -98,7 +98,7 @@ import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerC
 import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
 import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosicaoBannerController';
 
-// -- ROUTES CATEGORIAS --
+// -- ROUTES CATEGORIES --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
 import { UpdateImageCategoryController } from './controllers/category/imagesCategories/UpdateImageCategoryController';
@@ -316,7 +316,6 @@ import uploadConfig from './config/multer';
 
 
 
-
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
 
@@ -398,14 +397,13 @@ router.get('/listInstitutionalText', new ListAllTextOrderAndPositionController()
 
 // -- ROUTES IMAGE STORE --
 router.post('/createImageStore', ADMINisAuthenticated, upload.single('file'), new CreateImageStoreController().handle);
-router.get('/allImages', ADMINisAuthenticated, new AllPhotosTextoInstitucionalController().handle);
 router.get('/allImagesStore', ADMINisAuthenticated, new AllImageStoreController().handle);
 router.delete('/deleteImageStore', ADMINisAuthenticated, new DeleteImageStoreController().handle);
-router.put('/updateImageTextoInstitucional', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoTextoController().handle);
-router.put('/updateTitleImageTextoInstitucional', ADMINisAuthenticated, new UpdateTitlePhotoTextoController().handle);
+router.put('/updateImageStore', ADMINisAuthenticated, upload.single('file'), new UpdateImageStoreController().handle);
+router.put('/updateTitleImageStore', ADMINisAuthenticated, new UpdateTitleImageStoreController().handle);
 router.put('/updateOrderImageStore', ADMINisAuthenticated, new UpdateOrderImageStoreController().handle);
 router.put('/updateStatusImageStore', ADMINisAuthenticated, new UpdateStatusImageStoreController().handle);
-router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new UpdatePosicaoPhotoTextoController().handle);
+router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new UpdatePositionImageStoreController().handle);
 router.get('/findUniqueImageStore', ADMINisAuthenticated, new FindUniqueImageStoreController().handle);
 router.get('/listImagesStore', new ListAllImageStoreController().handle);
 
