@@ -62,29 +62,29 @@ import { DeleteSocialMediaController } from './controllers/store/socialMedia/Del
 import { ListAllSocialMediaController } from './controllers/store/socialMedia/ListAllSocialMediaController';
 
 // -- ROUTES TEXTOS INSTITUCIONAIS --
-import { CreateTextInstitucionalController } from './controllers/store/textoInstitucional/CreateTextInstitucionalController';
-import { DeleteTextoInstitucionalController } from './controllers/store/textoInstitucional/DeleteTextoInstitucionalController';
-import { ListAllTextosController } from './controllers/store/textoInstitucional/ListAllTextosController';
-import { ListAllTextosOrderAndPosicaoController } from './controllers/store/textoInstitucional/ListAllTextosOrderAndPosicaoController';
-import { ListExactTextoInstitucionalController } from './controllers/store/textoInstitucional/ListExactTextoInstitucionalController';
-import { PageListTextoInstitucionalController } from './controllers/store/textoInstitucional/PageListTextoInstitucionalController';
-import { UpdateDisponibilidadeTextoController } from './controllers/store/textoInstitucional/UpdateDisponibilidadeTextoController';
-import { UpdateOrderTextoInstitucionalController } from './controllers/store/textoInstitucional/UpdateOrderTextoInstitucionalController';
-import { UpdatePosicaoTextoController } from './controllers/store/textoInstitucional/UpdatePosicaoTextoController';
-import { UpdateTitleTextoController } from './controllers/store/textoInstitucional/UpdateTitleTextoController';
-import { UpdateDescriptionTextoController } from './controllers/store/textoInstitucional/UpdateDescriptionTextoController';
-import { CreatePhotoTextoInstitucionalController } from './controllers/store/textoInstitucional/photoTextoInstitucional/CreatePhotoTextoInstitucionalController';
-import { AllPhotosTextoInstitucionalController } from './controllers/store/textoInstitucional/photoTextoInstitucional/AllPhotosTextoInstitucionalController';
-import { AllPhotosTextosController } from './controllers/store/textoInstitucional/photoTextoInstitucional/AllPhotosTextosController';
-import { DeleteAllPhotoTextosController } from './controllers/store/textoInstitucional/photoTextoInstitucional/DeleteAllPhotoTextosController';
-import { DeletePhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/DeletePhotoTextoController';
-import { UpdatePhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdatePhotoTextoController';
-import { UpdateDisponibilidadePhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdateDisponibilidadePhotoTextoController';
-import { UpdateTitlePhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdateTitlePhotoTextoController';
-import { ListExactPhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/ListExactPhotoTextoController';
-import { UpdateOrderPhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
-import { UpdatePosicaoPhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
-import { ListImagesInstitucionalController } from './controllers/store/textoInstitucional/photoTextoInstitucional/ListImagesInstitucionalController';
+import { CreateInstitutionalTextController } from './controllers/store/institutionalText/CreateInstitutionalTextController';
+import { DeleteInstitutionalTextController } from './controllers/store/institutionalText/DeleteInstitutionalTextController';
+import { ListAllInstitutionalTextController } from './controllers/store/institutionalText/ListAllInstitutionalTextController';
+import { ListAllTextOrderAndPositionController } from './controllers/store/institutionalText/ListAllTextOrderAndPositionController';
+import { FindUniqueInstitutionalTextController } from './controllers/store/institutionalText/FindUniqueInstitutionalTextController';
+import { PageListInstitutionalTextController } from './controllers/store/institutionalText/PageListInstitutionalTextController';
+import { UpdateStatusInstitutionalTextController } from './controllers/store/institutionalText/UpdateStatusInstitutionalTextController';
+import { UpdateOrderInstitutionalTextController } from './controllers/store/institutionalText/UpdateOrderInstitutionalTextController';
+import { UpdatePositionInstitutionalTextController } from './controllers/store/institutionalText/UpdatePositionInstitutionalTextController';
+import { UpdateTitleInstitutionalTextController } from './controllers/store/institutionalText/UpdateTitleInstitutionalTextController';
+import { UpdateDescriptionInstitutionalTextController } from './controllers/store/institutionalText/UpdateDescriptionInstitutionalTextController';
+import { CreateImageStoreController } from './controllers/store/photoTextoInstitucional/CreateImageStoreController';
+import { AllPhotosTextoInstitucionalController } from './controllers/store/photoTextoInstitucional/AllPhotosTextoInstitucionalController';
+import { AllImageStoreController } from './controllers/store/photoTextoInstitucional/AllImageStoreController';
+import { DeleteAllPhotoTextosController } from './controllers/store/photoTextoInstitucional/DeleteAllPhotoTextosController';
+import { DeleteImageStoreController } from './controllers/store/photoTextoInstitucional/DeleteImageStoreController';
+import { UpdatePhotoTextoController } from './controllers/store/photoTextoInstitucional/UpdatePhotoTextoController';
+import { UpdateStatusImageStoreController } from './controllers/store/photoTextoInstitucional/UpdateStatusImageStoreController';
+import { UpdateTitlePhotoTextoController } from './controllers/store/photoTextoInstitucional/UpdateTitlePhotoTextoController';
+import { FindUniqueImageStoreController } from './controllers/store/photoTextoInstitucional/FindUniqueImageStoreController';
+import { UpdateOrderImageStoreController } from './controllers/store/photoTextoInstitucional/UpdateOrderImageStoreController';
+import { UpdatePosicaoPhotoTextoController } from './controllers/store/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
+import { ListAllImageStoreController } from './controllers/store/photoTextoInstitucional/ListAllImageStoreController';
 
 // -- ROUTES BANNERS --
 import { CreateBannerController } from './controllers/banner/CreateBannerController';
@@ -383,30 +383,31 @@ router.delete('/deleteSocialMedia', ADMINisAuthenticated, new DeleteSocialMediaC
 router.get('/listAllSocialMedia', new ListAllSocialMediaController().handle);
 router.get('/listSocialMediaOrder', new ListAllSocialMediaOrderAndPositionController().handle);
 
-// -- ROUTES TEXTOS INSTITUCIONAIS --
-router.post('/createTextoInstitucional', ADMINisAuthenticated, new CreateTextInstitucionalController().handle);
-router.delete('/deleteTextoInstitucional', ADMINisAuthenticated, new DeleteTextoInstitucionalController().handle);
-router.get('/listExactTextoInstitucional', ADMINisAuthenticated, new ListExactTextoInstitucionalController().handle);
-router.get('/listAllTextos', ADMINisAuthenticated, new ListAllTextosController().handle);
-router.get('/pageListTextoInstitucional', ADMINisAuthenticated, new PageListTextoInstitucionalController().handle);
-router.put('/updateDisponibilidadeTexto', ADMINisAuthenticated, new UpdateDisponibilidadeTextoController().handle);
-router.put('/updateOrderTextoInstitucional', ADMINisAuthenticated, new UpdateOrderTextoInstitucionalController().handle);
-router.put('/updatePosicaoTextoInstitucional', ADMINisAuthenticated, new UpdatePosicaoTextoController().handle);
-router.put('/updateTitleTextoInstitucional', ADMINisAuthenticated, new UpdateTitleTextoController().handle);
-router.put('/updateDescriptionTextoInstitucional', ADMINisAuthenticated, new UpdateDescriptionTextoController().handle);
-router.post('/createImageTextoInstitucional', ADMINisAuthenticated, upload.single('file'), new CreatePhotoTextoInstitucionalController().handle);
+// -- ROUTES TEXT INSTITUTIONAL --
+router.post('/createInstitutionalText', ADMINisAuthenticated, new CreateInstitutionalTextController().handle);
+router.delete('/deleteInstitutionalText', ADMINisAuthenticated, new DeleteInstitutionalTextController().handle);
+router.get('/findUniqueInstitutionalText', ADMINisAuthenticated, new FindUniqueInstitutionalTextController().handle);
+router.get('/listAllText', ADMINisAuthenticated, new ListAllInstitutionalTextController().handle);
+router.get('/pageListInstitutionalText', ADMINisAuthenticated, new PageListInstitutionalTextController().handle);
+router.put('/updateStatusInstitutionalText', ADMINisAuthenticated, new UpdateStatusInstitutionalTextController().handle);
+router.put('/updateOrderInstitutionalText', ADMINisAuthenticated, new UpdateOrderInstitutionalTextController().handle);
+router.put('/updatePositionInstitutionalText', ADMINisAuthenticated, new UpdatePositionInstitutionalTextController().handle);
+router.put('/updateTitleInstitutionalText', ADMINisAuthenticated, new UpdateTitleInstitutionalTextController().handle);
+router.put('/updateDescriptionInstitutionalText', ADMINisAuthenticated, new UpdateDescriptionInstitutionalTextController().handle);
+router.get('/listInstitutionalText', new ListAllTextOrderAndPositionController().handle);
+
+// -- ROUTES IMAGE STORE --
+router.post('/createImageStore', ADMINisAuthenticated, upload.single('file'), new CreateImageStoreController().handle);
 router.get('/allImages', ADMINisAuthenticated, new AllPhotosTextoInstitucionalController().handle);
-router.get('/allImagesTextoInstitucional', ADMINisAuthenticated, new AllPhotosTextosController().handle);
-router.delete('/deleteAllImagesTextos', ADMINisAuthenticated, new DeleteAllPhotoTextosController().handle);
-router.delete('/deleteImageTextoInstitucional', ADMINisAuthenticated, new DeletePhotoTextoController().handle);
+router.get('/allImagesStore', ADMINisAuthenticated, new AllImageStoreController().handle);
+router.delete('/deleteImageStore', ADMINisAuthenticated, new DeleteImageStoreController().handle);
 router.put('/updateImageTextoInstitucional', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoTextoController().handle);
 router.put('/updateTitleImageTextoInstitucional', ADMINisAuthenticated, new UpdateTitlePhotoTextoController().handle);
-router.put('/updateOrderImageTextoInstitucional', ADMINisAuthenticated, new UpdateOrderPhotoTextoController().handle);
-router.put('/updateDisponibilidadePhotoTexto', ADMINisAuthenticated, new UpdateDisponibilidadePhotoTextoController().handle);
+router.put('/updateOrderImageStore', ADMINisAuthenticated, new UpdateOrderImageStoreController().handle);
+router.put('/updateStatusImageStore', ADMINisAuthenticated, new UpdateStatusImageStoreController().handle);
 router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new UpdatePosicaoPhotoTextoController().handle);
-router.get('/listExactPhotoTextoInstitucional', ADMINisAuthenticated, new ListExactPhotoTextoController().handle);
-router.get('/listTextosInstitucionais', new ListAllTextosOrderAndPosicaoController().handle);
-router.get('/listImagesLoja', new ListImagesInstitucionalController().handle);
+router.get('/findUniqueImageStore', ADMINisAuthenticated, new FindUniqueImageStoreController().handle);
+router.get('/listImagesStore', new ListAllImageStoreController().handle);
 
 // -- ROUTES BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
