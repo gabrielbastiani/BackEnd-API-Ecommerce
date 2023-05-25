@@ -49,19 +49,17 @@ import { DeleteStoreController } from './controllers/store/DeleteStoreController
 import { UpdateLogoStoreController } from './controllers/store/UpdateLogoStoreController';
 import { UpdateAllDateStoreController } from './controllers/store/UpdateAllDateStoreController';
 
-// -- ROUTES REDES SOCIAIS DA LOJA --
+// -- ROUTES SOCIAL MEDIA --
 import { CreateSocialMediaController } from './controllers/store/socialMedia/CreateSocialMediaController';
-import { UpdateOrderRedeSocialController } from './controllers/store/socialMedia/UpdateOrderRedeSocialController';
-import { ListAllRedesSociaisOrderAndPosicaoController } from './controllers/store/socialMedia/ListAllRedesSociaisOrderAndPosicaoController';
-import { UpdateRedeNameController } from './controllers/store/socialMedia/UpdateRedeNameController';
-import { UpdateLinkRedeSocialController } from './controllers/store/socialMedia/UpdateLinkRedeSocialController';
+import { UpdateOrderSocialMediaController } from './controllers/store/socialMedia/UpdateOrderSocialMediaController';
+import { ListAllSocialMediaOrderAndPositionController } from './controllers/store/socialMedia/ListAllSocialMediaOrderAndPositionController';
+import { UpdateSocialMediaNameController } from './controllers/store/socialMedia/UpdateSocialMediaNameController';
+import { UpdateLinkSocialMediaController } from './controllers/store/socialMedia/UpdateLinkSocialMediaController';
 import { UpdateImageRedeSocialController } from './controllers/store/socialMedia/UpdateImageRedeSocialController';
-import { UpdatePosicaoRedeSocialController } from './controllers/store/socialMedia/UpdatePosicaoRedeSocialController';
-import { UpdateDisponibilidadeRedeSocialController } from './controllers/store/socialMedia/UpdateDisponibilidadeRedeSocialController';
-import { DeleteRedeSocialController } from './controllers/store/socialMedia/DeleteRedeSocialController';
-import { ListAllRedeSocialController } from './controllers/store/socialMedia/ListAllRedeSocialController';
-import { PageListRedesSocialController } from './controllers/store/socialMedia/PageListRedesSocialController';
-import { ListExactRedeSocialController } from './controllers/store/socialMedia/ListExactRedeSocialController';
+import { UpdatePositionSocialMediaController } from './controllers/store/socialMedia/UpdatePositionSocialMediaController';
+import { UpdateStatusSocialMediaController } from './controllers/store/socialMedia/UpdateStatusSocialMediaController';
+import { DeleteSocialMediaController } from './controllers/store/socialMedia/DeleteSocialMediaController';
+import { ListAllSocialMediaController } from './controllers/store/socialMedia/ListAllSocialMediaController';
 
 // -- ROUTES TEXTOS INSTITUCIONAIS --
 import { CreateTextInstitucionalController } from './controllers/store/textoInstitucional/CreateTextInstitucionalController';
@@ -375,17 +373,15 @@ router.put('/updateAllDateStore', ADMINisAuthenticated, new UpdateAllDateStoreCo
 
 // -- ROUTES SOCIAL MEDIA --
 router.post('/createSocialMedia', ADMINisAuthenticated, upload.single('file'), new CreateSocialMediaController().handle);
-router.put('/updateOrderRedeSocial', ADMINisAuthenticated, new UpdateOrderRedeSocialController().handle);
-router.put('/updateRedeName', ADMINisAuthenticated, new UpdateRedeNameController().handle);
-router.put('/updateLinkRedeSocial', ADMINisAuthenticated, new UpdateLinkRedeSocialController().handle);
-router.put('/updateImageRedeSocial', ADMINisAuthenticated, upload.single('file'), new UpdateImageRedeSocialController().handle);
-router.put('/updatePosicaoRedeSocial', ADMINisAuthenticated, new UpdatePosicaoRedeSocialController().handle);
-router.put('/updateDisponibilidadeRedeSocial', ADMINisAuthenticated, new UpdateDisponibilidadeRedeSocialController().handle);
-router.delete('/deleteRedeSocial', ADMINisAuthenticated, new DeleteRedeSocialController().handle);
-router.get('/pageListRedesSociais', ADMINisAuthenticated, new PageListRedesSocialController().handle);
-router.get('/listExactRedesSociais', ADMINisAuthenticated, new ListExactRedeSocialController().handle);
-router.get('/listAllRedesSociais', ADMINisAuthenticated, new ListAllRedeSocialController().handle);
-router.get('/listRedesSociaisOrder', new ListAllRedesSociaisOrderAndPosicaoController().handle);
+router.put('/updateOrderSocialMedia', ADMINisAuthenticated, new UpdateOrderSocialMediaController().handle);
+router.put('/updateSocialMediaName', ADMINisAuthenticated, new UpdateSocialMediaNameController().handle);
+router.put('/updateLinkSocialMedia', ADMINisAuthenticated, new UpdateLinkSocialMediaController().handle);
+router.put('/updateImageSocialMedia', ADMINisAuthenticated, upload.single('file'), new UpdateImageRedeSocialController().handle);
+router.put('/updatePositionSocialMedia', ADMINisAuthenticated, new UpdatePositionSocialMediaController().handle);
+router.put('/updateStatusSocialMedia', ADMINisAuthenticated, new UpdateStatusSocialMediaController().handle);
+router.delete('/deleteSocialMedia', ADMINisAuthenticated, new DeleteSocialMediaController().handle);
+router.get('/listAllSocialMedia', new ListAllSocialMediaController().handle);
+router.get('/listSocialMediaOrder', new ListAllSocialMediaOrderAndPositionController().handle);
 
 // -- ROUTES TEXTOS INSTITUCIONAIS --
 router.post('/createTextoInstitucional', ADMINisAuthenticated, new CreateTextInstitucionalController().handle);

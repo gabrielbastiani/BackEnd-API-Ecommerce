@@ -1,32 +1,32 @@
 import { Request, Response } from 'express';
-import { UpdateImageRedeSocialService } from '../../../services/store/socialMedia/UpdateImageRedeSocialService';
-import { RemoveImageRedeSocialService } from '../../../services/store/socialMedia/RemoveImageRedeSocialService';
+import { UpdateImageSocialMediaService } from '../../../services/store/socialMedia/UpdateImageSocialMediaService';
+import { FindUniqueSocialMediaService } from '../../../services/store/socialMedia/FindUniqueSocialMediaService';
 import fs from 'fs';
 
 class UpdateImageRedeSocialController {
     async handle(req: Request, res: Response) {
-        const redesocial_id = req.query.redesocial_id as string;
+        const socialMedia_id = req.query.socialMedia_id as string;
 
-        const updatePhoto = new UpdateImageRedeSocialService();
-        const deletePhoto = new RemoveImageRedeSocialService();
+        const updatePhoto = new UpdateImageSocialMediaService();
+        const findImage = new FindUniqueSocialMediaService();
 
-        const imageRedes = await deletePhoto.execute({
-            redesocial_id
+        const imageMedia = await findImage.execute({
+            socialMedia_id
         });
 
-        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageRedes.imageRede);
+        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageMedia.image);
 
         if (!req.file) {
             throw new Error('error upload file');
         } else {
-            const { originalname, filename: imageRede } = req.file;
+            const { originalname, filename: image } = req.file;
 
-            const updateBanner = await updatePhoto.execute({
-                redesocial_id,
-                imageRede,
+            const updateImage = await updatePhoto.execute({
+                socialMedia_id,
+                image,
             });
 
-            return res.json([imageRedes, updateBanner]);
+            return res.json([imageMedia, updateImage]);
 
         }
 
