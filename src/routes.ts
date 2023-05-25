@@ -21,7 +21,21 @@ import { FindAdminRecoveryIDController } from './controllers/users/admin/Passwor
 import { RecoveryPasswordAdminController } from './controllers/users/admin/PasswordRecoveryAdmin/RecoveryPasswordAdminController';
 
 // -- ROTAS CUSTOMER --
-
+import { ActiveOrDesactiveCustomerController } from './controllers/users/customer/ActiveOrDesactiveCustomerController';
+import { AuthCustomerController } from './controllers/users/customer/AuthCustomerController';
+import { CreateCustomerController } from './controllers/users/customer/CreateCustomerController';
+import { DeleteCustomerController } from './controllers/users/customer/DeleteCustomerController';
+import { DetailCustomerController } from './controllers/users/customer/DetailCustomerController';
+import { ExportCustomerController } from './controllers/users/customer/ExportCustomerController';
+import { ListExactCustomerNameController } from './controllers/users/customer/ListExactCustomerNameController';
+import { ListExactCustomerController } from './controllers/users/customer/ListExactCustomerController';
+import { PageListAllCustomerController } from './controllers/users/customer/PageListAllCustomerController';
+import { UpdateAllDateCustomerController } from './controllers/users/customer/UpdateAllDateCustomerController';
+import { CustomerUpdateNameController } from './controllers/users/customer/CustomerUpdateNameController';
+import { CustomerUpdateNewslatterController } from './controllers/users/customer/CustomerUpdateNewslatterController';
+import { DeletePasswordRecoveryIDCustomerController } from './controllers/users/customer/PasswordRecoveryCustomer/DeletePasswordRecoveryIDCustomerController';
+import { FindRecoveryIDCustomerController } from './controllers/users/customer/PasswordRecoveryCustomer/FindRecoveryIDCustomerController';
+import { CustomerRecoveryPasswordController } from './controllers/users/customer/PasswordRecoveryCustomer/CustomerRecoveryPasswordController';
 
 // -- ROTAS LOJA --
 import { CreateLojaController } from './controllers/loja/CreateLojaController';
@@ -301,14 +315,6 @@ import uploadConfig from './config/multer';
 
 
 
-import { ActiveOrDesactiveCustomerController } from './controllers/users/customer/ActiveOrDesactiveCustomerController';
-import { AuthCustomerController } from './controllers/users/customer/AuthCustomerController';
-import { CreateCustomerController } from './controllers/users/customer/CreateCustomerController';
-import { DeleteCustomerController } from './controllers/users/customer/DeleteCustomerController';
-import { DetailCustomerController } from './controllers/users/customer/DetailCustomerController';
-import { ExportCustomerController } from './controllers/users/customer/ExportCustomerController';
-
-
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
@@ -342,10 +348,15 @@ router.post('/customer/session', new AuthCustomerController().handle);
 router.delete('/customer/deleteCustomer', ADMINisAuthenticated && isAuthenticated, new DeleteCustomerController().handle);
 router.get('/customer/me', ADMINisAuthenticated && isAuthenticated, new DetailCustomerController().handle);
 router.get('/customer/exportCustomer', ADMINisAuthenticated, new ExportCustomerController().handle);
-
-
-
-
+router.get('/customer/listExactCustomerName', ADMINisAuthenticated && isAuthenticated, new ListExactCustomerNameController().handle);
+router.get('/customer/listExactCustomerID', ADMINisAuthenticated && isAuthenticated, new ListExactCustomerController().handle);
+router.get('/customer/listForPageCustomer', ADMINisAuthenticated, new PageListAllCustomerController().handle);
+router.put('/customer/updateDateCustomer', ADMINisAuthenticated && isAuthenticated, new UpdateAllDateCustomerController().handle);
+router.put('/customer/updateNameCustomer', ADMINisAuthenticated && isAuthenticated, new CustomerUpdateNameController().handle);
+router.put('/customer/updateNewslatter', ADMINisAuthenticated && isAuthenticated, new CustomerUpdateNewslatterController().handle);
+router.delete('/customer/deleteRecoveryIDCustomer', isAuthenticated, new DeletePasswordRecoveryIDCustomerController().handle);
+router.get('/customer/findFirstCustomer', ADMINisAuthenticated && isAuthenticated, new FindRecoveryIDCustomerController().handle);
+router.put('/customer/recoverCustomer', ADMINisAuthenticated && isAuthenticated, new CustomerRecoveryPasswordController().handle);
 
 // -- ROTAS LOJA --
 router.post('/loja', ADMINisAuthenticated, upload.single('file'), new CreateLojaController().handle);

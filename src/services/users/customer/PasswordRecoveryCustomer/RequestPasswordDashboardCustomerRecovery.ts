@@ -1,26 +1,26 @@
-import prismaClient from "../../../prisma";
+import prismaClient from "../../../../prisma";
 require('dotenv/config');
 
 interface RecoveryRequest {
   email: string;
 }
 
-class RequestPasswordDashboardRecovery {
+class RequestPasswordDashboardCustomerRecovery {
   async execute({ email }: RecoveryRequest) {
-    const user = await prismaClient.user.findFirst({
+    const customer = await prismaClient.customer.findFirst({
       where: {
         email,
       },
     });
 
-    if (!user) {
+    if (!customer) {
       throw {
         error: { field: "email", message: "Conta não encontrada." },
         code: 400,
       };
     }
 
-    const recovery = await prismaClient.passwordRecovery.create({
+    const recovery = await prismaClient.passwordRecoveryCustomer.create({
       data: {
         email,
       },
@@ -31,4 +31,4 @@ class RequestPasswordDashboardRecovery {
   }
 }
 
-export { RequestPasswordDashboardRecovery };
+export { RequestPasswordDashboardCustomerRecovery };

@@ -1,16 +1,16 @@
-import prismaClient from "../../../prisma";
+import prismaClient from '../../../../prisma';
 import { hash } from 'bcryptjs'
 
-interface RecoveryRequest {
-  recovery_id: string;
+interface CustomerRecovery {
+  passwordRecoveryCustomer_id: string;
   password: string;
 }
 
-class PasswordRecovery {
-  async execute({ recovery_id, password }: RecoveryRequest) {
-    const recovery = await prismaClient.passwordRecovery.findUnique({
+class CustomerPasswordRecoveryService {
+  async execute({ passwordRecoveryCustomer_id, password }: CustomerRecovery) {
+    const recovery = await prismaClient.passwordRecoveryCustomer.findUnique({
       where: {
-        id: recovery_id
+        id: passwordRecoveryCustomer_id
       },
     });
 
@@ -23,7 +23,7 @@ class PasswordRecovery {
 
     const hashedPassword = await hash(password, 8);
 
-    await prismaClient.user.update({
+    await prismaClient.customer.update({
       where: {
         email: recovery.email,
       },
@@ -32,7 +32,7 @@ class PasswordRecovery {
       },
     });
 
-    await prismaClient.passwordRecovery.delete({
+    await prismaClient.passwordRecoveryCustomer.delete({
       where: {
         id: recovery.id,
       },
@@ -44,4 +44,4 @@ class PasswordRecovery {
   }
 }
 
-export { PasswordRecovery };
+export { CustomerPasswordRecoveryService };
