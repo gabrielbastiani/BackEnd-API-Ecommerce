@@ -4,7 +4,7 @@ class ListContatoService {
     async execute() {
         const contato = await prismaClient.contato.findMany({
             include: {
-                loja: true
+                store: true
             },
             orderBy: {
                 created_at: 'desc'

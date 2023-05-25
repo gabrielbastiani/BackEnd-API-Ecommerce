@@ -7,7 +7,7 @@ class ListExactContatoService {
                 id: String(contato_id)
             },
             include: {
-                loja: true,
+                store: true,
             },
         })
         return exactContato;

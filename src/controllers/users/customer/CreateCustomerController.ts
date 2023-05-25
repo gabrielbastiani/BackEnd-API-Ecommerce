@@ -27,7 +27,7 @@ class CreateCustomerController {
 
         const createUserService = new CreateCustomerService();
 
-        const admin = await createUserService.execute({
+        const customer = await createUserService.execute({
             name,
             slug,
             email,
@@ -49,7 +49,7 @@ class CreateCustomerController {
             store_id
         });
 
-        return res.json(admin)
+        return res.json(customer)
     }
 }
 

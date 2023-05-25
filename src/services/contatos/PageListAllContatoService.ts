@@ -10,13 +10,13 @@ class PageListAllContatoService {
                 created_at: 'desc'
             },
             include: {
-                loja: true,
+                store: true,
             }
         });
 
         const contatos = await prismaClient.contato.findMany({
             include: {
-                loja: true,
+                store: true,
             },
             skip,
             take: limit,

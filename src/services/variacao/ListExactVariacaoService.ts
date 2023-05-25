@@ -7,7 +7,7 @@ class ListExactVariacaoService {
                 id: String(variacao_id)
             },
             include: {
-                loja: true,
+                store: true,
                 photovariacoes: true,
                 product: true,
             },

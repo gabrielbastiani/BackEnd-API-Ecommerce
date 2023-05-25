@@ -4,7 +4,7 @@ class ListNewslettersService {
     async execute() {
         const newsletter = await prismaClient.newsletter.findMany({
             include: {
-                loja: true
+                store: true
             },
             orderBy: {
                 created_at: 'desc'

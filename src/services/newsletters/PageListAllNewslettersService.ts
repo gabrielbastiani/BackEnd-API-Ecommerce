@@ -10,13 +10,13 @@ class PageListAllNewslettersService {
                 created_at: 'desc'
             },
             include: {
-                loja: true,
+                store: true,
             }
         });
 
         const news = await prismaClient.newsletter.findMany({
             include: {
-                loja: true,
+                store: true,
             },
             skip,
             take: limit,

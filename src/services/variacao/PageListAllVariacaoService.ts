@@ -13,7 +13,7 @@ class PageListAllVariacaoService {
                 photovariacoes: true,
                 item: true,
                 product: true,
-                loja: true
+                store: true
             }
         });
 
@@ -22,7 +22,7 @@ class PageListAllVariacaoService {
                 photovariacoes: true,
                 item: true,
                 product: true,
-                loja: true
+                store: true
             },
             skip,
             take: limit,

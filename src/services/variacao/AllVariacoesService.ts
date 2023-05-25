@@ -13,7 +13,7 @@ class AllVariacoesService {
             include: {
                 product: true,
                 photovariacoes: true,
-                loja: true
+                store: true
             }
         });
 

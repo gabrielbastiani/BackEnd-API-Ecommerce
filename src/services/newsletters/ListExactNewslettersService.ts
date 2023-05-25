@@ -7,7 +7,7 @@ class ListExactNewslettersService {
                 id: String(newsletter_id)
             },
             include: {
-                loja: true,
+                store: true,
             },
         })
         return exactNews;

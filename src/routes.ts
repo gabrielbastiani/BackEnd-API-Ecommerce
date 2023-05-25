@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-// -- ROTAS ADMIN --
+// -- ROUTES ADMIN --
 import { ActiveOrDesactiveAdminController } from './controllers/users/admin/ActiveOrDesactiveAdminController';
 import { AdminCreateController } from './controllers/users/admin/AdminCreateController';
 import { AdminRoleController } from './controllers/users/admin/AdminRoleController';
@@ -20,7 +20,7 @@ import { DeleteAdminPasswordRecoveryIDController } from './controllers/users/adm
 import { FindAdminRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/FindAdminRecoveryIDController';
 import { RecoveryPasswordAdminController } from './controllers/users/admin/PasswordRecoveryAdmin/RecoveryPasswordAdminController';
 
-// -- ROTAS CUSTOMER --
+// -- ROUTES CUSTOMER --
 import { ActiveOrDesactiveCustomerController } from './controllers/users/customer/ActiveOrDesactiveCustomerController';
 import { AuthCustomerController } from './controllers/users/customer/AuthCustomerController';
 import { CreateCustomerController } from './controllers/users/customer/CreateCustomerController';
@@ -36,57 +36,59 @@ import { CustomerUpdateNewslatterController } from './controllers/users/customer
 import { DeletePasswordRecoveryIDCustomerController } from './controllers/users/customer/PasswordRecoveryCustomer/DeletePasswordRecoveryIDCustomerController';
 import { FindRecoveryIDCustomerController } from './controllers/users/customer/PasswordRecoveryCustomer/FindRecoveryIDCustomerController';
 import { CustomerRecoveryPasswordController } from './controllers/users/customer/PasswordRecoveryCustomer/CustomerRecoveryPasswordController';
+import { CreateDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/CreateDeliveryAddressCustomerController';
+import { UpdateAllDateDeliveryAddressCustomerCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateAllDateDeliveryAddressCustomerCustomerController';
+import { DeleteDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/DeleteDeliveryAddressCustomerController';
 
-// -- ROTAS LOJA --
-import { CreateLojaController } from './controllers/loja/CreateLojaController';
-import { PageListAllLojaController } from './controllers/loja/PageListAllLojaController';
-import { UserLojaController } from './controllers/loja/UserLojaController';
-import { LojaController } from './controllers/loja/LojaController';
-import { UserCreateLojaController } from './controllers/loja/UserCreateLojaController';
-import { DeleteLojaController } from './controllers/loja/DeleteLojaController';
-import { UpdateLogoLojaController } from './controllers/loja/UpdateLogoLojaController';
-import { UpdateAllDateLojaController } from './controllers/loja/UpdateAllDateLojaController';
+// -- ROUTES STORE --
+import { CreateStoreController } from './controllers/store/CreateStoreController';
+import { FindUniqueStoreController } from './controllers/store/FindUniqueStoreController';
+import { StoreController } from './controllers/store/StoreController';
+import { FindFirstStoreController } from './controllers/store/FindFirstStoreController';
+import { DeleteStoreController } from './controllers/store/DeleteStoreController';
+import { UpdateLogoStoreController } from './controllers/store/UpdateLogoStoreController';
+import { UpdateAllDateStoreController } from './controllers/store/UpdateAllDateStoreController';
 
-// -- ROTAS REDES SOCIAIS DA LOJA --
-import { CreateRedeSocialController } from './controllers/loja/redeSocial/CreateRedeSocialController';
-import { UpdateOrderRedeSocialController } from './controllers/loja/redeSocial/UpdateOrderRedeSocialController';
-import { ListAllRedesSociaisOrderAndPosicaoController } from './controllers/loja/redeSocial/ListAllRedesSociaisOrderAndPosicaoController';
-import { UpdateRedeNameController } from './controllers/loja/redeSocial/UpdateRedeNameController';
-import { UpdateLinkRedeSocialController } from './controllers/loja/redeSocial/UpdateLinkRedeSocialController';
-import { UpdateImageRedeSocialController } from './controllers/loja/redeSocial/UpdateImageRedeSocialController';
-import { UpdatePosicaoRedeSocialController } from './controllers/loja/redeSocial/UpdatePosicaoRedeSocialController';
-import { UpdateDisponibilidadeRedeSocialController } from './controllers/loja/redeSocial/UpdateDisponibilidadeRedeSocialController';
-import { DeleteRedeSocialController } from './controllers/loja/redeSocial/DeleteRedeSocialController';
-import { ListAllRedeSocialController } from './controllers/loja/redeSocial/ListAllRedeSocialController';
-import { PageListRedesSocialController } from './controllers/loja/redeSocial/PageListRedesSocialController';
-import { ListExactRedeSocialController } from './controllers/loja/redeSocial/ListExactRedeSocialController';
+// -- ROUTES REDES SOCIAIS DA LOJA --
+import { CreateSocialMediaController } from './controllers/store/socialMedia/CreateSocialMediaController';
+import { UpdateOrderRedeSocialController } from './controllers/store/socialMedia/UpdateOrderRedeSocialController';
+import { ListAllRedesSociaisOrderAndPosicaoController } from './controllers/store/socialMedia/ListAllRedesSociaisOrderAndPosicaoController';
+import { UpdateRedeNameController } from './controllers/store/socialMedia/UpdateRedeNameController';
+import { UpdateLinkRedeSocialController } from './controllers/store/socialMedia/UpdateLinkRedeSocialController';
+import { UpdateImageRedeSocialController } from './controllers/store/socialMedia/UpdateImageRedeSocialController';
+import { UpdatePosicaoRedeSocialController } from './controllers/store/socialMedia/UpdatePosicaoRedeSocialController';
+import { UpdateDisponibilidadeRedeSocialController } from './controllers/store/socialMedia/UpdateDisponibilidadeRedeSocialController';
+import { DeleteRedeSocialController } from './controllers/store/socialMedia/DeleteRedeSocialController';
+import { ListAllRedeSocialController } from './controllers/store/socialMedia/ListAllRedeSocialController';
+import { PageListRedesSocialController } from './controllers/store/socialMedia/PageListRedesSocialController';
+import { ListExactRedeSocialController } from './controllers/store/socialMedia/ListExactRedeSocialController';
 
-// -- ROTAS TEXTOS INSTITUCIONAIS --
-import { CreateTextInstitucionalController } from './controllers/loja/textoInstitucional/CreateTextInstitucionalController';
-import { DeleteTextoInstitucionalController } from './controllers/loja/textoInstitucional/DeleteTextoInstitucionalController';
-import { ListAllTextosController } from './controllers/loja/textoInstitucional/ListAllTextosController';
-import { ListAllTextosOrderAndPosicaoController } from './controllers/loja/textoInstitucional/ListAllTextosOrderAndPosicaoController';
-import { ListExactTextoInstitucionalController } from './controllers/loja/textoInstitucional/ListExactTextoInstitucionalController';
-import { PageListTextoInstitucionalController } from './controllers/loja/textoInstitucional/PageListTextoInstitucionalController';
-import { UpdateDisponibilidadeTextoController } from './controllers/loja/textoInstitucional/UpdateDisponibilidadeTextoController';
-import { UpdateOrderTextoInstitucionalController } from './controllers/loja/textoInstitucional/UpdateOrderTextoInstitucionalController';
-import { UpdatePosicaoTextoController } from './controllers/loja/textoInstitucional/UpdatePosicaoTextoController';
-import { UpdateTitleTextoController } from './controllers/loja/textoInstitucional/UpdateTitleTextoController';
-import { UpdateDescriptionTextoController } from './controllers/loja/textoInstitucional/UpdateDescriptionTextoController';
-import { CreatePhotoTextoInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/CreatePhotoTextoInstitucionalController';
-import { AllPhotosTextoInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/AllPhotosTextoInstitucionalController';
-import { AllPhotosTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/AllPhotosTextosController';
-import { DeleteAllPhotoTextosController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeleteAllPhotoTextosController';
-import { DeletePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/DeletePhotoTextoController';
-import { UpdatePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePhotoTextoController';
-import { UpdateDisponibilidadePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateDisponibilidadePhotoTextoController';
-import { UpdateTitlePhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateTitlePhotoTextoController';
-import { ListExactPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/ListExactPhotoTextoController';
-import { UpdateOrderPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
-import { UpdatePosicaoPhotoTextoController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
-import { ListImagesInstitucionalController } from './controllers/loja/textoInstitucional/photoTextoInstitucional/ListImagesInstitucionalController';
+// -- ROUTES TEXTOS INSTITUCIONAIS --
+import { CreateTextInstitucionalController } from './controllers/store/textoInstitucional/CreateTextInstitucionalController';
+import { DeleteTextoInstitucionalController } from './controllers/store/textoInstitucional/DeleteTextoInstitucionalController';
+import { ListAllTextosController } from './controllers/store/textoInstitucional/ListAllTextosController';
+import { ListAllTextosOrderAndPosicaoController } from './controllers/store/textoInstitucional/ListAllTextosOrderAndPosicaoController';
+import { ListExactTextoInstitucionalController } from './controllers/store/textoInstitucional/ListExactTextoInstitucionalController';
+import { PageListTextoInstitucionalController } from './controllers/store/textoInstitucional/PageListTextoInstitucionalController';
+import { UpdateDisponibilidadeTextoController } from './controllers/store/textoInstitucional/UpdateDisponibilidadeTextoController';
+import { UpdateOrderTextoInstitucionalController } from './controllers/store/textoInstitucional/UpdateOrderTextoInstitucionalController';
+import { UpdatePosicaoTextoController } from './controllers/store/textoInstitucional/UpdatePosicaoTextoController';
+import { UpdateTitleTextoController } from './controllers/store/textoInstitucional/UpdateTitleTextoController';
+import { UpdateDescriptionTextoController } from './controllers/store/textoInstitucional/UpdateDescriptionTextoController';
+import { CreatePhotoTextoInstitucionalController } from './controllers/store/textoInstitucional/photoTextoInstitucional/CreatePhotoTextoInstitucionalController';
+import { AllPhotosTextoInstitucionalController } from './controllers/store/textoInstitucional/photoTextoInstitucional/AllPhotosTextoInstitucionalController';
+import { AllPhotosTextosController } from './controllers/store/textoInstitucional/photoTextoInstitucional/AllPhotosTextosController';
+import { DeleteAllPhotoTextosController } from './controllers/store/textoInstitucional/photoTextoInstitucional/DeleteAllPhotoTextosController';
+import { DeletePhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/DeletePhotoTextoController';
+import { UpdatePhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdatePhotoTextoController';
+import { UpdateDisponibilidadePhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdateDisponibilidadePhotoTextoController';
+import { UpdateTitlePhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdateTitlePhotoTextoController';
+import { ListExactPhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/ListExactPhotoTextoController';
+import { UpdateOrderPhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdateOrderPhotoTextoController';
+import { UpdatePosicaoPhotoTextoController } from './controllers/store/textoInstitucional/photoTextoInstitucional/UpdatePosicaoPhotoTextoController';
+import { ListImagesInstitucionalController } from './controllers/store/textoInstitucional/photoTextoInstitucional/ListImagesInstitucionalController';
 
-// -- ROTAS BANNERS --
+// -- ROUTES BANNERS --
 import { CreateBannerController } from './controllers/banner/CreateBannerController';
 import { UpdateAllDateBannerController } from './controllers/banner/UpdateAllDateBannerController';
 import { PageListAllBannerController } from './controllers/banner/PageListAllBannerController';
@@ -98,7 +100,7 @@ import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerC
 import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
 import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosicaoBannerController';
 
-// -- ROTAS CATEGORIAS --
+// -- ROUTES CATEGORIAS --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
 import { UpdateImageCategoryController } from './controllers/category/imagesCategories/UpdateImageCategoryController';
@@ -112,7 +114,7 @@ import { ListCategoryController } from './controllers/category/ListCategoryContr
 import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
 import { FindFirstCategorySlugController } from './controllers/category/FindFirstCategorySlugController';
 
-// -- ROTAS GRUPOS DE CATEGORIAS --
+// -- ROUTES GRUPOS DE CATEGORIAS --
 import { CreateGroupCategoryController } from './controllers/category/groupCategory/CreateGroupCategoryController';
 import { ListPosicaoCategoriesGroupController } from './controllers/category/groupCategory/ListPosicaoCategoriesGroupController';
 import { ListCategoriesGroupController } from './controllers/category/groupCategory/ListCategoriesGroupController';
@@ -133,7 +135,7 @@ import { UpdateSlugGrupoController } from './controllers/category/groupCategory/
 import { UpdateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/UpdateImageCategoryGroupController';
 import { DeletetImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/DeletetImageCategoryGroupController';
 
-// -- ROTAS PRODUTOS --
+// -- ROUTES PRODUTOS --
 import { CreateProductController } from './controllers/product/CreateProductController';
 import { PhotoProductController } from './controllers/product/photoproduct/PhotoProductController';
 import { UpdatePhotoProductController } from './controllers/product/photoproduct/UpdatePhotoProductController';
@@ -164,7 +166,7 @@ import { ListAllProductDestaqueController } from './controllers/product/ListAllP
 import { ListAllProductOfertaController } from './controllers/product/ListAllProductOfertaController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
-// ROTAS ATRIBUTOS --
+// ROUTES ATRIBUTOS --
 import { CreateAtributoController } from './controllers/atributo/CreateAtributoController';
 import { PageListAllAtributosController } from './controllers/atributo/PageListAllAtributosController';
 import { ListAtributosController } from './controllers/atributo/ListAtributosController';
@@ -176,7 +178,7 @@ import { CreateImageAtributoController } from './controllers/atributo/imageAtrib
 import { UpdateImageAtributoController } from './controllers/atributo/imageAtributo/UpdateImageAtributoController';
 import { ListNotDistinctAtributosController } from './controllers/atributo/ListNotDistinctAtributosController';
 
-// ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
+// ROUTES RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
 import { CreateRelationAtributosController } from './controllers/atributo/relationProductAtributo/CreateRelationAtributosController';
 import { PageRelationAtributosController } from './controllers/atributo/relationProductAtributo/PageRelationAtributosController';
 import { AllAtributosProductRelationController } from './controllers/atributo/relationProductAtributo/AllAtributosProductRelationController';
@@ -188,7 +190,7 @@ import { UpdateAtributoProductRelationController } from './controllers/atributo/
 import { DeleteGrupoProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteGrupoProductAtributoController';
 import { FindAtributosRelationBlockController } from './controllers/atributo/relationProductAtributo/FindAtributosRelationBlockController';
 
-// ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
+// ROUTES RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 import { CreateRelationProductCategoryController } from './controllers/product/relationProductCategory/CreateRelationProductCategoryController';
 import { UpdateRelationIDProductCategoryController } from './controllers/product/relationProductCategory/UpdateRelationIDProductCategoryController';
 import { FindCategoryRelationBlockController } from './controllers/product/relationProductCategory/FindCategoryRelationBlockController';
@@ -207,7 +209,7 @@ import { DeleteRelationProductIDController } from './controllers/product/relatio
 import { DeleteRelationIDController } from './controllers/product/relationProductCategory/DeleteRelationIDController';
 import { ProductsPageCategoriesController } from './controllers/product/relationProductCategory/ProductsPageCategoriesController';
 
-// -- ROTAS GRUPOS FILTROS --
+// -- ROUTES GRUPOS FILTROS --
 import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
 import { UpdateNameGroupFilterController } from './controllers/filtros/UpdateNameGroupFilterController';
 import { UpdateAtributoNameController } from './controllers/filtros/UpdateAtributoNameController';
@@ -221,7 +223,7 @@ import { FindSlugGroupFilterController } from './controllers/filtros/FindSlugGro
 import { FindFirstGroupsController } from './controllers/filtros/FindFirstGroupsController';
 import { FindIDGroupFilterController } from './controllers/filtros/FindIDGroupFilterController';
 
-// -- ROTAS FILTRO ATRIBUTOS --
+// -- ROUTES FILTRO ATRIBUTOS --
 import { CreateFiltroAtributoController } from './controllers/filtros/atributoFilter/CreateFiltroAtributoController';
 import { DeleteAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAtributoFiltroController';
 import { PageAtributoFiltroController } from './controllers/filtros/atributoFilter/PageAtributoFiltroController';
@@ -236,7 +238,7 @@ import { FindUniqueAtributoFiltroController } from './controllers/filtros/atribu
 import { FindManyAtributoFiltroNameController } from './controllers/filtros/atributoFilter/FindManyAtributoFiltroNameController';
 import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
 
-// -- ROTAS FILTRO CATEGORIAS --
+// -- ROUTES FILTRO CATEGORIAS --
 import { CreateFiltroCategoryController } from './controllers/filtros/categoryFilter/CreateFiltroCategoryController';
 import { DeleteCategoryFiltroController } from './controllers/filtros/categoryFilter/DeleteCategoryFiltroController';
 import { PageCategoryFiltroController } from './controllers/filtros/categoryFilter/PageCategoryFiltroController';
@@ -249,7 +251,7 @@ import { CreateImageFiltroCategoryController } from './controllers/filtros/categ
 import { UpdateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/UpdateImageFiltroCategoryController';
 import { DeleteImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/DeleteImageFiltroCategoryController';
 
-// -- ROTAS AVALIACAO --
+// -- ROUTES AVALIACAO --
 import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
 import { DeleteAvaliacaoController } from './controllers/avaliacao/DeleteAvaliacaoController';
 import { UpdateStatusAvaliacaoController } from './controllers/avaliacao/UpdateStatusAvaliacaoController';
@@ -258,7 +260,7 @@ import { DeleteAvaliacaoProductIDController } from './controllers/avaliacao/Dele
 import { PageListAllAvaliacaoProductIDController } from './controllers/avaliacao/PageListAllAvaliacaoProductIDController';
 import { FindAvaliacaoController } from './controllers/avaliacao/FindAvaliacaoController';
 
-// -- ROTAS VARIAÇÃO --
+// -- ROUTES VARIAÇÃO --
 import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
 import { DeleteVariacaoController } from './controllers/variacao/DeleteVariacaoController';
 import { UpdateAllDateVariacaoController } from './controllers/variacao/UpdateAllDateVariacaoController';
@@ -284,7 +286,7 @@ import { ListAllVariacaoDestaqueController } from './controllers/variacao/ListAl
 import { ListAllVariacaoOfertaController } from './controllers/variacao/ListAllVariacaoOfertaController';
 import { ListExactVariacaoNameController } from './controllers/variacao/ListExactVariacaoNameController';
 
-// -- ROTAS NEWSLETTERS --
+// -- ROUTES NEWSLETTERS --
 import { CreateNewslettersController } from './controllers/newsletters/CreateNewslettersController';
 import { DeleteNewslettersController } from './controllers/newsletters/DeleteNewslettersController';
 import { ListNewslettersController } from './controllers/newsletters/ListNewslettersController';
@@ -292,7 +294,7 @@ import { ListExactNewslettersController } from './controllers/newsletters/ListEx
 import { PageListAllNewslettersController } from './controllers/newsletters/PageListAllNewslettersController';
 import { ExportNewslettersController } from './controllers/newsletters/ExportNewslettersController';
 
-// -- ROTAS CONTATOS --
+// -- ROUTES CONTATOS --
 import { CreateContatoController } from './controllers/contatos/CreateContatoController';
 import { DeleteContatoController } from './controllers/contatos/DeleteContatoController';
 import { ListContatoController } from './controllers/contatos/ListContatoController';
@@ -300,7 +302,7 @@ import { ListExactContatoController } from './controllers/contatos/ListExactCont
 import { PageListAllContatoController } from './controllers/contatos/PageListAllContatoController';
 import { ExportContatoController } from './controllers/contatos/ExportContatoController';
 
-// -- ROTAS ENVIAR EMAILS --
+// -- ROUTES ENVIAR EMAILS --
 import { EmailExportAdminUserController } from './controllers/sendEmails/EmailExportAdminUserController';
 import { EmailExportCustomerUserController } from './controllers/sendEmails/EmailExportCustomerUserController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
@@ -316,13 +318,14 @@ import uploadConfig from './config/multer';
 
 
 
+
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
 
 
 
 
-// -- ROTAS ADMIN --
+// -- ROUTES ADMIN --
 router.put('/admin/activeOrDesactiveAdmin', ADMINisAuthenticated, new ActiveOrDesactiveAdminController().handle);
 router.post('/admin/createAdmin', new AdminCreateController().handle);
 router.put('/admin/updateRoleAdmin', ADMINisAuthenticated, new AdminRoleController().handle);
@@ -341,7 +344,7 @@ router.delete('/admin/deleteRecoveryIDAdmin', ADMINisAuthenticated, new DeleteAd
 router.get('/admin/findFirstAdmin', ADMINisAuthenticated, new FindAdminRecoveryIDController().handle);
 router.put('/admin/recoverAdmin', new RecoveryPasswordAdminController().handle);
 
-// -- ROTAS CUSTOMERS --
+// -- ROUTES CUSTOMERS --
 router.post('/customer/createCustomer', new CreateCustomerController().handle);
 router.put('/customer/activeOrDesactiveCustomer', isAuthenticated, new ActiveOrDesactiveCustomerController().handle);
 router.post('/customer/session', new AuthCustomerController().handle);
@@ -357,19 +360,21 @@ router.put('/customer/updateNewslatter', ADMINisAuthenticated && isAuthenticated
 router.delete('/customer/deleteRecoveryIDCustomer', isAuthenticated, new DeletePasswordRecoveryIDCustomerController().handle);
 router.get('/customer/findFirstCustomer', ADMINisAuthenticated && isAuthenticated, new FindRecoveryIDCustomerController().handle);
 router.put('/customer/recoverCustomer', ADMINisAuthenticated && isAuthenticated, new CustomerRecoveryPasswordController().handle);
+router.post('/customer/delivery/createDeliveryAddress', isAuthenticated, new CreateDeliveryAddressCustomerController().handle);
+router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', isAuthenticated, new UpdateAllDateDeliveryAddressCustomerCustomerController().handle);
+router.delete('/customer/delivery/deleteDeliveryAddress', isAuthenticated, new DeleteDeliveryAddressCustomerController().handle);
 
-// -- ROTAS LOJA --
-router.post('/loja', ADMINisAuthenticated, upload.single('file'), new CreateLojaController().handle);
-router.get('/allLojasPage', ADMINisAuthenticated, new PageListAllLojaController().handle);
-router.get('/userLoja', ADMINisAuthenticated, new UserLojaController().handle);
-router.get('/lojaCreateFind', ADMINisAuthenticated, new UserCreateLojaController().handle);
-router.get('/loja', new LojaController().handle);
-router.delete('/deleteLoja', ADMINisAuthenticated, new DeleteLojaController().handle);
-router.put('/logoLojaUpdate', ADMINisAuthenticated, upload.single('file'), new UpdateLogoLojaController().handle);
-router.put('/updateAllDateLoja', ADMINisAuthenticated, new UpdateAllDateLojaController().handle);
+// -- ROUTES STORE --
+router.post('/store', ADMINisAuthenticated, upload.single('file'), new CreateStoreController().handle);
+router.get('/userStore', ADMINisAuthenticated, new FindUniqueStoreController().handle);
+router.get('/findFirstStoreUser', ADMINisAuthenticated, new FindFirstStoreController().handle);
+router.get('/store', new StoreController().handle);
+router.delete('/deleteStore', ADMINisAuthenticated, new DeleteStoreController().handle);
+router.put('/logoStoreUpdate', ADMINisAuthenticated, upload.single('file'), new UpdateLogoStoreController().handle);
+router.put('/updateAllDateStore', ADMINisAuthenticated, new UpdateAllDateStoreController().handle);
 
-// -- ROTAS REDES SOCIAIS DA LOJA --
-router.post('/createRedeSocialLoja', ADMINisAuthenticated, upload.single('file'), new CreateRedeSocialController().handle);
+// -- ROUTES SOCIAL MEDIA --
+router.post('/createSocialMedia', ADMINisAuthenticated, upload.single('file'), new CreateSocialMediaController().handle);
 router.put('/updateOrderRedeSocial', ADMINisAuthenticated, new UpdateOrderRedeSocialController().handle);
 router.put('/updateRedeName', ADMINisAuthenticated, new UpdateRedeNameController().handle);
 router.put('/updateLinkRedeSocial', ADMINisAuthenticated, new UpdateLinkRedeSocialController().handle);
@@ -382,7 +387,7 @@ router.get('/listExactRedesSociais', ADMINisAuthenticated, new ListExactRedeSoci
 router.get('/listAllRedesSociais', ADMINisAuthenticated, new ListAllRedeSocialController().handle);
 router.get('/listRedesSociaisOrder', new ListAllRedesSociaisOrderAndPosicaoController().handle);
 
-// -- ROTAS TEXTOS INSTITUCIONAIS --
+// -- ROUTES TEXTOS INSTITUCIONAIS --
 router.post('/createTextoInstitucional', ADMINisAuthenticated, new CreateTextInstitucionalController().handle);
 router.delete('/deleteTextoInstitucional', ADMINisAuthenticated, new DeleteTextoInstitucionalController().handle);
 router.get('/listExactTextoInstitucional', ADMINisAuthenticated, new ListExactTextoInstitucionalController().handle);
@@ -407,7 +412,7 @@ router.get('/listExactPhotoTextoInstitucional', ADMINisAuthenticated, new ListEx
 router.get('/listTextosInstitucionais', new ListAllTextosOrderAndPosicaoController().handle);
 router.get('/listImagesLoja', new ListImagesInstitucionalController().handle);
 
-// -- ROTAS BANNER --
+// -- ROUTES BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
 router.put('/updateAllDateBanner', ADMINisAuthenticated, new UpdateAllDateBannerController().handle);
 router.get('/pageListBanner', ADMINisAuthenticated, new PageListAllBannerController().handle);
@@ -419,7 +424,7 @@ router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController()
 router.get('/updatePublishBanner', ADMINisAuthenticated, new PublishProgramadBannerController().handle);
 router.get('/activeBanner', new ActiveAllBannerController().handle);
 
-// -- ROTAS CATEGORIAS --
+// -- ROUTES CATEGORIAS --
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
 router.post('/createImageCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
@@ -433,7 +438,7 @@ router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameControlle
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/findDateSlugCategory', new FindFirstCategorySlugController().handle);
 
-// -- ROTAS GRUPOS DE CATEGORIAS --
+// -- ROUTES GRUPOS DE CATEGORIAS --
 router.post('/group', ADMINisAuthenticated, new CreateGroupCategoryController().handle);
 router.get('/pageGroups', ADMINisAuthenticated, new PageListAllGroupsCategoriesController().handle);
 router.get('/findFirstGroup', ADMINisAuthenticated, new FindFirstGroupController().handle);
@@ -454,7 +459,7 @@ router.put('/updateSlugGroup', ADMINisAuthenticated, new UpdateSlugGrupoControll
 router.get('/pocisaoListGroup', new ListPosicaoCategoriesGroupController().handle);
 router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
 
-// -- ROTAS PRODUTOS --
+// -- ROUTES PRODUTOS --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
 router.post('/image', ADMINisAuthenticated, upload.single('file'), new PhotoProductController().handle);
 router.put('/updateAllDateProduct', ADMINisAuthenticated, new UpdateAllDateProductController().handle);
@@ -483,7 +488,7 @@ router.get('/listProductsDestaque', new ListAllProductDestaqueController().handl
 router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 
-// ROTAS ATRIBUTOS --
+// ROUTES ATRIBUTOS --
 router.post('/createAtributo', ADMINisAuthenticated, new CreateAtributoController().handle);
 router.put('/updateValorAtribute', ADMINisAuthenticated, new UpdateValorAtributoController().handle);
 router.put('/updateTipoAtributo', ADMINisAuthenticated, new UpdateTipoAtributoController().handle);
@@ -495,7 +500,7 @@ router.put('/updateImageAtributo', ADMINisAuthenticated, upload.single('file'), 
 router.get('/allAtributos', ADMINisAuthenticated, new ListAtributosController().handle);
 router.get('/listAtributosNotDistinct', ADMINisAuthenticated, new ListNotDistinctAtributosController().handle);
 
-// ROTAS RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
+// ROUTES RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
 router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);
 router.get('/pageListAtributosRelations', ADMINisAuthenticated, new PageRelationAtributosController().handle);
 router.get('/allAtributosProductRelation', ADMINisAuthenticated, new AllAtributosProductRelationController().handle);
@@ -507,7 +512,7 @@ router.get('/findAllAtributosProduct', ADMINisAuthenticated, new FindAtributosRe
 router.delete('/deleteRelationAtributoProduct', ADMINisAuthenticated, new DeleteRelationProductAtributoController().handle);
 router.delete('/deleteGrupoAtributosProduct', ADMINisAuthenticated, new DeleteGrupoProductAtributoController().handle);
 
-// ROTAS RELACIONAMENTOS CATEGORIAS E PRODUTOS --
+// ROUTES RELACIONAMENTOS CATEGORIAS E PRODUTOS --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
 router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
 router.put('/updateCategoryIDrelation', ADMINisAuthenticated, new UpdateCategoryIDProductCategoryController().handle);
@@ -526,7 +531,7 @@ router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelat
 router.get('/categorys', new FindCategorysRelationController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 
-// -- ROTAS GRUPOS FILTROS --
+// -- ROUTES GRUPOS FILTROS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
 router.put('/updateNameGroupFilter', ADMINisAuthenticated, new UpdateNameGroupFilterController().handle);
 router.put('/updateAtributoName', ADMINisAuthenticated, new UpdateAtributoNameController().handle);
@@ -540,7 +545,7 @@ router.get('/findsAtributoNameGroupFilter', new FindsAtributoNameFilterControlle
 router.get('/findUniqueIDGroup', ADMINisAuthenticated, new FindIDGroupFilterController().handle);
 router.get('/listFilterGroup', new FindSlugGroupFilterController().handle);
 
-// -- ROTAS FILTRO ATRIBUTOS --
+// -- ROUTES FILTRO ATRIBUTOS --
 router.post('/createFiltroAtributo', ADMINisAuthenticated, new CreateFiltroAtributoController().handle);
 router.delete('/deleteFiltroAtributo', ADMINisAuthenticated, new DeleteAtributoFiltroController().handle);
 router.delete('/deleteAllFiltrosAtributosGrupo', ADMINisAuthenticated, new DeleteAllAtributoFiltroController().handle);
@@ -556,7 +561,7 @@ router.get('/findUniqueFiltroAtributo', ADMINisAuthenticated, new FindUniqueAtri
 router.get('/findManyNameFiltroAtributo', ADMINisAuthenticated, new FindManyAtributoFiltroNameController().handle);
 router.get('/allAtributosGroups', new FindAtributoFiltroController().handle);
 
-// -- ROTAS FILTRO CATEGORIAS --
+// -- ROUTES FILTRO CATEGORIAS --
 router.post('/createFiltroCategory', ADMINisAuthenticated, new CreateFiltroCategoryController().handle);
 router.delete('/deleteFiltroCategory', ADMINisAuthenticated, new DeleteCategoryFiltroController().handle);
 router.get('/pagesFiltrosCategory', ADMINisAuthenticated, new PageCategoryFiltroController().handle);
@@ -568,7 +573,7 @@ router.post('/createImageFilterCategory', ADMINisAuthenticated, upload.single('f
 router.put('/updateImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroCategoryController().handle);
 router.delete('/deleteImageFiltroCategory', ADMINisAuthenticated, new DeleteImageFiltroCategoryController().handle);
 
-// -- ROTAS AVALIACAO --
+// -- ROUTES AVALIACAO --
 router.post('/avaliacao', ADMINisAuthenticated, new CreateAvaliacaoController().handle);
 router.delete('/deleteAvaliacao', ADMINisAuthenticated, new DeleteAvaliacaoController().handle);
 router.delete('/deleteAvaliacaoProductID', ADMINisAuthenticated, new DeleteAvaliacaoProductIDController().handle);
@@ -577,7 +582,7 @@ router.get('/pageAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoProdu
 router.get('/avaliacaoDados', ADMINisAuthenticated, new FindAvaliacaoController().handle);
 router.put('/updateStatusAvaliacao', ADMINisAuthenticated, new UpdateStatusAvaliacaoController().handle);
 
-// -- ROTAS VARIAÇÃO --
+// -- ROUTES VARIAÇÃO --
 router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);
 router.delete('/deleteVariacao', ADMINisAuthenticated, new DeleteVariacaoController().handle);
 router.put('/updateAllDateVariacao', ADMINisAuthenticated, new UpdateAllDateVariacaoController().handle);
@@ -605,7 +610,7 @@ router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().hand
 router.get('/listVariacaoOfertas', new ListAllVariacaoOfertaController().handle);
 router.get('/exactVariacaoPage', new ListExactVariacaoNameController().handle);
 
-// -- ROTAS NEWSLETTERS --
+// -- ROUTES NEWSLETTERS --
 router.post('/createNewsletter', new CreateNewslettersController().handle);
 router.delete('/deleteNewsletter', ADMINisAuthenticated, new DeleteNewslettersController().handle);
 router.get('/listNewsletter', ADMINisAuthenticated, new ListNewslettersController().handle);
@@ -613,7 +618,7 @@ router.get('/listExactNewsletter', ADMINisAuthenticated, new ListExactNewsletter
 router.get('/pageNewsletter', ADMINisAuthenticated, new PageListAllNewslettersController().handle);
 router.get('/exportNews', ADMINisAuthenticated, new ExportNewslettersController().handle);
 
-// -- ROTAS CONTATOS --
+// -- ROUTES CONTATOS --
 router.post('/createContato', new CreateContatoController().handle);
 router.delete('/deleteContato', ADMINisAuthenticated, new DeleteContatoController().handle);
 router.get('/listContato', ADMINisAuthenticated, new ListContatoController().handle);
@@ -621,7 +626,7 @@ router.get('/listExactContato', ADMINisAuthenticated, new ListExactContatoContro
 router.get('/pageContato', ADMINisAuthenticated, new PageListAllContatoController().handle);
 router.get('/exportContatos', ADMINisAuthenticated, new ExportContatoController().handle);
 
-// -- ROTAS ENVIAR EMAILS --
+// -- ROUTES ENVIAR EMAILS --
 router.get('/admin/sendlistuser', ADMINisAuthenticated, new EmailExportAdminUserController().handle);
 router.get('/sendListCustomer', ADMINisAuthenticated, new EmailExportCustomerUserController().handle);
 router.get('/sendlistproduct', ADMINisAuthenticated, new EmailExportProductsController().handle);

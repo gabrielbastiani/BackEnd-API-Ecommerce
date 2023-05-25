@@ -1,0 +1,24 @@
+import prismaClient from "../../../../prisma";
+
+interface LojaRequest {
+    imageloja_id: any;
+    order: number;
+}
+
+class UpdateOrderPhotoTextoService {
+    async execute({ imageloja_id, order }: LojaRequest) {
+        const store = await prismaClient.imageLoja.update({
+            where: {
+                id: String(imageloja_id),
+            },
+            data: {
+                order: Number(order),
+            }
+        })
+
+        return store;
+
+    }
+}
+
+export { UpdateOrderPhotoTextoService }

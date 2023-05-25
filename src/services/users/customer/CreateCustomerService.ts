@@ -108,7 +108,7 @@ class CreateCustomerService {
     await transporter.sendMail({
       from: "Loja Virtual - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>",
       to: "gabriel.bastiani@hotmail.com.br",
-      subject: "Novo cliente se cadastrando na loja virtual da Builder Seu Negócio Online",
+      subject: "Novo cliente se cadastrando na store virtual da Builder Seu Negócio Online",
       html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                 <h2>Novo usúario!</h2>
             </div>

@@ -100,14 +100,14 @@ class CreateBannerService {
         await transporter.sendMail({
           from: 'Loja - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
           to: 'gabriel.bastiani@hotmail.com.br',
-          subject: "Banner programado na loja",
+          subject: "Banner programado na store",
           html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                        <h2>Banner programado na loja</h2>
+                        <h2>Banner programado na store</h2>
                     </div>
                     
                     <article>
                         <p>Olá!</p>
-                        <p>O banner de titulo: <b>"${titleBanner}"</b>, programado para ser publicado na data <b>${firstDate}</b> foi publicado na loja!</p>
+                        <p>O banner de titulo: <b>"${titleBanner}"</b>, programado para ser publicado na data <b>${firstDate}</b> foi publicado na store!</p>
                     </article>
                     
                     <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
@@ -140,14 +140,14 @@ class CreateBannerService {
         await transporter.sendMail({
           from: 'Loja - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
           to: 'gabriel.bastiani@hotmail.com.br',
-          subject: "Banner programado na loja",
+          subject: "Banner programado na store",
           html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                        <h2>Banner programado na loja</h2>
+                        <h2>Banner programado na store</h2>
                     </div>
                     
                     <article>
                         <p>Olá!</p>
-                        <p>O banner programado de titulo: <b>"${titleBanner}"</b>, foi desabilitado na loja na data <b>${dateFuture}</p>
+                        <p>O banner programado de titulo: <b>"${titleBanner}"</b>, foi desabilitado na store na data <b>${dateFuture}</p>
                     </article>
                     
                     <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
