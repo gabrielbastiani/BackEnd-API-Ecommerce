@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateImageCategoryService } from "../../../services/category/imagesCategories/CreateImageCategoryService";
+import { CreateImageCategoryService } from "../../../services/category/imageCategory/CreateImageCategoryService";
 
 class CreateImageCategoryController {
     async handle(req: Request, res: Response) {
@@ -11,10 +11,10 @@ class CreateImageCategoryController {
             throw new Error("error upload file");
         } else {
 
-            const { originalname, filename: categoryImage } = req.file;
+            const { originalname, filename: image } = req.file;
 
             const createImage = await imagesCategory.execute({
-                categoryImage,
+                image,
                 category_id
             });
 

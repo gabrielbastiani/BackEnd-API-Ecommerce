@@ -1,10 +1,11 @@
-import { StatusProduct } from '@prisma/client';
-import prismaClient from '../../prisma';
+import { StatusEmphasis, StatusProduct } from "@prisma/client";
+import prismaClient from "../../prisma";
 
-class AllProductInStoreService {
+class ListAllProductEmphasisService {
     async execute() {
-        const allProduct = await prismaClient.product.findMany({
+        const emphasisProduct = await prismaClient.product.findMany({
             where: {
+                emphasis: StatusEmphasis.Sim,
                 status: StatusProduct.Disponivel
             },
             include: {
@@ -18,10 +19,14 @@ class AllProductInStoreService {
                 store: true,
                 tags: true,
                 variations: true
+            },
+            orderBy: {
+                created_at: 'desc'
             }
-        });
-        return allProduct;
+        })
+
+        return emphasisProduct;
     }
 }
 
-export { AllProductInStoreService }
+export { ListAllProductEmphasisService }

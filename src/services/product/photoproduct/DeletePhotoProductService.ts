@@ -1,11 +1,11 @@
 import prismaClient from "../../../prisma";
 
-interface ProductRequest {
+interface ImageRequest {
   photoProduts_id: string;
 }
 
 class DeletePhotoProductService {
-  async execute({ photoProduts_id }: ProductRequest){
+  async execute({ photoProduts_id }: ImageRequest){
       const photoPro = await prismaClient.photoProduct.delete({
         where:{
           id: photoProduts_id 

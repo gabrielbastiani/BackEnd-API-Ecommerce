@@ -3,23 +3,23 @@ import xl from 'excel4node';
 const wb = new xl.Workbook();
 const ws = wb.addWorksheet('lista-de-produtos');
 
-
 class ExportProductService {
     async execute() {
         const findAll = await prismaClient.product.findMany({
             select: {
                 id: true,
-                nameProduct: true,
-                descriptionProduct1: true,
-                descriptionProduct2: true,
-                descriptionProduct3: true,
-                descriptionProduct4: true,
-                descriptionProduct5: true,
-                descriptionProduct6: true,
-                preco: true,
+                name: true,
+                price: true,
+                promotion: true,
                 sku: true,
-                promocao: true,
-                store_id: true,
+                stock: true,
+                weight: true,
+                width: true,
+                height: true,
+                depth: true,
+                urlVideo: true,
+                buyTogether_id: true,
+                store_id: true
             },
             orderBy: {
                 created_at: 'desc'
@@ -29,15 +29,16 @@ class ExportProductService {
         const headingColumnNames = [
             "ID do Produto",
             "Nome do Produto",
-            "Primeira Descrição",
-            "Segunda Descrição",
-            "Terceira Descrição",
-            "Quarta Descrição",
-            "Quinta Descrição",
-            "Sexta Descrição",
             "Preço do Produto",
-            "SKU do Produto",
             "Promoção do Produto",
+            "SKU do Produto",
+            "Estoque do Produto",
+            "Peso do Produto",
+            "Largura do Produto",
+            "Altura do Produto",
+            "Comprimento do Produto",
+            "Link video do Produto",
+            "ID Grupo compre Junto",
             "Loja do Produto"
         ]
 

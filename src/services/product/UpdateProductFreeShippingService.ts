@@ -1,41 +1,41 @@
-import { StatusDestaque } from "@prisma/client";
+import { StatusFreeShipping } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface ProductRequest {
   product_id: string;
 }
 
-class UpdateProductDestaqueService {
+class UpdateProductFreeShippingService {
   async execute({ product_id }: ProductRequest) {
     const active = await prismaClient.product.findUnique({
       where: {
         id: product_id
       },
       select: {
-        produtoDestaque: true
+        freeShipping: true
       }
     })
 
-    if(active.produtoDestaque === "Sim"){
+    if (active.freeShipping === "Sim") {
       const isFalse = await prismaClient.product.update({
-        where:{
+        where: {
           id: product_id
         },
         data: {
-          produtoDestaque: StatusDestaque.Nao
+          freeShipping: StatusFreeShipping.Nao
         }
       })
 
       return isFalse;
     }
 
-    if(active.produtoDestaque === "Nao"){
+    if (active.freeShipping === "Nao") {
       const isTrue = await prismaClient.product.update({
-        where:{
+        where: {
           id: product_id
         },
         data: {
-          produtoDestaque: StatusDestaque.Sim
+          freeShipping: StatusFreeShipping.Sim
         }
       })
 
@@ -46,4 +46,4 @@ class UpdateProductDestaqueService {
   }
 }
 
-export { UpdateProductDestaqueService }
+export { UpdateProductFreeShippingService }

@@ -1,11 +1,11 @@
 import prismaClient from "../../../prisma";
 
-interface RequestPhoto {
+interface ImageRequest {
   photoProduts_id: string;
 }
 
-class RemovePhotoProductService {
-  async execute({ photoProduts_id }: RequestPhoto) {
+class FindUniquePhotoProductService {
+  async execute({ photoProduts_id }: ImageRequest) {
     const photoProduts = await prismaClient.photoProduct.findUnique({
       where: {
         id: photoProduts_id
@@ -17,4 +17,4 @@ class RemovePhotoProductService {
   }
 }
 
-export { RemovePhotoProductService }
+export { FindUniquePhotoProductService }

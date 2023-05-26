@@ -4,7 +4,7 @@ interface ImageCategRrequest {
     imageCategory_id: string;
 }
 
-class ListExactImageCategoryService {
+class FindUniqueImageCategoryService {
     async execute({ imageCategory_id }: ImageCategRrequest) {
         const exactImage = await prismaClient.imageCategory.findUnique({
             where: {
@@ -17,4 +17,4 @@ class ListExactImageCategoryService {
     }
 }
 
-export { ListExactImageCategoryService }
+export { FindUniqueImageCategoryService }

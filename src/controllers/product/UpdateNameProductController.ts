@@ -3,15 +3,15 @@ import { UpdateNameProductService } from '../../services/product/UpdateNameProdu
 
 class UpdateNameProductController {
   async handle(req: Request, res: Response) {
-    const product_id = req.query.product_id;
+    const product_id = req.query.product_id as string;
 
-    const { nameProduct, slug } = req.body;
+    const { name, slug } = req.body;
 
     const updateName = new UpdateNameProductService();
 
     const product = await updateName.execute({
       product_id,
-      nameProduct,
+      name,
       slug
     });
 

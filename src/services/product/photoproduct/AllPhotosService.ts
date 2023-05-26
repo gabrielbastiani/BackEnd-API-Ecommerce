@@ -1,11 +1,11 @@
 import prismaClient from '../../../prisma';
 
-interface PhotsRequest {
+interface ImageRequest {
     photoProduct_id: string;
 }
 
 class AllPhotosService {
-    async execute({ photoProduct_id }: PhotsRequest) {
+    async execute({ photoProduct_id }: ImageRequest) {
         const allPhotos = await prismaClient.photoProduct.findMany({
             where: {
                 id: photoProduct_id

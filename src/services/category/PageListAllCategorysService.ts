@@ -10,8 +10,10 @@ class PageListAllCategorysService {
                 created_at: 'desc'
             },
             include: {
-                relationproductcategories: true,
-                imagecategories: true
+                filtercategories: true,
+                imagecategories: true,
+                menucategories: true,
+                productcategories: true
             }
         });
 
@@ -20,14 +22,15 @@ class PageListAllCategorysService {
                 created_at: 'desc'
             },
             include: {
-                relationproductcategories: true,
-                imagecategories: true
+                filtercategories: true,
+                imagecategories: true,
+                menucategories: true,
+                productcategories: true
             },
             skip,
             take: limit
         });
 
-        // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
             categorys,
             total: categorysAll.length,

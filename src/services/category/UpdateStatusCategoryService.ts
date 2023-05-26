@@ -5,37 +5,37 @@ interface CategoryRequest {
   category_id: string;
 }
 
-class UpdateDisponibilidadeCategoryService {
+class UpdateStatusCategoryService {
   async execute({ category_id }: CategoryRequest) {
     const active = await prismaClient.category.findUnique({
       where: {
         id: category_id
       },
       select: {
-        disponibilidade: true
+        status: true
       }
     })
 
-    if(active.disponibilidade === "Disponivel"){
+    if (active.status === "Disponivel") {
       const isFalse = await prismaClient.category.update({
-        where:{
+        where: {
           id: category_id
         },
         data: {
-          disponibilidade: StatusCategory.Indisponivel
+          status: StatusCategory.Indisponivel
         }
       })
 
       return isFalse;
     }
 
-    if(active.disponibilidade === "Indisponivel"){
+    if (active.status === "Indisponivel") {
       const isTrue = await prismaClient.category.update({
-        where:{
+        where: {
           id: category_id
         },
         data: {
-          disponibilidade: StatusCategory.Disponivel
+          status: StatusCategory.Disponivel
         }
       })
 
@@ -46,4 +46,4 @@ class UpdateDisponibilidadeCategoryService {
   }
 }
 
-export { UpdateDisponibilidadeCategoryService }
+export { UpdateStatusCategoryService }

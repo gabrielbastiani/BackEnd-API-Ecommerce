@@ -4,40 +4,40 @@ import { CreateProductService } from "../../services/product/CreateProductServic
 class CreateProductController {
     async handle(req: Request, res: Response) {
         const {
-            nameProduct,
+            name,
             slug,
-            posicao,
-            slugPosicao,
-            order,
-            descriptionProduct1,
-            descriptionProduct2,
-            descriptionProduct3,
-            descriptionProduct4,
-            descriptionProduct5,
-            descriptionProduct6,
-            preco,
+            price,
+            promotion,
             sku,
-            promocao,
+            stock,
+            weight,
+            width,
+            height,
+            depth,
+            amount,
+            reservedAmount,
+            urlVideo,
+            buyTogether_id,
             store_id
         } = req.body;
 
         const createProductService = new CreateProductService();
 
         const product = await createProductService.execute({
-            nameProduct,
+            name,
             slug,
-            posicao,
-            slugPosicao,
-            order,
-            descriptionProduct1,
-            descriptionProduct2,
-            descriptionProduct3,
-            descriptionProduct4,
-            descriptionProduct5,
-            descriptionProduct6,
-            preco,
+            price,
+            promotion,
             sku,
-            promocao,
+            stock,
+            weight,
+            width,
+            height,
+            depth,
+            amount,
+            reservedAmount,
+            urlVideo,
+            buyTogether_id,
             store_id
         })
 

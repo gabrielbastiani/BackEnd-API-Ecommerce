@@ -6,16 +6,18 @@ class UpdateAllDateProductController {
         const product_id = req.query.product_id as string;
 
         const {
-            order,
-            descriptionProduct1,
-            descriptionProduct2,
-            descriptionProduct3,
-            descriptionProduct4,
-            descriptionProduct5,
-            descriptionProduct6,
-            preco,
-            promocao,
+            price,
+            promotion,
             sku,
+            stock,
+            weight,
+            width,
+            height,
+            depth,
+            amount,
+            reservedAmount,
+            urlVideo,
+            buyTogether_id,
             store_id,
         } = req.body;
 
@@ -23,16 +25,18 @@ class UpdateAllDateProductController {
 
         const productUpdate = await updateDataProduct.execute({
             product_id,
-            order,
-            descriptionProduct1,
-            descriptionProduct2,
-            descriptionProduct3,
-            descriptionProduct4,
-            descriptionProduct5,
-            descriptionProduct6,
-            preco,
-            promocao,
+            price,
+            promotion,
             sku,
+            stock,
+            weight,
+            width,
+            height,
+            depth,
+            amount,
+            reservedAmount,
+            urlVideo,
+            buyTogether_id,
             store_id,
         });
 

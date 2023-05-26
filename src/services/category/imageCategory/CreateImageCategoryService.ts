@@ -1,15 +1,15 @@
 import prismaClient from "../../../prisma";
 
 interface CategoryRequest {
-  categoryImage: string;
+  image: string;
   category_id: string;
 }
 
 class CreateImageCategoryService {
-  async execute({ categoryImage, category_id }: CategoryRequest) {
+  async execute({ image, category_id }: CategoryRequest) {
     const category = await prismaClient.imageCategory.create({
       data: {
-        categoryImage: categoryImage,
+        image: image,
         category_id: category_id
       }
     });

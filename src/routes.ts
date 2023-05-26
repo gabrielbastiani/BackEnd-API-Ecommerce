@@ -86,6 +86,22 @@ import { UpdateImageStoreController } from './controllers/store/imageStore/Updat
 import { UpdateTitleImageStoreController } from './controllers/store/imageStore/UpdateTitleImageStoreController';
 import { UpdatePositionImageStoreController } from './controllers/store/imageStore/UpdatePositionImageStoreController';
 
+// -- ROUTES CATEGORY --
+import { CreateCategoryController } from './controllers/category/CreateCategoryController';
+import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
+import { UpdateImageCategoryController } from './controllers/category/imageCategory/UpdateImageCategoryController';
+import { CreateImageCategoryController } from './controllers/category/imageCategory/CreateImageCategoryController';
+import { UpdateStatusCategoryController } from './controllers/category/UpdateStatusCategoryController';
+import { ListCategoryNameController } from './controllers/category/ListCategoryNameController';
+import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
+import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
+import { FindFirstCategoryController } from './controllers/category/FindFirstCategoryController';
+import { ListCategoryController } from './controllers/category/ListCategoryController';
+import { FindUniqueCategoryController } from './controllers/category/FindUniqueCategoryController';
+import { FindFirstCategorySlugController } from './controllers/category/FindFirstCategorySlugController';
+import { UpdateDescriptionCategoryController } from './controllers/category/UpdateDescriptionCategoryController';
+import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
+
 // -- ROUTES BANNERS --
 import { CreateBannerController } from './controllers/banner/CreateBannerController';
 import { UpdateAllDateBannerController } from './controllers/banner/UpdateAllDateBannerController';
@@ -97,20 +113,6 @@ import { StatusBannerController } from './controllers/banner/StatusBannerControl
 import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerController';
 import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
 import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosicaoBannerController';
-
-// -- ROUTES CATEGORIES --
-import { CreateCategoryController } from './controllers/category/CreateCategoryController';
-import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
-import { UpdateImageCategoryController } from './controllers/category/imagesCategories/UpdateImageCategoryController';
-import { CreateImageCategoryController } from './controllers/category/imagesCategories/CreateImageCategoryController';
-import { UpdateDisponibilidadeCategoryController } from './controllers/category/UpdateDisponibilidadeCategoryController';
-import { ListCategoryNameController } from './controllers/category/ListCategoryNameController';
-import { PageListAllCategorysController } from './controllers/category/PageListAllCategorysController';
-import { ExactPageListAllCategoryController } from './controllers/category/ExactPageListAllCategoryController';
-import { FindFirstCategoryController } from './controllers/category/FindFirstCategoryController';
-import { ListCategoryController } from './controllers/category/ListCategoryController';
-import { ListExactCategoryController } from './controllers/category/ListExactCategoryController';
-import { FindFirstCategorySlugController } from './controllers/category/FindFirstCategorySlugController';
 
 // -- ROUTES GRUPOS DE CATEGORIAS --
 import { CreateGroupCategoryController } from './controllers/category/groupCategory/CreateGroupCategoryController';
@@ -133,35 +135,35 @@ import { UpdateSlugGrupoController } from './controllers/category/groupCategory/
 import { UpdateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/UpdateImageCategoryGroupController';
 import { DeletetImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/DeletetImageCategoryGroupController';
 
-// -- ROUTES PRODUTOS --
+// -- ROUTES PRODUCT --
 import { CreateProductController } from './controllers/product/CreateProductController';
-import { PhotoProductController } from './controllers/product/photoproduct/PhotoProductController';
-import { UpdatePhotoProductController } from './controllers/product/photoproduct/UpdatePhotoProductController';
+import { CreatePhotoProductController } from './controllers/product/photoProduct/CreatePhotoProductController';
+import { UpdatePhotoProductController } from './controllers/product/photoProduct/UpdatePhotoProductController';
 import { UpdateAllDateProductController } from './controllers/product/UpdateAllDateProductController';
-import { UpdatePosicaoProductController } from './controllers/product/UpdatePosicaoProductController';
-import { AllPhotosProductController } from './controllers/product/photoproduct/AllPhotosProductController';
-import { AllPhotosController } from './controllers/product/photoproduct/AllPhotosController';
+import { AllPhotosProductController } from './controllers/product/photoProduct/AllPhotosProductController';
+import { AllPhotosController } from './controllers/product/photoProduct/AllPhotosController';
 import { AllProductController } from './controllers/product/AllProductController';
 import { AllProductInStoreController } from './controllers/product/AllProductInStoreController';
 import { FindFirstProductController } from './controllers/product/FindFirstProductController';
 import { AllProductExistController } from './controllers/product/AllProductExistController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
-import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
-import { DeleteAllPhotoProductController } from './controllers/product/photoproduct/DeleteAllPhotoProductController';
+import { DeletePhotoProductController } from './controllers/product/photoProduct/DeletePhotoProductController';
+import { DeleteAllPhotoProductController } from './controllers/product/photoProduct/DeleteAllPhotoProductController';
 import { DeleteAllVariacaoProductController } from './controllers/variacao/DeleteAllVariacaoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { DeleteALLPhotoVariacaoController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
-import { DisponibilidadeDoProductController } from './controllers/product/DisponibilidadeDoProductController';
-import { UpdateProductDestqueController } from './controllers/product/UpdateProductDestqueController';
-import { UpdateProductOfertaController } from './controllers/product/UpdateProductOfertaController';
-import { UpdateOrderPhotoProductController } from './controllers/product/photoproduct/UpdateOrderPhotoProductController';
-import { AllPhotosProductInStoreController } from './controllers/product/photoproduct/AllPhotosProductInStoreController';
-import { UpdatePosicaoPhotoProductController } from './controllers/product/photoproduct/UpdatePosicaoPhotoProductController';
-import { ListAllProductDestaqueController } from './controllers/product/ListAllProductDestaqueController';
-import { ListAllProductOfertaController } from './controllers/product/ListAllProductOfertaController';
+import { UpdateStatusProductController } from './controllers/product/UpdateStatusProductController';
+import { UpdateProductEmphasisController } from './controllers/product/UpdateProductEmphasisController';
+import { UpdateProductOfferController } from './controllers/product/UpdateProductOfferController';
+import { UpdateOrderPhotoProductController } from './controllers/product/photoProduct/UpdateOrderPhotoProductController';
+import { AllPhotosProductInStoreController } from './controllers/product/photoProduct/AllPhotosProductInStoreController';
+import { UpdatePosicaoPhotoProductController } from './controllers/product/photoProduct/UpdatePosicaoPhotoProductController';
+import { ListAllProductEmphasisController } from './controllers/product/ListAllProductEmphasisController';
+import { ListAllProductOfferController } from './controllers/product/ListAllProductOfferController';
+import { UpdateProductFreeShippingController } from './controllers/product/UpdateProductFreeShippingController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
 // ROUTES ATRIBUTOS --
@@ -176,7 +178,7 @@ import { CreateImageAtributoController } from './controllers/atributo/imageAtrib
 import { UpdateImageAtributoController } from './controllers/atributo/imageAtributo/UpdateImageAtributoController';
 import { ListNotDistinctAtributosController } from './controllers/atributo/ListNotDistinctAtributosController';
 
-// ROUTES RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
+// ROUTES RELACIONAMENTOS ATRIBUTOS E PRODUCT --
 import { CreateRelationAtributosController } from './controllers/atributo/relationProductAtributo/CreateRelationAtributosController';
 import { PageRelationAtributosController } from './controllers/atributo/relationProductAtributo/PageRelationAtributosController';
 import { AllAtributosProductRelationController } from './controllers/atributo/relationProductAtributo/AllAtributosProductRelationController';
@@ -188,7 +190,7 @@ import { UpdateAtributoProductRelationController } from './controllers/atributo/
 import { DeleteGrupoProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteGrupoProductAtributoController';
 import { FindAtributosRelationBlockController } from './controllers/atributo/relationProductAtributo/FindAtributosRelationBlockController';
 
-// ROUTES RELACIONAMENTOS CATEGORIAS E PRODUTOS --
+// ROUTES RELACIONAMENTOS CATEGORIAS E PRODUCT --
 import { CreateRelationProductCategoryController } from './controllers/product/relationProductCategory/CreateRelationProductCategoryController';
 import { UpdateRelationIDProductCategoryController } from './controllers/product/relationProductCategory/UpdateRelationIDProductCategoryController';
 import { FindCategoryRelationBlockController } from './controllers/product/relationProductCategory/FindCategoryRelationBlockController';
@@ -407,28 +409,18 @@ router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new Up
 router.get('/findUniqueImageStore', ADMINisAuthenticated, new FindUniqueImageStoreController().handle);
 router.get('/listImagesStore', new ListAllImageStoreController().handle);
 
-// -- ROUTES BANNER --
-router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
-router.put('/updateAllDateBanner', ADMINisAuthenticated, new UpdateAllDateBannerController().handle);
-router.get('/pageListBanner', ADMINisAuthenticated, new PageListAllBannerController().handle);
-router.delete('/deleteBanner', ADMINisAuthenticated, new DeleteBannerController().handle);
-router.put('/updateBanner', ADMINisAuthenticated, upload.single('file'), new UpdateBannerController().handle);
-router.put('/updatePosicaoBanner', ADMINisAuthenticated, new UpdatePosicaoBannerController().handle);
-router.put('/updateStatusBanner', ADMINisAuthenticated, new StatusBannerController().handle);
-router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController().handle);
-router.get('/updatePublishBanner', ADMINisAuthenticated, new PublishProgramadBannerController().handle);
-router.get('/activeBanner', new ActiveAllBannerController().handle);
-
-// -- ROUTES CATEGORIAS --
+// -- ROUTES CATEGORY --
 router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
 router.post('/createImageCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
-router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateDisponibilidadeCategoryController().handle);
+router.put('/updateDescription', ADMINisAuthenticated, new UpdateDescriptionCategoryController().handle);
+router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateStatusCategoryController().handle);
+router.put('/updateOrderCaategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
 router.put('/updateImageCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
 router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryController().handle);
-router.get('/exactCategory', ADMINisAuthenticated, new ListExactCategoryController().handle);
+router.get('/exactCategory', ADMINisAuthenticated, new FindUniqueCategoryController().handle);
 router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/findDateSlugCategory', new FindFirstCategorySlugController().handle);
@@ -454,16 +446,15 @@ router.put('/updateSlugGroup', ADMINisAuthenticated, new UpdateSlugGrupoControll
 router.get('/pocisaoListGroup', new ListPosicaoCategoriesGroupController().handle);
 router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
 
-// -- ROUTES PRODUTOS --
+// -- ROUTES PRODUCT --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
-router.post('/image', ADMINisAuthenticated, upload.single('file'), new PhotoProductController().handle);
+router.post('/image', ADMINisAuthenticated, upload.single('file'), new CreatePhotoProductController().handle);
 router.put('/updateAllDateProduct', ADMINisAuthenticated, new UpdateAllDateProductController().handle);
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
 router.delete('/deleteAllPhotos', ADMINisAuthenticated, new DeleteAllPhotoProductController().handle);
 router.put('/updatePhoto', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoProductController().handle);
 router.put('/updatePosicaoPhotoProduct', ADMINisAuthenticated, new UpdatePosicaoPhotoProductController().handle);
 router.put('/updateOrderPhotoProduct', ADMINisAuthenticated, new UpdateOrderPhotoProductController().handle);
-router.put('/updatePosicaoProduct', ADMINisAuthenticated, new UpdatePosicaoProductController().handle);
 router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductController().handle);
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
 router.get('/allProduct', ADMINisAuthenticated, new AllProductController().handle);
@@ -474,13 +465,14 @@ router.get('/findFirstProduct', ADMINisAuthenticated, new FindFirstProductContro
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
 router.get('/exportProduct', ADMINisAuthenticated, new ExportProductController().handle);
-router.put('/diponibilidadeProduct', ADMINisAuthenticated, new DisponibilidadeDoProductController().handle);
-router.put('/destaque', ADMINisAuthenticated, new UpdateProductDestqueController().handle);
-router.put('/oferta', ADMINisAuthenticated, new UpdateProductOfertaController().handle);
+router.put('/updateStatusProduct', ADMINisAuthenticated, new UpdateStatusProductController().handle);
+router.put('/emphasis', ADMINisAuthenticated, new UpdateProductEmphasisController().handle);
+router.put('/offer', ADMINisAuthenticated, new UpdateProductOfferController().handle);
+router.put('/updateFreeShipping', ADMINisAuthenticated, new UpdateProductFreeShippingController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
-router.get('/listProductsDestaque', new ListAllProductDestaqueController().handle);
-router.get('/listProductsOfertas', new ListAllProductOfertaController().handle);
+router.get('/listProductsDestaque', new ListAllProductEmphasisController().handle);
+router.get('/listProductsOfertas', new ListAllProductOfferController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // ROUTES ATRIBUTOS --
@@ -495,7 +487,7 @@ router.put('/updateImageAtributo', ADMINisAuthenticated, upload.single('file'), 
 router.get('/allAtributos', ADMINisAuthenticated, new ListAtributosController().handle);
 router.get('/listAtributosNotDistinct', ADMINisAuthenticated, new ListNotDistinctAtributosController().handle);
 
-// ROUTES RELACIONAMENTOS ATRIBUTOS E PRODUTOS --
+// ROUTES RELACIONAMENTOS ATRIBUTOS E PRODUCT --
 router.post('/createRelationAtributos', ADMINisAuthenticated, new CreateRelationAtributosController().handle);
 router.get('/pageListAtributosRelations', ADMINisAuthenticated, new PageRelationAtributosController().handle);
 router.get('/allAtributosProductRelation', ADMINisAuthenticated, new AllAtributosProductRelationController().handle);
@@ -507,7 +499,7 @@ router.get('/findAllAtributosProduct', ADMINisAuthenticated, new FindAtributosRe
 router.delete('/deleteRelationAtributoProduct', ADMINisAuthenticated, new DeleteRelationProductAtributoController().handle);
 router.delete('/deleteGrupoAtributosProduct', ADMINisAuthenticated, new DeleteGrupoProductAtributoController().handle);
 
-// ROUTES RELACIONAMENTOS CATEGORIAS E PRODUTOS --
+// ROUTES RELACIONAMENTOS CATEGORIAS E PRODUCT --
 router.post('/createRelation', ADMINisAuthenticated, new CreateRelationProductCategoryController().handle);
 router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
 router.put('/updateCategoryIDrelation', ADMINisAuthenticated, new UpdateCategoryIDProductCategoryController().handle);
@@ -604,6 +596,18 @@ router.put('/ofertaVariacao', ADMINisAuthenticated, new UpdateVariacaoOfertaCont
 router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().handle);
 router.get('/listVariacaoOfertas', new ListAllVariacaoOfertaController().handle);
 router.get('/exactVariacaoPage', new ListExactVariacaoNameController().handle);
+
+// -- ROUTES BANNER --
+router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);
+router.put('/updateAllDateBanner', ADMINisAuthenticated, new UpdateAllDateBannerController().handle);
+router.get('/pageListBanner', ADMINisAuthenticated, new PageListAllBannerController().handle);
+router.delete('/deleteBanner', ADMINisAuthenticated, new DeleteBannerController().handle);
+router.put('/updateBanner', ADMINisAuthenticated, upload.single('file'), new UpdateBannerController().handle);
+router.put('/updatePosicaoBanner', ADMINisAuthenticated, new UpdatePosicaoBannerController().handle);
+router.put('/updateStatusBanner', ADMINisAuthenticated, new StatusBannerController().handle);
+router.get('/exactBanner', ADMINisAuthenticated, new ListExactBannerController().handle);
+router.get('/updatePublishBanner', ADMINisAuthenticated, new PublishProgramadBannerController().handle);
+router.get('/activeBanner', new ActiveAllBannerController().handle);
 
 // -- ROUTES NEWSLETTERS --
 router.post('/createNewsletter', new CreateNewslettersController().handle);

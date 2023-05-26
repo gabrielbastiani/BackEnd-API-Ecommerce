@@ -1,41 +1,41 @@
-import { StatusOferta } from "@prisma/client";
+import { StatusEmphasis } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface ProductRequest {
   product_id: string;
 }
 
-class UpdateProductOfertaService {
+class UpdateProductEmphasisService {
   async execute({ product_id }: ProductRequest) {
     const active = await prismaClient.product.findUnique({
       where: {
         id: product_id
       },
       select: {
-        produtoOferta: true
+        emphasis: true
       }
     })
 
-    if(active.produtoOferta === "Sim"){
+    if (active.emphasis === "Sim") {
       const isFalse = await prismaClient.product.update({
-        where:{
+        where: {
           id: product_id
         },
         data: {
-          produtoOferta: StatusOferta.Nao
+          emphasis: StatusEmphasis.Nao
         }
       })
 
       return isFalse;
     }
 
-    if(active.produtoOferta === "Nao"){
+    if (active.emphasis === "Nao") {
       const isTrue = await prismaClient.product.update({
-        where:{
+        where: {
           id: product_id
         },
         data: {
-          produtoOferta: StatusOferta.Sim
+          emphasis: StatusEmphasis.Sim
         }
       })
 
@@ -46,4 +46,4 @@ class UpdateProductOfertaService {
   }
 }
 
-export { UpdateProductOfertaService }
+export { UpdateProductEmphasisService }

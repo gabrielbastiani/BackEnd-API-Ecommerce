@@ -1,19 +1,26 @@
 import prismaClient from '../../prisma';
 
+interface ProductRequest {
+    product_id: string;
+}
+
 class ListExactProductService {
-    async execute({ product_id }) {
+    async execute({ product_id }: ProductRequest) {
         const exactProduct = await prismaClient.product.findUnique({
             where: {
-                id: String(product_id)
+                id: product_id
             },
             include: {
-                relationproductcategories: true,
-                relationproductatributos: true,
-                store: true,
+                avalietions: true,
+                buyTogether: true,
+                buytogethers: true,
+                descriptionproducts: true,
                 photoproducts: true,
-                variacoes: true,
-                photovariacoes: true,
-                avaliacoes: true,
+                productcategories: true,
+                relationattributeproducts: true,
+                store: true,
+                tags: true,
+                variations: true
             }
         })
         return exactProduct;

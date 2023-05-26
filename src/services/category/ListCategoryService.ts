@@ -5,14 +5,16 @@ class ListCategoryService {
    async execute() {
       const category = await prismaClient.category.findMany({
          where: {
-            disponibilidade: StatusCategory.Disponivel
+            status: StatusCategory.Disponivel
          },
          orderBy: {
             created_at: 'asc'
          },
          include: {
-            relationproductcategories: true,
-            imagecategories: true
+            filtercategories: true,
+            imagecategories: true,
+            menucategories: true,
+            productcategories: true
          }
       });
 

@@ -10,7 +10,7 @@ class ListCategoryNameService {
       const category = await prismaClient.category.findMany({
          where: {
             id: category_id,
-            disponibilidade: StatusCategory.Disponivel
+            status: StatusCategory.Disponivel
          },
          orderBy: {
             created_at: 'asc'

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { DeletePhotoProductService } from '../../../services/product/photoproduct/DeletePhotoProductService';
-import { RemovePhotoProductService } from '../../../services/product/photoproduct/RemovePhotoProductService';
+import { DeletePhotoProductService } from '../../../services/product/photoProduct/DeletePhotoProductService';
+import { FindUniquePhotoProductService } from '../../../services/product/photoProduct/FindUniquePhotoProductService';
 import fs from 'fs';
 
 class DeletePhotoProductController {
@@ -8,9 +8,9 @@ class DeletePhotoProductController {
     const photoProduts_id = req.query.photoProduts_id as string;
 
     const updatePhoto = new DeletePhotoProductService();
-    const deletePhoto = new RemovePhotoProductService();
+    const findImage = new FindUniquePhotoProductService();
 
-    const productPhoto = await deletePhoto.execute({
+    const productPhoto = await findImage.execute({
       photoProduts_id
     })
 

@@ -1,13 +1,13 @@
 import prismaClient from "../../../prisma";
 
-interface PhotoRequest {
+interface ImageRequest {
   image: string;
   product_id: string;
   order: number;
 }
 
-class PhotoProductService {
-  async execute({ image, product_id, order }: PhotoRequest){
+class CreatePhotoProductService {
+  async execute({ image, product_id, order }: ImageRequest){
     const photoProduts = await prismaClient.photoProduct.create({
       data:{
         image: image,
@@ -21,4 +21,4 @@ class PhotoProductService {
   }
 }
 
-export { PhotoProductService }
+export { CreatePhotoProductService }

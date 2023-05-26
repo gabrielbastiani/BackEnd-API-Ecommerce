@@ -1,41 +1,41 @@
-import { StatusProduct } from "@prisma/client";
+import { StatusOffer } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface ProductRequest {
   product_id: string;
 }
 
-class DisponibilidadeDoProductService {
+class UpdateProductOfferService {
   async execute({ product_id }: ProductRequest) {
     const active = await prismaClient.product.findUnique({
       where: {
         id: product_id
       },
       select: {
-        disponibilidade: true
+        offer: true
       }
     })
 
-    if(active.disponibilidade === "Disponivel"){
+    if (active.offer === "Sim") {
       const isFalse = await prismaClient.product.update({
-        where:{
+        where: {
           id: product_id
         },
         data: {
-          disponibilidade: StatusProduct.Indisponivel
+          offer: StatusOffer.Nao
         }
       })
 
       return isFalse;
     }
 
-    if(active.disponibilidade === "Indisponivel"){
+    if (active.offer === "Nao") {
       const isTrue = await prismaClient.product.update({
-        where:{
+        where: {
           id: product_id
         },
         data: {
-          disponibilidade: StatusProduct.Disponivel
+          offer: StatusOffer.Sim
         }
       })
 
@@ -46,4 +46,4 @@ class DisponibilidadeDoProductService {
   }
 }
 
-export { DisponibilidadeDoProductService }
+export { UpdateProductOfferService }

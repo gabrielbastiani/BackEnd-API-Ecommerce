@@ -2,49 +2,55 @@ import prismaClient from "../../prisma";
 
 interface ProductRequest {
     product_id: string;
-    order: number;
-    descriptionProduct1: string;
-    descriptionProduct2: string;
-    descriptionProduct3: string;
-    descriptionProduct4: string;
-    descriptionProduct5: string;
-    descriptionProduct6: string;
-    preco: number;
-    promocao: number;
+    price: number;
+    promotion: number;
     sku: string;
+    stock: number;
+    weight: string;
+    width: string;
+    height: string;
+    depth: string;
+    amount: number;
+    reservedAmount: number;
+    urlVideo: string;
+    buyTogether_id: string;
     store_id: string;
 }
 
 class UpdateAllDateProductService {
     async execute({
         product_id,
-        order,
-        descriptionProduct1,
-        descriptionProduct2,
-        descriptionProduct3,
-        descriptionProduct4,
-        descriptionProduct5,
-        descriptionProduct6,
-        preco,
-        promocao,
+        price,
+        promotion,
         sku,
+        stock,
+        weight,
+        width,
+        height,
+        depth,
+        amount,
+        reservedAmount,
+        urlVideo,
+        buyTogether_id,
         store_id,
     }: ProductRequest) {
         const updateProduct = await prismaClient.product.update({
             where: {
-                id: String(product_id)
+                id: product_id
             },
             data: {
-                order: order,
-                descriptionProduct1: descriptionProduct1,
-                descriptionProduct2: descriptionProduct2,
-                descriptionProduct3: descriptionProduct3,
-                descriptionProduct4: descriptionProduct4,
-                descriptionProduct5: descriptionProduct5,
-                descriptionProduct6: descriptionProduct6,
-                preco: preco,
-                promocao: promocao,
+                price: price,
+                promotion: promotion,
                 sku: sku,
+                stock: stock,
+                weight: weight,
+                width: width,
+                height: height,
+                depth: depth,
+                amount: amount,
+                reservedAmount: reservedAmount,
+                urlVideo: urlVideo,
+                buyTogether_id: buyTogether_id,
                 store_id: store_id
             }
         })

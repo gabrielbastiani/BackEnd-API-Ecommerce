@@ -10,7 +10,7 @@ class FindFirstCategorySlugService {
         const dados = await prismaClient.category.findFirst({
             where: {
                 slug: slug,
-                disponibilidade: StatusCategory.Disponivel
+                status: StatusCategory.Disponivel
             }
         });
         return dados;

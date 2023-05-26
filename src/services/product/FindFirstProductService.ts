@@ -7,13 +7,16 @@ class FindFirstProductService {
                 created_at: 'desc'
             },
             include: {
-                relationproductcategories: true,
-                relationproductatributos: true,
-                store: true,
+                avalietions: true,
+                buyTogether: true,
+                buytogethers: true,
+                descriptionproducts: true,
                 photoproducts: true,
-                variacoes: true,
-                photovariacoes: true,
-                avaliacoes: true,
+                productcategories: true,
+                relationattributeproducts: true,
+                store: true,
+                tags: true,
+                variations: true
             }
         })
         return findFirstProduct;

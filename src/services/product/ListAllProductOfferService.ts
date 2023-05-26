@@ -1,10 +1,11 @@
-import { StatusProduct } from '@prisma/client';
-import prismaClient from '../../prisma';
+import { StatusOffer, StatusProduct } from "@prisma/client";
+import prismaClient from "../../prisma";
 
-class AllProductInStoreService {
+class ListAllProductOfferService {
     async execute() {
-        const allProduct = await prismaClient.product.findMany({
+        const offerProducts = await prismaClient.product.findMany({
             where: {
+                offer: StatusOffer.Sim,
                 status: StatusProduct.Disponivel
             },
             include: {
@@ -18,10 +19,14 @@ class AllProductInStoreService {
                 store: true,
                 tags: true,
                 variations: true
+            },
+            orderBy: {
+                created_at: 'desc'
             }
-        });
-        return allProduct;
+        })
+
+        return offerProducts;
     }
 }
 
-export { AllProductInStoreService }
+export { ListAllProductOfferService }

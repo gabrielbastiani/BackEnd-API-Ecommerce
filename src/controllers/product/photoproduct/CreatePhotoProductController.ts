@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { PhotoProductService } from "../../../services/product/photoproduct/PhotoProductService";
+import { CreatePhotoProductService } from "../../../services/product/photoProduct/CreatePhotoProductService";
 
-class PhotoProductController {
+class CreatePhotoProductController {
     async handle(req: Request, res: Response) {
         const { product_id, order } = req.body;
 
-        const photoProductService = new PhotoProductService();
+        const photoProductService = new CreatePhotoProductService();
 
         if (!req.file) {
             throw new Error("error upload file");
@@ -24,4 +24,4 @@ class PhotoProductController {
     }
 }
 
-export { PhotoProductController }
+export { CreatePhotoProductController }

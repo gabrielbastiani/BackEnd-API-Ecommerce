@@ -11,7 +11,16 @@ class AllProductService {
                 id: product_id
             },
             include: {
-                relationproductcategories: true,
+                avalietions: true,
+                buyTogether: true,
+                buytogethers: true,
+                descriptionproducts: true,
+                photoproducts: true,
+                productcategories: true,
+                relationattributeproducts: true,
+                store: true,
+                tags: true,
+                variations: true
             }
         });
 
