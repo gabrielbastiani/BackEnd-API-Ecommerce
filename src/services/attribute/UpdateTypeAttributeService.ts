@@ -1,16 +1,16 @@
 import prismaClient from "../../prisma";
 
-interface AtributoRequest {
-    atributo_id: string;
-    tipo: string;
+interface TypeRequest {
+    typeAttribute_id: string;
+    type: string;
     slug: string;
 }
 
-class UpdateTipoAtributoService {
+class UpdateTypeAttributeService {
     async execute({
-        atributo_id,
-        tipo,
-    }: AtributoRequest) {
+        typeAttribute_id,
+        type,
+    }: TypeRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -21,19 +21,19 @@ class UpdateTipoAtributoService {
                 .replace(/[/]/g, "-");
         }
 
-        const updateAtribute = await prismaClient.atributo.update({
+        const updateType = await prismaClient.typeAttribute.update({
             where: {
-                id: atributo_id
+                id: typeAttribute_id
             },
             data: {
-                tipo: tipo,
-                slug: removerAcentos(tipo)
+                type: type,
+                slug: removerAcentos(type)
             }
         })
 
-        return updateAtribute;
+        return updateType;
 
     }
 }
 
-export { UpdateTipoAtributoService }
+export { UpdateTypeAttributeService }
