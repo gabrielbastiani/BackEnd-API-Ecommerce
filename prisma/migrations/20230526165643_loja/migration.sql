@@ -279,6 +279,7 @@ CREATE TABLE "descriptionproducts" (
     "product_id" TEXT NOT NULL,
     "title" VARCHAR(500),
     "description" TEXT,
+    "order" INTEGER,
     "status" "StatusDescriptionProduct" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),

@@ -340,6 +340,7 @@ model DescriptionProduct {
   product_id  String
   title       String?                  @db.VarChar(500)
   description String?
+  order       Int?
   status      StatusDescriptionProduct @default(Disponivel)
 
   created_at DateTime? @default(now())

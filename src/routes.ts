@@ -160,7 +160,6 @@ import { UpdateProductEmphasisController } from './controllers/product/UpdatePro
 import { UpdateProductOfferController } from './controllers/product/UpdateProductOfferController';
 import { UpdateOrderPhotoProductController } from './controllers/product/photoProduct/UpdateOrderPhotoProductController';
 import { AllPhotosProductInStoreController } from './controllers/product/photoProduct/AllPhotosProductInStoreController';
-import { UpdatePosicaoPhotoProductController } from './controllers/product/photoProduct/UpdatePosicaoPhotoProductController';
 import { ListAllProductEmphasisController } from './controllers/product/ListAllProductEmphasisController';
 import { ListAllProductOfferController } from './controllers/product/ListAllProductOfferController';
 import { UpdateProductFreeShippingController } from './controllers/product/UpdateProductFreeShippingController';
@@ -314,6 +313,15 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { CreateDescriptionProductController } from './controllers/product/descriptionProduct/CreateDescriptionProductController';
+import { UpdateTitleDescriptionProductController } from './controllers/product/descriptionProduct/UpdateTitleDescriptionProductController';
+import { AllDescriptionProductInStoreController } from './controllers/product/descriptionProduct/AllDescriptionProductInStoreController';
+import { AllDescriptionProductController } from './controllers/product/descriptionProduct/AllDescriptionProductController';
+import { AllDescriptionsController } from './controllers/product/descriptionProduct/AllDescriptionsController';
+import { DeleteAllDescriptionProductController } from './controllers/product/descriptionProduct/DeleteAllDescriptionProductController';
+import { DeleteDescriptionProductController } from './controllers/product/descriptionProduct/DeleteDescriptionProductController';
+import { UpdateOrderDescriptionProductController } from './controllers/product/descriptionProduct/UpdateOrderDescriptionProductController';
+import { UpdateDescriptionProductController } from './controllers/product/descriptionProduct/UpdateDescriptionProductController';
 
 
 
@@ -448,12 +456,11 @@ router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
 
 // -- ROUTES PRODUCT --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);
-router.post('/image', ADMINisAuthenticated, upload.single('file'), new CreatePhotoProductController().handle);
+router.post('/imageProduct', ADMINisAuthenticated, upload.single('file'), new CreatePhotoProductController().handle);
 router.put('/updateAllDateProduct', ADMINisAuthenticated, new UpdateAllDateProductController().handle);
 router.delete('/deletePhoto', ADMINisAuthenticated, new DeletePhotoProductController().handle);
 router.delete('/deleteAllPhotos', ADMINisAuthenticated, new DeleteAllPhotoProductController().handle);
 router.put('/updatePhoto', ADMINisAuthenticated, upload.single('file'), new UpdatePhotoProductController().handle);
-router.put('/updatePosicaoPhotoProduct', ADMINisAuthenticated, new UpdatePosicaoPhotoProductController().handle);
 router.put('/updateOrderPhotoProduct', ADMINisAuthenticated, new UpdateOrderPhotoProductController().handle);
 router.get('/allPhotosProducts', ADMINisAuthenticated, new AllPhotosProductController().handle);
 router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
@@ -469,6 +476,15 @@ router.put('/updateStatusProduct', ADMINisAuthenticated, new UpdateStatusProduct
 router.put('/emphasis', ADMINisAuthenticated, new UpdateProductEmphasisController().handle);
 router.put('/offer', ADMINisAuthenticated, new UpdateProductOfferController().handle);
 router.put('/updateFreeShipping', ADMINisAuthenticated, new UpdateProductFreeShippingController().handle);
+router.post('/createDescriptionProduct', ADMINisAuthenticated, new CreateDescriptionProductController().handle);
+router.put('/updateTitleDescription', ADMINisAuthenticated, new UpdateTitleDescriptionProductController().handle);
+router.get('/descriptions', ADMINisAuthenticated, new AllDescriptionsController().handle);
+router.delete('/deleteAllDescriptionsProduct', ADMINisAuthenticated, new DeleteAllDescriptionProductController().handle);
+router.delete('/deleteDescriptionProduct', ADMINisAuthenticated, new DeleteDescriptionProductController().handle);
+router.put('/updateOrderDescription', ADMINisAuthenticated, new UpdateOrderDescriptionProductController().handle);
+router.put('/updateDescriptionProduct', ADMINisAuthenticated, new UpdateDescriptionProductController().handle);
+router.get('/allDescriptionProductsStore', new AllDescriptionProductInStoreController().handle);
+router.get('/allProductsDescriptionsStore', new AllDescriptionProductController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
 router.get('/listProductsDestaque', new ListAllProductEmphasisController().handle);
