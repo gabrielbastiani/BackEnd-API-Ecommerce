@@ -8,7 +8,7 @@ class CreateCategoryController {
       slug,
       description,
       nivel,
-      relationId,
+      parentId,
       order,
       store_id
     } = req.body;
@@ -20,7 +20,7 @@ class CreateCategoryController {
       slug,
       description,
       nivel,
-      relationId,
+      parentId,
       order,
       store_id
     });

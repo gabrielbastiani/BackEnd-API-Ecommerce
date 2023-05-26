@@ -5,13 +5,13 @@ interface CategoryRequest {
   slug: string;
   description: string;
   nivel: number;
-  relationId: string;
+  parentId: string;
   order: number;
   store_id: string;
 }
 
 class CreateCategoryService {
-  async execute({ name, description, nivel, relationId, order, store_id }: CategoryRequest) {
+  async execute({ name, description, nivel, parentId, order, store_id }: CategoryRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -28,7 +28,7 @@ class CreateCategoryService {
         slug: removerAcentos(name),
         description: description,
         nivel: nivel,
-        relationId: relationId,
+        parentId: parentId,
         order: order,
         store_id: store_id
       }
