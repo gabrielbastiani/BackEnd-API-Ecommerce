@@ -17,7 +17,7 @@ class ProductsPageCategoriesService {
             },
             include: {
                 product: {include: {photoproducts: true}},
-                category: true,
+                category: true
             }
         });
 

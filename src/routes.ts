@@ -165,6 +165,17 @@ import { ListAllProductOfferController } from './controllers/product/ListAllProd
 import { UpdateProductFreeShippingController } from './controllers/product/UpdateProductFreeShippingController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
+// ROUTES CATEGORY AND PRODUCT --
+import { CreateProductCategoryController } from './controllers/product/productCategory/CreateProductCategoryController';
+import { UpdateOrderProductCategoryController } from './controllers/product/productCategory/UpdateOrderProductCategoryController';
+import { DeleteAllProductCategoryController } from './controllers/product/productCategory/DeleteAllProductCategoryController';
+import { PageRelationsCategorysController } from './controllers/product/productCategory/PageRelationsCategorysController';
+import { UpdateStatusCategoryProductController } from './controllers/product/productCategory/UpdateStatusCategoryProductController';
+import { UpdateNameProductCategoryController } from './controllers/product/productCategory/UpdateNameProductCategoryController';
+import { FindCategoryAndProductController } from './controllers/product/productCategory/FindCategoryAndProductController';
+import { DeleteProductCategoryController } from './controllers/product/productCategory/DeleteProductCategoryController';
+import { ProductsPageCategoriesController } from './controllers/product/productCategory/ProductsPageCategoriesController';
+
 // ROUTES ATRIBUTOS --
 import { CreateAtributoController } from './controllers/atributo/CreateAtributoController';
 import { PageListAllAtributosController } from './controllers/atributo/PageListAllAtributosController';
@@ -188,25 +199,6 @@ import { FirstAtributosProductRelationController } from './controllers/atributo/
 import { UpdateAtributoProductRelationController } from './controllers/atributo/relationProductAtributo/UpdateAtributoProductRelationController';
 import { DeleteGrupoProductAtributoController } from './controllers/atributo/relationProductAtributo/DeleteGrupoProductAtributoController';
 import { FindAtributosRelationBlockController } from './controllers/atributo/relationProductAtributo/FindAtributosRelationBlockController';
-
-// ROUTES RELACIONAMENTOS CATEGORIAS E PRODUCT --
-import { CreateProductCategoryController } from './controllers/product/productCategory/CreateProductCategoryController';
-import { UpdateRelationIDProductCategoryController } from './controllers/product/productCategory/UpdateRelationIDProductCategoryController';
-import { FindCategoryRelationBlockController } from './controllers/product/productCategory/FindCategoryRelationBlockController';
-import { FindIDRelationBlockController } from './controllers/product/productCategory/FindIDRelationBlockController';
-import { FindLastIDRelationBlockController } from './controllers/product/productCategory/FindLastIDRelationBlockController';
-import { UpdateOrderProductCategoryController } from './controllers/product/productCategory/UpdateOrderProductCategoryController';
-import { DeleteRelationProductCategoryController } from './controllers/product/productCategory/DeleteRelationProductCategoryController';
-import { FindAllExactRelationBlocController } from './controllers/product/productCategory/FindAllExactRelationBlocController';
-import { DeleteRelationIDProductCategoryController } from './controllers/product/productCategory/DeleteRelationIDProductCategoryController';
-import { PageRelationsCategorysController } from './controllers/product/productCategory/PageRelationsCategorysController';
-import { FindCategorysRelationController } from './controllers/product/productCategory/FindCategorysRelationController';
-import { UpdateStatusRelationCategoryController } from './controllers/product/productCategory/UpdateStatusRelationCategoryController';
-import { UpdateCategoryIDProductCategoryController } from './controllers/product/productCategory/UpdateCategoryIDProductCategoryController';
-import { FindCategoryIDRelationController } from './controllers/product/productCategory/FindCategoryIDRelationController';
-import { DeleteRelationProductIDController } from './controllers/product/productCategory/DeleteRelationProductIDController';
-import { DeleteRelationIDController } from './controllers/product/productCategory/DeleteRelationIDController';
-import { ProductsPageCategoriesController } from './controllers/product/productCategory/ProductsPageCategoriesController';
 
 // -- ROUTES GRUPOS FILTROS --
 import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
@@ -495,21 +487,13 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 
 // ROUTES CATEGORIES AND PRODUCT --
 router.post('/createProductCategory', ADMINisAuthenticated, new CreateProductCategoryController().handle);
-router.put('/updateRelationID', ADMINisAuthenticated, new UpdateRelationIDProductCategoryController().handle);
-router.put('/updateCategoryIDrelation', ADMINisAuthenticated, new UpdateCategoryIDProductCategoryController().handle);
-router.put('/updateStatusRelation', ADMINisAuthenticated, new UpdateStatusRelationCategoryController().handle);
-router.get('/findRelationCategoryProduct', ADMINisAuthenticated, new FindCategoryRelationBlockController().handle);
+router.put('/updateCategoryNameProduct', ADMINisAuthenticated, new UpdateNameProductCategoryController().handle);
+router.put('/updateStatusCategoryProduct', ADMINisAuthenticated, new UpdateStatusCategoryProductController().handle);
 router.get('/pageRelationsCategorys', ADMINisAuthenticated, new PageRelationsCategorysController().handle);
-router.get('/findIdsRelations', ADMINisAuthenticated, new FindIDRelationBlockController().handle);
-router.get('/findLastIdRelations', ADMINisAuthenticated, new FindLastIDRelationBlockController().handle);
-router.get('/findAllExactRelationID', ADMINisAuthenticated, new FindAllExactRelationBlocController().handle);
-router.get('/findCategoryRelation', ADMINisAuthenticated, new FindCategoryIDRelationController().handle);
+router.get('/findCategoryAndProduct', ADMINisAuthenticated, new FindCategoryAndProductController().handle);
 router.put('/updateOrderRelation', ADMINisAuthenticated, new UpdateOrderProductCategoryController().handle);
-router.delete('/deleteRelation', ADMINisAuthenticated, new DeleteRelationProductCategoryController().handle);
-router.delete('/deleteIDRelation', ADMINisAuthenticated, new DeleteRelationIDProductCategoryController().handle);
-router.delete('/deleteNivelPrincipal', ADMINisAuthenticated, new DeleteRelationIDController().handle);
-router.delete('/deleteRelationProductIds', ADMINisAuthenticated, new DeleteRelationProductIDController().handle);
-router.get('/categorys', new FindCategorysRelationController().handle);
+router.delete('/deleteCategoryProduct', ADMINisAuthenticated, new DeleteProductCategoryController().handle);
+router.delete('/deleteAllCategoiesProduct', ADMINisAuthenticated, new DeleteAllProductCategoryController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 
 // ROUTES ATRIBUTOS --

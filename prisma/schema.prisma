@@ -226,7 +226,7 @@ model Category {
   slug        String?        @db.VarChar(300)
   description String?        @db.VarChar(15725)
   nivel       Int?
-  parentId  String?
+  parentId    String?
   order       Int?
   status      StatusCategory @default(Disponivel)
 
@@ -355,12 +355,13 @@ enum StatusDescriptionProduct {
 }
 
 model ProductCategory {
-  id         String   @id @default(uuid())
-  product    Product  @relation(fields: [product_id], references: [id])
+  id         String                @id @default(uuid())
+  product    Product               @relation(fields: [product_id], references: [id])
   product_id String
-  category   Category @relation(fields: [name], references: [name])
+  category   Category              @relation(fields: [name], references: [name])
   name       String
   order      Int?
+  status     StatusProductCategory @default(Disponivel)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -369,6 +370,11 @@ model ProductCategory {
   store_id String?
 
   @@map("productcategories")
+}
+
+enum StatusProductCategory {
+  Disponivel
+  Indisponivel
 }
 
 model Tag {
@@ -411,7 +417,7 @@ model RelationAttributeProduct {
   type          String?
   value         String?
   nivel         Int?
-  parentId    String?
+  parentId      String?
   order         Int?
   status        StatusRelationAttributeProduct @default(Disponivel)
 
@@ -505,7 +511,7 @@ model BuyTogether {
   product    Product?          @relation(name: "buy", fields: [product_id], references: [id])
   product_id String?
   nivel      Int?
-  parentId String?
+  parentId   String?
   order      Int?
   status     StatusBuyTogether @default(Disponivel)
 
@@ -536,7 +542,7 @@ model MenuCategory {
   slugPosition String?     @db.VarChar(325)
   order        Int?
   nivel        Int?
-  parentId   String?
+  parentId     String?
   status       StatusGroup @default(Disponivel)
 
   imagemenucategories ImageMenuCategory[]

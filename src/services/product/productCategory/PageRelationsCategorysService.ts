@@ -7,27 +7,33 @@ class PageRelationsCategorysService {
 
         const allFindAsc = await prismaClient.productCategory.findMany({
             where: {
-                category_id: category_id
+                category: {
+                    id: category_id
+                }
             },
             orderBy: {
                 order: 'asc'
             },
             include: {
+                category: true,
                 product: true,
-                category: true
+                store: true
             }
         });
 
         const allFindAscCategorys = await prismaClient.productCategory.findMany({
             where: {
-                category_id: category_id
+                category: {
+                    id: category_id
+                }
             },
             orderBy: {
                 order: 'asc'
             },
             include: {
+                category: true,
                 product: true,
-                category: true
+                store: true
             },
             skip,
             take: limit

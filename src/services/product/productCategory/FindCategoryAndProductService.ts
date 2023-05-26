@@ -1,16 +1,16 @@
 import prismaClient from '../../../prisma';
 
-interface FindsCategoryRequest {
-    category_id: string;
+interface ProductCategoryRequest {
+    name: string;
     product_id: string;
 }
 
-class FindCategoryIDRelationService {
-    async execute({ category_id, product_id }: FindsCategoryRequest) {
+class FindCategoryAndProductService {
+    async execute({ name, product_id }: ProductCategoryRequest) {
         const findCategoryRelation = await prismaClient.productCategory.findMany({
             where: {
                 product_id: product_id,
-                category_id: category_id
+                name: name
             }
         });
 
@@ -19,4 +19,4 @@ class FindCategoryIDRelationService {
     }
 }
 
-export { FindCategoryIDRelationService }
+export { FindCategoryAndProductService }

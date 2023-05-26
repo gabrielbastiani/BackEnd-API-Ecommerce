@@ -1,16 +1,16 @@
-import { StatusRelation } from "@prisma/client";
+import { StatusProductCategory } from "@prisma/client";
 import prismaClient from "../../../prisma";
 
 
-interface CategoryRequest {
-  relationProductCategory_id: string;
+interface ProductCategoryRequest {
+  productCategory_id: string;
 }
 
 class UpdateStatusRelationCategoryService {
-  async execute({ relationProductCategory_id }: CategoryRequest) {
+  async execute({ productCategory_id }: ProductCategoryRequest) {
     const active = await prismaClient.productCategory.findUnique({
       where: {
-        id: relationProductCategory_id
+        id: productCategory_id
       },
       select: {
         status: true
@@ -20,10 +20,10 @@ class UpdateStatusRelationCategoryService {
     if (active.status === "Indisponivel") {
       const isFalse = await prismaClient.productCategory.update({
         where: {
-          id: relationProductCategory_id
+          id: productCategory_id
         },
         data: {
-          status: StatusRelation.Disponivel
+          status: StatusProductCategory.Disponivel
         }
       })
 
@@ -33,10 +33,10 @@ class UpdateStatusRelationCategoryService {
     if (active.status === "Disponivel") {
       const isTrue = await prismaClient.productCategory.update({
         where: {
-          id: relationProductCategory_id
+          id: productCategory_id
         },
         data: {
-          status: StatusRelation.Indisponivel
+          status: StatusProductCategory.Indisponivel
         }
       })
 

@@ -2,18 +2,18 @@ import prismaClient from "../../../prisma";
 
 interface ProductCategoryRequest {
     productCategory_id: string;
-    order: number;
+    name: string;
 }
 
-class UpdateOrderProductCategoryService {
-    async execute({ productCategory_id, order }: ProductCategoryRequest) {
+class UpdateNameProductCategoryService {
+    async execute({ productCategory_id, name }: ProductCategoryRequest) {
 
         const relation = await prismaClient.productCategory.update({
             where: {
                 id: productCategory_id
             },
             data: {
-                order: order
+                name: name
             }
         });
 
@@ -22,4 +22,4 @@ class UpdateOrderProductCategoryService {
     }
 }
 
-export { UpdateOrderProductCategoryService }
+export { UpdateNameProductCategoryService }

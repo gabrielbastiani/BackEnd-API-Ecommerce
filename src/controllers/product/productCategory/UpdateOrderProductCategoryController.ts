@@ -3,13 +3,13 @@ import { UpdateOrderProductCategoryService } from '../../../services/product/pro
 
 class UpdateOrderProductCategoryController {
   async handle(req: Request, res: Response) {
-    const relationProductCategory_id = req.query.relationProductCategory_id as string;
+    const productCategory_id = req.query.productCategory_id as string;
 
     const { order } = req.body;
 
     const updateRelation = new UpdateOrderProductCategoryService();
 
-    const relation = await updateRelation.execute({ relationProductCategory_id, order });
+    const relation = await updateRelation.execute({ productCategory_id, order });
 
     return res.json(relation);
     
