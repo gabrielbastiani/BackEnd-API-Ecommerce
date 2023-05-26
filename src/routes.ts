@@ -315,6 +315,14 @@ import { DeleteDescriptionProductController } from './controllers/product/descri
 import { UpdateOrderDescriptionProductController } from './controllers/product/descriptionProduct/UpdateOrderDescriptionProductController';
 import { UpdateDescriptionProductController } from './controllers/product/descriptionProduct/UpdateDescriptionProductController';
 import { UpdateStatusDescriptionProductController } from './controllers/product/descriptionProduct/UpdateStatusDescriptionProductController';
+import { CreateTagController } from './controllers/product/tag/CreateTagController';
+import { UpdateTagController } from './controllers/product/tag/UpdateTagController';
+import { DeleteTagController } from './controllers/product/tag/DeleteTagController';
+import { DeleteAllTagController } from './controllers/product/tag/DeleteAllTagController';
+import { FindUniqueTagController } from './controllers/product/tag/FindUniqueTagController';
+import { FindUniqueDescriptionProductController } from './controllers/product/descriptionProduct/FindUniqueDescriptionProductController';
+import { AllTagProductController } from './controllers/product/tag/AllTagProductController';
+import { AllTagController } from './controllers/product/tag/AllTagController';
 
 
 
@@ -471,12 +479,19 @@ router.put('/offer', ADMINisAuthenticated, new UpdateProductOfferController().ha
 router.put('/updateFreeShipping', ADMINisAuthenticated, new UpdateProductFreeShippingController().handle);
 router.post('/createDescriptionProduct', ADMINisAuthenticated, new CreateDescriptionProductController().handle);
 router.put('/updateTitleDescription', ADMINisAuthenticated, new UpdateTitleDescriptionProductController().handle);
+router.get('/findUniqueDescriptionProduct', ADMINisAuthenticated, new FindUniqueDescriptionProductController().handle);
 router.get('/descriptions', ADMINisAuthenticated, new AllDescriptionsController().handle);
 router.delete('/deleteAllDescriptionsProduct', ADMINisAuthenticated, new DeleteAllDescriptionProductController().handle);
 router.delete('/deleteDescriptionProduct', ADMINisAuthenticated, new DeleteDescriptionProductController().handle);
 router.put('/updateOrderDescription', ADMINisAuthenticated, new UpdateOrderDescriptionProductController().handle);
 router.put('/updateDescriptionProduct', ADMINisAuthenticated, new UpdateDescriptionProductController().handle);
 router.put('/updateStatusDescriptionProduct', ADMINisAuthenticated, new UpdateStatusDescriptionProductController().handle);
+router.post('/createTagProduct', ADMINisAuthenticated, new CreateTagController().handle);
+router.put('/updateTagNameProduct', ADMINisAuthenticated, new UpdateTagController().handle);
+router.delete('/deleteTagProduct', ADMINisAuthenticated, new DeleteTagController().handle);
+router.delete('/deleteAllTagProduct', ADMINisAuthenticated, new DeleteAllTagController().handle);
+router.get('/findUniqueTagProduct', ADMINisAuthenticated, new FindUniqueTagController().handle);
+router.get('/allTags', ADMINisAuthenticated, new AllTagController().handle);
 router.get('/allDescriptionProductsStore', new AllDescriptionProductInStoreController().handle);
 router.get('/allProductsDescriptionsStore', new AllDescriptionProductController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);
@@ -484,6 +499,7 @@ router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().ha
 router.get('/listProductsDestaque', new ListAllProductEmphasisController().handle);
 router.get('/listProductsOfertas', new ListAllProductOfferController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
+router.get('/allTagProducts', new AllTagProductController().handle);
 
 // ROUTES CATEGORIES AND PRODUCT --
 router.post('/createProductCategory', ADMINisAuthenticated, new CreateProductCategoryController().handle);

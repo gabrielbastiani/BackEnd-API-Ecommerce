@@ -29,6 +29,9 @@ CREATE TYPE "StatusOffer" AS ENUM ('Sim', 'Nao');
 CREATE TYPE "StatusDescriptionProduct" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
+CREATE TYPE "StatusProductCategory" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
 CREATE TYPE "StatusRelationAttributeProduct" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
@@ -293,6 +296,7 @@ CREATE TABLE "productcategories" (
     "product_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "order" INTEGER,
+    "status" "StatusProductCategory" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
     "store_id" TEXT,
