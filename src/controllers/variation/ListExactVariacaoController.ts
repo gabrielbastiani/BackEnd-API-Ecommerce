@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ListExactVariacaoService } from '../../services/variacao/ListExactVariacaoService';
+import { ListExactVariacaoService } from '../../services/variation/ListExactVariacaoService';
 
 class ListExactVariacaoController {
     async handle(req: Request, res: Response) {

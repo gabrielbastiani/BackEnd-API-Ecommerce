@@ -1,20 +1,20 @@
 import { Request, Response } from 'express';
-import { UpdateOrderVariacaoService } from '../../services/variacao/UpdateOrderVariacaoService';
+import { UpdateOrderVariationService } from '../../services/variation/UpdateOrderVariationService';
 
 class UpdateOrderVariacaoController {
   async handle(req: Request, res: Response) {
-    const variacao_id = req.query.variacao_id;
+    const variation_id = req.query.variation_id as string;
 
     const { order } = req.body;
 
-    const updateName = new UpdateOrderVariacaoService();
+    const updateName = new UpdateOrderVariationService();
 
-    const variacao = await updateName.execute({
-      variacao_id,
+    const variation = await updateName.execute({
+      variation_id,
       order
     });
 
-    return res.json(variacao);
+    return res.json(variation);
 
   }
 }

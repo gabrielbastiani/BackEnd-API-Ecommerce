@@ -150,9 +150,7 @@ import { PageListAllProductController } from './controllers/product/PageListAllP
 import { ListExactProductController } from './controllers/product/ListExactProductController';
 import { DeletePhotoProductController } from './controllers/product/photoProduct/DeletePhotoProductController';
 import { DeleteAllPhotoProductController } from './controllers/product/photoProduct/DeleteAllPhotoProductController';
-import { DeleteAllVariacaoProductController } from './controllers/variacao/DeleteAllVariacaoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
-import { DeleteALLPhotoVariacaoController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
 import { UpdateStatusProductController } from './controllers/product/UpdateStatusProductController';
@@ -229,6 +227,15 @@ import { DeleteAvalietionProductIDController } from './controllers/avalietion/De
 import { PageListAllAvalietionProductIDController } from './controllers/avalietion/PageListAllAvalietionProductIDController';
 import { FindUniqueAvalietionController } from './controllers/avalietion/FindUniqueAvalietionController';
 
+// -- ROUTES VARIATION --
+import { AllVariationProductController } from './controllers/variation/AllVariationProductController';
+import { CreateVariationController } from './controllers/variation/CreateVariationController';
+import { FindFirstVariationNameController } from './controllers/variation/FindFirstVariationNameController';
+import { DeleteAllVariationProductController } from './controllers/variation/DeleteAllVariationProductController';
+import { DeleteVariationController } from './controllers/variation/DeleteVariationController';
+import { FindUniqueVariationController } from './controllers/variation/FindUniqueVariationController';
+import { UpdateStatusVariationController } from './controllers/variation/UpdateStatusVariationController';
+
 // -- ROUTES GRUPOS FILTROS --
 import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
 import { UpdateNameGroupFilterController } from './controllers/filtros/UpdateNameGroupFilterController';
@@ -271,32 +278,6 @@ import { CreateImageFiltroCategoryController } from './controllers/filtros/categ
 import { UpdateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/UpdateImageFiltroCategoryController';
 import { DeleteImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/DeleteImageFiltroCategoryController';
 
-// -- ROUTES VARIAÇÃO --
-import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
-import { DeleteVariacaoController } from './controllers/variacao/DeleteVariacaoController';
-import { UpdateAllDateVariacaoController } from './controllers/variacao/UpdateAllDateVariacaoController';
-import { UpdateNameVariacaoController } from './controllers/variacao/UpdateNameVariacaoController';
-import { UpdatePosicaoVariacaoController } from './controllers/variacao/UpdatePosicaoVariacaoController';
-import { PageListAllVariacaoController } from './controllers/variacao/PageListAllVariacaoController';
-import { ListExactVariacaoController } from './controllers/variacao/ListExactVariacaoController';
-import { AllVariacoesProductController } from './controllers/variacao/AllVariacoesProductController';
-import { AllVariacoesController } from './controllers/variacao/AllVariacoesController';
-import { UpdateOrderVariacaoController } from './controllers/variacao/UpdateOrderVariacaoController';
-import { UpdateOrderPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdateOrderPhotoVariacaoController';
-import { UpdatePosicaoPhotoVariacaoController } from './controllers/variacao/photoVariacao/UpdatePosicaoPhotoVariacaoController';
-import { AllPhotosVariacaoController } from './controllers/variacao/photoVariacao/AllPhotosVariacaoController';
-import { AllPhotosVariacoesController } from './controllers/variacao/photoVariacao/AllPhotosVariacoesController';
-import { PhotoVariacaoController } from './controllers/variacao/photoVariacao/PhotoVariacaoController';
-import { DeletePhotoVariacaoController } from './controllers/variacao/photoVariacao/DeletePhotoVariacaoController';
-import { DeleteALLPhotoVariacaoProductController } from './controllers/variacao/photoVariacao/DeleteALLPhotoVariacaoProductController';
-import { UpdateDisponibilidadeVariacaoController } from './controllers/variacao/DisponibilidadeVariacaoController';
-import { FreteGratisVariacaoController } from './controllers/variacao/FreteGratisVariacaoController';
-import { UpdateVariacaoDestqueController } from './controllers/variacao/UpdateVariacaoDestqueController';
-import { UpdateVariacaoOfertaController } from './controllers/variacao/UpdateVariacaoOfertaController';
-import { ListAllVariacaoDestaqueController } from './controllers/variacao/ListAllVariacaoDestaqueController';
-import { ListAllVariacaoOfertaController } from './controllers/variacao/ListAllVariacaoOfertaController';
-import { ListExactVariacaoNameController } from './controllers/variacao/ListExactVariacaoNameController';
-
 // -- ROUTES NEWSLETTERS --
 import { CreateNewslettersController } from './controllers/newsletters/CreateNewslettersController';
 import { DeleteNewslettersController } from './controllers/newsletters/DeleteNewslettersController';
@@ -325,6 +306,9 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { PageListAllVariationController } from './controllers/variation/PageListAllVariationController';
+import { UpdateNameVariationController } from './controllers/variation/UpdateNameVariationController';
+import { UpdateOrderVariacaoController } from './controllers/variation/UpdateOrderVariacaoController';
 
 
 
@@ -545,6 +529,36 @@ router.get('/pageAvalietion', ADMINisAuthenticated, new PageListAllAvalietionPro
 router.get('/avalietionData', ADMINisAuthenticated, new FindUniqueAvalietionController().handle);
 router.put('/updateStatusAvalietion', ADMINisAuthenticated, new UpdateStatusAvalietionController().handle);
 
+// -- ROUTES VARIATION --
+router.post('/createVariation', ADMINisAuthenticated, new CreateVariationController().handle);
+router.get('/allVariationProduct', ADMINisAuthenticated, new AllVariationProductController().handle);
+router.get('/findVariationName', ADMINisAuthenticated, new FindFirstVariationNameController().handle);
+router.delete('/deleteAllVariationProduct', ADMINisAuthenticated, new DeleteAllVariationProductController().handle);
+router.delete('/deleteVariation', ADMINisAuthenticated, new DeleteVariationController().handle);
+router.get('/findUniqueVariation', ADMINisAuthenticated, new FindUniqueVariationController().handle);
+router.put('/updateDisponibilidadeVariacao', ADMINisAuthenticated, new UpdateStatusVariationController().handle);
+router.get('/pageAllVariation', ADMINisAuthenticated, new PageListAllVariationController().handle);
+router.put('/updateNameVariation', ADMINisAuthenticated, new UpdateNameVariationController().handle);
+router.put('/updateOrderVariacao', ADMINisAuthenticated, new UpdateOrderVariacaoController().handle);
+
+
+router.put('/updateAllDateVariacao', ADMINisAuthenticated, new UpdateAllDateVariacaoController().handle);
+router.put('/updatePosicaoVariacao', ADMINisAuthenticated, new UpdatePosicaoVariacaoController().handle);
+router.get('/allPhotosVariacoes', ADMINisAuthenticated, new AllPhotosVariacoesController().handle);
+router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
+router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
+router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeleteALLPhotoVariacaoProductController().handle);
+router.delete('/deleteVariacaoAllPhotos', ADMINisAuthenticated, new DeleteALLPhotoVariacaoController().handle);
+router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
+router.put('/updateOrderPhotoVariacao', ADMINisAuthenticated, new UpdateOrderPhotoVariacaoController().handle);
+router.put('/updatePosicaoPhotoVariacao', ADMINisAuthenticated, new UpdatePosicaoPhotoVariacaoController().handle);
+router.put('/freteGratisVariacao', ADMINisAuthenticated, new FreteGratisVariacaoController().handle);
+router.put('/destaqueVariacao', ADMINisAuthenticated, new UpdateVariacaoDestqueController().handle);
+router.put('/ofertaVariacao', ADMINisAuthenticated, new UpdateVariacaoOfertaController().handle);
+router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().handle);
+router.get('/listVariacaoOfertas', new ListAllVariacaoOfertaController().handle);
+router.get('/exactVariacaoPage', new ListExactVariacaoNameController().handle);
+
 // -- ROUTES GRUPOS FILTROS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
 router.put('/updateNameGroupFilter', ADMINisAuthenticated, new UpdateNameGroupFilterController().handle);
@@ -586,34 +600,6 @@ router.put('/updateFiltroOrderCategory', ADMINisAuthenticated, new UpdateCategor
 router.post('/createImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroCategoryController().handle);
 router.put('/updateImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroCategoryController().handle);
 router.delete('/deleteImageFiltroCategory', ADMINisAuthenticated, new DeleteImageFiltroCategoryController().handle);
-
-// -- ROUTES VARIAÇÃO --
-router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);
-router.delete('/deleteVariacao', ADMINisAuthenticated, new DeleteVariacaoController().handle);
-router.put('/updateAllDateVariacao', ADMINisAuthenticated, new UpdateAllDateVariacaoController().handle);
-router.put('/updateNameVariacao', ADMINisAuthenticated, new UpdateNameVariacaoController().handle);
-router.put('/updatePosicaoVariacao', ADMINisAuthenticated, new UpdatePosicaoVariacaoController().handle);
-router.put('/updateOrderVariacao', ADMINisAuthenticated, new UpdateOrderVariacaoController().handle);
-router.get('/allVariacaoPage', ADMINisAuthenticated, new PageListAllVariacaoController().handle);
-router.get('/variacoesProduct', ADMINisAuthenticated, new AllVariacoesProductController().handle);
-router.get('/variacoes', ADMINisAuthenticated, new AllVariacoesController().handle);
-router.get('/exactVariacao', ADMINisAuthenticated, new ListExactVariacaoController().handle);
-router.get('/allPhotosVariacoes', ADMINisAuthenticated, new AllPhotosVariacoesController().handle);
-router.post('/photoVariante', ADMINisAuthenticated, upload.single('file'), new PhotoVariacaoController().handle);
-router.delete('/deletePhotoVariacao', ADMINisAuthenticated, new DeletePhotoVariacaoController().handle);
-router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeleteALLPhotoVariacaoProductController().handle);
-router.delete('/deleteAllVariacaoProduct', ADMINisAuthenticated, new DeleteAllVariacaoProductController().handle);
-router.delete('/deleteVariacaoAllPhotos', ADMINisAuthenticated, new DeleteALLPhotoVariacaoController().handle);
-router.get('/photosVariacao', ADMINisAuthenticated, new AllPhotosVariacaoController().handle);
-router.put('/updateOrderPhotoVariacao', ADMINisAuthenticated, new UpdateOrderPhotoVariacaoController().handle);
-router.put('/updatePosicaoPhotoVariacao', ADMINisAuthenticated, new UpdatePosicaoPhotoVariacaoController().handle);
-router.put('/updateDisponibilidadeVariacao', ADMINisAuthenticated, new UpdateDisponibilidadeVariacaoController().handle);
-router.put('/freteGratisVariacao', ADMINisAuthenticated, new FreteGratisVariacaoController().handle);
-router.put('/destaqueVariacao', ADMINisAuthenticated, new UpdateVariacaoDestqueController().handle);
-router.put('/ofertaVariacao', ADMINisAuthenticated, new UpdateVariacaoOfertaController().handle);
-router.get('/listVariacaoDestaque', new ListAllVariacaoDestaqueController().handle);
-router.get('/listVariacaoOfertas', new ListAllVariacaoOfertaController().handle);
-router.get('/exactVariacaoPage', new ListExactVariacaoNameController().handle);
 
 // -- ROUTES BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);

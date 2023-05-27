@@ -377,6 +377,7 @@ CREATE TABLE "variations" (
     "product_id" TEXT NOT NULL,
     "name" VARCHAR(325) NOT NULL,
     "slug" VARCHAR(325),
+    "order" INTEGER,
     "status" "StatusVariation" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UpdateOrderPhotoVariacaoService } from "../../../services/variacao/photoVariacao/UpdateOrderPhotoVariacaoService";
+import { UpdateOrderPhotoVariacaoService } from "../../../services/variation/photoVariacao/UpdateOrderPhotoVariacaoService";
 
 class UpdateOrderPhotoVariacaoController {
     async handle(req: Request, res: Response) {

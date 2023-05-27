@@ -474,6 +474,7 @@ model Variation {
   product_id String
   name       String          @db.VarChar(325)
   slug       String?         @db.VarChar(325)
+  order      Int?
   status     StatusVariation @default(Disponivel)
 
   photovariations PhotoVariation[]

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { DeleteALLPhotoVariacaoProductService } from "../../../services/variacao/photoVariacao/DeleteALLPhotoVariacaoProductService";
-import { AllPhotosProductFindService } from "../../../services/variacao/photoVariacao/AllPhotosProductFindService"; 
+import { DeleteALLPhotoVariacaoProductService } from "../../../services/variation/photoVariacao/DeleteALLPhotoVariacaoProductService";
+import { AllPhotosProductFindService } from "../../../services/variation/photoVariacao/AllPhotosProductFindService"; 
 import fs from 'fs';
 
 class DeleteALLPhotoVariacaoProductController {

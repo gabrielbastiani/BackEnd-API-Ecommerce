@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UpdateAllDateVariacaoService } from '../../services/variacao/UpdateAllDateVariacaoService';
+import { UpdateAllDateVariacaoService } from '../../services/variation/UpdateAllDateVariacaoService';
 
 class UpdateAllDateVariacaoController {
     async handle(req: Request, res: Response) {
@@ -28,7 +28,7 @@ class UpdateAllDateVariacaoController {
 
         const updateVariacao = new UpdateAllDateVariacaoService();
 
-        const variacao = await updateVariacao.execute({
+        const variation = await updateVariacao.execute({
             variacao_id,
             order,
             descriptionVariacao1,
@@ -50,7 +50,7 @@ class UpdateAllDateVariacaoController {
             store_id
         });
 
-        return res.json(variacao);
+        return res.json(variation);
 
     }
 }
