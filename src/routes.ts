@@ -176,8 +176,33 @@ import { FindCategoryAndProductController } from './controllers/product/productC
 import { DeleteProductCategoryController } from './controllers/product/productCategory/DeleteProductCategoryController';
 import { ProductsPageCategoriesController } from './controllers/product/productCategory/ProductsPageCategoriesController';
 
-// ROUTES ATTRIBUTE --
+// ROUTES DESCRIPTION PRODUCT --
+import { FindUniqueDescriptionProductController } from './controllers/product/descriptionProduct/FindUniqueDescriptionProductController';
+import { CreateDescriptionProductController } from './controllers/product/descriptionProduct/CreateDescriptionProductController';
+import { UpdateTitleDescriptionProductController } from './controllers/product/descriptionProduct/UpdateTitleDescriptionProductController';
+import { AllDescriptionProductInStoreController } from './controllers/product/descriptionProduct/AllDescriptionProductInStoreController';
+import { AllDescriptionProductController } from './controllers/product/descriptionProduct/AllDescriptionProductController';
+import { AllDescriptionsController } from './controllers/product/descriptionProduct/AllDescriptionsController';
+import { DeleteAllDescriptionProductController } from './controllers/product/descriptionProduct/DeleteAllDescriptionProductController';
+import { DeleteDescriptionProductController } from './controllers/product/descriptionProduct/DeleteDescriptionProductController';
+import { UpdateOrderDescriptionProductController } from './controllers/product/descriptionProduct/UpdateOrderDescriptionProductController';
+import { UpdateDescriptionProductController } from './controllers/product/descriptionProduct/UpdateDescriptionProductController';
+import { UpdateStatusDescriptionProductController } from './controllers/product/descriptionProduct/UpdateStatusDescriptionProductController';
 
+// ROUTES TAG --
+import { AllTagProductController } from './controllers/product/tag/AllTagProductController';
+import { AllTagController } from './controllers/product/tag/AllTagController';
+import { CreateTagController } from './controllers/product/tag/CreateTagController';
+import { UpdateTagController } from './controllers/product/tag/UpdateTagController';
+import { DeleteTagController } from './controllers/product/tag/DeleteTagController';
+import { DeleteAllTagController } from './controllers/product/tag/DeleteAllTagController';
+import { FindUniqueTagController } from './controllers/product/tag/FindUniqueTagController';
+
+// ROUTES ATTRIBUTE --
+import { CreateTypeAttributeController } from './controllers/attribute/CreateTypeAttributeController';
+import { UpdateTypeAttributeController } from './controllers/attribute/UpdateTypeAttributeController';
+import { AllTypeAttributeController } from './controllers/attribute/AllTypeAttributeController';
+import { FindUniqueTypeAttributeController } from './controllers/attribute/FindUniqueTypeAttributeController';
 
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
 
@@ -287,26 +312,7 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { CreateDescriptionProductController } from './controllers/product/descriptionProduct/CreateDescriptionProductController';
-import { UpdateTitleDescriptionProductController } from './controllers/product/descriptionProduct/UpdateTitleDescriptionProductController';
-import { AllDescriptionProductInStoreController } from './controllers/product/descriptionProduct/AllDescriptionProductInStoreController';
-import { AllDescriptionProductController } from './controllers/product/descriptionProduct/AllDescriptionProductController';
-import { AllDescriptionsController } from './controllers/product/descriptionProduct/AllDescriptionsController';
-import { DeleteAllDescriptionProductController } from './controllers/product/descriptionProduct/DeleteAllDescriptionProductController';
-import { DeleteDescriptionProductController } from './controllers/product/descriptionProduct/DeleteDescriptionProductController';
-import { UpdateOrderDescriptionProductController } from './controllers/product/descriptionProduct/UpdateOrderDescriptionProductController';
-import { UpdateDescriptionProductController } from './controllers/product/descriptionProduct/UpdateDescriptionProductController';
-import { UpdateStatusDescriptionProductController } from './controllers/product/descriptionProduct/UpdateStatusDescriptionProductController';
-import { CreateTagController } from './controllers/product/tag/CreateTagController';
-import { UpdateTagController } from './controllers/product/tag/UpdateTagController';
-import { DeleteTagController } from './controllers/product/tag/DeleteTagController';
-import { DeleteAllTagController } from './controllers/product/tag/DeleteAllTagController';
-import { FindUniqueTagController } from './controllers/product/tag/FindUniqueTagController';
-import { FindUniqueDescriptionProductController } from './controllers/product/descriptionProduct/FindUniqueDescriptionProductController';
-import { AllTagProductController } from './controllers/product/tag/AllTagProductController';
-import { AllTagController } from './controllers/product/tag/AllTagController';
-import { CreateTypeAttributeController } from './controllers/attribute/CreateTypeAttributeController';
-import { UpdateTypeAttributeController } from './controllers/attribute/UpdateTypeAttributeController';
+
 
 
 
@@ -499,6 +505,8 @@ router.get('/productsPageCategories', new ProductsPageCategoriesController().han
 // ROUTES ATTRIBUTE --
 router.post('/createTypeAttribute', ADMINisAuthenticated, new CreateTypeAttributeController().handle);
 router.put('/updateTypeAttribute', ADMINisAuthenticated, new UpdateTypeAttributeController().handle);
+router.get('/allTypeAttributes', new AllTypeAttributeController().handle);
+router.get('/findUniqueTypeAttribute', new FindUniqueTypeAttributeController().handle);
 
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
 
