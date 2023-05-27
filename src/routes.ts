@@ -199,13 +199,22 @@ import { DeleteAllTagController } from './controllers/product/tag/DeleteAllTagCo
 import { FindUniqueTagController } from './controllers/product/tag/FindUniqueTagController';
 
 // ROUTES ATTRIBUTE --
-import { CreateTypeAttributeController } from './controllers/attribute/CreateTypeAttributeController';
-import { UpdateTypeAttributeController } from './controllers/attribute/UpdateTypeAttributeController';
-import { AllTypeAttributeController } from './controllers/attribute/AllTypeAttributeController';
-import { FindUniqueTypeAttributeController } from './controllers/attribute/FindUniqueTypeAttributeController';
+import { CreateTypeAttributeController } from './controllers/typeAttribute/CreateTypeAttributeController';
+import { UpdateTypeAttributeController } from './controllers/typeAttribute/UpdateTypeAttributeController';
+import { AllTypeAttributeController } from './controllers/typeAttribute/AllTypeAttributeController';
+import { FindUniqueTypeAttributeController } from './controllers/typeAttribute/FindUniqueTypeAttributeController';
 
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
-
+import { AllRelationAttributeProductController } from './controllers/product/relationAttributeProduct/AllRelationAttributeProductController';
+import { CreateRelationAttributeProductController } from './controllers/product/relationAttributeProduct/CreateRelationAttributeProductController';
+import { DeleteProductRelationAllController } from './controllers/product/relationAttributeProduct/DeleteProductRelationAllController';
+import { DeleteRelationAttributeProductController } from './controllers/product/relationAttributeProduct/DeleteRelationAttributeProductController';
+import { FindRelationAttributeBlockController } from './controllers/product/relationAttributeProduct/FindRelationAttributeBlockController';
+import { FindUniqueRelationAttributeProductController } from './controllers/product/relationAttributeProduct/FindUniqueRelationAttributeProductController';
+import { FirstFirstRelationAttributeProductController } from './controllers/product/relationAttributeProduct/FirstFirstRelationAttributeProductController';
+import { PageRelationAttributeProductController } from './controllers/product/relationAttributeProduct/PageRelationAttributeProductController';
+import { UpdateTypeRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateTypeRelationAttributeProductController';
+import { UpdateOrderRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateOrderRelationAttributeProductController';
 
 // -- ROUTES GRUPOS FILTROS --
 import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
@@ -509,7 +518,16 @@ router.get('/allTypeAttributes', new AllTypeAttributeController().handle);
 router.get('/findUniqueTypeAttribute', new FindUniqueTypeAttributeController().handle);
 
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
-
+router.post('/createRelationAttributeProduct', ADMINisAuthenticated, new CreateRelationAttributeProductController().handle);
+router.get('/allAttributeProduct', ADMINisAuthenticated, new AllRelationAttributeProductController().handle);
+router.delete('/deleteAllRelationProductAttributes', ADMINisAuthenticated, new DeleteProductRelationAllController().handle);
+router.delete('/deleteAttributeProduct', ADMINisAuthenticated, new DeleteRelationAttributeProductController().handle);
+router.get('/findAllProductRelationAttribute', ADMINisAuthenticated, new FindRelationAttributeBlockController().handle);
+router.get('/findUniqueRelationAttributeProduct', ADMINisAuthenticated, new FindUniqueRelationAttributeProductController().handle);
+router.get('/findFirstRelationAttributeProduct', ADMINisAuthenticated, new FirstFirstRelationAttributeProductController().handle);
+router.get('/pageAttributesRelationsProducts', ADMINisAuthenticated, new PageRelationAttributeProductController().handle);
+router.put('/updateTypeRelationAttributeProduct', ADMINisAuthenticated, new UpdateTypeRelationAttributeProductController().handle);
+router.put('/updateOrderRelationAttributeProduct', ADMINisAuthenticated, new UpdateOrderRelationAttributeProductController().handle);
 
 // -- ROUTES GRUPOS FILTROS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);

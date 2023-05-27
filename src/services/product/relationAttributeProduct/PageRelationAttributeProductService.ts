@@ -1,42 +1,40 @@
 import prismaClient from '../../../prisma';
 
-class PageRelationAtributosService {
-    async execute(page = 1, limit = 10, atributo_id: string) {
+class PageRelationAttributeProductService {
+    async execute(page = 1, limit = 10) {
 
         const skip = limit * (page - 1);
 
-        const allFindAsc = await prismaClient.relationProductAtributo.findMany({
-            where: {
-                atributo_id: atributo_id
-            },
+        const allFindAsc = await prismaClient.relationAttributeProduct.findMany({
             orderBy: {
                 order: 'asc'
             },
             include: {
-                atributo: true,
+                _count: true,
+                imageattributes: true,
                 product: true,
-                variacao: true
+                store: true,
+                typeAttribute: true
             }
         });
 
-        const allFindAscAtributos = await prismaClient.relationProductAtributo.findMany({
-            where: {
-                atributo_id: atributo_id
-            },
+        const allFindAttributes = await prismaClient.relationAttributeProduct.findMany({
             orderBy: {
                 order: 'asc'
             },
             include: {
-                atributo: true,
+                _count: true,
+                imageattributes: true,
                 product: true,
-                variacao: true
+                store: true,
+                typeAttribute: true
             },
             skip,
             take: limit
         });
 
         const data = {
-            allFindAscAtributos,
+            allFindAttributes,
             total: allFindAsc.length,
             total_pages: Math.ceil(allFindAsc.length / limit),
             current_page: page,
@@ -47,4 +45,4 @@ class PageRelationAtributosService {
     }
 }
 
-export { PageRelationAtributosService }
+export { PageRelationAttributeProductService }
