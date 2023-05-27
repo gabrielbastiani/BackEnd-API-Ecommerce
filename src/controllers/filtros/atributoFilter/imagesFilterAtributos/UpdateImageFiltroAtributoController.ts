@@ -14,16 +14,16 @@ class UpdateImageFiltroAtributoController {
             imageFilterAtributo_id
         });
 
-        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageUpdateAtributo.imageAtributo);
+        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageUpdateAtributo.imageAttribute);
 
         if (!req.file) {
             throw new Error('error upload file');
         } else {
-            const { originalname, filename: imageAtributo } = req.file;
+            const { originalname, filename: imageAttribute } = req.file;
 
             const updateImages = await updateImage.execute({
                 imageFilterAtributo_id,
-                imageAtributo,
+                imageAttribute,
             });
 
             return res.json([imageUpdateAtributo, updateImages]);

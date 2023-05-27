@@ -1,15 +1,15 @@
 import prismaClient from "../../../../prisma";
 
 interface AtributoRequest {
-  imageAtributo: string;
+  imageAttribute: string;
   filterAtributo_id: string;
 }
 
 class CreateImageFiltroAtributoService {
-  async execute({ imageAtributo, filterAtributo_id }: AtributoRequest) {
+  async execute({ imageAttribute, filterAtributo_id }: AtributoRequest) {
     const atributo = await prismaClient.imageFilterAtributo.create({
       data: {
-        imageAtributo: imageAtributo,
+        imageAttribute: imageAttribute,
         filterAtributo_id: filterAtributo_id
       }
     });

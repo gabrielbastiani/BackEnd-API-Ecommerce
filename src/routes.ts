@@ -198,7 +198,7 @@ import { DeleteTagController } from './controllers/product/tag/DeleteTagControll
 import { DeleteAllTagController } from './controllers/product/tag/DeleteAllTagController';
 import { FindUniqueTagController } from './controllers/product/tag/FindUniqueTagController';
 
-// ROUTES ATTRIBUTE --
+// ROUTES TYPE ATTRIBUTE --
 import { CreateTypeAttributeController } from './controllers/typeAttribute/CreateTypeAttributeController';
 import { UpdateTypeAttributeController } from './controllers/typeAttribute/UpdateTypeAttributeController';
 import { AllTypeAttributeController } from './controllers/typeAttribute/AllTypeAttributeController';
@@ -321,6 +321,10 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { UpdateStatusRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateStatusRelationAttributeProductController';
+import { CreateImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/CreateImageAttributeController';
+import { UpdateImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/UpdateImageAttributeController';
+import { DeleteImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeController';
 
 
 
@@ -511,7 +515,7 @@ router.delete('/deleteCategoryProduct', ADMINisAuthenticated, new DeleteProductC
 router.delete('/deleteAllCategoiesProduct', ADMINisAuthenticated, new DeleteAllProductCategoryController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 
-// ROUTES ATTRIBUTE --
+// ROUTES TYPE ATTRIBUTE --
 router.post('/createTypeAttribute', ADMINisAuthenticated, new CreateTypeAttributeController().handle);
 router.put('/updateTypeAttribute', ADMINisAuthenticated, new UpdateTypeAttributeController().handle);
 router.get('/allTypeAttributes', new AllTypeAttributeController().handle);
@@ -528,6 +532,10 @@ router.get('/findFirstRelationAttributeProduct', ADMINisAuthenticated, new First
 router.get('/pageAttributesRelationsProducts', ADMINisAuthenticated, new PageRelationAttributeProductController().handle);
 router.put('/updateTypeRelationAttributeProduct', ADMINisAuthenticated, new UpdateTypeRelationAttributeProductController().handle);
 router.put('/updateOrderRelationAttributeProduct', ADMINisAuthenticated, new UpdateOrderRelationAttributeProductController().handle);
+router.put('/updateStatusRelationAttributeProduct', ADMINisAuthenticated, new UpdateStatusRelationAttributeProductController().handle);
+router.post('/createImageAttributeProduct', ADMINisAuthenticated, upload.single('file'), new CreateImageAttributeController().handle);
+router.put('/updateImageAttribute', ADMINisAuthenticated, upload.single('file'), new UpdateImageAttributeController().handle);
+router.delete('/deleteImageAttributeProduct', ADMINisAuthenticated, new DeleteImageAttributeController().handle);
 
 // -- ROUTES GRUPOS FILTROS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);

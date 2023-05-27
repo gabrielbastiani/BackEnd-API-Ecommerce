@@ -2,17 +2,17 @@ import prismaClient from "../../../../prisma";
 
 interface ImageRequest {
   imageFilterAtributo_id: string;
-  imageAtributo: string;
+  imageAttribute: string;
 }
 
 class UpdateImageFiltroAtributoService {
-  async execute({ imageFilterAtributo_id, imageAtributo }: ImageRequest) {
+  async execute({ imageFilterAtributo_id, imageAttribute }: ImageRequest) {
     const updateImageFiltro = await prismaClient.imageFilterAtributo.update({
       where: {
         id: imageFilterAtributo_id
       },
       data: {
-        imageAtributo: imageAtributo,
+        imageAttribute: imageAttribute,
       }
     })
 

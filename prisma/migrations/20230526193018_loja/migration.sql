@@ -477,7 +477,7 @@ CREATE TABLE "filterattributes" (
 CREATE TABLE "imagefilteratributos" (
     "id" TEXT NOT NULL,
     "filterAttribute_id" TEXT NOT NULL,
-    "imageAtributo" TEXT NOT NULL,
+    "imageAttribute" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 

@@ -14,7 +14,7 @@ class DeleteImageFiltroAtributoController {
             imageFilterAtributo_id
         });
 
-        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageDelete.imageAtributo);
+        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageDelete.imageAttribute);
 
         const updateImages = await updateImage.execute({
             imageFilterAtributo_id,

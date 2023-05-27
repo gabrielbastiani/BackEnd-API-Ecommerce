@@ -627,7 +627,7 @@ model ImageFilterAtributo {
   id                 String          @id @default(uuid())
   filterAttribute    FilterAttribute @relation(fields: [filterAttribute_id], references: [id])
   filterAttribute_id String
-  imageAtributo      String
+  imageAttribute     String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt

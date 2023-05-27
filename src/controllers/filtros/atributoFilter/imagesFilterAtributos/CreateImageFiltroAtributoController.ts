@@ -11,10 +11,10 @@ class CreateImageFiltroAtributoController {
             throw new Error("error upload file");
         } else {
 
-            const { originalname, filename: imageAtributo } = req.file;
+            const { originalname, filename: imageAttribute } = req.file;
 
             const createImage = await imageAtribute.execute({
-                imageAtributo,
+                imageAttribute,
                 filterAtributo_id
             });
 
