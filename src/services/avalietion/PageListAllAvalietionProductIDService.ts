@@ -1,11 +1,11 @@
 import prismaClient from '../../prisma';
 
-class PageListAllAvaliacaoProductIDService {
+class PageListAllAvalietionProductIDService {
     async execute(page = 1, limit = 999999, product_id: string) {
 
         const skip = limit * (page - 1);
 
-        const allAvaliacaoProduct = await prismaClient.avaliacao.findMany({
+        const allAvalietionProduct = await prismaClient.avalietion.findMany({
             where: {
                 product_id: product_id
             },
@@ -13,12 +13,13 @@ class PageListAllAvaliacaoProductIDService {
                 created_at: 'desc'
             },
             include: {
-                user: true,
-                product: true
+                customer: true,
+                product: true,
+                store: true
             }
         });
 
-        const productAvaliacao = await prismaClient.avaliacao.findMany({
+        const productAvalietion = await prismaClient.avalietion.findMany({
             where: {
                 product_id: product_id
             },
@@ -26,18 +27,18 @@ class PageListAllAvaliacaoProductIDService {
                 created_at: 'desc'
             },
             include: {
-                user: true,
-                product: true
+                customer: true,
+                product: true,
+                store: true
             },
             skip,
             take: limit,
         });
 
-        // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
-            productAvaliacao,
-            total: allAvaliacaoProduct.length,
-            total_pages: Math.ceil(allAvaliacaoProduct.length / limit),
+            productAvalietion,
+            total: allAvalietionProduct.length,
+            total_pages: Math.ceil(allAvalietionProduct.length / limit),
             current_page: page,
         }
 
@@ -46,4 +47,4 @@ class PageListAllAvaliacaoProductIDService {
     }
 }
 
-export { PageListAllAvaliacaoProductIDService }
+export { PageListAllAvalietionProductIDService }

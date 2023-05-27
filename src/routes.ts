@@ -215,6 +215,19 @@ import { FirstFirstRelationAttributeProductController } from './controllers/prod
 import { PageRelationAttributeProductController } from './controllers/product/relationAttributeProduct/PageRelationAttributeProductController';
 import { UpdateTypeRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateTypeRelationAttributeProductController';
 import { UpdateOrderRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateOrderRelationAttributeProductController';
+import { UpdateStatusRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateStatusRelationAttributeProductController';
+import { CreateImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/CreateImageAttributeController';
+import { UpdateImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/UpdateImageAttributeController';
+import { DeleteImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeController';
+
+// -- ROUTES AVALIETION --
+import { CreateAvalietionController } from './controllers/avalietion/CreateAvalietionController';
+import { DeleteAvalietionController } from './controllers/avalietion/DeleteAvalietionController';
+import { UpdateStatusAvalietionController } from './controllers/avalietion/UpdateStatusAvalietionController';
+import { PageListAllAvalietionController } from './controllers/avalietion/PageListAllAvalietionController';
+import { DeleteAvalietionProductIDController } from './controllers/avalietion/DeleteAvalietionProductIDController';
+import { PageListAllAvalietionProductIDController } from './controllers/avalietion/PageListAllAvalietionProductIDController';
+import { FindUniqueAvalietionController } from './controllers/avalietion/FindUniqueAvalietionController';
 
 // -- ROUTES GRUPOS FILTROS --
 import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
@@ -257,15 +270,6 @@ import { DeleteImageFiltroAtributoController } from './controllers/filtros/atrib
 import { CreateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/CreateImageFiltroCategoryController';
 import { UpdateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/UpdateImageFiltroCategoryController';
 import { DeleteImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/DeleteImageFiltroCategoryController';
-
-// -- ROUTES AVALIACAO --
-import { CreateAvaliacaoController } from './controllers/avaliacao/CreateAvaliacaoController';
-import { DeleteAvaliacaoController } from './controllers/avaliacao/DeleteAvaliacaoController';
-import { UpdateStatusAvaliacaoController } from './controllers/avaliacao/UpdateStatusAvaliacaoController';
-import { PageListAllAvaliacaoController } from './controllers/avaliacao/PageListAllAvaliacaoController';
-import { DeleteAvaliacaoProductIDController } from './controllers/avaliacao/DeleteAvaliacaoProductIDController';
-import { PageListAllAvaliacaoProductIDController } from './controllers/avaliacao/PageListAllAvaliacaoProductIDController';
-import { FindAvaliacaoController } from './controllers/avaliacao/FindAvaliacaoController';
 
 // -- ROUTES VARIAÇÃO --
 import { CreateVariacaoController } from './controllers/variacao/CreateVariacaoController';
@@ -321,11 +325,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { UpdateStatusRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateStatusRelationAttributeProductController';
-import { CreateImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/CreateImageAttributeController';
-import { UpdateImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/UpdateImageAttributeController';
-import { DeleteImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeController';
-
 
 
 
@@ -537,6 +536,15 @@ router.post('/createImageAttributeProduct', ADMINisAuthenticated, upload.single(
 router.put('/updateImageAttribute', ADMINisAuthenticated, upload.single('file'), new UpdateImageAttributeController().handle);
 router.delete('/deleteImageAttributeProduct', ADMINisAuthenticated, new DeleteImageAttributeController().handle);
 
+// -- ROUTES AVALIETION --
+router.post('/createAvalietion', ADMINisAuthenticated, new CreateAvalietionController().handle);
+router.delete('/deleteAvalietion', ADMINisAuthenticated, new DeleteAvalietionController().handle);
+router.delete('/deleteAvalietionProductID', ADMINisAuthenticated, new DeleteAvalietionProductIDController().handle);
+router.get('/pageAllAvalietion', ADMINisAuthenticated, new PageListAllAvalietionController().handle);
+router.get('/pageAvalietion', ADMINisAuthenticated, new PageListAllAvalietionProductIDController().handle);
+router.get('/avalietionData', ADMINisAuthenticated, new FindUniqueAvalietionController().handle);
+router.put('/updateStatusAvalietion', ADMINisAuthenticated, new UpdateStatusAvalietionController().handle);
+
 // -- ROUTES GRUPOS FILTROS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
 router.put('/updateNameGroupFilter', ADMINisAuthenticated, new UpdateNameGroupFilterController().handle);
@@ -578,15 +586,6 @@ router.put('/updateFiltroOrderCategory', ADMINisAuthenticated, new UpdateCategor
 router.post('/createImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroCategoryController().handle);
 router.put('/updateImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroCategoryController().handle);
 router.delete('/deleteImageFiltroCategory', ADMINisAuthenticated, new DeleteImageFiltroCategoryController().handle);
-
-// -- ROUTES AVALIACAO --
-router.post('/avaliacao', ADMINisAuthenticated, new CreateAvaliacaoController().handle);
-router.delete('/deleteAvaliacao', ADMINisAuthenticated, new DeleteAvaliacaoController().handle);
-router.delete('/deleteAvaliacaoProductID', ADMINisAuthenticated, new DeleteAvaliacaoProductIDController().handle);
-router.get('/allAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoController().handle);
-router.get('/pageAvaliacao', ADMINisAuthenticated, new PageListAllAvaliacaoProductIDController().handle);
-router.get('/avaliacaoDados', ADMINisAuthenticated, new FindAvaliacaoController().handle);
-router.put('/updateStatusAvaliacao', ADMINisAuthenticated, new UpdateStatusAvaliacaoController().handle);
 
 // -- ROUTES VARIAÇÃO --
 router.post('/variacao', ADMINisAuthenticated, new CreateVariacaoController().handle);
