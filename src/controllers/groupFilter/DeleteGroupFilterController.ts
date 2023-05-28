@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DeleteGroupFilterService } from '../../services/filtros/DeleteGroupFilterService';
+import { DeleteGroupFilterService } from '../../services/groupFilter/DeleteGroupFilterService';
 
 class DeleteGroupFilterController {
     async handle(req: Request, res: Response) {

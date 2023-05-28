@@ -2,30 +2,30 @@ import { StatusGroupFilter } from '@prisma/client';
 import prismaClient from '../../prisma';
 
 interface GroupRequest {
-    atributoName: string;
+    type: string;
 }
 
-class FindsAtributoNameFilterService {
-    async execute({ atributoName }: GroupRequest) {
+class FindTypeFilterService {
+    async execute({ type }: GroupRequest) {
 
         const atributoNameFindFirst = await prismaClient.groupFilter.findFirst({
             where: {
-                atributoName: atributoName,
+                type: type,
                 status: StatusGroupFilter.Disponivel
             },
             include: {
-                filteratributos: true,
+                filterattributes: true,
                 filtercategories: true
             }
         });
 
         const atributoNameFindMany = await prismaClient.groupFilter.findMany({
             where: {
-                atributoName: atributoName,
+                type: type,
                 status: StatusGroupFilter.Disponivel
             },
             include: {
-                filteratributos: true,
+                filterattributes: true,
                 filtercategories: true
             }
         });
@@ -39,4 +39,4 @@ class FindsAtributoNameFilterService {
     }
 }
 
-export { FindsAtributoNameFilterService }
+export { FindTypeFilterService }

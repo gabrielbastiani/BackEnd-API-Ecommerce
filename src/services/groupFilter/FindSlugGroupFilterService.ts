@@ -13,7 +13,7 @@ class FindSlugGroupFilterService {
                 status: StatusGroupFilter.Disponivel
             },
             include: {
-                filteratributos: {orderBy: {order: 'asc'}},
+                filterattributes: { orderBy: { order: 'asc' } },
                 filtercategories: true
             }
         });

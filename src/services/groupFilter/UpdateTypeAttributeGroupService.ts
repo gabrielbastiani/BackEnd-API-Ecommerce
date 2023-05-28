@@ -2,17 +2,17 @@ import prismaClient from "../../prisma";
 
 interface GroupRequest {
     groupFilter_id: string;
-    atributoName: string;
+    type: string;
 }
 
-class UpdateAtributoNameService {
-    async execute({ atributoName, groupFilter_id }: GroupRequest) {
+class UpdateTypeAttributeGroupService {
+    async execute({ type, groupFilter_id }: GroupRequest) {
         const group = await prismaClient.groupFilter.update({
             where: {
                 id: groupFilter_id
             },
             data: {
-                atributoName: atributoName,
+                type: type,
             }
         });
 
@@ -21,4 +21,4 @@ class UpdateAtributoNameService {
     }
 }
 
-export { UpdateAtributoNameService }
+export { UpdateTypeAttributeGroupService }

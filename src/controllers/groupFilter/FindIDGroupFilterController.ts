@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { FindIDGroupFilterService } from '../../services/filtros/FindIDGroupFilterService';
+import { FindIDGroupFilterService } from '../../services/groupFilter/FindIDGroupFilterService';
 
 class FindIDGroupFilterController {
     async handle(req: Request, res: Response) {

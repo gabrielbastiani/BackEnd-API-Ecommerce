@@ -10,7 +10,7 @@ class PageGroupsFiltersService {
                 created_at: 'desc'
             },
             include: {
-                filteratributos: true,
+                filterattributes: true,
                 filtercategories: true
             }
         });
@@ -20,7 +20,7 @@ class PageGroupsFiltersService {
                 created_at: 'desc'
             },
             include: {
-                filteratributos: true,
+                filterattributes: true,
                 filtercategories: true
             },
             skip,

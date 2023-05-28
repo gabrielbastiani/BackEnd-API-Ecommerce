@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { FindSlugGroupFilterService } from "../../services/filtros/FindSlugGroupFilterService";
+import { FindSlugGroupFilterService } from "../../services/groupFilter/FindSlugGroupFilterService";
 
 class FindSlugGroupFilterController {
   async handle(req: Request, res: Response) {

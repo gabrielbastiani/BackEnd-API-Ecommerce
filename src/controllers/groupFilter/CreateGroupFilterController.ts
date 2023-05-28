@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
-import { CreateGroupFilterService } from "../../services/filtros/CreateGroupFilterService";
+import { CreateGroupFilterService } from "../../services/groupFilter/CreateGroupFilterService";
 
 class CreateGroupFilterController {
     async handle(req: Request, res: Response) {
         const {
             nameGroup,
-            atributoName,
+            type,
             slugCategory,
+            order,
             store_id
         } = req.body;
 
@@ -14,8 +15,9 @@ class CreateGroupFilterController {
 
         const group = await createGroup.execute({
             nameGroup,
-            atributoName,
+            type,
             slugCategory,
+            order,
             store_id
         });
 

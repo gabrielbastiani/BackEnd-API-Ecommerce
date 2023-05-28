@@ -7,8 +7,9 @@ class FindFirstGroupsService {
                 created_at: 'desc'
             },
             include: {
-                filteratributos: true,
-                filtercategories: true
+                filterattributes: true,
+                filtercategories: true,
+                typeAttribute: true
             }
         });
 

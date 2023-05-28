@@ -255,18 +255,18 @@ import { UpdateImageMenuCategoryController } from './controllers/category/menuCa
 import { DeletetImageMenuCategoryController } from './controllers/category/menuCategory/imageMenuCategory/DeletetImageMenuCategoryController';
 
 // -- ROUTES GROUP FILTERS --
-import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
-import { UpdateNameGroupFilterController } from './controllers/filtros/UpdateNameGroupFilterController';
-import { UpdateAtributoNameController } from './controllers/filtros/UpdateAtributoNameController';
-import { UpdateSlugGroupFilterController } from './controllers/filtros/UpdateSlugGroupFilterController';
-import { UpdateStatusGroupFilterController } from './controllers/filtros/UpdateStatusGroupFilterController';
-import { PageGroupsFiltersController } from './controllers/filtros/PageGroupsFiltersController';
-import { FindsNameGroupFilterController } from './controllers/filtros/FindsNameGroupFilterController';
-import { FindsAtributoNameFilterController } from './controllers/filtros/FindsAtributoNameFilterController';
-import { DeleteGroupFilterController } from './controllers/filtros/DeleteGroupFilterController';
-import { FindSlugGroupFilterController } from './controllers/filtros/FindSlugGroupFilterController';
-import { FindFirstGroupsController } from './controllers/filtros/FindFirstGroupsController';
-import { FindIDGroupFilterController } from './controllers/filtros/FindIDGroupFilterController';
+import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
+import { UpdateNameGroupFilterController } from './controllers/groupFilter/UpdateNameGroupFilterController';
+import { UpdateTypeAttributeGroupController } from './controllers/groupFilter/UpdateTypeAttributeGroupController';
+import { UpdateSlugGroupFilterController } from './controllers/groupFilter/UpdateSlugGroupFilterController';
+import { UpdateStatusGroupFilterController } from './controllers/groupFilter/UpdateStatusGroupFilterController';
+import { PageGroupsFiltersController } from './controllers/groupFilter/PageGroupsFiltersController';
+import { FindsNameGroupFilterController } from './controllers/groupFilter/FindsNameGroupFilterController';
+import { FindTypeFilterController } from './controllers/groupFilter/FindTypeFilterController';
+import { DeleteGroupFilterController } from './controllers/groupFilter/DeleteGroupFilterController';
+import { FindSlugGroupFilterController } from './controllers/groupFilter/FindSlugGroupFilterController';
+import { FindFirstGroupsController } from './controllers/groupFilter/FindFirstGroupsController';
+import { FindIDGroupFilterController } from './controllers/groupFilter/FindIDGroupFilterController';
 
 // -- ROUTES FILTRO ATRIBUTOS --
 import { CreateFiltroAtributoController } from './controllers/filtros/atributoFilter/CreateFiltroAtributoController';
@@ -574,14 +574,14 @@ router.get('/listCategoryMenu', new ListCategoryMenuController().handle);
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
 router.put('/updateNameGroupFilter', ADMINisAuthenticated, new UpdateNameGroupFilterController().handle);
-router.put('/updateAtributoName', ADMINisAuthenticated, new UpdateAtributoNameController().handle);
+router.put('/updateTypeAttributeGroup', ADMINisAuthenticated, new UpdateTypeAttributeController().handle);
 router.put('/updateSlugGroupFilter', ADMINisAuthenticated, new UpdateSlugGroupFilterController().handle);
 router.put('/updateStatusGroupFilter', ADMINisAuthenticated, new UpdateStatusGroupFilterController().handle);
 router.get('/pagesGroupFilter', ADMINisAuthenticated, new PageGroupsFiltersController().handle);
 router.get('/filterFirstGroupFiltro', ADMINisAuthenticated, new FindFirstGroupsController().handle);
 router.delete('/deleteGroupFilter', ADMINisAuthenticated, new DeleteGroupFilterController().handle);
 router.get('/findsNameGroupFilter', new FindsNameGroupFilterController().handle);
-router.get('/findsAtributoNameGroupFilter', new FindsAtributoNameFilterController().handle);
+router.get('/findTypeAttributeGroupFilter', new FindTypeFilterController().handle);
 router.get('/findUniqueIDGroup', ADMINisAuthenticated, new FindIDGroupFilterController().handle);
 router.get('/listFilterGroup', new FindSlugGroupFilterController().handle);
 

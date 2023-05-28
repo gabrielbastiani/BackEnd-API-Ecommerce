@@ -7,14 +7,14 @@ interface GroupRequest {
 
 class FindsNameGroupFilterService {
     async execute({ nameGroup }: GroupRequest) {
-        
+
         const nameGroupFindFirst = await prismaClient.groupFilter.findFirst({
             where: {
                 nameGroup: nameGroup,
                 status: StatusGroupFilter.Disponivel
             },
             include: {
-                filteratributos: true,
+                filterattributes: true,
                 filtercategories: true
             }
         });
@@ -25,7 +25,7 @@ class FindsNameGroupFilterService {
                 status: StatusGroupFilter.Disponivel
             },
             include: {
-                filteratributos: true,
+                filterattributes: true,
                 filtercategories: true
             }
         });

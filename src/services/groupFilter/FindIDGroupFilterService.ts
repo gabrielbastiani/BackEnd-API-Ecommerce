@@ -11,7 +11,7 @@ class FindIDGroupFilterService {
                 id: groupFilter_id,
             },
             include: {
-                filteratributos: true,
+                filterattributes: true,
                 filtercategories: true
             }
         });
