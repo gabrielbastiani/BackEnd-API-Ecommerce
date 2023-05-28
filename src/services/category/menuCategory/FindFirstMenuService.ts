@@ -1,18 +1,18 @@
 import prismaClient from '../../../prisma';
 
-class FindFirstGroupService {
+class FindFirstMenuService {
     async execute() {
-        const findGroupFirst = await prismaClient.menuCategory.findFirst({
+        const findFirst = await prismaClient.menuCategory.findFirst({
             orderBy: {
                 created_at: 'desc'
             },
             include: {
                 category: true,
-                imagegroupcategories: true,
+                imagemenucategories: true,
             }
         })
-        return findGroupFirst;
+        return findFirst;
     }
 }
 
-export { FindFirstGroupService }
+export { FindFirstMenuService }
