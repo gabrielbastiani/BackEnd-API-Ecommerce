@@ -245,6 +245,13 @@ import { DeleteImageVariationController } from './controllers/variation/photoVar
 import { CreateImageVariationController } from './controllers/variation/photoVariation/CreateImageVariationController';
 import { UpdateOrderImageVariationController } from './controllers/variation/photoVariation/UpdateOrderImageVariationController';
 
+// -- ROUTES BUY TOGETHER --
+import { CreateBuyTogetherController } from './controllers/buyTogether/CreateBuyTogetherController';
+import { UpdateProductBuyTogetherController } from './controllers/buyTogether/UpdateProductBuyTogetherController';
+import { UpdateNameGroupBuyTogetherController } from './controllers/buyTogether/UpdateNameGroupBuyTogetherController';
+import { UpdateOrderBuyTogetherController } from './controllers/buyTogether/UpdateOrderBuyTogetherController';
+import { UpdateStatusBuyTogetherController } from './controllers/buyTogether/UpdateStatusBuyTogetherController';
+
 // -- ROUTES GRUPOS FILTROS --
 import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
 import { UpdateNameGroupFilterController } from './controllers/filtros/UpdateNameGroupFilterController';
@@ -552,6 +559,13 @@ router.get('/allImagesVariation', ADMINisAuthenticated, new AllImagesVariationCo
 router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeleteALLImageVariationProductController().handle);
 router.delete('/deleteImageVariantion', ADMINisAuthenticated, new DeleteImageVariationController().handle);
 router.put('/updateOrderImageVariation', ADMINisAuthenticated, new UpdateOrderImageVariationController().handle);
+
+// -- ROUTES BUY TOGETHER --
+router.post('/createBuyTogether', ADMINisAuthenticated, new CreateBuyTogetherController().handle);
+router.put('/updateProductBuyTogether', ADMINisAuthenticated, new UpdateProductBuyTogetherController().handle);
+router.put('/updateNameGroupBuyTogether', ADMINisAuthenticated, new UpdateNameGroupBuyTogetherController().handle);
+router.put('/updateOrderBuyTogether', ADMINisAuthenticated, new UpdateOrderBuyTogetherController().handle);
+router.put('/updateStatusBuyTogether', ADMINisAuthenticated, new UpdateStatusBuyTogetherController().handle);
 
 // -- ROUTES GRUPOS FILTROS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
