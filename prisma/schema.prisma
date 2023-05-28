@@ -533,18 +533,18 @@ enum StatusBuyTogether {
 }
 
 model MenuCategory {
-  id           String      @id @default(uuid())
-  nameGroup    String?     @db.VarChar(385)
-  category     Category?   @relation(fields: [name], references: [name])
+  id           String             @id @default(uuid())
+  nameGroup    String?            @db.VarChar(385)
+  category     Category?          @relation(fields: [name], references: [name])
   name         String?
-  categoryName String?     @db.VarChar(385)
-  slugCategory String?     @db.VarChar(400)
-  position     String?     @db.VarChar(300)
-  slugPosition String?     @db.VarChar(325)
+  categoryName String?            @db.VarChar(385)
+  slugCategory String?            @db.VarChar(400)
+  position     String?            @db.VarChar(300)
+  slugPosition String?            @db.VarChar(325)
   order        Int?
   nivel        Int?
   parentId     String?
-  status       StatusGroup @default(Disponivel)
+  status       StatusMenuCategory @default(Disponivel)
 
   imagemenucategories ImageMenuCategory[]
 
@@ -557,7 +557,7 @@ model MenuCategory {
   @@map("menucategories")
 }
 
-enum StatusGroup {
+enum StatusMenuCategory {
   Disponivel
   Indisponivel
 }

@@ -1,11 +1,11 @@
 import prismaClient from "../../../prisma";
 
-interface GroupsRequest {
+interface MenuCategoryRequest {
     menuCategory_id: string;
 }
 
 class DeleteMenuIDService {
-    async execute({ menuCategory_id }: GroupsRequest) {
+    async execute({ menuCategory_id }: MenuCategoryRequest) {
 
         const idNivel = await prismaClient.menuCategory.findUnique({
             where: {

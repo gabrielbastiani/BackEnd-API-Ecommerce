@@ -234,27 +234,27 @@ import { DeleteBuyTogetherController } from './controllers/buyTogether/DeleteBuy
 import { FindUniqueBuyTogetherController } from './controllers/buyTogether/FindUniqueBuyTogetherController';
 
 // -- ROUTES MENU CATEGORY --
-import { CreateMenuCategoryController } from './controllers/category/groupCategory/CreateMenuCategoryController';
-import { ListPosicaoCategoriesGroupController } from './controllers/category/groupCategory/ListPosicaoCategoriesGroupController';
-import { ListCategoriesGroupController } from './controllers/category/groupCategory/ListCategoriesGroupController';
-import { PageListAllGroupsCategoriesController } from './controllers/category/groupCategory/PageListAllGroupsCategoriesController';
-import { FindFirstMenuController } from './controllers/category/groupCategory/FindFirstMenuController';
-import { FindGroupIDController } from './controllers/category/groupCategory/FindGroupIDController';
-import { FindUniqueGroupIDController } from './controllers/category/groupCategory/FindUniqueGroupIDController';
-import { UpdateOrderCategoryGroupController } from './controllers/category/groupCategory/UpdateOrderCategoryGroupController';
-import { StatusItemCategoryGroupController } from './controllers/category/groupCategory/StatusItemCategoryGroupController';
-import { DeleteMenuCategoryMenuIDController } from './controllers/category/groupCategory/DeleteMenuCategoryMenuIDController';
-import { DeleteMenuIDController } from './controllers/category/groupCategory/DeleteMenuIDController';
-import { UpdateNameGrupoController } from './controllers/category/groupCategory/UpdateNameGrupoController';
-import { UpdatePosicaoGroupController } from './controllers/category/groupCategory/UpdatePosicaoGroupController';
-import { UpdateCategoryGrupoController } from './controllers/category/groupCategory/UpdateCategoryGrupoController';
-import { CreateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/CreateImageCategoryGroupController';
-import { UpdateItemNameGrupoController } from './controllers/category/groupCategory/UpdateItemNameGrupoController';
-import { UpdateSlugGrupoController } from './controllers/category/groupCategory/UpdateSlugGrupoController';
-import { UpdateImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/UpdateImageCategoryGroupController';
-import { DeletetImageCategoryGroupController } from './controllers/category/groupCategory/imageCategoryGroup/DeletetImageCategoryGroupController';
+import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
+import { ListPositionMenuCategoryController } from './controllers/category/menuCategory/ListPositionMenuCategoryController';
+import { ListCategoryMenuController } from './controllers/category/menuCategory/ListCategoryMenuController';
+import { PageListAllMenuCategoryController } from './controllers/category/menuCategory/PageListAllMenuCategoryController';
+import { FindFirstMenuController } from './controllers/category/menuCategory/FindFirstMenuController';
+import { FindMenuIDController } from './controllers/category/menuCategory/FindMenuIDController';
+import { FindUniqueMenuIDController } from './controllers/category/menuCategory/FindUniqueMenuIDController';
+import { UpdateOrderCategoryMenuController } from './controllers/category/menuCategory/UpdateOrderCategoryMenuController';
+import { StatusCategoryMenuCategoriesController } from './controllers/category/menuCategory/StatusCategoryMenuCategoriesController';
+import { DeleteMenuCategoryMenuIDController } from './controllers/category/menuCategory/DeleteMenuCategoryMenuIDController';
+import { DeleteMenuIDController } from './controllers/category/menuCategory/DeleteMenuIDController';
+import { UpdateNameMenuController } from './controllers/category/menuCategory/UpdateNameMenuController';
+import { UpdatePositionMenuController } from './controllers/category/menuCategory/UpdatePositionMenuController';
+import { UpdateNameCategoryMenuController } from './controllers/category/menuCategory/UpdateNameCategoryMenuController';
+import { CreateImageMenuCategoryController } from './controllers/category/menuCategory/imageMenuCategory/CreateImageMenuCategoryController';
+import { UpdateItemNameCategoryController } from './controllers/category/menuCategory/UpdateItemNameCategoryController';
+import { UpdateSlugMenuController } from './controllers/category/menuCategory/UpdateSlugMenuController';
+import { UpdateImageMenuCategoryController } from './controllers/category/menuCategory/imageMenuCategory/UpdateImageMenuCategoryController';
+import { DeletetImageMenuCategoryController } from './controllers/category/menuCategory/imageMenuCategory/DeletetImageMenuCategoryController';
 
-// -- ROUTES GROUP FILTROS --
+// -- ROUTES GROUP FILTERS --
 import { CreateGroupFilterController } from './controllers/filtros/CreateGroupFilterController';
 import { UpdateNameGroupFilterController } from './controllers/filtros/UpdateNameGroupFilterController';
 import { UpdateAtributoNameController } from './controllers/filtros/UpdateAtributoNameController';
@@ -552,26 +552,26 @@ router.get('/findUniqueBuyTogether', ADMINisAuthenticated, new FindUniqueBuyToge
 
 // -- ROUTES MENU CATEGORY --
 router.post('/createMenuCategory', ADMINisAuthenticated, new CreateMenuCategoryController().handle);
-router.get('/pageGroups', ADMINisAuthenticated, new PageListAllGroupsCategoriesController().handle);
+router.get('/pageMenu', ADMINisAuthenticated, new PageListAllMenuCategoryController().handle);
 router.get('/findFirstMenu', ADMINisAuthenticated, new FindFirstMenuController().handle);
-router.get('/findGroupID', ADMINisAuthenticated, new FindGroupIDController().handle);
-router.get('/findUniqueGroup', ADMINisAuthenticated, new FindUniqueGroupIDController().handle);
-router.put('/updateOrderItemGroup', ADMINisAuthenticated, new UpdateOrderCategoryGroupController().handle);
-router.put('/updateStatusGroup', ADMINisAuthenticated, new StatusItemCategoryGroupController().handle);
-router.put('/updateNameGroup', ADMINisAuthenticated, new UpdateNameGrupoController().handle);
-router.put('/updatePosicaoGroup', ADMINisAuthenticated, new UpdatePosicaoGroupController().handle);
-router.put('/updateCategoryGroup', ADMINisAuthenticated, new UpdateCategoryGrupoController().handle);
-router.put('/updateItemName', ADMINisAuthenticated, new UpdateItemNameGrupoController().handle);
+router.get('/findMenuID', ADMINisAuthenticated, new FindMenuIDController().handle);
+router.get('/findUniqueMenu', ADMINisAuthenticated, new FindUniqueMenuIDController().handle);
+router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryMenuController().handle);
+router.put('/updateStatusMenu', ADMINisAuthenticated, new StatusCategoryMenuCategoriesController().handle);
+router.put('/updateNameGroup', ADMINisAuthenticated, new UpdateNameMenuController().handle);
+router.put('/updatePositionMenu', ADMINisAuthenticated, new UpdatePositionMenuController().handle);
+router.put('/updateNameCategory', ADMINisAuthenticated, new UpdateNameCategoryMenuController().handle);
+router.put('/updateItemNameCategory', ADMINisAuthenticated, new UpdateItemNameCategoryController().handle);
 router.delete('/deleteCategoryMenu', ADMINisAuthenticated, new DeleteMenuCategoryMenuIDController().handle);
 router.delete('/deleteMenu', ADMINisAuthenticated, new DeleteMenuIDController().handle);
-router.delete('/deleteImageGroup', ADMINisAuthenticated, new DeletetImageCategoryGroupController().handle);
-router.post('/createImageGroup', ADMINisAuthenticated, upload.single('file'), new CreateImageCategoryGroupController().handle);
-router.put('/updateImageGroup', ADMINisAuthenticated, upload.single('file'), new UpdateImageCategoryGroupController().handle);
-router.put('/updateSlugGroup', ADMINisAuthenticated, new UpdateSlugGrupoController().handle);
-router.get('/pocisaoListGroup', new ListPosicaoCategoriesGroupController().handle);
-router.get('/listCategoriesGroup', new ListCategoriesGroupController().handle);
+router.delete('/deleteImageMenuCategory', ADMINisAuthenticated, new DeletetImageMenuCategoryController().handle);
+router.post('/createImageMenuCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageMenuCategoryController().handle);
+router.put('/updateImageMenuCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageMenuCategoryController().handle);
+router.put('/updateSlugMenu', ADMINisAuthenticated, new UpdateSlugMenuController().handle);
+router.get('/positionListMenu', new ListPositionMenuCategoryController().handle);
+router.get('/listCategoryMenu', new ListCategoryMenuController().handle);
 
-// -- ROUTES GROUP FILTROS --
+// -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
 router.put('/updateNameGroupFilter', ADMINisAuthenticated, new UpdateNameGroupFilterController().handle);
 router.put('/updateAtributoName', ADMINisAuthenticated, new UpdateAtributoNameController().handle);
