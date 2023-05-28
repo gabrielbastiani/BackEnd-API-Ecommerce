@@ -7,7 +7,7 @@ interface GroupRequest {
 
 class StatusItemCategoryGroupService {
   async execute({ groupCategoy_id }: GroupRequest) {
-    const status = await prismaClient.groupCategoy.findUnique({
+    const status = await prismaClient.menuCategory.findUnique({
       where: {
         id: groupCategoy_id
       },
@@ -17,7 +17,7 @@ class StatusItemCategoryGroupService {
     })
 
     if (status.status === "Disponivel") {
-      const isFalse = await prismaClient.groupCategoy.update({
+      const isFalse = await prismaClient.menuCategory.update({
         where: {
           id: groupCategoy_id
         },
@@ -30,7 +30,7 @@ class StatusItemCategoryGroupService {
     }
 
     if (status.status === "Indisponivel") {
-      const isTrue = await prismaClient.groupCategoy.update({
+      const isTrue = await prismaClient.menuCategory.update({
         where: {
           id: groupCategoy_id
         },

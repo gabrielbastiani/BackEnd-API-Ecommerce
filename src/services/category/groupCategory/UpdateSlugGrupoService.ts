@@ -7,7 +7,7 @@ interface GroupRequest {
 
 class UpdateSlugGrupoService {
   async execute({ groupCategoy_id, slugCategory }: GroupRequest) {
-    const updateSlug = await prismaClient.groupCategoy.update({
+    const updateSlug = await prismaClient.menuCategory.update({
       where: {
         id: groupCategoy_id
       },

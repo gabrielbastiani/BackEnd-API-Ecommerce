@@ -6,7 +6,7 @@ interface GroupRequest {
 
 class FindUniqueGroupIDService {
     async execute({ groupCategoy_id }: GroupRequest) {
-        const allGroupsId = await prismaClient.groupCategoy.findUnique({
+        const allGroupsId = await prismaClient.menuCategory.findUnique({
             where: {
                 id: groupCategoy_id
             },

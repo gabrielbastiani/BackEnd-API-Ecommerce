@@ -2,7 +2,7 @@ import prismaClient from '../../../prisma';
 
 class FindFirstGroupService {
     async execute() {
-        const findGroupFirst = await prismaClient.groupCategoy.findFirst({
+        const findGroupFirst = await prismaClient.menuCategory.findFirst({
             orderBy: {
                 created_at: 'desc'
             },

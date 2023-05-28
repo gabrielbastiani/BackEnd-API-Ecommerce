@@ -9,7 +9,7 @@ interface GroupRequest {
 class ListPosicaoCategoriesGroupService {
     async execute({ slugPosicao, slugCategory }: GroupRequest) {
 
-        const ids = await prismaClient.groupCategoy.findFirst({
+        const ids = await prismaClient.menuCategory.findFirst({
             where: {
                 slugPosicao: slugPosicao,
                 slugCategory: slugCategory,
@@ -19,7 +19,7 @@ class ListPosicaoCategoriesGroupService {
 
         const gruopId = ids.id;
 
-        const group = await prismaClient.groupCategoy.findMany({
+        const group = await prismaClient.menuCategory.findMany({
             where: {
                 groupId: gruopId,
                 status: StatusGroup.Disponivel

@@ -7,13 +7,13 @@ interface GroupsRequest {
 class DeleteGroupsIDService {
     async execute({ groupCategoy_id }: GroupsRequest) {
 
-        const idNivel = await prismaClient.groupCategoy.findUnique({
+        const idNivel = await prismaClient.menuCategory.findUnique({
             where: {
                 id: groupCategoy_id
             }
         });
 
-        const idNivelRelations = await prismaClient.groupCategoy.findMany();
+        const idNivelRelations = await prismaClient.menuCategory.findMany();
         const idsRelat = idNivelRelations.map((item) => item.groupId);
 
         const filtrado = idsRelat.filter(function (obj) { return idNivel.id === obj });
@@ -22,7 +22,7 @@ class DeleteGroupsIDService {
             throw new Error("Delete as categorias filhas desta de trás para frente antes!!!");
         }
 
-        const relation = await prismaClient.groupCategoy.delete({
+        const relation = await prismaClient.menuCategory.delete({
             where: {
                 id: groupCategoy_id
             }

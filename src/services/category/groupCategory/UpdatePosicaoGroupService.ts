@@ -18,7 +18,7 @@ class UpdatePosicaoGroupService {
         .replace(/[/]/g, "-");
     }
 
-    const updatePosicao = await prismaClient.groupCategoy.update({
+    const updatePosicao = await prismaClient.menuCategory.update({
       where: {
         id: groupCategoy_id
       },

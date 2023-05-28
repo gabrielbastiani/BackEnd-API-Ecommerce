@@ -6,7 +6,7 @@ interface GroupRequest {
 
 class FindGroupIDService {
     async execute({ groupId }: GroupRequest) {
-        const allGroupsId = await prismaClient.groupCategoy.findMany({
+        const allGroupsId = await prismaClient.menuCategory.findMany({
             where: {
                 groupId: groupId
             },

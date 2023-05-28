@@ -5,7 +5,7 @@ class PageListAllGroupsCategoriesService {
 
         const skip = limit * (page - 1);
 
-        const gruopsAll = await prismaClient.groupCategoy.findMany({
+        const gruopsAll = await prismaClient.menuCategory.findMany({
             where: {
                 itemName: ""
             },
@@ -18,7 +18,7 @@ class PageListAllGroupsCategoriesService {
             }
         });
 
-        const gruops = await prismaClient.groupCategoy.findMany({
+        const gruops = await prismaClient.menuCategory.findMany({
             where: {
                 itemName: ""
             },

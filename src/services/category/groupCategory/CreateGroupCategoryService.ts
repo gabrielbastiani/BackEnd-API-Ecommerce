@@ -25,7 +25,7 @@ class CreateGroupCategoryService {
                 .replace(/[/]/g, "-");
         }
 
-        const relationGroup = await prismaClient.groupCategoy.create({
+        const relationGroup = await prismaClient.menuCategory.create({
             data: {
                 nameGroup: nameGroup,
                 itemName: itemName,
