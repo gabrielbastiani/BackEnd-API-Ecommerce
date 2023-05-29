@@ -2,27 +2,26 @@ import prismaClient from "../../prisma";
 import nodemailer from "nodemailer";
 require('dotenv/config');
 
-
-interface ContatoRequest {
+interface ContactRequest {
   name: string;
   email: string;
   phone: string;
-  empresa: string;
-  setor: string;
-  mensagem: string;
+  company: string;
+  sector: string;
+  message: string;
   store_id: string;
 }
 
-class CreateContatoService {
-  async execute({ name, email, phone, empresa, setor, mensagem, store_id }: ContatoRequest){
-    const contato = await prismaClient.contato.create({
+class CreateContactService {
+  async execute({ name, email, phone, company, sector, message, store_id }: ContactRequest){
+    const contact = await prismaClient.contact.create({
       data:{
         name: name,
         email: email,
         phone: phone,
-        empresa: empresa,
-        setor: setor,
-        mensagem: mensagem,
+        company: company,
+        sector: sector,
+        message: message,
         store_id: store_id
       }
     })
@@ -51,9 +50,9 @@ class CreateContatoService {
             </div>`,
     });
 
-    return contato;
+    return contact;
 
   }
 }
 
-export { CreateContatoService }
+export { CreateContactService }

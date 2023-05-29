@@ -3,8 +3,8 @@ import { EmailExportContatoService } from '../../services/sendEmails/EmailExport
 
 class EmailExportContatoController {
     async handle(req: Request, res: Response) {
-        const listContatos = new EmailExportContatoService();
-        const contatosSend = await listContatos.execute();
+        const listContacts = new EmailExportContatoService();
+        const contatosSend = await listContacts.execute();
 
         return res.json(contatosSend);
     }

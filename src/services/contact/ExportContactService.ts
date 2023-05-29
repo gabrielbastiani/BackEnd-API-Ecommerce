@@ -3,17 +3,16 @@ import xl from 'excel4node';
 const wb = new xl.Workbook();
 const ws = wb.addWorksheet('lista-das-newsletters');
 
-
-class ExportContatoService {
+class ExportContactService {
     async execute() {
-        const findAll = await prismaClient.contato.findMany({
+        const findAll = await prismaClient.contact.findMany({
             select: {
                 name: true,
                 email: true,
                 phone: true,
-                empresa: true,
-                setor: true,
-                mensagem: true,
+                company: true,
+                sector: true,
+                message: true,
                 created_at: true
             },
             orderBy: {
@@ -54,4 +53,4 @@ class ExportContatoService {
     }
 }
 
-export { ExportContatoService }
+export { ExportContactService }

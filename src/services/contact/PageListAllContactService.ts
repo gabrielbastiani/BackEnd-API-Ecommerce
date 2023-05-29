@@ -1,11 +1,11 @@
 import prismaClient from '../../prisma';
 
-class PageListAllContatoService {
+class PageListAllContactService {
     async execute(page = 1, limit = 99999) {
 
         const skip = limit * (page - 1);
 
-        const contatoAll = await prismaClient.contato.findMany({
+        const contactAll = await prismaClient.contact.findMany({
             orderBy: {
                 created_at: 'desc'
             },
@@ -14,7 +14,7 @@ class PageListAllContatoService {
             }
         });
 
-        const contatos = await prismaClient.contato.findMany({
+        const contacts = await prismaClient.contact.findMany({
             include: {
                 store: true,
             },
@@ -25,11 +25,10 @@ class PageListAllContatoService {
             }
         });
 
-        // Retornamos um objeto onde tem a lista e tambem qual numero total de paginas tem com base no limite que recebeu
         const data = {
-            contatos,
-            total: contatoAll.length,
-            total_pages: Math.ceil(contatoAll.length / limit),
+            contacts,
+            total: contactAll.length,
+            total_pages: Math.ceil(contactAll.length / limit),
             current_page: page,
         }
 
@@ -38,4 +37,4 @@ class PageListAllContatoService {
     }
 }
 
-export { PageListAllContatoService }
+export { PageListAllContactService }

@@ -1,8 +1,8 @@
 import prismaClient from "../../prisma";
 
-class ListContatoService {
+class ListContactService {
     async execute() {
-        const contato = await prismaClient.contato.findMany({
+        const contact = await prismaClient.contact.findMany({
             include: {
                 store: true
             },
@@ -11,8 +11,8 @@ class ListContatoService {
             }
         })
 
-        return contato;
+        return contact;
     }
 }
 
-export { ListContatoService }
+export { ListContactService }

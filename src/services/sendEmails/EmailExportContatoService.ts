@@ -16,14 +16,14 @@ class EmailExportContatoService {
         await transporter.sendMail({
             from: 'Loja - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
             to: 'gabriel.bastiani@hotmail.com.br',
-            subject: "Lista de contatos do Loja",
+            subject: "Lista de contacts do Loja",
             html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                       <h2>Lista de Contatos do Loja</h2>
                   </div>
                   
                   <article>
                       <p>Olá!</p>
-                      <p>Segue em anexo o arquivo com a listagem de contatos cadastrados no Loja?</p>
+                      <p>Segue em anexo o arquivo com a listagem de contacts cadastrados no Loja?</p>
                   </article>
                   
                   <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">

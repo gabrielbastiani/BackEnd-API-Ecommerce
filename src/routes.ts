@@ -306,15 +306,15 @@ import { ListExactNewslettersController } from './controllers/newsletters/ListEx
 import { PageListAllNewslettersController } from './controllers/newsletters/PageListAllNewslettersController';
 import { ExportNewslettersController } from './controllers/newsletters/ExportNewslettersController';
 
-// -- ROUTES CONTATOS --
-import { CreateContatoController } from './controllers/contatos/CreateContatoController';
-import { DeleteContatoController } from './controllers/contatos/DeleteContatoController';
-import { ListContatoController } from './controllers/contatos/ListContatoController';
-import { ListExactContatoController } from './controllers/contatos/ListExactContatoController';
-import { PageListAllContatoController } from './controllers/contatos/PageListAllContatoController';
-import { ExportContatoController } from './controllers/contatos/ExportContatoController';
+// -- ROUTES CONTACT --
+import { CreateContactController } from './controllers/contact/CreateContactController';
+import { DeleteContactController } from './controllers/contact/DeleteContactController';
+import { ListContactController } from './controllers/contact/ListContactController';
+import { FindUniqueContactController } from './controllers/contact/FindUniqueContactController';
+import { PageListAllContactController } from './controllers/contact/PageListAllContactController';
+import { ExportContactController } from './controllers/contact/ExportContactController';
 
-// -- ROUTES ENVIAR EMAILS --
+// -- ROUTES SEND EMAILS --
 import { EmailExportAdminUserController } from './controllers/sendEmails/EmailExportAdminUserController';
 import { EmailExportCustomerUserController } from './controllers/sendEmails/EmailExportCustomerUserController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
@@ -637,15 +637,15 @@ router.get('/listExactNewsletter', ADMINisAuthenticated, new ListExactNewsletter
 router.get('/pageNewsletter', ADMINisAuthenticated, new PageListAllNewslettersController().handle);
 router.get('/exportNews', ADMINisAuthenticated, new ExportNewslettersController().handle);
 
-// -- ROUTES CONTATOS --
-router.post('/createContato', new CreateContatoController().handle);
-router.delete('/deleteContato', ADMINisAuthenticated, new DeleteContatoController().handle);
-router.get('/listContato', ADMINisAuthenticated, new ListContatoController().handle);
-router.get('/listExactContato', ADMINisAuthenticated, new ListExactContatoController().handle);
-router.get('/pageContato', ADMINisAuthenticated, new PageListAllContatoController().handle);
-router.get('/exportContatos', ADMINisAuthenticated, new ExportContatoController().handle);
+// -- ROUTES CONTACT --
+router.post('/createContact', new CreateContactController().handle);
+router.delete('/deleteContact', ADMINisAuthenticated, new DeleteContactController().handle);
+router.get('/listContact', ADMINisAuthenticated, new ListContactController().handle);
+router.get('/findUniqueContact', ADMINisAuthenticated, new FindUniqueContactController().handle);
+router.get('/pageContact', ADMINisAuthenticated, new PageListAllContactController().handle);
+router.get('/exportContacts', ADMINisAuthenticated, new ExportContactController().handle);
 
-// -- ROUTES ENVIAR EMAILS --
+// -- ROUTES SEND EMAILS --
 router.get('/admin/sendlistuser', ADMINisAuthenticated, new EmailExportAdminUserController().handle);
 router.get('/sendListCustomer', ADMINisAuthenticated, new EmailExportCustomerUserController().handle);
 router.get('/sendlistproduct', ADMINisAuthenticated, new EmailExportProductsController().handle);
