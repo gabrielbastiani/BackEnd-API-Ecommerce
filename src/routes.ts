@@ -319,7 +319,7 @@ import { EmailExportAdminUserController } from './controllers/sendEmails/EmailEx
 import { EmailExportCustomerUserController } from './controllers/sendEmails/EmailExportCustomerUserController';
 import { EmailExportProductsController } from './controllers/sendEmails/EmailExportProductsController';
 import { EmailExportNewslettersController } from './controllers/sendEmails/EmailExportNewslettersController';
-import { EmailExportContatoController } from './controllers/sendEmails/EmailExportContatoController';
+import { EmailExportContactController } from './controllers/sendEmails/EmailExportContactController';
 
 
 
@@ -650,7 +650,7 @@ router.get('/admin/sendlistuser', ADMINisAuthenticated, new EmailExportAdminUser
 router.get('/sendListCustomer', ADMINisAuthenticated, new EmailExportCustomerUserController().handle);
 router.get('/sendlistproduct', ADMINisAuthenticated, new EmailExportProductsController().handle);
 router.get('/sendEmailNewsletters', ADMINisAuthenticated, new EmailExportNewslettersController().handle);
-router.get('/sendEmailContatos', ADMINisAuthenticated, new EmailExportContatoController().handle);
+router.get('/sendEmailContact', ADMINisAuthenticated, new EmailExportContactController().handle);
 
 
 export { router };

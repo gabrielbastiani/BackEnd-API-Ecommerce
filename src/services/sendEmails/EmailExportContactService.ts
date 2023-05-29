@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 require('dotenv/config');
 
 
-class EmailExportContatoService {
+class EmailExportContactService {
     async execute() {
         const transporter = nodemailer.createTransport({
             host: process.env.HOST_SMTP,
@@ -42,4 +42,4 @@ class EmailExportContatoService {
     }
 }
 
-export { EmailExportContatoService }
+export { EmailExportContactService }
