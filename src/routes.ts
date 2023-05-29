@@ -268,30 +268,30 @@ import { FindSlugGroupFilterController } from './controllers/groupFilter/FindSlu
 import { FindFirstGroupsController } from './controllers/groupFilter/FindFirstGroupsController';
 import { FindIDGroupFilterController } from './controllers/groupFilter/FindIDGroupFilterController';
 
-// -- ROUTES FILTRO ATRIBUTOS --
-import { CreateFiltroAtributoController } from './controllers/filtros/atributoFilter/CreateFiltroAtributoController';
-import { DeleteAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAtributoFiltroController';
-import { PageAtributoFiltroController } from './controllers/filtros/atributoFilter/PageAtributoFiltroController';
-import { UpdateAtributoNameFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoNameFiltroController';
-import { UpdateAtributoValorFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoValorFiltroController';
-import { UpdateAtributoOrderFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoOrderFiltroController';
-import { UpdateAtributoStatusFiltroController } from './controllers/filtros/atributoFilter/UpdateAtributoStatusFiltroController';
-import { CreateImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/CreateImageFiltroAtributoController';
-import { UpdateImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/UpdateImageFiltroAtributoController';
-import { FindAtributoFiltroController } from './controllers/filtros/atributoFilter/FindAtributoFiltroController';
-import { FindUniqueAtributoFiltroController } from './controllers/filtros/atributoFilter/FindUniqueAtributoFiltroController';
-import { FindManyAtributoFiltroNameController } from './controllers/filtros/atributoFilter/FindManyAtributoFiltroNameController';
-import { DeleteAllAtributoFiltroController } from './controllers/filtros/atributoFilter/DeleteAllAtributoFiltroController';
+// -- ROUTES FILTER ATTRIBUTES --
+import { CreateFilterAttributeController } from './controllers/groupFilter/filterAttribute/CreateFilterAttributeController';
+import { DeleteAllFilterAttributeController } from './controllers/groupFilter/filterAttribute/DeleteAllFilterAttributeController';
+import { PageFilterAttributeController } from './controllers/groupFilter/filterAttribute/PageFilterAttributeController';
+import { UpdateNameFilterAttributeController } from './controllers/groupFilter/filterAttribute/UpdateNameFilterAttributeController';
+import { UpdateValueFilterAttributeController } from './controllers/groupFilter/filterAttribute/UpdateValueFilterAttributeController';
+import { UpdateOrderFilterAttributeController } from './controllers/groupFilter/filterAttribute/UpdateOrderFilterAttributeController';
+import { UpdateStatusFilterAttributeController } from './controllers/groupFilter/filterAttribute/UpdateStatusFilterAttributeController';
+import { CreateImageFilterAttributeController } from './controllers/groupFilter/filterAttribute/imageFilterAtributo/CreateImageFilterAttributeController';
+import { UpdateImageFilterAttributeController } from './controllers/groupFilter/filterAttribute/imageFilterAtributo/UpdateImageFilterAttributeController';
+import { FindFilterAttributeController } from './controllers/groupFilter/filterAttribute/FindFilterAttributeController';
+import { FindUniqueFilterAttributeController } from './controllers/groupFilter/filterAttribute/FindUniqueFilterAttributeController';
+import { FindManyFilterAttributeNameController } from './controllers/groupFilter/filterAttribute/FindManyFilterAttributeNameController';
+import { DeleteFilterAttributeController } from './controllers/groupFilter/filterAttribute/DeleteFilterAttributeController';
 
-// -- ROUTES FILTRO CATEGORIAS --
-import { CreateFiltroCategoryController } from './controllers/filtros/categoryFilter/CreateFiltroCategoryController';
-import { DeleteCategoryFiltroController } from './controllers/filtros/categoryFilter/DeleteCategoryFiltroController';
-import { PageCategoryFiltroController } from './controllers/filtros/categoryFilter/PageCategoryFiltroController';
+// -- ROUTES FILTER CATEGORY --
+import { CreateFilterCategoryController } from './controllers/filtros/categoryFilter/CreateFilterCategoryController';
+import { DeleteFilterCategoryController } from './controllers/filtros/categoryFilter/DeleteFilterCategoryController';
+import { PageFilterCategoryController } from './controllers/filtros/categoryFilter/PageFilterCategoryController';
 import { UpdateNameGroupFiltroController } from './controllers/filtros/categoryFilter/UpdateNameGroupFiltroController';
 import { UpdateCategoryNameFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryNameFiltroController';
 import { UpdateCategoryStatusFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryStatusFiltroController';
 import { UpdateCategoryOrderFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryOrderFiltroController';
-import { DeleteImageFiltroAtributoController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/DeleteImageFiltroAtributoController';
+import { DeleteImageFilterAttributeController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/DeleteImageFilterAttributeController';
 import { CreateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/CreateImageFiltroCategoryController';
 import { UpdateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/UpdateImageFiltroCategoryController';
 import { DeleteImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/DeleteImageFiltroCategoryController';
@@ -324,6 +324,8 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { FindManyFilterCategoryNameController } from './controllers/groupFilter/filterCategory/FindManyFilterCategoryNameController';
+import { FindUniqueFilterCategoryController } from './controllers/groupFilter/filterCategory/FindUniqueFilterCategoryController';
 
 
 
@@ -585,26 +587,28 @@ router.get('/findTypeAttributeGroupFilter', new FindTypeFilterController().handl
 router.get('/findUniqueIDGroup', ADMINisAuthenticated, new FindIDGroupFilterController().handle);
 router.get('/listFilterGroup', new FindSlugGroupFilterController().handle);
 
-// -- ROUTES FILTRO ATRIBUTOS --
-router.post('/createFiltroAtributo', ADMINisAuthenticated, new CreateFiltroAtributoController().handle);
-router.delete('/deleteFiltroAtributo', ADMINisAuthenticated, new DeleteAtributoFiltroController().handle);
-router.delete('/deleteAllFiltrosAtributosGrupo', ADMINisAuthenticated, new DeleteAllAtributoFiltroController().handle);
-router.get('/pagesFiltrosAtributos', ADMINisAuthenticated, new PageAtributoFiltroController().handle);
-router.put('/updateFiltroAtributoName', ADMINisAuthenticated, new UpdateAtributoNameFiltroController().handle);
-router.put('/updateFiltroValorAtributo', ADMINisAuthenticated, new UpdateAtributoValorFiltroController().handle);
-router.put('/updateFiltroOrderAtributo', ADMINisAuthenticated, new UpdateAtributoOrderFiltroController().handle);
-router.put('/updateFiltroStatusAtributo', ADMINisAuthenticated, new UpdateAtributoStatusFiltroController().handle);
-router.post('/createImageFilterAtributo', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroAtributoController().handle);
-router.put('/updateImageFilterAtributo', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroAtributoController().handle);
-router.delete('/deleteImageFiltroAtributo', ADMINisAuthenticated, new DeleteImageFiltroAtributoController().handle);
-router.get('/findUniqueFiltroAtributo', ADMINisAuthenticated, new FindUniqueAtributoFiltroController().handle);
-router.get('/findManyNameFiltroAtributo', ADMINisAuthenticated, new FindManyAtributoFiltroNameController().handle);
-router.get('/allAtributosGroups', new FindAtributoFiltroController().handle);
+// -- ROUTES FILTER ATTRIBUTES --
+router.post('/createFilterAttribute', ADMINisAuthenticated, new CreateFilterAttributeController().handle);
+router.delete('/deleteAllFilterAttributeGroup', ADMINisAuthenticated, new DeleteAllFilterAttributeController().handle);
+router.delete('/deleteFilterAttribute', ADMINisAuthenticated, new DeleteFilterAttributeController().handle);
+router.get('/pagesFilterAttributes', ADMINisAuthenticated, new PageFilterAttributeController().handle);
+router.put('/updateNameFilterAttribute', ADMINisAuthenticated, new UpdateNameFilterAttributeController().handle);
+router.put('/updateValueFilterAttribute', ADMINisAuthenticated, new UpdateValueFilterAttributeController().handle);
+router.put('/updateOrderFilterAttribute', ADMINisAuthenticated, new UpdateOrderFilterAttributeController().handle);
+router.put('/updateStatusFilterAttribute', ADMINisAuthenticated, new UpdateStatusFilterAttributeController().handle);
+router.post('/createImageFilterAttribute', ADMINisAuthenticated, upload.single('file'), new CreateImageFilterAttributeController().handle);
+router.put('/updateImageFilterAttribute', ADMINisAuthenticated, upload.single('file'), new UpdateImageFilterAttributeController().handle);
+router.delete('/deleteImageFilterAttribute', ADMINisAuthenticated, new DeleteImageFilterAttributeController().handle);
+router.get('/findUniqueFilterAttribute', ADMINisAuthenticated, new FindUniqueFilterAttributeController().handle);
+router.get('/findManyNameFilterAttribute', ADMINisAuthenticated, new FindManyFilterAttributeNameController().handle);
+router.get('/allAttributesGroups', new FindFilterAttributeController().handle);
 
-// -- ROUTES FILTRO CATEGORIAS --
-router.post('/createFiltroCategory', ADMINisAuthenticated, new CreateFiltroCategoryController().handle);
-router.delete('/deleteFiltroCategory', ADMINisAuthenticated, new DeleteCategoryFiltroController().handle);
-router.get('/pagesFiltrosCategory', ADMINisAuthenticated, new PageCategoryFiltroController().handle);
+// -- ROUTES FILTER CATEGORY --
+router.post('/createFilterCategory', ADMINisAuthenticated, new CreateFilterCategoryController().handle);
+router.delete('/deleteFilterCategory', ADMINisAuthenticated, new DeleteFilterCategoryController().handle);
+router.get('/pagesFiltrosCategory', ADMINisAuthenticated, new PageFilterCategoryController().handle);
+router.get('/findManyFilterName', ADMINisAuthenticated, new FindManyFilterCategoryNameController().handle);
+router.get('/findUniqueFilterCategory', ADMINisAuthenticated, new FindUniqueFilterCategoryController().handle);
 router.put('/updateFiltroNameGroupCategory', ADMINisAuthenticated, new UpdateNameGroupFiltroController().handle);
 router.put('/updateCategoryNameFiltro', ADMINisAuthenticated, new UpdateCategoryNameFiltroController().handle);
 router.put('/updateFiltroStatusCategory', ADMINisAuthenticated, new UpdateCategoryStatusFiltroController().handle);

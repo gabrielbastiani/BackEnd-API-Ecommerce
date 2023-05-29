@@ -608,7 +608,7 @@ model FilterAttribute {
   order          Int?
   status         StatusFilterAttribute @default(Disponivel)
 
-  imagefilteratributos ImageFilterAtributo[]
+  imagefilteratributos ImageFilterAttribute[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -624,7 +624,7 @@ enum StatusFilterAttribute {
   Indisponivel
 }
 
-model ImageFilterAtributo {
+model ImageFilterAttribute {
   id                 String          @id @default(uuid())
   filterAttribute    FilterAttribute @relation(fields: [filterAttribute_id], references: [id])
   filterAttribute_id String
