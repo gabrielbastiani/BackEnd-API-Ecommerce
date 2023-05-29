@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { RequestPasswordDashboardRecovery } from "../../../services/user/PasswordRecovery/RequestPasswordDashboardRecovery";
+import { RequestPasswordAdminDashboardRecovery } from "../../../../services/users/admin/PasswordRecoveryAdmin/RequestPasswordAdminDashboardRecovery";
 
 
 class EmailPasswordDashboardController {
   async handle(req: Request, res: Response) {
     const { email } = req.body;
 
-    const requestPasswordDashboardRecovery = new RequestPasswordDashboardRecovery();
+    const requestPasswordDashboardRecovery = new RequestPasswordAdminDashboardRecovery();
 
     const userRecovery = await requestPasswordDashboardRecovery.execute({
       email,

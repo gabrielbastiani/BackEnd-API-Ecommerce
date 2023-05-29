@@ -20,6 +20,7 @@ import { EmailPasswordController } from './controllers/users/admin/PasswordRecov
 import { DeleteAdminPasswordRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/DeleteAdminPasswordRecoveryIDController';
 import { FindAdminRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/FindAdminRecoveryIDController';
 import { RecoveryPasswordAdminController } from './controllers/users/admin/PasswordRecoveryAdmin/RecoveryPasswordAdminController';
+import { EmailPasswordDashboardController } from './controllers/users/admin/PasswordRecoveryAdmin/EmailPasswordDashboardController';
 
 // -- ROUTES CUSTOMER --
 import { ActiveOrDesactiveCustomerController } from './controllers/users/customer/ActiveOrDesactiveCustomerController';
@@ -40,6 +41,7 @@ import { CustomerRecoveryPasswordController } from './controllers/users/customer
 import { CreateDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/CreateDeliveryAddressCustomerController';
 import { UpdateAllDateDeliveryAddressCustomerCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateAllDateDeliveryAddressCustomerCustomerController';
 import { DeleteDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/DeleteDeliveryAddressCustomerController';
+import { EmailPasswordDashboardCustomerController } from './controllers/users/customer/PasswordRecoveryCustomer/EmailPasswordDashboardCustomerController';
 
 // -- ROUTES STORE --
 import { CreateStoreController } from './controllers/store/CreateStoreController';
@@ -354,6 +356,7 @@ router.put('/admin/updateRoleEmployee', ADMINisAuthenticated, new AdminRoleEmplo
 router.put('/admin/updateNameAdminOrEmployee', ADMINisAuthenticated, new AdminUpdateNameController().handle);
 router.delete('/admin/deleteRecoveryIDAdmin', ADMINisAuthenticated, new DeleteAdminPasswordRecoveryIDController().handle);
 router.get('/admin/findFirstAdmin', ADMINisAuthenticated, new FindAdminRecoveryIDController().handle);
+router.post('/admin/recoverPasswordDashboard', ADMINisAuthenticated, new EmailPasswordDashboardController().handle);
 router.post('/admin/recoverPasswordEmail', new EmailPasswordController().handle);
 router.put('/admin/recoverAdmin', new RecoveryPasswordAdminController().handle);
 
@@ -376,6 +379,7 @@ router.put('/customer/recoverCustomer', ADMINisAuthenticated && isAuthenticated,
 router.post('/customer/delivery/createDeliveryAddress', isAuthenticated, new CreateDeliveryAddressCustomerController().handle);
 router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', isAuthenticated, new UpdateAllDateDeliveryAddressCustomerCustomerController().handle);
 router.delete('/customer/delivery/deleteDeliveryAddress', isAuthenticated, new DeleteDeliveryAddressCustomerController().handle);
+router.post('/customer/recoverPasswordDashboard', isAuthenticated, new EmailPasswordDashboardCustomerController().handle);
 
 // -- ROUTES STORE --
 router.post('/createStore', ADMINisAuthenticated, upload.single('file'), new CreateStoreController().handle);
@@ -420,7 +424,7 @@ router.put('/updateImageStore', ADMINisAuthenticated, upload.single('file'), new
 router.put('/updateTitleImageStore', ADMINisAuthenticated, new UpdateTitleImageStoreController().handle);
 router.put('/updateOrderImageStore', ADMINisAuthenticated, new UpdateOrderImageStoreController().handle);
 router.put('/updateStatusImageStore', ADMINisAuthenticated, new UpdateStatusImageStoreController().handle);
-router.put('/updatePosicaoImageTextoInstitucional', ADMINisAuthenticated, new UpdatePositionImageStoreController().handle);
+router.put('/updatePositionImageTextoInstitucional', ADMINisAuthenticated, new UpdatePositionImageStoreController().handle);
 router.get('/findUniqueImageStore', ADMINisAuthenticated, new FindUniqueImageStoreController().handle);
 router.get('/listImagesStore', new ListAllImageStoreController().handle);
 
