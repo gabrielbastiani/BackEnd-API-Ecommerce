@@ -327,6 +327,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 import { EmailPasswordController } from './controllers/users/admin/PasswordRecoveryAdmin/EmailPasswordController';
+import { FindUniqueSocialMediaController } from './controllers/store/socialMedia/FindUniqueSocialMediaController';
 
 
 
@@ -378,7 +379,7 @@ router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', isAuthenti
 router.delete('/customer/delivery/deleteDeliveryAddress', isAuthenticated, new DeleteDeliveryAddressCustomerController().handle);
 
 // -- ROUTES STORE --
-router.post('/store', ADMINisAuthenticated, upload.single('file'), new CreateStoreController().handle);
+router.post('/createStore', ADMINisAuthenticated, upload.single('file'), new CreateStoreController().handle);
 router.get('/userStore', ADMINisAuthenticated, new FindUniqueStoreController().handle);
 router.get('/findFirstStoreUser', ADMINisAuthenticated, new FindFirstStoreController().handle);
 router.get('/store', new StoreController().handle);
@@ -395,6 +396,7 @@ router.put('/updateImageSocialMedia', ADMINisAuthenticated, upload.single('file'
 router.put('/updatePositionSocialMedia', ADMINisAuthenticated, new UpdatePositionSocialMediaController().handle);
 router.put('/updateStatusSocialMedia', ADMINisAuthenticated, new UpdateStatusSocialMediaController().handle);
 router.delete('/deleteSocialMedia', ADMINisAuthenticated, new DeleteSocialMediaController().handle);
+router.get('/findUniqueSocialMedia', ADMINisAuthenticated, new FindUniqueSocialMediaController().handle);
 router.get('/listAllSocialMedia', new ListAllSocialMediaController().handle);
 router.get('/listSocialMediaOrder', new ListAllSocialMediaOrderAndPositionController().handle);
 

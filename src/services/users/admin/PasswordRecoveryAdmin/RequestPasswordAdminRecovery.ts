@@ -73,7 +73,7 @@ class RequestPasswordAdminRecovery {
             <article>
                 <p>Olá, ${admin.name}!</p>
                 <p>Voce esqueceu a sua senha?</p>
-                <p><a href="http://localhost:3000/recover/${recovery.id}">CLIQUE AQUI</a>, para crair uma nova senha de acesso.</p>
+                <p><a href="http://localhost:3000/recoverAdmin/${recovery.id}">CLIQUE AQUI</a>, para crair uma nova senha de acesso.</p>
                 <p>Você será redirecionado a uma página em nossa Loja virtual onde poderá cadastrar uma nova senha com segurança!</p>
             </article>
             
