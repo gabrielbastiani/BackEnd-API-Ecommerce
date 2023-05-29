@@ -326,6 +326,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { EmailPasswordController } from './controllers/users/admin/PasswordRecoveryAdmin/EmailPasswordController';
 
 
 
@@ -353,6 +354,7 @@ router.put('/admin/updateRoleEmployee', ADMINisAuthenticated, new AdminRoleEmplo
 router.put('/admin/updateNameAdminOrEmployee', ADMINisAuthenticated, new AdminUpdateNameController().handle);
 router.delete('/admin/deleteRecoveryIDAdmin', ADMINisAuthenticated, new DeleteAdminPasswordRecoveryIDController().handle);
 router.get('/admin/findFirstAdmin', ADMINisAuthenticated, new FindAdminRecoveryIDController().handle);
+router.post('/admin/recoverPasswordEmail', new EmailPasswordController().handle);
 router.put('/admin/recoverAdmin', new RecoveryPasswordAdminController().handle);
 
 // -- ROUTES CUSTOMERS --
