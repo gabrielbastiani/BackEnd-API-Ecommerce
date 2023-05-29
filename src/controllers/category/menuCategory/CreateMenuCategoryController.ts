@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateMenuCategoryService } from "../../../services/category/groupCategory/CreateMenuCategoryService";
+import { CreateMenuCategoryService } from "../../../services/category/menuCategory/CreateMenuCategoryService";
 
 class CreateMenuCategoryController {
     async handle(req: Request, res: Response) {

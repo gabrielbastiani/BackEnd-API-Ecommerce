@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DeleteMenuCategoryMenuIDService } from '../../../services/category/groupCategory/DeleteMenuCategoryMenuIDService';
+import { DeleteMenuCategoryMenuIDService } from '../../../services/category/menuCategory/DeleteMenuCategoryMenuIDService';
 
 class DeleteMenuCategoryMenuIDController {
     async handle(req: Request, res: Response) {

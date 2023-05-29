@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PageGroupsFiltersService } from '../../services/filtros/PageGroupsFiltersService';
+import { PageGroupsFiltersService } from '../../services/groupFilter/PageGroupsFiltersService';
 
 class PageGroupsFiltersController {
     async handle(req: Request, res: Response) {
