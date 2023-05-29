@@ -116,27 +116,27 @@ import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosica
 
 // -- ROUTES PRODUCT --
 import { CreateProductController } from './controllers/product/CreateProductController';
-import { CreatePhotoProductController } from './controllers/product/photoProduct/CreatePhotoProductController';
-import { UpdatePhotoProductController } from './controllers/product/photoProduct/UpdatePhotoProductController';
+import { CreatePhotoProductController } from './controllers/product/photoproduct/CreatePhotoProductController';
+import { UpdatePhotoProductController } from './controllers/product/photoproduct/UpdatePhotoProductController';
 import { UpdateAllDateProductController } from './controllers/product/UpdateAllDateProductController';
-import { AllPhotosProductController } from './controllers/product/photoProduct/AllPhotosProductController';
-import { AllPhotosController } from './controllers/product/photoProduct/AllPhotosController';
+import { AllPhotosProductController } from './controllers/product/photoproduct/AllPhotosProductController';
+import { AllPhotosController } from './controllers/product/photoproduct/AllPhotosController';
 import { AllProductController } from './controllers/product/AllProductController';
 import { AllProductInStoreController } from './controllers/product/AllProductInStoreController';
 import { FindFirstProductController } from './controllers/product/FindFirstProductController';
 import { AllProductExistController } from './controllers/product/AllProductExistController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
-import { DeletePhotoProductController } from './controllers/product/photoProduct/DeletePhotoProductController';
-import { DeleteAllPhotoProductController } from './controllers/product/photoProduct/DeleteAllPhotoProductController';
+import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
+import { DeleteAllPhotoProductController } from './controllers/product/photoproduct/DeleteAllPhotoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
 import { UpdateStatusProductController } from './controllers/product/UpdateStatusProductController';
 import { UpdateProductEmphasisController } from './controllers/product/UpdateProductEmphasisController';
 import { UpdateProductOfferController } from './controllers/product/UpdateProductOfferController';
-import { UpdateOrderPhotoProductController } from './controllers/product/photoProduct/UpdateOrderPhotoProductController';
-import { AllPhotosProductInStoreController } from './controllers/product/photoProduct/AllPhotosProductInStoreController';
+import { UpdateOrderPhotoProductController } from './controllers/product/photoproduct/UpdateOrderPhotoProductController';
+import { AllPhotosProductInStoreController } from './controllers/product/photoproduct/AllPhotosProductInStoreController';
 import { ListAllProductEmphasisController } from './controllers/product/ListAllProductEmphasisController';
 import { ListAllProductOfferController } from './controllers/product/ListAllProductOfferController';
 import { UpdateProductFreeShippingController } from './controllers/product/UpdateProductFreeShippingController';
@@ -284,17 +284,19 @@ import { FindManyFilterAttributeNameController } from './controllers/groupFilter
 import { DeleteFilterAttributeController } from './controllers/groupFilter/filterAttribute/DeleteFilterAttributeController';
 
 // -- ROUTES FILTER CATEGORY --
-import { CreateFilterCategoryController } from './controllers/filtros/categoryFilter/CreateFilterCategoryController';
-import { DeleteFilterCategoryController } from './controllers/filtros/categoryFilter/DeleteFilterCategoryController';
-import { PageFilterCategoryController } from './controllers/filtros/categoryFilter/PageFilterCategoryController';
-import { UpdateNameGroupFiltroController } from './controllers/filtros/categoryFilter/UpdateNameGroupFiltroController';
-import { UpdateCategoryNameFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryNameFiltroController';
-import { UpdateCategoryStatusFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryStatusFiltroController';
-import { UpdateCategoryOrderFiltroController } from './controllers/filtros/categoryFilter/UpdateCategoryOrderFiltroController';
-import { DeleteImageFilterAttributeController } from './controllers/filtros/atributoFilter/imagesFilterAtributos/DeleteImageFilterAttributeController';
-import { CreateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/CreateImageFiltroCategoryController';
-import { UpdateImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/UpdateImageFiltroCategoryController';
-import { DeleteImageFiltroCategoryController } from './controllers/filtros/categoryFilter/imagesFilterCategory/DeleteImageFiltroCategoryController';
+import { CreateFilterCategoryController } from './controllers/groupFilter/filterCategory/CreateFilterCategoryController';
+import { DeleteFilterCategoryController } from './controllers/groupFilter/filterCategory/DeleteFilterCategoryController';
+import { FindManyFilterCategoryNameController } from './controllers/groupFilter/filterCategory/FindManyFilterCategoryNameController';
+import { FindUniqueFilterCategoryController } from './controllers/groupFilter/filterCategory/FindUniqueFilterCategoryController';
+import { PageFilterCategoryController } from './controllers/groupFilter/filterCategory/PageFilterCategoryController';
+import { UpdateNameFilterGroupController } from './controllers/groupFilter/filterCategory/UpdateNameFilterGroupController';
+import { UpdateCategoryNameFilterCategoryController } from './controllers/groupFilter/filterCategory/UpdateCategoryNameFilterCategoryController';
+import { UpdateStatusFilterCategoryController } from './controllers/groupFilter/filterCategory/UpdateStatusFilterCategoryController';
+import { UpdateCategoryOrderFilterController } from './controllers/groupFilter/filterCategory/UpdateCategoryOrderFilterController';
+import { DeleteImageFilterAttributeController } from './controllers/groupFilter/filterAttribute/imageFilterAtributo/DeleteImageFilterAttributeController';
+import { CreateImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/CreateImageFilterCategoryController';
+import { UpdateImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/UpdateImageFilterCategoryController';
+import { DeleteImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/DeleteImageFilterCategoryController';
 
 // -- ROUTES NEWSLETTERS --
 import { CreateNewslettersController } from './controllers/newsletters/CreateNewslettersController';
@@ -324,8 +326,6 @@ import { EmailExportContatoController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { FindManyFilterCategoryNameController } from './controllers/groupFilter/filterCategory/FindManyFilterCategoryNameController';
-import { FindUniqueFilterCategoryController } from './controllers/groupFilter/filterCategory/FindUniqueFilterCategoryController';
 
 
 
@@ -609,13 +609,13 @@ router.delete('/deleteFilterCategory', ADMINisAuthenticated, new DeleteFilterCat
 router.get('/pagesFiltrosCategory', ADMINisAuthenticated, new PageFilterCategoryController().handle);
 router.get('/findManyFilterName', ADMINisAuthenticated, new FindManyFilterCategoryNameController().handle);
 router.get('/findUniqueFilterCategory', ADMINisAuthenticated, new FindUniqueFilterCategoryController().handle);
-router.put('/updateFiltroNameGroupCategory', ADMINisAuthenticated, new UpdateNameGroupFiltroController().handle);
-router.put('/updateCategoryNameFiltro', ADMINisAuthenticated, new UpdateCategoryNameFiltroController().handle);
-router.put('/updateFiltroStatusCategory', ADMINisAuthenticated, new UpdateCategoryStatusFiltroController().handle);
-router.put('/updateFiltroOrderCategory', ADMINisAuthenticated, new UpdateCategoryOrderFiltroController().handle);
-router.post('/createImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageFiltroCategoryController().handle);
-router.put('/updateImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageFiltroCategoryController().handle);
-router.delete('/deleteImageFiltroCategory', ADMINisAuthenticated, new DeleteImageFiltroCategoryController().handle);
+router.put('/updateFilterNameGroupCategory', ADMINisAuthenticated, new UpdateNameFilterGroupController().handle);
+router.put('/updateCategoryNameFilter', ADMINisAuthenticated, new UpdateCategoryNameFilterCategoryController().handle);
+router.put('/updateFilterStatusCategory', ADMINisAuthenticated, new UpdateStatusFilterCategoryController().handle);
+router.put('/updateFilterOrderCategory', ADMINisAuthenticated, new UpdateCategoryOrderFilterController().handle);
+router.post('/createImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageFilterCategoryController().handle);
+router.put('/updateImageFilterCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageFilterCategoryController().handle);
+router.delete('/deleteImageFilterCategory', ADMINisAuthenticated, new DeleteImageFilterCategoryController().handle);
 
 // -- ROUTES BANNER --
 router.post('/createBanner', ADMINisAuthenticated, upload.single('file'), new CreateBannerController().handle);

@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { CreateImageFiltroCategoryService } from "../../../../services/filtros/categoryFilter/imagesFilterCategory/CreateImageFiltroCategoryService";
+import { CreateImageFilterCategoryService } from "../../../../services/groupFilter/filterCategory/imageFilterCategory/CreateImageFilterCategoryService";
 
-class CreateImageFiltroCategoryController {
+class CreateImageFilterCategoryController {
     async handle(req: Request, res: Response) {
         const { filterCategory_id } = req.body;
 
-        const imageCategorys = new CreateImageFiltroCategoryService();
+        const imageCategorys = new CreateImageFilterCategoryService();
 
         if (!req.file) {
             throw new Error("error upload file");
@@ -25,4 +25,4 @@ class CreateImageFiltroCategoryController {
     }
 }
 
-export { CreateImageFiltroCategoryController }
+export { CreateImageFilterCategoryController }

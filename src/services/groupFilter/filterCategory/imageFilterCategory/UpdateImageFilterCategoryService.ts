@@ -5,9 +5,9 @@ interface ImageRequest {
   imageCategory: string;
 }
 
-class UpdateImageFiltroCategoryService {
+class UpdateImageFilterCategoryService {
   async execute({ imageFilterCategory_id, imageCategory }: ImageRequest) {
-    const updateImageFiltro = await prismaClient.imageFilterCategory.update({
+    const updateImage = await prismaClient.imageFilterCategory.update({
       where: {
         id: imageFilterCategory_id
       },
@@ -16,9 +16,9 @@ class UpdateImageFiltroCategoryService {
       }
     })
 
-    return updateImageFiltro;
+    return updateImage;
 
   }
 }
 
-export { UpdateImageFiltroCategoryService }
+export { UpdateImageFilterCategoryService }

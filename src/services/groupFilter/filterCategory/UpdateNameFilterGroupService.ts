@@ -5,7 +5,7 @@ interface FilterCategoryRequest {
     groupFilter_id: string;
 }
 
-class UpdateNameGroupFiltroService {
+class UpdateNameFilterGroupService {
     async execute({ groupFilter_id, filterCategory_id }: FilterCategoryRequest) {
         const filter = await prismaClient.filterCategory.update({
             where: {
@@ -21,4 +21,4 @@ class UpdateNameGroupFiltroService {
     }
 }
 
-export { UpdateNameGroupFiltroService }
+export { UpdateNameFilterGroupService }

@@ -5,7 +5,7 @@ interface FilterCategoryRequest {
     order: number;
 }
 
-class UpdateCategoryOrderFiltroService {
+class UpdateCategoryOrderFilterService {
     async execute({ order, filterCategory_id }: FilterCategoryRequest) {
         const filter = await prismaClient.filterCategory.update({
             where: {
@@ -21,4 +21,4 @@ class UpdateCategoryOrderFiltroService {
     }
 }
 
-export { UpdateCategoryOrderFiltroService }
+export { UpdateCategoryOrderFilterService }

@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import { UpdateCategoryStatusFiltroService } from '../../../services/filtros/categoryFilter/UpdateCategoryStatusFiltroService';
+import { UpdateStatusFilterCategoryService } from '../../../services/groupFilter/filterCategory/UpdateStatusFilterCategoryService';
 
-class UpdateCategoryStatusFiltroController {
+class UpdateStatusFilterCategoryController {
     async handle(req: Request, res: Response) {
         const filterCategory_id = req.query.filterCategory_id as string;
 
-        const filter = new UpdateCategoryStatusFiltroService();
+        const filter = new UpdateStatusFilterCategoryService();
 
         const category = await filter.execute({
             filterCategory_id
@@ -16,4 +16,4 @@ class UpdateCategoryStatusFiltroController {
     }
 }
 
-export { UpdateCategoryStatusFiltroController }
+export { UpdateStatusFilterCategoryController }

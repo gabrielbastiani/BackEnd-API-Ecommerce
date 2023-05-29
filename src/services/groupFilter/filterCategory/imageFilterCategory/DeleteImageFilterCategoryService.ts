@@ -4,7 +4,7 @@ interface ImageRequest {
   imageFilterCategory_id: string;
 }
 
-class DeleteImageFiltroCategoryService {
+class DeleteImageFilterCategoryService {
   async execute({ imageFilterCategory_id }: ImageRequest) {
     const deleteImage = await prismaClient.imageFilterCategory.delete({
       where: {
@@ -17,4 +17,4 @@ class DeleteImageFiltroCategoryService {
   }
 }
 
-export { DeleteImageFiltroCategoryService }
+export { DeleteImageFilterCategoryService }

@@ -5,7 +5,7 @@ interface FilterCategoryRequest {
   filterCategory_id: string;
 }
 
-class UpdateCategoryStatusFiltroService {
+class UpdateStatusFilterCategoryService {
   async execute({ filterCategory_id }: FilterCategoryRequest) {
     const status = await prismaClient.filterCategory.findUnique({
       where: {
@@ -46,4 +46,4 @@ class UpdateCategoryStatusFiltroService {
   }
 }
 
-export { UpdateCategoryStatusFiltroService }
+export { UpdateStatusFilterCategoryService }

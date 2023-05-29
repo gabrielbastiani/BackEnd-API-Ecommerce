@@ -1,11 +1,11 @@
 import prismaClient from '../../../../prisma';
 
-interface FilterCategoryRequest {
+interface ImageRequest {
     imageFilterCategory_id: string;
 }
 
-class ListExactImageFiltroCategoryService {
-    async execute({ imageFilterCategory_id }: FilterCategoryRequest) {
+class FindUniqueImageFilterCategoryService {
+    async execute({ imageFilterCategory_id }: ImageRequest) {
         const exactImage = await prismaClient.imageFilterCategory.findUnique({
             where: {
                 id: imageFilterCategory_id
@@ -17,4 +17,4 @@ class ListExactImageFiltroCategoryService {
     }
 }
 
-export { ListExactImageFiltroCategoryService }
+export { FindUniqueImageFilterCategoryService }
