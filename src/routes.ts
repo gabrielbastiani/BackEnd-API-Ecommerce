@@ -16,6 +16,7 @@ import { PageListAllAdminsController } from './controllers/users/admin/PageListA
 import { UpdateAllDateAdminController } from './controllers/users/admin/UpdateAllDateAdminController';
 import { AdminRoleEmployeeController } from './controllers/users/admin/AdminRoleEmployeeController';
 import { AdminUpdateNameController } from './controllers/users/admin/AdminUpdateNameController';
+import { EmailPasswordController } from './controllers/users/admin/PasswordRecoveryAdmin/EmailPasswordController';
 import { DeleteAdminPasswordRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/DeleteAdminPasswordRecoveryIDController';
 import { FindAdminRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/FindAdminRecoveryIDController';
 import { RecoveryPasswordAdminController } from './controllers/users/admin/PasswordRecoveryAdmin/RecoveryPasswordAdminController';
@@ -60,6 +61,7 @@ import { UpdatePositionSocialMediaController } from './controllers/store/socialM
 import { UpdateStatusSocialMediaController } from './controllers/store/socialMedia/UpdateStatusSocialMediaController';
 import { DeleteSocialMediaController } from './controllers/store/socialMedia/DeleteSocialMediaController';
 import { ListAllSocialMediaController } from './controllers/store/socialMedia/ListAllSocialMediaController';
+import { FindUniqueSocialMediaController } from './controllers/store/socialMedia/FindUniqueSocialMediaController';
 
 // -- ROUTES TEXTOS INSTITUCIONAIS --
 import { CreateInstitutionalTextController } from './controllers/store/institutionalText/CreateInstitutionalTextController';
@@ -326,9 +328,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { EmailPasswordController } from './controllers/users/admin/PasswordRecoveryAdmin/EmailPasswordController';
-import { FindUniqueSocialMediaController } from './controllers/store/socialMedia/FindUniqueSocialMediaController';
-
 
 
 
