@@ -102,18 +102,6 @@ import { FindFirstCategorySlugController } from './controllers/category/FindFirs
 import { UpdateDescriptionCategoryController } from './controllers/category/UpdateDescriptionCategoryController';
 import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 
-// -- ROUTES BANNERS --
-import { CreateBannerController } from './controllers/banner/CreateBannerController';
-import { UpdateAllDateBannerController } from './controllers/banner/UpdateAllDateBannerController';
-import { PageListAllBannerController } from './controllers/banner/PageListAllBannerController';
-import { DeleteBannerController } from './controllers/banner/DeleteBannerController';
-import { UpdateBannerController } from './controllers/banner/UpdateBannerController';
-import { PublishProgramadBannerController } from './controllers/banner/PublishProgramadBannerController';
-import { StatusBannerController } from './controllers/banner/StatusBannerController';
-import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerController';
-import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
-import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosicaoBannerController';
-
 // -- ROUTES PRODUCT --
 import { CreateProductController } from './controllers/product/CreateProductController';
 import { CreatePhotoProductController } from './controllers/product/photoproduct/CreatePhotoProductController';
@@ -297,6 +285,18 @@ import { DeleteImageFilterAttributeController } from './controllers/groupFilter/
 import { CreateImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/CreateImageFilterCategoryController';
 import { UpdateImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/UpdateImageFilterCategoryController';
 import { DeleteImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/DeleteImageFilterCategoryController';
+
+// -- ROUTES BANNERS --
+import { CreateBannerController } from './controllers/banner/CreateBannerController';
+import { UpdateAllDateBannerController } from './controllers/banner/UpdateAllDateBannerController';
+import { PageListAllBannerController } from './controllers/banner/PageListAllBannerController';
+import { DeleteBannerController } from './controllers/banner/DeleteBannerController';
+import { UpdateBannerController } from './controllers/banner/UpdateBannerController';
+import { PublishProgramadBannerController } from './controllers/banner/PublishProgramadBannerController';
+import { StatusBannerController } from './controllers/banner/StatusBannerController';
+import { ActiveAllBannerController } from './controllers/banner/ActiveAllBannerController';
+import { ListExactBannerController } from './controllers/banner/ListExactBannerController';
+import { UpdatePosicaoBannerController } from './controllers/banner/UpdatePosicaoBannerController';
 
 // -- ROUTES NEWSLETTERS --
 import { CreateNewslettersController } from './controllers/newsletters/CreateNewslettersController';
