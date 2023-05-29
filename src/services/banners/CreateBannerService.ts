@@ -9,14 +9,13 @@ interface BannerRequest {
   title: string;
   width: string;
   height: string;
-  dateInicio: string;
-  dateFim: string;
+  startDate: string;
+  endDate: string;
   banner: string;
   order: number;
   url: string;
-  posicao: string;
-  active: string;
-  slugPosicao: string;
+  position: string;
+  slugPosition: string;
 }
 
 class CreateBannerService {
@@ -24,13 +23,12 @@ class CreateBannerService {
     title,
     width,
     height,
-    dateInicio,
-    dateFim,
+    startDate,
+    endDate,
     banner,
     order,
     url,
-    active,
-    posicao
+    position
   }: BannerRequest) {
 
     function removerAcentos(s: any) {
@@ -47,14 +45,13 @@ class CreateBannerService {
         title: title,
         width: width,
         height: height,
-        dateInicio: dateInicio,
-        dateFim: dateFim,
+        startDate: startDate,
+        endDate: endDate,
         banner: banner,
         order: Number(order),
         url: url,
-        active: active,
-        posicao: posicao,
-        slugPosicao: removerAcentos(posicao)
+        position: position,
+        slugPosition: removerAcentos(position)
       }
     });
 
@@ -66,8 +63,8 @@ class CreateBannerService {
 
     const titleBanner = alldates.title;
 
-    const dateAllFirst = alldates.dateInicio;
-    const dateAllLast = alldates.dateFim;
+    const dateAllFirst = alldates.startDate;
+    const dateAllLast = alldates.endDate;
 
     const firstDate = moment(dateAllFirst).format('DD/MM/YYYY HH:mm');
     const dateFuture = moment(dateAllLast).format('DD/MM/YYYY HH:mm');

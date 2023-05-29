@@ -5,8 +5,8 @@ interface BannerRequest {
     title: string;
     width: string;
     height: string;
-    dateInicio: string;
-    dateFim: string;
+    startDate: string;
+    endDate: string;
     order: number;
     url: string;
 }
@@ -17,8 +17,8 @@ class UpdateAllDateBannerService {
         title,
         width,
         height,
-        dateInicio,
-        dateFim,
+        startDate,
+        endDate,
         order,
         url
     }: BannerRequest) {
@@ -30,8 +30,8 @@ class UpdateAllDateBannerService {
                 title: title,
                 width: width,
                 height: height,
-                dateInicio: dateInicio,
-                dateFim: dateFim,
+                startDate: startDate,
+                endDate: endDate,
                 order: order,
                 url: url
             }

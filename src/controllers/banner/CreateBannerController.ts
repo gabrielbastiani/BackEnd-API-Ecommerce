@@ -7,13 +7,12 @@ class CreateBannerController {
             title,
             width,
             height,
-            dateInicio,
-            dateFim,
+            startDate,
+            endDate,
             order,
             url,
-            active,
-            posicao,
-            slugPosicao
+            position,
+            slugPosition
         } = req.body;
 
         const banners = new CreateBannerService();
@@ -29,13 +28,12 @@ class CreateBannerController {
                 title,
                 width,
                 height,
-                dateInicio,
-                dateFim,
+                startDate,
+                endDate,
                 order,
                 url,
-                active,
-                posicao,
-                slugPosicao
+                position,
+                slugPosition
             });
 
             return res.json(bannersCreate);

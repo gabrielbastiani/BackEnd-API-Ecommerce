@@ -7,32 +7,32 @@ require('dotenv/config');
 
 
 interface BannerRequest {
-    dateInicio: string;
-    dateFim: string;
+    startDate: string;
+    endDate: string;
     banner_id: string;
 }
 
 class PublishProgramadBannerService {
-    async execute({ dateInicio, dateFim, banner_id }: BannerRequest) {
+    async execute({ startDate, endDate, banner_id }: BannerRequest) {
 
         const allDateFirst = await prismaClient.banner.findFirst({
             where: {
                 id: banner_id,
-                dateInicio: dateInicio
+                startDate: startDate
             }
         });
 
         const allDateLast = await prismaClient.banner.findFirst({
             where: {
                 id: banner_id,
-                dateFim: dateFim
+                endDate: endDate
             }
         });
 
         const titleBanner = allDateFirst.title;
 
-        const dateAllFirst = allDateFirst.dateInicio;
-        const dateAllLast = allDateLast.dateFim;
+        const dateAllFirst = allDateFirst.startDate;
+        const dateAllLast = allDateLast.endDate;
 
         const firstDate = moment(dateAllFirst).format('DD/MM/YYYY HH:mm');
         const dateFuture = moment(dateAllLast).format('DD/MM/YYYY HH:mm');

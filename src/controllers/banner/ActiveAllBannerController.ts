@@ -3,11 +3,11 @@ import { ActiveAllBannerService } from "../../services/banners/ActiveAllBannerSe
 
 class ActiveAllBannerController {
     async handle(req: Request, res: Response) {
-        const slugPosicao = req.query.slugPosicao as string;
+        const slugPosition = req.query.slugPosition as string;
         
         const listAllBanners = new ActiveAllBannerService();
 
-        const banners = await listAllBanners.execute({ slugPosicao });
+        const banners = await listAllBanners.execute({ slugPosition });
 
         return res.json(banners);
 

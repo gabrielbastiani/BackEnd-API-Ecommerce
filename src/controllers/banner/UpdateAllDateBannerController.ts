@@ -9,8 +9,8 @@ class UpdateAllDateBannerController {
             title,
             width,
             height,
-            dateInicio,
-            dateFim,
+            startDate,
+            endDate,
             order,
             url
         } = req.body;
@@ -22,8 +22,8 @@ class UpdateAllDateBannerController {
             title,
             width,
             height,
-            dateInicio,
-            dateFim,
+            startDate,
+            endDate,
             order,
             url
         });

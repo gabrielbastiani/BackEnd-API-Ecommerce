@@ -2,12 +2,12 @@ import prismaClient from '../../prisma';
 
 interface BannerRequest {
   banner_id: any;
-  posicao: string;
-  slugPosicao: string;
+  position: string;
+  slugPosition: string;
 }
 
 class UpdatePosicaoBannerService {
-  async execute({ banner_id, posicao }: BannerRequest) {
+  async execute({ banner_id, position }: BannerRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -23,8 +23,8 @@ class UpdatePosicaoBannerService {
         id: String(banner_id),
       },
       data: {
-        posicao: posicao,
-        slugPosicao: removerAcentos(posicao)
+        position: position,
+        slugPosition: removerAcentos(position)
       }
     })
 

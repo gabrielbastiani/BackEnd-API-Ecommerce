@@ -4,14 +4,14 @@ import { PublishProgramadBannerService } from '../../services/banners/PublishPro
 class PublishProgramadBannerController {
     async handle(req: Request, res: Response) {
         const banner_id = req.query.banner_id as string;
-        const { dateInicio, dateFim } = req.body;
+        const { startDate, endDate } = req.body;
 
         const alldatepublished = new PublishProgramadBannerService();
 
         const banners = await alldatepublished.execute({
             banner_id,
-            dateInicio,
-            dateFim
+            startDate,
+            endDate
         });
 
         return res.json(banners);
