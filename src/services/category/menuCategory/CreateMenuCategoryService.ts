@@ -43,7 +43,7 @@ class CreateMenuCategoryService {
                 name: name,
                 nivel: nivel,
                 parentId: parentId,
-                order: Number(order),
+                order: order,
                 position: position,
                 slugPosition: removerAcentos(position),
                 store_id: store_id

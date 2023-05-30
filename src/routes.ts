@@ -105,6 +105,8 @@ import { FindUniqueCategoryController } from './controllers/category/FindUniqueC
 import { FindFirstCategorySlugController } from './controllers/category/FindFirstCategorySlugController';
 import { UpdateDescriptionCategoryController } from './controllers/category/UpdateDescriptionCategoryController';
 import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
+import { FindParentIDCategoryController } from './controllers/category/FindParentIDCategoryController';
+import { DeleteImageCategoryController } from './controllers/category/imageCategory/DeleteImageCategoryController';
 
 // -- ROUTES PRODUCT --
 import { CreateProductController } from './controllers/product/CreateProductController';
@@ -429,18 +431,20 @@ router.get('/findUniqueImageStore', ADMINisAuthenticated, new FindUniqueImageSto
 router.get('/listImagesStore', new ListAllImageStoreController().handle);
 
 // -- ROUTES CATEGORY --
-router.post('/category', ADMINisAuthenticated, new CreateCategoryController().handle);
+router.post('/createCategory', ADMINisAuthenticated, new CreateCategoryController().handle);
 router.post('/createImageCategory', ADMINisAuthenticated, upload.single('file'), new CreateImageCategoryController().handle);
 router.put('/categoryNameUpdate', ADMINisAuthenticated, new UpdateNameCategoryController().handle);
 router.put('/updateDescription', ADMINisAuthenticated, new UpdateDescriptionCategoryController().handle);
-router.put('/updateDisponibilidadeCategory', ADMINisAuthenticated, new UpdateStatusCategoryController().handle);
-router.put('/updateOrderCaategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
+router.put('/updateStatusCategory', ADMINisAuthenticated, new UpdateStatusCategoryController().handle);
+router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryController().handle);
 router.put('/updateImageCategory', ADMINisAuthenticated, upload.single('file'), new UpdateImageCategoryController().handle);
 router.get('/allCategorysPage', ADMINisAuthenticated, new PageListAllCategorysController().handle);
 router.get('/exactCategoryPage', ADMINisAuthenticated, new ExactPageListAllCategoryController().handle);
 router.get('/findFirstCategory', ADMINisAuthenticated, new FindFirstCategoryController().handle);
-router.get('/exactCategory', ADMINisAuthenticated, new FindUniqueCategoryController().handle);
+router.get('/parentIDCategoryAll', ADMINisAuthenticated, new FindParentIDCategoryController().handle);
+router.get('/finduniqueCategory', ADMINisAuthenticated, new FindUniqueCategoryController().handle);
 router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameController().handle);
+router.delete('/deleteImageCategory', ADMINisAuthenticated, new DeleteImageCategoryController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/findDateSlugCategory', new FindFirstCategorySlugController().handle);
 
@@ -565,7 +569,7 @@ router.get('/pageMenu', ADMINisAuthenticated, new PageListAllMenuCategoryControl
 router.get('/findFirstMenu', ADMINisAuthenticated, new FindFirstMenuController().handle);
 router.get('/findMenuID', ADMINisAuthenticated, new FindMenuIDController().handle);
 router.get('/findUniqueMenu', ADMINisAuthenticated, new FindUniqueMenuIDController().handle);
-router.put('/updateOrderCategory', ADMINisAuthenticated, new UpdateOrderCategoryMenuController().handle);
+router.put('/updateOrderCategoryMenu', ADMINisAuthenticated, new UpdateOrderCategoryMenuController().handle);
 router.put('/updateStatusMenu', ADMINisAuthenticated, new StatusCategoryMenuCategoriesController().handle);
 router.put('/updateNameGroup', ADMINisAuthenticated, new UpdateNameMenuController().handle);
 router.put('/updatePositionMenu', ADMINisAuthenticated, new UpdatePositionMenuController().handle);
