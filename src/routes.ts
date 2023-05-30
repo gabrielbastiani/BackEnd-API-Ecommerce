@@ -571,7 +571,7 @@ router.get('/findMenuID', ADMINisAuthenticated, new FindMenuIDController().handl
 router.get('/findUniqueMenu', ADMINisAuthenticated, new FindUniqueMenuIDController().handle);
 router.put('/updateOrderCategoryMenu', ADMINisAuthenticated, new UpdateOrderCategoryMenuController().handle);
 router.put('/updateStatusMenu', ADMINisAuthenticated, new StatusCategoryMenuCategoriesController().handle);
-router.put('/updateNameGroup', ADMINisAuthenticated, new UpdateNameMenuController().handle);
+router.put('/updateNameMenu', ADMINisAuthenticated, new UpdateNameMenuController().handle);
 router.put('/updatePositionMenu', ADMINisAuthenticated, new UpdatePositionMenuController().handle);
 router.put('/updateNameCategory', ADMINisAuthenticated, new UpdateNameCategoryMenuController().handle);
 router.put('/updateItemNameCategory', ADMINisAuthenticated, new UpdateItemNameCategoryController().handle);
