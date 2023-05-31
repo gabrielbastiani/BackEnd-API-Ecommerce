@@ -486,9 +486,9 @@ router.put('/updateTagNameProduct', ADMINisAuthenticated, new UpdateTagControlle
 router.delete('/deleteTagProduct', ADMINisAuthenticated, new DeleteTagController().handle);
 router.delete('/deleteAllTagProduct', ADMINisAuthenticated, new DeleteAllTagController().handle);
 router.get('/findUniqueTagProduct', ADMINisAuthenticated, new FindUniqueTagController().handle);
+router.get('/allProductsDescriptionsStore', ADMINisAuthenticated, new AllDescriptionProductController().handle);
 router.get('/allTags', ADMINisAuthenticated, new AllTagController().handle);
 router.get('/allDescriptionProductsStore', new AllDescriptionProductInStoreController().handle);
-router.get('/allProductsDescriptionsStore', new AllDescriptionProductController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
 router.get('/listProductsDestaque', new ListAllProductEmphasisController().handle);
