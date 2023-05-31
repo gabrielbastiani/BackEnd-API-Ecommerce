@@ -554,7 +554,7 @@ router.put('/updateOrderVariacao', ADMINisAuthenticated, new UpdateOrderVariacao
 router.post('/createImageVariation', ADMINisAuthenticated, upload.single('file'), new CreateImageVariationController().handle);
 router.get('/allVariationImages', ADMINisAuthenticated, new AllVariationImageController().handle);
 router.get('/allImagesVariation', ADMINisAuthenticated, new AllImagesVariationController().handle);
-router.delete('/deleteAllPhotosVariacao', ADMINisAuthenticated, new DeleteALLImageVariationProductController().handle);
+router.delete('/deleteAllPhotosVariation', ADMINisAuthenticated, new DeleteALLImageVariationProductController().handle);
 router.delete('/deleteImageVariantion', ADMINisAuthenticated, new DeleteImageVariationController().handle);
 router.put('/updateOrderImageVariation', ADMINisAuthenticated, new UpdateOrderImageVariationController().handle);
 
