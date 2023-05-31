@@ -146,6 +146,8 @@ import { UpdateNameProductCategoryController } from './controllers/product/produ
 import { FindCategoryAndProductController } from './controllers/product/productCategory/FindCategoryAndProductController';
 import { DeleteProductCategoryController } from './controllers/product/productCategory/DeleteProductCategoryController';
 import { ProductsPageCategoriesController } from './controllers/product/productCategory/ProductsPageCategoriesController';
+import { FindAllRelationProductAndCategoryController } from './controllers/product/productCategory/FindAllRelationProductAndCategoryController';
+import { FindUniqueRelationProductCategoryController } from './controllers/product/productCategory/FindUniqueRelationProductCategoryController';
 
 // ROUTES DESCRIPTION PRODUCT --
 import { FindUniqueDescriptionProductController } from './controllers/product/descriptionProduct/FindUniqueDescriptionProductController';
@@ -461,7 +463,7 @@ router.get('/photos', ADMINisAuthenticated, new AllPhotosController().handle);
 router.get('/allProduct', ADMINisAuthenticated, new AllProductController().handle);
 router.get('/allExistProducts', ADMINisAuthenticated, new AllProductExistController().handle);
 router.get('/allProductsPage', ADMINisAuthenticated, new PageListAllProductController().handle);
-router.get('/exactProduct', ADMINisAuthenticated, new ListExactProductController().handle);
+router.get('/findUniqueProduct', ADMINisAuthenticated, new ListExactProductController().handle);
 router.get('/findFirstProduct', ADMINisAuthenticated, new FindFirstProductController().handle);
 router.delete('/deleteProduct', ADMINisAuthenticated, new DeleteProductController().handle);
 router.put('/updateNameProduct', ADMINisAuthenticated, new UpdateNameProductController().handle);
@@ -503,6 +505,8 @@ router.get('/findCategoryAndProduct', ADMINisAuthenticated, new FindCategoryAndP
 router.put('/updateOrderRelation', ADMINisAuthenticated, new UpdateOrderProductCategoryController().handle);
 router.delete('/deleteCategoryProduct', ADMINisAuthenticated, new DeleteProductCategoryController().handle);
 router.delete('/deleteAllCategoiesProduct', ADMINisAuthenticated, new DeleteAllProductCategoryController().handle);
+router.get('/findUniqueRelationCategoryProduct', ADMINisAuthenticated, new FindUniqueRelationProductCategoryController().handle);
+router.get('/findAllRelationsProductAndCategory', ADMINisAuthenticated, new FindAllRelationProductAndCategoryController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 
 // ROUTES TYPE ATTRIBUTE --
