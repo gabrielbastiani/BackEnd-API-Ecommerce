@@ -12,6 +12,9 @@ class AllTagProductService {
             },
             orderBy: {
                 created_at: 'desc'
+            },
+            include: {
+                product: {include: {tags: true}}
             }
         });
 
