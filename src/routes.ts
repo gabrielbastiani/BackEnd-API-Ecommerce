@@ -182,10 +182,12 @@ import { AllRelationAttributeProductController } from './controllers/product/rel
 import { CreateRelationAttributeProductController } from './controllers/product/relationAttributeProduct/CreateRelationAttributeProductController';
 import { DeleteProductRelationAllController } from './controllers/product/relationAttributeProduct/DeleteProductRelationAllController';
 import { DeleteRelationAttributeProductController } from './controllers/product/relationAttributeProduct/DeleteRelationAttributeProductController';
-import { FindRelationAttributeBlockController } from './controllers/product/relationAttributeProduct/FindRelationAttributeBlockController';
 import { FindUniqueRelationAttributeProductController } from './controllers/product/relationAttributeProduct/FindUniqueRelationAttributeProductController';
 import { FirstFirstRelationAttributeProductController } from './controllers/product/relationAttributeProduct/FirstFirstRelationAttributeProductController';
 import { PageRelationAttributeProductController } from './controllers/product/relationAttributeProduct/PageRelationAttributeProductController';
+import { UpdateValueRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateValueRelationAttributeProductController';
+import { AllProductAttributeController } from './controllers/product/relationAttributeProduct/AllProductAttributeController';
+import { AllProductAttributeParentIDController } from './controllers/product/relationAttributeProduct/AllProductAttributeParentIDController';
 import { UpdateTypeRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateTypeRelationAttributeProductController';
 import { UpdateOrderRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateOrderRelationAttributeProductController';
 import { UpdateStatusRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateStatusRelationAttributeProductController';
@@ -334,7 +336,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { UpdateValueRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateValueRelationAttributeProductController';
 
 
 
@@ -521,10 +522,11 @@ router.post('/createRelationAttributeProduct', ADMINisAuthenticated, new CreateR
 router.get('/allAttributeProduct', ADMINisAuthenticated, new AllRelationAttributeProductController().handle);
 router.delete('/deleteAllRelationProductAttributes', ADMINisAuthenticated, new DeleteProductRelationAllController().handle);
 router.delete('/deleteAttributeProduct', ADMINisAuthenticated, new DeleteRelationAttributeProductController().handle);
-router.get('/findAllProductRelationAttribute', ADMINisAuthenticated, new FindRelationAttributeBlockController().handle);
 router.get('/findUniqueRelationAttributeProduct', ADMINisAuthenticated, new FindUniqueRelationAttributeProductController().handle);
 router.get('/findFirstRelationAttributeProduct', ADMINisAuthenticated, new FirstFirstRelationAttributeProductController().handle);
 router.get('/pageAttributesRelationsProducts', ADMINisAuthenticated, new PageRelationAttributeProductController().handle);
+router.get('/findManyAttributeIDproduct', ADMINisAuthenticated, new AllProductAttributeController().handle);
+router.get('/findManyParentIDattributes', ADMINisAuthenticated, new AllProductAttributeParentIDController().handle);
 router.put('/updateValueRelationAttributeProduct', ADMINisAuthenticated, new UpdateValueRelationAttributeProductController().handle);
 router.put('/updateTypeRelationAttributeProduct', ADMINisAuthenticated, new UpdateTypeRelationAttributeProductController().handle);
 router.put('/updateOrderRelationAttributeProduct', ADMINisAuthenticated, new UpdateOrderRelationAttributeProductController().handle);
