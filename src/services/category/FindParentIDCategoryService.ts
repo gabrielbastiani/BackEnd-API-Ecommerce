@@ -10,6 +10,9 @@ class FindParentIDCategoryService {
             where: {
                 parentId: parentId
             },
+            orderBy: {
+                order: 'asc'
+            },
             include: {
                 filtercategories: true,
                 imagecategories: true,
