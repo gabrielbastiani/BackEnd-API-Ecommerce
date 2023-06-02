@@ -8,7 +8,8 @@ class AllProductAttributeParentIDService {
     async execute({ parentId }: RelationAttributeProductRequest) {
         const allAttributes = await prismaClient.relationAttributeProduct.findMany({
             where: {
-                parentId: parentId
+                parentId: parentId,
+                nivel: 1
             },
             orderBy: {
                 order: 'asc'

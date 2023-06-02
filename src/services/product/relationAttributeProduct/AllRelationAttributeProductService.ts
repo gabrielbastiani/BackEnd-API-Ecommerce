@@ -9,6 +9,7 @@ class AllRelationAttributeProductService {
         const allAttributes = await prismaClient.relationAttributeProduct.findMany({
             where: {
                 product_id: product_id,
+                nivel: 0
             },
             orderBy: {
                 order: 'asc'
