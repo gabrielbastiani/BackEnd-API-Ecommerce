@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { DeletePhotoProductService } from '../../../services/product/photoProduct/DeletePhotoProductService';
-import { FindUniquePhotoProductService } from '../../../services/product/photoProduct/FindUniquePhotoProductService';
+import { FindUniquePhotoProductService } from '../../../services/product/photoproduct/FindUniquePhotoProductService';
 import fs from 'fs';
 
 class DeletePhotoProductController {

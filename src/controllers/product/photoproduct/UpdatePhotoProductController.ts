@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UpdatePhotoProductService } from '../../../services/product/photoProduct/UpdatePhotoProductService';
+import { UpdatePhotoProductService } from '../../../services/product/photoproduct/UpdatePhotoProductService';
 import { DeletePhotoProductService } from '../../../services/product/photoProduct/DeletePhotoProductService';
 import fs from 'fs';
 
