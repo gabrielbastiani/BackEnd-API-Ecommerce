@@ -11,7 +11,7 @@ class DeleteImageAttributeRelationIDController {
     const arrayPhotos = await deleteImage.execute({ relationAttributeProduct_id });
 
     arrayPhotos.forEach(element => {
-      fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + element.image);
+      fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + element.image);
     });
 
     const deleteImageAttribute = new DeleteImageAttributeRelationIDService();
