@@ -10,17 +10,17 @@ class DeleteImageAttributeController {
     const deleteImage = new DeleteImageAttributeService();
     const findImage = new FindUniqueImageAttributeService();
 
-    const productPhoto = await findImage.execute({
+    const imageAttribute = await findImage.execute({
       imageAttribute_id
     })
 
-    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + productPhoto.image);
+    fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageAttribute.image);
 
-    const deletePhotoProduct = await deleteImage.execute({
+    const deleteImageAttribute = await deleteImage.execute({
       imageAttribute_id,
     });
 
-    return res.json([productPhoto, deletePhotoProduct]);
+    return res.json([imageAttribute, deleteImageAttribute]);
 
   }
 }
