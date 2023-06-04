@@ -11,7 +11,7 @@ class AllDescriptionProductService {
                 product_id: product_id
             },
             orderBy: {
-                created_at: 'desc'
+                created_at: 'asc'
             }
         });
 
