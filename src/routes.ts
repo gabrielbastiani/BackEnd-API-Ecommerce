@@ -195,6 +195,7 @@ import { CreateImageAttributeController } from './controllers/product/relationAt
 import { UpdateImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/UpdateImageAttributeController';
 import { DeleteImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeController';
 import { DeleteImageAttributeRelationIDController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeRelationIDController';
+import { FindUniqueImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/FindUniqueImageAttributeController';
 
 // -- ROUTES AVALIETION --
 import { CreateAvalietionController } from './controllers/avalietion/CreateAvalietionController';
@@ -222,6 +223,7 @@ import { DeleteALLImageVariationProductController } from './controllers/variatio
 import { DeleteImageVariationController } from './controllers/variation/photoVariation/DeleteImageVariationController';
 import { CreateImageVariationController } from './controllers/variation/photoVariation/CreateImageVariationController';
 import { UpdateOrderImageVariationController } from './controllers/variation/photoVariation/UpdateOrderImageVariationController';
+import { FindUniqueImageVariationController } from './controllers/variation/photoVariation/FindUniqueImageVariationController';
 
 // -- ROUTES BUY TOGETHER --
 import { CreateBuyTogetherController } from './controllers/buyTogether/CreateBuyTogetherController';
@@ -256,7 +258,6 @@ import { DeletetImageMenuCategoryController } from './controllers/category/menuC
 // -- ROUTES GROUP FILTERS --
 import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
 import { UpdateNameGroupFilterController } from './controllers/groupFilter/UpdateNameGroupFilterController';
-import { UpdateTypeAttributeGroupController } from './controllers/groupFilter/UpdateTypeAttributeGroupController';
 import { UpdateSlugGroupFilterController } from './controllers/groupFilter/UpdateSlugGroupFilterController';
 import { UpdateStatusGroupFilterController } from './controllers/groupFilter/UpdateStatusGroupFilterController';
 import { PageGroupsFiltersController } from './controllers/groupFilter/PageGroupsFiltersController';
@@ -337,7 +338,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { FindUniqueImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/FindUniqueImageAttributeController';
 
 
 
@@ -565,6 +565,7 @@ router.get('/allImagesVariation', ADMINisAuthenticated, new AllImagesVariationCo
 router.delete('/deleteAllPhotosVariation', ADMINisAuthenticated, new DeleteALLImageVariationProductController().handle);
 router.delete('/deleteImageVariantion', ADMINisAuthenticated, new DeleteImageVariationController().handle);
 router.put('/updateOrderImageVariation', ADMINisAuthenticated, new UpdateOrderImageVariationController().handle);
+router.get('/findUniqueImageVariation', ADMINisAuthenticated, new FindUniqueImageVariationController().handle);
 
 // -- ROUTES BUY TOGETHER --
 router.post('/createBuyTogether', ADMINisAuthenticated, new CreateBuyTogetherController().handle);
