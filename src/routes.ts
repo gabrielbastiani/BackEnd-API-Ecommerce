@@ -555,7 +555,7 @@ router.get('/findVariationName', ADMINisAuthenticated, new FindFirstVariationNam
 router.delete('/deleteAllVariationProduct', ADMINisAuthenticated, new DeleteAllVariationProductController().handle);
 router.delete('/deleteVariation', ADMINisAuthenticated, new DeleteVariationController().handle);
 router.get('/findUniqueVariation', ADMINisAuthenticated, new FindUniqueVariationController().handle);
-router.put('/updateDisponibilidadeVariacao', ADMINisAuthenticated, new UpdateStatusVariationController().handle);
+router.put('/updateStatusVariation', ADMINisAuthenticated, new UpdateStatusVariationController().handle);
 router.get('/pageAllVariation', ADMINisAuthenticated, new PageListAllVariationController().handle);
 router.put('/updateNameVariation', ADMINisAuthenticated, new UpdateNameVariationController().handle);
 router.put('/updateOrderVariacao', ADMINisAuthenticated, new UpdateOrderVariacaoController().handle);
