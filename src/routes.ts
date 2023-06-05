@@ -196,6 +196,7 @@ import { UpdateImageAttributeController } from './controllers/product/relationAt
 import { DeleteImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeController';
 import { DeleteImageAttributeRelationIDController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeRelationIDController';
 import { FindUniqueImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/FindUniqueImageAttributeController';
+import { AllValueAttributeController } from './controllers/product/relationAttributeProduct/AllValueAttributeController';
 
 // -- ROUTES AVALIETION --
 import { CreateAvalietionController } from './controllers/avalietion/CreateAvalietionController';
@@ -272,6 +273,7 @@ import { DeleteGroupFilterController } from './controllers/groupFilter/DeleteGro
 import { FindSlugGroupFilterController } from './controllers/groupFilter/FindSlugGroupFilterController';
 import { FindFirstGroupsController } from './controllers/groupFilter/FindFirstGroupsController';
 import { FindIDGroupFilterController } from './controllers/groupFilter/FindIDGroupFilterController';
+import { UpdateTypeAttributeGroupController } from './controllers/groupFilter/UpdateTypeAttributeGroupController';
 
 // -- ROUTES FILTER ATTRIBUTES --
 import { CreateFilterAttributeController } from './controllers/groupFilter/filterAttribute/CreateFilterAttributeController';
@@ -543,6 +545,7 @@ router.put('/updateImageAttribute', ADMINisAuthenticated, upload.single('file'),
 router.delete('/deleteImageAttributeProduct', ADMINisAuthenticated, new DeleteImageAttributeController().handle);
 router.delete('/deleteAllImageRelationAttribute', ADMINisAuthenticated, new DeleteImageAttributeRelationIDController().handle);
 router.get('/findUniqueImageAttribute', ADMINisAuthenticated, new FindUniqueImageAttributeController().handle);
+router.get('/allValueAttributesValue', ADMINisAuthenticated, new AllValueAttributeController().handle);
 
 // -- ROUTES AVALIETION --
 router.post('/createAvalietion', ADMINisAuthenticated, new CreateAvalietionController().handle);
@@ -610,7 +613,7 @@ router.get('/listCategoryMenu', new ListCategoryMenuController().handle);
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
 router.put('/updateNameGroupFilter', ADMINisAuthenticated, new UpdateNameGroupFilterController().handle);
-router.put('/updateTypeAttributeGroup', ADMINisAuthenticated, new UpdateTypeAttributeController().handle);
+router.put('/updateTypeAttributeGroup', ADMINisAuthenticated, new UpdateTypeAttributeGroupController().handle);
 router.put('/updateSlugGroupFilter', ADMINisAuthenticated, new UpdateSlugGroupFilterController().handle);
 router.put('/updateStatusGroupFilter', ADMINisAuthenticated, new UpdateStatusGroupFilterController().handle);
 router.get('/pagesGroupFilter', ADMINisAuthenticated, new PageGroupsFiltersController().handle);
