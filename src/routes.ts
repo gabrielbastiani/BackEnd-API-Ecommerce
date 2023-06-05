@@ -236,6 +236,8 @@ import { FindUniqueBuyTogetherController } from './controllers/buyTogether/FindU
 import { AllBuyTogetherController } from './controllers/buyTogether/AllBuyTogetherController';
 import { FindGroupBuyTogetherIDController } from './controllers/buyTogether/FindGroupBuyTogetherIDController';
 import { FindFirstBuyTogetherController } from './controllers/buyTogether/FindFirstBuyTogetherController';
+import { DeleteGroupBuyTogetherController } from './controllers/buyTogether/DeleteGroupBuyTogetherController';
+import { ProductIDBuyTogetherController } from './controllers/buyTogether/ProductIDBuyTogetherController';
 
 // -- ROUTES MENU CATEGORY --
 import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
@@ -341,7 +343,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { DeleteGroupBuyTogetherController } from './controllers/buyTogether/DeleteGroupBuyTogetherController';
 
 
 
@@ -583,6 +584,7 @@ router.get('/findUniqueBuyTogether', ADMINisAuthenticated, new FindUniqueBuyToge
 router.get('/allBuyTogether', ADMINisAuthenticated, new AllBuyTogetherController().handle);
 router.get('/findItensGroupBuyTogether', ADMINisAuthenticated, new FindGroupBuyTogetherIDController().handle);
 router.get('/findFirstGroupBuyTogether', ADMINisAuthenticated, new FindFirstBuyTogetherController().handle);
+router.get('/findProductGroupBuyTogether', ADMINisAuthenticated, new ProductIDBuyTogetherController().handle);
 
 // -- ROUTES MENU CATEGORY --
 router.post('/createMenuCategory', ADMINisAuthenticated, new CreateMenuCategoryController().handle);
