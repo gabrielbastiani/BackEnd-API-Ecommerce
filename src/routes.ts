@@ -341,6 +341,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { DeleteGroupBuyTogetherController } from './controllers/buyTogether/DeleteGroupBuyTogetherController';
 
 
 
@@ -576,6 +577,7 @@ router.put('/updateProductBuyTogether', ADMINisAuthenticated, new UpdateProductB
 router.put('/updateNameGroupBuyTogether', ADMINisAuthenticated, new UpdateNameGroupBuyTogetherController().handle);
 router.put('/updateOrderBuyTogether', ADMINisAuthenticated, new UpdateOrderBuyTogetherController().handle);
 router.put('/updateStatusBuyTogether', ADMINisAuthenticated, new UpdateStatusBuyTogetherController().handle);
+router.delete('/deleteGroupAllProductsBuyTogether', ADMINisAuthenticated, new DeleteGroupBuyTogetherController().handle);
 router.delete('/deleteGroupBuyTogether', ADMINisAuthenticated, new DeleteBuyTogetherController().handle);
 router.get('/findUniqueBuyTogether', ADMINisAuthenticated, new FindUniqueBuyTogetherController().handle);
 router.get('/allBuyTogether', ADMINisAuthenticated, new AllBuyTogetherController().handle);
