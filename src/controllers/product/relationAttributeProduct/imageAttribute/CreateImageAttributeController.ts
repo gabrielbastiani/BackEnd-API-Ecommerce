@@ -3,7 +3,7 @@ import { CreateImageAttributeService } from "../../../../services/product/relati
 
 class CreateImageAttributeController {
     async handle(req: Request, res: Response) {
-        const { relationAttributeProduct_id } = req.body;
+        const { relationAttributeProduct_id, product_id } = req.body;
 
         const attribute = new CreateImageAttributeService();
 
@@ -15,7 +15,8 @@ class CreateImageAttributeController {
 
             const createImage = await attribute.execute({
                 image,
-                relationAttributeProduct_id
+                relationAttributeProduct_id,
+                product_id
             });
 
             return res.json(createImage);

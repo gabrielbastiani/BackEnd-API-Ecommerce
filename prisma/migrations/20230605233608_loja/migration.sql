@@ -349,6 +349,7 @@ CREATE TABLE "relationattributeproducts" (
 CREATE TABLE "imageattributes" (
     "id" TEXT NOT NULL,
     "relationAttributeProduct_id" TEXT NOT NULL,
+    "product_id" TEXT,
     "image" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
@@ -647,6 +648,9 @@ ALTER TABLE "relationattributeproducts" ADD CONSTRAINT "relationattributeproduct
 
 -- AddForeignKey
 ALTER TABLE "imageattributes" ADD CONSTRAINT "imageattributes_relationAttributeProduct_id_fkey" FOREIGN KEY ("relationAttributeProduct_id") REFERENCES "relationattributeproducts"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "imageattributes" ADD CONSTRAINT "imageattributes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "avalietions" ADD CONSTRAINT "avalietions_customer_id_fkey" FOREIGN KEY ("customer_id") REFERENCES "customers"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

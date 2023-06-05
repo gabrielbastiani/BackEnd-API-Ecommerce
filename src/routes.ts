@@ -197,6 +197,7 @@ import { DeleteImageAttributeController } from './controllers/product/relationAt
 import { DeleteImageAttributeRelationIDController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeRelationIDController';
 import { FindUniqueImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/FindUniqueImageAttributeController';
 import { AllValueAttributeController } from './controllers/product/relationAttributeProduct/AllValueAttributeController';
+import { DeleteImageAttributeProductIDController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeProductIDController';
 
 // -- ROUTES AVALIETION --
 import { CreateAvalietionController } from './controllers/avalietion/CreateAvalietionController';
@@ -239,6 +240,7 @@ import { FindGroupBuyTogetherIDController } from './controllers/buyTogether/Find
 import { FindFirstBuyTogetherController } from './controllers/buyTogether/FindFirstBuyTogetherController';
 import { DeleteGroupBuyTogetherController } from './controllers/buyTogether/DeleteGroupBuyTogetherController';
 import { ProductIDBuyTogetherController } from './controllers/buyTogether/ProductIDBuyTogetherController';
+import { DeleteBuyTogetherAllProductController } from './controllers/buyTogether/DeleteBuyTogetherAllProductController';
 
 // -- ROUTES MENU CATEGORY --
 import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
@@ -544,6 +546,7 @@ router.post('/createImageAttributeProduct', ADMINisAuthenticated, upload.single(
 router.put('/updateImageAttribute', ADMINisAuthenticated, upload.single('file'), new UpdateImageAttributeController().handle);
 router.delete('/deleteImageAttributeProduct', ADMINisAuthenticated, new DeleteImageAttributeController().handle);
 router.delete('/deleteAllImageRelationAttribute', ADMINisAuthenticated, new DeleteImageAttributeRelationIDController().handle);
+router.delete('/deleteAllImageProductRelationAttribute', ADMINisAuthenticated, new DeleteImageAttributeProductIDController().handle);
 router.get('/findUniqueImageAttribute', ADMINisAuthenticated, new FindUniqueImageAttributeController().handle);
 router.get('/allValueAttributesValue', ADMINisAuthenticated, new AllValueAttributeController().handle);
 
@@ -583,6 +586,7 @@ router.put('/updateOrderBuyTogether', ADMINisAuthenticated, new UpdateOrderBuyTo
 router.put('/updateStatusBuyTogether', ADMINisAuthenticated, new UpdateStatusBuyTogetherController().handle);
 router.delete('/deleteGroupAllProductsBuyTogether', ADMINisAuthenticated, new DeleteGroupBuyTogetherController().handle);
 router.delete('/deleteGroupBuyTogether', ADMINisAuthenticated, new DeleteBuyTogetherController().handle);
+router.delete('/deleteParentIdBuyTogether', ADMINisAuthenticated, new DeleteBuyTogetherAllProductController().handle);
 router.get('/findUniqueBuyTogether', ADMINisAuthenticated, new FindUniqueBuyTogetherController().handle);
 router.get('/allBuyTogether', ADMINisAuthenticated, new AllBuyTogetherController().handle);
 router.get('/findItensGroupBuyTogether', ADMINisAuthenticated, new FindGroupBuyTogetherIDController().handle);

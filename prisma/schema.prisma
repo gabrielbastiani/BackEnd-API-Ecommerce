@@ -291,6 +291,7 @@ model Product {
   avalietions               Avalietion[]
   productcategories         ProductCategory[]
   buytogethers              BuyTogether[]              @relation("buy")
+  imageattribute            ImageAttribute[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -441,6 +442,8 @@ model ImageAttribute {
   id                          String                   @id @default(uuid())
   relationAttributeProduct    RelationAttributeProduct @relation(fields: [relationAttributeProduct_id], references: [id])
   relationAttributeProduct_id String
+  product                     Product?                 @relation(fields: [product_id], references: [id])
+  product_id                  String?
   image                       String
 
   created_at DateTime? @default(now())
