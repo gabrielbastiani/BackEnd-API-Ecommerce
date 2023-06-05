@@ -4,11 +4,14 @@ interface BuyTogetherRequest {
   buyTogether_id: string;
 }
 
-class FindUniqueBuyTogetherService {
+class FindFirstBuyTogetherService {
   async execute({ buyTogether_id }: BuyTogetherRequest) {
-    const find = await prismaClient.buyTogether.findUnique({
+    const find = await prismaClient.buyTogether.findFirst({
       where: {
         id: buyTogether_id
+      },
+      orderBy: {
+        created_at: 'desc'
       },
       include: {
         product: true,
@@ -21,4 +24,4 @@ class FindUniqueBuyTogetherService {
   }
 }
 
-export { FindUniqueBuyTogetherService }
+export { FindFirstBuyTogetherService }

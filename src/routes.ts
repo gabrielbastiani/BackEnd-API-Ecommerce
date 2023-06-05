@@ -233,6 +233,9 @@ import { UpdateOrderBuyTogetherController } from './controllers/buyTogether/Upda
 import { UpdateStatusBuyTogetherController } from './controllers/buyTogether/UpdateStatusBuyTogetherController';
 import { DeleteBuyTogetherController } from './controllers/buyTogether/DeleteBuyTogetherController';
 import { FindUniqueBuyTogetherController } from './controllers/buyTogether/FindUniqueBuyTogetherController';
+import { AllBuyTogetherController } from './controllers/buyTogether/AllBuyTogetherController';
+import { FindGroupBuyTogetherIDController } from './controllers/buyTogether/FindGroupBuyTogetherIDController';
+import { FindFirstBuyTogetherController } from './controllers/buyTogether/FindFirstBuyTogetherController';
 
 // -- ROUTES MENU CATEGORY --
 import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
@@ -575,6 +578,9 @@ router.put('/updateOrderBuyTogether', ADMINisAuthenticated, new UpdateOrderBuyTo
 router.put('/updateStatusBuyTogether', ADMINisAuthenticated, new UpdateStatusBuyTogetherController().handle);
 router.delete('/deleteGroupBuyTogether', ADMINisAuthenticated, new DeleteBuyTogetherController().handle);
 router.get('/findUniqueBuyTogether', ADMINisAuthenticated, new FindUniqueBuyTogetherController().handle);
+router.get('/allBuyTogether', ADMINisAuthenticated, new AllBuyTogetherController().handle);
+router.get('/findItensGroupBuyTogether', ADMINisAuthenticated, new FindGroupBuyTogetherIDController().handle);
+router.get('/findFirstGroupBuyTogether', ADMINisAuthenticated, new FindFirstBuyTogetherController().handle);
 
 // -- ROUTES MENU CATEGORY --
 router.post('/createMenuCategory', ADMINisAuthenticated, new CreateMenuCategoryController().handle);
