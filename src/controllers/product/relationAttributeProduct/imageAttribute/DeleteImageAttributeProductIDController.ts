@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { DeleteImageAttributeProductIDService } from '../../../../services/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeProductIDService';
-import { FindAllImageAttributeRelationIDService } from '../../../../services/product/relationAttributeProduct/imageAttribute/FindAllImageAttributeRelationIDService';
+import { FindAllImageAttributeProductIDService } from '../../../../services/product/relationAttributeProduct/imageAttribute/FindAllImageAttributeProductIDService';
 import fs from 'fs';
 
 class DeleteImageAttributeProductIDController {
   async handle(req: Request, res: Response) {
     const product_id = req.query.product_id as string;
 
-    const deleteImage = new FindAllImageAttributeRelationIDService();
+    const deleteImage = new FindAllImageAttributeProductIDService();
     const arrayPhotos = await deleteImage.execute({ product_id });
 
     arrayPhotos.forEach(element => {
