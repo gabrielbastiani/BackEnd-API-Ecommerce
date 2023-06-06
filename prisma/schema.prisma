@@ -184,7 +184,7 @@ model InstitutionalText {
   order        Int?
   position     String?                 @db.VarChar(300)
   slugPosition String?                 @db.VarChar(325)
-  description  String?                 @db.VarChar(95725)
+  description  String?
   status       StatusInstitutionalText @default(Disponivel)
 
   created_at DateTime? @default(now())
