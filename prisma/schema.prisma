@@ -148,6 +148,7 @@ model Store {
   filterattributes          FilterAttribute[]
   filtercategories          FilterCategory[]
   buytogethers              BuyTogether[]
+  productsvariations        ProductVariation[]
 
   @@map("stores")
 }
@@ -292,6 +293,7 @@ model Product {
   productcategories         ProductCategory[]
   buytogethers              BuyTogether[]              @relation("buy")
   imageattribute            ImageAttribute[]
+  productsvariations        ProductVariation[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -480,7 +482,8 @@ model Variation {
   order      Int?
   status     StatusVariation @default(Disponivel)
 
-  photovariations PhotoVariation[]
+  photovariations    PhotoVariation[]
+  productsvariations ProductVariation[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -507,6 +510,29 @@ model PhotoVariation {
   updated_at DateTime? @updatedAt
 
   @@map("photovariations")
+}
+
+model ProductVariation {
+  id           String                 @id @default(uuid())
+  variation    Variation              @relation(fields: [variation_id], references: [id])
+  variation_id String
+  product      Product?               @relation(fields: [product_id], references: [id])
+  product_id   String?
+  order        Int?
+  status       StatusProductVariation @default(Disponivel)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("productsvariations")
+}
+
+enum StatusProductVariation {
+  Disponivel
+  Indisponivel
 }
 
 model BuyTogether {

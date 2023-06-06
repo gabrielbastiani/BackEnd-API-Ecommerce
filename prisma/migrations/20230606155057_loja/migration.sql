@@ -38,6 +38,9 @@ CREATE TYPE "StatusRelationAttributeProduct" AS ENUM ('Disponivel', 'Indisponive
 CREATE TYPE "StatusVariation" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
+CREATE TYPE "StatusProductVariation" AS ENUM ('Disponivel', 'Indisponivel');
+
+-- CreateEnum
 CREATE TYPE "StatusBuyTogether" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
@@ -184,7 +187,7 @@ CREATE TABLE "institutionaltexts" (
     "order" INTEGER,
     "position" VARCHAR(300),
     "slugPosition" VARCHAR(325),
-    "description" VARCHAR(95725),
+    "description" TEXT,
     "status" "StatusInstitutionalText" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
@@ -397,6 +400,20 @@ CREATE TABLE "photovariations" (
     "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "photovariations_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "productsvariations" (
+    "id" TEXT NOT NULL,
+    "variation_id" TEXT NOT NULL,
+    "product_id" TEXT,
+    "order" INTEGER,
+    "status" "StatusProductVariation" NOT NULL DEFAULT 'Disponivel',
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+    "store_id" TEXT,
+
+    CONSTRAINT "productsvariations_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -669,6 +686,15 @@ ALTER TABLE "variations" ADD CONSTRAINT "variations_store_id_fkey" FOREIGN KEY (
 
 -- AddForeignKey
 ALTER TABLE "photovariations" ADD CONSTRAINT "photovariations_variation_id_fkey" FOREIGN KEY ("variation_id") REFERENCES "variations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "productsvariations" ADD CONSTRAINT "productsvariations_variation_id_fkey" FOREIGN KEY ("variation_id") REFERENCES "variations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "productsvariations" ADD CONSTRAINT "productsvariations_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "productsvariations" ADD CONSTRAINT "productsvariations_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "buytogethers" ADD CONSTRAINT "buytogethers_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
