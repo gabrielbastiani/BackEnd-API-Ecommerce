@@ -226,6 +226,11 @@ import { DeleteImageVariationController } from './controllers/variation/photoVar
 import { CreateImageVariationController } from './controllers/variation/photoVariation/CreateImageVariationController';
 import { UpdateOrderImageVariationController } from './controllers/variation/photoVariation/UpdateOrderImageVariationController';
 import { FindUniqueImageVariationController } from './controllers/variation/photoVariation/FindUniqueImageVariationController';
+import { CreateProductVariationController } from './controllers/variation/productVariation/CreateProductVariationController';
+import { DeleteProductVariationController } from './controllers/variation/productVariation/DeleteProductVariationController';
+import { VariationDeleteController } from './controllers/variation/productVariation/VariationDeleteController';
+import { FindFirstProductVariationController } from './controllers/variation/productVariation/FindFirstProductVariationController';
+import { FindUniqueProductVariationController } from './controllers/variation/productVariation/FindUniqueProductVariationController';
 
 // -- ROUTES BUY TOGETHER --
 import { CreateBuyTogetherController } from './controllers/buyTogether/CreateBuyTogetherController';
@@ -347,6 +352,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+
 
 
 
@@ -577,6 +583,11 @@ router.delete('/deleteAllPhotosVariation', ADMINisAuthenticated, new DeleteALLIm
 router.delete('/deleteImageVariantion', ADMINisAuthenticated, new DeleteImageVariationController().handle);
 router.put('/updateOrderImageVariation', ADMINisAuthenticated, new UpdateOrderImageVariationController().handle);
 router.get('/findUniqueImageVariation', ADMINisAuthenticated, new FindUniqueImageVariationController().handle);
+router.post('/createProductVariation', ADMINisAuthenticated, new CreateProductVariationController().handle);
+router.delete('/deleteAllProductVariation', ADMINisAuthenticated, new DeleteProductVariationController().handle);
+router.delete('/deleteProductVariation', ADMINisAuthenticated, new VariationDeleteController().handle);
+router.get('/findFirstProductVariation', ADMINisAuthenticated, new FindFirstProductVariationController().handle);
+router.get('/findUniqueProductVariation', ADMINisAuthenticated, new FindUniqueProductVariationController().handle);
 
 // -- ROUTES BUY TOGETHER --
 router.post('/createBuyTogether', ADMINisAuthenticated, new CreateBuyTogetherController().handle);
