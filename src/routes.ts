@@ -231,6 +231,9 @@ import { DeleteProductVariationController } from './controllers/variation/produc
 import { VariationDeleteController } from './controllers/variation/productVariation/VariationDeleteController';
 import { FindFirstProductVariationController } from './controllers/variation/productVariation/FindFirstProductVariationController';
 import { FindUniqueProductVariationController } from './controllers/variation/productVariation/FindUniqueProductVariationController';
+import { UpdateStatusProductVariationController } from './controllers/variation/productVariation/UpdateStatusProductVariationController';
+import { UpdateNameProductVariationController } from './controllers/variation/productVariation/UpdateNameProductVariationController';
+import { UpdateOrderProductVariationController } from './controllers/variation/productVariation/UpdateOrderProductVariationController';
 
 // -- ROUTES BUY TOGETHER --
 import { CreateBuyTogetherController } from './controllers/buyTogether/CreateBuyTogetherController';
@@ -588,6 +591,9 @@ router.delete('/deleteAllProductVariation', ADMINisAuthenticated, new DeleteProd
 router.delete('/deleteProductVariation', ADMINisAuthenticated, new VariationDeleteController().handle);
 router.get('/findFirstProductVariation', ADMINisAuthenticated, new FindFirstProductVariationController().handle);
 router.get('/findUniqueProductVariation', ADMINisAuthenticated, new FindUniqueProductVariationController().handle);
+router.put('/updateStatusProductVariation', ADMINisAuthenticated, new UpdateStatusProductVariationController().handle);
+router.put('/updateProductVariationName', ADMINisAuthenticated, new UpdateNameProductVariationController().handle);
+router.put('/updateOrderProductVariationName', ADMINisAuthenticated, new UpdateOrderProductVariationController().handle);
 
 // -- ROUTES BUY TOGETHER --
 router.post('/createBuyTogether', ADMINisAuthenticated, new CreateBuyTogetherController().handle);

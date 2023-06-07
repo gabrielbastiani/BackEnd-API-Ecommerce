@@ -24,6 +24,7 @@ declare namespace Express {
     avalietion_id: string;
     variation_id: string;
     photoVariation_id: string;
+    productVariation_id: string;
     buyTogether_id: string;
     menuCategory_id: string;
     imageMenuCategory_id: string;
