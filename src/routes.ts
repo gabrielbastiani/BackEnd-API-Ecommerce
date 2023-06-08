@@ -42,6 +42,7 @@ import { CreateDeliveryAddressCustomerController } from './controllers/users/cus
 import { UpdateAllDateDeliveryAddressCustomerCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateAllDateDeliveryAddressCustomerCustomerController';
 import { DeleteDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/DeleteDeliveryAddressCustomerController';
 import { EmailPasswordDashboardCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/EmailPasswordDashboardCustomerController';
+import { EmailPasswordCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/EmailPasswordCustomerController';
 
 // -- ROUTES STORE --
 import { CreateStoreController } from './controllers/store/CreateStoreController';
@@ -401,11 +402,12 @@ router.put('/customer/updateNameCustomer', ADMINisAuthenticated && isAuthenticat
 router.put('/customer/updateNewslatter', ADMINisAuthenticated && isAuthenticated, new CustomerUpdateNewslatterController().handle);
 router.delete('/customer/deleteRecoveryIDCustomer', isAuthenticated, new DeletePasswordRecoveryIDCustomerController().handle);
 router.get('/customer/findFirstCustomer', ADMINisAuthenticated && isAuthenticated, new FindRecoveryIDCustomerController().handle);
-router.put('/customer/recoverCustomer', ADMINisAuthenticated && isAuthenticated, new CustomerRecoveryPasswordController().handle);
 router.post('/customer/delivery/createDeliveryAddress', isAuthenticated, new CreateDeliveryAddressCustomerController().handle);
 router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', isAuthenticated, new UpdateAllDateDeliveryAddressCustomerCustomerController().handle);
 router.delete('/customer/delivery/deleteDeliveryAddress', isAuthenticated, new DeleteDeliveryAddressCustomerController().handle);
 router.post('/customer/recoverPasswordDashboard', isAuthenticated, new EmailPasswordDashboardCustomerController().handle);
+router.put('/customer/recoverCustomer', new CustomerRecoveryPasswordController().handle);
+router.post('/customer/recoverPasswordEmail', new EmailPasswordCustomerController().handle);
 
 // -- ROUTES STORE --
 router.post('/createStore', ADMINisAuthenticated, upload.single('file'), new CreateStoreController().handle);

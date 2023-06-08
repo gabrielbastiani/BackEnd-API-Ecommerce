@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { RequestPasswordDashboardCustomerRecovery } from "../../../../services/users/customer/passwordRecoveryCustomer/RequestPasswordDashboardCustomerRecovery";
 
-
 class EmailPasswordDashboardCustomerController {
   async handle(req: Request, res: Response) {
     const { email } = req.body;
