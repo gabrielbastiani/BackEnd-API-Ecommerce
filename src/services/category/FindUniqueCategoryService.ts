@@ -8,7 +8,7 @@ class FindUniqueCategoryService {
     async execute({ category_id }: CategoryRequest) {
         const exactCategory = await prismaClient.category.findUnique({
             where: {
-                id: String(category_id)
+                id: category_id
             },
             include: {
                 filtercategories: true,
