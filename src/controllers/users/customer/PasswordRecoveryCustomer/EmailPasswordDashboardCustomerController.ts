@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RequestPasswordDashboardCustomerRecovery } from "../../../../services/users/customer/PasswordRecoveryCustomer/RequestPasswordDashboardCustomerRecovery";
+import { RequestPasswordDashboardCustomerRecovery } from "../../../../services/users/customer/passwordRecoveryCustomer/RequestPasswordDashboardCustomerRecovery";
 
 
 class EmailPasswordDashboardCustomerController {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeletePasswordRecoveryIDCustomerService } from "../../../../services/users/customer/PasswordRecoveryCustomer/DeletePasswordRecoveryIDCustomerService";
+import { DeletePasswordRecoveryIDCustomerService } from "../../../../services/users/customer/passwordRecoveryCustomer/DeletePasswordRecoveryIDCustomerService";
 
 
 class DeletePasswordRecoveryIDCustomerController {

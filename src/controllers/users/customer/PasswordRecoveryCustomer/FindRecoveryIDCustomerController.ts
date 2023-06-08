@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { FindRecoveryIDCustomerService } from "../../../../services/users/customer/PasswordRecoveryCustomer/FindRecoveryIDCustomerService";
+import { FindRecoveryIDCustomerService } from "../../../../services/users/customer/passwordRecoveryCustomer/FindRecoveryIDCustomerService";
 
 
 class FindRecoveryIDCustomerController {

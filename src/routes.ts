@@ -35,13 +35,13 @@ import { PageListAllCustomerController } from './controllers/users/customer/Page
 import { UpdateAllDateCustomerController } from './controllers/users/customer/UpdateAllDateCustomerController';
 import { CustomerUpdateNameController } from './controllers/users/customer/CustomerUpdateNameController';
 import { CustomerUpdateNewslatterController } from './controllers/users/customer/CustomerUpdateNewslatterController';
-import { DeletePasswordRecoveryIDCustomerController } from './controllers/users/customer/PasswordRecoveryCustomer/DeletePasswordRecoveryIDCustomerController';
-import { FindRecoveryIDCustomerController } from './controllers/users/customer/PasswordRecoveryCustomer/FindRecoveryIDCustomerController';
-import { CustomerRecoveryPasswordController } from './controllers/users/customer/PasswordRecoveryCustomer/CustomerRecoveryPasswordController';
+import { DeletePasswordRecoveryIDCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/DeletePasswordRecoveryIDCustomerController';
+import { FindRecoveryIDCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/FindRecoveryIDCustomerController';
+import { CustomerRecoveryPasswordController } from './controllers/users/customer/passwordRecoveryCustomer/CustomerRecoveryPasswordController';
 import { CreateDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/CreateDeliveryAddressCustomerController';
 import { UpdateAllDateDeliveryAddressCustomerCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateAllDateDeliveryAddressCustomerCustomerController';
 import { DeleteDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/DeleteDeliveryAddressCustomerController';
-import { EmailPasswordDashboardCustomerController } from './controllers/users/customer/PasswordRecoveryCustomer/EmailPasswordDashboardCustomerController';
+import { EmailPasswordDashboardCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/EmailPasswordDashboardCustomerController';
 
 // -- ROUTES STORE --
 import { CreateStoreController } from './controllers/store/CreateStoreController';

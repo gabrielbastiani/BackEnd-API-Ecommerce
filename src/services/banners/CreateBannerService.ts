@@ -16,6 +16,7 @@ interface BannerRequest {
   url: string;
   position: string;
   slugPosition: string;
+  active: string;
 }
 
 class CreateBannerService {
@@ -28,7 +29,8 @@ class CreateBannerService {
     banner,
     order,
     url,
-    position
+    position,
+    active
   }: BannerRequest) {
 
     function removerAcentos(s: any) {
@@ -51,7 +53,8 @@ class CreateBannerService {
         order: Number(order),
         url: url,
         position: position,
-        slugPosition: removerAcentos(position)
+        slugPosition: removerAcentos(position),
+        active: active
       }
     });
 

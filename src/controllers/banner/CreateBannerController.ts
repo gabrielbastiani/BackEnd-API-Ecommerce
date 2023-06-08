@@ -12,7 +12,8 @@ class CreateBannerController {
             order,
             url,
             position,
-            slugPosition
+            slugPosition,
+            active
         } = req.body;
 
         const banners = new CreateBannerService();
@@ -33,7 +34,8 @@ class CreateBannerController {
                 order,
                 url,
                 position,
-                slugPosition
+                slugPosition,
+                active
             });
 
             return res.json(bannersCreate);
