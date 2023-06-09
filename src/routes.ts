@@ -108,6 +108,7 @@ import { UpdateDescriptionCategoryController } from './controllers/category/Upda
 import { UpdateOrderCategoryController } from './controllers/category/UpdateOrderCategoryController';
 import { FindParentIDCategoryController } from './controllers/category/FindParentIDCategoryController';
 import { DeleteImageCategoryController } from './controllers/category/imageCategory/DeleteImageCategoryController';
+import { ListAllCategoriesStorePageController } from './controllers/category/ListAllCategoriesStorePageController';
 
 // -- ROUTES PRODUCT --
 import { CreateProductController } from './controllers/product/CreateProductController';
@@ -359,7 +360,6 @@ import uploadConfig from './config/multer';
 
 
 
-
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
 
@@ -473,6 +473,7 @@ router.get('/findCategorys', ADMINisAuthenticated, new ListCategoryNameControlle
 router.delete('/deleteImageCategory', ADMINisAuthenticated, new DeleteImageCategoryController().handle);
 router.get('/listCategorysDisponivel', new ListCategoryController().handle);
 router.get('/findDateSlugCategory', new FindFirstCategorySlugController().handle);
+router.get('/categoriesInPageCategory', new ListAllCategoriesStorePageController().handle);
 
 // -- ROUTES PRODUCT --
 router.post('/createProduct', ADMINisAuthenticated, new CreateProductController().handle);

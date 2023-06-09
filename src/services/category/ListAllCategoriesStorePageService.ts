@@ -2,24 +2,24 @@ import { StatusCategory } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface CategoryRequest {
-   category_id: string;
+   slug: string;
 }
 
-class ListCategoryNameService {
-   async execute({ category_id }: CategoryRequest) {
+class ListAllCategoriesStorePageService {
+   async execute({ slug }: CategoryRequest) {
       const category = await prismaClient.category.findMany({
          where: {
-            id: category_id,
+            slug: slug,
             status: StatusCategory.Disponivel
          },
          orderBy: {
-            created_at: 'asc'
+            order: 'asc'
          },
          include: {
             filtercategories: true,
             imagecategories: true,
             menucategories: true,
-            productcategories: true
+            productcategories: {include: {product: {include: {photoproducts: true}}}}
          }
       })
 
@@ -27,4 +27,4 @@ class ListCategoryNameService {
    }
 }
 
-export { ListCategoryNameService }
+export { ListAllCategoriesStorePageService }

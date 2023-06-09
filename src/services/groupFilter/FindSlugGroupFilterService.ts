@@ -14,7 +14,7 @@ class FindSlugGroupFilterService {
             },
             include: {
                 filterattributes: { orderBy: { order: 'asc' } },
-                filtercategories: true
+                filtercategories: { orderBy: { order: 'asc' } }
             }
         });
 
