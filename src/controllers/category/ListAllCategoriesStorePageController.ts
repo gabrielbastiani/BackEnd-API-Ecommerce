@@ -3,12 +3,12 @@ import { ListAllCategoriesStorePageService } from "../../services/category/ListA
 
 class ListAllCategoriesStorePageController {
   async handle(req: Request, res: Response) {
-    const slug = req.query.slug as string;
+    const parentId = req.query.parentId as string;
 
     const names = new ListAllCategoriesStorePageService();
 
     const name = await names.execute({
-      slug,
+      parentId,
     });
 
     return res.json(name);

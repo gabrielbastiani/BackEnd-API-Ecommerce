@@ -2,14 +2,14 @@ import { StatusCategory } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface CategoryRequest {
-   slug: string;
+   parentId: string;
 }
 
 class ListAllCategoriesStorePageService {
-   async execute({ slug }: CategoryRequest) {
+   async execute({ parentId }: CategoryRequest) {
       const category = await prismaClient.category.findMany({
          where: {
-            slug: slug,
+            parentId: parentId,
             status: StatusCategory.Disponivel
          },
          orderBy: {
