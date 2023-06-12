@@ -16,11 +16,11 @@ import { PageListAllAdminsController } from './controllers/users/admin/PageListA
 import { UpdateAllDateAdminController } from './controllers/users/admin/UpdateAllDateAdminController';
 import { AdminRoleEmployeeController } from './controllers/users/admin/AdminRoleEmployeeController';
 import { AdminUpdateNameController } from './controllers/users/admin/AdminUpdateNameController';
-import { EmailPasswordController } from './controllers/users/admin/PasswordRecoveryAdmin/EmailPasswordController';
-import { DeleteAdminPasswordRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/DeleteAdminPasswordRecoveryIDController';
-import { FindAdminRecoveryIDController } from './controllers/users/admin/PasswordRecoveryAdmin/FindAdminRecoveryIDController';
-import { RecoveryPasswordAdminController } from './controllers/users/admin/PasswordRecoveryAdmin/RecoveryPasswordAdminController';
-import { EmailPasswordDashboardController } from './controllers/users/admin/PasswordRecoveryAdmin/EmailPasswordDashboardController';
+import { EmailPasswordController } from './controllers/users/admin/passwordRecoveryAdmin/EmailPasswordController';
+import { DeleteAdminPasswordRecoveryIDController } from './controllers/users/admin/passwordRecoveryAdmin/DeleteAdminPasswordRecoveryIDController';
+import { FindAdminRecoveryIDController } from './controllers/users/admin/passwordRecoveryAdmin/FindAdminRecoveryIDController';
+import { RecoveryPasswordAdminController } from './controllers/users/admin/passwordRecoveryAdmin/RecoveryPasswordAdminController';
+import { EmailPasswordDashboardController } from './controllers/users/admin/passwordRecoveryAdmin/EmailPasswordDashboardController';
 
 // -- ROUTES CUSTOMER --
 import { ActiveOrDesactiveCustomerController } from './controllers/users/customer/ActiveOrDesactiveCustomerController';
