@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteAdminPasswordRecoveryIDService } from "../../../../services/users/admin/PasswordRecoveryAdmin/DeleteAdminPasswordRecoveryIDService";
+import { DeleteAdminPasswordRecoveryIDService } from "../../../../services/users/admin/passwordRecoveryAdmin/DeleteAdminPasswordRecoveryIDService";
 
 class DeleteAdminPasswordRecoveryIDController {
   async handle(req: Request, res: Response) {

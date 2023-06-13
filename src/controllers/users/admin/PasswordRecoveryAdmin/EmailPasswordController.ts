@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RequestPasswordAdminRecovery } from "../../../../services/users/admin/PasswordRecoveryAdmin/RequestPasswordAdminRecovery";
+import { RequestPasswordAdminRecovery } from "../../../../services/users/admin/passwordRecoveryAdmin/RequestPasswordAdminRecovery";
 
 
 class EmailPasswordController {

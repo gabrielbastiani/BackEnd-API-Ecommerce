@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { FindAdminRecoveryIDService } from "../../../../services/users/admin/PasswordRecoveryAdmin/FindAdminRecoveryIDService";
+import { FindAdminRecoveryIDService } from "../../../../services/users/admin/passwordRecoveryAdmin/FindAdminRecoveryIDService";
 
 class FindAdminRecoveryIDController {
   async handle(req: Request, res: Response) {
