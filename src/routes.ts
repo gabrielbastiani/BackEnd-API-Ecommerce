@@ -357,6 +357,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { SearchController } from './controllers/search/SearchController';
 
 
 
@@ -520,6 +521,9 @@ router.get('/listProductsDestaque', new ListAllProductEmphasisController().handl
 router.get('/listProductsOfertas', new ListAllProductOfferController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.get('/allTagProducts', new AllTagProductController().handle);
+
+// -- ROUTES SEARCH --
+router.get('/search', new SearchController().handle);
 
 // ROUTES CATEGORIES AND PRODUCT --
 router.post('/createProductCategory', ADMINisAuthenticated, new CreateProductCategoryController().handle);
