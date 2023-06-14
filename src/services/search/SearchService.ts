@@ -1,18 +1,30 @@
 import { StatusCategory, StatusProduct, StatusProductCategory, StatusRelationAttributeProduct } from '@prisma/client';
 import prismaClient from '../../prisma';
 
+interface SearchRequest {
+    q: any;
+}
+
 class SearchService {
-    async execute() {
-        const dados = await prismaClient.product.findMany({
+    async execute({ q }: SearchRequest) {
+        const dados = await prismaClient.productCategory.findMany({
             where: {
-                status: StatusProduct.Disponivel
+                category: {
+                    status: StatusCategory.Disponivel,
+                    slug: {in: [q]}
+                },
+            },
+            orderBy: {
+                order: 'asc'
             },
             include: {
-                productcategories: {where: {status: StatusProductCategory.Disponivel}, include: {category: true}},
-                relationattributeproducts: {where: {status: StatusRelationAttributeProduct.Disponivel}}
+                product: {include: {photoproducts: true, productcategories: true}},
+                category: true
             }
         });
+
         return dados;
+
     }
 }
 
