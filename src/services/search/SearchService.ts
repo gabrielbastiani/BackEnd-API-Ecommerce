@@ -3,29 +3,30 @@ import prismaClient from '../../prisma';
 
 interface SearchRequest {
     q: any;
-    a: any;
 }
 
 class SearchService {
-    async execute({ q, a }: SearchRequest) {
+    async execute({ q }: SearchRequest) {
         const dados = await prismaClient.product.findMany({
             where: {
-                productcategories: {
-                    some: {
-                        category: {
-                            slug: { in: q }
+                OR: [
+                    {
+                        productcategories: {
+                            some: {
+                                category: {
+                                    slug: { in: q }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        relationattributeproducts: {
+                            some: {
+                                value: { in: q }
+                            }
                         }
                     }
-                },
-                AND:
-                {
-                    relationattributeproducts: {
-                        some: {
-                            value: { in: a }
-                        }
-                    }
-                }
-
+                ]
             }
         });
 

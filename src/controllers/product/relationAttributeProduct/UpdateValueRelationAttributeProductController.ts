@@ -5,13 +5,14 @@ class UpdateValueRelationAttributeProductController {
     async handle(req: Request, res: Response) {
         const relationAttributeProduct_id = req.query.relationAttributeProduct_id as string;
 
-        const { value } = req.body;
+        const { value, slug } = req.body;
 
         const updateValue = new UpdateValueRelationAttributeProductService();
 
         const attribute = await updateValue.execute({
             relationAttributeProduct_id,
-            value
+            value,
+            slug
         });
 
         return res.json(attribute);

@@ -419,6 +419,7 @@ model RelationAttributeProduct {
   typeAttribute TypeAttribute?                 @relation(fields: [type], references: [type])
   type          String?
   value         String?
+  slug          String?                        @db.VarChar(85)
   nivel         Int?
   parentId      String?
   order         Int?
