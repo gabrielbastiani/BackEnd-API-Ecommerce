@@ -1,3 +1,4 @@
+import { StatusCategory } from '@prisma/client';
 import prismaClient from '../../../prisma';
 
 interface ProductsRequest {
@@ -9,6 +10,7 @@ class ProductsPageCategoriesService {
         const products = await prismaClient.productCategory.findMany({
             where: {
                 category: {
+                    status: StatusCategory.Disponivel,
                     slug: slug,
                 },
             },

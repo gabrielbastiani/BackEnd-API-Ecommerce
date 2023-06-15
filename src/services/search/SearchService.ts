@@ -1,4 +1,4 @@
-import { StatusCategory, StatusProduct, StatusProductCategory, StatusRelationAttributeProduct } from '@prisma/client';
+import { StatusCategory } from '@prisma/client';
 import prismaClient from '../../prisma';
 
 interface SearchRequest {
@@ -11,14 +11,14 @@ class SearchService {
             where: {
                 category: {
                     status: StatusCategory.Disponivel,
-                    slug: {in: [q]}
+                    slug: { in: q }
                 },
             },
             orderBy: {
                 order: 'asc'
             },
             include: {
-                product: {include: {photoproducts: true, productcategories: true}},
+                product: { include: { photoproducts: true, productcategories: true } },
                 category: true
             }
         });
