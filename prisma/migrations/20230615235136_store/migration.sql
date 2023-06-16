@@ -337,6 +337,7 @@ CREATE TABLE "relationattributeproducts" (
     "product_id" TEXT,
     "type" TEXT,
     "value" TEXT,
+    "slug" VARCHAR(85),
     "nivel" INTEGER,
     "parentId" TEXT,
     "order" INTEGER,
