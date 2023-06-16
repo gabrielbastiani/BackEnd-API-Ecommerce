@@ -30,7 +30,7 @@ class SearchService {
                                 status: StatusRelationAttributeProduct.Disponivel
                             },
                             some: {
-                                value: { in: q }
+                                slug: { in: q }
                             }
                         }
                     }
