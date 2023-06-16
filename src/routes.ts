@@ -138,7 +138,10 @@ import { ListAllProductOfferController } from './controllers/product/ListAllProd
 import { UpdateProductFreeShippingController } from './controllers/product/UpdateProductFreeShippingController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
-// ROUTES CATEGORY AND PRODUCT --
+// -- ROUTES SEARCH --
+import { SearchController } from './controllers/search/SearchController';
+
+// -- ROUTES CATEGORY AND PRODUCT --
 import { CreateProductCategoryController } from './controllers/product/productCategory/CreateProductCategoryController';
 import { UpdateOrderProductCategoryController } from './controllers/product/productCategory/UpdateOrderProductCategoryController';
 import { DeleteAllProductCategoryController } from './controllers/product/productCategory/DeleteAllProductCategoryController';
@@ -151,7 +154,7 @@ import { ProductsPageCategoriesController } from './controllers/product/productC
 import { FindAllRelationProductAndCategoryController } from './controllers/product/productCategory/FindAllRelationProductAndCategoryController';
 import { FindUniqueRelationProductCategoryController } from './controllers/product/productCategory/FindUniqueRelationProductCategoryController';
 
-// ROUTES DESCRIPTION PRODUCT --
+// -- ROUTES DESCRIPTION PRODUCT --
 import { FindUniqueDescriptionProductController } from './controllers/product/descriptionProduct/FindUniqueDescriptionProductController';
 import { CreateDescriptionProductController } from './controllers/product/descriptionProduct/CreateDescriptionProductController';
 import { UpdateTitleDescriptionProductController } from './controllers/product/descriptionProduct/UpdateTitleDescriptionProductController';
@@ -164,7 +167,7 @@ import { UpdateOrderDescriptionProductController } from './controllers/product/d
 import { UpdateDescriptionProductController } from './controllers/product/descriptionProduct/UpdateDescriptionProductController';
 import { UpdateStatusDescriptionProductController } from './controllers/product/descriptionProduct/UpdateStatusDescriptionProductController';
 
-// ROUTES TAG --
+// -- ROUTES TAG --
 import { AllTagProductController } from './controllers/product/tag/AllTagProductController';
 import { AllTagController } from './controllers/product/tag/AllTagController';
 import { CreateTagController } from './controllers/product/tag/CreateTagController';
@@ -173,13 +176,13 @@ import { DeleteTagController } from './controllers/product/tag/DeleteTagControll
 import { DeleteAllTagController } from './controllers/product/tag/DeleteAllTagController';
 import { FindUniqueTagController } from './controllers/product/tag/FindUniqueTagController';
 
-// ROUTES TYPE ATTRIBUTE --
+// -- ROUTES TYPE ATTRIBUTE --
 import { CreateTypeAttributeController } from './controllers/typeAttribute/CreateTypeAttributeController';
 import { UpdateTypeAttributeController } from './controllers/typeAttribute/UpdateTypeAttributeController';
 import { AllTypeAttributeController } from './controllers/typeAttribute/AllTypeAttributeController';
 import { FindUniqueTypeAttributeController } from './controllers/typeAttribute/FindUniqueTypeAttributeController';
 
-// ROUTES RELATION ATTRIBUTE AND PRODUCT --
+// -- ROUTES RELATION ATTRIBUTE AND PRODUCT --
 import { AllRelationAttributeProductController } from './controllers/product/relationAttributeProduct/AllRelationAttributeProductController';
 import { CreateRelationAttributeProductController } from './controllers/product/relationAttributeProduct/CreateRelationAttributeProductController';
 import { DeleteProductRelationAllController } from './controllers/product/relationAttributeProduct/DeleteProductRelationAllController';
@@ -200,6 +203,7 @@ import { DeleteImageAttributeRelationIDController } from './controllers/product/
 import { FindUniqueImageAttributeController } from './controllers/product/relationAttributeProduct/imageAttribute/FindUniqueImageAttributeController';
 import { AllValueAttributeController } from './controllers/product/relationAttributeProduct/AllValueAttributeController';
 import { DeleteImageAttributeProductIDController } from './controllers/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeProductIDController';
+import { ProductsAndAttributeController } from './controllers/product/relationAttributeProduct/ProductsAndAttributeController';
 
 // -- ROUTES AVALIETION --
 import { CreateAvalietionController } from './controllers/avalietion/CreateAvalietionController';
@@ -357,7 +361,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { SearchController } from './controllers/search/SearchController';
 
 
 
@@ -565,6 +568,7 @@ router.delete('/deleteAllImageRelationAttribute', ADMINisAuthenticated, new Dele
 router.delete('/deleteAllImageProductRelationAttribute', ADMINisAuthenticated, new DeleteImageAttributeProductIDController().handle);
 router.get('/findUniqueImageAttribute', ADMINisAuthenticated, new FindUniqueImageAttributeController().handle);
 router.get('/allValueAttributesValue', ADMINisAuthenticated, new AllValueAttributeController().handle);
+router.get('/allProductsAndAttributes', new ProductsAndAttributeController().handle);
 
 // -- ROUTES AVALIETION --
 router.post('/createAvalietion', ADMINisAuthenticated, new CreateAvalietionController().handle);

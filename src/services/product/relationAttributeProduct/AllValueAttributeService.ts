@@ -9,7 +9,6 @@ class AllValueAttributeService {
             include: {
                 imageattributes: true,
                 product: true,
-                store: true,
                 typeAttribute: true
             }
         });
