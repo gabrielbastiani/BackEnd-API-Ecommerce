@@ -16,9 +16,7 @@ class ProductsAndAttributeService {
                 imageattributes: true,
                 typeAttribute: {
                     include: {
-                        relationattributeproducts: {
-                            distinct: "value"
-                        }
+                        relationattributeproducts: true
                     }
                 }
             }
