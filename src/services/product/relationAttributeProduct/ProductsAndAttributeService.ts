@@ -11,6 +11,10 @@ class ProductsAndAttributeService {
             where: {
                 status: StatusRelationAttributeProduct.Disponivel,
                 product_id: { in: product_id }
+            },
+            include: {
+                imageattributes: true,
+                typeAttribute: true
             }
         });
 
