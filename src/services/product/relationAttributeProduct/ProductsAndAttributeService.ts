@@ -14,7 +14,13 @@ class ProductsAndAttributeService {
             },
             include: {
                 imageattributes: true,
-                typeAttribute: true
+                typeAttribute: {
+                    include: {
+                        relationattributeproducts: {
+                            distinct: "value"
+                        }
+                    }
+                }
             }
         });
 
