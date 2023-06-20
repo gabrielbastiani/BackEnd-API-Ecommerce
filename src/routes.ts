@@ -361,6 +361,8 @@ import { CreateValueAttributeController } from './controllers/attribute/valueAtt
 import { UpdateTypeValueAttributeController } from './controllers/attribute/valueAttribute/UpdateTypeValueAttributeController';
 import { AllValuesTypeAttributeController } from './controllers/attribute/valueAttribute/AllValuesTypeAttributeController';
 import { UpdateValueOrderAttributeController } from './controllers/attribute/valueAttribute/UpdateValueOrderAttributeController';
+import { DeleteValueAttributeController } from './controllers/attribute/valueAttribute/DeleteValueAttributeController';
+import { FindUniqueValueAttributeController } from './controllers/attribute/valueAttribute/FindUniqueValueAttributeController';
 
 
 
@@ -553,6 +555,8 @@ router.put('/updateValueAttribute', ADMINisAuthenticated, new UpdateValueAttribu
 router.put('/updateTypeValueAttribute', ADMINisAuthenticated, new UpdateTypeValueAttributeController().handle);
 router.put('/updateOrderValueAttribute', ADMINisAuthenticated, new UpdateValueOrderAttributeController().handle);
 router.get('/allValuesTypeAttribute', ADMINisAuthenticated, new AllValuesTypeAttributeController().handle);
+router.delete('/deleteValueAttribute', ADMINisAuthenticated, new DeleteValueAttributeController().handle);
+router.get('/findUniqueValueAttribute', ADMINisAuthenticated, new FindUniqueValueAttributeController().handle);
 
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
 router.post('/createRelationAttributeProduct', ADMINisAuthenticated, new CreateRelationAttributeProductController().handle);
