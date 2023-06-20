@@ -136,7 +136,7 @@ model Store {
   products                 Product[]
   imagestores              ImageStore[]
   tags                     Tag[]
-  attributes               Attribute[]
+  attributesproducts       AttributeProduct[]
   variations               Variation[]
   menucategories           MenuCategory[]
   avalietions              Avalietion[]
@@ -148,8 +148,8 @@ model Store {
   filtercategories         FilterCategory[]
   buytogethers             BuyTogether[]
   productsvariations       ProductVariation[]
-  TypeAttribute            TypeAttribute[]
-  ValueAttribute           ValueAttribute[]
+  Typesattributes          TypeAttribute[]
+  valuesattributes         ValueAttribute[]
 
   @@map("stores")
 }
@@ -288,7 +288,7 @@ model Product {
   photoproducts       PhotoProduct[]
   descriptionproducts DescriptionProduct[]
   tags                Tag[]
-  attributes          Attribute[]
+  attributesproducts  AttributeProduct[]
   variations          Variation[]
   avalietions         Avalietion[]
   productcategories   ProductCategory[]
@@ -399,6 +399,12 @@ model TypeAttribute {
   id   String  @id @default(uuid())
   type String? @unique @db.VarChar(155)
 
+  valueattributes    ValueAttribute[]
+  attributesproducts AttributeProduct[]
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
   store    Store?  @relation(fields: [store_id], references: [id])
   store_id String?
 
@@ -406,10 +412,15 @@ model TypeAttribute {
 }
 
 model ValueAttribute {
-  id    String  @id @default(uuid())
-  value String? @unique @db.VarChar(195)
+  id            String         @id @default(uuid())
+  typeAttribute TypeAttribute? @relation(fields: [type], references: [type])
+  type          String?
+  value         String?        @db.VarChar(195)
 
   imageattributes ImageAttribute[]
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
   store_id String?
@@ -429,19 +440,13 @@ model ImageAttribute {
   @@map("imageattributes")
 }
 
-model Attribute {
-  id         String          @id @default(uuid())
-  product    Product?        @relation(fields: [product_id], references: [id])
-  product_id String?
-  type       String?
-  value      String?
-  slug       String?
-  nivel      Int?
-  parentId   String?
-  order      Int?
-  status     StatusAttribute @default(Disponivel)
-
-  groupfilter GroupFilter[]
+model AttributeProduct {
+  id               String                 @id @default(uuid())
+  product          Product?               @relation(fields: [product_id], references: [id])
+  product_id       String?
+  typeAttribute    TypeAttribute?         @relation(fields: [typeAttribute_id], references: [id])
+  typeAttribute_id String?
+  status           StatusAttributeProduct @default(Disponivel)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -449,10 +454,10 @@ model Attribute {
   store    Store?  @relation(fields: [store_id], references: [id])
   store_id String?
 
-  @@map("attributes")
+  @@map("attributesproducts")
 }
 
-enum StatusAttribute {
+enum StatusAttributeProduct {
   Disponivel
   Indisponivel
 }
@@ -610,7 +615,6 @@ model GroupFilter {
   id            String            @id @default(uuid())
   nameGroup     String?           @db.VarChar(385)
   typeAttribute String?
-  type          String?
   slugCategory  String?           @db.VarChar(400)
   order         Int?
   status        StatusGroupFilter @default(Disponivel)
@@ -621,10 +625,8 @@ model GroupFilter {
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
-  store       Store?     @relation(fields: [store_id], references: [id])
-  store_id    String?
-  Attribute   Attribute? @relation(fields: [attributeId], references: [id])
-  attributeId String?
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
 
   @@map("groupfilters")
 }
