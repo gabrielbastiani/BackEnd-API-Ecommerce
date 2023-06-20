@@ -4,11 +4,12 @@ interface ValueRequest {
   type: string;
   value: string;
   slug: string;
+  order: number;
   store_id: string;
 }
 
 class CreateValueAttributeService {
-  async execute({ type, value, store_id }: ValueRequest) {
+  async execute({ type, value, order, store_id }: ValueRequest) {
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -24,6 +25,7 @@ class CreateValueAttributeService {
         type: type,
         value: value,
         slug: removerAcentos(value),
+        order: Number(order),
         store_id: store_id
       }
     });

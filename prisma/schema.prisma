@@ -419,6 +419,7 @@ model ValueAttribute {
   type          String?
   value         String?        @db.VarChar(110)
   slug          String?
+  order         Int?
 
   imageAttribute ImageAttribute[]
 

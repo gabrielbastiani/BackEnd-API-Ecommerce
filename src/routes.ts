@@ -359,6 +359,8 @@ import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 import { CreateValueAttributeController } from './controllers/attribute/valueAttribute/CreateValueAttributeController';
 import { UpdateTypeValueAttributeController } from './controllers/attribute/valueAttribute/UpdateTypeValueAttributeController';
+import { AllValuesTypeAttributeController } from './controllers/attribute/valueAttribute/AllValuesTypeAttributeController';
+import { UpdateValueOrderAttributeController } from './controllers/attribute/valueAttribute/UpdateValueOrderAttributeController';
 
 
 
@@ -549,6 +551,8 @@ router.get('/findUniqueTypeAttribute', new FindUniqueTypeAttributeController().h
 router.post('/createValueAttribute', ADMINisAuthenticated, new CreateValueAttributeController().handle);
 router.put('/updateValueAttribute', ADMINisAuthenticated, new UpdateValueAttributeController().handle);
 router.put('/updateTypeValueAttribute', ADMINisAuthenticated, new UpdateTypeValueAttributeController().handle);
+router.put('/updateOrderValueAttribute', ADMINisAuthenticated, new UpdateValueOrderAttributeController().handle);
+router.get('/allValuesTypeAttribute', ADMINisAuthenticated, new AllValuesTypeAttributeController().handle);
 
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
 router.post('/createRelationAttributeProduct', ADMINisAuthenticated, new CreateRelationAttributeProductController().handle);

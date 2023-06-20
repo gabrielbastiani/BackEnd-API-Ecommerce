@@ -340,6 +340,7 @@ CREATE TABLE "valuesattributes" (
     "type" TEXT,
     "value" VARCHAR(110),
     "slug" TEXT,
+    "order" INTEGER,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
     "store_id" TEXT,

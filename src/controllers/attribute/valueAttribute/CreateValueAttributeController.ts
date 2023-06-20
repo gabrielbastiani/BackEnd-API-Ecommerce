@@ -7,6 +7,7 @@ class CreateValueAttributeController {
       type,
       value,
       slug,
+      order,
       store_id
     } = req.body;
 
@@ -16,6 +17,7 @@ class CreateValueAttributeController {
       type,
       value,
       slug,
+      order,
       store_id
     });
 

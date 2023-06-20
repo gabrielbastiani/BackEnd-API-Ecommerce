@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { CreateImageAttributeService } from "../../../../services/product/relationAttributeProduct/imageAttribute/CreateImageAttributeService";
+import { CreateImageAttributeService } from "../../../../services/attribute/valueAttribute/imageAttribute/CreateImageAttributeService";
 
 class CreateImageAttributeController {
     async handle(req: Request, res: Response) {
-        const { relationAttributeProduct_id, product_id } = req.body;
+        const { valueAttribute_id } = req.body;
 
         const attribute = new CreateImageAttributeService();
 
@@ -15,8 +15,7 @@ class CreateImageAttributeController {
 
             const createImage = await attribute.execute({
                 image,
-                relationAttributeProduct_id,
-                product_id
+                valueAttribute_id
             });
 
             return res.json(createImage);
