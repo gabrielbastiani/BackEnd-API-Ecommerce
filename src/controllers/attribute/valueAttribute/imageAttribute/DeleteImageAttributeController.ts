@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { DeleteImageAttributeService } from '../../../../services/product/relationAttributeProduct/imageAttribute/DeleteImageAttributeService';
-import { FindUniqueImageAttributeService } from '../../../../services/product/relationAttributeProduct/imageAttribute/FindUniqueImageAttributeService';
+import { DeleteImageAttributeService } from '../../../../services/attribute/valueAttribute/imageAttribute/DeleteImageAttributeService';
+import { FindUniqueImageAttributeService } from '../../../../services/attribute/valueAttribute/imageAttribute/FindUniqueImageAttributeService';
 import fs from 'fs';
 
 class DeleteImageAttributeController {

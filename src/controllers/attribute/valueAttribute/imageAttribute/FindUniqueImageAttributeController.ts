@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { FindUniqueImageAttributeService } from '../../../../services/product/relationAttributeProduct/imageAttribute/FindUniqueImageAttributeService';
+import { FindUniqueImageAttributeService } from '../../../../services/attribute/valueAttribute/imageAttribute/FindUniqueImageAttributeService';
 
 class FindUniqueImageAttributeController {
     async handle(req: Request, res: Response) {

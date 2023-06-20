@@ -1,14 +1,14 @@
 import prismaClient from '../../../../prisma';
 
 interface ImageAttributeRequest {
-    relationAttributeProduct_id: string;
+    valueAttribute_id: string;
 }
 
 class FindAllImageAttributeRelationIDService {
-    async execute({ relationAttributeProduct_id }: ImageAttributeRequest) {
+    async execute({ valueAttribute_id }: ImageAttributeRequest) {
         const exactImage = await prismaClient.imageAttribute.findMany({
             where: {
-                relationAttributeProduct_id: relationAttributeProduct_id
+                valueAttribute_id: valueAttribute_id
             }
         });
 

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { UpdateImageAttributeService } from '../../../../services/product/relationAttributeProduct/imageAttribute/UpdateImageAttributeService';
-import { FindUniqueImageAttributeService } from '../../../../services/product/relationAttributeProduct/imageAttribute/FindUniqueImageAttributeService';
+import { UpdateImageAttributeService } from '../../../../services/attribute/valueAttribute/imageAttribute/UpdateImageAttributeService';
+import { FindUniqueImageAttributeService } from '../../../../services/attribute/valueAttribute/imageAttribute/FindUniqueImageAttributeService';
 import fs from 'fs';
 
 class UpdateImageAttributeController {

@@ -1,16 +1,16 @@
 import prismaClient from "../../../prisma";
 
-interface RelationAttributeProductRequest {
-    relationAttributeProduct_id: string;
+interface ValueRequest {
+    valueAttribute_id: string;
     value: string;
     slug: string;
 }
 
-class UpdateValueRelationAttributeProductService {
+class UpdateValueAttributeService {
     async execute({
-        relationAttributeProduct_id,
+        valueAttribute_id,
         value,
-    }: RelationAttributeProductRequest) {
+    }: ValueRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -21,9 +21,9 @@ class UpdateValueRelationAttributeProductService {
                 .replace(/[/]/g, "-");
         }
 
-        const updateAttribute = await prismaClient.relationAttributeProduct.update({
+        const updateAttribute = await prismaClient.valueAttribute.update({
             where: {
-                id: relationAttributeProduct_id
+                id: valueAttribute_id
             },
             data: {
                 value: value,
@@ -36,4 +36,4 @@ class UpdateValueRelationAttributeProductService {
     }
 }
 
-export { UpdateValueRelationAttributeProductService }
+export { UpdateValueAttributeService }

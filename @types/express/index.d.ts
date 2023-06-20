@@ -19,6 +19,7 @@ declare namespace Express {
     productCategory_id: string;
     tag_id: string;
     typeAttribute_id: string;
+    valueAttribute_id: string;
     relationAttributeProduct_id: string;
     imageAttribute_id: string;
     avalietion_id: string;

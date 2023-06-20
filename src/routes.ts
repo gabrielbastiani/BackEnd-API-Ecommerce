@@ -182,6 +182,9 @@ import { UpdateTypeAttributeController } from './controllers/attribute/typeAttri
 import { AllTypeAttributeController } from './controllers/attribute/typeAttribute/AllTypeAttributeController';
 import { FindUniqueTypeAttributeController } from './controllers/attribute/typeAttribute/FindUniqueTypeAttributeController';
 
+// -- ROUTES VALUE ATTRIBUTE --
+import { UpdateValueAttributeController } from './controllers/attribute/valueAttribute/UpdateValueAttributeController';
+
 // -- ROUTES RELATION ATTRIBUTE AND PRODUCT --
 import { CreateRelationAttributeProductController } from './controllers/product/relationAttributeProduct/CreateRelationAttributeProductController';
 import { DeleteProductRelationAllController } from './controllers/product/relationAttributeProduct/DeleteProductRelationAllController';
@@ -189,16 +192,13 @@ import { DeleteRelationAttributeProductController } from './controllers/product/
 import { FindUniqueRelationAttributeProductController } from './controllers/product/relationAttributeProduct/FindUniqueRelationAttributeProductController';
 import { FirstFirstRelationAttributeProductController } from './controllers/product/relationAttributeProduct/FirstFirstRelationAttributeProductController';
 import { PageRelationAttributeProductController } from './controllers/product/relationAttributeProduct/PageRelationAttributeProductController';
-import { UpdateValueRelationAttributeProductController } from './controllers/attribute/valueAttribute/UpdateValueRelationAttributeProductController';
 import { AllProductAttributeController } from './controllers/product/relationAttributeProduct/AllProductAttributeController';
 import { UpdateOrderRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateOrderRelationAttributeProductController';
 import { UpdateStatusRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateStatusRelationAttributeProductController';
-import { CreateImageAttributeController } from './controllers/attribute/imageAttribute/CreateImageAttributeController';
-import { UpdateImageAttributeController } from './controllers/attribute/imageAttribute/UpdateImageAttributeController';
-import { DeleteImageAttributeController } from './controllers/attribute/imageAttribute/DeleteImageAttributeController';
-import { DeleteImageAttributeRelationIDController } from './controllers/attribute/imageAttribute/DeleteImageAttributeRelationIDController';
-import { FindUniqueImageAttributeController } from './controllers/attribute/imageAttribute/FindUniqueImageAttributeController';
-import { DeleteImageAttributeProductIDController } from './controllers/attribute/imageAttribute/DeleteImageAttributeProductIDController';
+import { CreateImageAttributeController } from './controllers/attribute/valueAttribute/imageAttribute/CreateImageAttributeController';
+import { UpdateImageAttributeController } from './controllers/attribute/valueAttribute/imageAttribute/UpdateImageAttributeController';
+import { DeleteImageAttributeController } from './controllers/attribute/valueAttribute/imageAttribute/DeleteImageAttributeController';
+import { FindUniqueImageAttributeController } from './controllers/attribute/valueAttribute/imageAttribute/FindUniqueImageAttributeController';
 import { ProductsAndAttributeController } from './controllers/product/relationAttributeProduct/ProductsAndAttributeController';
 
 // -- ROUTES AVALIETION --
@@ -357,6 +357,8 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { CreateValueAttributeController } from './controllers/attribute/valueAttribute/CreateValueAttributeController';
+import { UpdateTypeValueAttributeController } from './controllers/attribute/valueAttribute/UpdateTypeValueAttributeController';
 
 
 
@@ -543,6 +545,11 @@ router.put('/updateTypeAttribute', ADMINisAuthenticated, new UpdateTypeAttribute
 router.get('/allTypeAttributes', new AllTypeAttributeController().handle);
 router.get('/findUniqueTypeAttribute', new FindUniqueTypeAttributeController().handle);
 
+// -- ROUTES VALUE ATTRIBUTE --
+router.post('/createValueAttribute', ADMINisAuthenticated, new CreateValueAttributeController().handle);
+router.put('/updateValueAttribute', ADMINisAuthenticated, new UpdateValueAttributeController().handle);
+router.put('/updateTypeValueAttribute', ADMINisAuthenticated, new UpdateTypeValueAttributeController().handle);
+
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
 router.post('/createRelationAttributeProduct', ADMINisAuthenticated, new CreateRelationAttributeProductController().handle);
 router.delete('/deleteAllRelationProductAttributes', ADMINisAuthenticated, new DeleteProductRelationAllController().handle);
@@ -551,14 +558,11 @@ router.get('/findUniqueRelationAttributeProduct', ADMINisAuthenticated, new Find
 router.get('/findFirstRelationAttributeProduct', ADMINisAuthenticated, new FirstFirstRelationAttributeProductController().handle);
 router.get('/pageAttributesRelationsProducts', ADMINisAuthenticated, new PageRelationAttributeProductController().handle);
 router.get('/findManyAttributeIDproduct', ADMINisAuthenticated, new AllProductAttributeController().handle);
-router.put('/updateValueRelationAttributeProduct', ADMINisAuthenticated, new UpdateValueRelationAttributeProductController().handle);
 router.put('/updateOrderRelationAttributeProduct', ADMINisAuthenticated, new UpdateOrderRelationAttributeProductController().handle);
 router.put('/updateStatusRelationAttributeProduct', ADMINisAuthenticated, new UpdateStatusRelationAttributeProductController().handle);
 router.post('/createImageAttributeProduct', ADMINisAuthenticated, upload.single('file'), new CreateImageAttributeController().handle);
 router.put('/updateImageAttribute', ADMINisAuthenticated, upload.single('file'), new UpdateImageAttributeController().handle);
 router.delete('/deleteImageAttributeProduct', ADMINisAuthenticated, new DeleteImageAttributeController().handle);
-router.delete('/deleteAllImageRelationAttribute', ADMINisAuthenticated, new DeleteImageAttributeRelationIDController().handle);
-router.delete('/deleteAllImageProductRelationAttribute', ADMINisAuthenticated, new DeleteImageAttributeProductIDController().handle);
 router.get('/findUniqueImageAttribute', ADMINisAuthenticated, new FindUniqueImageAttributeController().handle);
 router.get('/allProductsAndAttributes', new ProductsAndAttributeController().handle);
 

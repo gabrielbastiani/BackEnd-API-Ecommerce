@@ -4,9 +4,8 @@ class AllTypeAttributeService {
    async execute() {
       const attributes = await prismaClient.typeAttribute.findMany({
          include: {
-            groupfilters: true,
             relationattributeproducts: true,
-            store: true
+            valueattribute: true
          }
       })
 
