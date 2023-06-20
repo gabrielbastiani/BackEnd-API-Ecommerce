@@ -149,6 +149,8 @@ model Store {
   filtercategories          FilterCategory[]
   buytogethers              BuyTogether[]
   productsvariations        ProductVariation[]
+  valuesattributes          ValueAttribute[]
+  coupons                   Coupon[]
 
   @@map("stores")
 }
@@ -292,7 +294,6 @@ model Product {
   avalietions               Avalietion[]
   productcategories         ProductCategory[]
   buytogethers              BuyTogether[]              @relation("buy")
-  imageattribute            ImageAttribute[]
   productsvariations        ProductVariation[]
 
   created_at DateTime? @default(now())
@@ -398,10 +399,10 @@ model Tag {
 model TypeAttribute {
   id   String  @id @default(uuid())
   type String? @unique @db.VarChar(300)
-  slug String? @db.VarChar(300)
+  slug String?
 
+  valueattribute            ValueAttribute[]
   relationattributeproducts RelationAttributeProduct[]
-  groupfilters              GroupFilter[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -412,20 +413,44 @@ model TypeAttribute {
   @@map("typeattributes")
 }
 
+model ValueAttribute {
+  id            String         @id @default(uuid())
+  typeAttribute TypeAttribute? @relation(fields: [type], references: [type])
+  type          String?
+  value         String?        @db.VarChar(110)
+  slug          String?
+
+  imageAttribute ImageAttribute[]
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("valuesattributes")
+}
+
+model ImageAttribute {
+  id                String         @id @default(uuid())
+  valueAttribute    ValueAttribute @relation(fields: [valueAttribute_id], references: [id])
+  valueAttribute_id String
+  image             String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("imageattributes")
+}
+
 model RelationAttributeProduct {
   id            String                         @id @default(uuid())
   product       Product?                       @relation(fields: [product_id], references: [id])
   product_id    String?
   typeAttribute TypeAttribute?                 @relation(fields: [type], references: [type])
   type          String?
-  value         String?
-  slug          String?                        @db.VarChar(85)
-  nivel         Int?
-  parentId      String?
   order         Int?
   status        StatusRelationAttributeProduct @default(Disponivel)
-
-  imageattributes ImageAttribute[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -439,20 +464,6 @@ model RelationAttributeProduct {
 enum StatusRelationAttributeProduct {
   Disponivel
   Indisponivel
-}
-
-model ImageAttribute {
-  id                          String                   @id @default(uuid())
-  relationAttributeProduct    RelationAttributeProduct @relation(fields: [relationAttributeProduct_id], references: [id])
-  relationAttributeProduct_id String
-  product                     Product?                 @relation(fields: [product_id], references: [id])
-  product_id                  String?
-  image                       String
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  @@map("imageattributes")
 }
 
 model Avalietion {
@@ -562,6 +573,30 @@ enum StatusBuyTogether {
   Indisponivel
 }
 
+model Coupon {
+  id           String       @id @default(uuid())
+  name         String?      @db.VarChar(385)
+  description  String?      @db.VarChar(685)
+  startDate    String?      @default("01/01/3075 00:00")
+  endDate      String?      @default("01/01/5575 00:00")
+  code         String?      @db.VarChar(385)
+  amountCoupon Int?
+  active       StatusCoupon @default(Nao)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("coupons")
+}
+
+enum StatusCoupon {
+  Sim
+  Nao
+}
+
 model MenuCategory {
   id           String             @id @default(uuid())
   nameGroup    String?            @db.VarChar(385)
@@ -607,8 +642,7 @@ model ImageMenuCategory {
 model GroupFilter {
   id            String            @id @default(uuid())
   nameGroup     String?           @db.VarChar(385)
-  typeAttribute TypeAttribute?    @relation(fields: [type], references: [type])
-  type          String?
+  typeAttribute String?
   slugCategory  String?           @db.VarChar(400)
   order         Int?
   status        StatusGroupFilter @default(Disponivel)

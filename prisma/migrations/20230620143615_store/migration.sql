@@ -44,6 +44,9 @@ CREATE TYPE "StatusProductVariation" AS ENUM ('Disponivel', 'Indisponivel');
 CREATE TYPE "StatusBuyTogether" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
+CREATE TYPE "StatusCoupon" AS ENUM ('Sim', 'Nao');
+
+-- CreateEnum
 CREATE TYPE "StatusMenuCategory" AS ENUM ('Disponivel', 'Indisponivel');
 
 -- CreateEnum
@@ -323,7 +326,7 @@ CREATE TABLE "tags" (
 CREATE TABLE "typeattributes" (
     "id" TEXT NOT NULL,
     "type" VARCHAR(300),
-    "slug" VARCHAR(300),
+    "slug" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
     "store_id" TEXT,
@@ -332,14 +335,34 @@ CREATE TABLE "typeattributes" (
 );
 
 -- CreateTable
+CREATE TABLE "valuesattributes" (
+    "id" TEXT NOT NULL,
+    "type" TEXT,
+    "value" VARCHAR(110),
+    "slug" TEXT,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+    "store_id" TEXT,
+
+    CONSTRAINT "valuesattributes_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "imageattributes" (
+    "id" TEXT NOT NULL,
+    "valueAttribute_id" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+
+    CONSTRAINT "imageattributes_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "relationattributeproducts" (
     "id" TEXT NOT NULL,
     "product_id" TEXT,
     "type" TEXT,
-    "value" TEXT,
-    "slug" VARCHAR(85),
-    "nivel" INTEGER,
-    "parentId" TEXT,
     "order" INTEGER,
     "status" "StatusRelationAttributeProduct" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -347,18 +370,6 @@ CREATE TABLE "relationattributeproducts" (
     "store_id" TEXT,
 
     CONSTRAINT "relationattributeproducts_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "imageattributes" (
-    "id" TEXT NOT NULL,
-    "relationAttributeProduct_id" TEXT NOT NULL,
-    "product_id" TEXT,
-    "image" TEXT NOT NULL,
-    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3),
-
-    CONSTRAINT "imageattributes_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -434,6 +445,23 @@ CREATE TABLE "buytogethers" (
 );
 
 -- CreateTable
+CREATE TABLE "coupons" (
+    "id" TEXT NOT NULL,
+    "name" VARCHAR(385),
+    "description" VARCHAR(685),
+    "startDate" TEXT DEFAULT '01/01/3075 00:00',
+    "endDate" TEXT DEFAULT '01/01/5575 00:00',
+    "code" VARCHAR(385),
+    "amountCoupon" INTEGER,
+    "active" "StatusCoupon" NOT NULL DEFAULT 'Nao',
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+    "store_id" TEXT,
+
+    CONSTRAINT "coupons_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "menucategories" (
     "id" TEXT NOT NULL,
     "nameGroup" VARCHAR(385),
@@ -468,7 +496,7 @@ CREATE TABLE "imagemenucategories" (
 CREATE TABLE "groupfilters" (
     "id" TEXT NOT NULL,
     "nameGroup" VARCHAR(385),
-    "type" TEXT,
+    "typeAttribute" TEXT,
     "slugCategory" VARCHAR(400),
     "order" INTEGER,
     "status" "StatusGroupFilter" NOT NULL DEFAULT 'Disponivel',
@@ -656,6 +684,15 @@ ALTER TABLE "tags" ADD CONSTRAINT "tags_store_id_fkey" FOREIGN KEY ("store_id") 
 ALTER TABLE "typeattributes" ADD CONSTRAINT "typeattributes_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "valuesattributes" ADD CONSTRAINT "valuesattributes_type_fkey" FOREIGN KEY ("type") REFERENCES "typeattributes"("type") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "valuesattributes" ADD CONSTRAINT "valuesattributes_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "imageattributes" ADD CONSTRAINT "imageattributes_valueAttribute_id_fkey" FOREIGN KEY ("valueAttribute_id") REFERENCES "valuesattributes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "relationattributeproducts" ADD CONSTRAINT "relationattributeproducts_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -663,12 +700,6 @@ ALTER TABLE "relationattributeproducts" ADD CONSTRAINT "relationattributeproduct
 
 -- AddForeignKey
 ALTER TABLE "relationattributeproducts" ADD CONSTRAINT "relationattributeproducts_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "imageattributes" ADD CONSTRAINT "imageattributes_relationAttributeProduct_id_fkey" FOREIGN KEY ("relationAttributeProduct_id") REFERENCES "relationattributeproducts"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "imageattributes" ADD CONSTRAINT "imageattributes_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "avalietions" ADD CONSTRAINT "avalietions_customer_id_fkey" FOREIGN KEY ("customer_id") REFERENCES "customers"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -704,6 +735,9 @@ ALTER TABLE "buytogethers" ADD CONSTRAINT "buytogethers_product_id_fkey" FOREIGN
 ALTER TABLE "buytogethers" ADD CONSTRAINT "buytogethers_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "coupons" ADD CONSTRAINT "coupons_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "menucategories" ADD CONSTRAINT "menucategories_name_fkey" FOREIGN KEY ("name") REFERENCES "categories"("name") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -711,9 +745,6 @@ ALTER TABLE "menucategories" ADD CONSTRAINT "menucategories_store_id_fkey" FOREI
 
 -- AddForeignKey
 ALTER TABLE "imagemenucategories" ADD CONSTRAINT "imagemenucategories_menuCategory_id_fkey" FOREIGN KEY ("menuCategory_id") REFERENCES "menucategories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "groupfilters" ADD CONSTRAINT "groupfilters_type_fkey" FOREIGN KEY ("type") REFERENCES "typeattributes"("type") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "groupfilters" ADD CONSTRAINT "groupfilters_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
