@@ -397,7 +397,7 @@ model Tag {
 
 model TypeAttribute {
   id   String  @id @default(uuid())
-  type String? @db.VarChar(155)
+  type String? @unique @db.VarChar(155)
 
   store    Store?  @relation(fields: [store_id], references: [id])
   store_id String?
@@ -407,7 +407,7 @@ model TypeAttribute {
 
 model ValueAttribute {
   id    String  @id @default(uuid())
-  value String? @db.VarChar(195)
+  value String? @unique @db.VarChar(195)
 
   imageattributes ImageAttribute[]
 
