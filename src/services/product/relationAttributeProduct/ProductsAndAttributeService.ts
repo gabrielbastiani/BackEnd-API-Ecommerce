@@ -13,7 +13,7 @@ class ProductsAndAttributeService {
                 product_id: { in: product_id }
             },
             include: {
-                imageattributes: true,
+                product: true,
                 typeAttribute: {
                     include: {
                         relationattributeproducts: true

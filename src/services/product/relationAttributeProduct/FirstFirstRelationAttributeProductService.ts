@@ -14,9 +14,7 @@ class FirstFirstRelationAttributeProductService {
                 order: 'asc'
             },
             include: {
-                imageattributes: true,
                 product: true,
-                store: true,
                 typeAttribute: true
             }
         });

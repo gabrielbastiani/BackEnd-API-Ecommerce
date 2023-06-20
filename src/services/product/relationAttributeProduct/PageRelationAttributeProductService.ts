@@ -10,10 +10,7 @@ class PageRelationAttributeProductService {
                 order: 'asc'
             },
             include: {
-                _count: true,
-                imageattributes: true,
                 product: true,
-                store: true,
                 typeAttribute: true
             }
         });
@@ -23,10 +20,7 @@ class PageRelationAttributeProductService {
                 order: 'asc'
             },
             include: {
-                _count: true,
-                imageattributes: true,
                 product: true,
-                store: true,
                 typeAttribute: true
             },
             skip,
