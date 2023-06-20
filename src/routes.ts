@@ -177,10 +177,10 @@ import { DeleteAllTagController } from './controllers/product/tag/DeleteAllTagCo
 import { FindUniqueTagController } from './controllers/product/tag/FindUniqueTagController';
 
 // -- ROUTES TYPE ATTRIBUTE --
-import { CreateTypeAttributeController } from './controllers/typeAttribute/CreateTypeAttributeController';
-import { UpdateTypeAttributeController } from './controllers/typeAttribute/UpdateTypeAttributeController';
-import { AllTypeAttributeController } from './controllers/typeAttribute/AllTypeAttributeController';
-import { FindUniqueTypeAttributeController } from './controllers/typeAttribute/FindUniqueTypeAttributeController';
+import { CreateTypeAttributeController } from './controllers/attribute/typeAttribute/CreateTypeAttributeController';
+import { UpdateTypeAttributeController } from './controllers/attribute/typeAttribute/UpdateTypeAttributeController';
+import { AllTypeAttributeController } from './controllers/attribute/typeAttribute/AllTypeAttributeController';
+import { FindUniqueTypeAttributeController } from './controllers/attribute/typeAttribute/FindUniqueTypeAttributeController';
 
 // -- ROUTES RELATION ATTRIBUTE AND PRODUCT --
 import { CreateRelationAttributeProductController } from './controllers/product/relationAttributeProduct/CreateRelationAttributeProductController';
@@ -191,7 +191,6 @@ import { FirstFirstRelationAttributeProductController } from './controllers/prod
 import { PageRelationAttributeProductController } from './controllers/product/relationAttributeProduct/PageRelationAttributeProductController';
 import { UpdateValueRelationAttributeProductController } from './controllers/attribute/valueAttribute/UpdateValueRelationAttributeProductController';
 import { AllProductAttributeController } from './controllers/product/relationAttributeProduct/AllProductAttributeController';
-import { UpdateTypeRelationAttributeProductController } from './controllers/attribute/typeAttribute/UpdateTypeRelationAttributeProductController';
 import { UpdateOrderRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateOrderRelationAttributeProductController';
 import { UpdateStatusRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateStatusRelationAttributeProductController';
 import { CreateImageAttributeController } from './controllers/attribute/imageAttribute/CreateImageAttributeController';
@@ -553,7 +552,6 @@ router.get('/findFirstRelationAttributeProduct', ADMINisAuthenticated, new First
 router.get('/pageAttributesRelationsProducts', ADMINisAuthenticated, new PageRelationAttributeProductController().handle);
 router.get('/findManyAttributeIDproduct', ADMINisAuthenticated, new AllProductAttributeController().handle);
 router.put('/updateValueRelationAttributeProduct', ADMINisAuthenticated, new UpdateValueRelationAttributeProductController().handle);
-router.put('/updateTypeRelationAttributeProduct', ADMINisAuthenticated, new UpdateTypeRelationAttributeProductController().handle);
 router.put('/updateOrderRelationAttributeProduct', ADMINisAuthenticated, new UpdateOrderRelationAttributeProductController().handle);
 router.put('/updateStatusRelationAttributeProduct', ADMINisAuthenticated, new UpdateStatusRelationAttributeProductController().handle);
 router.post('/createImageAttributeProduct', ADMINisAuthenticated, upload.single('file'), new CreateImageAttributeController().handle);

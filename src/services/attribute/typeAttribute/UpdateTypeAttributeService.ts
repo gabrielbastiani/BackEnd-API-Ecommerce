@@ -1,4 +1,4 @@
-import prismaClient from "../../prisma";
+import prismaClient from "../../../prisma";
 
 interface TypeRequest {
     typeAttribute_id: string;

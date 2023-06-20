@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UpdateTypeAttributeService } from '../../services/typeAttribute/UpdateTypeAttributeService';
+import { UpdateTypeAttributeService } from '../../../services/attribute/typeAttribute/UpdateTypeAttributeService';
 
 class UpdateTypeAttributeController {
     async handle(req: Request, res: Response) {

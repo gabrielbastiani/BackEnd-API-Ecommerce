@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { FindUniqueTypeAttributeService } from '../../services/typeAttribute/FindUniqueTypeAttributeService';
+import { FindUniqueTypeAttributeService } from '../../../services/attribute/typeAttribute/FindUniqueTypeAttributeService';
 
 class FindUniqueTypeAttributeController {
     async handle(req: Request, res: Response) {
