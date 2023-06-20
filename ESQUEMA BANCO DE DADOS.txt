@@ -127,29 +127,28 @@ model Store {
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
-  admins                   Admin[]
-  customers                Customer[]
-  deliveryaddresscustomers DeliveryAddressCustomer[]
-  socialmedias             SocialMedia[]
-  institutionaltexts       InstitutionalText[]
-  categories               Category[]
-  products                 Product[]
-  imagestores              ImageStore[]
-  tags                     Tag[]
-  attributes               Attribute[]
-  variations               Variation[]
-  menucategories           MenuCategory[]
-  avalietions              Avalietion[]
-  newsletters              Newsletter[]
-  contacts                 Contact[]
-  productcategories        ProductCategory[]
-  groupfilters             GroupFilter[]
-  filterattributes         FilterAttribute[]
-  filtercategories         FilterCategory[]
-  buytogethers             BuyTogether[]
-  productsvariations       ProductVariation[]
-  TypeAttribute            TypeAttribute[]
-  ValueAttribute           ValueAttribute[]
+  admins                    Admin[]
+  customers                 Customer[]
+  deliveryaddresscustomers  DeliveryAddressCustomer[]
+  socialmedias              SocialMedia[]
+  institutionaltexts        InstitutionalText[]
+  categories                Category[]
+  products                  Product[]
+  imagestores               ImageStore[]
+  tags                      Tag[]
+  typeattributes            TypeAttribute[]
+  relationattributeproducts RelationAttributeProduct[]
+  variations                Variation[]
+  menucategories            MenuCategory[]
+  avalietions               Avalietion[]
+  newsletters               Newsletter[]
+  contacts                  Contact[]
+  productcategories         ProductCategory[]
+  groupfilters              GroupFilter[]
+  filterattributes          FilterAttribute[]
+  filtercategories          FilterCategory[]
+  buytogethers              BuyTogether[]
+  productsvariations        ProductVariation[]
 
   @@map("stores")
 }
@@ -285,15 +284,16 @@ model Product {
   buyTogether    BuyTogether?       @relation(fields: [buyTogether_id], references: [id])
   buyTogether_id String?
 
-  photoproducts       PhotoProduct[]
-  descriptionproducts DescriptionProduct[]
-  tags                Tag[]
-  attributes          Attribute[]
-  variations          Variation[]
-  avalietions         Avalietion[]
-  productcategories   ProductCategory[]
-  buytogethers        BuyTogether[]        @relation("buy")
-  productsvariations  ProductVariation[]
+  photoproducts             PhotoProduct[]
+  descriptionproducts       DescriptionProduct[]
+  tags                      Tag[]
+  relationattributeproducts RelationAttributeProduct[]
+  variations                Variation[]
+  avalietions               Avalietion[]
+  productcategories         ProductCategory[]
+  buytogethers              BuyTogether[]              @relation("buy")
+  imageattribute            ImageAttribute[]
+  productsvariations        ProductVariation[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -397,64 +397,62 @@ model Tag {
 
 model TypeAttribute {
   id   String  @id @default(uuid())
-  type String? @db.VarChar(155)
+  type String? @unique @db.VarChar(300)
+  slug String? @db.VarChar(300)
+
+  relationattributeproducts RelationAttributeProduct[]
+  groupfilters              GroupFilter[]
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
   store_id String?
 
-  @@map("typesattributes")
+  @@map("typeattributes")
 }
 
-model ValueAttribute {
-  id    String  @id @default(uuid())
-  value String? @db.VarChar(195)
+model RelationAttributeProduct {
+  id            String                         @id @default(uuid())
+  product       Product?                       @relation(fields: [product_id], references: [id])
+  product_id    String?
+  typeAttribute TypeAttribute?                 @relation(fields: [type], references: [type])
+  type          String?
+  value         String?
+  slug          String?                        @db.VarChar(85)
+  nivel         Int?
+  parentId      String?
+  order         Int?
+  status        StatusRelationAttributeProduct @default(Disponivel)
 
   imageattributes ImageAttribute[]
 
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
   store    Store?  @relation(fields: [store_id], references: [id])
   store_id String?
 
-  @@map("valuesattributes")
+  @@map("relationattributeproducts")
+}
+
+enum StatusRelationAttributeProduct {
+  Disponivel
+  Indisponivel
 }
 
 model ImageAttribute {
-  id                String         @id @default(uuid())
-  valueAttribute    ValueAttribute @relation(fields: [valueAttribute_id], references: [id])
-  valueAttribute_id String
-  image             String
+  id                          String                   @id @default(uuid())
+  relationAttributeProduct    RelationAttributeProduct @relation(fields: [relationAttributeProduct_id], references: [id])
+  relationAttributeProduct_id String
+  product                     Product?                 @relation(fields: [product_id], references: [id])
+  product_id                  String?
+  image                       String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
   @@map("imageattributes")
-}
-
-model Attribute {
-  id         String          @id @default(uuid())
-  product    Product?        @relation(fields: [product_id], references: [id])
-  product_id String?
-  type       String?
-  value      String?
-  slug       String?
-  nivel      Int?
-  parentId   String?
-  order      Int?
-  status     StatusAttribute @default(Disponivel)
-
-  groupfilter GroupFilter[]
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("attributes")
-}
-
-enum StatusAttribute {
-  Disponivel
-  Indisponivel
 }
 
 model Avalietion {
@@ -609,7 +607,7 @@ model ImageMenuCategory {
 model GroupFilter {
   id            String            @id @default(uuid())
   nameGroup     String?           @db.VarChar(385)
-  typeAttribute String?
+  typeAttribute TypeAttribute?    @relation(fields: [type], references: [type])
   type          String?
   slugCategory  String?           @db.VarChar(400)
   order         Int?
@@ -621,10 +619,8 @@ model GroupFilter {
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
-  store       Store?     @relation(fields: [store_id], references: [id])
-  store_id    String?
-  Attribute   Attribute? @relation(fields: [attributeId], references: [id])
-  attributeId String?
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
 
   @@map("groupfilters")
 }
