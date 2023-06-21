@@ -279,6 +279,7 @@ model Product {
   depth          String?            @db.VarChar(15)
   amount         Int?
   reservedAmount Int?
+  brand          String?            @db.VarChar(325)
   urlVideo       String?
   gtin           String?
   mpn            String?
