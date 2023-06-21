@@ -280,6 +280,9 @@ model Product {
   amount         Int?
   reservedAmount Int?
   urlVideo       String?
+  gtin           String?
+  mpn            String?
+  ncm            String?
   freeShipping   StatusFreeShipping @default(Sim)
   status         StatusProduct      @default(Disponivel)
   emphasis       StatusEmphasis     @default(Nao)
