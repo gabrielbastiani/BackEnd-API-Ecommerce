@@ -455,6 +455,7 @@ model RelationAttributeProduct {
   product_id    String?
   typeAttribute TypeAttribute?                 @relation(fields: [type], references: [type])
   type          String?
+  value         String?
   order         Int?
   status        StatusRelationAttributeProduct @default(Disponivel)
 
