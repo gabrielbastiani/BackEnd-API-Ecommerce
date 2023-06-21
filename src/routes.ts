@@ -184,6 +184,13 @@ import { FindUniqueTypeAttributeController } from './controllers/attribute/typeA
 
 // -- ROUTES VALUE ATTRIBUTE --
 import { UpdateValueAttributeController } from './controllers/attribute/valueAttribute/UpdateValueAttributeController';
+import { CreateValueAttributeController } from './controllers/attribute/valueAttribute/CreateValueAttributeController';
+import { UpdateTypeValueAttributeController } from './controllers/attribute/valueAttribute/UpdateTypeValueAttributeController';
+import { AllValuesTypeAttributeController } from './controllers/attribute/valueAttribute/AllValuesTypeAttributeController';
+import { UpdateValueOrderAttributeController } from './controllers/attribute/valueAttribute/UpdateValueOrderAttributeController';
+import { DeleteValueAttributeController } from './controllers/attribute/valueAttribute/DeleteValueAttributeController';
+import { FindUniqueValueAttributeController } from './controllers/attribute/valueAttribute/FindUniqueValueAttributeController';
+import { DeleteImageAttributeRelationIDController } from './controllers/attribute/valueAttribute/imageAttribute/DeleteImageAttributeRelationIDController';
 
 // -- ROUTES RELATION ATTRIBUTE AND PRODUCT --
 import { CreateRelationAttributeProductController } from './controllers/product/relationAttributeProduct/CreateRelationAttributeProductController';
@@ -357,12 +364,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { CreateValueAttributeController } from './controllers/attribute/valueAttribute/CreateValueAttributeController';
-import { UpdateTypeValueAttributeController } from './controllers/attribute/valueAttribute/UpdateTypeValueAttributeController';
-import { AllValuesTypeAttributeController } from './controllers/attribute/valueAttribute/AllValuesTypeAttributeController';
-import { UpdateValueOrderAttributeController } from './controllers/attribute/valueAttribute/UpdateValueOrderAttributeController';
-import { DeleteValueAttributeController } from './controllers/attribute/valueAttribute/DeleteValueAttributeController';
-import { FindUniqueValueAttributeController } from './controllers/attribute/valueAttribute/FindUniqueValueAttributeController';
 
 
 
@@ -557,6 +558,7 @@ router.put('/updateOrderValueAttribute', ADMINisAuthenticated, new UpdateValueOr
 router.get('/allValuesTypeAttribute', ADMINisAuthenticated, new AllValuesTypeAttributeController().handle);
 router.delete('/deleteValueAttribute', ADMINisAuthenticated, new DeleteValueAttributeController().handle);
 router.get('/findUniqueValueAttribute', ADMINisAuthenticated, new FindUniqueValueAttributeController().handle);
+router.delete('/deleteAllImagesValueType', ADMINisAuthenticated, new DeleteImageAttributeRelationIDController().handle);
 
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
 router.post('/createRelationAttributeProduct', ADMINisAuthenticated, new CreateRelationAttributeProductController().handle);
