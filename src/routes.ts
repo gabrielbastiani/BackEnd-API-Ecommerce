@@ -364,6 +364,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { ProductAttributeController } from './controllers/product/relationAttributeProduct/ProductAttributeController';
 
 
 
@@ -574,6 +575,7 @@ router.post('/createImageAttributeProduct', ADMINisAuthenticated, upload.single(
 router.put('/updateImageAttribute', ADMINisAuthenticated, upload.single('file'), new UpdateImageAttributeController().handle);
 router.delete('/deleteImageAttributeProduct', ADMINisAuthenticated, new DeleteImageAttributeController().handle);
 router.get('/findUniqueImageAttribute', ADMINisAuthenticated, new FindUniqueImageAttributeController().handle);
+router.get('/getAllAttributesProduct', ADMINisAuthenticated, new ProductAttributeController().handle);
 router.get('/allProductsAndAttributes', new ProductsAndAttributeController().handle);
 
 // -- ROUTES AVALIETION --

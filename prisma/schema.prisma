@@ -151,6 +151,7 @@ model Store {
   productsvariations        ProductVariation[]
   valuesattributes          ValueAttribute[]
   coupons                   Coupon[]
+  countersproposals         counterProposal[]
 
   @@map("stores")
 }
@@ -572,6 +573,30 @@ model BuyTogether {
 enum StatusBuyTogether {
   Disponivel
   Indisponivel
+}
+
+model counterProposal {
+  id                String  @id @default(uuid())
+  currentPrice      Int?
+  counterOfferPrice Int?
+  name              String? @db.VarChar(185)
+  email             String
+  phone             String? @db.VarChar(85)
+  lowestPricePlace  String?
+  moreInformation   String? @db.VarChar(1585)
+  sku               String? @db.VarChar(285)
+  nameProduct       String? @db.VarChar(485)
+  codeCoupon        String? @db.VarChar(285)
+  information       String? @db.VarChar(6585)
+  status            String? @db.VarChar(200)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("countersproposals")
 }
 
 model Coupon {
