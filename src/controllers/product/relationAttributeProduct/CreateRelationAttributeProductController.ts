@@ -6,6 +6,7 @@ class CreateRelationAttributeProductController {
         const {
             product_id,
             type,
+            valueAttribute_id,
             order,
             store_id
         } = req.body;
@@ -15,6 +16,7 @@ class CreateRelationAttributeProductController {
         const relation = await createRelations.execute({
             product_id,
             type,
+            valueAttribute_id,
             order,
             store_id
         });

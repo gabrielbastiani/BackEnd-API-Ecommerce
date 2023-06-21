@@ -257,7 +257,11 @@ CREATE TABLE "products" (
     "depth" VARCHAR(15),
     "amount" INTEGER,
     "reservedAmount" INTEGER,
+    "brand" VARCHAR(325),
     "urlVideo" TEXT,
+    "gtin" TEXT,
+    "mpn" TEXT,
+    "ncm" TEXT,
     "freeShipping" "StatusFreeShipping" NOT NULL DEFAULT 'Sim',
     "status" "StatusProduct" NOT NULL DEFAULT 'Disponivel',
     "emphasis" "StatusEmphasis" NOT NULL DEFAULT 'Nao',
@@ -364,6 +368,7 @@ CREATE TABLE "relationattributeproducts" (
     "id" TEXT NOT NULL,
     "product_id" TEXT,
     "type" TEXT,
+    "valueAttribute_id" TEXT,
     "order" INTEGER,
     "status" "StatusRelationAttributeProduct" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -443,6 +448,28 @@ CREATE TABLE "buytogethers" (
     "store_id" TEXT,
 
     CONSTRAINT "buytogethers_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "countersproposals" (
+    "id" TEXT NOT NULL,
+    "currentPrice" INTEGER,
+    "counterOfferPrice" INTEGER,
+    "name" VARCHAR(185),
+    "email" TEXT NOT NULL,
+    "phone" VARCHAR(85),
+    "lowestPricePlace" TEXT,
+    "moreInformation" VARCHAR(1585),
+    "sku" VARCHAR(285),
+    "nameProduct" VARCHAR(485),
+    "codeCoupon" VARCHAR(285),
+    "information" VARCHAR(6585),
+    "status" VARCHAR(200),
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+    "store_id" TEXT,
+
+    CONSTRAINT "countersproposals_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -700,6 +727,9 @@ ALTER TABLE "relationattributeproducts" ADD CONSTRAINT "relationattributeproduct
 ALTER TABLE "relationattributeproducts" ADD CONSTRAINT "relationattributeproducts_type_fkey" FOREIGN KEY ("type") REFERENCES "typeattributes"("type") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "relationattributeproducts" ADD CONSTRAINT "relationattributeproducts_valueAttribute_id_fkey" FOREIGN KEY ("valueAttribute_id") REFERENCES "valuesattributes"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "relationattributeproducts" ADD CONSTRAINT "relationattributeproducts_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -734,6 +764,9 @@ ALTER TABLE "buytogethers" ADD CONSTRAINT "buytogethers_product_id_fkey" FOREIGN
 
 -- AddForeignKey
 ALTER TABLE "buytogethers" ADD CONSTRAINT "buytogethers_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "countersproposals" ADD CONSTRAINT "countersproposals_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "coupons" ADD CONSTRAINT "coupons_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
