@@ -13,10 +13,28 @@ class ProductsAndAttributeService {
                 product_id: { in: product_id }
             },
             include: {
-                product: true,
                 typeAttribute: {
                     include: {
-                        relationattributeproducts: true
+                        valueattribute: {
+                            include: {
+                                imageAttribute: true,
+                                RelationAttributeProduct: {
+                                    distinct: "valueAttribute_id",
+                                    include: {
+                                        valueAttribute: {
+                                            include: {
+                                                imageAttribute: true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                valueAttribute: {
+                    include: {
+                        imageAttribute: true
                     }
                 }
             }
