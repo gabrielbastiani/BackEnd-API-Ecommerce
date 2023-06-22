@@ -366,6 +366,8 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { ValuesAttributeController } from './controllers/attribute/valueAttribute/ValuesAttributeController';
+import { UpdateTypeRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateTypeRelationAttributeProductController';
 
 
 
@@ -561,6 +563,7 @@ router.get('/allValuesTypeAttribute', ADMINisAuthenticated, new AllValuesTypeAtt
 router.delete('/deleteValueAttribute', ADMINisAuthenticated, new DeleteValueAttributeController().handle);
 router.get('/findUniqueValueAttribute', ADMINisAuthenticated, new FindUniqueValueAttributeController().handle);
 router.delete('/deleteAllImagesValueType', ADMINisAuthenticated, new DeleteImageAttributeRelationIDController().handle);
+router.get('/getAllValuesAttributes', ADMINisAuthenticated, new ValuesAttributeController().handle);
 
 // ROUTES RELATION ATTRIBUTE AND PRODUCT --
 router.post('/createRelationAttributeProduct', ADMINisAuthenticated, new CreateRelationAttributeProductController().handle);
@@ -571,6 +574,7 @@ router.get('/findFirstRelationAttributeProduct', ADMINisAuthenticated, new First
 router.get('/pageAttributesRelationsProducts', ADMINisAuthenticated, new PageRelationAttributeProductController().handle);
 router.get('/findManyAttributeIDproduct', ADMINisAuthenticated, new AllProductAttributeController().handle);
 router.put('/updateOrderRelationAttributeProduct', ADMINisAuthenticated, new UpdateOrderRelationAttributeProductController().handle);
+router.put('/updateTypeRelationAttributeProduct', ADMINisAuthenticated, new UpdateTypeRelationAttributeProductController().handle);
 router.put('/updateValueRelationAttributeProduct', ADMINisAuthenticated, new UpdateValueRelationAttributeProductController().handle);
 router.put('/updateStatusRelationAttributeProduct', ADMINisAuthenticated, new UpdateStatusRelationAttributeProductController().handle);
 router.post('/createImageAttributeProduct', ADMINisAuthenticated, upload.single('file'), new CreateImageAttributeController().handle);

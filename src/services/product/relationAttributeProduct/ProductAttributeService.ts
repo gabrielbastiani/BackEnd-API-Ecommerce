@@ -15,7 +15,8 @@ class ProductAttributeService {
             },
             include: {
                 product: true,
-                typeAttribute: true
+                typeAttribute: true,
+                valueAttribute: true
             }
         });
 

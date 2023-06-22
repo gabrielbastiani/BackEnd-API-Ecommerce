@@ -7,9 +7,9 @@ class UpdateValueRelationAttributeProductController {
 
         const { valueAttribute_id } = req.body;
 
-        const updateOrder = new UpdateValueRelationAttributeProductService();
+        const updateValue = new UpdateValueRelationAttributeProductService();
 
-        const attribute = await updateOrder.execute({
+        const attribute = await updateValue.execute({
             relationAttributeProduct_id,
             valueAttribute_id
         });

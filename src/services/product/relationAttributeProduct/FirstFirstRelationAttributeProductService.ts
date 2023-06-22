@@ -15,7 +15,8 @@ class FirstFirstRelationAttributeProductService {
             },
             include: {
                 product: true,
-                typeAttribute: true
+                typeAttribute: true,
+                valueAttribute: true
             }
         });
 
