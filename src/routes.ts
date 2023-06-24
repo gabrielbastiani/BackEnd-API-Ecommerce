@@ -368,6 +368,7 @@ import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 import { ValuesAttributeController } from './controllers/attribute/valueAttribute/ValuesAttributeController';
 import { UpdateTypeRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateTypeRelationAttributeProductController';
+import { FilterPriceController } from './controllers/search/FilterPriceController';
 
 
 
@@ -534,6 +535,7 @@ router.get('/allTagProducts', new AllTagProductController().handle);
 
 // -- ROUTES SEARCH --
 router.get('/search', new SearchController().handle);
+router.get('/filterPrice', new FilterPriceController().handle);
 
 // ROUTES CATEGORIES AND PRODUCT --
 router.post('/createProductCategory', ADMINisAuthenticated, new CreateProductCategoryController().handle);
