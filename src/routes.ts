@@ -369,6 +369,7 @@ import uploadConfig from './config/multer';
 import { ValuesAttributeController } from './controllers/attribute/valueAttribute/ValuesAttributeController';
 import { UpdateTypeRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateTypeRelationAttributeProductController';
 import { FilterPriceController } from './controllers/search/FilterPriceController';
+import { AllProductSearchController } from './controllers/search/AllProductSearchController';
 
 
 
@@ -525,8 +526,8 @@ router.delete('/deleteAllTagProduct', ADMINisAuthenticated, new DeleteAllTagCont
 router.get('/findUniqueTagProduct', ADMINisAuthenticated, new FindUniqueTagController().handle);
 router.get('/allProductsDescriptionsStore', ADMINisAuthenticated, new AllDescriptionProductController().handle);
 router.get('/allTags', ADMINisAuthenticated, new AllTagController().handle);
-router.get('/allDescriptionProductsStore', new AllDescriptionProductInStoreController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);
+router.get('/allDescriptionProductsStore', new AllDescriptionProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
 router.get('/listProductsDestaque', new ListAllProductEmphasisController().handle);
 router.get('/listProductsOfertas', new ListAllProductOfferController().handle);
@@ -536,6 +537,7 @@ router.get('/allTagProducts', new AllTagProductController().handle);
 // -- ROUTES SEARCH --
 router.get('/search', new SearchController().handle);
 router.get('/filterPrice', new FilterPriceController().handle);
+router.get('/searchProduct', new AllProductSearchController().handle);
 
 // ROUTES CATEGORIES AND PRODUCT --
 router.post('/createProductCategory', ADMINisAuthenticated, new CreateProductCategoryController().handle);

@@ -4,31 +4,28 @@ import prismaClient from '../../prisma';
 interface FilterPriceRequest {
     priceMin: any;
     priceMax: any;
-    /* product_id: any; */
 }
 
 class FilterPriceService {
-    async execute({ priceMin, priceMax/* , product_id */ }: FilterPriceRequest) {
+    async execute({ priceMin, priceMax }: FilterPriceRequest) {
         const prices = await prismaClient.product.findMany({
             where: {
                 status: StatusProduct.Disponivel,
-                /* id: { in: product_id } */
+                price: {
+                    gte: Number(priceMin),
+                    lte: Number(priceMax)
+                }
             },
-            select: {
-                price: true
+            include: {
+                photoproducts: true
             }
         });
 
-     
-        const pricesProducts = prices.map(item => item.price);
-
-        const filterMin = pricesProducts.filter(min => min <= priceMin);
-        const filterMax = pricesProducts.filter(max => max >=  priceMax);
-
-        const filterPrices = filterMin.concat(filterMax)
-        
-
-        return filterPrices;
+        if (priceMin < priceMax) {
+            return prices
+        } else {
+            throw new Error("O valor do preço minimo não pode ser maior que o valor do preço máximo!!!");
+        }
 
     }
 }
