@@ -140,6 +140,8 @@ import { ListExactProductNameController } from './controllers/product/ListExactP
 
 // -- ROUTES SEARCH --
 import { SearchController } from './controllers/search/SearchController';
+import { FilterPriceController } from './controllers/search/FilterPriceController';
+import { AllProductSearchController } from './controllers/search/AllProductSearchController';
 
 // -- ROUTES CATEGORY AND PRODUCT --
 import { CreateProductCategoryController } from './controllers/product/productCategory/CreateProductCategoryController';
@@ -191,6 +193,7 @@ import { UpdateValueOrderAttributeController } from './controllers/attribute/val
 import { DeleteValueAttributeController } from './controllers/attribute/valueAttribute/DeleteValueAttributeController';
 import { FindUniqueValueAttributeController } from './controllers/attribute/valueAttribute/FindUniqueValueAttributeController';
 import { DeleteImageAttributeRelationIDController } from './controllers/attribute/valueAttribute/imageAttribute/DeleteImageAttributeRelationIDController';
+import { ValuesAttributeController } from './controllers/attribute/valueAttribute/ValuesAttributeController';
 
 // -- ROUTES RELATION ATTRIBUTE AND PRODUCT --
 import { CreateRelationAttributeProductController } from './controllers/product/relationAttributeProduct/CreateRelationAttributeProductController';
@@ -209,6 +212,7 @@ import { FindUniqueImageAttributeController } from './controllers/attribute/valu
 import { ProductsAndAttributeController } from './controllers/product/relationAttributeProduct/ProductsAndAttributeController';
 import { ProductAttributeController } from './controllers/product/relationAttributeProduct/ProductAttributeController';
 import { UpdateValueRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateValueRelationAttributeProductController';
+import { UpdateTypeRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateTypeRelationAttributeProductController';
 
 // -- ROUTES AVALIETION --
 import { CreateAvalietionController } from './controllers/avalietion/CreateAvalietionController';
@@ -281,6 +285,7 @@ import { UpdateItemNameCategoryController } from './controllers/category/menuCat
 import { UpdateSlugMenuController } from './controllers/category/menuCategory/UpdateSlugMenuController';
 import { UpdateImageMenuCategoryController } from './controllers/category/menuCategory/imageMenuCategory/UpdateImageMenuCategoryController';
 import { DeletetImageMenuCategoryController } from './controllers/category/menuCategory/imageMenuCategory/DeletetImageMenuCategoryController';
+import { AllCategoriesMenuController } from './controllers/category/menuCategory/AllCategoriesMenuController';
 
 // -- ROUTES GROUP FILTERS --
 import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
@@ -366,10 +371,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { ValuesAttributeController } from './controllers/attribute/valueAttribute/ValuesAttributeController';
-import { UpdateTypeRelationAttributeProductController } from './controllers/product/relationAttributeProduct/UpdateTypeRelationAttributeProductController';
-import { FilterPriceController } from './controllers/search/FilterPriceController';
-import { AllProductSearchController } from './controllers/search/AllProductSearchController';
 
 
 
@@ -659,6 +660,7 @@ router.put('/updateImageMenuCategory', ADMINisAuthenticated, upload.single('file
 router.put('/updateSlugMenu', ADMINisAuthenticated, new UpdateSlugMenuController().handle);
 router.get('/positionListMenu', new ListPositionMenuCategoryController().handle);
 router.get('/listCategoryMenu', new ListCategoryMenuController().handle);
+router.get('/listMenuCategories', new AllCategoriesMenuController().handle);
 
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
