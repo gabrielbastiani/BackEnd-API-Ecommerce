@@ -5,14 +5,14 @@ interface MenuCategoryRequest {
     parentId: string;
 }
 
-class ListCategoryMenuService {
+class MenuCategoryService {
     async execute({ parentId }: MenuCategoryRequest) {
         const menuCategory = await prismaClient.menuCategory.findMany({
             where: {
-                parentId: parentId,
                 status: StatusMenuCategory.Disponivel,
                 category: {
-                    status: StatusCategory.Disponivel
+                    status: StatusCategory.Disponivel,
+                    parentId: parentId
                 }
             },
             orderBy: {
@@ -28,4 +28,4 @@ class ListCategoryMenuService {
     }
 }
 
-export { ListCategoryMenuService }
+export { MenuCategoryService }

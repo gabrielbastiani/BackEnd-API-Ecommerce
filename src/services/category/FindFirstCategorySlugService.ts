@@ -11,6 +11,12 @@ class FindFirstCategorySlugService {
             where: {
                 slug: slug,
                 status: StatusCategory.Disponivel
+            },
+            include: {
+                filtercategories: true,
+                imagecategories: true,
+                menucategories: true,
+                productcategories: true
             }
         });
         return dados;

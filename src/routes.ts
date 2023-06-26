@@ -371,6 +371,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { MenuCategoryController } from './controllers/category/menuCategory/MenuCategoryController';
 
 
 
@@ -661,6 +662,7 @@ router.put('/updateSlugMenu', ADMINisAuthenticated, new UpdateSlugMenuController
 router.get('/positionListMenu', new ListPositionMenuCategoryController().handle);
 router.get('/listCategoryMenu', new ListCategoryMenuController().handle);
 router.get('/listMenuCategories', new AllCategoriesMenuController().handle);
+router.get('/categoriesParentIdBradCrumb', new MenuCategoryController().handle);
 
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', ADMINisAuthenticated, new CreateGroupFilterController().handle);
