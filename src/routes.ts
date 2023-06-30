@@ -142,6 +142,7 @@ import { ListExactProductNameController } from './controllers/product/ListExactP
 import { SearchController } from './controllers/search/SearchController';
 import { FilterPriceController } from './controllers/search/FilterPriceController';
 import { AllProductSearchController } from './controllers/search/AllProductSearchController';
+import { OrderProductsController } from './controllers/search/OrderProductsController';
 
 // -- ROUTES CATEGORY AND PRODUCT --
 import { CreateProductCategoryController } from './controllers/product/productCategory/CreateProductCategoryController';
@@ -286,6 +287,7 @@ import { UpdateSlugMenuController } from './controllers/category/menuCategory/Up
 import { UpdateImageMenuCategoryController } from './controllers/category/menuCategory/imageMenuCategory/UpdateImageMenuCategoryController';
 import { DeletetImageMenuCategoryController } from './controllers/category/menuCategory/imageMenuCategory/DeletetImageMenuCategoryController';
 import { AllCategoriesMenuController } from './controllers/category/menuCategory/AllCategoriesMenuController';
+import { MenuCategoryController } from './controllers/category/menuCategory/MenuCategoryController';
 
 // -- ROUTES GROUP FILTERS --
 import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
@@ -371,8 +373,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { MenuCategoryController } from './controllers/category/menuCategory/MenuCategoryController';
-import { OrderProductsController } from './controllers/search/OrderProductsController';
 
 
 
