@@ -4,11 +4,11 @@ import { OrderProductsService } from '../../services/search/OrderProductsService
 class OrderProductsController {
     async handle(req: Request, res: Response) {
 
-        const { sortBy } = req.query;
+        const { product_id, sortBy } = req.query;
 
         const orderProducts = new OrderProductsService();
 
-        const orders = await orderProducts.execute({ sortBy });
+        const orders = await orderProducts.execute({ product_id, sortBy });
 
         return res.json(orders);
     }

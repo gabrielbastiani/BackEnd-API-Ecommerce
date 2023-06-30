@@ -3,12 +3,14 @@ import prismaClient from '../../prisma';
 
 interface OrderRequest {
     sortBy: any;
+    product_id: any;
 }
 
 class OrderProductsService {
-    async execute({ sortBy }: OrderRequest) {
+    async execute({ product_id, sortBy }: OrderRequest) {
         const ordersProducts = await prismaClient.product.findMany({
             where: {
+                id: { in: product_id },
                 status: StatusProduct.Disponivel,
             },
             include: {
