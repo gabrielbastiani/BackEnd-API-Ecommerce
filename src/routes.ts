@@ -372,6 +372,7 @@ import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 import { MenuCategoryController } from './controllers/category/menuCategory/MenuCategoryController';
+import { OrderProductsController } from './controllers/search/OrderProductsController';
 
 
 
@@ -540,6 +541,7 @@ router.get('/allTagProducts', new AllTagProductController().handle);
 router.get('/search', new SearchController().handle);
 router.get('/filterPrice', new FilterPriceController().handle);
 router.get('/searchProduct', new AllProductSearchController().handle);
+router.get('/orderProducts', new OrderProductsController().handle);
 
 // ROUTES CATEGORIES AND PRODUCT --
 router.post('/createProductCategory', ADMINisAuthenticated, new CreateProductCategoryController().handle);
