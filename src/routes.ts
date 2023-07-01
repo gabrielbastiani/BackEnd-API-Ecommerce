@@ -539,7 +539,7 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.get('/allTagProducts', new AllTagProductController().handle);
 
 // -- ROUTES SEARCH --
-router.get('/search', new SearchController().handle);
+router.get('/filter', new SearchController().handle);
 router.get('/filterPrice', new FilterPriceController().handle);
 router.get('/searchProduct', new AllProductSearchController().handle);
 router.get('/orderProducts', new OrderProductsController().handle);
