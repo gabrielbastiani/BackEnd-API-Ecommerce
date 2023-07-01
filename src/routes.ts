@@ -156,6 +156,7 @@ import { DeleteProductCategoryController } from './controllers/product/productCa
 import { ProductsPageCategoriesController } from './controllers/product/productCategory/ProductsPageCategoriesController';
 import { FindAllRelationProductAndCategoryController } from './controllers/product/productCategory/FindAllRelationProductAndCategoryController';
 import { FindUniqueRelationProductCategoryController } from './controllers/product/productCategory/FindUniqueRelationProductCategoryController';
+import { ProductsCategoriesController } from './controllers/product/productCategory/ProductsCategoriesController';
 
 // -- ROUTES DESCRIPTION PRODUCT --
 import { FindUniqueDescriptionProductController } from './controllers/product/descriptionProduct/FindUniqueDescriptionProductController';
@@ -555,6 +556,7 @@ router.delete('/deleteAllCategoiesProduct', ADMINisAuthenticated, new DeleteAllP
 router.get('/findUniqueRelationCategoryProduct', ADMINisAuthenticated, new FindUniqueRelationProductCategoryController().handle);
 router.get('/findAllRelationsProductAndCategory', ADMINisAuthenticated, new FindAllRelationProductAndCategoryController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
+router.get('/getAllProductsCategory', new ProductsCategoriesController().handle);
 
 // ROUTES TYPE ATTRIBUTE --
 router.post('/createTypeAttribute', ADMINisAuthenticated, new CreateTypeAttributeController().handle);
