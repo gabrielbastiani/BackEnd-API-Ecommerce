@@ -1,13 +1,12 @@
 import { StatusCategory } from '@prisma/client';
 import prismaClient from '../../../prisma';
 
-interface ProductsRequest {
-    slug: string;
-}
-
 class ProductsPageCategoriesService {
-    async execute({ slug }: ProductsRequest) {
-        const products = await prismaClient.productCategory.findMany({
+    async execute(page = 1, limit = 2, slug: string) {
+
+        const skip = limit * (page - 1);
+
+        const AllproductsCategories = await prismaClient.productCategory.findMany({
             where: {
                 category: {
                     status: StatusCategory.Disponivel,
@@ -18,12 +17,37 @@ class ProductsPageCategoriesService {
                 order: 'asc'
             },
             include: {
-                product: {include: {photoproducts: true, productcategories: true}},
+                product: { include: { photoproducts: true, productcategories: true } },
                 category: true
             }
         });
 
-        return products;
+        const productsCategories = await prismaClient.productCategory.findMany({
+            where: {
+                category: {
+                    status: StatusCategory.Disponivel,
+                    slug: slug,
+                },
+            },
+            skip,
+            take: limit,
+            orderBy: {
+                order: 'asc'
+            },
+            include: {
+                product: { include: { photoproducts: true, productcategories: true } },
+                category: true
+            }
+        });
+
+        const data = {
+            productsCategories,
+            total: AllproductsCategories.length,
+            total_pages: Math.ceil(AllproductsCategories.length / limit),
+            current_page: page,
+        }
+
+        return data;
 
     }
 }

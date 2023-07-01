@@ -3,13 +3,13 @@ import { ProductsPageCategoriesService } from '../../../services/product/product
 
 class ProductsPageCategoriesController {
     async handle(req: Request, res: Response) {
-        const slug = req.query.slug as string;
+        const categoriesProducts = new ProductsPageCategoriesService();
 
-        const findsRelations = new ProductsPageCategoriesService();
+        const { page, limit, slug } = req.query;
 
-        const finds = await findsRelations.execute({ slug });
+        const products = await categoriesProducts.execute( Number(page), Number(limit), String(slug) );
 
-        return res.json(finds);
+        return res.json(products);
     }
 }
 
