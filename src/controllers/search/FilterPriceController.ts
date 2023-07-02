@@ -8,7 +8,7 @@ class FilterPriceController {
 
         const listFilter = new FilterPriceService();
 
-        const filter = await listFilter.execute( Number(page), Number(limit), priceMin, priceMax );
+        const filter = await listFilter.execute( Number(page), Number(limit), Number(priceMin), Number(priceMax) );
 
         return res.json(filter);
     }

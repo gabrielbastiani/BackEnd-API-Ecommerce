@@ -2,7 +2,7 @@ import { StatusProduct } from '@prisma/client';
 import prismaClient from '../../prisma';
 
 class FilterPriceService {
-    async execute(page = 1, limit = 20, priceMin: any, priceMax: any) {
+    async execute(page = 1, limit = 20, priceMin: number, priceMax: number) {
 
         const skip = limit * (page - 1);
 
