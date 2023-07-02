@@ -4,11 +4,11 @@ import { FilterPriceService } from '../../services/search/FilterPriceService';
 class FilterPriceController {
     async handle(req: Request, res: Response) {
 
-        const { priceMin, priceMax } = req.query;
+        const { page, limit, priceMin, priceMax } = req.query;
 
         const listFilter = new FilterPriceService();
 
-        const filter = await listFilter.execute({ priceMin, priceMax });
+        const filter = await listFilter.execute( Number(page), Number(limit), priceMin, priceMax );
 
         return res.json(filter);
     }
