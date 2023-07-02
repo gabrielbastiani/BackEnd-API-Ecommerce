@@ -151,7 +151,7 @@ model Store {
   productsvariations        ProductVariation[]
   valuesattributes          ValueAttribute[]
   coupons                   Coupon[]
-  countersproposals         counterProposal[]
+  countersproposals         CounterProposal[]
 
   @@map("stores")
 }
@@ -582,7 +582,7 @@ enum StatusBuyTogether {
   Indisponivel
 }
 
-model counterProposal {
+model CounterProposal {
   id                String  @id @default(uuid())
   currentPrice      Int?
   counterOfferPrice Int?

@@ -139,7 +139,7 @@ import { UpdateProductFreeShippingController } from './controllers/product/Updat
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 
 // -- ROUTES SEARCH --
-import { SearchController } from './controllers/search/SearchController';
+import { FilterController } from './controllers/search/FilterController';
 import { FilterPriceController } from './controllers/search/FilterPriceController';
 import { AllProductSearchController } from './controllers/search/AllProductSearchController';
 import { OrderProductsController } from './controllers/search/OrderProductsController';
@@ -539,7 +539,7 @@ router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.get('/allTagProducts', new AllTagProductController().handle);
 
 // -- ROUTES SEARCH --
-router.get('/filter', new SearchController().handle);
+router.get('/filter', new FilterController().handle);
 router.get('/filterPrice', new FilterPriceController().handle);
 router.get('/searchProduct', new AllProductSearchController().handle);
 router.get('/orderProducts', new OrderProductsController().handle);

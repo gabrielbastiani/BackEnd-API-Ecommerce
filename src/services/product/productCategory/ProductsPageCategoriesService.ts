@@ -2,7 +2,7 @@ import { StatusCategory } from '@prisma/client';
 import prismaClient from '../../../prisma';
 
 class ProductsPageCategoriesService {
-    async execute(page = 1, limit = 2, slug: string) {
+    async execute(page = 1, limit = 20, slug: string) {
 
         const skip = limit * (page - 1);
 
