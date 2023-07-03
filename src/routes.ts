@@ -374,6 +374,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { AllPhotosProductPageController } from './controllers/product/photoProduct/AllPhotosProductPageController';
 
 
 
@@ -537,6 +538,7 @@ router.get('/listProductsDestaque', new ListAllProductEmphasisController().handl
 router.get('/listProductsOfertas', new ListAllProductOfferController().handle);
 router.get('/exactProductPage', new ListExactProductNameController().handle);
 router.get('/allTagProducts', new AllTagProductController().handle);
+router.get('/listPhotosPageProduct', new AllPhotosProductPageController().handle);
 
 // -- ROUTES SEARCH --
 router.get('/filter', new FilterController().handle);
