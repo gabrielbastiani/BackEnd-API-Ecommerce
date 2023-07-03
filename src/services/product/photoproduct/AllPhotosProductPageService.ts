@@ -12,6 +12,9 @@ class AllPhotosProductPageService {
             },
             orderBy: {
                 order: 'asc'
+            },
+            include: {
+                product: true
             }
         });
 
