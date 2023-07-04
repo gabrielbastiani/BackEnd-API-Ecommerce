@@ -17,7 +17,11 @@ class ListExactProductService {
                 descriptionproducts: true,
                 photoproducts: true,
                 productcategories: true,
-                relationattributeproducts: true,
+                relationattributeproducts: {
+                    include: {
+                        valueAttribute: true
+                    }
+                },
                 store: true,
                 tags: true,
                 variations: true
