@@ -364,13 +364,14 @@ enum StatusDescriptionProduct {
 }
 
 model ProductCategory {
-  id         String                @id @default(uuid())
-  product    Product               @relation(fields: [product_id], references: [id])
-  product_id String
-  category   Category              @relation(fields: [name], references: [name])
-  name       String
-  order      Int?
-  status     StatusProductCategory @default(Disponivel)
+  id           String                @id @default(uuid())
+  product      Product               @relation(fields: [product_id], references: [id])
+  product_id   String
+  category     Category              @relation(fields: [name], references: [name])
+  name         String
+  order        Int?
+  status       StatusProductCategory @default(Disponivel)
+  mainCategory MainCategory          @default(Nao)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -384,6 +385,11 @@ model ProductCategory {
 enum StatusProductCategory {
   Disponivel
   Indisponivel
+}
+
+enum MainCategory {
+  Sim
+  Nao
 }
 
 model Tag {
