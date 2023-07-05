@@ -137,6 +137,7 @@ import { ListAllProductEmphasisController } from './controllers/product/ListAllP
 import { ListAllProductOfferController } from './controllers/product/ListAllProductOfferController';
 import { UpdateProductFreeShippingController } from './controllers/product/UpdateProductFreeShippingController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
+import { AllPhotosProductPageController } from './controllers/product/photoProduct/AllPhotosProductPageController';
 
 // -- ROUTES SEARCH --
 import { FilterController } from './controllers/search/FilterController';
@@ -157,6 +158,7 @@ import { ProductsPageCategoriesController } from './controllers/product/productC
 import { FindAllRelationProductAndCategoryController } from './controllers/product/productCategory/FindAllRelationProductAndCategoryController';
 import { FindUniqueRelationProductCategoryController } from './controllers/product/productCategory/FindUniqueRelationProductCategoryController';
 import { ProductsCategoriesController } from './controllers/product/productCategory/ProductsCategoriesController';
+import { MainCategoryProductController } from './controllers/product/productCategory/MainCategoryProductController';
 
 // -- ROUTES DESCRIPTION PRODUCT --
 import { FindUniqueDescriptionProductController } from './controllers/product/descriptionProduct/FindUniqueDescriptionProductController';
@@ -374,7 +376,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { AllPhotosProductPageController } from './controllers/product/photoProduct/AllPhotosProductPageController';
 
 
 
@@ -557,6 +558,7 @@ router.delete('/deleteCategoryProduct', ADMINisAuthenticated, new DeleteProductC
 router.delete('/deleteAllCategoiesProduct', ADMINisAuthenticated, new DeleteAllProductCategoryController().handle);
 router.get('/findUniqueRelationCategoryProduct', ADMINisAuthenticated, new FindUniqueRelationProductCategoryController().handle);
 router.get('/findAllRelationsProductAndCategory', ADMINisAuthenticated, new FindAllRelationProductAndCategoryController().handle);
+router.put('/mainCategoryProduct', ADMINisAuthenticated, new MainCategoryProductController().handle);
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 router.get('/getAllProductsCategory', new ProductsCategoriesController().handle);
 
