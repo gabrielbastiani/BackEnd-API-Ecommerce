@@ -1,4 +1,3 @@
-import { MainCategory } from '@prisma/client';
 import { StatusProductCategory } from '@prisma/client';
 import prismaClient from '../../../prisma';
 
@@ -8,11 +7,10 @@ interface ProductCategoryRequest {
 
 class FindMainCategoryProductService {
     async execute({ product_id }: ProductCategoryRequest) {
-        const findCategoryRelation = await prismaClient.productCategory.findFirst({
+        const findCategoryRelation = await prismaClient.productCategory.findMany({
             where: {
                 product_id: product_id,
-                status: StatusProductCategory.Disponivel,
-                mainCategory: MainCategory.Sim
+                status: StatusProductCategory.Disponivel
             },
             include: {
                 category: true,
