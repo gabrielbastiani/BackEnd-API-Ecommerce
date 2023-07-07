@@ -3,12 +3,13 @@ import { MainCategoryProductService } from '../../../services/product/productCat
 
 class MainCategoryProductController {
   async handle(req: Request, res: Response) {
-    const productCategory_id = req.query.productCategory_id as string;
+    const { productCategory_id, product_id } = req.query;
 
     const updateCategory = new MainCategoryProductService();
 
     const category = await updateCategory.execute({
-      productCategory_id
+      productCategory_id,
+      product_id
     });
 
     return res.json(category);
