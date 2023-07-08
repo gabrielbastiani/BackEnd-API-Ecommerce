@@ -160,6 +160,7 @@ import { FindUniqueRelationProductCategoryController } from './controllers/produ
 import { ProductsCategoriesController } from './controllers/product/productCategory/ProductsCategoriesController';
 import { MainCategoryProductController } from './controllers/product/productCategory/MainCategoryProductController';
 import { FindMainCategoryProductController } from './controllers/product/productCategory/FindMainCategoryProductController';
+import { FindFirstProductCategoryController } from './controllers/product/productCategory/FindFirstProductCategoryController';
 
 // -- ROUTES DESCRIPTION PRODUCT --
 import { FindUniqueDescriptionProductController } from './controllers/product/descriptionProduct/FindUniqueDescriptionProductController';
@@ -563,6 +564,7 @@ router.put('/mainCategoryProduct', ADMINisAuthenticated, new MainCategoryProduct
 router.get('/productsPageCategories', new ProductsPageCategoriesController().handle);
 router.get('/getAllProductsCategory', new ProductsCategoriesController().handle);
 router.get('/findMainCategoryProduct', new FindMainCategoryProductController().handle);
+router.get('/findDateSlugCategoryProduct', new FindFirstProductCategoryController().handle);
 
 // ROUTES TYPE ATTRIBUTE --
 router.post('/createTypeAttribute', ADMINisAuthenticated, new CreateTypeAttributeController().handle);
