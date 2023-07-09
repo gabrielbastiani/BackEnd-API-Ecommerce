@@ -1,4 +1,4 @@
-import { StatusCategory } from '@prisma/client';
+import { StatusCategory, StatusProductCategory } from '@prisma/client';
 import prismaClient from '../../../prisma';
 
 interface ProductCategoryRequest {
@@ -9,6 +9,7 @@ class FindFirstProductCategoryService {
     async execute({ slug }: ProductCategoryRequest) {
         const firstCategoryProduct = await prismaClient.productCategory.findFirst({
             where: {
+                status: StatusProductCategory.Disponivel,
                 category: {
                     status: StatusCategory.Disponivel,
                     slug: slug,
