@@ -603,7 +603,7 @@ router.get('/getAllAttributesProduct', ADMINisAuthenticated, new ProductAttribut
 router.get('/allProductsAndAttributes', new ProductsAndAttributeController().handle);
 
 // -- ROUTES AVALIETION --
-router.post('/createAvalietion', ADMINisAuthenticated, new CreateAvalietionController().handle);
+router.post('/createAvalietion', ADMINisAuthenticated && isAuthenticated, new CreateAvalietionController().handle);
 router.delete('/deleteAvalietion', ADMINisAuthenticated, new DeleteAvalietionController().handle);
 router.delete('/deleteAvalietionProductID', ADMINisAuthenticated, new DeleteAvalietionProductIDController().handle);
 router.get('/pageAllAvalietion', ADMINisAuthenticated, new PageListAllAvalietionController().handle);
