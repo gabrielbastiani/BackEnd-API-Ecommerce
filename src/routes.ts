@@ -228,6 +228,7 @@ import { PageListAllAvalietionController } from './controllers/avalietion/PageLi
 import { DeleteAvalietionProductIDController } from './controllers/avalietion/DeleteAvalietionProductIDController';
 import { PageListAllAvalietionProductIDController } from './controllers/avalietion/PageListAllAvalietionProductIDController';
 import { FindUniqueAvalietionController } from './controllers/avalietion/FindUniqueAvalietionController';
+import { PageAvalietionStoreProductIDController } from './controllers/avalietion/PageAvalietionStoreProductIDController';
 
 // -- ROUTES VARIATION --
 import { AllVariationProductController } from './controllers/variation/AllVariationProductController';
@@ -610,6 +611,7 @@ router.get('/pageAllAvalietion', ADMINisAuthenticated, new PageListAllAvalietion
 router.get('/pageAvalietion', ADMINisAuthenticated, new PageListAllAvalietionProductIDController().handle);
 router.get('/avalietionData', ADMINisAuthenticated, new FindUniqueAvalietionController().handle);
 router.put('/updateStatusAvalietion', ADMINisAuthenticated, new UpdateStatusAvalietionController().handle);
+router.get('/pageAvalietionStoreProduct', new PageAvalietionStoreProductIDController().handle);
 
 // -- ROUTES VARIATION --
 router.post('/createVariation', ADMINisAuthenticated, new CreateVariationController().handle);
