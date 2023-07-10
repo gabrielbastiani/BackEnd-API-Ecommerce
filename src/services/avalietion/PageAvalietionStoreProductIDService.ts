@@ -7,7 +7,8 @@ class PageAvalietionStoreProductIDService {
 
         const allProductAvaliention = await prismaClient.avalietion.findMany({
             where: {
-                product_id: product_id
+                product_id: product_id,
+                status: "Aprovado"
             },
             orderBy: {
                 created_at: 'desc'
@@ -21,7 +22,8 @@ class PageAvalietionStoreProductIDService {
 
         const avalientionProduct = await prismaClient.avalietion.findMany({
             where: {
-                product_id: product_id
+                product_id: product_id,
+                status: "Aprovado"
             },
             orderBy: {
                 created_at: 'desc'
