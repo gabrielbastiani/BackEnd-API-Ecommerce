@@ -272,6 +272,9 @@ import { DeleteGroupBuyTogetherController } from './controllers/buyTogether/Dele
 import { ProductIDBuyTogetherController } from './controllers/buyTogether/ProductIDBuyTogetherController';
 import { DeleteBuyTogetherAllProductController } from './controllers/buyTogether/DeleteBuyTogetherAllProductController';
 
+// -- ROUTES COUNTERPROPOSAL --
+import { CreateCounterProposalController } from './controllers/counterproposal/CreateCounterProposalController';
+
 // -- ROUTES MENU CATEGORY --
 import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
 import { ListPositionMenuCategoryController } from './controllers/category/menuCategory/ListPositionMenuCategoryController';
@@ -654,6 +657,9 @@ router.get('/allBuyTogether', ADMINisAuthenticated, new AllBuyTogetherController
 router.get('/findItensGroupBuyTogether', ADMINisAuthenticated, new FindGroupBuyTogetherIDController().handle);
 router.get('/findFirstGroupBuyTogether', ADMINisAuthenticated, new FindFirstBuyTogetherController().handle);
 router.get('/findProductGroupBuyTogether', ADMINisAuthenticated, new ProductIDBuyTogetherController().handle);
+
+// -- ROUTES COUNTERPROPOSAL --
+router.post('/createCounterProposal', new CreateCounterProposalController().handle);
 
 // -- ROUTES MENU CATEGORY --
 router.post('/createMenuCategory', ADMINisAuthenticated, new CreateMenuCategoryController().handle);

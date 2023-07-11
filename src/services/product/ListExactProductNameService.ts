@@ -27,7 +27,19 @@ class ListExactProductNameService {
                 tags: true,
                 variations: {
                     include: {
-                        product: true
+                        productsvariations: {
+                            include: {
+                                product: {
+                                    include: {
+                                        relationattributeproducts: {
+                                            include: {
+                                                valueAttribute: true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
