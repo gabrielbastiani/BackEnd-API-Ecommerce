@@ -19,12 +19,17 @@ class ListExactProductNameService {
                 productcategories: true,
                 relationattributeproducts: {
                     include: {
-                        valueAttribute: true
+                        valueAttribute: true,
+                        product: true
                     }
                 },
                 store: true,
                 tags: true,
-                variations: true
+                variations: {
+                    include: {
+                        product: true
+                    }
+                }
             }
         })
         return exactProduct;
