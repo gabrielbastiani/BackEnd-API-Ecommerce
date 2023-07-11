@@ -274,6 +274,7 @@ import { DeleteBuyTogetherAllProductController } from './controllers/buyTogether
 
 // -- ROUTES COUNTERPROPOSAL --
 import { CreateCounterProposalController } from './controllers/counterproposal/CreateCounterProposalController';
+import { PageCounterProposalController } from './controllers/counterproposal/PageCounterProposalController';
 
 // -- ROUTES MENU CATEGORY --
 import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
@@ -660,6 +661,7 @@ router.get('/findProductGroupBuyTogether', ADMINisAuthenticated, new ProductIDBu
 
 // -- ROUTES COUNTERPROPOSAL --
 router.post('/createCounterProposal', new CreateCounterProposalController().handle);
+router.get('/pagePropousalList', ADMINisAuthenticated, new PageCounterProposalController().handle);
 
 // -- ROUTES MENU CATEGORY --
 router.post('/createMenuCategory', ADMINisAuthenticated, new CreateMenuCategoryController().handle);
