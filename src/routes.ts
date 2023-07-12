@@ -275,6 +275,8 @@ import { DeleteBuyTogetherAllProductController } from './controllers/buyTogether
 // -- ROUTES COUNTERPROPOSAL --
 import { CreateCounterProposalController } from './controllers/counterproposal/CreateCounterProposalController';
 import { PageCounterProposalController } from './controllers/counterproposal/PageCounterProposalController';
+import { FindUniqueCounterProposalController } from './controllers/counterproposal/FindUniqueCounterProposalController';
+import { UpdateStatusCounterProposalController } from './controllers/counterproposal/UpdateStatusCounterProposalController';
 
 // -- ROUTES MENU CATEGORY --
 import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
@@ -383,6 +385,8 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { CodeCupomCounterProposalController } from './controllers/counterproposal/CodeCupomCounterProposalController';
+import { InformationCounterProposalController } from './controllers/counterproposal/InformationCounterProposalController';
 
 
 
@@ -660,8 +664,12 @@ router.get('/findFirstGroupBuyTogether', ADMINisAuthenticated, new FindFirstBuyT
 router.get('/findProductGroupBuyTogether', ADMINisAuthenticated, new ProductIDBuyTogetherController().handle);
 
 // -- ROUTES COUNTERPROPOSAL --
-router.post('/createCounterProposal', new CreateCounterProposalController().handle);
 router.get('/pagePropousalList', ADMINisAuthenticated, new PageCounterProposalController().handle);
+router.get('/findUniqueCounterProposal', ADMINisAuthenticated, new FindUniqueCounterProposalController().handle);
+router.put('/updateStatusCounterProposal', ADMINisAuthenticated, new UpdateStatusCounterProposalController().handle);
+router.put('/codeCupomCreateCounterProposal', ADMINisAuthenticated, new CodeCupomCounterProposalController().handle);
+router.put('/informationCounterProposal', ADMINisAuthenticated, new InformationCounterProposalController().handle);
+router.post('/createCounterProposal', new CreateCounterProposalController().handle);
 
 // -- ROUTES MENU CATEGORY --
 router.post('/createMenuCategory', ADMINisAuthenticated, new CreateMenuCategoryController().handle);
