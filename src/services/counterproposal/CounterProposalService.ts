@@ -55,13 +55,13 @@ class CounterProposalService {
             html: `
                   <article>
                       <p>Veja abaixo, nossa resposta para sua contraproposta no produto em nossa loja virtual.</p>
-                      <p>Valor do produto: ${findCounter.currentPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}.</p>
-                      <p>Valor que você propôs: ${findCounter.counterOfferPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}.</p>
+                      <p>Valor do produto: <strong>${findCounter.currentPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}.</strong></p>
+                      <p>Valor que você propôs: <strong>${findCounter.counterOfferPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}.</strong></p>
                       <p>Sua proposta está: <strong>${findCounter.status}</strong></p>
                       <p>Use o código de cupom de desconto, <strong>${findCounter.codeCoupon}</strong></p>
                       <p>Abaixo nossas considerações:</p>
                       <br/>
-                      <span>${findCounter.information}</span>
+                      <p><strong>${findCounter.information}</strong></p>
                       <p>Caso descorde da nossa resposta a sua contraproposta, faça uma nova contraproposta entrando no link do produto em nossa loja no link abaixo.</p>
                       <br/>
                       <p><a href="http://localhost:3001/produto/${removerAcentos(findCounter.nameProduct)}">CLIQUE AQUI - ${findCounter.nameProduct}</a></p>
