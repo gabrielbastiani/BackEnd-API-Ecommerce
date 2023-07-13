@@ -71,7 +71,7 @@ class CreateCounterProposalService {
     })
 
     await transporter.sendMail({
-      from: "Loja Virtual - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>",
+      from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: `${store.email}`,
       subject: `Contraproposta para o produto ${firstCounter.nameProduct}`,
       html: `
@@ -81,7 +81,7 @@ class CreateCounterProposalService {
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual Builder Seu Negocio Online</h5>
+                <h5>Loja Virtual ${store.name}</h5>
             </div>`,
     });
 
