@@ -62,8 +62,8 @@ class CounterProposalService {
                       <p>Abaixo nossas considerações:</p>
                       <br/>
                       <p><strong>${findCounter.information}</strong></p>
-                      <p>Caso descorde da nossa resposta a sua contraproposta, faça uma nova contraproposta entrando no link do produto em nossa loja no link abaixo.</p>
                       <br/>
+                      <p>Caso descorde da nossa resposta a sua contraproposta, faça uma nova contraproposta entrando no link do produto em nossa loja no link abaixo.</p>
                       <p><a href="http://localhost:3001/produto/${removerAcentos(findCounter.nameProduct)}">CLIQUE AQUI - ${findCounter.nameProduct}</a></p>
                   </article>
                   
