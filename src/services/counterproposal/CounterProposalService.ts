@@ -49,7 +49,7 @@ class CounterProposalService {
         });
 
         await transporter.sendMail({
-            from: "Loja Virtual - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>",
+            from: `Loja Virtual - Builder Seu Negocio Online <${store.email}>`,
             to: `${findCounter.email}`,
             subject: `Contraproposta para o produto ${findCounter.nameProduct}`,
             html: `
