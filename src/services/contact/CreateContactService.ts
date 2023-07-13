@@ -24,7 +24,9 @@ class CreateContactService {
         message: message,
         store_id: store_id
       }
-    })
+    });
+
+    const store = await prismaClient.store.findFirst();
 
     const transporter = nodemailer.createTransport({
       host: process.env.HOST_SMTP,
@@ -36,7 +38,7 @@ class CreateContactService {
     })
 
     await transporter.sendMail({
-      from: "Loja Virtual - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>",
+      from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: `${email}`,
       subject: "Recebemos seu contato",
       html: `
@@ -46,7 +48,7 @@ class CreateContactService {
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual Builder Seu Negocio Online</h5>
+                <h5>Loja Virtual ${store.name}</h5>
             </div>`,
     });
 

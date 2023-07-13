@@ -28,6 +28,8 @@ class CustomerRequestPasswordRecovery {
       },
     });
 
+    const store = await prismaClient.store.findFirst();
+
     const transporter = nodemailer.createTransport({
       host: process.env.HOST_SMTP,
       port: 465,
@@ -38,7 +40,7 @@ class CustomerRequestPasswordRecovery {
     });
 
     await transporter.sendMail({
-      from: 'Loja virtual Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
+      from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: customer.email,
       subject: "Recuperação de senha",
       html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
@@ -53,7 +55,7 @@ class CustomerRequestPasswordRecovery {
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja virtual Builder Seu Negocio Online</h5>
+                <h5>Loja virtual ${store.name}</h5>
             </div>`,
     });
 

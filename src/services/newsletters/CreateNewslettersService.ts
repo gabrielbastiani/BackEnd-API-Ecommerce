@@ -17,7 +17,9 @@ class CreateNewslettersService {
         email: email,
         store_id: store_id
       }
-    })
+    });
+
+    const store = await prismaClient.store.findFirst();
 
     const transporter = nodemailer.createTransport({
       host: process.env.HOST_SMTP,
@@ -29,7 +31,7 @@ class CreateNewslettersService {
     })
 
     await transporter.sendMail({
-      from: "Loja Virtual - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>",
+      from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: `${email}`,
       subject: "Em breve novidades da nossa store virtual para você",
       html: `
@@ -39,7 +41,7 @@ class CreateNewslettersService {
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual Builder Seu Negocio Online</h5>
+                <h5>Loja Virtual ${store.name}</h5>
             </div>`,
     });
 
