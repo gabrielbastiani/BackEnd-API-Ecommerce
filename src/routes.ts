@@ -276,9 +276,6 @@ import { DeleteBuyTogetherAllProductController } from './controllers/buyTogether
 import { CreateCounterProposalController } from './controllers/counterproposal/CreateCounterProposalController';
 import { PageCounterProposalController } from './controllers/counterproposal/PageCounterProposalController';
 import { FindUniqueCounterProposalController } from './controllers/counterproposal/FindUniqueCounterProposalController';
-import { UpdateStatusCounterProposalController } from './controllers/counterproposal/UpdateStatusCounterProposalController';
-import { CodeCupomCounterProposalController } from './controllers/counterproposal/CodeCupomCounterProposalController';
-import { InformationCounterProposalController } from './controllers/counterproposal/InformationCounterProposalController';
 import { CounterProposalController } from './controllers/counterproposal/CounterProposalController';
 
 // -- ROUTES MENU CATEGORY --
@@ -667,9 +664,6 @@ router.get('/findProductGroupBuyTogether', ADMINisAuthenticated, new ProductIDBu
 // -- ROUTES COUNTERPROPOSAL --
 router.get('/pagePropousalList', ADMINisAuthenticated, new PageCounterProposalController().handle);
 router.get('/findUniqueCounterProposal', ADMINisAuthenticated, new FindUniqueCounterProposalController().handle);
-router.put('/updateStatusCounterProposal', ADMINisAuthenticated, new UpdateStatusCounterProposalController().handle);
-router.put('/codeCupomCreateCounterProposal', ADMINisAuthenticated, new CodeCupomCounterProposalController().handle);
-router.put('/informationCounterProposal', ADMINisAuthenticated, new InformationCounterProposalController().handle);
 router.put('/updateDataCounterProposal', ADMINisAuthenticated, new CounterProposalController().handle);
 router.post('/createCounterProposal', new CreateCounterProposalController().handle);
 
