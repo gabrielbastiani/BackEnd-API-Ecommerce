@@ -1,14 +1,14 @@
 import prismaClient from "../../prisma";
 
 interface BuyTogetherRequest {
-  parentId: string;
+  product_id: string;
 }
 
 class DeleteBuyTogetherAllProductService {
-  async execute({ parentId }: BuyTogetherRequest) {
+  async execute({ product_id }: BuyTogetherRequest) {
     const deleteBuy = await prismaClient.buyTogether.deleteMany({
       where: {
-        parentId: parentId
+        product_id: product_id
       }
     });
 

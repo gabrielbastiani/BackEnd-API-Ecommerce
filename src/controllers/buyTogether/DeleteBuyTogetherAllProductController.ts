@@ -3,12 +3,12 @@ import { DeleteBuyTogetherAllProductService } from '../../services/buyTogether/D
 
 class DeleteBuyTogetherAllProductController {
   async handle(req: Request, res: Response) {
-    const parentId = req.query.parentId as string;
+    const product_id = req.query.product_id as string;
 
     const deleteBuy = new DeleteBuyTogetherAllProductService();
 
     const buy = await deleteBuy.execute({
-      parentId
+      product_id
     });
 
     return res.json(buy);
