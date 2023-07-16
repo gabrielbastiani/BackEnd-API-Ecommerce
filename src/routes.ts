@@ -385,6 +385,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { FindBuyTogetherIDController } from './controllers/buyTogether/FindBuyTogetherIDController';
 
 
 
@@ -657,9 +658,10 @@ router.delete('/deleteGroupBuyTogether', ADMINisAuthenticated, new DeleteBuyToge
 router.delete('/deleteParentIdBuyTogether', ADMINisAuthenticated, new DeleteBuyTogetherAllProductController().handle);
 router.get('/findUniqueBuyTogether', ADMINisAuthenticated, new FindUniqueBuyTogetherController().handle);
 router.get('/allBuyTogether', ADMINisAuthenticated, new AllBuyTogetherController().handle);
-router.get('/findItensGroupBuyTogether', ADMINisAuthenticated, new FindGroupBuyTogetherIDController().handle);
 router.get('/findFirstGroupBuyTogether', ADMINisAuthenticated, new FindFirstBuyTogetherController().handle);
 router.get('/findProductGroupBuyTogether', ADMINisAuthenticated, new ProductIDBuyTogetherController().handle);
+router.get('/findItensGroupBuyTogether', ADMINisAuthenticated, new FindGroupBuyTogetherIDController().handle);
+router.get('/buyTogetherProductStore', new FindBuyTogetherIDController().handle);
 
 // -- ROUTES COUNTERPROPOSAL --
 router.get('/pagePropousalList', ADMINisAuthenticated, new PageCounterProposalController().handle);
