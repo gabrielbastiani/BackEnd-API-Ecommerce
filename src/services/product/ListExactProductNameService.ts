@@ -1,3 +1,4 @@
+import { StatusDescriptionProduct } from '@prisma/client';
 import prismaClient from '../../prisma';
 
 interface RequestProduct {
@@ -14,7 +15,14 @@ class ListExactProductNameService {
                 avalietions: true,
                 buyTogether: true,
                 buytogethers: true,
-                descriptionproducts: true,
+                descriptionproducts: {
+                    where: {
+                        status: StatusDescriptionProduct.Disponivel
+                    },
+                    orderBy: {
+                        order: 'asc'
+                    }
+                },
                 photoproducts: true,
                 productcategories: true,
                 relationattributeproducts: {
