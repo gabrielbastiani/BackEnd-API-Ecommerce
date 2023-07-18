@@ -5,6 +5,9 @@ class AllDescriptionProductInStoreService {
         const allProducts = await prismaClient.descriptionProduct.findMany({
             include: {
                 product: true
+            },
+            orderBy: {
+                order: 'asc'
             }
         });
 
