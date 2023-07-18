@@ -33,11 +33,11 @@ class CreateNewslettersService {
     await transporter.sendMail({
       from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: `${email}`,
-      subject: "Em breve novidades da nossa store virtual para você",
+      subject: "Em breve novidades da nossa loja virtual para você",
       html: `
             <article>
                 <p>Olá ${name}!</p>
-                <p>Agradecemos pelo seu cadastro em nossa newsletters da store virtual Builder Seu Negócio Online, em breve novidades por aqui aguarde!!!.</p>
+                <p>Agradecemos pelo seu cadastro em nossa newsletters da loja virtual Builder Seu Negócio Online, em breve novidades por aqui aguarde!!!.</p>
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
