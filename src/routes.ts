@@ -281,6 +281,7 @@ import { CounterProposalController } from './controllers/counterproposal/Counter
 
 // -- ROUTES STOCK PRODUCT CUSTOMER --
 import { CreateStockProductCustomerController } from './controllers/stockproductcustomer/CreateStockProductCustomerController';
+import { StockProductCustomerController } from './controllers/stockproductcustomer/StockProductCustomerController';
 
 // -- ROUTES MENU CATEGORY --
 import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
@@ -674,6 +675,7 @@ router.post('/createCounterProposal', new CreateCounterProposalController().hand
 
 // -- ROUTES STOCK PRODUCT CUSTOMER --
 router.post('/createStockProductZero', new CreateStockProductCustomerController().handle);
+router.get('/getStockProduct', new StockProductCustomerController().handle);
 
 // -- ROUTES MENU CATEGORY --
 router.post('/createMenuCategory', ADMINisAuthenticated, new CreateMenuCategoryController().handle);
