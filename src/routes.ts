@@ -271,12 +271,16 @@ import { FindFirstBuyTogetherController } from './controllers/buyTogether/FindFi
 import { DeleteGroupBuyTogetherController } from './controllers/buyTogether/DeleteGroupBuyTogetherController';
 import { ProductIDBuyTogetherController } from './controllers/buyTogether/ProductIDBuyTogetherController';
 import { DeleteBuyTogetherAllProductController } from './controllers/buyTogether/DeleteBuyTogetherAllProductController';
+import { FindBuyTogetherIDController } from './controllers/buyTogether/FindBuyTogetherIDController';
 
 // -- ROUTES COUNTERPROPOSAL --
 import { CreateCounterProposalController } from './controllers/counterproposal/CreateCounterProposalController';
 import { PageCounterProposalController } from './controllers/counterproposal/PageCounterProposalController';
 import { FindUniqueCounterProposalController } from './controllers/counterproposal/FindUniqueCounterProposalController';
 import { CounterProposalController } from './controllers/counterproposal/CounterProposalController';
+
+// -- ROUTES STOCK PRODUCT CUSTOMER --
+import { CreateStockProductCustomerController } from './controllers/stockproductcustomer/CreateStockProductCustomerController';
 
 // -- ROUTES MENU CATEGORY --
 import { CreateMenuCategoryController } from './controllers/category/menuCategory/CreateMenuCategoryController';
@@ -385,7 +389,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { FindBuyTogetherIDController } from './controllers/buyTogether/FindBuyTogetherIDController';
 
 
 
@@ -668,6 +671,9 @@ router.get('/pagePropousalList', ADMINisAuthenticated, new PageCounterProposalCo
 router.get('/findUniqueCounterProposal', ADMINisAuthenticated, new FindUniqueCounterProposalController().handle);
 router.put('/updateDataCounterProposal', ADMINisAuthenticated, new CounterProposalController().handle);
 router.post('/createCounterProposal', new CreateCounterProposalController().handle);
+
+// -- ROUTES STOCK PRODUCT CUSTOMER --
+router.post('/createStockProductZero', new CreateStockProductCustomerController().handle);
 
 // -- ROUTES MENU CATEGORY --
 router.post('/createMenuCategory', ADMINisAuthenticated, new CreateMenuCategoryController().handle);

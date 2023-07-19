@@ -477,6 +477,18 @@ CREATE TABLE "countersproposals" (
 );
 
 -- CreateTable
+CREATE TABLE "stockproductscustomers" (
+    "id" TEXT NOT NULL,
+    "email" VARCHAR(685) NOT NULL,
+    "product_id" TEXT NOT NULL,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
+    "store_id" TEXT,
+
+    CONSTRAINT "stockproductscustomers_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "coupons" (
     "id" TEXT NOT NULL,
     "name" VARCHAR(385),
@@ -771,6 +783,12 @@ ALTER TABLE "buytogethers" ADD CONSTRAINT "buytogethers_store_id_fkey" FOREIGN K
 
 -- AddForeignKey
 ALTER TABLE "countersproposals" ADD CONSTRAINT "countersproposals_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "stockproductscustomers" ADD CONSTRAINT "stockproductscustomers_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "stockproductscustomers" ADD CONSTRAINT "stockproductscustomers_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "coupons" ADD CONSTRAINT "coupons_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;

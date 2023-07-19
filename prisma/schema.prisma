@@ -301,12 +301,13 @@ model Product {
   productcategories         ProductCategory[]
   buytogethers              BuyTogether[]              @relation("buy")
   productsvariations        ProductVariation[]
+  stockproductcustomer StockProductCustomer[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
+  store                Store?                 @relation(fields: [store_id], references: [id])
+  store_id             String?
 
   @@map("products")
 }
@@ -614,8 +615,10 @@ model CounterProposal {
 }
 
 model StockProductCustomer {
-  id    String @id @default(uuid())
-  email String @db.VarChar(685)
+  id         String  @id @default(uuid())
+  email      String  @db.VarChar(685)
+  product    Product @relation(fields: [product_id], references: [id])
+  product_id String
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
