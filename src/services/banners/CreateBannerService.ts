@@ -42,6 +42,8 @@ class CreateBannerService {
         .replace(/[/]/g, "-");
     }
 
+    const store = await prismaClient.store.findFirst();
+
     await prismaClient.banner.create({
       data: {
         title: title,
@@ -98,8 +100,8 @@ class CreateBannerService {
         });
 
         await transporter.sendMail({
-          from: 'Loja - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
-          to: 'gabriel.bastiani@hotmail.com.br',
+          from: `Loja Virtual - ${store.name} <${store.email}>`,
+          to: `${store.email}`,
           subject: "Banner programado na store",
           html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                         <h2>Banner programado na store</h2>
@@ -111,7 +113,7 @@ class CreateBannerService {
                     </article>
                     
                     <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                        <h5>Loja Builder Seu Negocio Online</h5>
+                        <h5>Loja ${store.name}</h5>
                     </div>`,
         });
 
@@ -138,8 +140,8 @@ class CreateBannerService {
         });
 
         await transporter.sendMail({
-          from: 'Loja - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
-          to: 'gabriel.bastiani@hotmail.com.br',
+          from: `Loja Virtual - ${store.name} <${store.email}>`,
+          to: `${store.email}`,
           subject: "Banner programado na loja",
           html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                         <h2>Banner programado na loja</h2>
@@ -151,7 +153,7 @@ class CreateBannerService {
                     </article>
                     
                     <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                        <h5>Loja Builder Seu Negocio Online</h5>
+                        <h5>Loja ${store.name}</h5>
                     </div>`,
         });
       }
