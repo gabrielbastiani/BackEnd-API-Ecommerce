@@ -63,6 +63,7 @@ class CreateStockProductCustomerService {
         }
 
         setInterval(async () => {
+
             if (firstStockProduct.product.stock >= 1) {
                 await transporter.sendMail({
                     from: `Loja Virtual - ${store.name} <${store.email}>`,
@@ -80,6 +81,7 @@ class CreateStockProductCustomerService {
                     </div>`,
                 });
             }
+            
         }, 10000);
 
         return stockProduct;
