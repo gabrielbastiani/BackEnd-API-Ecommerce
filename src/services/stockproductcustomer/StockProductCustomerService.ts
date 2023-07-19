@@ -34,6 +34,8 @@ class StockProductCustomerService {
                 .replace(/[/]/g, "-");
         }
 
+        console.log(firstStockProduct.product.stock)
+        
         setInterval(async () => {
 
             if (firstStockProduct.product.stock >= 1) {
@@ -52,6 +54,8 @@ class StockProductCustomerService {
                         <h5>Loja Virtual ${store.name}</h5>
                     </div>`,
                 });
+                console.log("Estoque OK")
+                
             }
 
         }, 10000);
