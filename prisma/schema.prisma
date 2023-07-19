@@ -152,6 +152,7 @@ model Store {
   valuesattributes          ValueAttribute[]
   coupons                   Coupon[]
   countersproposals         CounterProposal[]
+  stockproductcustomer      StockProductCustomer[]
 
   @@map("stores")
 }
@@ -610,6 +611,19 @@ model CounterProposal {
   store_id String?
 
   @@map("countersproposals")
+}
+
+model StockProductCustomer {
+  id    String @id @default(uuid())
+  email String @db.VarChar(685)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("stockproductscustomers")
 }
 
 model Coupon {
