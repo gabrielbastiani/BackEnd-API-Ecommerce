@@ -34,16 +34,12 @@ class StockProductCustomerService {
                 .replace(/[/]/g, "-");
         }
 
-        console.log(firstStockProduct.product.stock)
-        
-        setInterval(async () => {
-
-            if (firstStockProduct.product.stock >= 1) {
-                await transporter.sendMail({
-                    from: `Loja Virtual - ${store.name} <${store.email}>`,
-                    to: `${firstStockProduct.email}`,
-                    subject: `Estoque do produto ${firstStockProduct.product.name} restabelecido`,
-                    html: `
+        if (firstStockProduct.product.stock >= 1) {
+            await transporter.sendMail({
+                from: `Loja Virtual - ${store.name} <${store.email}>`,
+                to: `${firstStockProduct.email}`,
+                subject: `Estoque do produto ${firstStockProduct.product.name} restabelecido`,
+                html: `
                     <article>
                         <p>Olá!</p>
                         <p>O estoque do produto ${firstStockProduct.product.name} foi restabelecido em nossa loja virtual, clique abaixo e seja redirecionado para a página desse produto la na loja.</p>
@@ -53,15 +49,9 @@ class StockProductCustomerService {
                     <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                         <h5>Loja Virtual ${store.name}</h5>
                     </div>`,
-                });
-                console.log("Estoque OK")
-                
-            }
-
-        }, 10000);
-
-        return firstStockProduct;
-
+            });
+            return;
+        }
     }
 }
 

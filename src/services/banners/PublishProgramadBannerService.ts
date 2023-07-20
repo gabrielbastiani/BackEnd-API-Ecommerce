@@ -15,6 +15,8 @@ interface BannerRequest {
 class PublishProgramadBannerService {
     async execute({ startDate, endDate, banner_id }: BannerRequest) {
 
+        const store = await prismaClient.store.findFirst();
+
         const allDateFirst = await prismaClient.banner.findFirst({
             where: {
                 id: banner_id,
@@ -63,7 +65,7 @@ class PublishProgramadBannerService {
                 });
 
                 await transporter.sendMail({
-                    from: 'Loja - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
+                    from: `Loja Virtual - ${store.name} <${store.email}>`,
                     to: 'gabriel.bastiani@hotmail.com.br',
                     subject: "Banner programado na loja",
                     html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
@@ -76,12 +78,11 @@ class PublishProgramadBannerService {
                           </article>
                           
                           <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                              <h5>Loja Builder Seu Negocio Online</h5>
+                            <h5>Loja ${store.name}</h5>
                           </div>`,
                 });
 
             }
-
 
             if (dateFuture === dateNow) {
 
@@ -104,7 +105,7 @@ class PublishProgramadBannerService {
                 });
 
                 await transporter.sendMail({
-                    from: 'Loja - Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
+                    from: `Loja Virtual - ${store.name} <${store.email}>`,
                     to: 'gabriel.bastiani@hotmail.com.br',
                     subject: "Banner programado na store",
                     html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
@@ -117,7 +118,7 @@ class PublishProgramadBannerService {
                           </article>
                           
                           <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                              <h5>Loja Builder Seu Negocio Online</h5>
+                            <h5>Loja ${store.name}</h5>
                           </div>`,
                 });
             }
