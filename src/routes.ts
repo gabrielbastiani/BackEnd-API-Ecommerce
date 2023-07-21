@@ -120,6 +120,7 @@ import { AllPhotosController } from './controllers/product/photoProduct/AllPhoto
 import { AllProductController } from './controllers/product/AllProductController';
 import { AllProductInStoreController } from './controllers/product/AllProductInStoreController';
 import { FindFirstProductController } from './controllers/product/FindFirstProductController';
+import { UpdateStockProductController } from './controllers/product/UpdateStockProductController';
 import { AllProductExistController } from './controllers/product/AllProductExistController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
@@ -529,6 +530,7 @@ router.get('/exportProduct', ADMINisAuthenticated, new ExportProductController()
 router.put('/updateStatusProduct', ADMINisAuthenticated, new UpdateStatusProductController().handle);
 router.put('/emphasis', ADMINisAuthenticated, new UpdateProductEmphasisController().handle);
 router.put('/offer', ADMINisAuthenticated, new UpdateProductOfferController().handle);
+router.put('/updateStockProduct', ADMINisAuthenticated, new UpdateStockProductController().handle);
 router.put('/updateFreeShipping', ADMINisAuthenticated, new UpdateProductFreeShippingController().handle);
 router.post('/createDescriptionProduct', ADMINisAuthenticated, new CreateDescriptionProductController().handle);
 router.put('/updateTitleDescription', ADMINisAuthenticated, new UpdateTitleDescriptionProductController().handle);

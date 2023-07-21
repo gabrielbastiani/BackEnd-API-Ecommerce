@@ -5,7 +5,6 @@ interface ProductRequest {
     price: number;
     promotion: number;
     sku: string;
-    stock: number;
     weight: string;
     width: string;
     height: string;
@@ -23,7 +22,6 @@ class UpdateAllDateProductService {
         price,
         promotion,
         sku,
-        stock,
         weight,
         width,
         height,
@@ -42,7 +40,6 @@ class UpdateAllDateProductService {
                 price: price,
                 promotion: promotion,
                 sku: sku,
-                stock: stock,
                 weight: weight,
                 width: width,
                 height: height,
