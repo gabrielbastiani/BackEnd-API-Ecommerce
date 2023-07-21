@@ -391,6 +391,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { FavoritesProductsController } from './controllers/search/FavoritesProductsController';
 
 
 
@@ -562,6 +563,7 @@ router.get('/filter', new FilterController().handle);
 router.get('/filterPrice', new FilterPriceController().handle);
 router.get('/searchProduct', new AllProductSearchController().handle);
 router.get('/orderProducts', new OrderProductsController().handle);
+router.get('/favoritesProducts', new FavoritesProductsController().handle);
 
 // ROUTES CATEGORIES AND PRODUCT --
 router.post('/createProductCategory', ADMINisAuthenticated, new CreateProductCategoryController().handle);
