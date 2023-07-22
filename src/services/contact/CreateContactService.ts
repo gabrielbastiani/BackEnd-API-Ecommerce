@@ -9,11 +9,13 @@ interface ContactRequest {
   company: string;
   sector: string;
   message: string;
-  store_id: string;
 }
 
 class CreateContactService {
-  async execute({ name, email, phone, company, sector, message, store_id }: ContactRequest){
+  async execute({ name, email, phone, company, sector, message }: ContactRequest){
+
+    const store = await prismaClient.store.findFirst();
+
     const contact = await prismaClient.contact.create({
       data:{
         name: name,
@@ -22,11 +24,9 @@ class CreateContactService {
         company: company,
         sector: sector,
         message: message,
-        store_id: store_id
+        store_id: store.id
       }
     });
-
-    const store = await prismaClient.store.findFirst();
 
     const transporter = nodemailer.createTransport({
       host: process.env.HOST_SMTP,
@@ -44,7 +44,34 @@ class CreateContactService {
       html: `
             <article>
                 <p>Olá ${name}!</p>
-                <p>Agradecenos por entrar em contato conosco, fique tranquilo(a), em breve retornaremos contato por aqui, ou pelo telefone que nos deixou.</p>
+                <p>Agradecenos por entrar em contato conosco, fique tranquilo(a), em breve retornaremos contato por aqui, ou pelo numero de telefone que nos deixou.</p>
+            </article>
+            
+            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
+                <h5>Loja Virtual ${store.name}</h5>
+            </div>`,
+    });
+
+    await transporter.sendMail({
+      from: `Loja Virtual - ${store.name} <${store.email}>`,
+      to: `${store.email}`,
+      subject: `Alguem deixou recado no formulario de contato da loja virtual ${store.name}`,
+      html: `
+            <article>
+                <p>O cliente ${name}, deixou a seguinte mensagem abaixo, no formulario de contato da loja virtual ${store.name}.</p>
+                <p>Responda a mensagem do(a) ${name} respondendo a este email, usando o endereço de email <strong>${email}</strong></p>
+                <p>Ou vá até o painel administrativo da loja virtual e responda a qualquer momento por lá mesmo...</p>
+                <br/>
+                <h3>Dados do cliente:</h3>
+                <strong>Nome: </strong><span>${name}</span>
+                <strong>E-mail: </strong><span>${email}</span>
+                <strong>Telefone: </strong><span>${phone}</span>
+                ${company === null ? ( `<strong>Empresa: </strong><span>Clinte deixou em branco</span>` ) : `<strong>Empresa: </strong><span>${company}</span>` }
+                ${sector === null ? ( `<strong>Setor: </strong><span>Clinte deixou em branco</span>` ) : `<strong>Setor: </strong><span>${sector}</span>` }
+                <br/>
+                <h4>VEJA A MENSAGEM DEIXADA PELO CLIENTE ABAIXO:</h4>
+                <p>${message}</p>
+                <br/>
             </article>
             
             <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">

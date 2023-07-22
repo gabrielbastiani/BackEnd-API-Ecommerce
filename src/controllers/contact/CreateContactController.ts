@@ -3,7 +3,7 @@ import { CreateContactService } from '../../services/contact/CreateContactServic
 
 class CreateContactController {
   async handle(req: Request, res: Response){
-    const { name, email, phone, company, sector, message, store_id } = req.body;
+    const { name, email, phone, company, sector, message } = req.body;
 
     const createContact = new CreateContactService();
 
@@ -13,8 +13,7 @@ class CreateContactController {
       phone,
       company,
       sector,
-      message,
-      store_id
+      message
     });
 
     return res.json(contacts);
