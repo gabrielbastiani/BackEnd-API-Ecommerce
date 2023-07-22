@@ -4,7 +4,6 @@ import { hash } from 'bcryptjs';
 import nodemailer from "nodemailer";
 require('dotenv/config');
 
-
 interface AdminRequest {
   name: string;
   slug: string;
