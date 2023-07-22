@@ -41,7 +41,7 @@ class CustomerRequestPasswordRecovery {
 
     await transporter.sendMail({
       from: `Loja Virtual - ${store.name} <${store.email}>`,
-      to: customer.email,
+      to: `${customer.email}`,
       subject: "Recuperação de senha",
       html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                 <h2>Recupere sua senha!</h2>
