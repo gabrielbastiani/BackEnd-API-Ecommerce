@@ -53,22 +53,20 @@ class CreateContactService {
     });
 
     await transporter.sendMail({
-      from: `Loja Virtual - ${store.name} <${store.email}>`,
+      from: `<${email}>`,
       to: `${store.email}`,
-      subject: `Alguem deixou recado no formulario de contato da loja virtual ${store.name}`,
+      subject: `Formulario de contato da loja virtual ${store.name}`,
       html: `
             <article>
                 <p>O cliente ${name}, deixou a seguinte mensagem abaixo, no formulario de contato da loja virtual ${store.name}.</p>
-                <p>Responda a mensagem do(a) ${name} respondendo a este email, usando o endereço de email <strong>${email}</strong></p>
+                <p>Responda a mensagem do(a) ${name} respondendo a este email.</p>
                 <p>Ou vá até o painel administrativo da loja virtual e responda a qualquer momento por lá mesmo...</p>
-                <br/>
-                <h3>Dados do cliente:</h3>
-                <strong>Nome: </strong><span>${name}</span>
-                <strong>E-mail: </strong><span>${email}</span>
-                <strong>Telefone: </strong><span>${phone}</span>
-                ${company === null ? ( `<strong>Empresa: </strong><span>Clinte deixou em branco</span>` ) : `<strong>Empresa: </strong><span>${company}</span>` }
-                ${sector === null ? ( `<strong>Setor: </strong><span>Clinte deixou em branco</span>` ) : `<strong>Setor: </strong><span>${sector}</span>` }
-                <br/>
+                <h3>Dados do Cliente:</h3>
+                <p><strong>Nome: </strong><span>${name}</span></p>
+                <p><strong>E-mail: </strong><span>${email}</span></p>
+                <p><strong>Telefone: </strong><span>${phone}</span></p>
+                ${company === null ? ( `<p><strong>Empresa: </strong><span>Clinte deixou em branco</span></p>` ) : `<p><strong>Empresa: </strong><span>${company}</span></p>` }
+                ${sector === null ? ( `<p><strong>Setor: </strong><span>Clinte deixou em branco</span></p>` ) : `<p><strong>Setor: </strong><span>${sector}</span></p>` }
                 <h4>VEJA A MENSAGEM DEIXADA PELO CLIENTE ABAIXO:</h4>
                 <p>${message}</p>
                 <br/>
