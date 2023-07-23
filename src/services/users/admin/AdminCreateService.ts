@@ -15,6 +15,10 @@ interface AdminRequest {
 class AdminCreateService {
   async execute({ name, email, password, store_id }: AdminRequest) {
 
+    const superAdmin = await prismaClient.admin.findMany();
+    const store = await prismaClient.store.findFirst();
+    const superAdminFirst = await prismaClient.admin.findFirst();
+
     function removerAcentos(s: any) {
       return s.normalize('NFD')
         .replace(/[\u0300-\u036f]/g, "")
@@ -63,13 +67,18 @@ class AdminCreateService {
       }
     });
 
-    const superAdmin = await prismaClient.admin.findMany();
-    const store = await prismaClient.store.findFirst();
-    const superAdminFirst = await prismaClient.admin.findFirst({
-      orderBy: {
-        created_at: 'desc'
-      }
-    });
+    /* async function activeSuperAdmin() {
+      await prismaClient.admin.update({
+        where: {
+          id: superAdminFirst.id
+        },
+        data: {
+          authenticated: true
+        }
+      })
+    } */
+
+    console.log(superAdmin)
 
     if (superAdmin.length >= 1) {
 
@@ -92,40 +101,29 @@ class AdminCreateService {
               </div>`,
       });
 
-    } else {
+      return;
 
-      async function activeSuperAdmin() {
-        await prismaClient.admin.update({
-          where: {
-            id: superAdminFirst.id
-          },
-          data: {
-            authenticated: true
-          }
-        })
-      }
+    }
 
-      await transporter.sendMail({
-        from: "contato@builderseunegocioonline.com.br",
-        to: "gabriel.bastiani@hotmail.com.br",
-        subject: "Confirme cadastro de SUPER Administrador da Loja Virtual",
-        html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
+    await transporter.sendMail({
+      from: "contato@builderseunegocioonline.com.br",
+      to: "gabriel.bastiani@hotmail.com.br",
+      subject: "Confirme cadastro de SUPER Administrador da Loja Virtual",
+      html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                   <h2>Confirme cadastro!</h2>
               </div>
               
               <article>
                   <p>Olá!</p>
                   <p>O super administrador, ${admin.name} está se cadastrando pela primeira vez em uma loja virtual!</p>
-                  <p><button onclick={${activeSuperAdmin()}}>CLIQUE AQUI</button></p>
+                  <p><button style="background-color: rgb(223, 145, 0); color: black;>CLIQUE AQUI</button></p>
                   <p>Para confirmar a conta de super administrador junto a loja virtual.</p>
               </article>
               
               <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                   <h5>Sistema Builder Seu Negocio Online</h5>
               </div>`,
-      });
-
-    }
+    });
 
     return admin;
 
