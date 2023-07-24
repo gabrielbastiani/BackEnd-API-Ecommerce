@@ -4,6 +4,7 @@ import multer from 'multer';
 // -- ROUTES ADMIN --
 import { ActiveOrDesactiveAdminController } from './controllers/users/admin/ActiveOrDesactiveAdminController';
 import { AdminCreateController } from './controllers/users/admin/AdminCreateController';
+import { EmployeCreateController } from './controllers/users/admin/EmployeCreateController';
 import { AdminRoleController } from './controllers/users/admin/AdminRoleController';
 import { AuthAdminController } from './controllers/users/admin/AuthAdminController';
 import { AuthenticatedEmailAdminController } from './controllers/users/admin/AuthenticatedEmailAdminController';
@@ -21,6 +22,7 @@ import { DeleteAdminPasswordRecoveryIDController } from './controllers/users/adm
 import { FindAdminRecoveryIDController } from './controllers/users/admin/passwordRecoveryAdmin/FindAdminRecoveryIDController';
 import { RecoveryPasswordAdminController } from './controllers/users/admin/passwordRecoveryAdmin/RecoveryPasswordAdminController';
 import { EmailPasswordDashboardController } from './controllers/users/admin/passwordRecoveryAdmin/EmailPasswordDashboardController';
+import { ListSuperAdminController } from './controllers/users/admin/ListSuperAdminController';
 
 // -- ROUTES CUSTOMER --
 import { ActiveOrDesactiveCustomerController } from './controllers/users/customer/ActiveOrDesactiveCustomerController';
@@ -145,6 +147,7 @@ import { FilterController } from './controllers/search/FilterController';
 import { FilterPriceController } from './controllers/search/FilterPriceController';
 import { AllProductSearchController } from './controllers/search/AllProductSearchController';
 import { OrderProductsController } from './controllers/search/OrderProductsController';
+import { FavoritesProductsController } from './controllers/search/FavoritesProductsController';
 
 // -- ROUTES CATEGORY AND PRODUCT --
 import { CreateProductCategoryController } from './controllers/product/productCategory/CreateProductCategoryController';
@@ -389,9 +392,9 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 
 
 import { ADMINisAuthenticated } from './middlewares/ADMINisAuthenticated';
+import { EMPLOYEEisAuthenticated } from './middlewares/EMPLOYEEisAuthenticated';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { FavoritesProductsController } from './controllers/search/FavoritesProductsController';
 
 
 
@@ -404,8 +407,10 @@ const upload = multer(uploadConfig.upload("./images"));
 // -- ROUTES ADMIN --
 router.put('/admin/activeOrDesactiveAdmin', ADMINisAuthenticated, new ActiveOrDesactiveAdminController().handle);
 router.post('/admin/createAdmin', new AdminCreateController().handle);
+router.post('/admin/createEmployee', new EmployeCreateController().handle);
 router.put('/admin/updateRoleAdmin', ADMINisAuthenticated, new AdminRoleController().handle);
 router.post('/admin/session', new AuthAdminController().handle);
+
 router.put('/admin/authenticatedEmailAdmin', new AuthenticatedEmailAdminController().handle);
 router.delete('/admin/deleteAdminUser', ADMINisAuthenticated, new DeleteAdminOrEmployeController().handle);
 router.get('/admin/me', ADMINisAuthenticated, new DetailAdminController().handle);
@@ -419,6 +424,7 @@ router.put('/admin/updateNameAdminOrEmployee', ADMINisAuthenticated, new AdminUp
 router.delete('/admin/deleteRecoveryIDAdmin', ADMINisAuthenticated, new DeleteAdminPasswordRecoveryIDController().handle);
 router.get('/admin/findFirstAdmin', ADMINisAuthenticated, new FindAdminRecoveryIDController().handle);
 router.post('/admin/recoverPasswordDashboard', ADMINisAuthenticated, new EmailPasswordDashboardController().handle);
+router.get('/admin/getSuperAdmin', new ListSuperAdminController().handle);
 router.post('/admin/recoverPasswordEmail', new EmailPasswordController().handle);
 router.put('/admin/recoverAdmin', new RecoveryPasswordAdminController().handle);
 

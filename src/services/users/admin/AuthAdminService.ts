@@ -14,8 +14,7 @@ class AuthAdminService {
     const admin = await prismaClient.admin.findFirst({
       where: {
         email: email,
-        authenticated: true,
-        role: RoleAdmin.ADMIN
+        authenticated: true
       }
     });
 

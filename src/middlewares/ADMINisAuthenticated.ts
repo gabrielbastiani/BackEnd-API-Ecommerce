@@ -35,7 +35,7 @@ export async function ADMINisAuthenticated (
       where: {
         id: sub
       }
-    })
+    });
 
     const roleUserLog = String(userRole.role);
 
@@ -44,7 +44,7 @@ export async function ADMINisAuthenticated (
     if(roleUserLog === roleUser){
       return next();
     } else {
-      console.log("Usuario sem permisão de Administrador!!!");
+      console.log("Usuario sem permisão de Super Administrador!!!");
       return res.status(401).end();
     }
 
