@@ -39,12 +39,12 @@ export async function EMPLOYEEisAuthenticated (
 
     const roleUserLog = String(userRole.role);
 
-    const roleUser = String("ADMIN");
+    const roleUser = String("EMPLOYEE");
 
     if(roleUserLog === roleUser){
       return next();
     } else {
-      console.log("Usuario sem permisão de Super Administrador!!!");
+      console.log("Usuario sem permisão de empregado!!!");
       return res.status(401).end();
     }
 
