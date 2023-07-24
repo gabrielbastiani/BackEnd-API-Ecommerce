@@ -39,7 +39,7 @@ export async function EMPLOYEEisAuthenticated (
 
     const roleUserLog = String(userRole.role);
 
-    const roleUser = String("EMPLOYEE");
+    const roleUser = String("ADMIN");
 
     if(roleUserLog === roleUser){
       return next();
