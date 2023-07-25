@@ -114,11 +114,11 @@ import { ListAllCategoriesStorePageController } from './controllers/category/Lis
 
 // -- ROUTES PRODUCT --
 import { CreateProductController } from './controllers/product/CreateProductController';
-import { CreatePhotoProductController } from './controllers/product/photoProduct/CreatePhotoProductController';
-import { UpdatePhotoProductController } from './controllers/product/photoProduct/UpdatePhotoProductController';
+import { CreatePhotoProductController } from './controllers/product/photoproduct/CreatePhotoProductController';
+import { UpdatePhotoProductController } from './controllers/product/photoproduct/UpdatePhotoProductController';
 import { UpdateAllDateProductController } from './controllers/product/UpdateAllDateProductController';
-import { AllPhotosProductController } from './controllers/product/photoProduct/AllPhotosProductController';
-import { AllPhotosController } from './controllers/product/photoProduct/AllPhotosController';
+import { AllPhotosProductController } from './controllers/product/photoproduct/AllPhotosProductController';
+import { AllPhotosController } from './controllers/product/photoproduct/AllPhotosController';
 import { AllProductController } from './controllers/product/AllProductController';
 import { AllProductInStoreController } from './controllers/product/AllProductInStoreController';
 import { FindFirstProductController } from './controllers/product/FindFirstProductController';
@@ -126,21 +126,21 @@ import { UpdateStockProductController } from './controllers/product/UpdateStockP
 import { AllProductExistController } from './controllers/product/AllProductExistController';
 import { PageListAllProductController } from './controllers/product/PageListAllProductController';
 import { ListExactProductController } from './controllers/product/ListExactProductController';
-import { DeletePhotoProductController } from './controllers/product/photoProduct/DeletePhotoProductController';
-import { DeleteAllPhotoProductController } from './controllers/product/photoProduct/DeleteAllPhotoProductController';
+import { DeletePhotoProductController } from './controllers/product/photoproduct/DeletePhotoProductController';
+import { DeleteAllPhotoProductController } from './controllers/product/photoproduct/DeleteAllPhotoProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
 import { UpdateStatusProductController } from './controllers/product/UpdateStatusProductController';
 import { UpdateProductEmphasisController } from './controllers/product/UpdateProductEmphasisController';
 import { UpdateProductOfferController } from './controllers/product/UpdateProductOfferController';
-import { UpdateOrderPhotoProductController } from './controllers/product/photoProduct/UpdateOrderPhotoProductController';
-import { AllPhotosProductInStoreController } from './controllers/product/photoProduct/AllPhotosProductInStoreController';
+import { UpdateOrderPhotoProductController } from './controllers/product/photoproduct/UpdateOrderPhotoProductController';
+import { AllPhotosProductInStoreController } from './controllers/product/photoproduct/AllPhotosProductInStoreController';
 import { ListAllProductEmphasisController } from './controllers/product/ListAllProductEmphasisController';
 import { ListAllProductOfferController } from './controllers/product/ListAllProductOfferController';
 import { UpdateProductFreeShippingController } from './controllers/product/UpdateProductFreeShippingController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
-import { AllPhotosProductPageController } from './controllers/product/photoProduct/AllPhotosProductPageController';
+import { AllPhotosProductPageController } from './controllers/product/photoproduct/AllPhotosProductPageController';
 
 // -- ROUTES SEARCH --
 import { FilterController } from './controllers/search/FilterController';
