@@ -71,7 +71,7 @@ class EmployeCreateService {
                   
                   <article>
                       <p>Olá!</p>
-                      <p>O usuario, ${employe.name} está se cadastrando como administrador na loja virtual!</p>
+                      <p>O usuario, ${employe.name} está se cadastrando como empregado na loja virtual!</p>
                       <p><a href="http://localhost:3000/authenticated/${employe.id}">CLIQUE AQUI</a>, para confirmar a conta junto a Loja Virtual desse novo usuario.</p>
                   </article>
                   
