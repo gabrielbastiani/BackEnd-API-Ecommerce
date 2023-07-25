@@ -38,7 +38,6 @@ export async function EMPLOYEEisAuthenticated (
     });
 
     const roleUserLog = String(userRole.role);
-
     const roleUser = String("EMPLOYEE");
 
     if(roleUserLog === roleUser){

@@ -38,10 +38,7 @@ export async function ADMINisAuthenticated (
     });
 
     const roleUserLog = String(userRole.role);
-
     const roleUser = String("ADMIN");
-
-    console.log(roleUserLog)
 
     if(roleUserLog === roleUser){
       return next();
