@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AllPhotosProductPageService } from '../../../services/product/photoproduct/AllPhotosProductPageService';
+import { AllPhotosProductPageService } from '../../../services/product/photoProduct/AllPhotosProductPageService';
 
 class AllPhotosProductPageController {
     async handle(req: Request, res: Response) {
