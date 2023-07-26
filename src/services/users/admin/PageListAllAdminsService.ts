@@ -6,7 +6,7 @@ class PageListAllAdminsService {
 
         const skip = limit * (page - 1);
 
-        const allAdmins = await prismaClient.admin.findMany({
+        const allEmployees = await prismaClient.admin.findMany({
             where: {
                 role: RoleAdmin.EMPLOYEE
             },
@@ -18,7 +18,7 @@ class PageListAllAdminsService {
             }
         });
 
-        const admins = await prismaClient.admin.findMany({
+        const employees = await prismaClient.admin.findMany({
             where: {
                 role: RoleAdmin.EMPLOYEE
             },
@@ -33,9 +33,9 @@ class PageListAllAdminsService {
         });
 
         const data = {
-            admins,
-            total: allAdmins.length,
-            total_pages: Math.ceil(allAdmins.length / limit),
+            employees,
+            total: allEmployees.length,
+            total_pages: Math.ceil(allEmployees.length / limit),
             current_page: page,
         }
 
