@@ -430,20 +430,20 @@ router.post('/customer/createCustomer', new CreateCustomerController().handle);
 router.put('/customer/activeOrDesactiveCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ActiveOrDesactiveCustomerController().handle);
 router.post('/customer/session', new AuthCustomerController().handle);
 router.delete('/customer/deleteCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteCustomerController().handle);
-router.get('/customer/me', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DetailCustomerController().handle);
+router.get('/customer/me', isAuthenticated, new DetailCustomerController().handle);
 router.get('/customer/exportCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportCustomerController().handle);
-router.get('/customer/listExactCustomerName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactCustomerNameController().handle);
-router.get('/customer/listExactCustomerID', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactCustomerController().handle);
+router.get('/customer/listExactCustomerName', isAuthenticated, new ListExactCustomerNameController().handle);
+router.get('/customer/listExactCustomerID', isAuthenticated, new ListExactCustomerController().handle);
 router.get('/customer/listForPageCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllCustomerController().handle);
-router.put('/customer/updateDateCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateCustomerController().handle);
-router.put('/customer/updateNameCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CustomerUpdateNameController().handle);
-router.put('/customer/updateNewslatter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CustomerUpdateNewslatterController().handle);
-router.delete('/customer/deleteRecoveryIDCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeletePasswordRecoveryIDCustomerController().handle);
-router.get('/customer/findFirstCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindRecoveryIDCustomerController().handle);
-router.post('/customer/delivery/createDeliveryAddress', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateDeliveryAddressCustomerController().handle);
-router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateDeliveryAddressCustomerCustomerController().handle);
-router.delete('/customer/delivery/deleteDeliveryAddress', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteDeliveryAddressCustomerController().handle);
-router.post('/customer/recoverPasswordDashboard', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailPasswordDashboardCustomerController().handle);
+router.put('/customer/updateDateCustomer', isAuthenticated, new UpdateAllDateCustomerController().handle);
+router.put('/customer/updateNameCustomer', isAuthenticated, new CustomerUpdateNameController().handle);
+router.put('/customer/updateNewslatter', isAuthenticated, new CustomerUpdateNewslatterController().handle);
+router.delete('/customer/deleteRecoveryIDCustomer', isAuthenticated, new DeletePasswordRecoveryIDCustomerController().handle);
+router.get('/customer/findFirstCustomer', isAuthenticated, new FindRecoveryIDCustomerController().handle);
+router.post('/customer/delivery/createDeliveryAddress', isAuthenticated, new CreateDeliveryAddressCustomerController().handle);
+router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', isAuthenticated, new UpdateAllDateDeliveryAddressCustomerCustomerController().handle);
+router.delete('/customer/delivery/deleteDeliveryAddress', isAuthenticated, new DeleteDeliveryAddressCustomerController().handle);
+router.post('/customer/recoverPasswordDashboard', isAuthenticated, new EmailPasswordDashboardCustomerController().handle);
 router.put('/customer/recoverCustomer', new CustomerRecoveryPasswordController().handle);
 router.post('/customer/recoverPasswordEmail', new EmailPasswordCustomerController().handle);
 
@@ -622,7 +622,7 @@ router.get('/getAllAttributesProduct', [isAuthenticated, authorizationRules(["AD
 router.get('/allProductsAndAttributes', new ProductsAndAttributeController().handle);
 
 // -- ROUTES AVALIETION --
-router.post('/createAvalietion', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateAvalietionController().handle);
+router.post('/createAvalietion', isAuthenticated, new CreateAvalietionController().handle);
 router.delete('/deleteAvalietion', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteAvalietionController().handle);
 router.delete('/deleteAvalietionProductID', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteAvalietionProductIDController().handle);
 router.get('/pageAllAvalietion', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllAvalietionController().handle);
