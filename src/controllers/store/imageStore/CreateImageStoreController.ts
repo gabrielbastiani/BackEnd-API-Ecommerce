@@ -3,7 +3,7 @@ import { CreateImageStoreService } from "../../../services/store/imageStore/Crea
 
 class CreateImageStoreController {
     async handle(req: Request, res: Response) {
-        const { store_id, titleImage, order, position, slugPosition } = req.body;
+        const { titleImage, order, position, slugPosition } = req.body;
 
         const images = new CreateImageStoreService();
 
@@ -14,7 +14,6 @@ class CreateImageStoreController {
             const { originalname, filename: image } = req.file;
 
             const imageStore = await images.execute({
-                store_id,
                 image,
                 titleImage,
                 order,

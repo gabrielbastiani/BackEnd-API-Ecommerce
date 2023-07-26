@@ -1,7 +1,6 @@
 import prismaClient from "../../../prisma";
 
 interface ImageRequest {
-  store_id: string;
   image: string;
   titleImage: string;
   order: number;
@@ -10,7 +9,9 @@ interface ImageRequest {
 }
 
 class CreateImageStoreService {
-  async execute({ store_id, image, titleImage, order, position }: ImageRequest) {
+  async execute({ image, titleImage, order, position }: ImageRequest) {
+
+    const store = await prismaClient.store.findFirst();
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -23,7 +24,7 @@ class CreateImageStoreService {
 
     const images = await prismaClient.imageStore.create({
       data: {
-        store_id: store_id,
+        store_id: store.id,
         image: image,
         titleImage: titleImage,
         order: Number(order),
