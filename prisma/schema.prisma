@@ -138,7 +138,6 @@ model Store {
   tags                      Tag[]
   typeattributes            TypeAttribute[]
   relationattributeproducts RelationAttributeProduct[]
-  variations                Variation[]
   menucategories            MenuCategory[]
   avalietions               Avalietion[]
   newsletters               Newsletter[]
@@ -296,7 +295,6 @@ model Product {
   descriptionproducts       DescriptionProduct[]
   tags                      Tag[]
   relationattributeproducts RelationAttributeProduct[]
-  variations                Variation[]
   avalietions               Avalietion[]
   productcategories         ProductCategory[]
   buytogethers              BuyTogether[]              @relation("buy")
@@ -502,53 +500,16 @@ model Avalietion {
   @@map("avalietions")
 }
 
-model Variation {
-  id         String          @id @default(uuid())
-  product    Product         @relation(fields: [product_id], references: [id])
-  product_id String
-  name       String          @db.VarChar(325)
-  slug       String?         @db.VarChar(325)
-  order      Int?
-  status     StatusVariation @default(Disponivel)
-
-  photovariations    PhotoVariation[]
-  productsvariations ProductVariation[]
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("variations")
-}
-
-enum StatusVariation {
-  Disponivel
-  Indisponivel
-}
-
-model PhotoVariation {
-  id           String    @id @default(uuid())
-  variation    Variation @relation(fields: [variation_id], references: [id])
-  variation_id String
-  image        String
-  order        Int?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
-
-  @@map("photovariations")
-}
-
 model ProductVariation {
-  id           String                 @id @default(uuid())
-  variation    Variation              @relation(fields: [variation_id], references: [id])
-  variation_id String
-  product      Product?               @relation(fields: [product_id], references: [id])
-  product_id   String?
-  order        Int?
-  status       StatusProductVariation @default(Disponivel)
+  id               String                 @id @default(uuid())
+  product          Product                @relation(fields: [product_id], references: [id])
+  product_id       String
+  nameVariation    String?                @db.VarChar(325)
+  productVariation String?                @db.VarChar(1125)
+  order            Int?
+  status           StatusProductVariation @default(Disponivel)
+
+  photovariations PhotoVariation[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -562,6 +523,19 @@ model ProductVariation {
 enum StatusProductVariation {
   Disponivel
   Indisponivel
+}
+
+model PhotoVariation {
+  id           String           @id @default(uuid())
+  variation    ProductVariation @relation(fields: [variation_id], references: [id])
+  variation_id String
+  image        String
+  order        Int?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("photovariations")
 }
 
 model BuyTogether {

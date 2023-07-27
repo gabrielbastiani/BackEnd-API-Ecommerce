@@ -43,6 +43,11 @@ class ListExactProductNameService {
                                             include: {
                                                 valueAttribute: true
                                             }
+                                        },
+                                        variations: {
+                                            include: {
+                                                productsvariations: true
+                                            }
                                         }
                                     }
                                 }
