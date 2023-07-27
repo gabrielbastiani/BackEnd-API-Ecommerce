@@ -260,6 +260,7 @@ import { FindUniqueProductVariationController } from './controllers/variation/pr
 import { UpdateStatusProductVariationController } from './controllers/variation/productVariation/UpdateStatusProductVariationController';
 import { UpdateNameProductVariationController } from './controllers/variation/productVariation/UpdateNameProductVariationController';
 import { UpdateOrderProductVariationController } from './controllers/variation/productVariation/UpdateOrderProductVariationController';
+import { AllVariationProductInStoreController } from './controllers/variation/AllVariationProductInStoreController';
 
 // -- ROUTES BUY TOGETHER --
 import { CreateBuyTogetherController } from './controllers/buyTogether/CreateBuyTogetherController';
@@ -657,6 +658,7 @@ router.get('/findUniqueProductVariation', [isAuthenticated, authorizationRules([
 router.put('/updateStatusProductVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusProductVariationController().handle);
 router.put('/updateProductVariationName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameProductVariationController().handle);
 router.put('/updateOrderProductVariationName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateOrderProductVariationController().handle);
+router.get('/getVariationsProduct', new AllVariationProductInStoreController().handle);
 
 // -- ROUTES BUY TOGETHER --
 router.post('/createBuyTogether', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateBuyTogetherController().handle);
