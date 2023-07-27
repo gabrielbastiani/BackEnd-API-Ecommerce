@@ -235,32 +235,7 @@ import { FindUniqueAvalietionController } from './controllers/avalietion/FindUni
 import { PageAvalietionStoreProductIDController } from './controllers/avalietion/PageAvalietionStoreProductIDController';
 
 // -- ROUTES VARIATION --
-import { AllVariationProductController } from './controllers/variation/AllVariationProductController';
-import { CreateVariationController } from './controllers/variation/CreateVariationController';
-import { FindFirstVariationNameController } from './controllers/variation/FindFirstVariationNameController';
-import { DeleteAllVariationProductController } from './controllers/variation/DeleteAllVariationProductController';
-import { DeleteVariationController } from './controllers/variation/DeleteVariationController';
-import { FindUniqueVariationController } from './controllers/variation/FindUniqueVariationController';
-import { UpdateStatusVariationController } from './controllers/variation/UpdateStatusVariationController';
-import { PageListAllVariationController } from './controllers/variation/PageListAllVariationController';
-import { UpdateNameVariationController } from './controllers/variation/UpdateNameVariationController';
-import { UpdateOrderVariacaoController } from './controllers/variation/UpdateOrderVariacaoController';
-import { AllVariationImageController } from './controllers/photoVariation/AllVariationImageController';
-import { AllImagesVariationController } from './controllers/photoVariation/AllImagesVariationController';
-import { DeleteALLImageVariationProductController } from './controllers/photoVariation/DeleteALLImageVariationProductController';
-import { DeleteImageVariationController } from './controllers/photoVariation/DeleteImageVariationController';
-import { CreateImageVariationController } from './controllers/photoVariation/CreateImageVariationController';
-import { UpdateOrderImageVariationController } from './controllers/photoVariation/UpdateOrderImageVariationController';
-import { FindUniqueImageVariationController } from './controllers/photoVariation/FindUniqueImageVariationController';
-import { CreateProductVariationController } from './controllers/photoVariation/productVariation/CreateProductVariationController';
-import { DeleteProductVariationController } from './controllers/photoVariation/productVariation/DeleteProductVariationController';
-import { VariationDeleteController } from './controllers/photoVariation/productVariation/VariationDeleteController';
-import { FindFirstProductVariationController } from './controllers/photoVariation/productVariation/FindFirstProductVariationController';
-import { FindUniqueProductVariationController } from './controllers/photoVariation/productVariation/FindUniqueProductVariationController';
-import { UpdateStatusProductVariationController } from './controllers/photoVariation/productVariation/UpdateStatusProductVariationController';
-import { UpdateNameProductVariationController } from './controllers/photoVariation/productVariation/UpdateNameProductVariationController';
-import { UpdateOrderProductVariationController } from './controllers/photoVariation/productVariation/UpdateOrderProductVariationController';
-import { AllVariationProductInStoreController } from './controllers/variation/AllVariationProductInStoreController';
+
 
 // -- ROUTES BUY TOGETHER --
 import { CreateBuyTogetherController } from './controllers/buyTogether/CreateBuyTogetherController';
