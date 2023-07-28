@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { UpdateStatusProductVariationService } from '../../../services/productVariation/UpdateStatusProductVariationService';
+import { UpdateStatusProductVariationService } from '../../../services/product/productVariation/UpdateStatusProductVariationService';
 
 class UpdateStatusProductVariationController {
   async handle(req: Request, res: Response) {

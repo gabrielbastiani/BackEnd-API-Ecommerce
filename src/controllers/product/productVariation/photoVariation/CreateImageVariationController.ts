@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { CreateImageVariationService } from "../../services/productVariation/photoVariation/CreateImageVariationService";
+import { CreateImageVariationService } from "../../../../services/product/productVariation/photoVariation/CreateImageVariationService";
 
 class CreateImageVariationController {
     async handle(req: Request, res: Response) {
-        const { variation_id, order } = req.body;
+        const { productVariation_id, order } = req.body;
 
         const imageVariation = new CreateImageVariationService();
 
@@ -15,7 +15,7 @@ class CreateImageVariationController {
 
             const variationImage = await imageVariation.execute({
                 image,
-                variation_id,
+                productVariation_id,
                 order
             })
             return res.json(variationImage)

@@ -1,21 +1,21 @@
-import prismaClient from '../../prisma';
+import prismaClient from "../../../prisma";
 
 interface VariationRequest {
-    variation_id: string;
+    productVariation_id: string;
 }
 
 class FindFirstProductVariationService {
-    async execute({ variation_id }: VariationRequest) {
+    async execute({ productVariation_id }: VariationRequest) {
         const findVariation = await prismaClient.productVariation.findFirst({
             where: {
-                variation_id: variation_id
+                id: productVariation_id
             },
             orderBy: {
                 created_at: 'desc'
             },
             include: {
                 product: true,
-                variation: true
+                photovariations: true
             }
         })
         return findVariation;

@@ -398,8 +398,8 @@ CREATE TABLE "avalietions" (
 CREATE TABLE "productsvariations" (
     "id" TEXT NOT NULL,
     "product_id" TEXT NOT NULL,
-    "nameVariation" VARCHAR(325),
-    "productVariation" VARCHAR(1125),
+    "variationName" VARCHAR(325),
+    "variationProduct" VARCHAR(1125),
     "order" INTEGER,
     "status" "StatusProductVariation" NOT NULL DEFAULT 'Disponivel',
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,

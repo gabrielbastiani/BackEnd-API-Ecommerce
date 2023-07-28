@@ -1,14 +1,14 @@
-import prismaClient from '../../../prisma';
+import prismaClient from "../../../../prisma";
 
 interface PhotoVariationRequest {
-    variation_id: string;
+    productVariation_id: string;
 }
 
 class AllVariationImageService {
-    async execute({ variation_id }: PhotoVariationRequest) {
+    async execute({ productVariation_id }: PhotoVariationRequest) {
         const allVariation = await prismaClient.photoVariation.findMany({
             where: {
-                variation_id: variation_id
+                productVariation_id: productVariation_id
             }
         });
 

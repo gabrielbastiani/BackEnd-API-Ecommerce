@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AllImagesVariationService } from '../../services/productVariation/photoVariation/AllImagesVariationService';
+import { AllImagesVariationService } from '../../../../services/product/productVariation/photoVariation/AllImagesVariationService';
 
 class AllImagesVariationController {
     async handle(req: Request, res: Response) {

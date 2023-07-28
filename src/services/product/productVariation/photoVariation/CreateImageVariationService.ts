@@ -1,16 +1,16 @@
-import prismaClient from "../../../prisma";
+import prismaClient from "../../../../prisma";
 
 interface PhotoRequest {
-    variation_id: string;
+    productVariation_id: string;
     image: string;
     order: number;
 }
 
 class CreateImageVariationService {
-    async execute({ variation_id, image, order }: PhotoRequest) {
+    async execute({ productVariation_id, image, order }: PhotoRequest) {
         const variationImage = await prismaClient.photoVariation.create({
             data: {
-                variation_id: variation_id,
+                productVariation_id: productVariation_id,
                 image: image,
                 order: order,
             }

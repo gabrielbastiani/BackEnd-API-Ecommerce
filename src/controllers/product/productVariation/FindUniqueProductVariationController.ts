@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { FindUniqueProductVariationService } from '../../../services/productVariation/FindUniqueProductVariationService';
+import { FindUniqueProductVariationService } from '../../../services/product/productVariation/FindUniqueProductVariationService';
 
 class FindUniqueProductVariationController {
     async handle(req: Request, res: Response) {

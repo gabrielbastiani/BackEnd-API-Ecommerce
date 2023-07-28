@@ -235,7 +235,25 @@ import { FindUniqueAvalietionController } from './controllers/avalietion/FindUni
 import { PageAvalietionStoreProductIDController } from './controllers/avalietion/PageAvalietionStoreProductIDController';
 
 // -- ROUTES VARIATION --
-
+import { CreateProductVariationController } from './controllers/product/productVariation/CreateProductVariationController';
+import { AllVariationsProductController } from './controllers/product/productVariation/AllVariationsProductController';
+import { AllVariationsProductInStoreController } from './controllers/product/productVariation/AllVariationsProductInStoreController';
+import { DeleteAllVariationProductController } from './controllers/product/productVariation/DeleteAllVariationProductController';
+import { FindFirstProductVariationController } from './controllers/product/productVariation/FindFirstProductVariationController';
+import { FindUniqueProductVariationController } from './controllers/product/productVariation/FindUniqueProductVariationController';
+import { UpdateNameProductVariationController } from './controllers/product/productVariation/UpdateNameProductVariationController';
+import { UpdateOrderProductVariationController } from './controllers/product/productVariation/UpdateOrderProductVariationController';
+import { UpdateProductVariationController } from './controllers/product/productVariation/UpdateProductVariationController';
+import { UpdateStatusProductVariationController } from './controllers/product/productVariation/UpdateStatusProductVariationController';
+import { UpdateVariationNameController } from './controllers/product/productVariation/UpdateVariationNameController';
+import { AllImagesVariationController } from './controllers/product/productVariation/photoVariation/AllImagesVariationController';
+import { AllVariationImageController } from './controllers/product/productVariation/photoVariation/AllVariationImageController';
+import { CreateImageVariationController } from './controllers/product/productVariation/photoVariation/CreateImageVariationController';
+import { DeleteALLImageVariationProductController } from './controllers/product/productVariation/photoVariation/DeleteALLImageVariationProductController';
+import { DeleteImageVariationController } from './controllers/product/productVariation/photoVariation/DeleteImageVariationController';
+import { FindUniqueImageVariationController } from './controllers/product/productVariation/photoVariation/FindUniqueImageVariationController';
+import { UpdateOrderImageVariationController } from './controllers/product/productVariation/photoVariation/UpdateOrderImageVariationController';
+import { DeleteVariationProductController } from './controllers/product/productVariation/DeleteVariationProductController';
 
 // -- ROUTES BUY TOGETHER --
 import { CreateBuyTogetherController } from './controllers/buyTogether/CreateBuyTogetherController';
@@ -369,6 +387,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+
 
 
 
@@ -608,16 +627,17 @@ router.put('/updateStatusAvalietion', [isAuthenticated, authorizationRules(["ADM
 router.get('/pageAvalietionStoreProduct', new PageAvalietionStoreProductIDController().handle);
 
 // -- ROUTES VARIATION --
-router.post('/createVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateVariationController().handle);
-router.get('/allVariationProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllVariationProductController().handle);
-router.get('/findVariationName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindFirstVariationNameController().handle);
+router.post('/createVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateProductVariationController().handle);
+router.get('/allVariationProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllVariationsProductController().handle);
+router.get('/findVariationName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindFirstProductVariationController().handle);
 router.delete('/deleteAllVariationProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteAllVariationProductController().handle);
-router.delete('/deleteVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteVariationController().handle);
-router.get('/findUniqueVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueVariationController().handle);
-router.put('/updateStatusVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusVariationController().handle);
-router.get('/pageAllVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllVariationController().handle);
-router.put('/updateNameVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameVariationController().handle);
-router.put('/updateOrderVariacao', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateOrderVariacaoController().handle);
+router.delete('/deleteVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteVariationProductController().handle);
+router.get('/findUniqueVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueProductVariationController().handle);
+router.put('/updateStatusVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusProductVariationController().handle);
+router.put('/updateNameVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameProductVariationController().handle);
+router.put('/updateOrderVariacao', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateOrderProductVariationController().handle);
+router.put('/updateProductVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateProductVariationController().handle);
+router.put('/updateVariationName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateVariationNameController().handle);
 router.post('/createImageVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new CreateImageVariationController().handle);
 router.get('/allVariationImages', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllVariationImageController().handle);
 router.get('/allImagesVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllImagesVariationController().handle);
@@ -626,14 +646,12 @@ router.delete('/deleteImageVariantion', [isAuthenticated, authorizationRules(["A
 router.put('/updateOrderImageVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateOrderImageVariationController().handle);
 router.get('/findUniqueImageVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueImageVariationController().handle);
 router.post('/createProductVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateProductVariationController().handle);
-router.delete('/deleteAllProductVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteProductVariationController().handle);
-router.delete('/deleteProductVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new VariationDeleteController().handle);
 router.get('/findFirstProductVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindFirstProductVariationController().handle);
 router.get('/findUniqueProductVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueProductVariationController().handle);
 router.put('/updateStatusProductVariation', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusProductVariationController().handle);
 router.put('/updateProductVariationName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameProductVariationController().handle);
 router.put('/updateOrderProductVariationName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateOrderProductVariationController().handle);
-router.get('/getVariationsProduct', new AllVariationProductInStoreController().handle);
+router.get('/getVariationsProduct', new AllVariationsProductInStoreController().handle);
 
 // -- ROUTES BUY TOGETHER --
 router.post('/createBuyTogether', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateBuyTogetherController().handle);

@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
-import { CreateProductVariationService } from "../../../services/productVariation/CreateProductVariationService";
+import { CreateProductVariationService } from "../../../services/product/productVariation/CreateProductVariationService";
 
 class CreateProductVariationController {
     async handle(req: Request, res: Response) {
         const {
             product_id,
-            variation_id,
+            variationName,
+            variationProduct,
             order,
             store_id
         } = req.body;
@@ -14,7 +15,8 @@ class CreateProductVariationController {
 
         const variation = await createVariation.execute({
             product_id,
-            variation_id,
+            variationName,
+            variationProduct,
             order,
             store_id
         })

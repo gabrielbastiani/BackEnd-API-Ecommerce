@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { FindUniqueImageVariationService } from '../../services/productVariation/photoVariation/FindUniqueImageVariationService';
+import { FindUniqueImageVariationService } from '../../../../services/product/productVariation/photoVariation/FindUniqueImageVariationService';
 
 class FindUniqueImageVariationController {
     async handle(req: Request, res: Response) {

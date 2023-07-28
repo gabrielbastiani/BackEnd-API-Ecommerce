@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DeleteImageVariationService } from "../../services/productVariation/photoVariation/DeleteImageVariationService";
+import { DeleteImageVariationService } from "../../../../services/product/productVariation/photoVariation/DeleteImageVariationService";
 import fs from 'fs';
 
 class DeleteImageVariationController {

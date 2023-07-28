@@ -504,8 +504,8 @@ model ProductVariation {
   id               String                 @id @default(uuid())
   product          Product                @relation(fields: [product_id], references: [id])
   product_id       String
-  nameVariation    String?                @db.VarChar(325)
-  productVariation String?                @db.VarChar(1125)
+  variationName    String?                @db.VarChar(325)
+  variationProduct String?                @db.VarChar(1125)
   order            Int?
   status           StatusProductVariation @default(Disponivel)
 
@@ -526,11 +526,11 @@ enum StatusProductVariation {
 }
 
 model PhotoVariation {
-  id           String           @id @default(uuid())
-  variation    ProductVariation @relation(fields: [variation_id], references: [id])
-  variation_id String
-  image        String
-  order        Int?
+  id                  String           @id @default(uuid())
+  productVariation    ProductVariation @relation(fields: [productVariation_id], references: [id])
+  productVariation_id String
+  image               String
+  order               Int?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt

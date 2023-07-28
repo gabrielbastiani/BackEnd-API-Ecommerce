@@ -2,21 +2,21 @@ import prismaClient from "../../../prisma";
 
 interface VariationRequest {
     productVariation_id: string;
-    variationName: string;
+    product_id: string;
 }
 
-class UpdateNameProductVariationService {
-    async execute({ productVariation_id, variationName }: VariationRequest) {
+class UpdateProductVariationService {
+    async execute({ productVariation_id, product_id }: VariationRequest) {
         const variation = await prismaClient.productVariation.update({
             where: {
                 id: productVariation_id
             },
             data: {
-                variationName: variationName
+                product_id: product_id
             }
         })
         return variation;
     }
 }
 
-export { UpdateNameProductVariationService }
+export { UpdateProductVariationService }

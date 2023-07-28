@@ -1,14 +1,14 @@
-import prismaClient from "../../../prisma";
+import prismaClient from "../../../../prisma";
 
 interface VariationRequest {
-    variation_id: string;
+    productVariation_id: string;
 }
 
 class DeleteALLImageVariationProductService {
-    async execute({ variation_id }: VariationRequest) {
+    async execute({ productVariation_id }: VariationRequest) {
         const image = await prismaClient.photoVariation.deleteMany({
             where: {
-                variation_id: variation_id
+                productVariation_id: productVariation_id
             }
         });
 

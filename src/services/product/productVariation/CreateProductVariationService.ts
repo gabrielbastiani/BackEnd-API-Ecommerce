@@ -1,18 +1,20 @@
-import prismaClient from "../../prisma";
+import prismaClient from "../../../prisma";
 
 interface VariationRequest {
     product_id: string;
-    variation_id: string;
+    variationName: string;
+    variationProduct: string;
     order: number;
     store_id: string;
 }
 
 class CreateProductVariationService {
-    async execute({ product_id, variation_id, order, store_id }: VariationRequest) {
+    async execute({ product_id, variationName, variationProduct, order, store_id }: VariationRequest) {
         const variation = await prismaClient.productVariation.create({
             data: {
                 product_id: product_id,
-                variation_id: variation_id,
+                variationName: variationName,
+                variationProduct: variationProduct,
                 order: Number(order),
                 store_id: store_id
             }
