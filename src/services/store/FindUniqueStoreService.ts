@@ -31,7 +31,11 @@ class FindUniqueStoreService {
         socialmedias: true,
         tags: true,
         typeattributes: true,
-        variations: true
+        countersproposals: true,
+        coupons: true,
+        productsvariations: true,
+        stockproductcustomer: true,
+        valuesattributes: true
       }
     })
 
