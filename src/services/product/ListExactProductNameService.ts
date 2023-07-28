@@ -33,7 +33,12 @@ class ListExactProductNameService {
                 },
                 store: true,
                 tags: true,
-                productsvariations: true
+                productsvariations: {
+                    include: {
+                        photovariations: true,
+                        product: true
+                    }
+                }
             }
         })
         return exactProduct;
