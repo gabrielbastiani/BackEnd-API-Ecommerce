@@ -7,8 +7,7 @@ class CreateProductVariationController {
             product_id,
             variationName,
             variationProduct,
-            order,
-            store_id
+            order
         } = req.body;
 
         const createVariation = new CreateProductVariationService();
@@ -17,8 +16,7 @@ class CreateProductVariationController {
             product_id,
             variationName,
             variationProduct,
-            order,
-            store_id
+            order
         })
 
         return res.json(variation)
