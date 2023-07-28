@@ -23,7 +23,6 @@ declare namespace Express {
     relationAttributeProduct_id: string;
     imageAttribute_id: string;
     avalietion_id: string;
-    variation_id: string;
     photoVariation_id: string;
     productVariation_id: string;
     buyTogether_id: string;

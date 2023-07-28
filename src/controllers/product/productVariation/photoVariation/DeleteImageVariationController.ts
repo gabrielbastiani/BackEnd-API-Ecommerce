@@ -12,7 +12,7 @@ class DeleteImageVariationController {
             photoVariation_id,
         });
 
-        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageVariant.image);
+        fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + imageVariant.image);
 
         return res.json(imageVariant);
     }

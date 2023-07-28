@@ -17,7 +17,8 @@ class AllProductInStoreService {
                 relationattributeproducts: true,
                 store: true,
                 tags: true,
-                variations: true
+                productsvariations: true,
+                stockproductcustomer: true
             }
         });
         return allProduct;

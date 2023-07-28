@@ -18,7 +18,8 @@ class ListAllProductEmphasisService {
                 relationattributeproducts: true,
                 store: true,
                 tags: true,
-                variations: true
+                productsvariations: true,
+                stockproductcustomer: true
             },
             orderBy: {
                 created_at: 'desc'

@@ -445,7 +445,7 @@ router.post('/customer/recoverPasswordEmail', new EmailPasswordCustomerControlle
 // -- ROUTES STORE --
 router.post('/createStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new CreateStoreController().handle);
 router.get('/userStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueStoreController().handle);
-router.get('/findFirstStoreUser', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindFirstStoreController().handle);
+router.get('/findFirstStoreUser', isAuthenticated, new FindFirstStoreController().handle);
 router.get('/store', new StoreController().handle);
 router.delete('/deleteStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteStoreController().handle);
 router.put('/logoStoreUpdate', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new UpdateLogoStoreController().handle);

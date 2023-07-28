@@ -11,7 +11,7 @@ class DeleteALLImageVariationProductController {
         const arrayPhotos = await photosGet.execute({ productVariation_id });
 
         arrayPhotos.forEach(element => {
-            fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + element.image);
+            fs.unlinkSync(__dirname + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + '..' + '/' + 'images' + '/' + element.image);
         });
 
         const deletePhotoVariacaoService = new DeleteALLImageVariationProductService();

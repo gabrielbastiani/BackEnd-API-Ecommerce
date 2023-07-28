@@ -19,7 +19,8 @@ class PageListAllProductService {
                 relationattributeproducts: true,
                 store: true,
                 tags: true,
-                variations: true
+                productsvariations: true,
+                stockproductcustomer: true
             }
         });
         
@@ -34,7 +35,8 @@ class PageListAllProductService {
                 relationattributeproducts: true,
                 store: true,
                 tags: true,
-                variations: true
+                productsvariations: true,
+                stockproductcustomer: true
             },
             skip,
             take: limit,

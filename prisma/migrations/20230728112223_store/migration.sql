@@ -412,7 +412,7 @@ CREATE TABLE "productsvariations" (
 -- CreateTable
 CREATE TABLE "photovariations" (
     "id" TEXT NOT NULL,
-    "variation_id" TEXT NOT NULL,
+    "productVariation_id" TEXT NOT NULL,
     "image" TEXT NOT NULL,
     "order" INTEGER,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -747,7 +747,7 @@ ALTER TABLE "productsvariations" ADD CONSTRAINT "productsvariations_product_id_f
 ALTER TABLE "productsvariations" ADD CONSTRAINT "productsvariations_store_id_fkey" FOREIGN KEY ("store_id") REFERENCES "stores"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "photovariations" ADD CONSTRAINT "photovariations_variation_id_fkey" FOREIGN KEY ("variation_id") REFERENCES "productsvariations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "photovariations" ADD CONSTRAINT "photovariations_productVariation_id_fkey" FOREIGN KEY ("productVariation_id") REFERENCES "productsvariations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "buytogethers" ADD CONSTRAINT "buytogethers_product_id_fkey" FOREIGN KEY ("product_id") REFERENCES "products"("id") ON DELETE SET NULL ON UPDATE CASCADE;

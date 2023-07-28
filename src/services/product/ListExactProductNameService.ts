@@ -33,28 +33,7 @@ class ListExactProductNameService {
                 },
                 store: true,
                 tags: true,
-                variations: {
-                    include: {
-                        productsvariations: {
-                            include: {
-                                product: {
-                                    include: {
-                                        relationattributeproducts: {
-                                            include: {
-                                                valueAttribute: true
-                                            }
-                                        },
-                                        variations: {
-                                            include: {
-                                                productsvariations: true
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                productsvariations: true
             }
         })
         return exactProduct;
