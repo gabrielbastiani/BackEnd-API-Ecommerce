@@ -17,7 +17,7 @@ class ProductsPageCategoriesService {
                 order: 'asc'
             },
             include: {
-                product: { include: { photoproducts: true, productcategories: true } },
+                product: { include: { photoproducts: true, productcategories: true, relationattributeproducts: { include: {valueAttribute: true} }} },
                 category: true
             }
         });
@@ -35,7 +35,7 @@ class ProductsPageCategoriesService {
                 order: 'asc'
             },
             include: {
-                product: { include: { photoproducts: true, productcategories: true } },
+                product: { include: { photoproducts: true, productcategories: true, relationattributeproducts: { include: {valueAttribute: true} }} },
                 category: true
             }
         });
