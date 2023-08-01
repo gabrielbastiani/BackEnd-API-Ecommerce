@@ -11,7 +11,6 @@ interface ProductRequest {
     width: string;
     height: string;
     depth: string;
-    amount: number;
     reservedAmount: number;
     urlVideo: string;
     buyTogether_id: string;
@@ -29,7 +28,6 @@ class CreateProductService {
         width,
         height,
         depth,
-        amount,
         reservedAmount,
         urlVideo,
         buyTogether_id,
@@ -57,7 +55,7 @@ class CreateProductService {
                 width: width,
                 height: height,
                 depth: depth,
-                amount: amount,
+                amount: 1,
                 reservedAmount: reservedAmount,
                 urlVideo: urlVideo,
                 buyTogether_id: buyTogether_id,
