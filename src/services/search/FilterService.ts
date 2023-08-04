@@ -41,7 +41,12 @@ class FilterService {
                 created_at: 'asc'
             },
             include: {
-                photoproducts: true
+                photoproducts: true,
+                relationattributeproducts: {
+                    include: {
+                        valueAttribute: true
+                    }
+                }
             }
         });
 
@@ -82,7 +87,12 @@ class FilterService {
             skip,
             take: limit,
             include: {
-                photoproducts: true
+                photoproducts: true,
+                relationattributeproducts: {
+                    include: {
+                        valueAttribute: true
+                    }
+                }
             }
         });
 

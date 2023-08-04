@@ -12,7 +12,12 @@ class OrderProductsService {
                 status: StatusProduct.Disponivel,
             },
             include: {
-                photoproducts: true
+                photoproducts: true,
+                relationattributeproducts: {
+                    include: {
+                        valueAttribute: true
+                    }
+                }
             }
         });
 
@@ -50,7 +55,12 @@ class OrderProductsService {
             skip,
             take: limit,
             include: {
-                photoproducts: true
+                photoproducts: true,
+                relationattributeproducts: {
+                    include: {
+                        valueAttribute: true
+                    }
+                }
             }
         });
 
