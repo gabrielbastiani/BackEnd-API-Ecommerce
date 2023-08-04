@@ -613,6 +613,8 @@ model Coupon {
   amountCoupon Int?
   active       StatusCoupon @default(Nao)
 
+  cupomsproducts CuponProduct[]
+
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
@@ -625,6 +627,18 @@ model Coupon {
 enum StatusCoupon {
   Sim
   Nao
+}
+
+model CuponProduct {
+  id         String  @id @default(uuid())
+  coupon     Coupon? @relation(fields: [cupon_id], references: [id])
+  cupon_id   String?
+  product_id String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("cupomsproducts")
 }
 
 model MenuCategory {
