@@ -304,6 +304,21 @@ import { DeletetImageMenuCategoryController } from './controllers/category/menuC
 import { AllCategoriesMenuController } from './controllers/category/menuCategory/AllCategoriesMenuController';
 import { MenuCategoryController } from './controllers/category/menuCategory/MenuCategoryController';
 
+// -- ROUTES COUPON --
+import { CreateCuponController } from './controllers/coupon/CreateCuponController';
+import { PageCuponController } from './controllers/coupon/PageCuponController';
+import { CreateCuponProductController } from './controllers/coupon/cuponProduct/CreateCuponProductController';
+import { FindFirstCupomController } from './controllers/coupon/FindFirstCupomController';
+import { FindUniqueCuponController } from './controllers/coupon/FindUniqueCuponController';
+import { ActiveProgramedCupomController } from './controllers/coupon/ActiveProgramedCupomController';
+import { UpdateAllDateCuponController } from './controllers/coupon/UpdateAllDateCuponController';
+import { UpdateProductCuponController } from './controllers/coupon/cuponProduct/UpdateProductCuponController';
+import { StatusCuponController } from './controllers/coupon/StatusCuponController';
+import { DeleteCuponController } from './controllers/coupon/DeleteCuponController';
+import { AllProductsCuponController } from './controllers/coupon/cuponProduct/AllProductsCuponController';
+import { FindUniqueProductCuponController } from './controllers/coupon/cuponProduct/FindUniqueProductCuponController';
+import { DeleteProductCuponController } from './controllers/coupon/cuponProduct/DeleteProductCuponController';
+
 // -- ROUTES GROUP FILTERS --
 import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
 import { UpdateNameGroupFilterController } from './controllers/groupFilter/UpdateNameGroupFilterController';
@@ -387,17 +402,6 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { CreateCuponController } from './controllers/coupon/CreateCuponController';
-import { PageCuponController } from './controllers/coupon/PageCuponController';
-import { CreateCuponProductController } from './controllers/coupon/cuponProduct/CreateCuponProductController';
-import { FindFirstCupomController } from './controllers/coupon/FindFirstCupomController';
-import { FindUniqueCuponController } from './controllers/coupon/FindUniqueCuponController';
-import { ActiveProgramedCupomController } from './controllers/coupon/ActiveProgramedCupomController';
-import { UpdateAllDateCuponController } from './controllers/coupon/UpdateAllDateCuponController';
-import { UpdateProductCuponController } from './controllers/coupon/cuponProduct/UpdateProductCuponController';
-import { StatusCuponController } from './controllers/coupon/StatusCuponController';
-import { DeleteCuponController } from './controllers/coupon/DeleteCuponController';
-import { AllProductsCuponController } from './controllers/coupon/cuponProduct/AllProductsCuponController';
 
 
 
@@ -725,6 +729,8 @@ router.delete('/deleteCoupom', [isAuthenticated, authorizationRules(["ADMIN", "E
 router.post('/createProductCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCuponProductController().handle);
 router.put('/updateProductCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateProductCuponController().handle);
 router.get('/allProductsInCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllProductsCuponController().handle);
+router.get('/findUniqueProductCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueProductCuponController().handle);
+router.delete('/deleteProductCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteProductCuponController().handle);
 
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateGroupFilterController().handle);
