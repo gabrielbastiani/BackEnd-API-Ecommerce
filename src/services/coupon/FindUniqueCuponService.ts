@@ -11,7 +11,11 @@ class FindUniqueCuponService {
                 id: cupon_id
             },
             include: {
-                cupomsproducts: true
+                cupomsproducts: {
+                    include: {
+                        product: true
+                    }
+                }
             }
         })
         return exactCupom;
