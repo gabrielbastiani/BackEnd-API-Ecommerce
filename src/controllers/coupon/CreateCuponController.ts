@@ -10,7 +10,8 @@ class CreateCuponController {
             endDate,
             code,
             amountCoupon,
-            active
+            active,
+            conditional
         } = req.body;
 
         const cuopon = new CreateCuponService();
@@ -22,7 +23,8 @@ class CreateCuponController {
             endDate,
             code,
             amountCoupon,
-            active
+            active,
+            conditional
         });
 
         return res.json(createCoupon);

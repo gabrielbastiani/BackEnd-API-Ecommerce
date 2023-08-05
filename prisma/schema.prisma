@@ -611,6 +611,7 @@ model Coupon {
   startDate    String?      @default("01/01/3075 00:00")
   endDate      String?      @default("01/01/5575 00:00")
   code         String?      @db.VarChar(385)
+  conditional  String?
   amountCoupon Int?
   active       StatusCoupon @default(Nao)
 

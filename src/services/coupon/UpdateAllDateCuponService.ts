@@ -8,6 +8,7 @@ interface CuponRequest {
     startDate: string;
     endDate: string;
     amountCoupon: number;
+    conditional: string;
 }
 
 class UpdateAllDateCuponService {
@@ -18,7 +19,8 @@ class UpdateAllDateCuponService {
         code,
         startDate,
         endDate,
-        amountCoupon
+        amountCoupon,
+        conditional
     }: CuponRequest) {
         const updateCupon = await prismaClient.coupon.update({
             where: {
@@ -30,7 +32,8 @@ class UpdateAllDateCuponService {
                 code: code,
                 startDate: startDate,
                 endDate: endDate,
-                amountCoupon: amountCoupon
+                amountCoupon: amountCoupon,
+                conditional: conditional
             }
         })
 
