@@ -300,6 +300,7 @@ model Product {
   buytogethers              BuyTogether[]              @relation("buy")
   productsvariations        ProductVariation[]
   stockproductcustomer      StockProductCustomer[]
+  cupomsproducts            CuponProduct[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -630,10 +631,11 @@ enum StatusCoupon {
 }
 
 model CuponProduct {
-  id         String  @id @default(uuid())
-  coupon     Coupon? @relation(fields: [cupon_id], references: [id])
+  id         String   @id @default(uuid())
+  coupon     Coupon?  @relation(fields: [cupon_id], references: [id])
   cupon_id   String?
-  product_id String
+  product    Product? @relation(fields: [product_id], references: [id])
+  product_id String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt

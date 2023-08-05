@@ -387,6 +387,17 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { CreateCuponController } from './controllers/coupon/CreateCuponController';
+import { PageCuponController } from './controllers/coupon/PageCuponController';
+import { CreateCuponProductController } from './controllers/coupon/cuponProduct/CreateCuponProductController';
+import { FindFirstCupomController } from './controllers/coupon/FindFirstCupomController';
+import { FindUniqueCuponController } from './controllers/coupon/FindUniqueCuponController';
+import { ActiveProgramedCupomController } from './controllers/coupon/ActiveProgramedCupomController';
+import { UpdateAllDateCuponController } from './controllers/coupon/UpdateAllDateCuponController';
+import { UpdateProductCuponController } from './controllers/coupon/cuponProduct/UpdateProductCuponController';
+import { StatusCuponController } from './controllers/coupon/StatusCuponController';
+import { DeleteCuponController } from './controllers/coupon/DeleteCuponController';
+import { AllProductsCuponController } from './controllers/coupon/cuponProduct/AllProductsCuponController';
 
 
 
@@ -563,7 +574,7 @@ router.get('/searchProduct', new AllProductSearchController().handle);
 router.get('/orderProducts', new OrderProductsController().handle);
 router.get('/favoritesProducts', new FavoritesProductsController().handle);
 
-// ROUTES CATEGORIES AND PRODUCT --
+// -- ROUTES CATEGORIES AND PRODUCT --
 router.post('/createProductCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateProductCategoryController().handle);
 router.put('/updateCategoryNameProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameProductCategoryController().handle);
 router.put('/updateStatusCategoryProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusCategoryProductController().handle);
@@ -580,7 +591,7 @@ router.get('/getAllProductsCategory', new ProductsCategoriesController().handle)
 router.get('/findMainCategoryProduct', new FindMainCategoryProductController().handle);
 router.get('/findDateSlugCategoryProduct', new FindFirstProductCategoryController().handle);
 
-// ROUTES TYPE ATTRIBUTE --
+// -- ROUTES TYPE ATTRIBUTE --
 router.post('/createTypeAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateTypeAttributeController().handle);
 router.put('/updateTypeAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTypeAttributeController().handle);
 router.get('/allTypeAttributes', new AllTypeAttributeController().handle);
@@ -701,6 +712,19 @@ router.get('/positionListMenu', new ListPositionMenuCategoryController().handle)
 router.get('/listCategoryMenu', new ListCategoryMenuController().handle);
 router.get('/listMenuCategories', new AllCategoriesMenuController().handle);
 router.get('/categoriesParentIdBradCrumb', new MenuCategoryController().handle);
+
+// -- ROUTES COUPON --
+router.post('/createCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCuponController().handle);
+router.get('/pageCoupons', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageCuponController().handle);
+router.get('/findFirstCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindFirstCupomController().handle);
+router.get('/findUniqueCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueCuponController().handle);
+router.get('/activeDesactiveCuponProgramed', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ActiveProgramedCupomController().handle);
+router.put('/updateAllDataCupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateCuponController().handle);
+router.put('/statusCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new StatusCuponController().handle);
+router.delete('/deleteCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteCuponController().handle);
+router.post('/createProductCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCuponProductController().handle);
+router.put('/updateProductCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateProductCuponController().handle);
+router.get('/allProductsInCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllProductsCuponController().handle);
 
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateGroupFilterController().handle);

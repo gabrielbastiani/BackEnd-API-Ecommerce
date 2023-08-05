@@ -8,8 +8,7 @@ class FindFirstGroupsService {
             },
             include: {
                 filterattributes: true,
-                filtercategories: true,
-                typeAttribute: true
+                filtercategories: true
             }
         });
 
