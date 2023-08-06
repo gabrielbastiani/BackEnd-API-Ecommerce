@@ -318,6 +318,11 @@ import { DeleteCuponController } from './controllers/coupon/DeleteCuponControlle
 import { AllProductsCuponController } from './controllers/coupon/cuponProduct/AllProductsCuponController';
 import { FindUniqueProductCuponController } from './controllers/coupon/cuponProduct/FindUniqueProductCuponController';
 import { DeleteProductCuponController } from './controllers/coupon/cuponProduct/DeleteProductCuponController';
+import { CreateConditionalCuponController } from './controllers/coupon/cuponConditional/CreateConditionalCuponController';
+import { AllConditionalCuponController } from './controllers/coupon/cuponConditional/AllConditionalCuponController';
+import { DeleteConditionalCuponController } from './controllers/coupon/cuponConditional/DeleteConditionalCuponController';
+import { FindUniqueConditionalCuponController } from './controllers/coupon/cuponConditional/FindUniqueConditionalCuponController';
+import { UpdateAllDataConditionalCuponController } from './controllers/coupon/cuponConditional/UpdateAllDataConditionalCuponController';
 
 // -- ROUTES GROUP FILTERS --
 import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
@@ -731,6 +736,11 @@ router.put('/updateProductCoupom', [isAuthenticated, authorizationRules(["ADMIN"
 router.get('/allProductsInCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllProductsCuponController().handle);
 router.get('/findUniqueProductCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueProductCuponController().handle);
 router.delete('/deleteProductCoupom', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteProductCuponController().handle);
+router.post('/createConditionalCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateConditionalCuponController().handle);
+router.get('/allConditionalCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllConditionalCuponController().handle);
+router.delete('/deleteConditionalCupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteConditionalCuponController().handle);
+router.get('/findUniqueConditionalCupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueConditionalCuponController().handle);
+router.put('/updateAllDataConditionalCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDataConditionalCuponController().handle);
 
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateGroupFilterController().handle);

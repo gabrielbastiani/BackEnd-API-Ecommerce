@@ -611,11 +611,11 @@ model Coupon {
   startDate    String?      @default("01/01/3075 00:00")
   endDate      String?      @default("01/01/5575 00:00")
   code         String?      @db.VarChar(385)
-  conditional  String?
   amountCoupon Int?
   active       StatusCoupon @default(Nao)
 
-  cupomsproducts CuponProduct[]
+  coupomsconditionals CouponConditional[]
+  cupomsproducts      CuponProduct[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -631,15 +631,22 @@ enum StatusCoupon {
   Nao
 }
 
+model CouponConditional {
+  id          String  @id @default(uuid())
+  coupon      Coupon? @relation(fields: [cupon_id], references: [id])
+  cupon_id    String?
+  conditional String?
+  value       Int?
+
+  @@map("coupomsconditionals")
+}
+
 model CuponProduct {
   id         String   @id @default(uuid())
   coupon     Coupon?  @relation(fields: [cupon_id], references: [id])
   cupon_id   String?
   product    Product? @relation(fields: [product_id], references: [id])
   product_id String?
-
-  created_at DateTime? @default(now())
-  updated_at DateTime? @updatedAt
 
   @@map("cupomsproducts")
 }

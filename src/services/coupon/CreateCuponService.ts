@@ -12,7 +12,6 @@ interface CuponRequest {
     code: string;
     amountCoupon: number;
     active: string;
-    conditional: string;
 }
 
 class CreateCuponService {
@@ -23,8 +22,7 @@ class CreateCuponService {
         endDate,
         code,
         amountCoupon,
-        active,
-        conditional
+        active
     }: CuponRequest) {
 
         const store = await prismaClient.store.findFirst();
@@ -38,7 +36,6 @@ class CreateCuponService {
                 code: code,
                 amountCoupon: Number(amountCoupon),
                 active: active,
-                conditional: conditional,
                 store_id: store.id
             }
         });
