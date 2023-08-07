@@ -6,7 +6,6 @@ class CreateConditionalCuponController {
         const {
             cupon_id,
             conditional,
-            action,
             value
         } = req.body;
 
@@ -15,7 +14,6 @@ class CreateConditionalCuponController {
         const createCoupon = await cuopon.execute({
             cupon_id,
             conditional,
-            action,
             value
         });
 

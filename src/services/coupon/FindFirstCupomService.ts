@@ -7,7 +7,8 @@ class FindFirstCupomService {
                 created_at: 'desc'
             },
             include: {
-                cupomsproducts: true
+                cupomsproducts: true,
+                coupomsconditionals: true
             }
         })
         return findFirst;

@@ -13,7 +13,8 @@ class FindUniqueCuponService {
             include: {
                 cupomsproducts: {
                     include: {
-                        product: true
+                        product: true,
+                        coupon: true
                     }
                 }
             }

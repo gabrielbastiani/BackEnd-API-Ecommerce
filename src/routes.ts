@@ -407,6 +407,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { FindCuponController } from './controllers/coupon/FindCuponController';
 
 
 
@@ -741,6 +742,7 @@ router.get('/allConditionalCoupon', [isAuthenticated, authorizationRules(["ADMIN
 router.delete('/deleteConditionalCupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteConditionalCuponController().handle);
 router.get('/findUniqueConditionalCupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueConditionalCuponController().handle);
 router.put('/updateAllDataConditionalCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDataConditionalCuponController().handle);
+router.get('/getCouponCart', new FindCuponController().handle);
 
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateGroupFilterController().handle);

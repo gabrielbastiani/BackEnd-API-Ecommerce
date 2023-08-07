@@ -10,7 +10,8 @@ class PageCuponService {
                 created_at: 'desc'
             },
             include: {
-                cupomsproducts: true
+                cupomsproducts: true,
+                coupomsconditionals: true
             }
         });
 
@@ -19,7 +20,8 @@ class PageCuponService {
                 created_at: 'desc'
             },
             include: {
-                cupomsproducts: true
+                cupomsproducts: true,
+                coupomsconditionals: true
             },
             skip,
             take: limit
