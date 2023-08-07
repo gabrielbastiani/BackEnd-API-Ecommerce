@@ -11,7 +11,8 @@ class FindCuponService {
                 code: code
             },
             include: {
-                coupomsconditionals: true
+                coupomsconditionals: true,
+                cupomsproducts: true
             }
         })
         return exactCupom;
