@@ -15,7 +15,11 @@ class ListAllProductEmphasisService {
                 descriptionproducts: true,
                 photoproducts: true,
                 productcategories: true,
-                relationattributeproducts: true,
+                relationattributeproducts: {
+                    include: {
+                        valueAttribute: true
+                    }
+                },
                 store: true,
                 tags: true,
                 productsvariations: true,
