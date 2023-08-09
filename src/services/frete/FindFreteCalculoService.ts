@@ -29,8 +29,8 @@ class FindFreteCalculoService {
         const store = await prismaClient.store.findFirst();
 
         const calcFrete = correios.calcPreco({
-            nCdEmpresa: "20170548",
-            sDsSenha: "sumig20",
+            nCdEmpresa: process.env.ADM_CORREIOS,
+            sDsSenha: process.env.PASS_CORREIOS,
             nCdServico: nCdServico,
             sCepOrigem: store.cep,
             sCepDestino: sCepDestino,
