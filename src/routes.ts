@@ -323,6 +323,7 @@ import { AllConditionalCuponController } from './controllers/coupon/cuponConditi
 import { DeleteConditionalCuponController } from './controllers/coupon/cuponConditional/DeleteConditionalCuponController';
 import { FindUniqueConditionalCuponController } from './controllers/coupon/cuponConditional/FindUniqueConditionalCuponController';
 import { UpdateAllDataConditionalCuponController } from './controllers/coupon/cuponConditional/UpdateAllDataConditionalCuponController';
+import { FindCuponController } from './controllers/coupon/FindCuponController';
 
 // -- ROUTES GROUP FILTERS --
 import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
@@ -403,11 +404,13 @@ import { EmailExportProductsController } from './controllers/sendEmails/EmailExp
 import { EmailExportNewslettersController } from './controllers/sendEmails/EmailExportNewslettersController';
 import { EmailExportContactController } from './controllers/sendEmails/EmailExportContactController';
 
+// -- FRETES CALCULO --
+import { FindFreteCalculoController } from './controllers/frete/FindFreteCalculoController';
+
 
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { FindCuponController } from './controllers/coupon/FindCuponController';
 
 
 
@@ -822,6 +825,10 @@ router.get('/sendListCustomer', [isAuthenticated, authorizationRules(["ADMIN", "
 router.get('/sendlistproduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailExportProductsController().handle);
 router.get('/sendEmailNewsletters', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailExportNewslettersController().handle);
 router.get('/sendEmailContact', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailExportContactController().handle);
+
+// -- FRETES CALCULO --
+router.post('/freteCalculo', new FindFreteCalculoController().handle);
+
 
 
 export { router };
