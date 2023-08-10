@@ -10,8 +10,7 @@ class FindFreteCalculoController {
             nCdFormato,
             nVlComprimento,
             nVlAltura,
-            nVlLargura,
-            nVlDiametro,
+            nVlLargura
         } = req.body;
 
         const fretes = new FindFreteCalculoService();
@@ -23,8 +22,7 @@ class FindFreteCalculoController {
             nCdFormato,
             nVlComprimento,
             nVlAltura,
-            nVlLargura,
-            nVlDiametro,
+            nVlLargura
         });
 
         return res.json(fretesCalculo);

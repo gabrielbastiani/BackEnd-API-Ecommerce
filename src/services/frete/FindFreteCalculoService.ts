@@ -11,7 +11,6 @@ interface CalcFrete {
     nVlComprimento: number;
     nVlAltura: number;
     nVlLargura: number;
-    nVlDiametro: number;
 }
 
 class FindFreteCalculoService {
@@ -22,8 +21,7 @@ class FindFreteCalculoService {
         nCdFormato,
         nVlComprimento,
         nVlAltura,
-        nVlLargura,
-        nVlDiametro,
+        nVlLargura
     }: CalcFrete) {
 
         const store = await prismaClient.store.findFirst();
@@ -38,8 +36,7 @@ class FindFreteCalculoService {
             nCdFormato: nCdFormato,
             nVlComprimento: nVlComprimento,
             nVlAltura: nVlAltura,
-            nVlLargura: nVlLargura,
-            nVlDiametro: 20
+            nVlLargura: nVlLargura
         });
 
         return calcFrete
