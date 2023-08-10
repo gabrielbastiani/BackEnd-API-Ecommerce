@@ -39,7 +39,7 @@ class FindFreteCalculoService {
             nVlComprimento: nVlComprimento,
             nVlAltura: nVlAltura,
             nVlLargura: nVlLargura,
-            nVlDiametro: nVlDiametro
+            nVlDiametro: nVlLargura + nVlComprimento
         });
 
         return calcFrete;
