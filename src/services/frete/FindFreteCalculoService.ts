@@ -28,7 +28,7 @@ class FindFreteCalculoService {
 
         const store = await prismaClient.store.findFirst();
 
-        const calcFrete = correios.calcPreco({
+        const calcFrete = correios.calcPrecoPrazo({
             nCdEmpresa: process.env.ADM_CORREIOS,
             sDsSenha: process.env.PASS_CORREIOS,
             nCdServico: nCdServico,
@@ -39,10 +39,10 @@ class FindFreteCalculoService {
             nVlComprimento: nVlComprimento,
             nVlAltura: nVlAltura,
             nVlLargura: nVlLargura,
-            nVlDiametro: nVlLargura + nVlComprimento
+            nVlDiametro: 20
         });
 
-        return calcFrete;
+        return calcFrete
 
     }
 }
