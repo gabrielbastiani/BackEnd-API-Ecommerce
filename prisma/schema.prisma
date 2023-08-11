@@ -269,8 +269,8 @@ model Product {
   id             String             @id @default(uuid())
   name           String             @db.VarChar(325)
   slug           String?            @db.VarChar(325)
-  price          Int?
-  promotion      Int?
+  price          Float?
+  promotion      Float?
   sku            String?            @db.VarChar(25)
   stock          Int?
   weight         String?            @db.VarChar(15)
@@ -567,8 +567,8 @@ enum StatusBuyTogether {
 
 model CounterProposal {
   id                String  @id @default(uuid())
-  currentPrice      Int?
-  counterOfferPrice Int?
+  currentPrice      Float?
+  counterOfferPrice Float?
   name              String? @db.VarChar(185)
   email             String
   phone             String? @db.VarChar(85)
@@ -636,7 +636,7 @@ model CouponConditional {
   coupon      Coupon? @relation(fields: [cupon_id], references: [id])
   cupon_id    String?
   conditional String?
-  value       Int?
+  value       Float?
 
   @@map("coupomsconditionals")
 }

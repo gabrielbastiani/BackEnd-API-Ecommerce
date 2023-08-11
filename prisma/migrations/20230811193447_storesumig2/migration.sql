@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "countersproposals" ALTER COLUMN "currentPrice" SET DATA TYPE DOUBLE PRECISION,
+ALTER COLUMN "counterOfferPrice" SET DATA TYPE DOUBLE PRECISION;
+
+-- AlterTable
+ALTER TABLE "coupomsconditionals" ALTER COLUMN "value" SET DATA TYPE DOUBLE PRECISION;
