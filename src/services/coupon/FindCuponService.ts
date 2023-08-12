@@ -12,7 +12,11 @@ class FindCuponService {
             },
             include: {
                 coupomsconditionals: true,
-                cupomsproducts: true
+                cupomsproducts: {
+                    include: {
+                        product: true
+                    }
+                }
             }
         })
         return exactCupom;
