@@ -21,21 +21,21 @@ class PaymentService {
                 }
             ],
             payer: {
-                name: "<PAYER_NAME_HERE>",
-                surname: "<PAYER_SURNAME_HERE>",
-                email: "<PAYER_EMAIL_HERE>",
+                name: "Gabriel",
+                surname: "Campos de Bastiani",
+                email: "contato@gabrielbastiani.com.br",
                 phone: {
-                    area_code: "<PAYER_AREA_CODE_HERE>",
-                    number: "<PAYER_PHONE_NUMBER_HERE>"
+                    area_code: "54",
+                    number: "991663743"
                 },
-                identification: {
+                /* identification: {
                     type: "<PAYER_DOC_TYPE_HERE>",
                     number: "<PAYER_DOC_NUMBER_HERE>"
-                },
+                }, */
                 address: {
-                    street_name: "Street",
-                    street_number: 123,
-                    zip_code: "<PAYER_ZIP_CODE_HERE>"
+                    street_name: "Rua José Soares de Oliveira",
+                    street_number: 2417,
+                    zip_code: "95034000"
                 }
             },
             payment_methods: {
