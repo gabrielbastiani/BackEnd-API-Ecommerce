@@ -411,6 +411,7 @@ import { FindFreteCalculoController } from './controllers/frete/FindFreteCalculo
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { PaymentController } from './controllers/payment/PaymentController';
 
 
 
@@ -828,6 +829,9 @@ router.get('/sendEmailContact', [isAuthenticated, authorizationRules(["ADMIN", "
 
 // -- FRETES CALCULO --
 router.post('/freteCalculo', new FindFreteCalculoController().handle);
+
+// -- PAGAMENTOS --
+router.post('/paymentResult', new PaymentController().handle);
 
 
 
