@@ -3,15 +3,6 @@ import { PaymentService } from "../../services/payment/PaymentService";
 
 class PaymentController {
     async handle(req: Request, res: Response) {
-        /* const {
-            nCdServico,
-            sCepDestino,
-            nVlPeso,
-            nCdFormato,
-            nVlComprimento,
-            nVlAltura,
-            nVlLargura
-        } = req.body; */
 
         const payments = new PaymentService();
 
