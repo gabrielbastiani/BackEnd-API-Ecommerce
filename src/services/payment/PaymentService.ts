@@ -42,9 +42,9 @@ class PaymentService {
                 installments: 12
             },
             back_urls: {
-                success: "http://localhost:3333/success",
-                failure: "http://localhost:3333/failure",
-                pending: "http://localhost:3333/pending"
+                success: "http://localhost:3001/success",
+                failure: "http://localhost:3001/failure",
+                pending: "http://localhost:3001/pending"
             },
             notification_url: "https://d7ae-177-69-27-241.ngrok.io/webhook",
         });
