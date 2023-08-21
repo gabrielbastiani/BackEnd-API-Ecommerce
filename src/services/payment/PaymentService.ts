@@ -13,9 +13,15 @@ class PaymentService {
                     title: "Tiger 205",
                     unit_price: 3099,
                     currency_id: "BRL",
-                    quantity: 1
+                    quantity: 1,
                 }
-            ]
+            ],
+            back_urls: {
+                success: "http://localhost:3333/success",
+                failure: "http://localhost:3333/failure",
+                pending: "http://localhost:3333/pending"
+            },
+            notification_url: "https://d7ae-177-69-27-241.ngrok.io/webhook"
         });
 
         return result;

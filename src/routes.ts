@@ -832,7 +832,10 @@ router.post('/freteCalculo', new FindFreteCalculoController().handle);
 
 // -- PAGAMENTOS --
 router.post('/paymentResult', new PaymentController().handle);
-
+router.get('/success', new PaymentController().handle);
+router.get('/failure', new PaymentController().handle);
+router.get('/pending', new PaymentController().handle);
+router.get('/webhook', new PaymentController().handle);
 
 
 export { router };
