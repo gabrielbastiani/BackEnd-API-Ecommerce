@@ -26,7 +26,7 @@ class PaymentService {
                 email: "contato@gabrielbastiani.com.br",
                 phone: {
                     area_code: "54",
-                    number: "991663743"
+                    number: 991663743,
                 },
                 /* identification: {
                     type: "<PAYER_DOC_TYPE_HERE>",
