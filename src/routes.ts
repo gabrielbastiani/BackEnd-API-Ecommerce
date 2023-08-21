@@ -407,14 +407,15 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 // -- FRETES CALCULO --
 import { FindFreteCalculoController } from './controllers/frete/FindFreteCalculoController';
 
+// -- PAGAMENTOS --
+import { PaymentController } from './controllers/payment/PaymentController';
+
+
+
 
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { PaymentController } from './controllers/payment/PaymentController';
-import { WebhooksPaymentController } from './controllers/payment/WebhooksPaymentController.ts';
-
-
 
 
 const router = Router();
@@ -833,10 +834,6 @@ router.post('/freteCalculo', new FindFreteCalculoController().handle);
 
 // -- PAGAMENTOS --
 router.post('/paymentResult', new PaymentController().handle);
-router.get('/success', new PaymentController().handle);
-router.get('/failure', new PaymentController().handle);
-router.get('/pending', new PaymentController().handle);
-router.get('/webhook', new WebhooksPaymentController().handle);
 
 
 export { router };
