@@ -152,6 +152,7 @@ model Store {
   coupons                   Coupon[]
   countersproposals         CounterProposal[]
   stockproductcustomer      StockProductCustomer[]
+  payments                  Payment[]
 
   @@map("stores")
 }
@@ -846,4 +847,21 @@ model Contact {
   store_id String?
 
   @@map("contacts")
+}
+
+model Payment {
+  id       String @id @default(uuid())
+  name     String @db.VarChar(525)
+  email    String @db.VarChar(555)
+  status   String @db.VarChar(555)
+  codigo   String @db.VarChar(555)
+  id_venda String @db.VarChar(555)
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("payments")
 }
