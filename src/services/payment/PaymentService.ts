@@ -14,7 +14,7 @@ class PaymentService {
                     title: "Maquina de Solda Hawk",
                     unit_price: 3099,
                     currency_id: "BRL",
-                    quantity: 12,
+                    quantity: 1,
                     category_id: 'Maquinas de Solda',
                     description: "dfsfsfsffsfd",
                     picture_url: "http://localhost:3001/_next/image?url=http%3A%2F%2Flocalhost%3A3333%2Ffiles%2Fa412a3aad8af04a4018463cdfaf74754-hawk255-2.png&w=640&q=75"
@@ -28,10 +28,10 @@ class PaymentService {
                     area_code: "54",
                     number: 991663743,
                 },
-                /* identification: {
-                    type: "<PAYER_DOC_TYPE_HERE>",
-                    number: "<PAYER_DOC_NUMBER_HERE>"
-                }, */
+                identification: {
+                    type: "CPF",
+                    number: "02416502085"
+                },
                 address: {
                     street_name: "Rua José Soares de Oliveira",
                     street_number: 2417,
