@@ -5,72 +5,38 @@ mercadopago.configure({
 
 interface PaymentRequest {
     payment_id: string;
-    title: string;
     unit_price: number;
-    category_id: string;
-    description: string;
-    picture_url: string;
-    name: string;
-    surname: string;
     email: string;
-    area_code: string;
-    number: number;
     type_identification: string;
     type_number: string;
-    street_name: string;
-    street_number: number;
-    zip_code: string;
 }
 
 class PaymentService {
     async execute({
         payment_id,
-        title,
         unit_price,
-        category_id,
-        description,
-        picture_url,
-        name,
-        surname,
         email,
-        area_code,
-        number,
         type_identification,
-        type_number,
-        street_name,
-        street_number,
-        zip_code
+        type_number
     }: PaymentRequest) {
 
         const result = await mercadopago.preferences.create({
             items: [
                 {
                     id: payment_id,
-                    title: title,
+                    title: "Teste",
                     unit_price: unit_price,
                     currency_id: "BRL",
                     quantity: 1,
-                    category_id: category_id,
-                    description: description,
-                    picture_url: picture_url
+                    category_id: "Solda",
+                    description: "LojaSolda",
                 }
             ],
             payer: {
-                name: name,
-                surname: surname,
                 email: email,
-                phone: {
-                    area_code: area_code,
-                    number: number,
-                },
                 identification: {
                     type: type_identification,
                     number: type_number
-                },
-                address: {
-                    street_name: street_name,
-                    street_number: street_number,
-                    zip_code: zip_code
                 }
             },
             payment_methods: {

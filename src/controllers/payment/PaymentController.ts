@@ -6,42 +6,20 @@ class PaymentController {
 
         const {
             payment_id,
-            title,
             unit_price,
-            category_id,
-            description,
-            picture_url,
-            name,
-            surname,
             email,
-            area_code,
-            number,
             type_identification,
-            type_number,
-            street_name,
-            street_number,
-            zip_code
+            type_number
         } = req.body;
 
         const payments = new PaymentService();
 
         const paymentsResults = await payments.execute({
             payment_id,
-            title,
             unit_price,
-            category_id,
-            description,
-            picture_url,
-            name,
-            surname,
             email,
-            area_code,
-            number,
             type_identification,
-            type_number,
-            street_name,
-            street_number,
-            zip_code
+            type_number
         });
 
         return res.json(paymentsResults);
