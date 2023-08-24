@@ -5,21 +5,29 @@ class PaymentController {
     async handle(req: Request, res: Response) {
 
         const {
-            payment_id,
-            unit_price,
+            description,
             email,
             type_identification,
-            type_number
+            type_number,
+            installments,
+            payment_method_id,
+            transaction_amount,
+            issuer_id,
+            unit_price,
         } = req.body;
 
         const payments = new PaymentService();
 
         const paymentsResults = await payments.execute({
-            payment_id,
-            unit_price,
+            description,
             email,
             type_identification,
-            type_number
+            type_number,
+            installments,
+            payment_method_id,
+            transaction_amount,
+            issuer_id,
+            unit_price,
         });
 
         return res.json(paymentsResults);

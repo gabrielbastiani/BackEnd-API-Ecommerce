@@ -4,28 +4,35 @@ mercadopago.configure({
 });
 
 interface PaymentRequest {
-    payment_id: string;
-    unit_price: number;
+    description: string;
     email: string;
     type_identification: string;
     type_number: string;
+    installments: number;
+    payment_method_id: string;
+    transaction_amount: number;
+    issuer_id: string;
+    unit_price: number;
 }
 
 class PaymentService {
     async execute({
-        payment_id,
-        unit_price,
+        description,
         email,
         type_identification,
-        type_number
+        type_number,
+        installments,
+        payment_method_id,
+        transaction_amount,
+        issuer_id,
+        unit_price,
     }: PaymentRequest) {
 
-        const result = await mercadopago.preferences.create({
+        const resultCreate = await mercadopago.preferences.create({
             items: [
                 {
-                    id: payment_id,
                     title: "Teste",
-                    unit_price: unit_price,
+                    unit_price: 1000,
                     currency_id: "BRL",
                     quantity: 1,
                     category_id: "Solda",
@@ -50,7 +57,25 @@ class PaymentService {
             notification_url: "https://d7ae-177-69-27-241.ngrok.io/webhook",
         });
 
-        console.log(result)
+        const create = resultCreate.body;
+
+        const result = await mercadopago.payment.save({
+            installments: 1,
+            payment_method_id: payment_method_id,
+            transaction_amount: transaction_amount,
+            description: description,
+            issuer_id: issuer_id,
+            token: issuer_id,
+            payer: {
+                email: email,
+                identification: {
+                    type: type_identification,
+                    number: type_number
+                }
+            }
+        });
+
+        console.log(create)
 
         return result;
 
