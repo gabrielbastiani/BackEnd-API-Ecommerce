@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
-/* import { PaymentService } from "../../services/payment/PaymentService"; */
 import mercadopago from 'mercadopago';
 mercadopago.configure({
     access_token: process.env.ACCESS_TOKEN_TEST
 });
 
-class PaymentController {
+class PaymentCardController {
     async handle(req: Request, res: Response) {
+
+        console.log(req.body)
 
         mercadopago.payment.save(req.body)
             .then(function (response) {
@@ -14,8 +15,6 @@ class PaymentController {
                 const { status, status_detail, id } = response.body;
 
                 res.status(response.status).json({ status, status_detail, id });
-
-                console.log(status_detail)
 
             })
             .catch(function (error) {
@@ -25,4 +24,4 @@ class PaymentController {
     }
 }
 
-export { PaymentController };
+export { PaymentCardController };

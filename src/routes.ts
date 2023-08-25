@@ -408,7 +408,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 import { FindFreteCalculoController } from './controllers/frete/FindFreteCalculoController';
 
 // -- PAGAMENTOS --
-import { PaymentController } from './controllers/payment/PaymentController';
+import { PaymentCardController } from './controllers/payment/PaymentCardController';
 
 
 
@@ -833,7 +833,7 @@ router.get('/sendEmailContact', [isAuthenticated, authorizationRules(["ADMIN", "
 router.post('/freteCalculo', new FindFreteCalculoController().handle);
 
 // -- PAGAMENTOS --
-router.post('/paymentResult', new PaymentController().handle);
+router.post('/paymentCardResult', new PaymentCardController().handle);
 
 
 export { router };
