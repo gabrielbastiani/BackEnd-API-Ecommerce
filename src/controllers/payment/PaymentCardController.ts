@@ -14,6 +14,8 @@ class PaymentCardController {
 
                 const { status, status_detail, id } = response.body;
 
+                console.log(response.body)
+
                 res.status(response.status).json({ status, status_detail, id });
 
             })

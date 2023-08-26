@@ -416,6 +416,8 @@ import { PaymentCardController } from './controllers/payment/PaymentCardControll
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { PaymentBoletoController } from './controllers/payment/PaymentBoletoController';
+import { PaymentPixController } from './controllers/payment/PaymentPixController';
 
 
 const router = Router();
@@ -834,6 +836,8 @@ router.post('/freteCalculo', new FindFreteCalculoController().handle);
 
 // -- PAGAMENTOS --
 router.post('/paymentCardResult', new PaymentCardController().handle);
+router.post('/paymentBoletoResult', new PaymentBoletoController().handle);
+router.post('/paymentPixResult', new PaymentPixController().handle);
 
 
 export { router };
