@@ -409,6 +409,8 @@ import { FindFreteCalculoController } from './controllers/frete/FindFreteCalculo
 
 // -- PAGAMENTOS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
+import { PaymentBoletoController } from './controllers/payment/PaymentBoletoController';
+import { PaymentPixController } from './controllers/payment/PaymentPixController';
 
 
 
@@ -416,8 +418,10 @@ import { PaymentCardController } from './controllers/payment/PaymentCardControll
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { PaymentBoletoController } from './controllers/payment/PaymentBoletoController';
-import { PaymentPixController } from './controllers/payment/PaymentPixController';
+import { CreateCartController } from './controllers/cart/CreateCartController';
+import { UpdateCartController } from './controllers/cart/UpdateCartController';
+import { DeleteCartController } from './controllers/cart/DeleteCartController';
+
 
 
 const router = Router();
@@ -833,6 +837,11 @@ router.get('/sendEmailContact', [isAuthenticated, authorizationRules(["ADMIN", "
 
 // -- FRETES CALCULO --
 router.post('/freteCalculo', new FindFreteCalculoController().handle);
+
+// -- CART --
+router.post('/createCart', new CreateCartController().handle);
+router.put('/updateCart', new UpdateCartController().handle);
+router.delete('/deleteCart', new DeleteCartController().handle);
 
 // -- PAGAMENTOS --
 router.post('/paymentCardResult', new PaymentCardController().handle);

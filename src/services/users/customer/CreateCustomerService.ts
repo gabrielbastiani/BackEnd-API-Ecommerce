@@ -98,6 +98,27 @@ class CreateCustomerService {
 
     const store = await prismaClient.store.findFirst();
 
+    const findCustomer = await prismaClient.customer.findFirst({
+      orderBy: {
+        created_at: 'desc'
+      }
+    });
+
+    await prismaClient.deliveryAddressCustomer.create({
+      data: {
+        customer_id: findCustomer.id,
+        address: findCustomer.address,
+        number: findCustomer.number,
+        complement: findCustomer.complement,
+        neighborhood: findCustomer.neighborhood,
+        cep: findCustomer.cep,
+        city: findCustomer.city,
+        state: findCustomer.state,
+        phone: findCustomer.phone,
+        store_id: store.id
+      }
+    });
+
     const transporter = nodemailer.createTransport({
       host: process.env.HOST_SMTP,
       port: 465,
@@ -109,7 +130,7 @@ class CreateCustomerService {
 
     await transporter.sendMail({
       from: `Loja Virtual - ${store.name} <${store.email}>`,
-      to: "gabriel.bastiani@hotmail.com.br",
+      to: store.email,
       subject: "Novo cliente se cadastrando na store virtual da Builder Seu Negócio Online",
       html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                 <h2>Novo usúario!</h2>
