@@ -1,13 +1,12 @@
 import prismaClient from "../../prisma";
 
 interface CartRequest {
-  customer_id: string;
   product_id: string;
   image: string;
   name: string;
   amount: number;
   price: number;
-  relationattributeproducts: string;
+  relationattributeproducts: any;
   stock: number;
   weight: number;
   width: number;
@@ -18,7 +17,6 @@ interface CartRequest {
 
 class CreateCartService {
   async execute({
-    customer_id,
     product_id,
     image,
     name,
@@ -34,7 +32,6 @@ class CreateCartService {
   }: CartRequest) {
     const cart = await prismaClient.cart.create({
       data: {
-        customer_id: customer_id,
         product_id: product_id,
         image: image,
         name: name,

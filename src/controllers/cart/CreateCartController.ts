@@ -4,7 +4,6 @@ import { CreateCartService } from "../../services/cart/CreateCartService";
 class CreateCartController {
     async handle(req: Request, res: Response) {
         const {
-            customer_id,
             product_id,
             image,
             name,
@@ -22,7 +21,6 @@ class CreateCartController {
         const cart = new CreateCartService();
 
         const cartCustomer = await cart.execute({
-            customer_id,
             product_id,
             image,
             name,

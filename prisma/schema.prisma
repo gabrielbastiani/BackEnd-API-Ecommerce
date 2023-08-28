@@ -68,7 +68,7 @@ model Customer {
 
   deliveryaddresscustomers DeliveryAddressCustomer[]
   avalietions              Avalietion[]
-  cart     Cart[]
+  cart                     Cart[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -859,7 +859,7 @@ model Cart {
   name                      String    @db.VarChar(525)
   amount                    Float?
   price                     Float?
-  relationattributeproducts String    @db.VarChar(525)
+  relationattributeproducts Json?
   stock                     Float?
   weight                    Float?
   width                     Float?

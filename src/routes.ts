@@ -421,6 +421,7 @@ import uploadConfig from './config/multer';
 import { CreateCartController } from './controllers/cart/CreateCartController';
 import { UpdateCartController } from './controllers/cart/UpdateCartController';
 import { DeleteCartController } from './controllers/cart/DeleteCartController';
+import { CartProductsController } from './controllers/cart/CartProductsController';
 
 
 
@@ -839,6 +840,7 @@ router.get('/sendEmailContact', [isAuthenticated, authorizationRules(["ADMIN", "
 router.post('/freteCalculo', new FindFreteCalculoController().handle);
 
 // -- CART --
+router.get('/findProductsCart', new CartProductsController().handle);
 router.post('/createCart', new CreateCartController().handle);
 router.put('/updateCart', new UpdateCartController().handle);
 router.delete('/deleteCart', new DeleteCartController().handle);
