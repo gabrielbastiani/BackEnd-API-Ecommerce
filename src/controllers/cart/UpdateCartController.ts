@@ -3,40 +3,17 @@ import { UpdateCartService } from '../../services/cart/UpdateCartService';
 
 class UpdateCartController {
   async handle(req: Request, res: Response) {
-    const cart_id = req.query.cart_id as string;
+    const store_cart_id = req.query.store_cart_id as string;
+    const product_id = req.query.product_id as string;
 
-    const {
-      customer_id,
-      product_id,
-      image,
-      name,
-      amount,
-      price,
-      relationattributeproducts,
-      stock,
-      weight,
-      width,
-      height,
-      depth,
-      total
-    } = req.body;
+    const { amount, total } = req.body;
 
     const udateCart = new UpdateCartService();
 
     const cart = await udateCart.execute({
-      cart_id,
-      customer_id,
+      store_cart_id,
       product_id,
-      image,
-      name,
       amount,
-      price,
-      relationattributeproducts,
-      stock,
-      weight,
-      width,
-      height,
-      depth,
       total
     });
 

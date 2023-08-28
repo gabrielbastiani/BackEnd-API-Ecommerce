@@ -303,6 +303,7 @@ model Product {
   productsvariations        ProductVariation[]
   stockproductcustomer      StockProductCustomer[]
   cupomsproducts            CuponProduct[]
+  carts                     Cart[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -851,21 +852,15 @@ model Contact {
 }
 
 model Cart {
-  id                        String    @id @default(uuid())
-  customer                  Customer? @relation(fields: [customer_id], references: [id])
-  customer_id               String?
-  product_id                String    @db.VarChar(825)
-  image                     String    @db.VarChar(825)
-  name                      String    @db.VarChar(525)
-  amount                    Float?
-  price                     Float?
-  relationattributeproducts Json?
-  stock                     Float?
-  weight                    Float?
-  width                     Float?
-  height                    Float?
-  depth                     Float?
-  total                     Float?
+  id             String    @id @default(uuid())
+  store_cart_id  String?
+  product        Product?  @relation(fields: [product_id], references: [id])
+  product_id     String?   @db.VarChar(825)
+  amount         Float?
+  total          Float?
+  customer       Customer? @relation(fields: [customer_id], references: [id])
+  customer_id    String?
+  email_customer String?   @db.VarChar(525)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt

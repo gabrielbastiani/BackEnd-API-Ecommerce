@@ -1,14 +1,14 @@
 import prismaClient from "../../prisma";
 
 interface CartRequest {
-  cart_id: string;
+  store_cart_id: string;
 }
 
 class DeleteCartService {
-  async execute({ cart_id }: CartRequest) {
-    const cart = await prismaClient.cart.delete({
+  async execute({ store_cart_id }: CartRequest) {
+    const cart = await prismaClient.cart.deleteMany({
       where: {
-        id: cart_id
+        store_cart_id: store_cart_id
       }
     });
 

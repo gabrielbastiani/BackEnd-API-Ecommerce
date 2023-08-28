@@ -422,6 +422,7 @@ import { CreateCartController } from './controllers/cart/CreateCartController';
 import { UpdateCartController } from './controllers/cart/UpdateCartController';
 import { DeleteCartController } from './controllers/cart/DeleteCartController';
 import { CartProductsController } from './controllers/cart/CartProductsController';
+import { FindCartController } from './controllers/cart/FindCartController';
 
 
 
@@ -844,6 +845,7 @@ router.get('/findProductsCart', new CartProductsController().handle);
 router.post('/createCart', new CreateCartController().handle);
 router.put('/updateCart', new UpdateCartController().handle);
 router.delete('/deleteCart', new DeleteCartController().handle);
+router.get('/findCart', new FindCartController().handle);
 
 // -- PAGAMENTOS --
 router.post('/paymentCardResult', new PaymentCardController().handle);

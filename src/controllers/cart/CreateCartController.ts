@@ -5,16 +5,9 @@ class CreateCartController {
     async handle(req: Request, res: Response) {
         const {
             product_id,
-            image,
-            name,
+            store_cart_id,
+            email_customer,
             amount,
-            price,
-            relationattributeproducts,
-            stock,
-            weight,
-            width,
-            height,
-            depth,
             total
         } = req.body;
 
@@ -22,16 +15,9 @@ class CreateCartController {
 
         const cartCustomer = await cart.execute({
             product_id,
-            image,
-            name,
+            store_cart_id,
+            email_customer,
             amount,
-            price,
-            relationattributeproducts,
-            stock,
-            weight,
-            width,
-            height,
-            depth,
             total
         });
 
