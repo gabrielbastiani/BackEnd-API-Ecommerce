@@ -1,30 +1,26 @@
-import { StatusProduct } from "@prisma/client";
 import prismaClient from "../../prisma";
 
 interface AttributeProductRequest {
-    product_id: any;
+    store_cart_id: string;
 }
 
 class CartProductsService {
-    async execute({ product_id }: AttributeProductRequest) {
-        const productsCart = await prismaClient.product.findMany({
+    async execute({ store_cart_id }: AttributeProductRequest) {
+        const productsCart = await prismaClient.cart.findMany({
             where: {
-                status: StatusProduct.Disponivel,
-                id: { in: product_id }
+                store_cart_id: store_cart_id
             },
             include: {
-                cupomsproducts: {
+                customer: true,
+                product: {
                     include: {
-                        coupon: true,
-                        product: true
-                    }
-                },
-                photoproducts: true,
-                relationattributeproducts: {
-                    include: {
-                        product: true,
-                        typeAttribute: true,
-                        valueAttribute: true
+                        photoproducts: true,
+                        relationattributeproducts: {
+                            include: {
+                                typeAttribute: true,
+                                valueAttribute: true
+                            }
+                        }
                     }
                 }
             }

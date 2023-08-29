@@ -37,6 +37,7 @@ declare namespace Express {
     newsletter_id: string;
     contact_id: string;
     cupon_id: string;
+    store_cart_id: string;
   }
 
   export type BoolNullableListFilter = {
