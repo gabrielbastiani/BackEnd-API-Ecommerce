@@ -13,6 +13,9 @@ class FindCartService {
                 AND: {
                     store_cart_id: store_cart_id
                 }
+            },
+            include: {
+                product: true
             }
         });
 

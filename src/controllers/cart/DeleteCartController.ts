@@ -4,10 +4,11 @@ import { DeleteCartService } from '../../services/cart/DeleteCartService';
 class DeleteCartController {
   async handle(req: Request, res: Response) {
     const store_cart_id = req.query.store_cart_id as string;
+    const product_id = req.query.product_id as string;
 
     const udateCart = new DeleteCartService();
 
-    const cart = await udateCart.execute({ store_cart_id });
+    const cart = await udateCart.execute({ store_cart_id, product_id });
 
     return res.json(cart);
 

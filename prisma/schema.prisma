@@ -868,6 +868,14 @@ model Cart {
   @@map("carts")
 }
 
+model CartTotal {
+  id            String  @id @default(uuid())
+  store_cart_id String?
+  total         Float?
+
+  @@map("cartstotal")
+}
+
 model Payment {
   id       String @id @default(uuid())
   name     String @db.VarChar(525)

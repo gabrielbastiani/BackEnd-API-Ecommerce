@@ -407,6 +407,16 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 // -- FRETES CALCULO --
 import { FindFreteCalculoController } from './controllers/frete/FindFreteCalculoController';
 
+// -- CART --
+import { CreateCartController } from './controllers/cart/CreateCartController';
+import { UpdateCartController } from './controllers/cart/UpdateCartController';
+import { DeleteCartController } from './controllers/cart/DeleteCartController';
+import { CartProductsController } from './controllers/cart/CartProductsController';
+import { FindCartController } from './controllers/cart/FindCartController';
+import { CreateCartsTotalController } from './controllers/cart/cartsTotal/CreateCartsTotalController';
+import { UpdateCartsTotalController } from './controllers/cart/cartsTotal/UpdateCartsTotalController';
+import { DeleteCartsTotalController } from './controllers/cart/cartsTotal/DeleteCartsTotalController';
+
 // -- PAGAMENTOS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
 import { PaymentBoletoController } from './controllers/payment/PaymentBoletoController';
@@ -418,11 +428,7 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { CreateCartController } from './controllers/cart/CreateCartController';
-import { UpdateCartController } from './controllers/cart/UpdateCartController';
-import { DeleteCartController } from './controllers/cart/DeleteCartController';
-import { CartProductsController } from './controllers/cart/CartProductsController';
-import { FindCartController } from './controllers/cart/FindCartController';
+import { FindCartsTotalController } from './controllers/cart/cartsTotal/FindCartsTotalController';
 
 
 
@@ -846,6 +852,10 @@ router.post('/createCart', new CreateCartController().handle);
 router.put('/updateCart', new UpdateCartController().handle);
 router.delete('/deleteCart', new DeleteCartController().handle);
 router.get('/findCart', new FindCartController().handle);
+router.post('/createTotalCart', new CreateCartsTotalController().handle);
+router.put('/updateTotalCart', new UpdateCartsTotalController().handle);
+router.delete('/deleteTotalCart', new DeleteCartsTotalController().handle);
+router.get('/findTotalCart', new FindCartsTotalController().handle);
 
 // -- PAGAMENTOS --
 router.post('/paymentCardResult', new PaymentCardController().handle);
