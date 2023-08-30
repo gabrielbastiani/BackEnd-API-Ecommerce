@@ -871,7 +871,7 @@ model Cart {
 model CartTotal {
   id            String  @id @default(uuid())
   store_cart_id String?
-  total         Float?
+  total         Float?  @default(0)
 
   @@map("cartstotal")
 }
