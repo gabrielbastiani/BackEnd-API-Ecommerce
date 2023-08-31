@@ -416,6 +416,8 @@ import { FindCartController } from './controllers/cart/FindCartController';
 import { CreateCartsTotalController } from './controllers/cart/cartsTotal/CreateCartsTotalController';
 import { UpdateCartsTotalController } from './controllers/cart/cartsTotal/UpdateCartsTotalController';
 import { DeleteCartsTotalController } from './controllers/cart/cartsTotal/DeleteCartsTotalController';
+import { FindCartsTotalController } from './controllers/cart/cartsTotal/FindCartsTotalController';
+import { ClearCartController } from './controllers/cart/ClearCartController';
 
 // -- PAGAMENTOS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -428,7 +430,7 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { FindCartsTotalController } from './controllers/cart/cartsTotal/FindCartsTotalController';
+
 
 
 
@@ -855,6 +857,7 @@ router.get('/findCart', new FindCartController().handle);
 router.post('/createTotalCart', new CreateCartsTotalController().handle);
 router.put('/updateTotalCart', new UpdateCartsTotalController().handle);
 router.delete('/deleteTotalCart', new DeleteCartsTotalController().handle);
+router.delete('/clearCart', new ClearCartController().handle);
 router.get('/findTotalCart', new FindCartsTotalController().handle);
 
 // -- PAGAMENTOS --
