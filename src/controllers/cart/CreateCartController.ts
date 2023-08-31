@@ -6,7 +6,6 @@ class CreateCartController {
         const {
             product_id,
             store_cart_id,
-            email_customer,
             amount,
             total
         } = req.body;
@@ -16,7 +15,6 @@ class CreateCartController {
         const cartCustomer = await cart.execute({
             product_id,
             store_cart_id,
-            email_customer,
             amount,
             total
         });

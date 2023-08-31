@@ -418,6 +418,8 @@ import { UpdateCartsTotalController } from './controllers/cart/cartsTotal/Update
 import { DeleteCartsTotalController } from './controllers/cart/cartsTotal/DeleteCartsTotalController';
 import { FindCartsTotalController } from './controllers/cart/cartsTotal/FindCartsTotalController';
 import { ClearCartController } from './controllers/cart/ClearCartController';
+import { CreateCartTotalFinishController } from './controllers/cart/cartTotalFinish/CreateCartTotalFinishController';
+import { DeleteCartTotalFinishController } from './controllers/cart/cartTotalFinish/DeleteCartTotalFinishController';
 
 // -- PAGAMENTOS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -859,6 +861,8 @@ router.put('/updateTotalCart', new UpdateCartsTotalController().handle);
 router.delete('/deleteTotalCart', new DeleteCartsTotalController().handle);
 router.delete('/clearCart', new ClearCartController().handle);
 router.get('/findTotalCart', new FindCartsTotalController().handle);
+router.post('/createCartTotalFinish', new CreateCartTotalFinishController().handle);
+router.delete('/deleteCartTotalFinish', new DeleteCartTotalFinishController().handle);
 
 // -- PAGAMENTOS --
 router.post('/paymentCardResult', new PaymentCardController().handle);

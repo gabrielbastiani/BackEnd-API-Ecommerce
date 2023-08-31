@@ -69,6 +69,8 @@ model Customer {
   deliveryaddresscustomers DeliveryAddressCustomer[]
   avalietions              Avalietion[]
   cart                     Cart[]
+  cartstotal               CartTotal[]
+  cartstotalfinish         CartTotalFinish[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -852,15 +854,14 @@ model Contact {
 }
 
 model Cart {
-  id             String    @id @default(uuid())
-  store_cart_id  String?
-  product        Product?  @relation(fields: [product_id], references: [id])
-  product_id     String?   @db.VarChar(825)
-  amount         Float?
-  total          Float?
-  customer       Customer? @relation(fields: [customer_id], references: [id])
-  customer_id    String?
-  email_customer String?   @db.VarChar(525)
+  id            String    @id @default(uuid())
+  store_cart_id String?
+  product       Product?  @relation(fields: [product_id], references: [id])
+  product_id    String?   @db.VarChar(825)
+  amount        Float?
+  total         Float?
+  customer      Customer? @relation(fields: [customer_id], references: [id])
+  customer_id   String?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -869,11 +870,29 @@ model Cart {
 }
 
 model CartTotal {
-  id            String  @id @default(uuid())
+  id            String    @id @default(uuid())
   store_cart_id String?
-  total         Float?  @default(0)
+  total         Float?    @default(0)
+  customer      Customer? @relation(fields: [customer_id], references: [id])
+  customer_id   String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("cartstotal")
+}
+
+model CartTotalFinish {
+  id              String    @id @default(uuid())
+  store_cart_id   String?
+  totalCartFinish Float?    @default(0)
+  customer        Customer? @relation(fields: [customer_id], references: [id])
+  customer_id     String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("cartstotalfinish")
 }
 
 model Payment {
