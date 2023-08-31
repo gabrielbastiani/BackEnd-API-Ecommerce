@@ -5,6 +5,7 @@ interface CartRequest {
   product_id: string;
   amount: number;
   total: number;
+  customer_id: string;
 }
 
 class UpdateCartService {
@@ -12,7 +13,8 @@ class UpdateCartService {
     store_cart_id,
     product_id,
     amount,
-    total
+    total,
+    customer_id
   }: CartRequest) {
     const cart = await prismaClient.cart.updateMany({
       where: {
@@ -23,7 +25,8 @@ class UpdateCartService {
       },
       data: {
         amount: amount,
-        total: total
+        total: total,
+        customer_id: customer_id
       }
     });
 

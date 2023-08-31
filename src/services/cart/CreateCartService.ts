@@ -5,6 +5,7 @@ interface CartRequest {
   store_cart_id: string;
   amount: number;
   total: number;
+  customer_id: string;
 }
 
 class CreateCartService {
@@ -12,14 +13,16 @@ class CreateCartService {
     product_id,
     store_cart_id,
     amount,
-    total
+    total,
+    customer_id
   }: CartRequest) {
     const cart = await prismaClient.cart.create({
       data: {
         product_id: product_id,
         store_cart_id: store_cart_id,
         amount: amount,
-        total: total
+        total: total,
+        customer_id: customer_id
       }
     });
 

@@ -7,7 +7,8 @@ class CreateCartController {
             product_id,
             store_cart_id,
             amount,
-            total
+            total,
+            customer_id
         } = req.body;
 
         const cart = new CreateCartService();
@@ -16,7 +17,8 @@ class CreateCartController {
             product_id,
             store_cart_id,
             amount,
-            total
+            total,
+            customer_id
         });
 
         return res.json(cartCustomer);

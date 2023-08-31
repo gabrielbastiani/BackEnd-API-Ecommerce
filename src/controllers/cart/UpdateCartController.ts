@@ -6,7 +6,7 @@ class UpdateCartController {
     const store_cart_id = req.query.store_cart_id as string;
     const product_id = req.query.product_id as string;
 
-    const { amount, total } = req.body;
+    const { amount, total, customer_id } = req.body;
 
     const udateCart = new UpdateCartService();
 
@@ -14,7 +14,8 @@ class UpdateCartController {
       store_cart_id,
       product_id,
       amount,
-      total
+      total,
+      customer_id
     });
 
     return res.json(cart);
