@@ -420,6 +420,9 @@ import { FindCartsTotalController } from './controllers/cart/cartsTotal/FindCart
 import { ClearCartController } from './controllers/cart/ClearCartController';
 import { CreateCartTotalFinishController } from './controllers/cart/cartTotalFinish/CreateCartTotalFinishController';
 import { DeleteCartTotalFinishController } from './controllers/cart/cartTotalFinish/DeleteCartTotalFinishController';
+import { UpdateCartCustomerController } from './controllers/cart/UpdateCartCustomerController';
+import { FindCartTotalFinishController } from './controllers/cart/cartTotalFinish/FindCartTotalFinishController';
+import { UpdateCartTotalFinishController } from './controllers/cart/cartTotalFinish/UpdateCartTotalFinishController';
 
 // -- PAGAMENTOS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -854,6 +857,7 @@ router.post('/freteCalculo', new FindFreteCalculoController().handle);
 router.get('/findProductsCart', new CartProductsController().handle);
 router.post('/createCart', new CreateCartController().handle);
 router.put('/updateCart', new UpdateCartController().handle);
+router.put('/updateCartCustomer', new UpdateCartCustomerController().handle);
 router.delete('/deleteCart', new DeleteCartController().handle);
 router.get('/findCart', new FindCartController().handle);
 router.post('/createTotalCart', new CreateCartsTotalController().handle);
@@ -863,6 +867,8 @@ router.delete('/clearCart', new ClearCartController().handle);
 router.get('/findTotalCart', new FindCartsTotalController().handle);
 router.post('/createCartTotalFinish', new CreateCartTotalFinishController().handle);
 router.delete('/deleteCartTotalFinish', new DeleteCartTotalFinishController().handle);
+router.get('/findCartTotalFinish', new FindCartTotalFinishController().handle);
+router.put('/updateCartTotalFinish', new UpdateCartTotalFinishController().handle);
 
 // -- PAGAMENTOS --
 router.post('/paymentCardResult', new PaymentCardController().handle);
