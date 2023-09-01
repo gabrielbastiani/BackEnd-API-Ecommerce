@@ -422,6 +422,7 @@ import { DeleteCartTotalFinishController } from './controllers/cart/cartTotalFin
 import { UpdateCartCustomerController } from './controllers/cart/UpdateCartCustomerController';
 import { FindCartTotalFinishController } from './controllers/cart/cartTotalFinish/FindCartTotalFinishController';
 import { UpdateCartTotalFinishController } from './controllers/cart/cartTotalFinish/UpdateCartTotalFinishController';
+import { ClearCartCustomerController } from './controllers/cart/ClearCartCustomerController';
 
 // -- PAGAMENTOS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -434,8 +435,6 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { ClearCartCustomerController } from './controllers/cart/ClearCartCustomerController';
-
 
 
 
