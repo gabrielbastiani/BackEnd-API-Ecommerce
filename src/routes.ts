@@ -417,7 +417,6 @@ import { CreateCartsTotalController } from './controllers/cart/cartsTotal/Create
 import { UpdateCartsTotalController } from './controllers/cart/cartsTotal/UpdateCartsTotalController';
 import { DeleteCartsTotalController } from './controllers/cart/cartsTotal/DeleteCartsTotalController';
 import { FindCartsTotalController } from './controllers/cart/cartsTotal/FindCartsTotalController';
-import { ClearCartController } from './controllers/cart/ClearCartController';
 import { CreateCartTotalFinishController } from './controllers/cart/cartTotalFinish/CreateCartTotalFinishController';
 import { DeleteCartTotalFinishController } from './controllers/cart/cartTotalFinish/DeleteCartTotalFinishController';
 import { UpdateCartCustomerController } from './controllers/cart/UpdateCartCustomerController';
@@ -435,6 +434,7 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { ClearCartCustomerController } from './controllers/cart/ClearCartCustomerController';
 
 
 
@@ -863,7 +863,7 @@ router.get('/findCart', new FindCartController().handle);
 router.post('/createTotalCart', new CreateCartsTotalController().handle);
 router.put('/updateTotalCart', new UpdateCartsTotalController().handle);
 router.delete('/deleteTotalCart', new DeleteCartsTotalController().handle);
-router.delete('/clearCart', new ClearCartController().handle);
+router.delete('/clearCart', new ClearCartCustomerController().handle);
 router.get('/findTotalCart', new FindCartsTotalController().handle);
 router.post('/createCartTotalFinish', new CreateCartTotalFinishController().handle);
 router.delete('/deleteCartTotalFinish', new DeleteCartTotalFinishController().handle);
