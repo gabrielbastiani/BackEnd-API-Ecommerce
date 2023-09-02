@@ -41,6 +41,7 @@ import { DeletePasswordRecoveryIDCustomerController } from './controllers/users/
 import { FindRecoveryIDCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/FindRecoveryIDCustomerController';
 import { CustomerRecoveryPasswordController } from './controllers/users/customer/passwordRecoveryCustomer/CustomerRecoveryPasswordController';
 import { CreateDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/CreateDeliveryAddressCustomerController';
+import { FindDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/FindDeliveryAddressCustomerController';
 import { UpdateAllDateDeliveryAddressCustomerCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateAllDateDeliveryAddressCustomerCustomerController';
 import { DeleteDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/DeleteDeliveryAddressCustomerController';
 import { EmailPasswordDashboardCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/EmailPasswordDashboardCustomerController';
@@ -485,6 +486,7 @@ router.get('/customer/findFirstCustomer', isAuthenticated, new FindRecoveryIDCus
 router.post('/customer/delivery/createDeliveryAddress', isAuthenticated, new CreateDeliveryAddressCustomerController().handle);
 router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', isAuthenticated, new UpdateAllDateDeliveryAddressCustomerCustomerController().handle);
 router.delete('/customer/delivery/deleteDeliveryAddress', isAuthenticated, new DeleteDeliveryAddressCustomerController().handle);
+router.get('/customer/findAlldeliveryCustomer', isAuthenticated, new FindDeliveryAddressCustomerController().handle);
 router.post('/customer/recoverPasswordDashboard', isAuthenticated, new EmailPasswordDashboardCustomerController().handle);
 router.put('/customer/recoverCustomer', new CustomerRecoveryPasswordController().handle);
 router.post('/customer/recoverPasswordEmail', new EmailPasswordCustomerController().handle);
