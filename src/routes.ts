@@ -407,6 +407,7 @@ import { EmailExportContactController } from './controllers/sendEmails/EmailExpo
 
 // -- FRETES CALCULO --
 import { FindFreteCalculoController } from './controllers/frete/FindFreteCalculoController';
+import { FindCepController } from './controllers/frete/FindCepController';
 
 // -- CART --
 import { CreateCartController } from './controllers/cart/CreateCartController';
@@ -853,6 +854,7 @@ router.get('/sendEmailContact', [isAuthenticated, authorizationRules(["ADMIN", "
 
 // -- FRETES CALCULO --
 router.post('/freteCalculo', new FindFreteCalculoController().handle);
+router.post('/findAddressCep', new FindCepController().handle);
 
 // -- CART --
 router.get('/findProductsCart', new CartProductsController().handle);
