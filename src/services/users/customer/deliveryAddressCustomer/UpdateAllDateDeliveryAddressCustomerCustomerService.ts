@@ -2,6 +2,7 @@ import prismaClient from "../../../../prisma";
 
 interface DeliveryRequest {
     deliveryAddressCustomer_id: string;
+    addressee: string;
     address: string;
     number: string;
     complement: string;
@@ -16,6 +17,7 @@ interface DeliveryRequest {
 class UpdateAllDateDeliveryAddressCustomerCustomerService {
     async execute({
         deliveryAddressCustomer_id,
+        addressee,
         address,
         number,
         complement,
@@ -32,6 +34,7 @@ class UpdateAllDateDeliveryAddressCustomerCustomerService {
             },
             data: {
                 address: address,
+                addressee: addressee,
                 number: number,
                 complement: complement,
                 reference: reference,

@@ -2,6 +2,7 @@ import prismaClient from '../../../../prisma';
 
 interface DeliveryRequest {
   customer_id: string;
+  addressee: string;
   address: string;
   number: string;
   complement: string;
@@ -17,6 +18,7 @@ interface DeliveryRequest {
 class CreateDeliveryAddressCustomerService {
   async execute({
     customer_id,
+    addressee,
     address,
     number,
     complement,
@@ -31,6 +33,7 @@ class CreateDeliveryAddressCustomerService {
     const delivery = await prismaClient.deliveryAddressCustomer.create({
       data: {
         customer_id: customer_id,
+        addressee: addressee,
         address: address,
         number: number,
         complement: complement,

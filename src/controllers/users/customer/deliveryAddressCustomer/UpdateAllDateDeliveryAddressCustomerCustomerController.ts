@@ -5,6 +5,7 @@ class UpdateAllDateDeliveryAddressCustomerCustomerController {
     async handle(req: Request, res: Response) {
         const deliveryAddressCustomer_id = req.query.deliveryAddressCustomer_id as string;
         const {
+            addressee,
             address,
             number,
             complement,
@@ -20,6 +21,7 @@ class UpdateAllDateDeliveryAddressCustomerCustomerController {
 
         const updateDelivery = await updateAllDelivery.execute({
             deliveryAddressCustomer_id,
+            addressee,
             address,
             number,
             complement,

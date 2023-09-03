@@ -5,6 +5,7 @@ class CreateDeliveryAddressCustomerController {
     async handle(req: Request, res: Response) {
         const {
             customer_id,
+            addressee,
             address,
             number,
             complement,
@@ -21,6 +22,7 @@ class CreateDeliveryAddressCustomerController {
 
         const delivery = await createUserService.execute({
             customer_id,
+            addressee,
             address,
             number,
             complement,

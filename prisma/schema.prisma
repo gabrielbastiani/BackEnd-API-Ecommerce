@@ -85,6 +85,7 @@ model DeliveryAddressCustomer {
   id           String    @id @default(uuid())
   customer     Customer? @relation(fields: [customer_id], references: [id])
   customer_id  String?
+  addressee    String?   @db.VarChar(405)
   address      String?   @db.VarChar(405)
   number       String?   @db.VarChar(125)
   complement   String?   @db.VarChar(155)
