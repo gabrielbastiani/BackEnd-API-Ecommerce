@@ -1,3 +1,4 @@
+import { SelectedDelivery } from '@prisma/client';
 import prismaClient from '../../../../prisma';
 
 interface DeliveryRequest {
@@ -30,6 +31,26 @@ class CreateDeliveryAddressCustomerService {
     phone,
     store_id
   }: DeliveryRequest) {
+
+    const selected = await prismaClient.deliveryAddressCustomer.findFirst({
+      where: {
+        customer_id: customer_id,
+        deliverySelected: SelectedDelivery.Sim,
+      },
+      orderBy: {
+        created_at: 'desc'
+      }
+    });
+
+    await prismaClient.deliveryAddressCustomer.updateMany({
+      where: {
+        id: selected.id
+      },
+      data: {
+        deliverySelected: SelectedDelivery.Nao
+      }
+    });
+
     const delivery = await prismaClient.deliveryAddressCustomer.create({
       data: {
         customer_id: customer_id,

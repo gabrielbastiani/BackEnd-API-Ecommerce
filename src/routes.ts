@@ -437,6 +437,8 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { SelectedDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/SelectedDeliveryAddressCustomerController';
+import { FindUniqueDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/FindUniqueDeliveryAddressCustomerController';
 
 
 
@@ -484,7 +486,9 @@ router.put('/customer/updateNameCustomer', isAuthenticated, new CustomerUpdateNa
 router.put('/customer/updateNewslatter', isAuthenticated, new CustomerUpdateNewslatterController().handle);
 router.delete('/customer/deleteRecoveryIDCustomer', isAuthenticated, new DeletePasswordRecoveryIDCustomerController().handle);
 router.get('/customer/findFirstCustomer', isAuthenticated, new FindRecoveryIDCustomerController().handle);
+router.get('/customer/delivery/findFirstDelivery', isAuthenticated, new SelectedDeliveryAddressCustomerController().handle);
 router.post('/customer/delivery/createDeliveryAddress', isAuthenticated, new CreateDeliveryAddressCustomerController().handle);
+router.get('/customer/delivery/findUniqueDelivery', isAuthenticated, new FindUniqueDeliveryAddressCustomerController().handle);
 router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', isAuthenticated, new UpdateAllDateDeliveryAddressCustomerCustomerController().handle);
 router.delete('/customer/delivery/deleteDeliveryAddress', isAuthenticated, new DeleteDeliveryAddressCustomerController().handle);
 router.get('/customer/findAlldeliveryCustomer', isAuthenticated, new FindDeliveryAddressCustomerController().handle);

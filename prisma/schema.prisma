@@ -82,19 +82,20 @@ model Customer {
 }
 
 model DeliveryAddressCustomer {
-  id           String    @id @default(uuid())
-  customer     Customer? @relation(fields: [customer_id], references: [id])
-  customer_id  String?
-  addressee    String?   @db.VarChar(405)
-  address      String?   @db.VarChar(405)
-  number       String?   @db.VarChar(125)
-  complement   String?   @db.VarChar(155)
-  reference    String?   @db.VarChar(405)
-  neighborhood String?   @db.VarChar(185)
-  cep          String?   @db.VarChar(125)
-  city         String?   @db.VarChar(185)
-  state        String?   @db.VarChar(185)
-  phone        String?   @db.VarChar(135)
+  id               String           @id @default(uuid())
+  customer         Customer?        @relation(fields: [customer_id], references: [id])
+  customer_id      String?
+  addressee        String?          @db.VarChar(405)
+  address          String?          @db.VarChar(405)
+  number           String?          @db.VarChar(125)
+  complement       String?          @db.VarChar(155)
+  reference        String?          @db.VarChar(405)
+  neighborhood     String?          @db.VarChar(185)
+  cep              String?          @db.VarChar(125)
+  city             String?          @db.VarChar(185)
+  state            String?          @db.VarChar(185)
+  phone            String?          @db.VarChar(135)
+  deliverySelected SelectedDelivery @default(Sim) @unique
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -103,6 +104,11 @@ model DeliveryAddressCustomer {
   store_id String?
 
   @@map("deliveryaddresscustomers")
+}
+
+enum SelectedDelivery {
+  Sim
+  Nao
 }
 
 model PasswordRecoveryCustomer {
