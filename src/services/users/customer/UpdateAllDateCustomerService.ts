@@ -14,6 +14,7 @@ interface CustomerRequest {
     address: string;
     number: string;
     complement: string;
+    reference: string;
     neighborhood: string;
     cep: string;
     city: string;
@@ -36,6 +37,7 @@ class UpdateAllDateCustomerService {
         address,
         number,
         complement,
+        reference,
         neighborhood,
         cep,
         city,
@@ -60,6 +62,7 @@ class UpdateAllDateCustomerService {
                 address: address,
                 number: number,
                 complement: complement,
+                reference: reference,
                 neighborhood: neighborhood,
                 cep: cep,
                 city: city,

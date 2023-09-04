@@ -18,6 +18,7 @@ interface CustomerRequest {
   address: string;
   number: string;
   complement: string;
+  reference: string;
   neighborhood: string;
   cep: string;
   city: string;
@@ -40,6 +41,7 @@ class CreateCustomerService {
     address,
     number,
     complement,
+    reference,
     neighborhood,
     cep,
     city,
@@ -88,6 +90,7 @@ class CreateCustomerService {
         address: address,
         number: number,
         complement: complement,
+        reference: reference,
         neighborhood: neighborhood,
         cep: cep,
         city: city,
@@ -107,9 +110,11 @@ class CreateCustomerService {
     await prismaClient.deliveryAddressCustomer.create({
       data: {
         customer_id: findCustomer.id,
+        addressee: findCustomer.name,
         address: findCustomer.address,
         number: findCustomer.number,
         complement: findCustomer.complement,
+        reference: findCustomer.reference,
         neighborhood: findCustomer.neighborhood,
         cep: findCustomer.cep,
         city: findCustomer.city,

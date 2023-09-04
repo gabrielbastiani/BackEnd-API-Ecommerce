@@ -60,6 +60,7 @@ model Customer {
   address           String? @db.VarChar(405)
   number            String? @db.VarChar(125)
   complement        String? @db.VarChar(155)
+  reference         String? @db.VarChar(805)
   neighborhood      String? @db.VarChar(185)
   cep               String? @db.VarChar(125)
   city              String? @db.VarChar(185)
@@ -95,7 +96,7 @@ model DeliveryAddressCustomer {
   city             String?          @db.VarChar(185)
   state            String?          @db.VarChar(185)
   phone            String?          @db.VarChar(135)
-  deliverySelected SelectedDelivery @default(Sim) @unique
+  deliverySelected SelectedDelivery @unique @default(Sim)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
