@@ -14,8 +14,7 @@ class CreateDeliveryAddressCustomerController {
             cep,
             city,
             state,
-            phone,
-            store_id
+            phone
         } = req.body;
 
         const createUserService = new CreateDeliveryAddressCustomerService();
@@ -31,8 +30,7 @@ class CreateDeliveryAddressCustomerController {
             cep,
             city,
             state,
-            phone,
-            store_id
+            phone
         });
 
         return res.json(delivery)

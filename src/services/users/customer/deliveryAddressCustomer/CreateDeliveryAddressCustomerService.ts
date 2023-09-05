@@ -13,7 +13,6 @@ interface DeliveryRequest {
   city: string;
   state: string;
   phone: string;
-  store_id: string;
 }
 
 class CreateDeliveryAddressCustomerService {
@@ -28,9 +27,10 @@ class CreateDeliveryAddressCustomerService {
     cep,
     city,
     state,
-    phone,
-    store_id
+    phone
   }: DeliveryRequest) {
+
+    const store = await prismaClient.store.findFirst();
 
     const selected = await prismaClient.deliveryAddressCustomer.findFirst({
       where: {
@@ -64,7 +64,7 @@ class CreateDeliveryAddressCustomerService {
         city: city,
         state: state,
         phone: phone,
-        store_id: store_id
+        store_id: store.id
       }
     });
 

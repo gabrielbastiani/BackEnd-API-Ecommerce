@@ -12,6 +12,9 @@ class FindDeliveryAddressCustomerService {
             },
             include: {
                 customer: true
+            },
+            orderBy: {
+                deliverySelected: "asc"
             }
         });
 

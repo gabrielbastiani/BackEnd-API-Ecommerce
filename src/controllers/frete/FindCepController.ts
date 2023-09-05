@@ -13,8 +13,6 @@ class FindCepController {
             cep
         });
 
-        console.log(fretesCalculo)
-
         return res.json(fretesCalculo);
     }
 }

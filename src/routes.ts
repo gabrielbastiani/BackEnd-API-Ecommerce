@@ -439,6 +439,7 @@ import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 import { SelectedDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/SelectedDeliveryAddressCustomerController';
 import { FindUniqueDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/FindUniqueDeliveryAddressCustomerController';
+import { UpdateDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateDeliveryAddressCustomerController';
 
 
 
@@ -491,6 +492,7 @@ router.post('/customer/delivery/createDeliveryAddress', isAuthenticated, new Cre
 router.get('/customer/delivery/findUniqueDelivery', isAuthenticated, new FindUniqueDeliveryAddressCustomerController().handle);
 router.put('/customer/delivery/updateAllDateDeliveryAddressCustomer', isAuthenticated, new UpdateAllDateDeliveryAddressCustomerCustomerController().handle);
 router.delete('/customer/delivery/deleteDeliveryAddress', isAuthenticated, new DeleteDeliveryAddressCustomerController().handle);
+router.put('/customer/delivery/updateCurrentDelivery', isAuthenticated, new UpdateDeliveryAddressCustomerController().handle);
 router.get('/customer/findAlldeliveryCustomer', isAuthenticated, new FindDeliveryAddressCustomerController().handle);
 router.post('/customer/recoverPasswordDashboard', isAuthenticated, new EmailPasswordDashboardCustomerController().handle);
 router.put('/customer/recoverCustomer', new CustomerRecoveryPasswordController().handle);

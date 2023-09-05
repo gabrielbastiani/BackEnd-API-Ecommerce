@@ -96,7 +96,7 @@ model DeliveryAddressCustomer {
   city             String?          @db.VarChar(185)
   state            String?          @db.VarChar(185)
   phone            String?          @db.VarChar(135)
-  deliverySelected SelectedDelivery @unique @default(Sim)
+  deliverySelected SelectedDelivery @default(Sim)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
