@@ -440,6 +440,8 @@ import uploadConfig from './config/multer';
 import { SelectedDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/SelectedDeliveryAddressCustomerController';
 import { FindUniqueDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/FindUniqueDeliveryAddressCustomerController';
 import { UpdateDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateDeliveryAddressCustomerController';
+import { FindCepCartsTotalController } from './controllers/users/customer/deliveryAddressCustomer/FindCepCartsTotalController';
+import { CepCartDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/CepCartDeliveryAddressCustomerController';
 
 
 
@@ -497,6 +499,8 @@ router.get('/customer/findAlldeliveryCustomer', isAuthenticated, new FindDeliver
 router.post('/customer/recoverPasswordDashboard', isAuthenticated, new EmailPasswordDashboardCustomerController().handle);
 router.put('/customer/recoverCustomer', new CustomerRecoveryPasswordController().handle);
 router.post('/customer/recoverPasswordEmail', new EmailPasswordCustomerController().handle);
+router.get('/findCepCart', new FindCepCartsTotalController().handle);
+router.put('/customer/cepCartCepDelivery', new CepCartDeliveryAddressCustomerController().handle);
 
 // -- ROUTES STORE --
 router.post('/createStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new CreateStoreController().handle);
