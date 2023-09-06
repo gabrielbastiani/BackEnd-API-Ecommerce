@@ -6,7 +6,8 @@ class CreateCartsTotalController {
         const {
             store_cart_id,
             total,
-            customer_id
+            customer_id,
+            cep
         } = req.body;
 
         const cart = new CreateCartsTotalService();
@@ -14,7 +15,8 @@ class CreateCartsTotalController {
         const cartCustomer = await cart.execute({
             store_cart_id,
             total,
-            customer_id
+            customer_id,
+            cep
         });
 
         return res.json(cartCustomer);

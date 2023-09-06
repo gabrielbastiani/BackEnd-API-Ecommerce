@@ -884,6 +884,7 @@ model CartTotal {
   total         Float?    @default(0)
   customer      Customer? @relation(fields: [customer_id], references: [id])
   customer_id   String?
+  cep           String?   @db.VarChar(125)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
