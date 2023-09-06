@@ -46,6 +46,11 @@ import { UpdateAllDateDeliveryAddressCustomerCustomerController } from './contro
 import { DeleteDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/DeleteDeliveryAddressCustomerController';
 import { EmailPasswordDashboardCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/EmailPasswordDashboardCustomerController';
 import { EmailPasswordCustomerController } from './controllers/users/customer/passwordRecoveryCustomer/EmailPasswordCustomerController';
+import { SelectedDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/SelectedDeliveryAddressCustomerController';
+import { FindUniqueDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/FindUniqueDeliveryAddressCustomerController';
+import { UpdateDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateDeliveryAddressCustomerController';
+import { FindCepCartsTotalController } from './controllers/users/customer/deliveryAddressCustomer/FindCepCartsTotalController';
+import { CepCartDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/CepCartDeliveryAddressCustomerController';
 
 // -- ROUTES STORE --
 import { CreateStoreController } from './controllers/store/CreateStoreController';
@@ -437,11 +442,7 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { SelectedDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/SelectedDeliveryAddressCustomerController';
-import { FindUniqueDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/FindUniqueDeliveryAddressCustomerController';
-import { UpdateDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/UpdateDeliveryAddressCustomerController';
-import { FindCepCartsTotalController } from './controllers/users/customer/deliveryAddressCustomer/FindCepCartsTotalController';
-import { CepCartDeliveryAddressCustomerController } from './controllers/users/customer/deliveryAddressCustomer/CepCartDeliveryAddressCustomerController';
+
 
 
 
