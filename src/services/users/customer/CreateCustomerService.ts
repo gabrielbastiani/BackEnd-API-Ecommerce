@@ -15,6 +15,7 @@ interface CustomerRequest {
   dateOfBirth: string;
   gender: string;
   newslatter: string;
+  addressee: string;
   address: string;
   number: string;
   complement: string;
@@ -38,6 +39,7 @@ class CreateCustomerService {
     dateOfBirth,
     gender,
     newslatter,
+    addressee,
     address,
     number,
     complement,
@@ -87,6 +89,7 @@ class CreateCustomerService {
         dateOfBirth: dateOfBirth,
         gender: gender,
         newslatter: newslatter,
+        addressee: addressee,
         address: address,
         number: number,
         complement: complement,
@@ -110,7 +113,7 @@ class CreateCustomerService {
     await prismaClient.deliveryAddressCustomer.create({
       data: {
         customer_id: findCustomer.id,
-        addressee: findCustomer.name,
+        addressee: findCustomer.addressee,
         address: findCustomer.address,
         number: findCustomer.number,
         complement: findCustomer.complement,

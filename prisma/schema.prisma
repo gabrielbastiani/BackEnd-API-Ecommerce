@@ -57,6 +57,7 @@ model Customer {
   dateOfBirth       String? @db.VarChar(125)
   gender            String? @db.VarChar(135)
   newslatter        String? @db.VarChar(7)
+  addressee         String? @db.VarChar(405)
   address           String? @db.VarChar(405)
   number            String? @db.VarChar(125)
   complement        String? @db.VarChar(155)

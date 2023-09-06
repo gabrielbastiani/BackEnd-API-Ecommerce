@@ -11,6 +11,7 @@ interface CustomerRequest {
     dateOfBirth: string;
     gender: string;
     newslatter: string;
+    addressee: string;
     address: string;
     number: string;
     complement: string;
@@ -34,6 +35,7 @@ class UpdateAllDateCustomerService {
         dateOfBirth,
         gender,
         newslatter,
+        addressee,
         address,
         number,
         complement,
@@ -59,6 +61,7 @@ class UpdateAllDateCustomerService {
                 dateOfBirth: dateOfBirth,
                 gender: gender,
                 newslatter: newslatter,
+                addressee: addressee,
                 address: address,
                 number: number,
                 complement: complement,
