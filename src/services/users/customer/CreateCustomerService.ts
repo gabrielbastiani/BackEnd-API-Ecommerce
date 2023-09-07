@@ -123,7 +123,8 @@ class CreateCustomerService {
         city: findCustomer.city,
         state: findCustomer.state,
         phone: findCustomer.phone,
-        store_id: store.id
+        store_id: store.id,
+        deliverySelected: "Sim"
       }
     });
 

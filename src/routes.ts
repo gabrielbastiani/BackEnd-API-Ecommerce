@@ -430,6 +430,7 @@ import { UpdateCartCustomerController } from './controllers/cart/UpdateCartCusto
 import { FindCartTotalFinishController } from './controllers/cart/cartTotalFinish/FindCartTotalFinishController';
 import { UpdateCartTotalFinishController } from './controllers/cart/cartTotalFinish/UpdateCartTotalFinishController';
 import { ClearCartCustomerController } from './controllers/cart/ClearCartCustomerController';
+import { UpdateCartPaymentCustomerController } from './controllers/cart/UpdateCartPaymentCustomerController';
 
 // -- PAGAMENTOS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -872,6 +873,7 @@ router.get('/findProductsCart', new CartProductsController().handle);
 router.post('/createCart', new CreateCartController().handle);
 router.put('/updateCart', new UpdateCartController().handle);
 router.put('/updateCartCustomer', new UpdateCartCustomerController().handle);
+router.put('/updateCartPaymentCustomer', new UpdateCartPaymentCustomerController().handle);
 router.delete('/deleteCart', new DeleteCartController().handle);
 router.get('/findCart', new FindCartController().handle);
 router.post('/createTotalCart', new CreateCartsTotalController().handle);
