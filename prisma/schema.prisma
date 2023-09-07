@@ -882,9 +882,11 @@ model CartTotal {
   id            String    @id @default(uuid())
   store_cart_id String?
   total         Float?    @default(0)
+  frete         Float?    @default(0)
   customer      Customer? @relation(fields: [customer_id], references: [id])
   customer_id   String?
   cep           String?   @db.VarChar(125)
+  coupon        String?   @db.VarChar(225)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
