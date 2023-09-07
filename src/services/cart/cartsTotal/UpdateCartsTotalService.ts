@@ -4,13 +4,17 @@ interface CartTotalRequest {
   store_cart_id: string;
   total: number;
   cep: string;
+  frete: number;
+  coupon: string;
 }
 
 class UpdateCartsTotalService {
   async execute({
     store_cart_id,
     total,
-    cep
+    cep,
+    frete,
+    coupon
   }: CartTotalRequest) {
     const cart = await prismaClient.cartTotal.updateMany({
       where: {
@@ -18,7 +22,9 @@ class UpdateCartsTotalService {
       },
       data: {
         total: total,
-        cep: cep
+        cep: cep,
+        frete: frete,
+        coupon: coupon
       }
     });
 
