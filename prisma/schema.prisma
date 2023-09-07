@@ -886,7 +886,7 @@ model CartTotal {
   customer      Customer? @relation(fields: [customer_id], references: [id])
   customer_id   String?
   cep           String?   @db.VarChar(125)
-  coupon        String?   @default("Sem cupom") @db.VarChar(225)
+  coupon        String?   @db.VarChar(225)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
