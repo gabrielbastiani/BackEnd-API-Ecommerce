@@ -6,6 +6,7 @@ interface CartTotalRequest {
   cep: string;
   frete: number;
   coupon: string;
+  frete_coupon: number;
 }
 
 class UpdateCartsTotalService {
@@ -14,7 +15,8 @@ class UpdateCartsTotalService {
     total,
     cep,
     frete,
-    coupon
+    coupon,
+    frete_coupon
   }: CartTotalRequest) {
     const cart = await prismaClient.cartTotal.updateMany({
       where: {
@@ -24,7 +26,8 @@ class UpdateCartsTotalService {
         total: total,
         cep: cep,
         frete: frete,
-        coupon: coupon
+        coupon: coupon,
+        frete_coupon: frete_coupon
       }
     });
 
