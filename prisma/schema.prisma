@@ -881,6 +881,7 @@ model Cart {
 model CartTotal {
   id                 String    @id @default(uuid())
   store_cart_id      String?
+  amount_products    Int?
   total              Float?    @default(0)
   frete              Float?    @default(0)
   frete_coupon       Float?    @default(0)

@@ -5,7 +5,7 @@ class UpdateCartsTotalController {
   async handle(req: Request, res: Response) {
     const store_cart_id = req.query.store_cart_id as string;
 
-    const { total, cep, frete, coupon, frete_coupon, new_subTotal, new_value_products } = req.body;
+    const { total, cep, frete, coupon, frete_coupon, new_subTotal, new_value_products, amount_products } = req.body;
 
     const udateCart = new UpdateCartsTotalService();
 
@@ -17,7 +17,8 @@ class UpdateCartsTotalController {
       coupon,
       frete_coupon,
       new_subTotal,
-      new_value_products
+      new_value_products,
+      amount_products
     });
 
     return res.json(cart);
