@@ -73,6 +73,8 @@ model Customer {
   cart                     Cart[]
   cartstotal               CartTotal[]
   cartstotalfinish         CartTotalFinish[]
+  orders                   Order[]
+  payments                 Payment[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -98,6 +100,8 @@ model DeliveryAddressCustomer {
   state            String?          @db.VarChar(185)
   phone            String?          @db.VarChar(135)
   deliverySelected SelectedDelivery @default(Sim)
+
+  orders Order[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -165,6 +169,7 @@ model Store {
   countersproposals         CounterProposal[]
   stockproductcustomer      StockProductCustomer[]
   payments                  Payment[]
+  orders                    Order[]
 
   @@map("stores")
 }
@@ -891,6 +896,7 @@ model CartTotal {
   coupon             String?   @db.VarChar(225)
   new_subTotal       Float?    @default(0)
   new_value_products Json?
+  data_cart_products Json?
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -912,18 +918,78 @@ model CartTotalFinish {
 }
 
 model Payment {
-  id       String @id @default(uuid())
-  name     String @db.VarChar(525)
-  email    String @db.VarChar(555)
-  status   String @db.VarChar(555)
-  codigo   String @db.VarChar(555)
-  id_venda String @db.VarChar(555)
+  id                   String    @id @default(uuid())
+  customer             Customer? @relation(fields: [customer_id], references: [id])
+  customer_id          String?
+  type_payment         String?   @db.VarChar(525)
+  key_payment_pix      String?
+  qr_code_pix          String?
+  key_valid_pix        String?   @default("01/01/3075 00:00")
+  customer_credit_card String?
+  number_credit_card   String?
+  flag_credit_card     String?
+  installment_value    String?
+  transaction_id       String?
+  total_payment        Float?
 
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
+  orders Order[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
   @@map("payments")
+}
+
+model Order {
+  id                         String                   @id @default(uuid())
+  customer                   Customer?                @relation(fields: [customer_id], references: [id])
+  customer_id                String?
+  deliveryAddressCustomer    DeliveryAddressCustomer? @relation(fields: [deliveryAddressCustomer_id], references: [id])
+  deliveryAddressCustomer_id String?
+  data_delivery              String?
+  payment                    Payment?                 @relation(fields: [payment_id], references: [id])
+  payment_id                 String?
+  store_cart_id              String?
+  cupom                      String?
+  cart                       Json?
+
+  orderComments      OrderComment[]
+  shipmentsTrackings ShippingTracking[]
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("orders")
+}
+
+model ShippingTracking {
+  id               String  @id @default(uuid())
+  order            Order?  @relation(fields: [order_id], references: [id])
+  order_id         String?
+  code_tracking    String?
+  delivery_history String?
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("shipmentstrackings")
+}
+
+model OrderComment {
+  id                String  @id @default(uuid())
+  order             Order?  @relation(fields: [order_id], references: [id])
+  order_id          String?
+  admin_or_employee String? @db.VarChar(155)
+  comment           String  @db.VarChar(8555)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("ordercomments")
 }
