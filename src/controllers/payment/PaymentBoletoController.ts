@@ -70,6 +70,7 @@ class PaymentBoletoController {
                 }
             });
 
+            /* @ts-ignore */
             let cartNew: any = newCart.new_value_products.length < 1 ? cart : newCart.new_value_products;
 
             await prismaClient.order.create({
