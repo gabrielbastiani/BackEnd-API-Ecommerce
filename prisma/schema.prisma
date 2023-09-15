@@ -918,19 +918,23 @@ model CartTotalFinish {
 }
 
 model Payment {
-  id                   String    @id @default(uuid())
-  customer             Customer? @relation(fields: [customer_id], references: [id])
-  customer_id          String?
-  type_payment         String?   @db.VarChar(525)
-  key_payment_pix      String?
-  qr_code_pix          String?
-  key_valid_pix        String?   @default("01/01/3075 00:00")
-  customer_credit_card String?
-  number_credit_card   String?
-  flag_credit_card     String?
-  installment_value    String?
-  transaction_id       String?
-  total_payment        Float?
+  id                    String    @id @default(uuid())
+  customer              Customer? @relation(fields: [customer_id], references: [id])
+  customer_id           String?
+  store_cart_id         String?
+  type_payment          String?   @db.VarChar(525)
+  key_payment_pix       String?
+  qr_code_pix           String?
+  key_valid_pix         String?
+  external_resource_url String?
+  expiration_boleto     String?
+  customer_credit_card  String?
+  number_credit_card    String?
+  flag_credit_card      String?
+  installment_value     String?
+  transaction_id        Int?
+  total_payment         Float?
+  status                String?
 
   orders Order[]
 
@@ -982,14 +986,20 @@ model ShippingTracking {
 }
 
 model OrderComment {
-  id                String  @id @default(uuid())
-  order             Order?  @relation(fields: [order_id], references: [id])
+  id                String          @id @default(uuid())
+  order             Order?          @relation(fields: [order_id], references: [id])
   order_id          String?
-  admin_or_employee String? @db.VarChar(155)
-  comment           String  @db.VarChar(8555)
+  admin_or_employee String?         @db.VarChar(155)
+  comment           String          @db.VarChar(8555)
+  active            CommentCustomer @default(Nao)
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
 
   @@map("ordercomments")
+}
+
+enum CommentCustomer {
+  Sim
+  Nao
 }

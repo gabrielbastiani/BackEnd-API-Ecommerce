@@ -20,7 +20,7 @@ class CreateAvalietionService {
                 product_id: product_id,
                 store_id: store_id
             }
-        })
+        });
 
         return avalietion;
 
