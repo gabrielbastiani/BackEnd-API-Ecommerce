@@ -13,8 +13,17 @@ class PageListAllCustomerService {
             include: {
                 avalietions: true,
                 deliveryaddresscustomers: true,
-                store: true,
-                _count: true
+                orders: {
+                    orderBy: {
+                        created_at: 'desc'
+                    },
+                    include: {
+                        orderComments: true,
+                        shipmentsTrackings: true
+                    }
+                },
+                payments: true,
+                store: true
             }
         });
 
@@ -25,8 +34,17 @@ class PageListAllCustomerService {
             include: {
                 avalietions: true,
                 deliveryaddresscustomers: true,
-                store: true,
-                _count: true
+                orders: {
+                    orderBy: {
+                        created_at: 'desc'
+                    },
+                    include: {
+                        orderComments: true,
+                        shipmentsTrackings: true
+                    }
+                },
+                payments: true,
+                store: true
             },
             skip,
             take: limit,

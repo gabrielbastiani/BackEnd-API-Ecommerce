@@ -432,7 +432,7 @@ import { UpdateCartTotalFinishController } from './controllers/cart/cartTotalFin
 import { ClearCartCustomerController } from './controllers/cart/ClearCartCustomerController';
 import { UpdateCartPaymentCustomerController } from './controllers/cart/UpdateCartPaymentCustomerController';
 
-// -- PAGAMENTOS --
+// -- PAYMENTS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
 import { PaymentBoletoController } from './controllers/payment/PaymentBoletoController';
 import { PaymentPixController } from './controllers/payment/PaymentPixController';
@@ -443,6 +443,7 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { FindFirstPaymentController } from './controllers/payment/FindFirstPaymentController';
 
 
 
@@ -886,10 +887,11 @@ router.delete('/deleteCartTotalFinish', new DeleteCartTotalFinishController().ha
 router.get('/findCartTotalFinish', new FindCartTotalFinishController().handle);
 router.put('/updateCartTotalFinish', new UpdateCartTotalFinishController().handle);
 
-// -- PAGAMENTOS --
-router.post('/paymentCardResult', new PaymentCardController().handle);
-router.post('/paymentBoletoResult', new PaymentBoletoController().handle);
-router.post('/paymentPixResult', new PaymentPixController().handle);
+// -- PAYMENTS --
+router.post('/paymentCardResult', isAuthenticated, new PaymentCardController().handle);
+router.post('/paymentBoletoResult', isAuthenticated, new PaymentBoletoController().handle);
+router.post('/paymentPixResult', isAuthenticated, new PaymentPixController().handle);
+router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 
 
 export { router };

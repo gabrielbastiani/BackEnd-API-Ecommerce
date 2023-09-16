@@ -5,15 +5,12 @@ mercadopago.configure({
     access_token: process.env.ACCESS_TOKEN_TEST
 });
 
-
 class PaymentBoletoController {
     async handle(req: Request, res: Response) {
 
         const store = await prismaClient.store.findFirst();
 
         mercadopago.payment.create(req.body).then(async function (data) {
-
-            console.log(data.body)
 
             await prismaClient.payment.create({
                 data: {

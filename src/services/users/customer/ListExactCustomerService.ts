@@ -9,6 +9,16 @@ class ListExactCustomerService {
             include: {
                 avalietions: true,
                 deliveryaddresscustomers: true,
+                orders: {
+                    orderBy: {
+                        created_at: 'desc'
+                    },
+                    include: {
+                        orderComments: true,
+                        shipmentsTrackings: true
+                    }
+                },
+                payments: true,
                 store: true
             }
         })
