@@ -1,9 +1,7 @@
+import prismaClient from "../../prisma";
 import { Request, Response } from "express";
 import mercadopago from 'mercadopago';
-import prismaClient from "../../prisma";
-mercadopago.configure({
-    access_token: process.env.ACCESS_TOKEN_TEST
-});
+mercadopago.configure({ access_token: process.env.ACCESS_TOKEN_TEST });
 
 class PaymentBoletoController {
     async handle(req: Request, res: Response) {
@@ -81,7 +79,23 @@ class PaymentBoletoController {
                     cart: cartNew,
                     store_id: store.id
                 }
-            })
+            });
+
+            const orderFirst = await prismaClient.order.findFirst({
+                where: {
+                    store_cart_id: data.body.metadata.store_cart_id
+                },
+                orderBy: {
+                    created_at: 'desc'
+                }
+            });
+
+            await prismaClient.shippingTracking.create({
+                data: {
+                    order_id: orderFirst.id,
+                    delivery_history: "Processando pedido"
+                }
+            });
 
         }).catch(function (error) {
             console.error(error);

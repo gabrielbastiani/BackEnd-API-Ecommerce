@@ -888,9 +888,9 @@ router.get('/findCartTotalFinish', new FindCartTotalFinishController().handle);
 router.put('/updateCartTotalFinish', new UpdateCartTotalFinishController().handle);
 
 // -- PAYMENTS --
-router.post('/paymentCardResult', isAuthenticated, new PaymentCardController().handle);
-router.post('/paymentBoletoResult', isAuthenticated, new PaymentBoletoController().handle);
-router.post('/paymentPixResult', isAuthenticated, new PaymentPixController().handle);
+router.post('/paymentCardResult', new PaymentCardController().handle);
+router.post('/paymentBoletoResult', new PaymentBoletoController().handle);
+router.post('/paymentPixResult', new PaymentPixController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 
 
