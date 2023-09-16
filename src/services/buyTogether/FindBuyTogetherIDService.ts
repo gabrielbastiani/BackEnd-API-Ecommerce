@@ -16,7 +16,17 @@ class FindBuyTogetherIDService {
                 order: 'asc'
             },
             include: {
-                product: {include: {photoproducts: true}},
+                product: {
+                    include: {
+                        photoproducts: true,
+                        relationattributeproducts: {
+                            include: {
+                                typeAttribute: true,
+                                valueAttribute: true
+                            }
+                        }
+                    }
+                },
                 products: true
             }
         });
