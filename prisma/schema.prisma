@@ -918,23 +918,30 @@ model CartTotalFinish {
 }
 
 model Payment {
-  id                    String    @id @default(uuid())
-  customer              Customer? @relation(fields: [customer_id], references: [id])
-  customer_id           String?
-  store_cart_id         String?
-  transaction_id        Int?
-  type_payment          String?   @db.VarChar(525)
-  key_payment_pix       String?
-  qr_code_pix           String?
-  key_valid_pix         String?
-  external_resource_url String?
-  expiration_boleto     String?
-  customer_credit_card  String?
-  number_credit_card    String?
-  flag_credit_card      String?
-  installment_value     String?
-  total_payment         Float?
-  status                String?
+  id                        String    @id @default(uuid())
+  customer                  Customer? @relation(fields: [customer_id], references: [id])
+  customer_id               String?
+  store_cart_id             String?
+  transaction_id            Int?
+  type_payment              String?   @db.VarChar(525)
+  key_payment_pix           String?
+  qr_code_pix               String?
+  key_valid_pix             String?
+  external_resource_url     String?
+  expiration_boleto         String?
+  first_number_credit_card  String?
+  last_number_credit_card   String?
+  expiration_month          Int?
+  expiration_year           Int?
+  date_created              String?
+  cardholder_name           String?
+  cardholder_identification Json?
+  flag_credit_card          String?
+  installment               Int?
+  installment_amount        Float?
+  total_payment_juros       Float?
+  total_payment             Float?
+  status                    String?
 
   orders Order[]
 
