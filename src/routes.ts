@@ -436,6 +436,7 @@ import { UpdateCartPaymentCustomerController } from './controllers/cart/UpdateCa
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
 import { PaymentBoletoController } from './controllers/payment/PaymentBoletoController';
 import { PaymentPixController } from './controllers/payment/PaymentPixController';
+import { FindFirstPaymentController } from './controllers/payment/FindFirstPaymentController';
 
 
 
@@ -443,7 +444,6 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { FindFirstPaymentController } from './controllers/payment/FindFirstPaymentController';
 
 
 
