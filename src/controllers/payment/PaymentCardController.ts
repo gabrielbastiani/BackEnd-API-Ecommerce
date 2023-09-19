@@ -13,9 +13,9 @@ class PaymentCardController {
         mercadopago.payment.save(req.body)
             .then(async function (response) {
 
-                const { status, status_detail, id } = response.body;
-
                 const store = await prismaClient.store.findFirst();
+
+                const { status, status_detail, id } = response.body;
 
                 console.log(response.body)
 
@@ -26,7 +26,7 @@ class PaymentCardController {
                         type_payment: "Cartão de Crédito",
                         transaction_id: response.body.id,
                         status: response.body.status,
-                        store_id: store.id,
+                        store_id: store.id,/* @ts-ignore */
                         first_number_credit_card: response.body.card.first_six_digits,
                         last_number_credit_card: response.body.card.last_four_digits,
                         expiration_month: response.body.card.expiration_month,
