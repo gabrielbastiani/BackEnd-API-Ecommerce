@@ -84,7 +84,7 @@ class FindFreteCalculoService {
         }
 
         /* @ts-ignore */
-        const days = resultados.pos3.slice(17, -10);
+        const days = resultados.pos3;
         /* @ts-ignore */
         const price = resultados.pos5.slice(3);
 
