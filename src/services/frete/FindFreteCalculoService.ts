@@ -84,7 +84,7 @@ class FindFreteCalculoService {
         }
 
         /* @ts-ignore */
-        const days = resultados.pos3.slice(-13, -10);
+        const days = resultados.pos3.slice(17, -10);
         /* @ts-ignore */
         const price = resultados.pos5.slice(3);
 
@@ -102,12 +102,10 @@ class FindFreteCalculoService {
         const formatedPrice = freteFormat.replace(".", "");
         const formatedPricePonto = formatedPrice.replace(",", ".");
 
-        console.log(formatedPricePonto)
-
         let data = [
             {
-                "prazo": days,
-                "valor": price
+                "PrazoEntrega": days,
+                "Valor": formatedPricePonto
             }
         ]
 
