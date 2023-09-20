@@ -4,10 +4,10 @@ import { FindFreteCalculoService } from "../../services/frete/FindFreteCalculoSe
 class FindFreteCalculoController {
     async handle(req: Request, res: Response) {
         const {
-            nCdServico,
+            /* nCdServico, */
             sCepDestino,
             nVlPeso,
-            nCdFormato,
+            /* nCdFormato, */
             nVlComprimento,
             nVlAltura,
             nVlLargura
@@ -16,10 +16,10 @@ class FindFreteCalculoController {
         const fretes = new FindFreteCalculoService();
 
         const fretesCalculo = await fretes.execute({
-            nCdServico,
+            /* nCdServico, */
             sCepDestino,
             nVlPeso,
-            nCdFormato,
+            /* nCdFormato, */
             nVlComprimento,
             nVlAltura,
             nVlLargura
