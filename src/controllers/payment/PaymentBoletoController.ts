@@ -10,6 +10,8 @@ class PaymentBoletoController {
 
         mercadopago.payment.create(req.body).then(async function (data) {
 
+            console.log(data)
+
             await prismaClient.payment.create({
                 data: {
                     customer_id: data.body.metadata.customer_id,
