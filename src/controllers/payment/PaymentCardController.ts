@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import mercadopago from 'mercadopago';
 import prismaClient from "../../prisma";
+import { SelectedDelivery } from "@prisma/client";
 mercadopago.configure({
     access_token: process.env.ACCESS_TOKEN_TEST
 });
@@ -86,10 +87,17 @@ class PaymentCardController {
                 /* @ts-ignore */
                 let cartNew: any = newCart.new_value_products.length < 1 ? cart : newCart.new_value_products;
 
+                const deliverys = await prismaClient.deliveryAddressCustomer.findFirst({
+                    where: {
+                        customer_id: response.body.metadata.customer_id,
+                        deliverySelected: SelectedDelivery.Sim
+                    }
+                });
+
                 await prismaClient.order.create({
                     data: {
                         customer_id: response.body.metadata.customer_id,
-                        deliveryAddressCustomer_id: response.body.metadata.delivery_id,
+                        deliveryAddressCustomer_id: deliverys.id,
                         data_delivery: response.body.metadata.order_data_delivery,
                         payment_id: paymentFirst.id,
                         store_cart_id: response.body.metadata.store_cart_id,

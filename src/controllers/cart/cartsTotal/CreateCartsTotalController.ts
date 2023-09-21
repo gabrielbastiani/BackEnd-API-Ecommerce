@@ -10,7 +10,8 @@ class CreateCartsTotalController {
             cep,
             new_subTotal,
             new_value_products,
-            amount_products
+            amount_products,
+            days_delivery
         } = req.body;
 
         const cart = new CreateCartsTotalService();
@@ -22,7 +23,8 @@ class CreateCartsTotalController {
             cep,
             new_subTotal,
             new_value_products,
-            amount_products
+            amount_products,
+            days_delivery
         });
 
         return res.json(cartCustomer);
