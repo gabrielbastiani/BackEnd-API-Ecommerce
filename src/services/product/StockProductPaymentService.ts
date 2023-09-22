@@ -1,4 +1,3 @@
-import prisma from "../../prisma";
 import prismaClient from "../../prisma";
 
 interface ProductRequest {
@@ -6,24 +5,22 @@ interface ProductRequest {
     stock: number;
 }
 
-class StockProductPaymentService {
+class UpdateStockProductService {
     async execute({ product_id, stock }: ProductRequest) {
-        const updateStock = await prisma.$transaction(async (prisma) => {
-            await prisma.product.updateMany({
-                where: {
-                    id: { in: product_id }
-                },
-                data: {
-                    stock: {
-                        decrement: stock
-                    }
+        const updateStock = await prismaClient.product.updateMany({
+            where: {
+                id: {
+                    in: product_id
                 }
-            });
-        });
+            },
+            data: {
+                stock: stock
+            }
+        })
 
         return updateStock;
 
     }
 }
 
-export { StockProductPaymentService }
+export { UpdateStockProductService }
