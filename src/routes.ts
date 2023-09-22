@@ -444,6 +444,7 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { StockProductPaymentController } from './controllers/product/StockProductPaymentController';
 
 
 
@@ -610,6 +611,7 @@ router.delete('/deleteAllTagProduct', [isAuthenticated, authorizationRules(["ADM
 router.get('/findUniqueTagProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTagController().handle);
 router.get('/allProductsDescriptionsStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllDescriptionProductController().handle);
 router.get('/allTags', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllTagController().handle);
+router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allDescriptionProductsStore', new AllDescriptionProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
