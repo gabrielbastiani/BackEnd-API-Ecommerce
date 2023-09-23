@@ -23,6 +23,9 @@ class CartProductsService {
                         }
                     }
                 }
+            },
+            orderBy: {
+                created_at: 'desc'
             }
         });
 
