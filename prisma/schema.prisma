@@ -296,7 +296,7 @@ model Product {
   height         String?            @db.VarChar(15)
   depth          String?            @db.VarChar(15)
   amount         Int?
-  reservedAmount Int?
+  reservedAmount Int?               @default(0)
   brand          String?            @db.VarChar(325)
   urlVideo       String?
   gtin           String?

@@ -147,6 +147,7 @@ import { ListAllProductOfferController } from './controllers/product/ListAllProd
 import { UpdateProductFreeShippingController } from './controllers/product/UpdateProductFreeShippingController';
 import { ListExactProductNameController } from './controllers/product/ListExactProductNameController';
 import { AllPhotosProductPageController } from './controllers/product/photoProduct/AllPhotosProductPageController';
+import { StockProductPaymentController } from './controllers/payment/StockProductPaymentController';
 
 // -- ROUTES SEARCH --
 import { FilterController } from './controllers/search/FilterController';
@@ -444,7 +445,6 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { StockProductPaymentController } from './controllers/product/StockProductPaymentController';
 
 
 
@@ -611,7 +611,6 @@ router.delete('/deleteAllTagProduct', [isAuthenticated, authorizationRules(["ADM
 router.get('/findUniqueTagProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTagController().handle);
 router.get('/allProductsDescriptionsStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllDescriptionProductController().handle);
 router.get('/allTags', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllTagController().handle);
-router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
 router.get('/allProductsStore', new AllProductInStoreController().handle);
 router.get('/allDescriptionProductsStore', new AllDescriptionProductInStoreController().handle);
 router.get('/allPhotosProductsStore', new AllPhotosProductInStoreController().handle);
@@ -894,6 +893,7 @@ router.post('/paymentCardResult', new PaymentCardController().handle);
 router.post('/paymentBoletoResult', new PaymentBoletoController().handle);
 router.post('/paymentPixResult', new PaymentPixController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
+router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
 
 
 export { router };
