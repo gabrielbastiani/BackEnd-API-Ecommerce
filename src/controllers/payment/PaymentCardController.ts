@@ -9,8 +9,6 @@ mercadopago.configure({
 class PaymentCardController {
     async handle(req: Request, res: Response) {
 
-        console.log(req.body)
-
         mercadopago.payment.save(req.body)
             .then(async function (response) {
 
