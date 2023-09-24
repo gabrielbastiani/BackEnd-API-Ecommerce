@@ -75,6 +75,7 @@ model Customer {
   cartstotalfinish         CartTotalFinish[]
   orders                   Order[]
   payments                 Payment[]
+  cartsabandoned           AbandonedCart[]
 
   created_at DateTime? @default(now())
   updated_at DateTime? @updatedAt
@@ -170,6 +171,7 @@ model Store {
   stockproductcustomer      StockProductCustomer[]
   payments                  Payment[]
   orders                    Order[]
+  configabandonedcart       ConfigAbandonedCart[]
 
   @@map("stores")
 }
@@ -916,6 +918,52 @@ model CartTotalFinish {
   updated_at DateTime? @updatedAt
 
   @@map("cartstotalfinish")
+}
+
+model AbandonedCart {
+  id             String    @id @default(uuid())
+  created_at     DateTime? @default(now())
+  customer       Customer? @relation(fields: [customer_id], references: [id])
+  customer_id    String?
+  store_cart_id  String?
+  cart_abandoned Json?
+
+  @@map("cartsabandoned")
+}
+
+model ConfigAbandonedCart {
+  id              String     @id @default(uuid())
+  time_send_email String?    @default("01/01/5075 00:00")
+  subject         String?
+  code_cupom      String?
+  template        String?
+  active          StatusCart @default(Nao)
+
+  sendEmailAbandonedCart SendEmailAbandonedCart[]
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("configcartsabandoned")
+}
+
+enum StatusCart {
+  Sim
+  Nao
+}
+
+model SendEmailAbandonedCart {
+  id                     String               @id @default(uuid())
+  configAbandonedCart    ConfigAbandonedCart? @relation(fields: [configAbandonedCart_id], references: [id])
+  configAbandonedCart_id String?
+  abandoned_cart_email   Json?
+
+  created_at DateTime? @default(now())
+
+  @@map("sendemailsabandonedacarts")
 }
 
 model Payment {

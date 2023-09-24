@@ -38,6 +38,8 @@ declare namespace Express {
     contact_id: string;
     cupon_id: string;
     store_cart_id: string;
+    configAbandonedCart_id: string;
+    abandonedCart_id: string;
   }
 
   export type BoolNullableListFilter = {
