@@ -433,6 +433,9 @@ import { UpdateCartTotalFinishController } from './controllers/cart/cartTotalFin
 import { ClearCartCustomerController } from './controllers/cart/ClearCartCustomerController';
 import { UpdateCartPaymentCustomerController } from './controllers/cart/UpdateCartPaymentCustomerController';
 
+// -- ABANDONED CART --
+import { CreateAbandonedCartController } from './controllers/abandonedCart/CreateAbandonedCartController';
+
 // -- PAYMENTS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
 import { PaymentBoletoController } from './controllers/payment/PaymentBoletoController';
@@ -887,6 +890,9 @@ router.post('/createCartTotalFinish', new CreateCartTotalFinishController().hand
 router.delete('/deleteCartTotalFinish', new DeleteCartTotalFinishController().handle);
 router.get('/findCartTotalFinish', new FindCartTotalFinishController().handle);
 router.put('/updateCartTotalFinish', new UpdateCartTotalFinishController().handle);
+
+// -- ABANDONED CART --
+router.post('/createAbandonedCart', new CreateAbandonedCartController().handle);
 
 // -- PAYMENTS --
 router.post('/paymentCardResult', new PaymentCardController().handle);
