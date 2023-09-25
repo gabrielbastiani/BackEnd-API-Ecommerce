@@ -922,9 +922,10 @@ model CartTotalFinish {
 
 model AbandonedCart {
   id             String    @id @default(uuid())
-  created_at     DateTime? @default(now())
+  created_at     String?
   customer       Customer? @relation(fields: [customer_id], references: [id])
   customer_id    String?
+  nivel          String?
   store_cart_id  String?
   cart_abandoned Json?
 
