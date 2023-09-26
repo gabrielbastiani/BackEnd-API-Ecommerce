@@ -6,8 +6,8 @@ class CreateAbandonedCartController {
         const {
             customer_id,
             store_cart_id,
-            created_at,
             cart_abandoned,
+            total_cart
         } = req.body;
 
         const cartAbandoned = new CreateAbandonedCartService();
@@ -15,8 +15,8 @@ class CreateAbandonedCartController {
         const createAbandoned = await cartAbandoned.execute({
             customer_id,
             store_cart_id,
-            created_at,
-            cart_abandoned
+            cart_abandoned,
+            total_cart
         });
 
         return res.json(createAbandoned);

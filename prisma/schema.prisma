@@ -928,8 +928,21 @@ model AbandonedCart {
   nivel          String?
   store_cart_id  String?
   cart_abandoned Json?
+  total_cart     Float?
+
+  created_cart DateTime? @default(now())
 
   @@map("cartsabandoned")
+}
+
+model TotalDayAbandonedCart {
+  id        String  @id @default(uuid())
+  day_cart  String?
+  total_day Float?
+
+  created_at DateTime? @default(now())
+
+  @@map("totaldaysabandonedcarts")
 }
 
 model ConfigAbandonedCart {

@@ -3,16 +3,20 @@ import { UpdateAbandonedCartService } from "../../services/abandonedCart/UpdateA
 
 class UpdateAbandonedCartController {
     async handle(req: Request, res: Response) {
+
+        const customer_id = req.query.customer_id as string;
+        
         const {
-            customer_id,
-            cart_abandoned
+            cart_abandoned,
+            total_cart
         } = req.body;
 
         const cartAbandoned = new UpdateAbandonedCartService();
 
         const createAbandoned = await cartAbandoned.execute({
             customer_id,
-            cart_abandoned
+            cart_abandoned,
+            total_cart
         });
 
         return res.json(createAbandoned);
