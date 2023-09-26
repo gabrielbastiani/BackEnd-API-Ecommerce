@@ -7,7 +7,7 @@ class PageAbandonedCartService {
 
         const allAbandoned = await prismaClient.abandonedCart.findMany({
             orderBy: {
-                created_at: 'desc'
+                created_at: 'asc'
             },
             include: {
                 customer: {
@@ -20,7 +20,7 @@ class PageAbandonedCartService {
 
         const abandoned = await prismaClient.abandonedCart.findMany({
             orderBy: {
-                created_at: 'desc'
+                created_at: 'asc'
             },
             include: {
                 customer: {
@@ -33,7 +33,21 @@ class PageAbandonedCartService {
             take: limit
         });
 
+        const abandonedFirst = await prismaClient.abandonedCart.findMany({
+            where: {
+                nivel: "0"
+            },
+            include: {
+                customer: {
+                    include: {
+                        cartsabandoned: true
+                    }
+                }
+            }
+        });
+
         const data = {
+            abandonedFirst,
             abandoned,
             total: allAbandoned.length,
             total_pages: Math.ceil(allAbandoned.length / limit),
