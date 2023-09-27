@@ -33,6 +33,7 @@ class CreateAbandonedCartService {
             await prismaClient.totalDayAbandonedCart.create({
                 data: {
                     day_cart: dataCart,
+                    lost_orders: findLastAbandoned.length,
                     total_day: total_cart
                 }
             });
@@ -51,14 +52,12 @@ class CreateAbandonedCartService {
 
         let mapValues = lastAbandoned.map(item => item.total_cart).reduce((acumulador, elemento) => acumulador + elemento, 0);
 
-        console.log("Total carrinho", total_cart)
-        console.log("Total do dia", mapValues)
-
         await prismaClient.totalDayAbandonedCart.updateMany({
             where: {
                 day_cart: dataCart
             },
             data: {
+                lost_orders: findLastAbandoned.length,
                 total_day: mapValues
             }
         });
