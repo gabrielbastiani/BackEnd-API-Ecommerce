@@ -436,8 +436,9 @@ import { UpdateCartPaymentCustomerController } from './controllers/cart/UpdateCa
 // -- ABANDONED CART --
 import { CreateAbandonedCartController } from './controllers/abandonedCart/CreateAbandonedCartController';
 import { ExistCartAbandonedController } from './controllers/abandonedCart/ExistCartAbandonedController';
-import { DeleteExistCartAbandonedController } from './controllers/abandonedCart/DeleteExistCartAbandonedController';
+import { DeletePaymentCartAbandonedController } from './controllers/abandonedCart/DeletePaymentCartAbandonedController';
 import { UpdateAbandonedCartController } from './controllers/abandonedCart/UpdateAbandonedCartController';
+import { PageAbandonedCartController } from './controllers/abandonedCart/PageAbandonedCartController';
 
 // -- PAYMENTS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -451,7 +452,6 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { PageAbandonedCartController } from './controllers/abandonedCart/PageAbandonedCartController';
 
 
 
@@ -899,7 +899,7 @@ router.put('/updateCartTotalFinish', new UpdateCartTotalFinishController().handl
 router.post('/createAbandonedCart', new CreateAbandonedCartController().handle);
 router.get('/getExistCartAbandoned', new ExistCartAbandonedController().handle);
 router.put('/updateCartAbandoned', new UpdateAbandonedCartController().handle);
-router.delete('/deleteAllCartAbandoned', new DeleteExistCartAbandonedController().handle);
+router.delete('/deletePaymentCartAbandoned', isAuthenticated, new DeletePaymentCartAbandonedController().handle);
 router.get('/pageAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageAbandonedCartController().handle);
 
 // -- PAYMENTS --
