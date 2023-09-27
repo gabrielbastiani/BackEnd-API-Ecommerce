@@ -1,25 +1,31 @@
 import prismaClient from '../../prisma';
 
 class PageDetailsAbandonedCartService {
-    async execute(page = 1, limit = 15, created_at: string) {
+    async execute(page = 1, limit = 15, slug_day: string) {
 
         const skip = limit * (page - 1);
 
         const allDetailsAbandoned = await prismaClient.abandonedCart.findMany({
             where: {
-                created_at: created_at
+                slug_day: slug_day
+            },
+            include: {
+                customer: true
             },
             orderBy: {
-                created_at: 'asc'
+                created_cart: 'asc'
             }
         });
 
         const abandonedDetails = await prismaClient.abandonedCart.findMany({
             where: {
-                created_at: created_at
+                slug_day: slug_day
+            },
+            include: {
+                customer: true
             },
             orderBy: {
-                created_at: 'asc'
+                created_cart: 'asc'
             },
             skip,
             take: limit

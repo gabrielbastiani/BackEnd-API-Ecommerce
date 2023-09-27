@@ -439,6 +439,8 @@ import { ExistCartAbandonedController } from './controllers/abandonedCart/ExistC
 import { DeletePaymentCartAbandonedController } from './controllers/abandonedCart/DeletePaymentCartAbandonedController';
 import { UpdateAbandonedCartController } from './controllers/abandonedCart/UpdateAbandonedCartController';
 import { PageAbandonedCartController } from './controllers/abandonedCart/PageAbandonedCartController';
+import { PageDetailsAbandonedCartController } from './controllers/abandonedCart/PageDetailsAbandonedCartController';
+import { FindUniqueCartAbandonedController } from './controllers/abandonedCart/FindUniqueCartAbandonedController';
 
 // -- PAYMENTS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -452,7 +454,6 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { PageDetailsAbandonedCartController } from './controllers/abandonedCart/PageDetailsAbandonedCartController';
 
 
 
@@ -903,6 +904,7 @@ router.put('/updateCartAbandoned', new UpdateAbandonedCartController().handle);
 router.delete('/deletePaymentCartAbandoned', isAuthenticated, new DeletePaymentCartAbandonedController().handle);
 router.get('/pageAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageAbandonedCartController().handle);
 router.get('/detailsDataCartAbandoned', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageDetailsAbandonedCartController().handle);
+router.get('/findUniqueAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueCartAbandonedController().handle);
 
 // -- PAYMENTS --
 router.post('/paymentCardResult', new PaymentCardController().handle);

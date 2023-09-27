@@ -923,7 +923,7 @@ model CartTotalFinish {
 model AbandonedCart {
   id             String    @id @default(uuid())
   created_at     String?
-  slug           String?
+  slug_day       String?
   customer       Customer? @relation(fields: [customer_id], references: [id])
   customer_id    String?
   store_cart_id  String?
@@ -938,6 +938,7 @@ model AbandonedCart {
 model TotalDayAbandonedCart {
   id          String  @id @default(uuid())
   day_cart    String?
+  slug_day    String?
   lost_orders Int?
   total_day   Float?
 

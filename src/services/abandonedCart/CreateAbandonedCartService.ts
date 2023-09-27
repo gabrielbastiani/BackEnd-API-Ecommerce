@@ -13,12 +13,12 @@ class CreateAbandonedCartService {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLowerCase()
-              .replace(/ +/g, "-")
-              .replace(/-{2,}/g, "-")
-              .replace(/[/]/g, "-");
-          }
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .replace(/ +/g, "-")
+                .replace(/-{2,}/g, "-")
+                .replace(/[/]/g, "-");
+        }
 
         const dataCart = moment(new Date()).format('DD/MM/YYYY');
 
@@ -26,7 +26,7 @@ class CreateAbandonedCartService {
             data: {
                 customer_id: customer_id,
                 created_at: dataCart,
-                slug: removerAcentos(dataCart),
+                slug_day: removerAcentos(dataCart),
                 store_cart_id: store_cart_id,
                 cart_abandoned: cart_abandoned,
                 total_cart: total_cart
@@ -44,6 +44,7 @@ class CreateAbandonedCartService {
                 data: {
                     day_cart: dataCart,
                     lost_orders: findLastAbandoned.length,
+                    slug_day: removerAcentos(dataCart),
                     total_day: total_cart
                 }
             });
