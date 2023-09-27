@@ -923,6 +923,7 @@ model CartTotalFinish {
 model AbandonedCart {
   id             String    @id @default(uuid())
   created_at     String?
+  slug           String?
   customer       Customer? @relation(fields: [customer_id], references: [id])
   customer_id    String?
   store_cart_id  String?

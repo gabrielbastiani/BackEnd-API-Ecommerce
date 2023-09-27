@@ -11,12 +11,22 @@ interface AbandonedRequest {
 class CreateAbandonedCartService {
     async execute({ customer_id, store_cart_id, cart_abandoned, total_cart }: AbandonedRequest) {
 
+        function removerAcentos(s: any) {
+            return s.normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLowerCase()
+              .replace(/ +/g, "-")
+              .replace(/-{2,}/g, "-")
+              .replace(/[/]/g, "-");
+          }
+
         const dataCart = moment(new Date()).format('DD/MM/YYYY');
 
         const abandoned = await prismaClient.abandonedCart.create({
             data: {
                 customer_id: customer_id,
                 created_at: dataCart,
+                slug: removerAcentos(dataCart),
                 store_cart_id: store_cart_id,
                 cart_abandoned: cart_abandoned,
                 total_cart: total_cart

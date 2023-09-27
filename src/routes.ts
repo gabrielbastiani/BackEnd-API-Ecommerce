@@ -452,6 +452,7 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { PageDetailsAbandonedCartController } from './controllers/abandonedCart/PageDetailsAbandonedCartController';
 
 
 
@@ -901,6 +902,7 @@ router.get('/getExistCartAbandoned', new ExistCartAbandonedController().handle);
 router.put('/updateCartAbandoned', new UpdateAbandonedCartController().handle);
 router.delete('/deletePaymentCartAbandoned', isAuthenticated, new DeletePaymentCartAbandonedController().handle);
 router.get('/pageAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageAbandonedCartController().handle);
+router.get('/detailsDataCartAbandoned', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageDetailsAbandonedCartController().handle);
 
 // -- PAYMENTS --
 router.post('/paymentCardResult', new PaymentCardController().handle);
