@@ -441,6 +441,8 @@ import { UpdateAbandonedCartController } from './controllers/abandonedCart/Updat
 import { PageAbandonedCartController } from './controllers/abandonedCart/PageAbandonedCartController';
 import { PageDetailsAbandonedCartController } from './controllers/abandonedCart/PageDetailsAbandonedCartController';
 import { FindUniqueCartAbandonedController } from './controllers/abandonedCart/FindUniqueCartAbandonedController';
+import { PageConfigAbandonedCartController } from './controllers/abandonedCart/configAbandonedCart/PageConfigAbandonedCartController';
+import { CreateConfigAbandonedCartController } from './controllers/abandonedCart/configAbandonedCart/CreateConfigAbandonedCartController';
 
 // -- PAYMENTS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -905,6 +907,8 @@ router.delete('/deletePaymentCartAbandoned', isAuthenticated, new DeletePaymentC
 router.get('/pageAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageAbandonedCartController().handle);
 router.get('/detailsDataCartAbandoned', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageDetailsAbandonedCartController().handle);
 router.get('/findUniqueAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueCartAbandonedController().handle);
+router.post('/createConfigAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateConfigAbandonedCartController().handle);
+router.get('/allConfigsAbandonedsCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageConfigAbandonedCartController().handle);
 
 // -- PAYMENTS --
 router.post('/paymentCardResult', new PaymentCardController().handle);
