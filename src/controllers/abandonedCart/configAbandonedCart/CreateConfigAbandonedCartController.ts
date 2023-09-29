@@ -8,6 +8,7 @@ class CreateConfigAbandonedCartController {
             code_cupom,
             template,
             time_send_email,
+            emails,
             active
         } = req.body;
 
@@ -18,6 +19,7 @@ class CreateConfigAbandonedCartController {
             code_cupom,
             template,
             time_send_email,
+            emails,
             active
         });
 

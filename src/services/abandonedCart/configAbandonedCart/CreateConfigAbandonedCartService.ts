@@ -9,6 +9,7 @@ interface ConfigRequest {
   subject: string;
   code_cupom: string;
   template: string;
+  emails: any;
   time_send_email: string;
   active: string;
 }
@@ -18,6 +19,7 @@ class CreateConfigAbandonedCartService {
     subject,
     code_cupom,
     template,
+    emails,
     time_send_email,
     active
   }: ConfigRequest) {
@@ -29,6 +31,7 @@ class CreateConfigAbandonedCartService {
         subject: subject,
         code_cupom: code_cupom,
         template: template,
+        emails: emails,
         time_send_email: time_send_email,/* @ts-ignore */
         active: active,
         store_id: store.id
@@ -72,7 +75,7 @@ class CreateConfigAbandonedCartService {
 
         await transporter.sendMail({
           from: `Loja Virtual - ${store.name} <${store.email}>`,
-          to: `${store.email}`,
+          to: `${emails}`,
           subject: `${subject}`,
           html: `${template}`,
         });
