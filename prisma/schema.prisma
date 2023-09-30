@@ -926,9 +926,11 @@ model AbandonedCart {
   slug_day       String?
   customer       Customer? @relation(fields: [customer_id], references: [id])
   customer_id    String?
+  email_customer String?
   store_cart_id  String?
   cart_abandoned Json?
   total_cart     Float?
+  status         Int?
 
   created_cart DateTime? @default(now())
 
@@ -949,10 +951,9 @@ model TotalDayAbandonedCart {
 
 model ConfigAbandonedCart {
   id              String     @id @default(uuid())
-  time_send_email String?    @default("01/01/5075 00:00")
+  time_send_email Int?
   subject         String?
   code_cupom      String?
-  emails          Json?
   template        String?
   active          StatusCart @default(Nao)
 

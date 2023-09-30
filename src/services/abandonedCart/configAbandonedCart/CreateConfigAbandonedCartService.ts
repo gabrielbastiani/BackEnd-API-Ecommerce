@@ -1,4 +1,3 @@
-import { StatusCart } from "@prisma/client";
 import prismaClient from "../../../prisma"; 
 const CronJob = require('cron').CronJob;
 import moment from 'moment';
@@ -9,8 +8,7 @@ interface ConfigRequest {
   subject: string;
   code_cupom: string;
   template: string;
-  emails: any;
-  time_send_email: string;
+  time_send_email: number;
   active: string;
 }
 
@@ -19,7 +17,6 @@ class CreateConfigAbandonedCartService {
     subject,
     code_cupom,
     template,
-    emails,
     time_send_email,
     active
   }: ConfigRequest) {
@@ -31,7 +28,6 @@ class CreateConfigAbandonedCartService {
         subject: subject,
         code_cupom: code_cupom,
         template: template,
-        emails: emails,
         time_send_email: time_send_email,/* @ts-ignore */
         active: active,
         store_id: store.id
@@ -45,7 +41,6 @@ class CreateConfigAbandonedCartService {
     });
 
     const dateAllFirst = alldates.time_send_email;
-
     const firstDate = moment(dateAllFirst).format('DD/MM/YYYY HH:mm');
 
     const job = new CronJob('0 * * * * *', async () => {
@@ -54,15 +49,6 @@ class CreateConfigAbandonedCartService {
       const dateNow = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(nowDate);
 
       if (firstDate === dateNow) {
-
-        await prismaClient.configAbandonedCart.update({
-          where: {
-            id: alldates.id,
-          },
-          data: {
-            active: StatusCart.Sim
-          }
-        });
 
         const transporter = nodemailer.createTransport({
           host: process.env.HOST_SMTP,
@@ -75,7 +61,7 @@ class CreateConfigAbandonedCartService {
 
         await transporter.sendMail({
           from: `Loja Virtual - ${store.name} <${store.email}>`,
-          to: `${emails}`,
+          to: `${''}`,
           subject: `${subject}`,
           html: `${template}`,
         });

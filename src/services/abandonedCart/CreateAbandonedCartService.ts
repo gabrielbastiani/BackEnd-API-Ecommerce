@@ -6,10 +6,11 @@ interface AbandonedRequest {
     store_cart_id: string;
     cart_abandoned: any;
     total_cart: number;
+    email_customer: string;
 }
 
 class CreateAbandonedCartService {
-    async execute({ customer_id, store_cart_id, cart_abandoned, total_cart }: AbandonedRequest) {
+    async execute({ customer_id, store_cart_id, cart_abandoned, total_cart, email_customer }: AbandonedRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -29,7 +30,9 @@ class CreateAbandonedCartService {
                 slug_day: removerAcentos(dataCart),
                 store_cart_id: store_cart_id,
                 cart_abandoned: cart_abandoned,
-                total_cart: total_cart
+                total_cart: total_cart,
+                email_customer: email_customer,
+                status: 0
             }
         });
 
