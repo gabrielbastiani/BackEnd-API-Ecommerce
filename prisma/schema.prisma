@@ -23,7 +23,7 @@ model Admin {
   authenticated Boolean   @default(false)
   role          RoleAdmin @default(ADMIN)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -77,7 +77,7 @@ model Customer {
   payments                 Payment[]
   cartsabandoned           AbandonedCart[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -104,7 +104,7 @@ model DeliveryAddressCustomer {
 
   orders Order[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -141,7 +141,7 @@ model Store {
   city         String? @db.VarChar(185)
   state        String? @db.VarChar(155)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   admins                    Admin[]
@@ -188,7 +188,7 @@ model SocialMedia {
   slugPosition String?           @db.VarChar(295)
   status       StatusSocialMedia @default(Disponivel)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("socialmedias")
@@ -211,7 +211,7 @@ model InstitutionalText {
   description  String?
   status       StatusInstitutionalText @default(Disponivel)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("institutionaltexts")
@@ -233,7 +233,7 @@ model ImageStore {
   slugPosition String?          @db.VarChar(325)
   status       StatusImageStore @default(Disponivel)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("imagesstore")
@@ -259,7 +259,7 @@ model Category {
   menucategories    MenuCategory[]
   filtercategories  FilterCategory[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -279,7 +279,7 @@ model ImageCategory {
   category_id String
   image       String
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("imagecategories")
@@ -323,7 +323,7 @@ model Product {
   cupomsproducts            CuponProduct[]
   carts                     Cart[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -359,7 +359,7 @@ model PhotoProduct {
   image      String
   order      Int?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("photoproducts")
@@ -374,7 +374,7 @@ model DescriptionProduct {
   order       Int?
   status      StatusDescriptionProduct @default(Disponivel)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("descriptionproducts")
@@ -395,7 +395,7 @@ model ProductCategory {
   status       StatusProductCategory @default(Disponivel)
   mainCategory MainCategory          @default(Nao)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -420,7 +420,7 @@ model Tag {
   product_id String
   tagName    String  @db.VarChar(100)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -437,7 +437,7 @@ model TypeAttribute {
   valueattribute            ValueAttribute[]
   relationattributeproducts RelationAttributeProduct[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -456,7 +456,7 @@ model ValueAttribute {
 
   imageAttribute ImageAttribute[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store                    Store?                     @relation(fields: [store_id], references: [id])
@@ -472,7 +472,7 @@ model ImageAttribute {
   valueAttribute_id String
   image             String
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("imageattributes")
@@ -489,7 +489,7 @@ model RelationAttributeProduct {
   order             Int?
   status            StatusRelationAttributeProduct @default(Disponivel)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -513,7 +513,7 @@ model Avalietion {
   point       String?  @db.VarChar(175)
   status      String?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -533,7 +533,7 @@ model ProductVariation {
 
   photovariations PhotoVariation[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -554,7 +554,7 @@ model PhotoVariation {
   image               String
   order               Int?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("photovariations")
@@ -572,7 +572,7 @@ model BuyTogether {
 
   products Product[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -601,7 +601,7 @@ model CounterProposal {
   information       String? @db.VarChar(6585)
   status            String? @db.VarChar(200)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -616,7 +616,7 @@ model StockProductCustomer {
   product    Product @relation(fields: [product_id], references: [id])
   product_id String
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -638,7 +638,7 @@ model Coupon {
   coupomsconditionals CouponConditional[]
   cupomsproducts      CuponProduct[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -688,7 +688,7 @@ model MenuCategory {
 
   imagemenucategories ImageMenuCategory[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -708,7 +708,7 @@ model ImageMenuCategory {
   menuCategory_id String
   image           String
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("imagemenucategories")
@@ -725,7 +725,7 @@ model GroupFilter {
   filtercategories FilterCategory[]
   filterattributes FilterAttribute[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -749,7 +749,7 @@ model FilterAttribute {
 
   imagefilteratributos ImageFilterAttribute[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -769,7 +769,7 @@ model ImageFilterAttribute {
   filterAttribute_id String
   imageAttribute     String
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("imagefilteratributos")
@@ -786,7 +786,7 @@ model FilterCategory {
 
   imageFilterCategories ImageFilterCategory[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -806,7 +806,7 @@ model ImageFilterCategory {
   filterCategory_id String
   imageCategory     String
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("imagefiltercategories")
@@ -826,7 +826,7 @@ model Banner {
   slugPosition String?      @db.VarChar(325)
   active       StatusBanner @default(Nao)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("banners")
@@ -842,7 +842,7 @@ model Newsletter {
   name  String @db.VarChar(125)
   email String @db.VarChar(155)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -860,7 +860,7 @@ model Contact {
   sector  String? @db.VarChar(355)
   message String? @db.VarChar(5555)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -879,7 +879,7 @@ model Cart {
   customer      Customer? @relation(fields: [customer_id], references: [id])
   customer_id   String?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("carts")
@@ -901,7 +901,7 @@ model CartTotal {
   new_value_products Json?
   data_cart_products Json?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("cartstotal")
@@ -914,7 +914,7 @@ model CartTotalFinish {
   customer        Customer? @relation(fields: [customer_id], references: [id])
   customer_id     String?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("cartstotalfinish")
@@ -930,9 +930,8 @@ model AbandonedCart {
   store_cart_id  String?
   cart_abandoned Json?
   total_cart     Float?
-  status         Int?
 
-  created_cart DateTime? @default(now())
+  created_cart DateTime? @default(now()) @db.Timestamptz(3)
 
   @@map("cartsabandoned")
 }
@@ -944,7 +943,7 @@ model TotalDayAbandonedCart {
   lost_orders Int?
   total_day   Float?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
 
   @@map("totaldaysabandonedcarts")
 }
@@ -959,7 +958,7 @@ model ConfigAbandonedCart {
 
   sendEmailAbandonedCart SendEmailAbandonedCart[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -979,7 +978,7 @@ model SendEmailAbandonedCart {
   configAbandonedCart_id String?
   abandoned_cart_email   Json?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
 
   @@map("sendemailsabandonedacarts")
 }
@@ -1012,7 +1011,7 @@ model Payment {
 
   orders Order[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -1038,7 +1037,7 @@ model Order {
   orderComments      OrderComment[]
   shipmentsTrackings ShippingTracking[]
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   store    Store?  @relation(fields: [store_id], references: [id])
@@ -1054,7 +1053,7 @@ model ShippingTracking {
   code_tracking    String?
   delivery_history String?
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("shipmentstrackings")
@@ -1068,7 +1067,7 @@ model OrderComment {
   comment           String          @db.VarChar(8555)
   active            CommentCustomer @default(Nao)
 
-  created_at DateTime? @default(now())
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
   @@map("ordercomments")

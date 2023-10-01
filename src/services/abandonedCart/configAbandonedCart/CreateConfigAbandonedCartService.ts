@@ -1,6 +1,5 @@
-import prismaClient from "../../../prisma"; 
+import prismaClient from "../../../prisma";
 const CronJob = require('cron').CronJob;
-import moment from 'moment';
 import nodemailer from "nodemailer";
 require('dotenv/config');
 
@@ -8,7 +7,7 @@ interface ConfigRequest {
   subject: string;
   code_cupom: string;
   template: string;
-  time_send_email: number;
+  time_send_email: string;
   active: string;
 }
 
@@ -27,48 +26,65 @@ class CreateConfigAbandonedCartService {
       data: {
         subject: subject,
         code_cupom: code_cupom,
-        template: template,
+        template: template,/* @ts-ignore */
         time_send_email: time_send_email,/* @ts-ignore */
         active: active,
         store_id: store.id
       }
     });
 
-    const alldates = await prismaClient.configAbandonedCart.findFirst({
-      orderBy: {
-        time_send_email: 'desc'
-      }
-    });
-
-    const dateAllFirst = alldates.time_send_email;
-    const firstDate = moment(dateAllFirst).format('DD/MM/YYYY HH:mm');
+    const cartData = await prismaClient.abandonedCart.findMany();
+    const timesConfig = await prismaClient.configAbandonedCart.findMany();
 
     const job = new CronJob('0 * * * * *', async () => {
 
-      const nowDate = new Date();
-      const dateNow = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(nowDate);
+      const transporter = nodemailer.createTransport({
+        host: process.env.HOST_SMTP,
+        port: 465,
+        auth: {
+          user: process.env.USER_SMTP,
+          pass: process.env.PASS_SMTP
+        }
+      });
 
-      if (firstDate === dateNow) {
+      for (const key in cartData) {
+        if (Object.prototype.hasOwnProperty.call(cartData, key)) {
+          const cart = cartData[key];
 
-        const transporter = nodemailer.createTransport({
-          host: process.env.HOST_SMTP,
-          port: 465,
-          auth: {
-            user: process.env.USER_SMTP,
-            pass: process.env.PASS_SMTP
+          const dataHora = new Date();
+          const timeNow = dataHora.getTime() / 1000;
+          const timeCart = cart.created_cart.getTime() / 1000;
+
+          const resultado = Math.round(timeNow - timeCart);
+
+          for (const key in timesConfig) {
+            if (Object.prototype.hasOwnProperty.call(timesConfig, key)) {
+              const configs = timesConfig[key];
+
+              const timeSet = Number(configs.time_send_email);
+              const resultDiv = Math.round(resultado / 60);
+
+              if (resultDiv === timeSet) {
+
+                if (configs.active === "Sim") {
+
+                  await transporter.sendMail({
+                    from: `Loja Virtual - ${store.name} <${store.email}>`,
+                    to: `${cart.email_customer}`,
+                    subject: `${configs.subject}`,
+                    html: `${configs.template}`,
+                  });
+
+                }
+
+              }
+            }
           }
-        });
-
-        await transporter.sendMail({
-          from: `Loja Virtual - ${store.name} <${store.email}>`,
-          to: `${''}`,
-          subject: `${subject}`,
-          html: `${template}`,
-        });
-
+        }
       }
-
     }, null, true);
+
+    job.start();
 
   }
 }

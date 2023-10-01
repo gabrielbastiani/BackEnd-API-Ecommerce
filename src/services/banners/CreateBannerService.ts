@@ -55,7 +55,7 @@ class CreateBannerService {
         order: Number(order),
         url: url,
         position: position,
-        slugPosition: removerAcentos(position),
+        slugPosition: removerAcentos(position),/* @ts-ignore */
         active: active
       }
     });
