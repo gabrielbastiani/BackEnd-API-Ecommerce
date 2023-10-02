@@ -2,12 +2,14 @@ import prismaClient from "../../../prisma";
 const CronJob = require('cron').CronJob;
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
+
 
 interface ConfigRequest {
   subject: string;
   code_cupom: string;
-  template: string;
-  time_send_email: string;
+  time_send_email: number;
   active: string;
 }
 
@@ -15,7 +17,6 @@ class CreateConfigAbandonedCartService {
   async execute({
     subject,
     code_cupom,
-    template,
     time_send_email,
     active
   }: ConfigRequest) {
@@ -26,15 +27,23 @@ class CreateConfigAbandonedCartService {
       data: {
         subject: subject,
         code_cupom: code_cupom,
-        template: template,/* @ts-ignore */
         time_send_email: time_send_email,/* @ts-ignore */
         active: active,
         store_id: store.id
       }
     });
 
-    const cartData = await prismaClient.abandonedCart.findMany();
-    const timesConfig = await prismaClient.configAbandonedCart.findMany();
+    const cartData = await prismaClient.abandonedCart.findMany({
+      include: {
+        customer: true
+      }
+    });
+    const timesConfig = await prismaClient.configAbandonedCart.findMany({
+      include: {
+        templatesabandonedscartsemail: true,
+        store: true
+      }
+    });
 
     const job = new CronJob('0 * * * * *', async () => {
 
@@ -68,15 +77,26 @@ class CreateConfigAbandonedCartService {
 
                 if (configs.active === "Sim") {
 
+                  const nameTemplate = configs.templatesabandonedscartsemail.map(item => item.slug_name_file_email);
+                  const templateName = String(nameTemplate)
+
+                  console.log(templateName)
+
+                  const requiredPath = path.join(__dirname, `./template_emails/${templateName}`);
+
+                  const data = await ejs.renderFile(requiredPath, {
+                    name: cart.customer.name,
+                    list_product: cart.cart_abandoned
+                  });
+
                   await transporter.sendMail({
                     from: `Loja Virtual - ${store.name} <${store.email}>`,
                     to: `${cart.email_customer}`,
                     subject: `${configs.subject}`,
-                    html: `${configs.template}`,
+                    html: data,
                   });
 
                 }
-
               }
             }
           }

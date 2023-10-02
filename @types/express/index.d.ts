@@ -40,6 +40,7 @@ declare namespace Express {
     store_cart_id: string;
     configAbandonedCart_id: string;
     abandonedCart_id: string;
+    time_send_email: number;
   }
 
   export type BoolNullableListFilter = {

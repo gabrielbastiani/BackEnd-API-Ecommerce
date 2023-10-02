@@ -6,7 +6,6 @@ class CreateConfigAbandonedCartController {
         const {
             subject,
             code_cupom,
-            template,
             time_send_email,
             active
         } = req.body;
@@ -16,7 +15,6 @@ class CreateConfigAbandonedCartController {
         const configsCreate = await configs.execute({
             subject,
             code_cupom,
-            template,
             time_send_email,
             active
         });

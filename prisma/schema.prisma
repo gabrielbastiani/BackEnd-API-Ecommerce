@@ -144,34 +144,35 @@ model Store {
   created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
-  admins                    Admin[]
-  customers                 Customer[]
-  deliveryaddresscustomers  DeliveryAddressCustomer[]
-  socialmedias              SocialMedia[]
-  institutionaltexts        InstitutionalText[]
-  categories                Category[]
-  products                  Product[]
-  imagestores               ImageStore[]
-  tags                      Tag[]
-  typeattributes            TypeAttribute[]
-  relationattributeproducts RelationAttributeProduct[]
-  menucategories            MenuCategory[]
-  avalietions               Avalietion[]
-  newsletters               Newsletter[]
-  contacts                  Contact[]
-  productcategories         ProductCategory[]
-  groupfilters              GroupFilter[]
-  filterattributes          FilterAttribute[]
-  filtercategories          FilterCategory[]
-  buytogethers              BuyTogether[]
-  productsvariations        ProductVariation[]
-  valuesattributes          ValueAttribute[]
-  coupons                   Coupon[]
-  countersproposals         CounterProposal[]
-  stockproductcustomer      StockProductCustomer[]
-  payments                  Payment[]
-  orders                    Order[]
-  configabandonedcart       ConfigAbandonedCart[]
+  admins                     Admin[]
+  customers                  Customer[]
+  deliveryaddresscustomers   DeliveryAddressCustomer[]
+  socialmedias               SocialMedia[]
+  institutionaltexts         InstitutionalText[]
+  categories                 Category[]
+  products                   Product[]
+  imagestores                ImageStore[]
+  tags                       Tag[]
+  typeattributes             TypeAttribute[]
+  relationattributeproducts  RelationAttributeProduct[]
+  menucategories             MenuCategory[]
+  avalietions                Avalietion[]
+  newsletters                Newsletter[]
+  contacts                   Contact[]
+  productcategories          ProductCategory[]
+  groupfilters               GroupFilter[]
+  filterattributes           FilterAttribute[]
+  filtercategories           FilterCategory[]
+  buytogethers               BuyTogether[]
+  productsvariations         ProductVariation[]
+  valuesattributes           ValueAttribute[]
+  coupons                    Coupon[]
+  countersproposals          CounterProposal[]
+  stockproductcustomer       StockProductCustomer[]
+  payments                   Payment[]
+  orders                     Order[]
+  configabandonedcart        ConfigAbandonedCart[]
+  templateabandonedcartemail TemplateAbandonedCartEmail[]
 
   @@map("stores")
 }
@@ -953,10 +954,9 @@ model ConfigAbandonedCart {
   time_send_email Int?
   subject         String?
   code_cupom      String?
-  template        String?
   active          StatusCart @default(Nao)
 
-  sendEmailAbandonedCart SendEmailAbandonedCart[]
+  templatesabandonedscartsemail TemplateAbandonedCartEmail[]
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
@@ -972,15 +972,20 @@ enum StatusCart {
   Nao
 }
 
-model SendEmailAbandonedCart {
+model TemplateAbandonedCartEmail {
   id                     String               @id @default(uuid())
   configAbandonedCart    ConfigAbandonedCart? @relation(fields: [configAbandonedCart_id], references: [id])
   configAbandonedCart_id String?
-  abandoned_cart_email   Json?
+  name_file_email        String?
+  slug_name_file_email   String?
+  template_cart_email    String?
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)
 
-  @@map("sendemailsabandonedacarts")
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("templatesabandonedscartsemail")
 }
 
 model Payment {
