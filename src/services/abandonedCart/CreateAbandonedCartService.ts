@@ -31,8 +31,7 @@ class CreateAbandonedCartService {
                 store_cart_id: store_cart_id,
                 cart_abandoned: cart_abandoned,
                 total_cart: total_cart,
-                email_customer: email_customer,
-                status: 0
+                email_customer: email_customer
             }
         });
 

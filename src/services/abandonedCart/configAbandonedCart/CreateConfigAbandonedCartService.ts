@@ -80,9 +80,11 @@ class CreateConfigAbandonedCartService {
                   const nameTemplate = configs.templatesabandonedscartsemail.map(item => item.slug_name_file_email);
                   const templateName = String(nameTemplate)
 
-                  console.log(templateName)
+                  console.log("Nome do arquivo", templateName);
 
                   const requiredPath = path.join(__dirname, `./template_emails/${templateName}`);
+
+                  console.log("Caminho do arquivo", requiredPath);
 
                   const data = await ejs.renderFile(requiredPath, {
                     name: cart.customer.name,
