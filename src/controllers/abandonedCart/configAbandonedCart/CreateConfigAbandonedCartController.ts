@@ -7,7 +7,8 @@ class CreateConfigAbandonedCartController {
             subject,
             code_cupom,
             time_send_email,
-            active
+            active,
+            templateAbandonedCartEmail_id
         } = req.body;
 
         const configs = new CreateConfigAbandonedCartService();
@@ -16,7 +17,8 @@ class CreateConfigAbandonedCartController {
             subject,
             code_cupom,
             time_send_email,
-            active
+            active,
+            templateAbandonedCartEmail_id
         });
 
         return res.json(configsCreate);

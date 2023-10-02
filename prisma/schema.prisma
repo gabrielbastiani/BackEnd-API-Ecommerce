@@ -949,14 +949,30 @@ model TotalDayAbandonedCart {
   @@map("totaldaysabandonedcarts")
 }
 
-model ConfigAbandonedCart {
-  id              String     @id @default(uuid())
-  time_send_email Int?
-  subject         String?
-  code_cupom      String?
-  active          StatusCart @default(Nao)
+model TemplateAbandonedCartEmail {
+  id                   String  @id @default(uuid())
+  name_file_email      String?
+  slug_name_file_email String?
+  template_cart_email  String?
 
-  templatesabandonedscartsemail TemplateAbandonedCartEmail[]
+  configAbandonedCart ConfigAbandonedCart[]
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("templatesabandonedscartsemail")
+}
+
+model ConfigAbandonedCart {
+  id                            String                      @id @default(uuid())
+  time_send_email               Int?
+  subject                       String?
+  code_cupom                    String?
+  active                        StatusCart                  @default(Nao)
+  templateAbandonedCartEmail    TemplateAbandonedCartEmail? @relation(fields: [templateAbandonedCartEmail_id], references: [id])
+  templateAbandonedCartEmail_id String?
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
@@ -970,22 +986,6 @@ model ConfigAbandonedCart {
 enum StatusCart {
   Sim
   Nao
-}
-
-model TemplateAbandonedCartEmail {
-  id                     String               @id @default(uuid())
-  configAbandonedCart    ConfigAbandonedCart? @relation(fields: [configAbandonedCart_id], references: [id])
-  configAbandonedCart_id String?
-  name_file_email        String?
-  slug_name_file_email   String?
-  template_cart_email    String?
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("templatesabandonedscartsemail")
 }
 
 model Payment {

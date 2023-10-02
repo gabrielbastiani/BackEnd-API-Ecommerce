@@ -1,14 +1,13 @@
-import prismaClient from "../../../prisma";
+import prismaClient from "../../../prisma"; 
 import path from "path";
 
 interface TemplateRequest {
-    configAbandonedCart_id: string;
     template_cart_email: string;
     name_file_email: string;
 }
 
 class CreateFileTemplateEmailService {
-    async execute({ configAbandonedCart_id, template_cart_email, name_file_email }: TemplateRequest) {
+    async execute({ template_cart_email, name_file_email }: TemplateRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -23,7 +22,6 @@ class CreateFileTemplateEmailService {
 
         const templates = await prismaClient.templateAbandonedCartEmail.create({
             data: {
-                configAbandonedCart_id: configAbandonedCart_id,
                 template_cart_email: template_cart_email,
                 name_file_email: name_file_email,
                 slug_name_file_email: removerAcentos(name_file_email),
@@ -39,10 +37,10 @@ class CreateFileTemplateEmailService {
 
         const fs = require('fs');
 
+        const requiredPath = path.join(__dirname, "/template_emails");
+
         const nameTemplate = templatesFind.slug_name_file_email;
         const conteudo = templatesFind.template_cart_email;
-
-        const requiredPath = path.join(__dirname, "../../../services/abandonedCart/configAbandonedCart/template_emails");
 
         fs.writeFile(`${requiredPath}/${nameTemplate}.ejs`, conteudo, 'utf8', (err: any) => {
             if (err) {

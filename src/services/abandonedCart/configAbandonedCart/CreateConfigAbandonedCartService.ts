@@ -11,6 +11,7 @@ interface ConfigRequest {
   code_cupom: string;
   time_send_email: number;
   active: string;
+  templateAbandonedCartEmail_id: string;
 }
 
 class CreateConfigAbandonedCartService {
@@ -18,7 +19,8 @@ class CreateConfigAbandonedCartService {
     subject,
     code_cupom,
     time_send_email,
-    active
+    active,
+    templateAbandonedCartEmail_id
   }: ConfigRequest) {
 
     const store = await prismaClient.store.findFirst();
@@ -29,6 +31,7 @@ class CreateConfigAbandonedCartService {
         code_cupom: code_cupom,
         time_send_email: time_send_email,/* @ts-ignore */
         active: active,
+        templateAbandonedCartEmail_id: templateAbandonedCartEmail_id,
         store_id: store.id
       }
     });
@@ -40,7 +43,7 @@ class CreateConfigAbandonedCartService {
     });
     const timesConfig = await prismaClient.configAbandonedCart.findMany({
       include: {
-        templatesabandonedscartsemail: true,
+        templateAbandonedCartEmail: true,
         store: true
       }
     });
@@ -77,12 +80,11 @@ class CreateConfigAbandonedCartService {
 
                 if (configs.active === "Sim") {
 
-                  const nameTemplate = configs.templatesabandonedscartsemail.map(item => item.slug_name_file_email);
-                  const templateName = String(nameTemplate)
+                  let name_file = configs.templateAbandonedCartEmail.slug_name_file_email;
 
-                  console.log("Nome do arquivo", templateName);
-
-                  const requiredPath = path.join(__dirname, `./template_emails/${templateName}`);
+                  console.log("Nome do arquivo", name_file);
+                  /* REVER O CAMINHO ELE ESTA ERRADO */
+                  const requiredPath = path.join(__dirname, `/template_emails/${name_file}.ejs`);
 
                   console.log("Caminho do arquivo", requiredPath);
 
