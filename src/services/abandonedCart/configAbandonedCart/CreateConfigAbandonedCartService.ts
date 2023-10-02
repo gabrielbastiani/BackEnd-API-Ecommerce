@@ -84,7 +84,7 @@ class CreateConfigAbandonedCartService {
 
                   console.log("Nome do arquivo", name_file);
                   /* REVER O CAMINHO ELE ESTA ERRADO */
-                  const requiredPath = path.join(__dirname, `/template_emails/${name_file}.ejs`);
+                  const requiredPath = path.join(__dirname, `/`);
 
                   console.log("Caminho do arquivo", requiredPath);
 
