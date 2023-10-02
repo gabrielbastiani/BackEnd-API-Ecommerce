@@ -12,7 +12,7 @@ class FindUniqueConfigAbandonedCartService {
             },
             include: {
                 store: true,
-                templatesabandonedscartsemail: true
+                templateAbandonedCartEmail: true
             }
         });
 
