@@ -1,4 +1,3 @@
-import { decode, decodeEntity } from "html-entities";
 import prismaClient from "../../../prisma";
 import path from "path";
 
@@ -21,9 +20,8 @@ class CreateFileTemplateEmailService {
 
         const store = await prismaClient.store.findFirst();
 
-        const templates = await prismaClient.templateAbandonedCartEmail.create({
+        await prismaClient.templateAbandonedCartEmail.create({
             data: {
-                template_cart_email: template_cart_email,
                 name_file_email: name_file_email,
                 slug_name_file_email: removerAcentos(name_file_email),
                 store_id: store.id
@@ -41,11 +39,8 @@ class CreateFileTemplateEmailService {
         const requiredPath = path.join(__dirname, "./template_emails_abandoned_cart");
 
         const nameTemplate = templatesFind.slug_name_file_email;
-        const conteudo: any = templatesFind.template_cart_email
 
-        const decodeEmail = decode(conteudo, { level: 'html5' });
-
-        fs.writeFile(`${requiredPath}/${nameTemplate}.ejs`, decodeEmail, 'utf8', (err: any) => {
+        const templates = fs.writeFile(`${requiredPath}/${nameTemplate}.ejs`, template_cart_email, 'utf8', (err: any) => {
             if (err) {
                 console.error(err);
                 return;

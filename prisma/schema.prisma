@@ -953,7 +953,6 @@ model TemplateAbandonedCartEmail {
   id                   String  @id @default(uuid())
   name_file_email      String?
   slug_name_file_email String?
-  template_cart_email  String?
 
   configAbandonedCart ConfigAbandonedCart[]
 
