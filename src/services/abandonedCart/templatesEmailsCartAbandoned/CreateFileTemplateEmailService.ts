@@ -1,8 +1,9 @@
-import prismaClient from "../../../prisma"; 
+import { decode, decodeEntity } from "html-entities";
+import prismaClient from "../../../prisma";
 import path from "path";
 
 interface TemplateRequest {
-    template_cart_email: string;
+    template_cart_email: any;
     name_file_email: string;
 }
 
@@ -37,12 +38,14 @@ class CreateFileTemplateEmailService {
 
         const fs = require('fs');
 
-        const requiredPath = path.join(__dirname, "/template_emails");
+        const requiredPath = path.join(__dirname, "./template_emails_abandoned_cart");
 
         const nameTemplate = templatesFind.slug_name_file_email;
-        const conteudo = templatesFind.template_cart_email;
+        const conteudo: any = templatesFind.template_cart_email
 
-        fs.writeFile(`${requiredPath}/${nameTemplate}.ejs`, conteudo, 'utf8', (err: any) => {
+        const decodeEmail = decode(conteudo, { level: 'html5' });
+
+        fs.writeFile(`${requiredPath}/${nameTemplate}.ejs`, decodeEmail, 'utf8', (err: any) => {
             if (err) {
                 console.error(err);
                 return;
