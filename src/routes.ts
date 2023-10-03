@@ -448,6 +448,10 @@ import { FindUniqueConfigAbandonedCartController } from './controllers/abandoned
 import { UpdateStatusConfigAbandonedCartController } from './controllers/abandonedCart/configAbandonedCart/UpdateStatusConfigAbandonedCartController';
 import { UpdateDatasConfigAbandonedCartController } from './controllers/abandonedCart/configAbandonedCart/UpdateDatasConfigAbandonedCartController';
 import { DeleteConfigAbandonedCartController } from './controllers/abandonedCart/configAbandonedCart/DeleteConfigAbandonedCartController';
+import { PageTemplatesAbandonedCartController } from './controllers/abandonedCart/templatesEmailsCartAbandoned/PageTemplatesAbandonedCartController';
+import { AllTemplatesEmailsAbandonedCartController } from './controllers/abandonedCart/templatesEmailsCartAbandoned/AllTemplatesEmailsAbandonedCartController';
+import { FindUniqueTemplateEmailAbandonedCartController } from './controllers/abandonedCart/templatesEmailsCartAbandoned/FindUniqueTemplateEmailAbandonedCartController';
+import { UpdateTemplateEmailAbandonedController } from './controllers/abandonedCart/templatesEmailsCartAbandoned/UpdateTemplateEmailAbandonedController';
 
 // -- PAYMENTS --
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
@@ -461,8 +465,6 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { PageTemplatesAbandonedCartController } from './controllers/abandonedCart/templatesEmailsCartAbandoned/PageTemplatesAbandonedCartController';
-import { AllTemplatesEmailsAbandonedCartController } from './controllers/abandonedCart/templatesEmailsCartAbandoned/AllTemplatesEmailsAbandonedCartController';
 
 
 
@@ -923,6 +925,8 @@ router.put('/updateDatasAllConfigAbandonedCart', [isAuthenticated, authorization
 router.delete('/deleteConfigAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteConfigAbandonedCartController().handle);
 router.get('/pageTemplatesCartAbandoned', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageTemplatesAbandonedCartController().handle);
 router.get('/allTemplatesAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllTemplatesEmailsAbandonedCartController().handle);
+router.get('/findUniqueTemplateEmailAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailAbandonedCartController().handle);
+router.put('/updateTemplateAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailAbandonedController().handle);
 
 // -- PAYMENTS --
 router.post('/paymentCardResult', new PaymentCardController().handle);
