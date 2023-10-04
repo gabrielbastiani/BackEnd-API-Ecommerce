@@ -951,7 +951,7 @@ model TotalDayAbandonedCart {
 
 model TemplateAbandonedCartEmail {
   id                   String  @id @default(uuid())
-  name_file_email      String?
+  name_file_email      String? @unique
   slug_name_file_email String?
 
   configAbandonedCart ConfigAbandonedCart[]

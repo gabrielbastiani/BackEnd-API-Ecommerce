@@ -3,7 +3,8 @@ import { UpdateNameTemplateEmailAbandonedCartService } from '../../../services/a
 
 class UpdateNameTemplateEmailAbandonedController {
     async handle(req: Request, res: Response) {
-        const templateAbandonedCartEmail_id = req.query.templateAbandonedCartEmail_id as string;
+
+        const slug_name_file_email = req.query.slug_name_file_email as string;
 
         const {
             name_file_email
@@ -12,7 +13,7 @@ class UpdateNameTemplateEmailAbandonedController {
         const updateTemplates = new UpdateNameTemplateEmailAbandonedCartService();
 
         const templates = await updateTemplates.execute({
-            templateAbandonedCartEmail_id,
+            slug_name_file_email,
             name_file_email
         });
 
