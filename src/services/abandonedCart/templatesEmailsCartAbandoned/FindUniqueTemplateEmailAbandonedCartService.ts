@@ -1,14 +1,14 @@
 import prismaClient from "../../../prisma";
 
 interface EmailRequest {
-    templateAbandonedCartEmail_id: string;
+    slug_name_file_email: string;
 }
 
 class FindUniqueTemplateEmailAbandonedCartService {
-    async execute({ templateAbandonedCartEmail_id }: EmailRequest) {
-        const abandoned = await prismaClient.templateAbandonedCartEmail.findUnique({
+    async execute({ slug_name_file_email }: EmailRequest) {
+        const abandoned = await prismaClient.templateAbandonedCartEmail.findFirst({
             where: {
-                id: templateAbandonedCartEmail_id
+                slug_name_file_email: slug_name_file_email
             },
             include: {
                 configAbandonedCart: true,
