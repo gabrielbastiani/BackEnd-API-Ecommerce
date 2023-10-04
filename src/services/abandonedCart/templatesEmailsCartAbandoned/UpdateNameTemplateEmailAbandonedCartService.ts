@@ -1,15 +1,15 @@
 import prismaClient from "../../../prisma";
 
-interface ConfigRequest {
+interface TemplateRequest {
     templateAbandonedCartEmail_id: string;
     name_file_email: string;
 }
 
-class UpdateTemplateEmailAbandonedCartService {
+class UpdateNameTemplateEmailAbandonedCartService {
     async execute({
         templateAbandonedCartEmail_id,
         name_file_email
-    }: ConfigRequest) {
+    }: TemplateRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -20,7 +20,7 @@ class UpdateTemplateEmailAbandonedCartService {
                 .replace(/[/]/g, "-");
         }
 
-        const configUpdate = await prismaClient.templateAbandonedCartEmail.update({
+        const updateName = await prismaClient.templateAbandonedCartEmail.update({
             where: {
                 id: templateAbandonedCartEmail_id
             },
@@ -30,9 +30,9 @@ class UpdateTemplateEmailAbandonedCartService {
             }
         })
 
-        return configUpdate;
+        return updateName;
 
     }
 }
 
-export { UpdateTemplateEmailAbandonedCartService }
+export { UpdateNameTemplateEmailAbandonedCartService }

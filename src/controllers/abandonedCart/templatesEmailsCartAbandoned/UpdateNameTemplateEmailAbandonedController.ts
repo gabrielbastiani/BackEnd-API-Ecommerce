@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { UpdateTemplateEmailAbandonedCartService } from '../../../services/abandonedCart/templatesEmailsCartAbandoned/UpdateTemplateEmailAbandonedCartService';
+import { UpdateNameTemplateEmailAbandonedCartService } from '../../../services/abandonedCart/templatesEmailsCartAbandoned/UpdateNameTemplateEmailAbandonedCartService';
 
-class UpdateTemplateEmailAbandonedController {
+class UpdateNameTemplateEmailAbandonedController {
     async handle(req: Request, res: Response) {
         const templateAbandonedCartEmail_id = req.query.templateAbandonedCartEmail_id as string;
 
@@ -9,7 +9,7 @@ class UpdateTemplateEmailAbandonedController {
             name_file_email
         } = req.body;
 
-        const updateTemplates = new UpdateTemplateEmailAbandonedCartService();
+        const updateTemplates = new UpdateNameTemplateEmailAbandonedCartService();
 
         const templates = await updateTemplates.execute({
             templateAbandonedCartEmail_id,
@@ -21,4 +21,4 @@ class UpdateTemplateEmailAbandonedController {
     }
 }
 
-export { UpdateTemplateEmailAbandonedController }
+export { UpdateNameTemplateEmailAbandonedController }
