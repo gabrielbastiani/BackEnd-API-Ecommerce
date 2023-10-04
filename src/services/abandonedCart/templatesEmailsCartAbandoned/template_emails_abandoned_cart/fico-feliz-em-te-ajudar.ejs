@@ -21,8 +21,10 @@
     <p>Vai deixar mesmo de comprar esses produtos?.</p>
     <p>Veja os produtos que perdeu abaixo</p>
     <% for(var i = 0; i < list_product.length; i++) {%>
+    <img src="http://localhost:3333/files/" + <%= list_product[i].product.photoproducts.image %>>
     <li>
-        Nome do produto: <%= list_product[i].product.name %>
+        <%= list_product[i].product.name %>
+    </li>
     </span>
     <% } %>
 </body>

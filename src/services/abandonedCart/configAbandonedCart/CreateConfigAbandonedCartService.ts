@@ -81,16 +81,23 @@ class CreateConfigAbandonedCartService {
                 if (configs.active === "Sim") {
 
                   let name_file = configs.templateAbandonedCartEmail.slug_name_file_email;
-
-                  console.log("Nome do arquivo", name_file);
-
                   const requiredPath = path.join(__dirname, `../templatesEmailsCartAbandoned/template_emails_abandoned_cart/${name_file}.ejs`);
 
-                  console.log("Caminho do arquivo", requiredPath);
+                  /* @ts-ignore */
+                  const arrayDate: any = cart.cart_abandoned.map(dat => dat.product.photoproducts[0]);
 
                   const data = await ejs.renderFile(requiredPath, {
+                    cupom: configs.code_cupom,
                     name: cart.customer.name,
-                    list_product: cart.cart_abandoned
+                    list_product: cart.cart_abandoned,
+                    images_product: arrayDate,
+                    store_address: configs.store.address,
+                    store_cellPhone: configs.store.cellPhone,
+                    store_cep: configs.store.cep,
+                    store_city: configs.store.city,
+                    store_cnpj: configs.store.cnpj,
+                    store_name: configs.store.name,
+                    store_logo: configs.store.logo
                   });
 
                   await transporter.sendMail({

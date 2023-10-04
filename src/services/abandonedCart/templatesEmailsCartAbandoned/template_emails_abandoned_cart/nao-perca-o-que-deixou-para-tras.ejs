@@ -18,12 +18,19 @@
 
 <body>
     <h1>Olá, <%= name %>!</h1>
-    <p>Cara... não vai ficar ai chupando bala né???.</p>
+    <p>Vai deixar mesmo de comprar esses produtos?.</p>
     <p>Veja os produtos que perdeu abaixo</p>
+
+    <% for(var i = 0; i < arrayDate.length; i++) {%>
+        <span>
+            <%= arrayDate[i].image %>
+        </span>
+    <% } %>
+
     <% for(var i = 0; i < list_product.length; i++) {%>
     <li>
-        Nome do produto: <%= list_product[i].product.name %>
-    </span>
+        <%= list_product[i].product.name %>
+    </li>
     <% } %>
 </body>
 
