@@ -18,12 +18,20 @@ class CreateFileTemplateEmailService {
                 .replace(/[/]/g, "-");
         }
 
+        function removerSinais(texto: string) {
+            var regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+            var textoSemSinais = texto.replace(regex, '');
+            return textoSemSinais;
+        }
+
+        const noSignals = removerSinais(name_file_email);
+
         const store = await prismaClient.store.findFirst();
 
         await prismaClient.templateAbandonedCartEmail.create({
             data: {
-                name_file_email: name_file_email,
-                slug_name_file_email: removerAcentos(name_file_email),
+                name_file_email: noSignals,
+                slug_name_file_email: removerAcentos(noSignals),
                 store_id: store.id
             }
         });
@@ -37,10 +45,12 @@ class CreateFileTemplateEmailService {
         const fs = require('fs');
 
         const requiredPath = path.join(__dirname, "./template_emails_abandoned_cart");
-
         const nameTemplate = templatesFind.slug_name_file_email;
 
-        const templates = fs.writeFile(`${requiredPath}/${nameTemplate}.ejs`, template_cart_email, 'utf8', (err: any) => {
+        const pastAndFile = `${requiredPath}/${nameTemplate}.ejs`;
+        const template = template_cart_email;
+
+        const templates = fs.writeFile(pastAndFile, template, 'utf8', (err: any) => {
             if (err) {
                 console.error(err);
                 return;

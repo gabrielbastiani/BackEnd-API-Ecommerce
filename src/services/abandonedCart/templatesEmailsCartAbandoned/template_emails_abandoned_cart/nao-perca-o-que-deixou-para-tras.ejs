@@ -1,34 +1,79 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>emails</title>
-    <style type="text/css">
-        h1 {
-            font-size: 20px;
-        }
-
-        img {
-            width: 50px;
-            height: 50px;
-        }
-    </style>
+    <title>Carrinho Abandonado</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
-    <h1>Olá, <%= name %>!</h1>
-    <p>Vai deixar mesmo de comprar esses produtos?.</p>
-    <p>Veja os produtos que perdeu abaixo</p>
-    <div style="display: flex; flex-direction: column;">
-        <% for(var i = 0; i < list_product.length; i++) {%>
-            <img src="http://localhost:3333/files/<%= list_product[i].product.photoproducts[0].image %>" alt="<%= list_product[i].product.name %>">
-            <span>
-                <%= list_product[i].product.name %>
-            </span>
-        <% } %>
-    </div>
+    <table cellpadding="0" cellspacing="0" border="0" width="100%"
+        style="background-color: transparent; font-family: Arial, sans-serif;">
+        <tr>
+            <td align="center" valign="top" style="padding: 20px;">
+                <p>Olá, <%= name %>!</p>
+                <p>
+                    Aqui é o Gabriel da loja online da SUMIG, e percebi que você adicionou algun(s) iten(s) ao seu
+                    carrinho, mas
+                    ainda não finalizou a compra.<br>
+                    Eu só queria ter certeza de que todas as suas perguntas foram respondidas e que você não está tendo
+                    problemas com o processo de finalização da compra.
+                    <br><br>Estou empenhado em fazer tudo o que puder para ajudá-lo.<br>
+                    Se você estiver tendo problemas para fazer seu pedido on-line ou tiver dúvidas, basta mandar um
+                    email
+                    para,<br><br>
+                    atendimento@sumig.com ou falar comigo por Whatsapp clicando <a
+                        style="font-size: 15px; font-weight: 700;"
+                        href="https://api.whatsapp.com/send?phone=5554996132982" target="_blank">AQUI</a><br><br>
+                    Caso contrário, você pode terminar sua compra aqui abaixo:<br><br>
+                    Aguardo você la na loja online!<br><br>
+                    <a style="font-size: 15px; font-weight: 700;" href="http://localhost:3001" target="_blank">VOLTE
+                        PARA LOJA CLICANDO AQUI!!!</a>
+                </p>
+                <p>Aproveite um cupom de desconto com o código: <strong><%= cupom %></strong></p>
+                <% for(var i = 0; i < list_product.length; i++) {%>
+                <img style="height: 10%; height: 10%;"
+                    src="http://localhost:3333/files/<%= list_product[i].product.photoproducts[0].image %>"
+                    alt="loja-virtual">
+                <p>
+                    <%= list_product[i].product.name %>
+                </p>
+                <p>
+                    Código: <%= list_product[i].product.sku %>
+                </p>
+                <p>
+                    Preço: R$<%= list_product[i].product.promotion %>
+                </p>
+                <p>
+                    Quantidade: <%= list_product[i].amount %>
+                </p>
+                <p>
+                    <a style="background-color: red; color: #f4f4f4; justify-content: center; text-align: center;"
+                        href="http://localhost:3001/produto/<%= list_product[i].product.slug %>" target="_blank">
+                        Veja o Produto
+                    </a>
+                </p>
+                <% } %>
+                <br />
+                <br />
+                <hr />
+            </td>
+        </tr>
+    </table>
+    <table cellpadding="0" cellspacing="0" border="0" width="100%"
+        style="background-color: #000000; font-family: Arial, sans-serif;">
+        <tr>
+            <td align="center" valign="top" style="padding: 20px;">
+                <img style="height: 30%; height: 30%;" src="http://localhost:3333/files/<%= store_logo %>"
+                    alt="loja-virtual">
+                <p style="color: #f4f4f4;"><%= store_name %></p>
+                <p style="color: #f4f4f4;">Endereço: <%= store_address %></p>
+                <p style="color: #f4f4f4;">CEP: <%= store_cep %></p>
+                <p style="color: #f4f4f4;">Cidade: <%= store_city %></p>
+                <p style="color: #f4f4f4;">CNPJ: <%= store_cnpj %></p>
+                <p style="color: #f4f4f4;">Telefone: <%= store_cellPhone %></p>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>

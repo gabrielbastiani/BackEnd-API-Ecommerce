@@ -12,22 +12,28 @@
             <td align="center" valign="top" style="padding: 20px;">
                 <p>Olá, <%= name %>!</p>
                 <p>
-                    Aqui é o Gabriel da loja online da SUMIG, e percebi que você adicionou algun(s) iten(s) ao seu
-                    carrinho, mas
-                    ainda não finalizou a compra.<br>
-                    Eu só queria ter certeza de que todas as suas perguntas foram respondidas e que você não está tendo
-                    problemas com o processo de finalização da compra.
-                    <br><br>Estou empenhado em fazer tudo o que puder para ajudá-lo.<br>
-                    Se você estiver tendo problemas para fazer seu pedido on-line ou tiver dúvidas, basta mandar um
-                    email
-                    para,<br><br>
-                    atendimento@sumig.com ou falar comigo por Whatsapp clicando <a
-                        style="font-size: 15px; font-weight: 700;"
-                        href="https://api.whatsapp.com/send?phone=5554996132982" target="_blank">AQUI</a><br><br>
-                    Caso contrário, você pode terminar sua compra aqui abaixo:<br><br>
-                    Aguardo você la na loja online!<br><br>
-                    <a style="font-size: 15px; font-weight: 700;" href="http://localhost:3001" target="_blank">VOLTE
-                        PARA LOJA CLICANDO AQUI!!!</a>
+                    Percebemos que você deixou ótimo(s) produto(s) no carrinho de compras. Para fazer valer a pena, aqui
+                    está um desconto de 10% em toda a sua compra, se você concluir o pedido nas próximas 24 horas.<br>
+
+                    Basta inserir este código ABANDONADO no seu carrinho de compras! Mas se apresse, pois este código
+                    irá expirar em breve...<br>
+                </p>
+
+                <p>Aqui está um lembrete do que você adicionou ao seu carrinho:</p><br><br>
+
+                <a style="font-size: 15px; font-weight: 700;"
+                    href="<FBITS:UrlCheckout /><FBITS:CarrinhoId />&utm_source=carrinho_abandonado"
+                    target="_blank">LEVE-ME DE VOLTA AO MEU CARRINHO</a><br /><br />
+
+                Se você estiver tendo problemas para fazer seu pedido on-line ou tiver dúvidas, basta mandar um email
+                para,<br><br>
+                atendimento@sumig.com ou falar comigo por Whatsapp clicando <a
+                    style="font-size: 15px; font-weight: 700;" href="https://api.whatsapp.com/send?phone=5554996132982"
+                    target="_blank">AQUI</a><br><br>
+                Caso contrário, você pode terminar sua compra aqui abaixo:<br><br>
+                Aguardo você la na loja online!<br><br>
+                <a style="font-size: 15px; font-weight: 700;" href="http://localhost:3001" target="_blank">VOLTE
+                    PARA LOJA CLICANDO AQUI!!!</a>
                 </p>
                 <p>Aproveite um cupom de desconto com o código: <strong><%= cupom %></strong></p>
                 <% for(var i = 0; i < list_product.length; i++) {%>

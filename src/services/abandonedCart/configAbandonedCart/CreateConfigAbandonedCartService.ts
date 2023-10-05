@@ -87,7 +87,6 @@ class CreateConfigAbandonedCartService {
                     cupom: configs.code_cupom,
                     name: cart.customer.name,
                     list_product: cart.cart_abandoned,
-                    /* images_product: arrayDate, */
                     store_address: configs.store.address,
                     store_cellPhone: configs.store.cellPhone,
                     store_cep: configs.store.cep,
