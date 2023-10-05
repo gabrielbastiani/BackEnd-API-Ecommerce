@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
+<head>
+    <title>Carrinho Abandonado</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        table,
+        thead,
+        tbody,
+        tfoot,
+        th,
+        tr,
+        td,
+        h1,
+        p,
+        a,
+        img {
+            border: 0 none;
+            color: #666666;
+            font: 12px "Lucida Sans Unicode", Tahoma, Sans-serif;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <br />
+
+    <p>Olá, <%= name %>!<br><br>
+        <FBITS:Nome /><br><br>
+        Aqui é o Gabriel da loja online da SUMIG, e percebi que você adicionou algun(s) iten(s) ao seu carrinho, mas
+        ainda não finalizou a compra.<br>
+        Eu só queria ter certeza de que todas as suas perguntas foram respondidas e que você não está tendo
+        problemas com o processo de finalização da compra.
+        <br><br>Estou empenhado em fazer tudo o que puder para ajudá-lo.<br>
+        Se você estiver tendo problemas para fazer seu pedido on-line ou tiver dúvidas, basta mandar um email
+        para,<br><br>
+        atendimento@sumig.com ou falar comigo por Whatsapp clicando <a style="font-size: 15px; font-weight: 700;"
+            href="https://api.whatsapp.com/send?phone=5554996132982" target="_blank">AQUI</a><br><br>
+        Caso contrário, você pode terminar sua compra aqui abaixo:<br><br>
+        Aguardo você la na loja online!<br><br>
+    </p>
+
+    <% for(var i = 0; i < list_product.length; i++) {%>
+        <img src="http://localhost:3333/files/<%= list_product[i].product.photoproducts[0].image %>" style="display:block; border:0; margin:0 auto; width: 100%; height: auto;" alt="Volte" />
+        <p>
+            <%= list_product[i].product.name %>
+        </p>
+    <% } %>
+    
+</body>
+
+</html>

@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>emails</title>
-    <style>
-        li {
-            list-style-type: none;
-        }
-
+    <style type="text/css">
         h1 {
             font-size: 20px;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
         }
     </style>
 </head>
@@ -20,18 +21,14 @@
     <h1>Olá, <%= name %>!</h1>
     <p>Vai deixar mesmo de comprar esses produtos?.</p>
     <p>Veja os produtos que perdeu abaixo</p>
-
-    <% for(var i = 0; i < arrayDate.length; i++) {%>
-        <span>
-            <%= arrayDate[i].image %>
-        </span>
-    <% } %>
-
-    <% for(var i = 0; i < list_product.length; i++) {%>
-    <li>
-        <%= list_product[i].product.name %>
-    </li>
-    <% } %>
+    <div style="display: flex; flex-direction: column;">
+        <% for(var i = 0; i < list_product.length; i++) {%>
+            <img src="http://localhost:3333/files/<%= list_product[i].product.photoproducts[0].image %>" alt="<%= list_product[i].product.name %>">
+            <span>
+                <%= list_product[i].product.name %>
+            </span>
+        <% } %>
+    </div>
 </body>
 
 </html>

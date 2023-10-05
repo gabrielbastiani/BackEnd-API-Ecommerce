@@ -83,14 +83,11 @@ class CreateConfigAbandonedCartService {
                   let name_file = configs.templateAbandonedCartEmail.slug_name_file_email;
                   const requiredPath = path.join(__dirname, `../templatesEmailsCartAbandoned/template_emails_abandoned_cart/${name_file}.ejs`);
 
-                  /* @ts-ignore */
-                  const arrayDate: any = cart.cart_abandoned.map(dat => dat.product.photoproducts[0]);
-
                   const data = await ejs.renderFile(requiredPath, {
                     cupom: configs.code_cupom,
                     name: cart.customer.name,
                     list_product: cart.cart_abandoned,
-                    images_product: arrayDate,
+                    /* images_product: arrayDate, */
                     store_address: configs.store.address,
                     store_cellPhone: configs.store.cellPhone,
                     store_cep: configs.store.cep,
