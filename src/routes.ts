@@ -468,6 +468,7 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { ChatIASearchController } from './controllers/store/configurations/ChatIASearchController';
 
 
 
@@ -940,6 +941,10 @@ router.post('/paymentBoletoResult', new PaymentBoletoController().handle);
 router.post('/paymentPixResult', new PaymentPixController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
+
+// -- SEARCH IA --
+router.get('/searchIaChat', new ChatIASearchController().handle);
+
 
 
 
