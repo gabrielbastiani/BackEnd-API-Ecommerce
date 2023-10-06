@@ -7,7 +7,7 @@ interface IARequest {
 class ChatIASearchService {
     async execute({ searchText }: IARequest) {
 
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch();
         let page = await browser.newPage();
 
         await page.goto('https://www.perplexity.ai/');
@@ -59,7 +59,7 @@ class ChatIASearchService {
         const retira2 = "Where knowledge beginsSet a focus for your sourcesUpload text or PDF files Up to  MB each Sign in to upload filesCTRL  Use Copilot for more comprehensive answers asking";
         const retira3 = "Not AccurateView SourcesCopy To ClipboardEdit QueryUpload text or PDF files Up to  MB each Sig i to upload filesCTRL  Use Copilot for more comprehesive aswers";
 
-        const limpText = removeSignals.replace(retira1, "");
+        const limpText = removeSignals.replace(retira1, " ");
         const limpText2 = limpText.replace(retira2, "");
 
         const result = limpText2.replace(retira3, "");

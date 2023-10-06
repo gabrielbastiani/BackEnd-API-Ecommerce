@@ -173,6 +173,7 @@ model Store {
   orders                     Order[]
   configabandonedcart        ConfigAbandonedCart[]
   templateabandonedcartemail TemplateAbandonedCartEmail[]
+  configstore                ConfigStore[]
 
   @@map("stores")
 }
@@ -241,6 +242,84 @@ model ImageStore {
 }
 
 enum StatusImageStore {
+  Disponivel
+  Indisponivel
+}
+
+model ConfigStore {
+  id                                String                              @id @default(uuid())
+  offer_products                    StatusOfferProduct                  @default(Disponivel)
+  emphasis_products                 StatusEmphasisProduct               @default(Disponivel)
+  tendence_product                  StatusTendenceProduct               @default(Disponivel)
+  newsllaters_section               StatusNewsllaters                   @default(Disponivel)
+  chat_ia                           StatusChatIa                        @default(Disponivel)
+  search_bar                        StatusSearchBar                     @default(Disponivel)
+  cupom_in_cart                     StatusCupomInCart                   @default(Disponivel)
+  cupom_in_payment                  StatusCupomInPayment                @default(Disponivel)
+  service_in_header                 StatusServiceInHeader               @default(Disponivel)
+  credits_customer_in_menu          StatusCreditsCustomerInMenu         @default(Disponivel)
+  digital_products_customer_in_menu StatusDigitalProductsCustomerInMenu @default(Disponivel)
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("configsstore")
+}
+
+enum StatusOfferProduct {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusEmphasisProduct {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusTendenceProduct {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusNewsllaters {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusChatIa {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusSearchBar {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusCupomInCart {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusCupomInPayment {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusServiceInHeader {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusCreditsCustomerInMenu {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusDigitalProductsCustomerInMenu {
   Disponivel
   Indisponivel
 }
