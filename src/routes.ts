@@ -943,7 +943,7 @@ router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPay
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
 
 // -- SEARCH IA --
-router.get('/searchIaChat', new ChatIASearchController().handle);
+router.post('/searchIaChat', new ChatIASearchController().handle);
 
 
 
