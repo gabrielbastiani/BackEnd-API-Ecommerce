@@ -7,43 +7,29 @@ interface IARequest {
 class ChatIASearchService {
     async execute({ searchText }: IARequest) {
 
+        console.log(searchText)
+
         const browser = await puppeteer.launch({ headless: false });
         let page = await browser.newPage();
 
-        await page.goto('https://www.bing.com/search?form=MY0291&OCID=MY0291&q=Bing+AI&showconv=1');
-
-        await page.waitForTimeout(10000);
-
-        const buttonId = 'bnp_btn_accept';
-        await page.click(`button[id=${buttonId}]`);
+        await page.goto('https://www.perplexity.ai/');
 
         await page.waitForTimeout(5000);
 
-        await page.waitForSelector('div[aria-label="Mais tarde"]');
-        await page.click('div[aria-label="Mais tarde"]');
+        await page.type('textarea', searchText, { delay: 100 });
 
         await page.waitForTimeout(5000);
 
-        /* await page.waitForSelector(".get-started-btn-inline"), */
-        await page.click('button[class=".get-started-btn-inline"]'),
+        await page.keyboard.press("Enter");
 
-        await page.waitForTimeout(5000);
+        const [tab1, tab2] = await browser.pages();
 
-        const textareaId = 'searchbox';
-        const textareaElement = await page.$(`textarea#${textareaId}`);
-
-        await textareaElement.type(searchText);
-        await page.waitForTimeout(2000);
-
-        const buttonType = await page.$('button[type="send"]');
-
-        await buttonType.click();
+        const response: any = await tab2.$$eval('li', result => result.map((item) => {
+            return item.innerText;
+        }));
 
 
-        /* await page.type('textarea[name=searchbox]', searchText, { delay: 200 }); */
-
-
-        // Selecione o elemento <textarea> pelo seu ID
+        console.log(response)
 
 
         /* await browser.close(); */
