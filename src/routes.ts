@@ -99,6 +99,9 @@ import { UpdateImageStoreController } from './controllers/store/imageStore/Updat
 import { UpdateTitleImageStoreController } from './controllers/store/imageStore/UpdateTitleImageStoreController';
 import { UpdatePositionImageStoreController } from './controllers/store/imageStore/UpdatePositionImageStoreController';
 
+// -- CONFIGS STORE --
+import { ChatIASearchController } from './controllers/store/configurations/ChatIASearchController';
+
 // -- ROUTES CATEGORY --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
 import { UpdateNameCategoryController } from './controllers/category/UpdateNameCategoryController';
@@ -468,7 +471,8 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { ChatIASearchController } from './controllers/store/configurations/ChatIASearchController';
+import { ConfigsStoreController } from './controllers/store/configurations/ConfigsStoreController';
+import { CreateConfigController } from './controllers/store/configurations/CreateConfigController';
 
 
 
@@ -576,6 +580,11 @@ router.put('/updateStatusImageStore', [isAuthenticated, authorizationRules(["ADM
 router.put('/updatePositionImageTextoInstitucional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdatePositionImageStoreController().handle);
 router.get('/findUniqueImageStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueImageStoreController().handle);
 router.get('/listImagesStore', new ListAllImageStoreController().handle);
+
+// -- CONFIGS STORE --
+router.post('/searchIaChat', new ChatIASearchController().handle);
+router.post('/createConfigsStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateConfigController().handle);
+router.put('/updateStatusConfigItem', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ConfigsStoreController().handle);
 
 // -- ROUTES CATEGORY --
 router.post('/createCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCategoryController().handle);
@@ -941,10 +950,6 @@ router.post('/paymentBoletoResult', new PaymentBoletoController().handle);
 router.post('/paymentPixResult', new PaymentPixController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
-
-// -- SEARCH IA --
-router.post('/searchIaChat', new ChatIASearchController().handle);
-
 
 
 

@@ -48,7 +48,15 @@ class CreateStoreService {
         city: city,
         state: state
       }
-    })
+    });
+
+    const storeFirst = await prismaClient.store.findFirst();
+
+    await prismaClient.configStore.create({
+      data: {
+        store_id: storeFirst.id
+      }
+    });
 
     return store;
 
