@@ -473,6 +473,7 @@ import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 import { ConfigsStoreController } from './controllers/store/configurations/ConfigsStoreController';
 import { CreateConfigController } from './controllers/store/configurations/CreateConfigController';
+import { ConfigDatasController } from './controllers/store/configurations/ConfigDatasController';
 
 
 
@@ -585,6 +586,7 @@ router.get('/listImagesStore', new ListAllImageStoreController().handle);
 router.post('/searchIaChat', new ChatIASearchController().handle);
 router.post('/createConfigsStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateConfigController().handle);
 router.put('/updateStatusConfigItem', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ConfigsStoreController().handle);
+router.get('/reloadDatasConfigsStore', new ConfigDatasController().handle);
 
 // -- ROUTES CATEGORY --
 router.post('/createCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCategoryController().handle);

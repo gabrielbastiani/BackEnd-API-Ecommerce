@@ -1,348 +1,281 @@
-
-import {
-    StatusChatIa,
-    StatusCreditsCustomerInMenu,
-    StatusCupomInCart,
-    StatusCupomInPayment,
-    StatusDigitalProductsCustomerInMenu,
-    StatusEmphasisProduct,
-    StatusNewsllaters,
-    StatusOfferProduct,
-    StatusSearchBar,
-    StatusServiceInHeader,
-    StatusTendenceProduct
-} from "@prisma/client";
 import prismaClient from "../../../prisma";
 
 interface ConfigRequest {
-    configStore_id: string;
+    statusUpdate: string;
 }
 
 class ConfigsStoreService {
-    async execute({ configStore_id }: ConfigRequest) {
-        const active = await prismaClient.configStore.findUnique({
-            where: {
-                id: configStore_id
-            }
-        });
+    async execute({ statusUpdate }: ConfigRequest) {
+
+        const configDate = await prismaClient.configStore.findFirst();
 
         // offer_products
-
-        if (active.offer_products === "Disponivel") {
-            const isFalseOffer = await prismaClient.configStore.update({
+        if (statusUpdate === "offer_products") {
+            await prismaClient.configStore.update({
                 where: {
-                    id: configStore_id
+                    id: configDate.id
                 },
                 data: {
-                    offer_products: StatusOfferProduct.Indisponivel
+                    offer_products: configDate.offer_products === "Disponivel" ? "Indisponivel" : "Disponivel"
                 }
             });
 
-            return isFalseOffer;
+            return;
         }
 
-        if (active.offer_products === "Indisponivel") {
-            const isTrueOffer = await prismaClient.configStore.update({
+        // emphasis_products
+
+        if (statusUpdate === "emphasis_products") {
+            await prismaClient.configStore.update({
                 where: {
-                    id: configStore_id
+                    id: configDate.id
                 },
                 data: {
-                    offer_products: StatusOfferProduct.Disponivel
+                    emphasis_products: configDate.emphasis_products === "Disponivel" ? "Indisponivel" : "Disponivel"
                 }
             });
 
-            return isTrueOffer;
-
-        }
-
-        // emphasis
-
-        if (active.emphasis_products === "Disponivel") {
-            const isFalseEmphasis = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    emphasis_products: StatusEmphasisProduct.Indisponivel
-                }
-            });
-
-            return isFalseEmphasis;
-        }
-
-        if (active.emphasis_products === "Indisponivel") {
-            const isTrueEmphasis = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    emphasis_products: StatusEmphasisProduct.Disponivel
-                }
-            });
-
-            return isTrueEmphasis;
-
-        }
-
-        // tendence_product
-
-        if (active.tendence_product === "Disponivel") {
-            const isFalseTendence = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    tendence_product: StatusTendenceProduct.Indisponivel
-                }
-            });
-
-            return isFalseTendence;
-        }
-
-        if (active.tendence_product === "Indisponivel") {
-            const isTrueTendence = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    tendence_product: StatusTendenceProduct.Disponivel
-                }
-            });
-
-            return isTrueTendence;
-
-        }
-
-        // newsllaters_section
-
-        if (active.newsllaters_section === "Disponivel") {
-            const isFalseNewsllaters = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    newsllaters_section: StatusNewsllaters.Indisponivel
-                }
-            });
-
-            return isFalseNewsllaters;
-        }
-
-        if (active.newsllaters_section === "Indisponivel") {
-            const isTrueNewsllaters = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    newsllaters_section: StatusNewsllaters.Disponivel
-                }
-            });
-
-            return isTrueNewsllaters;
-
+            return;
         }
 
         // chat_ia
 
-        if (active.chat_ia === "Disponivel") {
-            const isFalseChatIa = await prismaClient.configStore.update({
+        if (statusUpdate === "chat_ia") {
+            await prismaClient.configStore.update({
                 where: {
-                    id: configStore_id
+                    id: configDate.id
                 },
                 data: {
-                    chat_ia: StatusChatIa.Indisponivel
+                    chat_ia: configDate.chat_ia === "Disponivel" ? "Indisponivel" : "Disponivel"
                 }
             });
 
-            return isFalseChatIa;
-        }
-
-        if (active.chat_ia === "Indisponivel") {
-            const isTrueChatIa = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    chat_ia: StatusChatIa.Disponivel
-                }
-            });
-
-            return isTrueChatIa;
-
-        }
-
-        // search_bar
-
-        if (active.search_bar === "Disponivel") {
-            const isFalseSearchBar = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    search_bar: StatusSearchBar.Indisponivel
-                }
-            });
-
-            return isFalseSearchBar;
-        }
-
-        if (active.search_bar === "Indisponivel") {
-            const isTrueSearchBar = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    search_bar: StatusSearchBar.Disponivel
-                }
-            });
-
-            return isTrueSearchBar;
-
-        }
-
-        // cupom_in_cart
-
-        if (active.cupom_in_cart === "Disponivel") {
-            const isFalseCupomInCart = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    cupom_in_cart: StatusCupomInCart.Indisponivel
-                }
-            });
-
-            return isFalseCupomInCart;
-        }
-
-        if (active.cupom_in_cart === "Indisponivel") {
-            const isTrueCupomInCart = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    cupom_in_cart: StatusCupomInCart.Disponivel
-                }
-            });
-
-            return isTrueCupomInCart;
-
-        }
-
-        // cupom_in_payment
-
-        if (active.cupom_in_payment === "Disponivel") {
-            const isFalseCupomInPayment = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    cupom_in_payment: StatusCupomInPayment.Indisponivel
-                }
-            });
-
-            return isFalseCupomInPayment;
-        }
-
-        if (active.cupom_in_payment === "Indisponivel") {
-            const isTrueCupomInPayment = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    cupom_in_payment: StatusCupomInPayment.Disponivel
-                }
-            });
-
-            return isTrueCupomInPayment;
-
-        }
-
-        // service_in_header
-
-        if (active.service_in_header === "Disponivel") {
-            const isFalseServiceInHeader = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    service_in_header: StatusServiceInHeader.Indisponivel
-                }
-            });
-
-            return isFalseServiceInHeader;
-        }
-
-        if (active.service_in_header === "Indisponivel") {
-            const isTrueServiceInHeader = await prismaClient.configStore.update({
-                where: {
-                    id: configStore_id
-                },
-                data: {
-                    service_in_header: StatusServiceInHeader.Disponivel
-                }
-            });
-
-            return isTrueServiceInHeader;
-
+            return;
         }
 
         // credits_customer_in_menu
 
-        if (active.credits_customer_in_menu === "Disponivel") {
-            const isFalseCredits = await prismaClient.configStore.update({
+        if (statusUpdate === "credits_customer_in_menu") {
+            await prismaClient.configStore.update({
                 where: {
-                    id: configStore_id
+                    id: configDate.id
                 },
                 data: {
-                    credits_customer_in_menu: StatusCreditsCustomerInMenu.Indisponivel
+                    credits_customer_in_menu: configDate.credits_customer_in_menu === "Disponivel" ? "Indisponivel" : "Disponivel"
                 }
             });
 
-            return isFalseCredits;
+            return;
         }
 
-        if (active.credits_customer_in_menu === "Indisponivel") {
-            const isTrueCredits = await prismaClient.configStore.update({
+        // cupom_in_cart
+
+        if (statusUpdate === "cupom_in_cart") {
+            await prismaClient.configStore.update({
                 where: {
-                    id: configStore_id
+                    id: configDate.id
                 },
                 data: {
-                    credits_customer_in_menu: StatusCreditsCustomerInMenu.Disponivel
+                    cupom_in_cart: configDate.cupom_in_cart === "Disponivel" ? "Indisponivel" : "Disponivel"
                 }
             });
 
-            return isTrueCredits;
+            return;
+        }
 
+        // cupom_in_payment
+
+        if (statusUpdate === "cupom_in_payment") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    cupom_in_payment: configDate.cupom_in_payment === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
         }
 
         // digital_products_customer_in_menu
 
-        if (active.digital_products_customer_in_menu === "Disponivel") {
-            const isFalseDigital = await prismaClient.configStore.update({
+        if (statusUpdate === "digital_products_customer_in_menu") {
+            await prismaClient.configStore.update({
                 where: {
-                    id: configStore_id
+                    id: configDate.id
                 },
                 data: {
-                    digital_products_customer_in_menu: StatusDigitalProductsCustomerInMenu.Indisponivel
+                    digital_products_customer_in_menu: configDate.digital_products_customer_in_menu === "Disponivel" ? "Indisponivel" : "Disponivel"
                 }
             });
 
-            return isFalseDigital;
+            return;
         }
 
-        if (active.digital_products_customer_in_menu === "Indisponivel") {
-            const isTrueDigital = await prismaClient.configStore.update({
+        // newsllaters_section
+
+        if (statusUpdate === "newsllaters_section") {
+            await prismaClient.configStore.update({
                 where: {
-                    id: configStore_id
+                    id: configDate.id
                 },
                 data: {
-                    digital_products_customer_in_menu: StatusDigitalProductsCustomerInMenu.Disponivel
+                    newsllaters_section: configDate.newsllaters_section === "Disponivel" ? "Indisponivel" : "Disponivel"
                 }
             });
 
-            return isTrueDigital;
+            return;
+        }
 
+        // search_bar
+
+        if (statusUpdate === "search_bar") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    search_bar: configDate.search_bar === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // service_in_header
+
+        if (statusUpdate === "service_in_header") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    service_in_header: configDate.service_in_header === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // tendence_product
+
+        if (statusUpdate === "tendence_product") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    tendence_product: configDate.tendence_product === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // recent_products_views
+
+        if (statusUpdate === "recent_products_views") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    recent_products_views: configDate.recent_products_views === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // payment_pix
+
+        if (statusUpdate === "payment_pix") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    payment_pix: configDate.payment_pix === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // payment_boleto
+
+        if (statusUpdate === "payment_boleto") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    payment_boleto: configDate.payment_boleto === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // payment_cartao
+
+        if (statusUpdate === "payment_cartao") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    payment_cartao: configDate.payment_cartao === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // filter_categorys
+
+        if (statusUpdate === "filter_categorys") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    filter_categorys: configDate.filter_categorys === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // filter_atributes
+
+        if (statusUpdate === "filter_atributes") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    filter_atributes: configDate.filter_atributes === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
+        // filter_price
+
+        if (statusUpdate === "filter_price") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    filter_price: configDate.filter_price === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
         }
 
     }

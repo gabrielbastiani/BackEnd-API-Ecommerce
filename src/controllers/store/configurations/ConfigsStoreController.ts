@@ -3,13 +3,11 @@ import { ConfigsStoreService } from '../../../services/store/configurations/Conf
 
 class ConfigsStoreController {
   async handle(req: Request, res: Response) {
-    const configStore_id = req.query.configStore_id as string;
+    const statusUpdate = req.query.statusUpdate as string;
 
     const statusConfig = new ConfigsStoreService();
 
-    const configs = await statusConfig.execute({
-      configStore_id
-    });
+    const configs = await statusConfig.execute({ statusUpdate });
 
     return res.json(configs);
 

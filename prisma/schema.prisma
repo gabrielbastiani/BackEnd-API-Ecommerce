@@ -259,6 +259,13 @@ model ConfigStore {
   service_in_header                 StatusServiceInHeader               @default(Disponivel)
   credits_customer_in_menu          StatusCreditsCustomerInMenu         @default(Disponivel)
   digital_products_customer_in_menu StatusDigitalProductsCustomerInMenu @default(Disponivel)
+  recent_products_views             StatusRecentProductsViews           @default(Disponivel)
+  payment_pix                       StatusPaymentPix                    @default(Disponivel)
+  payment_boleto                    StatusPaymentBoleto                 @default(Disponivel)
+  payment_cartao                    StatusPaymentCartao                 @default(Disponivel)
+  filter_categorys                  StatusFilterCategorys               @default(Disponivel)
+  filter_atributes                  StatusFilterAtributes               @default(Disponivel)
+  filter_price                      StatusFilterPrice                   @default(Disponivel)
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
@@ -320,6 +327,41 @@ enum StatusCreditsCustomerInMenu {
 }
 
 enum StatusDigitalProductsCustomerInMenu {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusRecentProductsViews {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusPaymentPix {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusPaymentBoleto {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusPaymentCartao {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusFilterCategorys {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusFilterAtributes {
+  Disponivel
+  Indisponivel
+}
+
+enum StatusFilterPrice {
   Disponivel
   Indisponivel
 }
