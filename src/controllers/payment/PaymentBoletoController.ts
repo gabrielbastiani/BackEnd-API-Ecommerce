@@ -8,11 +8,9 @@ class PaymentBoletoController {
 
         const store = await prismaClient.store.findFirst();
 
-        mercadopago.payment.create(req.body).then(function (data) {
+        mercadopago.payment.create(req.body).then(async function (data) {
 
-            console.log(data)
-
-            /* await prismaClient.payment.create({
+            await prismaClient.payment.create({
                 data: {
                     customer_id: data.body.metadata.customer_id,
                     store_cart_id: data.body.metadata.store_cart_id,
@@ -67,7 +65,7 @@ class PaymentBoletoController {
                 }
             });
 
-            
+            /* @ts-ignore */
             let cartNew: any = newCart.new_value_products.length < 1 ? cart : newCart.new_value_products;
 
             await prismaClient.order.create({
@@ -97,7 +95,7 @@ class PaymentBoletoController {
                     order_id: orderFirst.id,
                     delivery_history: "Processando pedido"
                 }
-            }); */
+            });
 
         }).catch(function (error) {
             console.error(error);

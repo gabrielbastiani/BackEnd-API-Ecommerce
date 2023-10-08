@@ -10,6 +10,7 @@ interface ConfigRequest {
   subject: string;
   code_cupom: string;
   time_send_email: number;
+  time_in_hours: number;
   active: string;
   templateAbandonedCartEmail_id: string;
 }
@@ -19,6 +20,7 @@ class CreateConfigAbandonedCartService {
     subject,
     code_cupom,
     time_send_email,
+    time_in_hours,
     active,
     templateAbandonedCartEmail_id
   }: ConfigRequest) {
@@ -29,7 +31,8 @@ class CreateConfigAbandonedCartService {
       data: {
         subject: subject,
         code_cupom: code_cupom,
-        time_send_email: time_send_email,/* @ts-ignore */
+        time_send_email: time_send_email,
+        time_in_hours: Number(time_in_hours),/* @ts-ignore */
         active: active,
         templateAbandonedCartEmail_id: templateAbandonedCartEmail_id,
         store_id: store.id
@@ -84,7 +87,7 @@ class CreateConfigAbandonedCartService {
                   const requiredPath = path.join(__dirname, `../templatesEmailsCartAbandoned/template_emails_abandoned_cart/${name_file}.ejs`);
 
                   const data = await ejs.renderFile(requiredPath, {
-                    cupom: configs.code_cupom,
+                    cupom: configs.code_cupom ? configs.code_cupom : "Que pena, não temos cupom ainda para lhe oferecer",
                     name: cart.customer.name,
                     list_product: cart.cart_abandoned,
                     store_address: configs.store.address,

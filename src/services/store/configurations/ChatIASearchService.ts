@@ -7,12 +7,12 @@ interface IARequest {
 class ChatIASearchService {
     async execute({ searchText }: IARequest) {
 
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ headless: false });
         let page = await browser.newPage();
 
         await page.goto('https://www.perplexity.ai/');
 
-        await page.waitForTimeout(4000);
+        await page.waitForTimeout(5000);
 
         await page.type('textarea', searchText, { delay: 80 });
 

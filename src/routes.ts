@@ -101,6 +101,9 @@ import { UpdatePositionImageStoreController } from './controllers/store/imageSto
 
 // -- CONFIGS STORE --
 import { ChatIASearchController } from './controllers/store/configurations/ChatIASearchController';
+import { ConfigsStoreController } from './controllers/store/configurations/ConfigsStoreController';
+import { CreateConfigController } from './controllers/store/configurations/CreateConfigController';
+import { ConfigDatasController } from './controllers/store/configurations/ConfigDatasController';
 
 // -- ROUTES CATEGORY --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -435,6 +438,7 @@ import { FindCartTotalFinishController } from './controllers/cart/cartTotalFinis
 import { UpdateCartTotalFinishController } from './controllers/cart/cartTotalFinish/UpdateCartTotalFinishController';
 import { ClearCartCustomerController } from './controllers/cart/ClearCartCustomerController';
 import { UpdateCartPaymentCustomerController } from './controllers/cart/UpdateCartPaymentCustomerController';
+import { ClearAllCacheCartsController } from './controllers/cart/ClearAllCacheCartsController';
 
 // -- ABANDONED CART --
 import { CreateAbandonedCartController } from './controllers/abandonedCart/CreateAbandonedCartController';
@@ -471,9 +475,7 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { ConfigsStoreController } from './controllers/store/configurations/ConfigsStoreController';
-import { CreateConfigController } from './controllers/store/configurations/CreateConfigController';
-import { ConfigDatasController } from './controllers/store/configurations/ConfigDatasController';
+
 
 
 
@@ -587,6 +589,7 @@ router.post('/searchIaChat', new ChatIASearchController().handle);
 router.post('/createConfigsStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateConfigController().handle);
 router.put('/updateStatusConfigItem', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ConfigsStoreController().handle);
 router.get('/reloadDatasConfigsStore', new ConfigDatasController().handle);
+router.delete('/clearAllCacheCarts', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ClearAllCacheCartsController().handle);
 
 // -- ROUTES CATEGORY --
 router.post('/createCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCategoryController().handle);

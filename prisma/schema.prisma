@@ -1088,6 +1088,7 @@ model TemplateAbandonedCartEmail {
 model ConfigAbandonedCart {
   id                            String                      @id @default(uuid())
   time_send_email               Int?
+  time_in_hours                 Int?
   subject                       String?
   code_cupom                    String?
   active                        StatusCart                  @default(Nao)

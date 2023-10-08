@@ -7,6 +7,7 @@ class CreateConfigAbandonedCartController {
             subject,
             code_cupom,
             time_send_email,
+            time_in_hours,
             active,
             templateAbandonedCartEmail_id
         } = req.body;
@@ -17,6 +18,7 @@ class CreateConfigAbandonedCartController {
             subject,
             code_cupom,
             time_send_email,
+            time_in_hours,
             active,
             templateAbandonedCartEmail_id
         });
