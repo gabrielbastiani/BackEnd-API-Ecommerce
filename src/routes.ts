@@ -104,6 +104,10 @@ import { ChatIASearchController } from './controllers/store/configurations/ChatI
 import { ConfigsStoreController } from './controllers/store/configurations/ConfigsStoreController';
 import { CreateConfigController } from './controllers/store/configurations/CreateConfigController';
 import { ConfigDatasController } from './controllers/store/configurations/ConfigDatasController';
+import { CreateCountDownTimeController } from './controllers/store/configurations/CreateCountDownTimeController';
+import { FindCountDownController } from './controllers/store/configurations/FindCountDownController';
+import { UpdateCountDownTimeController } from './controllers/store/configurations/UpdateCountDownTimeController';
+import { DisableCountDownTimerController } from './controllers/store/configurations/DisableCountDownTimerController';
 
 // -- ROUTES CATEGORY --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -475,9 +479,6 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { CreateCountDownTimeController } from './controllers/store/configurations/CreateCountDownTimeController';
-import { FindCountDownController } from './controllers/store/configurations/FindCountDownController';
-import { UpdateCountDownTimeController } from './controllers/store/configurations/UpdateCountDownTimeController';
 
 
 
@@ -596,6 +597,7 @@ router.get('/reloadDatasConfigsStore', new ConfigDatasController().handle);
 router.delete('/clearAllCacheCarts', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ClearAllCacheCartsController().handle);
 router.get('/findCountDownTime', new FindCountDownController().handle);
 router.put('/updateCountDownTimer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCountDownTimeController().handle);
+router.put('/disaledCountDownTimer', new DisableCountDownTimerController().handle);
 
 // -- ROUTES CATEGORY --
 router.post('/createCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCategoryController().handle);
