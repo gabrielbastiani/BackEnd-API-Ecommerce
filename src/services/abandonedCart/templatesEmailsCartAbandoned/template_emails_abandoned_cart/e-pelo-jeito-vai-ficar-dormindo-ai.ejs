@@ -43,7 +43,7 @@
                     Código: <%= list_product[i].product.sku %>
                 </p>
                 <p>
-                    Preço: R$<%= list_product[i].product.promotion %>
+                    Preço: R$<%= list_product[i].price ? list_product[i].price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : list_product[i].product.promotion.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %>
                 </p>
                 <p>
                     Quantidade: <%= list_product[i].amount %>

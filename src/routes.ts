@@ -475,6 +475,9 @@ import { FindFirstPaymentController } from './controllers/payment/FindFirstPayme
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { CreateCountDownTimeController } from './controllers/store/configurations/CreateCountDownTimeController';
+import { FindCountDownController } from './controllers/store/configurations/FindCountDownController';
+import { UpdateCountDownTimeController } from './controllers/store/configurations/UpdateCountDownTimeController';
 
 
 
@@ -587,9 +590,12 @@ router.get('/listImagesStore', new ListAllImageStoreController().handle);
 // -- CONFIGS STORE --
 router.post('/searchIaChat', new ChatIASearchController().handle);
 router.post('/createConfigsStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateConfigController().handle);
+router.post('/createCountDownTimer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCountDownTimeController().handle);
 router.put('/updateStatusConfigItem', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ConfigsStoreController().handle);
 router.get('/reloadDatasConfigsStore', new ConfigDatasController().handle);
 router.delete('/clearAllCacheCarts', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ClearAllCacheCartsController().handle);
+router.get('/findCountDownTime', new FindCountDownController().handle);
+router.put('/updateCountDownTimer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCountDownTimeController().handle);
 
 // -- ROUTES CATEGORY --
 router.post('/createCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCategoryController().handle);

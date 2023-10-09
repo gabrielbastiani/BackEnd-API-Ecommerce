@@ -278,6 +278,21 @@ class ConfigsStoreService {
             return;
         }
 
+        // count_down_timer
+
+        if (statusUpdate === "count_down_timer") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    count_down_timer: configDate.count_down_timer === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            return;
+        }
+
     }
 }
 

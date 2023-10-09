@@ -58,6 +58,12 @@ class CreateStoreService {
       }
     });
 
+    await prismaClient.countdownTimer.create({
+      data: {
+        store_id: storeFirst.id
+      }
+    });
+
     return store;
 
   }

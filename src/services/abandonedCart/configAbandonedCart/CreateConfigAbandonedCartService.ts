@@ -87,7 +87,7 @@ class CreateConfigAbandonedCartService {
                   const requiredPath = path.join(__dirname, `../templatesEmailsCartAbandoned/template_emails_abandoned_cart/${name_file}.ejs`);
 
                   const data = await ejs.renderFile(requiredPath, {
-                    cupom: configs.code_cupom ? configs.code_cupom : "Que pena, não temos cupom ainda para lhe oferecer",
+                    cupom: configs.code_cupom,
                     name: cart.customer.name,
                     list_product: cart.cart_abandoned,
                     store_address: configs.store.address,
