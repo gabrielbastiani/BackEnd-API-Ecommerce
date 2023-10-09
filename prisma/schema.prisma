@@ -50,8 +50,8 @@ model Customer {
   slug              String? @db.VarChar(295)
   email             String  @unique @db.VarChar(180)
   password          String
-  cpf               String? @unique @db.VarChar(125)
-  cnpj              String? @unique @db.VarChar(125)
+  cpf               String? @db.VarChar(125)
+  cnpj              String? @db.VarChar(125)
   stateRegistration String? @db.VarChar(155)
   phone             String? @db.VarChar(135)
   dateOfBirth       String? @db.VarChar(125)

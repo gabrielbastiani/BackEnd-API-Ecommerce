@@ -2,7 +2,7 @@
 import prismaClient from '../../../prisma';
 
 class PageListAllCustomerService {
-    async execute(page = 1, limit = 5) {
+    async execute(page = 1, limit = 10) {
 
         const skip = limit * (page - 1);
 

@@ -3,7 +3,7 @@ import prismaClient from "../../prisma";
 require('dotenv/config');
 
 
-class EmailExportCustomerUserService {
+class EmailExportOrdersCustomersService {
     async execute() {
 
         const store = await prismaClient.store.findFirst();
@@ -20,22 +20,22 @@ class EmailExportCustomerUserService {
         await transporter.sendMail({
             from: `Loja Virtual - ${store.name} <${store.email}>`,
             to: `${store.email}`,
-            subject: "Lista de usúarios da Loja Virtual",
+            subject: "Lista de pedidos de clientes da Loja Virtual",
             html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                      <h2>Lista de Usúarios da Loja Virtual</h2>
+                      <h2>Lista de Pedidos de Clientes da Loja Virtual</h2>
                   </div>
                   
                   <article>
                       <p>Olá!</p>
-                      <p>Segue em anexo o arquivo com a listagem de usúarios cadastrados na Loja Virtual</p>
+                      <p>Segue em anexo o arquivo com a listagem de pedidos de clientes da Loja Virtual</p>
                   </article>
                   
                   <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
                       <h5>Loja Virtual ${store.name}</h5>
                   </div>`,
             attachments: [{
-                filename: 'ListagemDeClientes.xlsx',
-                path: 'ListagemDeClientes.xlsx'
+                filename: 'ListagemDePedidos.xlsx',
+                path: 'ListagemDePedidos.xlsx'
             }]
         });
 
@@ -46,4 +46,4 @@ class EmailExportCustomerUserService {
     }
 }
 
-export { EmailExportCustomerUserService }
+export { EmailExportOrdersCustomersService }

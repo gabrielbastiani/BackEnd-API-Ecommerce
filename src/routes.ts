@@ -473,12 +473,19 @@ import { PaymentBoletoController } from './controllers/payment/PaymentBoletoCont
 import { PaymentPixController } from './controllers/payment/PaymentPixController';
 import { FindFirstPaymentController } from './controllers/payment/FindFirstPaymentController';
 
+// -- ORDERS --
+import { PageListOrdersCustomerController } from './controllers/order/PageListOrdersCustomerController';
+import { PageListAllOrdersController } from './controllers/order/PageListAllOrdersController';
+import { ExportOrdersCustomersController } from './controllers/order/ExportOrdersCustomersController';
+import { EmailExportOrdersCustomersController } from './controllers/sendEmails/EmailExportOrdersCustomersController';
+
 
 
 
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { ListExactorderController } from './controllers/order/ListExactorderController';
 
 
 
@@ -521,10 +528,10 @@ router.delete('/customer/deleteCustomer', [isAuthenticated, authorizationRules([
 router.get('/customer/me', isAuthenticated, new DetailCustomerController().handle);
 router.get('/customer/exportCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportCustomerController().handle);
 router.get('/customer/listExactCustomerName', isAuthenticated, new ListExactCustomerNameController().handle);
-router.get('/customer/listExactCustomerID', isAuthenticated, new ListExactCustomerController().handle);
+router.get('/customer/listExactCustomerID', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactCustomerController().handle);
 router.get('/customer/listForPageCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllCustomerController().handle);
-router.put('/customer/updateDateCustomer', isAuthenticated, new UpdateAllDateCustomerController().handle);
-router.put('/customer/updateNameCustomer', isAuthenticated, new CustomerUpdateNameController().handle);
+router.put('/customer/updateDateCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateCustomerController().handle);
+router.put('/customer/updateNameCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CustomerUpdateNameController().handle);
 router.put('/customer/updateNewslatter', isAuthenticated, new CustomerUpdateNewslatterController().handle);
 router.delete('/customer/deleteRecoveryIDCustomer', isAuthenticated, new DeletePasswordRecoveryIDCustomerController().handle);
 router.get('/customer/findFirstCustomer', isAuthenticated, new FindRecoveryIDCustomerController().handle);
@@ -963,6 +970,13 @@ router.post('/paymentBoletoResult', new PaymentBoletoController().handle);
 router.post('/paymentPixResult', new PaymentPixController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
+
+// -- ORDERS --
+router.get('/pageListOrdersCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListOrdersCustomerController().handle);
+router.get('/pageAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllOrdersController().handle);
+router.get('/exportListAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportOrdersCustomersController().handle);
+router.get('/sendEmailListordersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailExportOrdersCustomersController().handle);
+router.get('/exactOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactorderController().handle);
 
 
 
