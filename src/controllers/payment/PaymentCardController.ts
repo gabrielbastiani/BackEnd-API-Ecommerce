@@ -92,6 +92,8 @@ class PaymentCardController {
                     }
                 });
 
+                const payFrete: number = response.body.metadata.frete_cupom ? response.body.metadata.frete_cupom : response.body.metadata.frete;
+
                 await prismaClient.order.create({
                     data: {
                         customer_id: response.body.metadata.customer_id,
@@ -101,6 +103,7 @@ class PaymentCardController {
                         store_cart_id: response.body.metadata.store_cart_id,
                         cupom: response.body.metadata.cupom,
                         cart: cartNew,
+                        frete: payFrete,
                         store_id: store.id
                     }
                 });

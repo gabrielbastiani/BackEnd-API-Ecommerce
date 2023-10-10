@@ -12,6 +12,8 @@ class PaymentPixController {
 
         mercadopago.payment.create(req.body).then(async function (data) {
 
+            console.log(data.body)
+
             await prismaClient.payment.create({
                 data: {
                     customer_id: data.body.metadata.customer_id,
@@ -70,6 +72,7 @@ class PaymentPixController {
 
             /* @ts-ignore */
             let cartNew: any = newCart.new_value_products.length < 1 ? cart : newCart.new_value_products;
+            const payFrete: number = data.body.metadata.frete_cupom ? data.body.metadata.frete_cupom : data.body.metadata.frete;
 
             await prismaClient.order.create({
                 data: {
@@ -80,6 +83,7 @@ class PaymentPixController {
                     store_cart_id: data.body.metadata.store_cart_id,
                     cupom: data.body.metadata.cupom,
                     cart: cartNew,
+                    frete: payFrete,
                     store_id: store.id
                 }
             });

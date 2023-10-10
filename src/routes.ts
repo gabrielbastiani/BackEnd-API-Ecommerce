@@ -529,6 +529,7 @@ router.get('/customer/me', isAuthenticated, new DetailCustomerController().handl
 router.get('/customer/exportCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportCustomerController().handle);
 router.get('/customer/listExactCustomerName', isAuthenticated, new ListExactCustomerNameController().handle);
 router.get('/customer/listExactCustomerID', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactCustomerController().handle);
+router.get('/customer/listExactCustomerIDstore', isAuthenticated, new ListExactCustomerController().handle);
 router.get('/customer/listForPageCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllCustomerController().handle);
 router.put('/customer/updateDateCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateCustomerController().handle);
 router.put('/customer/updateNameCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CustomerUpdateNameController().handle);

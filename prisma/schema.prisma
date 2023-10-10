@@ -1180,6 +1180,7 @@ model Order {
   payment_id                 String?
   store_cart_id              String?
   cupom                      String?
+  frete                      Float?
   cart                       Json?
 
   orderComments      OrderComment[]
