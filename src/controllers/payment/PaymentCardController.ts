@@ -101,9 +101,11 @@ class PaymentCardController {
                         data_delivery: response.body.metadata.order_data_delivery,
                         payment_id: paymentFirst.id,
                         store_cart_id: response.body.metadata.store_cart_id,
+                        name_cupom: response.body.metadata.name_cupom,
                         cupom: response.body.metadata.cupom,
                         cart: cartNew,
                         frete: payFrete,
+                        weight: response.body.metadata.peso,
                         store_id: store.id
                     }
                 });

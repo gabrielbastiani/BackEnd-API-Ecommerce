@@ -81,9 +81,11 @@ class PaymentPixController {
                     data_delivery: data.body.metadata.order_data_delivery,
                     payment_id: paymentFirst.id,
                     store_cart_id: data.body.metadata.store_cart_id,
+                    name_cupom: data.body.metadata.name_cupom,
                     cupom: data.body.metadata.cupom,
                     cart: cartNew,
                     frete: payFrete,
+                    weight: data.body.metadata.peso,
                     store_id: store.id
                 }
             });

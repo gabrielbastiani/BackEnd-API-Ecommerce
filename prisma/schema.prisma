@@ -1179,6 +1179,7 @@ model Order {
   payment                    Payment?                 @relation(fields: [payment_id], references: [id])
   payment_id                 String?
   store_cart_id              String?
+  name_cupom                 String?
   cupom                      String?
   frete                      Float?
   weight                     Float?
