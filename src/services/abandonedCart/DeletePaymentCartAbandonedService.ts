@@ -9,7 +9,7 @@ class DeletePaymentCartAbandonedService {
     async execute({ customer_id }: AbandonedRequest) {
 
         const dataCart = moment(new Date()).format('DD/MM/YYYY');
-        
+
         const abandoned = await prismaClient.abandonedCart.deleteMany({
             where: {
                 customer_id: customer_id
@@ -34,8 +34,29 @@ class DeletePaymentCartAbandonedService {
             }
         });
 
+        const zeroDay = await prismaClient.totalDayAbandonedCart.findFirst({
+            where: {
+                day_cart: dataCart
+            },
+            select: {
+                lost_orders: true
+            }
+        });
+
+        const mapZeroDay = zeroDay.lost_orders;
+
+        if (mapZeroDay === 0) {
+
+            await prismaClient.totalDayAbandonedCart.deleteMany({
+                where: {
+                    day_cart: dataCart
+                }
+            });
+
+        }
+
         return abandoned;
-        
+
     }
 }
 
