@@ -1181,6 +1181,7 @@ model Order {
   store_cart_id              String?
   cupom                      String?
   frete                      Float?
+  weight                     Float?
   cart                       Json?
 
   orderComments      OrderComment[]

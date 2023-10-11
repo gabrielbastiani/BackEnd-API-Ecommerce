@@ -486,6 +486,8 @@ const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
 import { ListExactorderController } from './controllers/order/ListExactorderController';
+import { CreateCodeShippingTrackingController } from './controllers/shippingTracking/CreateCodeShippingTrackingController';
+import { FindShippingTrackingController } from './controllers/shippingTracking/FindShippingTrackingController';
 
 
 
@@ -978,6 +980,11 @@ router.get('/pageAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADM
 router.get('/exportListAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportOrdersCustomersController().handle);
 router.get('/sendEmailListordersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailExportOrdersCustomersController().handle);
 router.get('/exactOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactorderController().handle);
+
+// -- SHIPPING TRACKING --
+router.put('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCodeShippingTrackingController().handle);
+router.get('/findAllDateTracking', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindShippingTrackingController().handle);
+
 
 
 
