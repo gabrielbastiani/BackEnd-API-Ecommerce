@@ -488,6 +488,8 @@ import uploadConfig from './config/multer';
 import { ListExactorderController } from './controllers/order/ListExactorderController';
 import { CreateCodeShippingTrackingController } from './controllers/shippingTracking/CreateCodeShippingTrackingController';
 import { FindShippingTrackingController } from './controllers/shippingTracking/FindShippingTrackingController';
+import { CreateOrderCommentController } from './controllers/order/orderComment/CreateOrderCommentController';
+import { ListExactOrderCommentController } from './controllers/order/orderComment/ListExactOrderCommentController';
 
 
 
@@ -985,6 +987,9 @@ router.get('/exactOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOY
 router.put('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCodeShippingTrackingController().handle);
 router.get('/findAllDateTracking', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindShippingTrackingController().handle);
 
+// -- ORDER COMMENTS --
+router.post('/createOrderComments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateOrderCommentController().handle);
+router.get('/orderComments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactOrderCommentController().handle);
 
 
 
