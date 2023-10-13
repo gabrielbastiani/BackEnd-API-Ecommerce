@@ -5,6 +5,9 @@ class ListExactOrderCommentService {
         const exactComment = await prismaClient.orderComment.findMany({
             where: {
                 order_id: order_id
+            },
+            orderBy: {
+                created_at: 'asc'
             }
         })
         return exactComment;
