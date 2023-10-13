@@ -16,7 +16,12 @@ class FindFirstPaymentService {
             include: {
                 orders: {
                     include: {
-                        payment: true
+                        payment: true,
+                        customer: true,
+                        deliveryAddressCustomer: true,
+                        orderComments: true,
+                        shipmentsTrackings: true,
+                        statusOrder: true
                     }
                 }
             }

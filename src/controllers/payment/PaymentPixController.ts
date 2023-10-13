@@ -21,7 +21,6 @@ class PaymentPixController {
                     type_payment: "PIX",
                     transaction_id: data.body.id,
                     total_payment: data.body.transaction_amount,
-                    status: data.body.status,
                     store_id: store.id,
                     key_payment_pix: data.body.point_of_interaction.transaction_data.qr_code,
                     qr_code_pix: data.body.point_of_interaction.transaction_data.qr_code_base64,
@@ -99,10 +98,17 @@ class PaymentPixController {
                 }
             });
 
-            await prismaClient.shippingTracking.create({
+            await prismaClient.statusOrder.create({
                 data: {
                     order_id: orderFirst.id,
-                    delivery_history: "Processando pedido"
+                    status_order: data.body.status,
+                    store_id: store.id
+                }
+            });
+
+            await prismaClient.shippingTracking.create({
+                data: {
+                    order_id: orderFirst.id
                 }
             });
 

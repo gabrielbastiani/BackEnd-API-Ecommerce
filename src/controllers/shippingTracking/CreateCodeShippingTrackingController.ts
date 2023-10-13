@@ -5,13 +5,14 @@ class CreateCodeShippingTrackingController {
     async handle(req: Request, res: Response) {
         const shippingTracking_id = req.query.shippingTracking_id as string;
 
-        const { code_tracking } = req.body;
+        const { code_tracking, name_transport } = req.body;
 
         const codeCreate = new CreateCodeShippingTrackingService();
 
         const code = await codeCreate.execute({
             shippingTracking_id,
             code_tracking,
+            name_transport
         });
 
         return res.json(code);

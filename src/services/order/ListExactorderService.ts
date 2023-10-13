@@ -11,7 +11,8 @@ class ListExactorderService {
                 deliveryAddressCustomer: true,
                 orderComments: true,
                 payment: true,
-                shipmentsTrackings: true
+                shipmentsTrackings: true,
+                statusOrder: true
             }
         })
         return exactCustomer;

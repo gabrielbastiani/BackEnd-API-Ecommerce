@@ -9,7 +9,10 @@ class PageListAllOrdersService {
             include: {
                 customer: true,
                 payment: true,
-                shipmentsTrackings: true
+                shipmentsTrackings: true,
+                deliveryAddressCustomer: true,
+                orderComments: true,
+                statusOrder: true
             },
             orderBy: {
                 created_at: 'desc'
@@ -20,7 +23,10 @@ class PageListAllOrdersService {
             include: {
                 customer: true,
                 payment: true,
-                shipmentsTrackings: true
+                shipmentsTrackings: true,
+                deliveryAddressCustomer: true,
+                orderComments: true,
+                statusOrder: true
             },
             orderBy: {
                 created_at: 'desc'

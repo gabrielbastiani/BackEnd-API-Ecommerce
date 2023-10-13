@@ -17,7 +17,6 @@ class PaymentBoletoController {
                     type_payment: "Boleto bancário",
                     transaction_id: data.body.id,
                     total_payment: data.body.transaction_amount,
-                    status: data.body.status,
                     expiration_boleto: data.body.date_of_expiration,
                     external_resource_url: data.body.transaction_details.external_resource_url,
                     store_id: store.id
@@ -94,10 +93,17 @@ class PaymentBoletoController {
                 }
             });
 
-            await prismaClient.shippingTracking.create({
+            await prismaClient.statusOrder.create({
                 data: {
                     order_id: orderFirst.id,
-                    delivery_history: "Processando pedido"
+                    status_order: data.body.status,
+                    store_id: store.id
+                }
+            });
+
+            await prismaClient.shippingTracking.create({
+                data: {
+                    order_id: orderFirst.id
                 }
             });
 

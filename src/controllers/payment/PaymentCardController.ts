@@ -24,7 +24,6 @@ class PaymentCardController {
                         store_cart_id: response.body.metadata.store_cart_id,
                         type_payment: "Cartão de Crédito",
                         transaction_id: response.body.id,
-                        status: response.body.status,
                         store_id: store.id,/* @ts-ignore */
                         first_number_credit_card: response.body.card.first_six_digits,
                         last_number_credit_card: response.body.card.last_four_digits,
@@ -119,10 +118,17 @@ class PaymentCardController {
                     }
                 });
 
-                await prismaClient.shippingTracking.create({
+                await prismaClient.statusOrder.create({
                     data: {
                         order_id: orderFirst.id,
-                        delivery_history: "Processando pedido"
+                        status_order: response.body.status,
+                        store_id: store.id
+                    }
+                });
+
+                await prismaClient.shippingTracking.create({
+                    data: {
+                        order_id: orderFirst.id
                     }
                 });
 

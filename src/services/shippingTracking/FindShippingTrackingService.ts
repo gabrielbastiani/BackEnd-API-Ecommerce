@@ -9,6 +9,9 @@ class FindShippingTrackingService {
         const deliverysRstreio = await prismaClient.shippingTracking.findMany({
             where: {
                 id: shippingTracking_id
+            },
+            include: {
+                order: true
             }
         })
         return deliverysRstreio;
