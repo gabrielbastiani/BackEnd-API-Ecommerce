@@ -478,6 +478,15 @@ import { PageListOrdersCustomerController } from './controllers/order/PageListOr
 import { PageListAllOrdersController } from './controllers/order/PageListAllOrdersController';
 import { ExportOrdersCustomersController } from './controllers/order/ExportOrdersCustomersController';
 import { EmailExportOrdersCustomersController } from './controllers/sendEmails/EmailExportOrdersCustomersController';
+import { ListExactorderController } from './controllers/order/ListExactorderController';
+
+// -- SHIPPING TRACKING --
+import { CreateCodeShippingTrackingController } from './controllers/shippingTracking/CreateCodeShippingTrackingController';
+import { FindShippingTrackingController } from './controllers/shippingTracking/FindShippingTrackingController';
+
+// -- ORDER COMMENTS --
+import { CreateOrderCommentController } from './controllers/order/orderComment/CreateOrderCommentController';
+import { ListExactOrderCommentController } from './controllers/order/orderComment/ListExactOrderCommentController';
 
 
 
@@ -485,18 +494,12 @@ import { EmailExportOrdersCustomersController } from './controllers/sendEmails/E
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { ListExactorderController } from './controllers/order/ListExactorderController';
-import { CreateCodeShippingTrackingController } from './controllers/shippingTracking/CreateCodeShippingTrackingController';
-import { FindShippingTrackingController } from './controllers/shippingTracking/FindShippingTrackingController';
-import { CreateOrderCommentController } from './controllers/order/orderComment/CreateOrderCommentController';
-import { ListExactOrderCommentController } from './controllers/order/orderComment/ListExactOrderCommentController';
-
-
 
 
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
+
 
 
 
@@ -978,10 +981,12 @@ router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentContro
 
 // -- ORDERS --
 router.get('/pageListOrdersCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListOrdersCustomerController().handle);
+router.get('/pageListOrdersCustomerStore', isAuthenticated, new PageListOrdersCustomerController().handle);
 router.get('/pageAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllOrdersController().handle);
 router.get('/exportListAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportOrdersCustomersController().handle);
 router.get('/sendEmailListordersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailExportOrdersCustomersController().handle);
 router.get('/exactOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactorderController().handle);
+router.get('/exactOrderStore', isAuthenticated, new ListExactorderController().handle);
 
 // -- SHIPPING TRACKING --
 router.put('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCodeShippingTrackingController().handle);
@@ -989,7 +994,9 @@ router.get('/findAllDateTracking', [isAuthenticated, authorizationRules(["ADMIN"
 
 // -- ORDER COMMENTS --
 router.post('/createOrderComments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateOrderCommentController().handle);
+router.post('/createOrderCommentsStore', isAuthenticated, new CreateOrderCommentController().handle);
 router.get('/orderComments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactOrderCommentController().handle);
+router.get('/orderCommentsStore', isAuthenticated, new ListExactOrderCommentController().handle);
 
 
 

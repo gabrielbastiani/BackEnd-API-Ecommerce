@@ -3,14 +3,14 @@ import { CreateOrderCommentService } from '../../../services/order/orderComment/
 
 class CreateOrderCommentController {
   async handle(req: Request, res: Response) {
-    const { comment, order_id, admin_or_employee, active } = req.body;
+    const { comment, order_id, user_comment, active } = req.body;
 
     const createComments = new CreateOrderCommentService();
 
     const commentsOrders = await createComments.execute({
       comment,
       order_id,
-      admin_or_employee,
+      user_comment,
       active
     });
 

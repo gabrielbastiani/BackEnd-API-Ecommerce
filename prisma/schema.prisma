@@ -1214,7 +1214,7 @@ model OrderComment {
   id                String          @id @default(uuid())
   order             Order?          @relation(fields: [order_id], references: [id])
   order_id          String?
-  admin_or_employee String?         @db.VarChar(155)
+  user_comment String?         @db.VarChar(155)
   comment           String          @db.VarChar(8555)
   active            CommentCustomer @default(Nao)
 
