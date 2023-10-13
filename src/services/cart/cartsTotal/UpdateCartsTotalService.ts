@@ -5,6 +5,7 @@ interface CartTotalRequest {
   total: number;
   cep: string;
   frete: number;
+  name_cupom: string;
   coupon: string;
   frete_coupon: number;
   new_subTotal: number;
@@ -19,6 +20,7 @@ class UpdateCartsTotalService {
     total,
     cep,
     frete,
+    name_cupom,
     coupon,
     frete_coupon,
     new_subTotal,
@@ -34,6 +36,7 @@ class UpdateCartsTotalService {
         total: total,
         cep: cep,
         frete: frete,
+        name_cupom: name_cupom,
         coupon: coupon,
         frete_coupon: frete_coupon,
         new_subTotal: new_subTotal,

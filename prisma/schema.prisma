@@ -178,6 +178,8 @@ model Store {
   templateorderemail         TemplateOrderEmail[]
   configorderemail           ConfigOrderEmail[]
   statusorder                StatusOrder[]
+  TemplateStoreEmail         TemplateStoreEmail[]
+  configStoreEmail           ConfigStoreEmail[]
 
   @@map("stores")
 }
@@ -1043,6 +1045,7 @@ model CartTotal {
   customer_id        String?
   cep                String?   @db.VarChar(125)
   days_delivery      String?
+  name_cupom         String?
   coupon             String?   @db.VarChar(225)
   new_subTotal       Float?    @default(0)
   new_value_products Json?
@@ -1200,6 +1203,25 @@ model Order {
   @@map("orders")
 }
 
+model OrderComment {
+  id           String          @id @default(uuid())
+  order        Order?          @relation(fields: [order_id], references: [id])
+  order_id     String?
+  user_comment String?         @db.VarChar(155)
+  comment      String          @db.VarChar(8555)
+  active       CommentCustomer @default(Nao)
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+  updated_at DateTime? @updatedAt
+
+  @@map("ordercomments")
+}
+
+enum CommentCustomer {
+  Sim
+  Nao
+}
+
 model ShippingTracking {
   id             String  @id @default(uuid())
   order          Order?  @relation(fields: [order_id], references: [id])
@@ -1226,25 +1248,6 @@ model StatusOrder {
   store_id String?
 
   @@map("statusorders")
-}
-
-model OrderComment {
-  id           String          @id @default(uuid())
-  order        Order?          @relation(fields: [order_id], references: [id])
-  order_id     String?
-  user_comment String?         @db.VarChar(155)
-  comment      String          @db.VarChar(8555)
-  active       CommentCustomer @default(Nao)
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt
-
-  @@map("ordercomments")
-}
-
-enum CommentCustomer {
-  Sim
-  Nao
 }
 
 model TemplateOrderEmail {
@@ -1279,6 +1282,42 @@ model ConfigOrderEmail {
 }
 
 enum StatusEmail {
+  Sim
+  Nao
+}
+
+model TemplateStoreEmail {
+  id                   String  @id @default(uuid())
+  name_file_email      String? @unique
+  slug_name_file_email String?
+
+  configStoreEmail ConfigStoreEmail[]
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("templatesstoresemail")
+}
+
+model ConfigStoreEmail {
+  id                    String              @id @default(uuid())
+  item_store            String?
+  templateStoreEmail    TemplateStoreEmail? @relation(fields: [templateStoreEmail_id], references: [id])
+  templateStoreEmail_id String?
+  active                StoreEmails         @default(Nao)
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+  updated_at DateTime? @updatedAt
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("configsstoreemails")
+}
+
+enum StoreEmails {
   Sim
   Nao
 }
