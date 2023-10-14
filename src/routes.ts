@@ -539,6 +539,7 @@ router.get('/customer/listExactCustomerID', [isAuthenticated, authorizationRules
 router.get('/customer/listExactCustomerIDstore', isAuthenticated, new ListExactCustomerController().handle);
 router.get('/customer/listForPageCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllCustomerController().handle);
 router.put('/customer/updateDateCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateCustomerController().handle);
+router.put('/customer/updateDateCustomerStore', isAuthenticated, new UpdateAllDateCustomerController().handle);
 router.put('/customer/updateNameCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CustomerUpdateNameController().handle);
 router.put('/customer/updateNewslatter', isAuthenticated, new CustomerUpdateNewslatterController().handle);
 router.delete('/customer/deleteRecoveryIDCustomer', isAuthenticated, new DeletePasswordRecoveryIDCustomerController().handle);
