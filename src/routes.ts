@@ -488,6 +488,9 @@ import { FindUniqueTemplateEmailStatusController } from './controllers/order/tem
 import { FindUniqueTemplateEmailStatusOrderController } from './controllers/order/templatesEmailsOrderStatus/FindUniqueTemplateEmailStatusOrderController';
 import { UpdateNameTemplateEmailOrderStatusController } from './controllers/order/templatesEmailsOrderStatus/UpdateNameTemplateEmailOrderStatusController';
 import { UpdateTemplateEmailOrderStatusController } from './controllers/order/templatesEmailsOrderStatus/UpdateTemplateEmailOrderStatusController';
+import { SendEmailOrderStatusController } from './controllers/order/templatesEmailsOrderStatus/SendEmailOrderStatusController';
+import { UpdateDatasTemplateEmailStatusController } from './controllers/order/templatesEmailsOrderStatus/UpdateDatasTemplateEmailStatusController';
+import { UpdateStatusTemplateEmailController } from './controllers/order/templatesEmailsOrderStatus/UpdateStatusTemplateEmailController';
 
 // -- SHIPPING TRACKING --
 import { CreateCodeShippingTrackingController } from './controllers/shippingTracking/CreateCodeShippingTrackingController';
@@ -504,7 +507,6 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { SendEmailOrderStatusController } from './controllers/order/templatesEmailsOrderStatus/SendEmailOrderStatusController';
 
 
 
@@ -1011,6 +1013,8 @@ router.get('/getUniqueTemplateEmailStatus', [isAuthenticated, authorizationRules
 router.put('/updateNameTemplateEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameTemplateEmailOrderStatusController().handle);
 router.put('/updateTemplateOrderEmail', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailOrderStatusController().handle);
 router.get('/sendEmailOrderStatus', isAuthenticated, new SendEmailOrderStatusController().handle);
+router.put('/updateDateAllEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateDatasTemplateEmailStatusController().handle);
+router.put('/updateActiveStatusTemplateEmailOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusTemplateEmailController().handle);
 
 // -- SHIPPING TRACKING --
 router.put('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCodeShippingTrackingController().handle);

@@ -7,6 +7,7 @@ class UpdateDatasConfigAbandonedCartController {
 
         const {
             time_send_email,
+            time_in_hours,
             subject,
             code_cupom
         } = req.body;
@@ -16,6 +17,7 @@ class UpdateDatasConfigAbandonedCartController {
         const configs = await updateConfigs.execute({
             configAbandonedCart_id,
             time_send_email,
+            time_in_hours,
             subject,
             code_cupom
         });

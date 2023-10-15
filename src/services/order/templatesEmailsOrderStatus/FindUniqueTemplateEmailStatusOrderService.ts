@@ -6,7 +6,7 @@ interface EmailRequest {
 
 class FindUniqueTemplateEmailStatusOrderService {
     async execute({ slug_name_file_email }: EmailRequest) {
-        const abandoned = await prismaClient.templateOrderEmail.findFirst({
+        const templateEmailOrders = await prismaClient.templateOrderEmail.findFirst({
             where: {
                 slug_name_file_email: slug_name_file_email
             },
@@ -15,7 +15,7 @@ class FindUniqueTemplateEmailStatusOrderService {
             }
         });
 
-        return abandoned;
+        return templateEmailOrders;
 
     }
 }
