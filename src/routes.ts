@@ -480,6 +480,15 @@ import { ExportOrdersCustomersController } from './controllers/order/ExportOrder
 import { EmailExportOrdersCustomersController } from './controllers/sendEmails/EmailExportOrdersCustomersController';
 import { ListExactorderController } from './controllers/order/ListExactorderController';
 
+// -- STATUS ORDER EMAIL --
+import { AllTemplatesEmailsOrderController } from './controllers/order/templatesEmailsOrderStatus/AllTemplatesEmailsOrderController';
+import { CreateFileTemplateEmailOrderStatusController } from './controllers/order/templatesEmailsOrderStatus/CreateFileTemplateEmailOrderStatusController';
+import { DeleteTemplateEmailStatusOrderController } from './controllers/order/templatesEmailsOrderStatus/DeleteTemplateEmailStatusOrderController';
+import { FindUniqueTemplateEmailStatusController } from './controllers/order/templatesEmailsOrderStatus/FindUniqueTemplateEmailStatusController';
+import { FindUniqueTemplateEmailStatusOrderController } from './controllers/order/templatesEmailsOrderStatus/FindUniqueTemplateEmailStatusOrderController';
+import { UpdateNameTemplateEmailOrderStatusController } from './controllers/order/templatesEmailsOrderStatus/UpdateNameTemplateEmailOrderStatusController';
+import { UpdateTemplateEmailOrderStatusController } from './controllers/order/templatesEmailsOrderStatus/UpdateTemplateEmailOrderStatusController';
+
 // -- SHIPPING TRACKING --
 import { CreateCodeShippingTrackingController } from './controllers/shippingTracking/CreateCodeShippingTrackingController';
 import { FindShippingTrackingController } from './controllers/shippingTracking/FindShippingTrackingController';
@@ -491,14 +500,18 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 
 
 
+
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { SendEmailOrderStatusController } from './controllers/order/templatesEmailsOrderStatus/SendEmailOrderStatusController';
+
 
 
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
+
 
 
 
@@ -988,6 +1001,16 @@ router.get('/exportListAllOrdersCustomers', [isAuthenticated, authorizationRules
 router.get('/sendEmailListordersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailExportOrdersCustomersController().handle);
 router.get('/exactOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactorderController().handle);
 router.get('/exactOrderStore', isAuthenticated, new ListExactorderController().handle);
+
+// -- STATUS ORDER EMAIL --
+router.get('/allTemplateEmailsStatusOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllTemplatesEmailsOrderController().handle);
+router.post('/createTemplateEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateFileTemplateEmailOrderStatusController().handle);
+router.delete('/deleteTemplateEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteTemplateEmailStatusOrderController().handle);
+router.get('/findUniqueEmailOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailStatusController().handle);
+router.get('/getUniqueTemplateEmailStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailStatusOrderController().handle);
+router.put('/updateNameTemplateEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameTemplateEmailOrderStatusController().handle);
+router.put('/updateTemplateOrderEmail', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailOrderStatusController().handle);
+router.get('/sendEmailOrderStatus', isAuthenticated, new SendEmailOrderStatusController().handle);
 
 // -- SHIPPING TRACKING --
 router.put('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCodeShippingTrackingController().handle);

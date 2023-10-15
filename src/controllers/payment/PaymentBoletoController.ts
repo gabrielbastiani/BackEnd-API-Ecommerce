@@ -1,6 +1,9 @@
+import ejs from "ejs";
 import prismaClient from "../../prisma";
 import { Request, Response } from "express";
+import nodemailer from "nodemailer";
 import mercadopago from 'mercadopago';
+import path from "path";
 mercadopago.configure({ access_token: process.env.ACCESS_TOKEN_TEST });
 
 class PaymentBoletoController {
@@ -105,6 +108,71 @@ class PaymentBoletoController {
                 data: {
                     order_id: orderFirst.id
                 }
+            });
+
+            // SEND EMAIL --
+
+            const statusDate = await prismaClient.statusOrder.findFirst({
+                orderBy: {
+                    created_at: 'desc'
+                },
+                include: {
+                    order: {
+                        include: {
+                            customer: true,
+                            payment: true
+                        }
+                    }
+                }
+            });
+
+            const statusSendEmail = await prismaClient.templateOrderEmail.findFirst({
+                where: {
+                    status_order: data.body.status
+                },
+                orderBy: {
+                    created_at: 'desc'
+                },
+                include: {
+                    store: true
+                }
+            });
+
+            const transporter = nodemailer.createTransport({
+                host: process.env.HOST_SMTP,
+                port: 465,
+                auth: {
+                    user: process.env.USER_SMTP,
+                    pass: process.env.PASS_SMTP
+                }
+            });
+
+            let name_file = statusSendEmail.slug_name_file_email;
+            const requiredPath = path.join(__dirname, `../../services/order/templatesEmailsOrderStatus/template_emails_status_order/${name_file}.ejs`);
+
+            const response = await ejs.renderFile(requiredPath, {
+                name: statusDate.order.customer.name,
+                id_order: statusDate.order.id_order_store,
+                order_date: statusDate.created_at,
+                type_payment: statusDate.order.payment.type_payment,
+                installment: statusDate.order.payment.installment,
+                envio: statusDate.order.data_delivery,
+                installment_amount: statusDate.order.payment.total_payment_juros,
+                list_product: statusDate.order.cart,
+                store_address: statusSendEmail.store.address,
+                store_cellPhone: statusSendEmail.store.cellPhone,
+                store_cep: statusSendEmail.store.cep,
+                store_city: statusSendEmail.store.city,
+                store_cnpj: statusSendEmail.store.cnpj,
+                store_name: statusSendEmail.store.name,
+                store_logo: statusSendEmail.store.logo
+            });
+
+            await transporter.sendMail({
+                from: `Loja Virtual - ${store.name} <${store.email}>`,
+                to: `${statusDate.order.customer.email}`,
+                subject: `${statusSendEmail.subject}`,
+                html: response,
             });
 
         }).catch(function (error) {
