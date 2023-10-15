@@ -1008,8 +1008,8 @@ router.get('/exactOrderStore', isAuthenticated, new ListExactorderController().h
 router.get('/allTemplateEmailsStatusOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllTemplatesEmailsOrderController().handle);
 router.post('/createTemplateEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateFileTemplateEmailOrderStatusController().handle);
 router.delete('/deleteTemplateEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteTemplateEmailStatusOrderController().handle);
-router.get('/findUniqueEmailOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailStatusController().handle);
-router.get('/getUniqueTemplateEmailStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailStatusOrderController().handle);
+router.get('/findUniqueEmailOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailStatusOrderController().handle);
+router.get('/getUniqueTemplateEmailStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailStatusController().handle);
 router.put('/updateNameTemplateEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameTemplateEmailOrderStatusController().handle);
 router.put('/updateTemplateOrderEmail', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailOrderStatusController().handle);
 router.get('/sendEmailOrderStatus', isAuthenticated, new SendEmailOrderStatusController().handle);
