@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import nodemailer from "nodemailer";
 import mercadopago from 'mercadopago';
 import path from "path";
+import moment from "moment";
 mercadopago.configure({ access_token: process.env.ACCESS_TOKEN_TEST });
 
 class PaymentBoletoController {
@@ -150,13 +151,14 @@ class PaymentBoletoController {
             let name_file = statusSendEmail.slug_name_file_email;
             const requiredPath = path.join(__dirname, `../../services/order/templatesEmailsOrderStatus/template_emails_status_order/${name_file}.ejs`);
 
-            const response = await ejs.renderFile(requiredPath, {
+            const respo = await ejs.renderFile(requiredPath, {
                 name: statusDate.order.customer.name,
                 id_order: statusDate.order.id_order_store,
-                order_date: statusDate.created_at,
+                order_date: moment(statusDate.created_at).format('DD/MM/YYYY HH:mm'),
                 type_payment: statusDate.order.payment.type_payment,
                 installment: statusDate.order.payment.installment,
                 envio: statusDate.order.data_delivery,
+                frete_pay: statusDate.order.frete,
                 installment_amount: statusDate.order.payment.total_payment_juros,
                 list_product: statusDate.order.cart,
                 store_address: statusSendEmail.store.address,
@@ -172,7 +174,7 @@ class PaymentBoletoController {
                 from: `Loja Virtual - ${store.name} <${store.email}>`,
                 to: `${statusDate.order.customer.email}`,
                 subject: `${statusSendEmail.subject}`,
-                html: response,
+                html: respo,
             });
 
         }).catch(function (error) {

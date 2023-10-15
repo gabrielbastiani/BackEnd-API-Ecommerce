@@ -38,8 +38,7 @@
                 <p>Aproveite um cupom de desconto com o código: <strong><%= cupom %></strong></p>
                 <% for(var i = 0; i < list_product.length; i++) {%>
                 <img style="height: 10%; height: 10%;"
-                    src="http://localhost:3333/files/<%= list_product[i].product.photoproducts[0].image %>"
-                    alt="loja-virtual">
+                    src="http://localhost:3333/files/<%= list_product[i].product.photoproducts[0].image %>" width="50" height="50" alt="loja-virtual">
                 <p>
                     <%= list_product[i].product.name %>
                 </p>

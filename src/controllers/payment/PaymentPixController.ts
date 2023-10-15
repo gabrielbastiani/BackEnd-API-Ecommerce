@@ -4,6 +4,7 @@ import prismaClient from "../../prisma";
 import path from "path";
 import ejs from "ejs";
 import nodemailer from "nodemailer";
+import moment from "moment";
 mercadopago.configure({
     access_token: process.env.ACCESS_TOKEN_TEST
 });
@@ -158,10 +159,11 @@ class PaymentPixController {
             const response = await ejs.renderFile(requiredPath, {
                 name: statusDate.order.customer.name,
                 id_order: statusDate.order.id_order_store,
-                order_date: statusDate.created_at,
+                order_date: moment(statusDate.created_at).format('DD/MM/YYYY HH:mm'),
                 type_payment: statusDate.order.payment.type_payment,
                 installment: statusDate.order.payment.installment,
                 envio: statusDate.order.data_delivery,
+                frete_pay: statusDate.order.frete,
                 installment_amount: statusDate.order.payment.total_payment_juros,
                 list_product: statusDate.order.cart,
                 store_address: statusSendEmail.store.address,
