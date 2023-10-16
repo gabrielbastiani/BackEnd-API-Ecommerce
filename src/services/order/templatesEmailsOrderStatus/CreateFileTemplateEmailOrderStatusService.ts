@@ -6,10 +6,11 @@ interface TemplateRequest {
     subject: string;
     template_cart_email: any;
     name_file_email: string;
+    active: string;
 }
 
 class CreateFileTemplateEmailOrderStatusService {
-    async execute({ template_cart_email, name_file_email, subject, status_order }: TemplateRequest) {
+    async execute({ template_cart_email, name_file_email, subject, status_order, active }: TemplateRequest) {
 
         function removerAcentos(s: any) {
             return s.normalize('NFD')
@@ -36,6 +37,7 @@ class CreateFileTemplateEmailOrderStatusService {
                 subject: subject,
                 name_file_email: noSignals,
                 slug_name_file_email: removerAcentos(noSignals),
+                active: active,
                 store_id: store.id
             }
         });

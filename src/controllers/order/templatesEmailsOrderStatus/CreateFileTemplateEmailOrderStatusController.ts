@@ -7,6 +7,7 @@ class CreateFileTemplateEmailOrderStatusController {
       status_order,
       subject,
       template_cart_email,
+      active,
       name_file_email
     } = req.body;
 
@@ -16,6 +17,7 @@ class CreateFileTemplateEmailOrderStatusController {
       status_order,
       subject,
       template_cart_email,
+      active,
       name_file_email
     });
 
