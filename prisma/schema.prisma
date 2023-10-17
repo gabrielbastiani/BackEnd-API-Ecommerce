@@ -66,6 +66,7 @@ model Customer {
   cep               String? @db.VarChar(125)
   city              String? @db.VarChar(185)
   state             String? @db.VarChar(185)
+  id_customer_assas String?
   authenticated     Boolean @default(true)
 
   deliveryaddresscustomers DeliveryAddressCustomer[]
@@ -1141,7 +1142,7 @@ model Payment {
   customer                  Customer? @relation(fields: [customer_id], references: [id])
   customer_id               String?
   store_cart_id             String?
-  transaction_id            Int?
+  transaction_id            String?
   type_payment              String?   @db.VarChar(525)
   key_payment_pix           String?
   qr_code_pix               String?

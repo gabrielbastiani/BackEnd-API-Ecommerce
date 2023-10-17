@@ -2,6 +2,7 @@ import prismaClient from '../../../prisma';
 import { hash } from 'bcryptjs';
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import axios from 'axios';
 
 interface CustomerRequest {
   name: string;
@@ -50,6 +51,8 @@ class CreateCustomerService {
     state,
     store_id
   }: CustomerRequest) {
+
+    const store = await prismaClient.store.findFirst();
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -102,8 +105,6 @@ class CreateCustomerService {
       }
     });
 
-    const store = await prismaClient.store.findFirst();
-
     const findCustomer = await prismaClient.customer.findFirst({
       orderBy: {
         created_at: 'desc'
@@ -128,6 +129,50 @@ class CreateCustomerService {
       }
     });
 
+    const options = {
+      method: 'POST',
+      url: process.env.API_ASSAS_CREATE_CLIENT,
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+        access_token: process.env.TOKEN_ASSAS
+      },
+      data: {
+        company: cnpj ? name : null,
+        stateInscription: cnpj ? stateRegistration : null,
+        name: name,
+        email: email,
+        phone: removerAcentos(phone),
+        mobilePhone: removerAcentos(phone),
+        cpfCnpj: removerAcentos(cpf || cnpj),
+        postalCode: cep,
+        address: address,
+        addressNumber: number,
+        complement: complement,
+        province: neighborhood,
+        externalReference: store.name,
+        notificationDisabled: true
+      }
+    };
+
+    axios
+      .request(options)
+      .then(async function (response: { data: any; }) {
+
+        await prismaClient.customer.update({
+          where: {
+            id: findCustomer.id
+          },
+          data: {
+            id_customer_assas: response.data.id
+          }
+        });
+
+      })
+      .catch(function (error: any) {
+        console.error(error);
+      });
+
     const transporter = nodemailer.createTransport({
       host: process.env.HOST_SMTP,
       port: 465,
@@ -142,20 +187,21 @@ class CreateCustomerService {
       to: store.email,
       subject: "Novo cliente se cadastrando na store virtual da Builder Seu Negócio Online",
       html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h2>Novo usúario!</h2>
-            </div>
-            
-            <article>
-                <p>Olá!</p>
-                <p>Um cliente de nome <b>${customer.name}</b> se cadastrou na Loja Virtual.</p>
-            </article>
-            
-            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual ${store.name}</h5>
-            </div>`,
+                    <h2>Novo usúario!</h2>
+                </div>
+                
+                <article>
+                    <p>Olá!</p>
+                    <p>Um cliente de nome <b>${customer.name}</b> se cadastrou na Loja Virtual.</p>
+                </article>
+                
+                <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
+                    <h5>Loja Virtual ${store.name}</h5>
+                </div>`,
     });
 
     return customer;
+
   }
 }
 

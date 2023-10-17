@@ -24,6 +24,7 @@
   "dependencies": {
     "@mercadopago/sdk-js": "^0.0.3",
     "@prisma/client": "^4.8.0",
+    "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
     "correios-brasil": "^3.0.6",
     "cors": "^2.8.5",

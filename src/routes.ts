@@ -989,9 +989,9 @@ router.put('/updateFileTemplateAbandonedCart', [isAuthenticated, authorizationRu
 router.delete('/deleteTemplateFileAbandonedCart', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteTemplateEmailAbandonedController().handle);
 
 // -- PAYMENTS --
-router.post('/paymentCardResult', new PaymentCardController().handle);
-router.post('/paymentBoletoResult', new PaymentBoletoController().handle);
-router.post('/paymentPixResult', new PaymentPixController().handle);
+router.post('/paymentCardResult', isAuthenticated, new PaymentCardController().handle);
+router.post('/paymentBoletoResult', isAuthenticated, new PaymentBoletoController().handle);
+router.post('/paymentPixResult', isAuthenticated, new PaymentPixController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
 
