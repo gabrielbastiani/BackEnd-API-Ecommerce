@@ -1151,11 +1151,12 @@ model Payment {
   expiration_boleto         String?
   first_number_credit_card  String?
   last_number_credit_card   String?
-  expiration_month          Int?
-  expiration_year           Int?
+  expiration_month          String?
+  expiration_year           String?
   date_created              String?
   cardholder_name           String?
-  cardholder_identification Json?
+  cardholder_identification_cpfCnpj String?
+  cardholder_cpfCnpj String?
   flag_credit_card          String?
   installment               Int?
   installment_amount        Float?

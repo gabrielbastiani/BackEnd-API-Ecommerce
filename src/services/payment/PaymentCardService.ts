@@ -12,6 +12,7 @@ interface PaymentRequest {
     expiryMonth: string;
     expiryYear: string;
     ccv: string;
+    cardholder_identification_cpfCnpj: string;
     cpfCnpj: string;
     customer_id: string;
     value_pay: number;
@@ -34,6 +35,7 @@ class PaymentCardService {
         expiryMonth,
         expiryYear,
         ccv,
+        cardholder_identification_cpfCnpj,
         cpfCnpj,
         customer_id,
         value_pay,
@@ -67,7 +69,7 @@ class PaymentCardService {
         });
 
         var data = new Date();
-        var diasASomar = 3;
+        var diasASomar = 1;
 
         data.setDate(data.getDate() + diasASomar);
 
@@ -113,6 +115,8 @@ class PaymentCardService {
 
                 console.log(response.data);
 
+                const firstCardNumber: string = response.data.creditCard.creditCardNumber.slice(0, 4);
+
                 await prismaClient.payment.create({
                     data: {
                         customer_id: customer_id,
@@ -120,18 +124,19 @@ class PaymentCardService {
                         type_payment: "Cartão de Crédito",
                         transaction_id: response.data.id,
                         store_id: store.id,
-                        first_number_credit_card: response.body.card.first_six_digits,
-                        last_number_credit_card: response.body.card.last_four_digits,
-                        expiration_month: response.body.card.expiration_month,
-                        expiration_year: response.body.card.expiration_year,
-                        date_created: response.body.card.date_created,
-                        cardholder_name: response.body.card.cardholder.name,
-                        cardholder_identification: response.body.card.cardholder.identification,
-                        flag_credit_card: response.body.payment_method_id,
-                        installment: response.body.installments,
-                        installment_amount: response.body.transaction_details.installment_amount,
-                        total_payment: response.body.transaction_amount,
-                        total_payment_juros: response.body.transaction_details.total_paid_amount
+                        first_number_credit_card: firstCardNumber,
+                        last_number_credit_card: response.data.creditCard.creditCardNumber,
+                        expiration_month: expiryMonth,
+                        expiration_year: expiryYear,
+                        date_created: response.data.dateCreated,
+                        cardholder_name: holderName,
+                        cardholder_identification_cpfCnpj: cardholder_identification_cpfCnpj,
+                        cardholder_cpfCnpj: cpfCnpj,
+                        flag_credit_card: response.data.creditCard.creditCardBrand,
+                        installment: installmentCount,
+                        installment_amount: installmentValue,
+                        total_payment: response.data.value,
+                        total_payment_juros: response.data.netValue
                     }
                 });
 
@@ -143,7 +148,7 @@ class PaymentCardService {
 
                 const cart = await prismaClient.cart.findMany({
                     where: {
-                        store_cart_id: response.body.metadata.store_cart_id
+                        store_cart_id: store_cart_id
                     },
                     include: {
                         customer: true,
@@ -166,7 +171,7 @@ class PaymentCardService {
 
                 const newCart = await prismaClient.cartTotal.findFirst({
                     where: {
-                        store_cart_id: response.body.metadata.store_cart_id
+                        store_cart_id: store_cart_id
                     },
                     select: {
                         new_value_products: true
@@ -178,35 +183,27 @@ class PaymentCardService {
 
                 /* @ts-ignore */
                 let cartNew: any = newCart.new_value_products.length < 1 ? cart : newCart.new_value_products;
-
-                const deliverys = await prismaClient.deliveryAddressCustomer.findFirst({
-                    where: {
-                        customer_id: response.body.metadata.customer_id,
-                        deliverySelected: SelectedDelivery.Sim
-                    }
-                });
-
-                const payFrete: number = response.body.metadata.frete_cupom ? response.body.metadata.frete_cupom : response.body.metadata.frete;
+                const payFrete: number = Number(frete_cupom) ? Number(frete_cupom) : Number(frete);
 
                 await prismaClient.order.create({
                     data: {
-                        customer_id: response.body.metadata.customer_id,
-                        deliveryAddressCustomer_id: deliverys.id,
-                        data_delivery: response.body.metadata.order_data_delivery,
+                        customer_id: customer_id,
+                        deliveryAddressCustomer_id: delivery_id,
+                        data_delivery: order_data_delivery,
                         payment_id: paymentFirst.id,
-                        store_cart_id: response.body.metadata.store_cart_id,
-                        name_cupom: response.body.metadata.name_cupom,
-                        cupom: response.body.metadata.cupom,
+                        store_cart_id: store_cart_id,
+                        name_cupom: name_cupom,
+                        cupom: cupom,
                         cart: cartNew,
                         frete: payFrete,
-                        weight: response.body.metadata.peso,
+                        weight: peso,
                         store_id: store.id
                     }
                 });
 
                 const orderFirst = await prismaClient.order.findFirst({
                     where: {
-                        store_cart_id: response.body.metadata.store_cart_id
+                        store_cart_id: store_cart_id
                     },
                     orderBy: {
                         created_at: 'desc'
@@ -216,7 +213,7 @@ class PaymentCardService {
                 await prismaClient.statusOrder.create({
                     data: {
                         order_id: orderFirst.id,
-                        status_order: response.body.status,
+                        status_order: response.data.status,
                         store_id: store.id
                     }
                 });
@@ -245,7 +242,7 @@ class PaymentCardService {
 
                 const statusSendEmail = await prismaClient.templateOrderEmail.findFirst({
                     where: {
-                        status_order: response.body.status
+                        status_order: response.data.status
                     },
                     orderBy: {
                         created_at: 'desc'
