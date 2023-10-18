@@ -50,7 +50,7 @@ class PaymentBoletoService {
 
         const options = {
             method: 'POST',
-            url: process.env.API_ASSAS_CREATE_PAYMENT_BOLETO,
+            url: process.env.API_ASSAS_CREATE_PAYMENT,
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
@@ -209,7 +209,7 @@ class PaymentBoletoService {
                 });
 
                 let name_file = statusSendEmail.slug_name_file_email;
-                const requiredPath = path.join(__dirname, `../services/order/templatesEmailsOrderStatus/template_emails_status_order/${name_file}.ejs`);
+                const requiredPath = path.join(__dirname, `../order/templatesEmailsOrderStatus/template_emails_status_order/${name_file}.ejs`);
 
                 const respo = await ejs.renderFile(requiredPath, {
                     name: statusDate.order.customer.name,

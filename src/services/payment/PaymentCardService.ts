@@ -7,22 +7,38 @@ import axios from 'axios';
 
 
 interface PaymentRequest {
+    holderName: string;
+    number_card: string;
+    expiryMonth: string;
+    expiryYear: string;
+    ccv: string;
+    cpfCnpj: string;
     customer_id: string;
     value_pay: number;
+    installmentCount: number;
     store_cart_id: string;
     frete_cupom: number;
     frete: number;
     delivery_id: string;
     order_data_delivery: string;
     name_cupom: string;
+    installmentValue: number;
     cupom: string;
     peso: number;
 }
 
-class PaymentBoletoService {
+class PaymentCardService {
     async execute({
+        holderName,
+        number_card,
+        expiryMonth,
+        expiryYear,
+        ccv,
+        cpfCnpj,
         customer_id,
         value_pay,
+        installmentCount,
+        installmentValue,
         store_cart_id,
         frete_cupom,
         frete,
@@ -33,6 +49,15 @@ class PaymentBoletoService {
         peso
     }: PaymentRequest) {
 
+        function removerAcentos(s: any) {
+            return s.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .replace(/ +/g, "-")
+                .replace(/-{2,}/g, "-")
+                .replace(/[/]/g, "-");
+        }
+
         const store = await prismaClient.store.findFirst();
 
         const client = await prismaClient.customer.findUnique({
@@ -42,7 +67,7 @@ class PaymentBoletoService {
         });
 
         var data = new Date();
-        var diasASomar = 375;
+        var diasASomar = 3;
 
         data.setDate(data.getDate() + diasASomar);
 
@@ -50,40 +75,63 @@ class PaymentBoletoService {
 
         const options = {
             method: 'POST',
-            url: process.env.API_ASSAS_CREATE_PAYMENT_BOLETO,
+            url: process.env.API_ASSAS_CREATE_PAYMENT,
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
                 access_token: process.env.TOKEN_ASSAS
             },
             data: {
-                billingType: 'BOLETO',
-                discount: { value: 10, dueDateLimitDays: 0 },
-                interest: { value: 2 },
-                fine: { value: 1 },
+                billingType: 'CREDIT_CARD',
+                creditCard: {
+                    holderName: holderName,
+                    number: number_card,
+                    expiryMonth: expiryMonth,
+                    expiryYear: expiryYear,
+                    ccv: ccv
+                },
+                creditCardHolderInfo: {
+                    name: client.name,
+                    email: client.email,
+                    cpfCnpj: cpfCnpj,
+                    postalCode: client.cep,
+                    addressNumber: client.number,
+                    phone: removerAcentos(client.phone)
+                },
                 customer: client.id_customer_assas,
-                dueDate: formatData,
                 value: value_pay,
-                description: `Pedido na loja ${store.name}`,
-                externalReference: store.name,
-                postalService: false
+                externalReference: `Pedido na loja ${store.name}`,
+                dueDate: diasASomar,
+                installmentCount: installmentCount,
+                installmentValue: installmentValue
             }
         };
 
         axios
             .request(options)
-            .then(async function (response: { data: any; }) {
+            .then(async function (response) {
+
+                console.log(response.data);
 
                 await prismaClient.payment.create({
                     data: {
-                        customer_id: client.id,
+                        customer_id: customer_id,
                         store_cart_id: store_cart_id,
-                        type_payment: "Boleto bancário",
+                        type_payment: "Cartão de Crédito",
                         transaction_id: response.data.id,
-                        total_payment: response.data.netValue,
-                        expiration_boleto: formatData,
-                        external_resource_url: response.data.bankSlipUrl,
-                        store_id: store.id
+                        store_id: store.id,
+                        first_number_credit_card: response.body.card.first_six_digits,
+                        last_number_credit_card: response.body.card.last_four_digits,
+                        expiration_month: response.body.card.expiration_month,
+                        expiration_year: response.body.card.expiration_year,
+                        date_created: response.body.card.date_created,
+                        cardholder_name: response.body.card.cardholder.name,
+                        cardholder_identification: response.body.card.cardholder.identification,
+                        flag_credit_card: response.body.payment_method_id,
+                        installment: response.body.installments,
+                        installment_amount: response.body.transaction_details.installment_amount,
+                        total_payment: response.body.transaction_amount,
+                        total_payment_juros: response.body.transaction_details.total_paid_amount
                     }
                 });
 
@@ -95,7 +143,7 @@ class PaymentBoletoService {
 
                 const cart = await prismaClient.cart.findMany({
                     where: {
-                        store_cart_id: store_cart_id
+                        store_cart_id: response.body.metadata.store_cart_id
                     },
                     include: {
                         customer: true,
@@ -118,7 +166,7 @@ class PaymentBoletoService {
 
                 const newCart = await prismaClient.cartTotal.findFirst({
                     where: {
-                        store_cart_id: store_cart_id
+                        store_cart_id: response.body.metadata.store_cart_id
                     },
                     select: {
                         new_value_products: true
@@ -130,27 +178,35 @@ class PaymentBoletoService {
 
                 /* @ts-ignore */
                 let cartNew: any = newCart.new_value_products.length < 1 ? cart : newCart.new_value_products;
-                const payFrete: number = Number(frete_cupom) ? Number(frete_cupom) : Number(frete);
+
+                const deliverys = await prismaClient.deliveryAddressCustomer.findFirst({
+                    where: {
+                        customer_id: response.body.metadata.customer_id,
+                        deliverySelected: SelectedDelivery.Sim
+                    }
+                });
+
+                const payFrete: number = response.body.metadata.frete_cupom ? response.body.metadata.frete_cupom : response.body.metadata.frete;
 
                 await prismaClient.order.create({
                     data: {
-                        customer_id: customer_id,
-                        deliveryAddressCustomer_id: delivery_id,
-                        data_delivery: order_data_delivery,
+                        customer_id: response.body.metadata.customer_id,
+                        deliveryAddressCustomer_id: deliverys.id,
+                        data_delivery: response.body.metadata.order_data_delivery,
                         payment_id: paymentFirst.id,
-                        store_cart_id: store_cart_id,
-                        name_cupom: name_cupom,
-                        cupom: cupom,
+                        store_cart_id: response.body.metadata.store_cart_id,
+                        name_cupom: response.body.metadata.name_cupom,
+                        cupom: response.body.metadata.cupom,
                         cart: cartNew,
                         frete: payFrete,
-                        weight: peso,
+                        weight: response.body.metadata.peso,
                         store_id: store.id
                     }
                 });
 
                 const orderFirst = await prismaClient.order.findFirst({
                     where: {
-                        store_cart_id: store_cart_id
+                        store_cart_id: response.body.metadata.store_cart_id
                     },
                     orderBy: {
                         created_at: 'desc'
@@ -160,7 +216,7 @@ class PaymentBoletoService {
                 await prismaClient.statusOrder.create({
                     data: {
                         order_id: orderFirst.id,
-                        status_order: response.data.status,
+                        status_order: response.body.status,
                         store_id: store.id
                     }
                 });
@@ -189,7 +245,7 @@ class PaymentBoletoService {
 
                 const statusSendEmail = await prismaClient.templateOrderEmail.findFirst({
                     where: {
-                        status_order: response.data.status
+                        status_order: response.body.status
                     },
                     orderBy: {
                         created_at: 'desc'
@@ -209,9 +265,9 @@ class PaymentBoletoService {
                 });
 
                 let name_file = statusSendEmail.slug_name_file_email;
-                const requiredPath = path.join(__dirname, `../services/order/templatesEmailsOrderStatus/template_emails_status_order/${name_file}.ejs`);
+                const requiredPath = path.join(__dirname, `../order/templatesEmailsOrderStatus/template_emails_status_order/${name_file}.ejs`);
 
-                const respo = await ejs.renderFile(requiredPath, {
+                const data = await ejs.renderFile(requiredPath, {
                     name: statusDate.order.customer.name,
                     id_order: statusDate.order.id_order_store,
                     order_date: moment(statusDate.created_at).format('DD/MM/YYYY HH:mm'),
@@ -234,15 +290,16 @@ class PaymentBoletoService {
                     from: `Loja Virtual - ${store.name} <${store.email}>`,
                     to: `${statusDate.order.customer.email}`,
                     subject: `${statusSendEmail.subject}`,
-                    html: respo,
+                    html: data,
                 });
 
             })
-            .catch(function (error: any) {
+            .catch(function (error) {
                 console.error(error);
             });
 
-    }
+    };
+
 }
 
-export { PaymentBoletoService }
+export { PaymentCardService }
