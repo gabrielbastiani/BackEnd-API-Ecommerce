@@ -15,7 +15,7 @@
         <hr />
         <p>Forma de pagamento: <%= type_payment %></p>
         <p>Parcelamento: <%= installment ? installment : "Sem Parcelamento" %></p>
-        <p>Valor da parcela: <%= installment_amount ? installment_amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : "Sem Parcelamento" %></p>
+        <p>Valor da parcela: <%= installment_amount ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(installment_amount) : "Sem Parcelamento" %></p>
         <h2>ENVIO</h2>
         <p><%= envio %></p>
         <p>
@@ -80,11 +80,33 @@
                 <tr>
                   <td style="border-left: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; text-align: right;" colspan="2">
                     <p style="display: inline; text-transform: uppercase;">
-                      FRETE
+                      FRETE SEM DESCONTO
                     </p>
                   </td>
                   <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; color: rgb(0, 0, 0);" colspan="3">
-                    <%= frete_pay.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %>
+                    <%= Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(frete_pay) %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="border-left: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; text-align: right;" colspan="2">
+                    <p style="display: inline; text-transform: uppercase;">
+                      FRETE COM DESCONTO
+                    </p>
+                  </td>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; color: rgb(0, 0, 0);" colspan="3">
+                    <%= frete_cupom_pay === frete_pay ? "Sem cupom de frete" : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(frete_cupom_pay) %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="border-left: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; text-align: right;" colspan="2">
+                    <p style="display: inline; text-transform: uppercase;">
+                      TOTAL DO PEDIDO
+                    </p>
+                  </td>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; color: rgb(212, 17, 17);" colspan="3">
+                    <%= value_pay_juros ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay_juros) : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay) %>
                   </td>
                 </tr>
 

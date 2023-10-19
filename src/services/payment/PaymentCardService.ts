@@ -117,7 +117,7 @@ class PaymentCardService {
 
                 const firstCardNumber: string = number_card.slice(0, 4);
                 const totalPay: number = value_pay;
-                const totalPayJuros: number = response.data.value * installmentCount;
+                const totalPayJuros: number = installmentCount >= 9 ? response.data.value * installmentCount : null;
 
                 await prismaClient.payment.create({
                     data: {
@@ -185,7 +185,6 @@ class PaymentCardService {
 
                 /* @ts-ignore */
                 let cartNew: any = newCart.new_value_products.length < 1 ? cart : newCart.new_value_products;
-                const payFrete: number = Number(frete_cupom) ? Number(frete_cupom) : Number(frete);
 
                 await prismaClient.order.create({
                     data: {
@@ -197,7 +196,8 @@ class PaymentCardService {
                         name_cupom: name_cupom,
                         cupom: cupom,
                         cart: cartNew,
-                        frete: payFrete,
+                        frete: frete,
+                        frete_cupom: frete_cupom,
                         weight: peso,
                         store_id: store.id
                     }
@@ -225,6 +225,34 @@ class PaymentCardService {
                         order_id: orderFirst.id
                     }
                 });
+
+                // DELETE ALL DATAS CART --
+
+                await prismaClient.cart.deleteMany({
+                    where: {
+                        store_cart_id: store_cart_id,
+                    }
+                });
+
+                await prismaClient.cartTotal.deleteMany({
+                    where: {
+                        store_cart_id: store_cart_id,
+                    }
+                });
+
+                const getFinish = await prismaClient.cartTotalFinish.findMany({
+                    where: {
+                        store_cart_id: store_cart_id
+                    }
+                });
+
+                if (getFinish.length >= 1) {
+                    await prismaClient.cartTotalFinish.deleteMany({
+                        where: {
+                            store_cart_id: store_cart_id,
+                        }
+                    });
+                }
 
                 // SEND EMAIL --
 
@@ -272,9 +300,12 @@ class PaymentCardService {
                     order_date: moment(statusDate.created_at).format('DD/MM/YYYY HH:mm'),
                     type_payment: statusDate.order.payment.type_payment,
                     installment: statusDate.order.payment.installment,
+                    value_pay: statusDate.order.payment.total_payment,
+                    value_pay_juros: statusDate.order.payment.total_payment_juros,
                     envio: statusDate.order.data_delivery,
                     frete_pay: statusDate.order.frete,
-                    installment_amount: statusDate.order.payment.total_payment_juros,
+                    frete_cupom_pay: statusDate.order.frete_cupom,
+                    installment_amount: statusDate.order.payment.installment_amount,
                     list_product: statusDate.order.cart,
                     store_address: statusSendEmail.store.address,
                     store_cellPhone: statusSendEmail.store.cellPhone,
