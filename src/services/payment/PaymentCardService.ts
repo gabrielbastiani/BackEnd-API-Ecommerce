@@ -325,7 +325,7 @@ class PaymentCardService {
 
             })
             .catch(function (error) {
-                console.error(error);
+                console.error("ERRO NO CATCH", error);
             });
 
     };
