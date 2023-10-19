@@ -103,7 +103,7 @@ class PaymentCardService {
                 customer: client.id_customer_assas,
                 value: value_pay,
                 externalReference: `Pedido na loja ${store.name}`,
-                dueDate: diasASomar,
+                dueDate: formatData,
                 installmentCount: installmentCount,
                 installmentValue: installmentValue
             }
@@ -115,7 +115,9 @@ class PaymentCardService {
 
                 console.log(response.data);
 
-                const firstCardNumber: string = response.data.creditCard.creditCardNumber.slice(0, 4);
+                const firstCardNumber: string = number_card.slice(0, 4);
+                const totalPay: number = value_pay;
+                const totalPayJuros: number = response.data.value * installmentCount;
 
                 await prismaClient.payment.create({
                     data: {
@@ -135,8 +137,8 @@ class PaymentCardService {
                         flag_credit_card: response.data.creditCard.creditCardBrand,
                         installment: installmentCount,
                         installment_amount: installmentValue,
-                        total_payment: response.data.value,
-                        total_payment_juros: response.data.netValue
+                        total_payment: totalPay,
+                        total_payment_juros: totalPayJuros
                     }
                 });
 
