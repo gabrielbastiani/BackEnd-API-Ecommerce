@@ -51,13 +51,11 @@ class PaymentCardService {
         peso
     }: PaymentRequest) {
 
-        function removerAcentos(s: any) {
-            return s.normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, "")
-                .toLowerCase()
-                .replace(/ +/g, "-")
-                .replace(/-{2,}/g, "-")
-                .replace(/[/]/g, "-");
+        function limparTexto(texto: string) {
+            texto = texto.replace(/[-()]/g, '');
+            texto = texto.replace(/\s+/g, '');
+
+            return texto;
         }
 
         const store = await prismaClient.store.findFirst();
@@ -74,6 +72,8 @@ class PaymentCardService {
         data.setDate(data.getDate() + diasASomar);
 
         const formatData = moment(data).format('YYYY-MM-DD');
+
+        const phoneFormated: string = limparTexto(client.phone);
 
         const options = {
             method: 'POST',
@@ -98,7 +98,7 @@ class PaymentCardService {
                     cpfCnpj: cpfCnpj,
                     postalCode: client.cep,
                     addressNumber: client.number,
-                    phone: removerAcentos(client.phone)
+                    phone: phoneFormated
                 },
                 customer: client.id_customer_assas,
                 value: value_pay,
