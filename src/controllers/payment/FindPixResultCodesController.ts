@@ -6,8 +6,6 @@ class FindPixResultCodesController {
 
         const id_pay_pix = req.query.id_pay_pix as string;
 
-        console.log(id_pay_pix)
-
         const options = {
             method: 'GET',
             url: `https://sandbox.asaas.com/api/v3/payments/${id_pay_pix}/pixQrCode`,
