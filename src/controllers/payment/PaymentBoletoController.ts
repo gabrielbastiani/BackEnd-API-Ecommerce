@@ -1,37 +1,58 @@
 import { Request, Response } from "express";
-import { PaymentBoletoService } from "../../services/payment/PaymentBoletoService";
+import axios from "axios";
+import prismaClient from "../../prisma";
+import moment from "moment";
 
 class PaymentBoletoController {
     async handle(req: Request, res: Response) {
-        const {
-            customer_id,
-            value_pay,
-            store_cart_id,
-            frete_cupom,
-            frete,
-            delivery_id,
-            order_data_delivery,
-            name_cupom,
-            cupom,
-            peso
-        } = req.body;
 
-        const paymentBoleto = new PaymentBoletoService();
+        const store = await prismaClient.store.findFirst();
 
-        const boleto = await paymentBoleto.execute({
-            customer_id,
-            value_pay,
-            store_cart_id,
-            frete_cupom,
-            frete,
-            delivery_id,
-            order_data_delivery,
-            name_cupom,
-            cupom,
-            peso
+        const client = await prismaClient.customer.findUnique({
+            where: {
+                id: req.body.customer_id
+            }
         });
 
-        return res.json(boleto);
+        var data = new Date();
+        var diasASomar = 4;
+
+        data.setDate(data.getDate() + diasASomar);
+
+        const formatData = moment(data).format('YYYY-MM-DD');
+
+        const options = {
+            method: 'POST',
+            url: process.env.API_ASSAS_CREATE_PAYMENT,
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                access_token: process.env.TOKEN_ASSAS
+            },
+            data: {
+                billingType: 'BOLETO',
+                discount: { value: 3, dueDateLimitDays: 0 },
+                interest: { value: 2 },
+                fine: { value: 1 },
+                customer: client.id_customer_assas,
+                dueDate: formatData,
+                value: req.body.value_pay,
+                description: `Pedido na loja ${store.name}`,
+                externalReference: store.name,
+                postalService: false
+            }
+        };
+
+        axios
+            .request(options)
+            .then(async function (response: { data: any; }) {
+                console.log(response.data);
+                return res.json(response.data);
+            })
+            .catch(function (error: any) {
+                console.error(error);
+                return res.json(error);
+            });
 
     }
 }

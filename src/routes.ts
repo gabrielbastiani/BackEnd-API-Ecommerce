@@ -507,6 +507,8 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { CreateOrderCardFinishPaymentController } from './controllers/order/CreateOrderCardFinishPaymentController';
+import { CreateOrderBoletoFinishPaymentController } from './controllers/order/CreateOrderBoletoFinishPaymentController';
 
 
 
@@ -996,6 +998,8 @@ router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPay
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
 
 // -- ORDERS --
+router.post('/createFinishPaymentCardOrder', isAuthenticated, new CreateOrderCardFinishPaymentController().handle);
+router.post('/createFinishPaymentBoletoOrder', isAuthenticated, new CreateOrderBoletoFinishPaymentController().handle);
 router.get('/pageListOrdersCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListOrdersCustomerController().handle);
 router.get('/pageListOrdersCustomerStore', isAuthenticated, new PageListOrdersCustomerController().handle);
 router.get('/pageAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllOrdersController().handle);
