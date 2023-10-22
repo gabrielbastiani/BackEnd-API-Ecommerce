@@ -15,7 +15,7 @@ class PaymentBoletoController {
         });
 
         var data = new Date();
-        var diasASomar = 4;
+        var diasASomar = 5;
 
         data.setDate(data.getDate() + diasASomar);
 
@@ -31,9 +31,9 @@ class PaymentBoletoController {
             },
             data: {
                 billingType: 'BOLETO',
-                discount: { value: 3, dueDateLimitDays: 0 },
-                interest: { value: 2 },
-                fine: { value: 1 },
+                discount: { value: 3, dueDateLimitDays: 0, type: 'PERCENTAGE' },
+                interest: { value: 1 },
+                fine: {value: 1, type: 'FIXED'},
                 customer: client.id_customer_assas,
                 dueDate: formatData,
                 value: req.body.value_pay,

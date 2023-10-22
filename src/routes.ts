@@ -471,9 +471,13 @@ import { DeleteTemplateEmailAbandonedController } from './controllers/abandonedC
 import { PaymentCardController } from './controllers/payment/PaymentCardController';
 import { PaymentBoletoController } from './controllers/payment/PaymentBoletoController';
 import { PaymentPixController } from './controllers/payment/PaymentPixController';
+import { FindPixResultCodesController } from './controllers/payment/FindPixResultCodesController';
 import { FindFirstPaymentController } from './controllers/payment/FindFirstPaymentController';
 
 // -- ORDERS --
+import { CreateOrderCardFinishPaymentController } from './controllers/order/CreateOrderCardFinishPaymentController';
+import { CreateOrderBoletoFinishPaymentController } from './controllers/order/CreateOrderBoletoFinishPaymentController';
+import { CreateOrderPIXFinishPaymentController } from './controllers/order/CreateOrderPIXFinishPaymentController';
 import { PageListOrdersCustomerController } from './controllers/order/PageListOrdersCustomerController';
 import { PageListAllOrdersController } from './controllers/order/PageListAllOrdersController';
 import { ExportOrdersCustomersController } from './controllers/order/ExportOrdersCustomersController';
@@ -507,8 +511,6 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { CreateOrderCardFinishPaymentController } from './controllers/order/CreateOrderCardFinishPaymentController';
-import { CreateOrderBoletoFinishPaymentController } from './controllers/order/CreateOrderBoletoFinishPaymentController';
 
 
 
@@ -994,12 +996,14 @@ router.delete('/deleteTemplateFileAbandonedCart', [isAuthenticated, authorizatio
 router.post('/paymentCardResult', isAuthenticated, new PaymentCardController().handle);
 router.post('/paymentBoletoResult', isAuthenticated, new PaymentBoletoController().handle);
 router.post('/paymentPixResult', isAuthenticated, new PaymentPixController().handle);
+router.get('/findResultsPIXPayment', isAuthenticated, new FindPixResultCodesController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
 
 // -- ORDERS --
 router.post('/createFinishPaymentCardOrder', isAuthenticated, new CreateOrderCardFinishPaymentController().handle);
 router.post('/createFinishPaymentBoletoOrder', isAuthenticated, new CreateOrderBoletoFinishPaymentController().handle);
+router.post('/createFinishPaymentPIXOrder', isAuthenticated, new CreateOrderPIXFinishPaymentController().handle);
 router.get('/pageListOrdersCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListOrdersCustomerController().handle);
 router.get('/pageListOrdersCustomerStore', isAuthenticated, new PageListOrdersCustomerController().handle);
 router.get('/pageAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllOrdersController().handle);
