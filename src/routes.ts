@@ -511,6 +511,7 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { WebHooksPaymentsController } from './controllers/payment/WebHooksPaymentsController';
 
 
 
@@ -999,6 +1000,7 @@ router.post('/paymentPixResult', isAuthenticated, new PaymentPixController().han
 router.get('/findResultsPIXPayment', isAuthenticated, new FindPixResultCodesController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
+router.get('/getHooksPaymentsAssas', new WebHooksPaymentsController().handle);
 
 // -- ORDERS --
 router.post('/createFinishPaymentCardOrder', isAuthenticated, new CreateOrderCardFinishPaymentController().handle);
