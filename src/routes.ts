@@ -1000,7 +1000,7 @@ router.post('/paymentPixResult', isAuthenticated, new PaymentPixController().han
 router.get('/findResultsPIXPayment', isAuthenticated, new FindPixResultCodesController().handle);
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
-router.get('/getHooksPaymentsAssas', new WebHooksPaymentsController().handle);
+router.post('/getHooksPaymentsAssas', new WebHooksPaymentsController().handle);
 
 // -- ORDERS --
 router.post('/createFinishPaymentCardOrder', isAuthenticated, new CreateOrderCardFinishPaymentController().handle);
