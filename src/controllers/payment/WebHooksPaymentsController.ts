@@ -4,8 +4,6 @@ import axios from "axios";
 class WebHooksPaymentsController {
     async handle(req: Request, res: Response) {
 
-        const axios = require('axios');
-
         const options = {
             method: 'POST',
             url: 'https://sandbox.asaas.com/api/v3/webhook',
@@ -28,7 +26,17 @@ class WebHooksPaymentsController {
             .request(options)
             .then(function (response) {
                 console.log(response.data);
-                return res.json(response.data);
+
+                console.log(response.data);
+
+                /* if (response.data.event) {
+                    console.log("Deu boa!!!")
+                } else {
+                    console.log("Puta Merda")
+                } */
+
+                return res.json("OK")
+
             })
             .catch(function (error) {
                 console.error(error);
