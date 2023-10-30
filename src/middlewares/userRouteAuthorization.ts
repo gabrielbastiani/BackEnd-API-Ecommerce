@@ -6,7 +6,7 @@ interface Payload {
   sub: string;
 }
 
-module.exports = (rulesAuthorization) => async (req: Request, res: Response, next: NextFunction) => {
+module.exports = (rulesAuthorization: any) => async (req: Request, res: Response, next: NextFunction) => {
   const authToken = req.headers.authorization;
 
   if (!authToken) {
@@ -27,6 +27,8 @@ module.exports = (rulesAuthorization) => async (req: Request, res: Response, nex
       id: sub
     }
   });
+
+  console.log(rulesAuthorization.indexOf(userRole.role))
 
   if (rulesAuthorization.indexOf(userRole.role) === -1) {
     console.log("Esta rota está bloqueada");
