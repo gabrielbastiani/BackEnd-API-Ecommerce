@@ -532,7 +532,7 @@ router.put('/admin/updateRoleAdmin', [isAuthenticated, authorizationRules(["ADMI
 router.post('/admin/session', new AuthAdminController().handle);
 router.put('/admin/authenticatedEmailAdmin', new AuthenticatedEmailAdminController().handle);
 router.delete('/admin/deleteAdminUser', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteAdminOrEmployeController().handle);
-router.get('/admin/me', [authorizationRules(["ADMIN", "EMPLOYEE"])], new DetailAdminController().handle);
+router.get('/admin/me', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DetailAdminController().handle);
 router.get('/admin/exportAdmins', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportAdminController().handle);
 router.get('/admin/listExactAdminName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactAdminNameController().handle);
 router.get('/admin/listExactAdminID', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactAdminController().handle);
