@@ -28,8 +28,6 @@ module.exports = (rulesAuthorization: any) => async (req: Request, res: Response
     }
   });
 
-  console.log(rulesAuthorization.indexOf(userRole.role))
-
   if (rulesAuthorization.indexOf(userRole.role) === -1) {
     console.log("Esta rota está bloqueada");
     res.status(403);
