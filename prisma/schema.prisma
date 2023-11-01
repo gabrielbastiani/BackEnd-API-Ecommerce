@@ -453,7 +453,7 @@ model Product {
   gtin           String?
   mpn            String?
   ncm            String?
-  freeShipping   StatusFreeShipping @default(Sim)
+  freeShipping   StatusFreeShipping @default(Nao)
   status         StatusProduct      @default(Disponivel)
   emphasis       StatusEmphasis     @default(Nao)
   offer          StatusOffer        @default(Nao)
