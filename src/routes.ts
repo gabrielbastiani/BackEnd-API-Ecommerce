@@ -108,6 +108,7 @@ import { CreateCountDownTimeController } from './controllers/store/configuration
 import { FindCountDownController } from './controllers/store/configurations/FindCountDownController';
 import { UpdateCountDownTimeController } from './controllers/store/configurations/UpdateCountDownTimeController';
 import { DisableCountDownTimerController } from './controllers/store/configurations/DisableCountDownTimerController';
+import { NotificationsConfigsController } from './controllers/notifications/NotificationsConfigsController';
 
 // -- ROUTES CATEGORY --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -473,6 +474,7 @@ import { PaymentBoletoController } from './controllers/payment/PaymentBoletoCont
 import { PaymentPixController } from './controllers/payment/PaymentPixController';
 import { FindPixResultCodesController } from './controllers/payment/FindPixResultCodesController';
 import { FindFirstPaymentController } from './controllers/payment/FindFirstPaymentController';
+import { WebHooksPaymentsController } from './controllers/payment/WebHooksPaymentsController';
 
 // -- ORDERS --
 import { CreateOrderCardFinishPaymentController } from './controllers/order/CreateOrderCardFinishPaymentController';
@@ -511,7 +513,6 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { WebHooksPaymentsController } from './controllers/payment/WebHooksPaymentsController';
 
 
 
@@ -634,6 +635,7 @@ router.delete('/clearAllCacheCarts', [isAuthenticated, authorizationRules(["ADMI
 router.get('/findCountDownTime', new FindCountDownController().handle);
 router.put('/updateCountDownTimer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCountDownTimeController().handle);
 router.put('/disaledCountDownTimer', new DisableCountDownTimerController().handle);
+router.get('/notificationsRegister', new NotificationsConfigsController().handle);
 
 // -- ROUTES CATEGORY --
 router.post('/createCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCategoryController().handle);
