@@ -498,6 +498,18 @@ import { SendEmailOrderStatusController } from './controllers/order/templatesEma
 import { UpdateDatasTemplateEmailStatusController } from './controllers/order/templatesEmailsOrderStatus/UpdateDatasTemplateEmailStatusController';
 import { UpdateStatusTemplateEmailController } from './controllers/order/templatesEmailsOrderStatus/UpdateStatusTemplateEmailController';
 
+// -- STATUS FRETE ORDER EMAIL --
+import { AllTemplatesEmailsFreteOrderController } from './controllers/order/templatesEmailsFreteOrderStatus/AllTemplatesEmailsFreteOrderController';
+import { CreateFileTemplateEmailOrderFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/CreateFileTemplateEmailOrderFreteStatusController';
+import { DeleteTemplateEmailStatusOrderFreteController } from './controllers/order/templatesEmailsFreteOrderStatus/DeleteTemplateEmailStatusOrderFreteController';
+import { FindUniqueTemplateEmailFreteStatusOrderController } from './controllers/order/templatesEmailsFreteOrderStatus/FindUniqueTemplateEmailFreteStatusOrderController';
+import { FindUniqueTemplateEmailFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/FindUniqueTemplateEmailFreteStatusController';
+import { UpdateNameTemplateEmailFreteOrderStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateNameTemplateEmailFreteOrderStatusController';
+import { UpdateTemplateEmailOrderFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateTemplateEmailOrderFreteStatusController';
+import { SendEmailOrderFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/SendEmailOrderFreteStatusController';
+import { UpdateDatasTemplateEmailFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateDatasTemplateEmailFreteStatusController';
+import { UpdateStatusTemplateEmailFreteController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateStatusTemplateEmailFreteController';
+
 // -- SHIPPING TRACKING --
 import { CreateCodeShippingTrackingController } from './controllers/shippingTracking/CreateCodeShippingTrackingController';
 import { FindShippingTrackingController } from './controllers/shippingTracking/FindShippingTrackingController';
@@ -1027,6 +1039,18 @@ router.put('/updateTemplateOrderEmail', [isAuthenticated, authorizationRules(["A
 router.get('/sendEmailOrderStatus', isAuthenticated, new SendEmailOrderStatusController().handle);
 router.put('/updateDateAllEmailOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateDatasTemplateEmailStatusController().handle);
 router.put('/updateActiveStatusTemplateEmailOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusTemplateEmailController().handle);
+
+// -- STATUS FRETE ORDER EMAIL --
+router.get('/allTemplateEmailsStatusOrderFrete', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllTemplatesEmailsFreteOrderController().handle);
+router.post('/createTemplateEmailFreteOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateFileTemplateEmailOrderFreteStatusController().handle);
+router.delete('/deleteTemplateEmailFreteOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteTemplateEmailStatusOrderFreteController().handle);
+router.get('/findUniqueEmailFreteOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailFreteStatusOrderController().handle);
+router.get('/getUniqueTemplateEmailFreteStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailFreteStatusController().handle);
+router.put('/updateNameTemplateEmailFreteOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameTemplateEmailFreteOrderStatusController().handle);
+router.put('/updateTemplateEmailOrderEmail', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailOrderFreteStatusController().handle);
+router.get('/sendEmailOrderFreteStatus', isAuthenticated, new SendEmailOrderFreteStatusController().handle);
+router.put('/updateDateAllEmailFreteOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateDatasTemplateEmailFreteStatusController().handle);
+router.put('/updateActiveStatusTemplateEmailFreteOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusTemplateEmailFreteController().handle);
 
 // -- SHIPPING TRACKING --
 router.put('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCodeShippingTrackingController().handle);
