@@ -12,6 +12,7 @@ class NotificationsConfigsService {
         const configAbandonedCart = await prismaClient.configAbandonedCart.findMany();
         const templateAbandonedCartEmail = await prismaClient.templateAbandonedCartEmail.findMany();
         const templateOrderEmail = await prismaClient.templateOrderEmail.findMany();
+        const templateFreteEmail = await prismaClient.templateFreteEmail.findMany();
 
         const data = {
             store,
@@ -22,7 +23,8 @@ class NotificationsConfigsService {
             menuCategory,
             configAbandonedCart,
             templateAbandonedCartEmail,
-            templateOrderEmail
+            templateOrderEmail,
+            templateFreteEmail
         }
 
         return data;

@@ -1,16 +1,26 @@
-import prismaClient from "../../../prisma";
+import prismaClient from "../../prisma";
 import nodemailer from "nodemailer";
 require('dotenv/config');
 import ejs from 'ejs';
 import path from "path";
+import moment from "moment";
 
+interface SendFreteRequest {
+    order_id: string;
+}
 
 class SendEmailFreteOrderStatusService {
-    async execute() {
+    async execute({ order_id }: SendFreteRequest) {
 
         const store = await prismaClient.store.findFirst();
 
-        const statusDate = await prismaClient.statusFrete.findMany({
+        var data = new Date();
+        const date_tracking = moment(data).format('YYYY-MM-DD');
+
+        const statusDate = await prismaClient.shippingTracking.findMany({
+            where: {
+                order_id: order_id
+            },
             include: {
                 order: {
                     include: {
@@ -39,7 +49,7 @@ class SendEmailFreteOrderStatusService {
             if (Object.prototype.hasOwnProperty.call(statusDate, key)) {
                 const status_frete = statusDate[key];
 
-                const order = status_frete.status_frete;
+                const order = status_frete.status_frete
 
                 for (const key in statusSendEmail) {
                     if (Object.prototype.hasOwnProperty.call(statusSendEmail, key)) {
@@ -53,11 +63,14 @@ class SendEmailFreteOrderStatusService {
                             if (configs.active === "Sim") {
 
                                 let name_file = configs.slug_name_file_email;
-                                const requiredPath = path.join(__dirname, `../templatesEmailsFreteOrderStatus/template_emails_frete_status_order/${name_file}.ejs`);
+                                const requiredPath = path.join(__dirname, `../order/templatesEmailsFreteOrderStatus/template_emails_frete_status_order/${name_file}.ejs`);
 
                                 const data = await ejs.renderFile(requiredPath, {
                                     name: status_frete.order.customer.name,
+                                    order_id: status_frete.order.id_order_store,
+                                    date_tracking: date_tracking,
                                     status_frete: configs.status_frete,
+                                    cod_tracking: status_frete.code_tracking,
                                     store_address: configs.store.address,
                                     store_cellPhone: configs.store.cellPhone,
                                     store_cep: configs.store.cep,

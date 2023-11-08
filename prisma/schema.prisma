@@ -180,7 +180,6 @@ model Store {
   statusorder                StatusOrder[]
   templatestoreemail         TemplateStoreEmail[]
   configstoreemail           ConfigStoreEmail[]
-  statusfrete                StatusFrete[]
   templatefreteEmail         TemplateFreteEmail[]
 
   @@map("stores")
@@ -1201,9 +1200,8 @@ model Order {
   created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
-  store       Store?        @relation(fields: [store_id], references: [id])
-  store_id    String?
-  StatusFrete StatusFrete[]
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
 
   @@map("orders")
 }
@@ -1231,6 +1229,7 @@ model ShippingTracking {
   id             String  @id @default(uuid())
   order          Order?  @relation(fields: [order_id], references: [id])
   order_id       String?
+  status_frete   String?
   name_transport String?
   code_tracking  String?
 
@@ -1238,6 +1237,27 @@ model ShippingTracking {
   updated_at DateTime? @updatedAt
 
   @@map("shipmentstrackings")
+}
+
+model TemplateFreteEmail {
+  id                   String           @id @default(uuid())
+  status_frete         String?
+  subject              String?
+  name_file_email      String?          @unique
+  slug_name_file_email String?
+  active               StatusEmailFrete @default(Nao)
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("templatesfretesemails")
+}
+
+enum StatusEmailFrete {
+  Sim
+  Nao
 }
 
 model StatusOrder {
@@ -1272,42 +1292,6 @@ model TemplateOrderEmail {
 }
 
 enum StatusEmail {
-  Sim
-  Nao
-}
-
-model StatusFrete {
-  id           String  @id @default(uuid())
-  order        Order?  @relation(fields: [order_id], references: [id])
-  order_id     String?
-  status_frete String?
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("statusfretes")
-}
-
-model TemplateFreteEmail {
-  id                   String           @id @default(uuid())
-  status_frete         String?
-  subject              String?
-  name_file_email      String?          @unique
-  slug_name_file_email String?
-  active               StatusEmailFrete @default(Nao)
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("templatesfretesemails")
-}
-
-enum StatusEmailFrete {
   Sim
   Nao
 }

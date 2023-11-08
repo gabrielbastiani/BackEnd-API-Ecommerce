@@ -506,7 +506,7 @@ import { FindUniqueTemplateEmailFreteStatusOrderController } from './controllers
 import { FindUniqueTemplateEmailFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/FindUniqueTemplateEmailFreteStatusController';
 import { UpdateNameTemplateEmailFreteOrderStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateNameTemplateEmailFreteOrderStatusController';
 import { UpdateTemplateEmailOrderFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateTemplateEmailOrderFreteStatusController';
-import { SendEmailOrderFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/SendEmailOrderFreteStatusController';
+import { SendEmailOrderFreteStatusController } from './controllers/shippingTracking/SendEmailOrderFreteStatusController';
 import { UpdateDatasTemplateEmailFreteStatusController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateDatasTemplateEmailFreteStatusController';
 import { UpdateStatusTemplateEmailFreteController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateStatusTemplateEmailFreteController';
 
@@ -1048,7 +1048,7 @@ router.get('/findUniqueEmailFreteOrder', [isAuthenticated, authorizationRules(["
 router.get('/getUniqueTemplateEmailFreteStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailFreteStatusController().handle);
 router.put('/updateNameTemplateEmailFreteOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameTemplateEmailFreteOrderStatusController().handle);
 router.put('/updateTemplateEmailOrderEmail', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailOrderFreteStatusController().handle);
-router.get('/sendEmailOrderFreteStatus', isAuthenticated, new SendEmailOrderFreteStatusController().handle);
+router.get('/sendEmailOrderFreteStatus', new SendEmailOrderFreteStatusController().handle);
 router.put('/updateDateAllEmailFreteOrderStatus', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateDatasTemplateEmailFreteStatusController().handle);
 router.put('/updateActiveStatusTemplateEmailFreteOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusTemplateEmailFreteController().handle);
 
