@@ -22,6 +22,7 @@ class SendEmailFreteOrderStatusService {
                 order_id: order_id
             },
             include: {
+                tracking: true,
                 order: {
                     include: {
                         customer: true
@@ -49,7 +50,7 @@ class SendEmailFreteOrderStatusService {
             if (Object.prototype.hasOwnProperty.call(statusDate, key)) {
                 const status_frete = statusDate[key];
 
-                const order = status_frete.status_frete
+                const order = status_frete.tracking[0].status_frete;
 
                 for (const key in statusSendEmail) {
                     if (Object.prototype.hasOwnProperty.call(statusSendEmail, key)) {
@@ -70,7 +71,7 @@ class SendEmailFreteOrderStatusService {
                                     order_id: status_frete.order.id_order_store,
                                     date_tracking: date_tracking,
                                     status_frete: configs.status_frete,
-                                    cod_tracking: status_frete.code_tracking,
+                                    cod_tracking: status_frete.tracking[0].code_tracking,
                                     store_address: configs.store.address,
                                     store_cellPhone: configs.store.cellPhone,
                                     store_cep: configs.store.cep,

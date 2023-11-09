@@ -138,7 +138,8 @@ class CreateOrderPIXFinishPaymentService {
 
         await prismaClient.shippingTracking.create({
             data: {
-                order_id: orderFirst.id
+                order_id: orderFirst.id,
+                store_id: store.id
             }
         });
 

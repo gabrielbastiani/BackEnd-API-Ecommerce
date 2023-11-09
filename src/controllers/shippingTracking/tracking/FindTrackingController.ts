@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { FindShippingTrackingService } from '../../services/shippingTracking/FindShippingTrackingService';
+import { FindTrackingService } from '../../../services/shippingTracking/tracking/FindTrackingService';
 
-class FindShippingTrackingController {
+class FindTrackingController {
     async handle(req: Request, res: Response) {
         const shippingTracking_id = req.query.shippingTracking_id as string;
 
-        const trackink = new FindShippingTrackingService();
+        const trackink = new FindTrackingService();
 
         const code = await trackink.execute({ shippingTracking_id });
 
@@ -14,4 +14,4 @@ class FindShippingTrackingController {
     }
 }
 
-export { FindShippingTrackingController }
+export { FindTrackingController }

@@ -511,8 +511,9 @@ import { UpdateDatasTemplateEmailFreteStatusController } from './controllers/ord
 import { UpdateStatusTemplateEmailFreteController } from './controllers/order/templatesEmailsFreteOrderStatus/UpdateStatusTemplateEmailFreteController';
 
 // -- SHIPPING TRACKING --
-import { CreateCodeShippingTrackingController } from './controllers/shippingTracking/CreateCodeShippingTrackingController';
-import { FindShippingTrackingController } from './controllers/shippingTracking/FindShippingTrackingController';
+import { CreateTrackingController } from './controllers/shippingTracking/tracking/CreateTrackingController';
+import { FindTrackingController } from './controllers/shippingTracking/tracking/FindTrackingController';
+import { UpdateCodeTrackingController } from './controllers/shippingTracking/tracking/UpdateCodeTrackingController';
 
 // -- ORDER COMMENTS --
 import { CreateOrderCommentController } from './controllers/order/orderComment/CreateOrderCommentController';
@@ -1053,8 +1054,9 @@ router.put('/updateDateAllEmailFreteOrderStatus', [isAuthenticated, authorizatio
 router.put('/updateActiveStatusTemplateEmailFreteOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusTemplateEmailFreteController().handle);
 
 // -- SHIPPING TRACKING --
-router.put('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCodeShippingTrackingController().handle);
-router.get('/findAllDateTracking', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindShippingTrackingController().handle);
+router.post('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateTrackingController().handle);
+router.get('/findAllDateTracking', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindTrackingController().handle);
+router.put('/updateCodeTracking', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCodeTrackingController().handle);
 
 // -- ORDER COMMENTS --
 router.post('/createOrderComments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateOrderCommentController().handle);
