@@ -32,7 +32,7 @@ class UpdateNameTemplateEmailFreteOrderStatusService {
         });
 
         const fs = require('fs');
-        const nameInPaste = path.join(__dirname, "../../../../src/services/order/templatesEmailsFreteOrderStatus/template_emails_frete_status_order");
+        const nameInPaste = path.join(__dirname, "../../shippingTracking/template_emails_frete_status_order");
 
         const nomeAtual = `${nameInPaste}/${slug_name_file_email}.ejs`;
         const novoNome = `${nameInPaste}/${removerAcentos(name_file_email)}.ejs`;

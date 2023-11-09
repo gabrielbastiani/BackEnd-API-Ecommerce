@@ -9,7 +9,7 @@ class UpdateTemplateEmailOrderFreteStatusController {
 
         const fs = require('fs');
 
-        const templatePaste = path.join(__dirname, "../../../../src/services/order/templatesEmailsFreteOrderStatus/template_emails_frete_status_order");
+        const templatePaste = path.join(__dirname, "../../../services/shippingTracking/template_emails_frete_status_order");
 
         fs.writeFile(`${templatePaste}/${slug_name_file_email}.ejs`, content, 'utf8', (err: any) => {
             if (err) {

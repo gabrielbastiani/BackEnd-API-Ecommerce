@@ -15,7 +15,7 @@ class SendEmailFreteOrderStatusService {
         const store = await prismaClient.store.findFirst();
 
         var data = new Date();
-        const date_tracking = moment(data).format('YYYY-MM-DD');
+        const date_tracking = moment(data).format('DD/MM/YYYY');
 
         const statusDate = await prismaClient.shippingTracking.findMany({
             where: {
@@ -63,7 +63,7 @@ class SendEmailFreteOrderStatusService {
                             if (configs.active === "Sim") {
 
                                 let name_file = configs.slug_name_file_email;
-                                const requiredPath = path.join(__dirname, `../order/templatesEmailsFreteOrderStatus/template_emails_frete_status_order/${name_file}.ejs`);
+                                const requiredPath = path.join(__dirname, `./template_emails_frete_status_order/${name_file}.ejs`);
 
                                 const data = await ejs.renderFile(requiredPath, {
                                     name: status_frete.order.customer.name,

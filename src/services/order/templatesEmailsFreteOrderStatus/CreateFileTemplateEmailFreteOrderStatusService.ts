@@ -50,7 +50,7 @@ class CreateFileTemplateEmailFreteOrderStatusService {
 
         const fs = require('fs');
 
-        const requiredPath = path.join(__dirname, "./template_emails_frete_status_order");
+        const requiredPath = path.join(__dirname, "../../shippingTracking/template_emails_frete_status_order");
         const nameTemplate = templatesFind.slug_name_file_email;
 
         const pastAndFile = `${requiredPath}/${nameTemplate}.ejs`;
