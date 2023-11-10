@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
+
+<head>
+  <title>Pedido aguardando retirada</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: transparent; font-family: Arial, sans-serif;">
+    <tr>
+      <td align="center" valign="top" style="padding: 20px;">
+        <p>Olá, <%= name %>!</p>
+        <p>Seu pedido de número <%= order_id %> está aguardando por você para que seja retirada na agência dos correios, conforme poderá ver acessando seu rastreio na página de rastreio abaixo e verificando com seu código</p>
+        <h3>ENVIO</h3>
+        <p>Seu código de rastreio junto aos correios é <strong><%= cod_tracking %></strong></p>
+        <p>Acesse o link abaixo, e digite seu código de rastreio por lá e confira o atual status da sua entrega.</p>
+        <a href="https://rastreamento.correios.com.br/app/index.php" target="_blank">CLIQUE AQUI</a>
+        <hr />
+      </td>
+      <hr />
+    </tr>
+  </table>
+  <br />
+  <br />
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #000000; font-family: Arial, sans-serif;">
+    <tr>
+      <td align="center" valign="top" style="padding: 20px;">
+        <img style="height: 30%; height: 30%;" src="http://localhost:3333/files/<%= store_logo %>" alt="loja-virtual">
+        <p style="color: #f4f4f4;"><%= store_name %></p>
+        <p style="color: #f4f4f4;">Endereço: <%= store_address %></p>
+        <p style="color: #f4f4f4;">CEP: <%= store_cep %></p>
+        <p style="color: #f4f4f4;">Cidade: <%= store_city %></p>
+        <p style="color: #f4f4f4;">CNPJ: <%= store_cnpj %></p>
+        <p style="color: #f4f4f4;">Telefone: <%= store_cellPhone %></p>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

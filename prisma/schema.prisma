@@ -178,8 +178,6 @@ model Store {
   countdowntimer             CountdownTimer[]
   templateorderemail         TemplateOrderEmail[]
   statusorder                StatusOrder[]
-  templatestoreemail         TemplateStoreEmail[]
-  configstoreemail           ConfigStoreEmail[]
   templatefreteEmail         TemplateFreteEmail[]
   shippingtracking           ShippingTracking[]
 
@@ -1309,43 +1307,6 @@ model TemplateOrderEmail {
 }
 
 enum StatusEmail {
-  Sim
-  Nao
-}
-
-model TemplateStoreEmail {
-  id                   String  @id @default(uuid())
-  name_file_email      String? @unique
-  slug_name_file_email String?
-
-  configStoreEmail ConfigStoreEmail[]
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("templatesstoresemail")
-}
-
-model ConfigStoreEmail {
-  id                    String              @id @default(uuid())
-  item_store            String?
-  subject               String?
-  templateStoreEmail    TemplateStoreEmail? @relation(fields: [templateStoreEmail_id], references: [id])
-  templateStoreEmail_id String?
-  active                StoreEmails         @default(Nao)
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("configsstoreemails")
-}
-
-enum StoreEmails {
   Sim
   Nao
 }
