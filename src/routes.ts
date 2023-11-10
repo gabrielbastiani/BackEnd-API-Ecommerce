@@ -1055,7 +1055,7 @@ router.put('/updateActiveStatusTemplateEmailFreteOrder', [isAuthenticated, autho
 
 // -- SHIPPING TRACKING --
 router.post('/codeTrackingShipping', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateTrackingController().handle);
-router.get('/findAllDateTracking', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindTrackingController().handle);
+router.get('/findAllDateTracking', isAuthenticated, new FindTrackingController().handle);
 router.put('/updateCodeTracking', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCodeTrackingController().handle);
 
 // -- ORDER COMMENTS --

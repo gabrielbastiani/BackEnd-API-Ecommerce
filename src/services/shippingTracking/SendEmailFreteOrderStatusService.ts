@@ -7,10 +7,11 @@ import moment from "moment";
 
 interface SendFreteRequest {
     order_id: string;
+    status_frete: string;
 }
 
 class SendEmailFreteOrderStatusService {
-    async execute({ order_id }: SendFreteRequest) {
+    async execute({ order_id, status_frete }: SendFreteRequest) {
 
         const store = await prismaClient.store.findFirst();
 
@@ -22,7 +23,11 @@ class SendEmailFreteOrderStatusService {
                 order_id: order_id
             },
             include: {
-                tracking: true,
+                tracking: {
+                    where: {
+                        status_frete: status_frete
+                    },
+                },
                 order: {
                     include: {
                         customer: true
