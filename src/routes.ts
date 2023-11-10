@@ -526,6 +526,7 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { FindEmailTransacionaisController } from './controllers/store/configurations/emailsTransacionais/FindEmailTransacionaisController';
 
 
 
@@ -649,6 +650,7 @@ router.get('/findCountDownTime', new FindCountDownController().handle);
 router.put('/updateCountDownTimer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCountDownTimeController().handle);
 router.put('/disaledCountDownTimer', new DisableCountDownTimerController().handle);
 router.get('/notificationsRegister', new NotificationsConfigsController().handle);
+router.get('/findEmailsTransactions', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindEmailTransacionaisController().handle);
 
 // -- ROUTES CATEGORY --
 router.post('/createCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCategoryController().handle);

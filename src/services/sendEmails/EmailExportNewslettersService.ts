@@ -24,7 +24,7 @@ class EmailExportNewslettersService {
             }
         });
 
-        const requiredPath = path.join(__dirname, `../store/emails_transacionais/exportar_newslatters.ejs`);
+        const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/exportar_newslatters.ejs`);
 
         const data = await ejs.renderFile(requiredPath, {
             name: superAdmin.name,

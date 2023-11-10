@@ -24,7 +24,7 @@ class EmailExportProductsService {
             }
         });
 
-        const requiredPath = path.join(__dirname, `../store/emails_transacionais/exportar_produtos.ejs`);
+        const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/exportar_produtos.ejs`);
 
         const data = await ejs.renderFile(requiredPath, {
             name: superAdmin.name,
