@@ -7,11 +7,12 @@ interface StoreRequest {
   order: number;
   position: string;
   slugPosition: string;
-  store_id: string;
 }
 
 class CreateSocialMediaService {
-  async execute({ name, link, image, order, position, store_id }: StoreRequest) {
+  async execute({ name, link, image, order, position }: StoreRequest) {
+
+    const store = await prismaClient.store.findFirst();
 
     function removerAcentos(s: any) {
       return s.normalize('NFD')
@@ -22,7 +23,7 @@ class CreateSocialMediaService {
         .replace(/[/]/g, "-");
     }
 
-    const store = await prismaClient.socialMedia.create({
+    const social = await prismaClient.socialMedia.create({
       data: {
         name: name,
         link: link,
@@ -30,11 +31,11 @@ class CreateSocialMediaService {
         order: Number(order),
         position: position,
         slugPosition: removerAcentos(position),
-        store_id: store_id
+        store_id: store.id
       }
     })
 
-    return store;
+    return social;
 
   }
 }

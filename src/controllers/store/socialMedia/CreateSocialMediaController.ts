@@ -8,8 +8,7 @@ class CreateSocialMediaController {
             link,
             order,
             position,
-            slugPosition,
-            store_id,
+            slugPosition
         } = req.body;
 
         const createSocialMedia = new CreateSocialMediaService();
@@ -22,8 +21,7 @@ class CreateSocialMediaController {
             link,
             order,
             position,
-            slugPosition,
-            store_id
+            slugPosition
         });
 
         return res.json(store)
