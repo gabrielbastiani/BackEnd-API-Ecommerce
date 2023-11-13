@@ -1,6 +1,8 @@
 import prismaClient from "../../prisma";
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
 
 interface CounterRequest {
     counterproposal_id: string;
@@ -46,6 +48,24 @@ class CounterProposalService {
                 user: process.env.USER_SMTP,
                 pass: process.env.PASS_SMTP
             }
+        });
+
+        const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/resposta_contraproposta.ejs`);
+
+        const data = await ejs.renderFile(requiredPath, {
+            currentPrice: findCounter.currentPrice,
+            counterOfferPrice: findCounter.counterOfferPrice,
+            status: findCounter.status,
+            codeCoupon: findCounter.codeCoupon,
+            information: findCounter.information,
+            nameProduct: removerAcentos(findCounter.nameProduct),
+            store_address: store.address,
+            store_cellPhone: store.cellPhone,
+            store_cep: store.cep,
+            store_city: store.city,
+            store_cnpj: store.cnpj,
+            store_name: store.name,
+            store_logo: store.logo
         });
 
         await transporter.sendMail({

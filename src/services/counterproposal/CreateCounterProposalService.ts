@@ -1,6 +1,8 @@
 import prismaClient from "../../prisma";
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
 
 interface ProposalRequest {
   currentPrice: number;
@@ -68,21 +70,27 @@ class CreateCounterProposalService {
         user: process.env.USER_SMTP,
         pass: process.env.PASS_SMTP
       }
-    })
+    });
+
+    const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/contraproposta.ejs`);
+
+    const data = await ejs.renderFile(requiredPath, {
+      id: firstCounter.id,
+      nameProduct: firstCounter.nameProduct,
+      store_address: store.address,
+      store_cellPhone: store.cellPhone,
+      store_cep: store.cep,
+      store_city: store.city,
+      store_cnpj: store.cnpj,
+      store_name: store.name,
+      store_logo: store.logo
+    });
 
     await transporter.sendMail({
       from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: `${store.email}`,
       subject: `Contraproposta para o produto ${firstCounter.nameProduct}`,
-      html: `
-            <article>
-                <p>Um cliente acabou de fazer uma contraproposta para o produto ${firstCounter.nameProduct}, clique abaixo para ver os detalhes da contraproposta, e responder o cliente.</p>
-                <p><a href="http://localhost:3000/contraproposta/${firstCounter.id}">CLIQUE AQUI</a></p>
-            </article>
-            
-            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual ${store.name}</h5>
-            </div>`,
+      html: data
     });
 
     return counterProposal;
