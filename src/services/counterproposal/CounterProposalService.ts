@@ -72,24 +72,7 @@ class CounterProposalService {
             from: `Loja Virtual - ${store.name} <${store.email}>`,
             to: `${findCounter.email}`,
             subject: `Contraproposta para o produto ${findCounter.nameProduct}`,
-            html: `
-                  <article>
-                      <p>Veja abaixo, nossa resposta para sua contraproposta no produto em nossa loja virtual.</p>
-                      <p>Valor do produto: <strong>${findCounter.currentPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}.</strong></p>
-                      <p>Valor que você propôs: <strong>${findCounter.counterOfferPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}.</strong></p>
-                      <p>Sua proposta está: <strong>${findCounter.status}</strong></p>
-                      <p>Use o código de cupom de desconto, <strong>${findCounter.codeCoupon}</strong></p>
-                      <p>Abaixo nossas considerações:</p>
-                      <br/>
-                      <p><strong>${findCounter.information}</strong></p>
-                      <br/>
-                      <p>Caso descorde da nossa resposta a sua contraproposta, faça uma nova contraproposta entrando no link do produto em nossa loja no link abaixo.</p>
-                      <p><a href="http://localhost:3001/produto/${removerAcentos(findCounter.nameProduct)}">CLIQUE AQUI - ${findCounter.nameProduct}</a></p>
-                  </article>
-                  
-                  <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                      <h5>Loja Virtual ${store.name}</h5>
-                  </div>`,
+            html: data
         });
 
         return counterProposal;
