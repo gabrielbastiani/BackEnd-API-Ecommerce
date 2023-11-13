@@ -1,6 +1,8 @@
 import prismaClient from "../../../../prisma";
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
 
 interface RecoveryRequest {
   email: string;
@@ -38,24 +40,25 @@ class RequestPasswordCustomerRecovery {
       }
     });
 
+    const requiredPath = path.join(__dirname, `../../../store/configurations/emailsTransacionais/emails_transacionais/recuperar_senha_do_usuario.ejs`);
+
+    const data = await ejs.renderFile(requiredPath, {
+      name: customer.name,
+      id: recovery.id,
+      store_address: store.address,
+      store_cellPhone: store.cellPhone,
+      store_cep: store.cep,
+      store_city: store.city,
+      store_cnpj: store.cnpj,
+      store_name: store.name,
+      store_logo: store.logo
+    });
+
     await transporter.sendMail({
       from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: `${customer.email}`,
       subject: "Recuperação de senha",
-      html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h2>Recupere sua senha!</h2>
-            </div>
-            
-            <article>
-                <p>Olá, ${customer.name}!</p>
-                <p>Voce esqueceu a sua senha?</p>
-                <p><a href="http://localhost:3001/recover/${recovery.id}">CLIQUE AQUI</a>, para crair uma nova senha de acesso.</p>
-                <p>Você será redirecionado a uma página em nossa Loja virtual onde poderá cadastrar uma nova senha com segurança!</p>
-            </article>
-            
-            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja virtual ${store.name}</h5>
-            </div>`,
+      html: data
     });
 
 

@@ -1,6 +1,8 @@
 import prismaClient from "../../../../prisma";
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
 
 
 interface RecoveryRequest {
@@ -9,6 +11,9 @@ interface RecoveryRequest {
 
 class RequestPasswordAdminRecovery {
   async execute({ email }: RecoveryRequest) {
+
+    const store = await prismaClient.store.findFirst();
+
     const admin = await prismaClient.admin.findFirst({
       where: {
         email,
@@ -35,53 +40,55 @@ class RequestPasswordAdminRecovery {
         user: process.env.USER_SMTP,
         pass: process.env.PASS_SMTP
       }
-    })
+    });
 
-    if(admin.role === "EMPLOYEE") {
+    if (admin.role === "EMPLOYEE") {
+
+      const requiredPath = path.join(__dirname, `../../../store/configurations/emailsTransacionais/emails_transacionais/recuperar_senha_do_administrador.ejs`);
+
+      const data = await ejs.renderFile(requiredPath, {
+        name: admin.name,
+        id: recovery.id,
+        store_address: store.address,
+        store_cellPhone: store.cellPhone,
+        store_cep: store.cep,
+        store_city: store.city,
+        store_cnpj: store.cnpj,
+        store_name: store.name,
+        store_logo: store.logo
+      });
+
       await transporter.sendMail({
-        from: 'Loja virtual Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
+        from: `Loja Virtual - ${store.name} <${store.email}>`,
         to: admin.email,
         subject: "Recuperação de senha",
-        html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                  <h2>Recupere sua senha!</h2>
-              </div>
-              
-              <article>
-                  <p>Olá, ${admin.name}!</p>
-                  <p>Voce esqueceu a sua senha?</p>
-                  <p><a href="http://localhost:3001/recoverAdmin/${recovery.id}">CLIQUE AQUI</a>, para crair uma nova senha de acesso.</p>
-                  <p>Você será redirecionado a uma página em nossa Loja virtual onde poderá cadastrar uma nova senha com segurança!</p>
-              </article>
-              
-              <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                  <h5>Loja virtual Builder Seu Negocio Online</h5>
-              </div>`,
+        html: data
       });
 
       return;
 
     }
 
-    await transporter.sendMail({
-      from: 'Loja virtual Builder Seu Negocio Online <contato@builderseunegocioonline.com.br>',
-      to: admin.email,
-      subject: "Recuperação de senha",
-      html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h2>Recupere sua senha!</h2>
-            </div>
-            
-            <article>
-                <p>Olá, ${admin.name}!</p>
-                <p>Voce esqueceu a sua senha?</p>
-                <p><a href="http://localhost:3000/recoverAdmin/${recovery.id}">CLIQUE AQUI</a>, para crair uma nova senha de acesso.</p>
-                <p>Você será redirecionado a uma página em nossa Loja virtual onde poderá cadastrar uma nova senha com segurança!</p>
-            </article>
-            
-            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja virtual Builder Seu Negocio Online</h5>
-            </div>`,
+    const requiredPath = path.join(__dirname, `../../../store/configurations/emailsTransacionais/emails_transacionais/recuperar_senha_do_administrador.ejs`);
+
+    const data = await ejs.renderFile(requiredPath, {
+      name: admin.name,
+      id: recovery.id,
+      store_address: store.address,
+      store_cellPhone: store.cellPhone,
+      store_cep: store.cep,
+      store_city: store.city,
+      store_cnpj: store.cnpj,
+      store_name: store.name,
+      store_logo: store.logo
     });
 
+    await transporter.sendMail({
+      from: `Loja Virtual - ${store.name} <${store.email}>`,
+      to: admin.email,
+      subject: "Recuperação de senha",
+      html: data
+    });
 
     return {
       message: "Verifique seu E-mail",

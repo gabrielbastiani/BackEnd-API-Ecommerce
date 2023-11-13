@@ -13,11 +13,7 @@ class FindEmailTransacionaisController {
                 return;
             }
 
-            const listemails = arquivos.forEach(arquivo => {
-                return arquivo;
-            });
-
-            console.log(res.json(listemails))
+            return res.json(arquivos);
         });
 
 

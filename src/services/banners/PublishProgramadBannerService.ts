@@ -4,6 +4,8 @@ const CronJob = require('cron').CronJob;
 import moment from 'moment';
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
 
 
 interface BannerRequest {
@@ -39,7 +41,7 @@ class PublishProgramadBannerService {
         const firstDate = moment(dateAllFirst).format('DD/MM/YYYY HH:mm');
         const dateFuture = moment(dateAllLast).format('DD/MM/YYYY HH:mm');
 
-        const job = new CronJob('0 * * * * *', async () => {
+        new CronJob('0 * * * * *', async () => {
 
             const nowDate = new Date();
             const dateNow = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(nowDate);
@@ -63,23 +65,26 @@ class PublishProgramadBannerService {
                         pass: process.env.PASS_SMTP
                     }
                 });
+        
+                const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/banner_programado.ejs`);
+        
+                const data = await ejs.renderFile(requiredPath, {
+                    titleBanner: titleBanner,
+                    firstDate: firstDate,
+                    store_address: store.address,
+                    store_cellPhone: store.cellPhone,
+                    store_cep: store.cep,
+                    store_city: store.city,
+                    store_cnpj: store.cnpj,
+                    store_name: store.name,
+                    store_logo: store.logo
+                });
 
                 await transporter.sendMail({
                     from: `Loja Virtual - ${store.name} <${store.email}>`,
-                    to: 'gabriel.bastiani@hotmail.com.br',
+                    to: `${store.email}`,
                     subject: "Banner programado na loja",
-                    html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                              <h2>Banner programado na loja</h2>
-                          </div>
-                          
-                          <article>
-                              <p>Olá!</p>
-                              <p>O banner de titulo: <b>"${titleBanner}"</b>, programado para ser publicado na data <b>${firstDate}</b> foi publicado na loja!</p>
-                          </article>
-                          
-                          <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                            <h5>Loja ${store.name}</h5>
-                          </div>`,
+                    html: data
                 });
 
             }
@@ -104,22 +109,25 @@ class PublishProgramadBannerService {
                     }
                 });
 
+                const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/banner_programado_desabilitado.ejs`);
+        
+                const data = await ejs.renderFile(requiredPath, {
+                    titleBanner: titleBanner,
+                    dateFuture: dateFuture,
+                    store_address: store.address,
+                    store_cellPhone: store.cellPhone,
+                    store_cep: store.cep,
+                    store_city: store.city,
+                    store_cnpj: store.cnpj,
+                    store_name: store.name,
+                    store_logo: store.logo
+                });
+
                 await transporter.sendMail({
                     from: `Loja Virtual - ${store.name} <${store.email}>`,
-                    to: 'gabriel.bastiani@hotmail.com.br',
-                    subject: "Banner programado na store",
-                    html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                              <h2>Banner programado na store</h2>
-                          </div>
-                          
-                          <article>
-                              <p>Olá!</p>
-                              <p>O banner programado de titulo: <b>"${titleBanner}"</b>, foi desabilitado na store na data <b>${dateFuture}</p>
-                          </article>
-                          
-                          <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                            <h5>Loja ${store.name}</h5>
-                          </div>`,
+                    to: `${store.email}`,
+                    subject: "Banner programado da loja desabilitado",
+                    html: data
                 });
             }
 

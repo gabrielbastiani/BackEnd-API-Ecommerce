@@ -3,6 +3,8 @@ import prismaClient from '../../../prisma';
 import { hash } from 'bcryptjs';
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
 
 interface AdminRequest {
   name: string;
@@ -61,23 +63,25 @@ class EmployeCreateService {
       }
     });
 
+    const requiredPath = path.join(__dirname, `../../store/configurations/emailsTransacionais/emails_transacionais/criacao_usuario_empregado.ejs`);
+
+    const data = await ejs.renderFile(requiredPath, {
+      name: employe.name,
+      id: employe.id,
+      store_address: store.address,
+      store_cellPhone: store.cellPhone,
+      store_cep: store.cep,
+      store_city: store.city,
+      store_cnpj: store.cnpj,
+      store_name: store.name,
+      store_logo: store.logo
+    });
+
     await transporter.sendMail({
       from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: `${store.email}`,
       subject: "Confirme cadastro de Administração na Loja Virtual",
-      html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                      <h2>Confirme cadastro!</h2>
-                  </div>
-                  
-                  <article>
-                      <p>Olá!</p>
-                      <p>O usuario, ${employe.name} está se cadastrando como empregado na loja virtual!</p>
-                      <p><a href="http://localhost:3000/authenticated/${employe.id}">CLIQUE AQUI</a>, para confirmar a conta junto a Loja Virtual desse novo usuario.</p>
-                  </article>
-                  
-                  <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                      <h5>Loja Virtual ${store.name}</h5>
-                  </div>`,
+      html: data
     });
 
     return employe;

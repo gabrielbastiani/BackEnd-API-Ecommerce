@@ -3,6 +3,8 @@ import { hash } from 'bcryptjs';
 import nodemailer from "nodemailer";
 require('dotenv/config');
 import axios from 'axios';
+import ejs from 'ejs';
+import path from "path";
 
 interface CustomerRequest {
   name: string;
@@ -180,24 +182,26 @@ class CreateCustomerService {
         user: process.env.USER_SMTP,
         pass: process.env.PASS_SMTP
       }
-    })
+    });
+
+    const requiredPath = path.join(__dirname, `../../store/configurations/emailsTransacionais/emails_transacionais/criacao_de_cliente.ejs`);
+
+    const data = await ejs.renderFile(requiredPath, {
+      name: customer.name,
+      store_address: store.address,
+      store_cellPhone: store.cellPhone,
+      store_cep: store.cep,
+      store_city: store.city,
+      store_cnpj: store.cnpj,
+      store_name: store.name,
+      store_logo: store.logo
+    });
 
     await transporter.sendMail({
       from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: store.email,
-      subject: "Novo cliente se cadastrando na store virtual da Builder Seu Negócio Online",
-      html: `<div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                    <h2>Novo usúario!</h2>
-                </div>
-                
-                <article>
-                    <p>Olá!</p>
-                    <p>Um cliente de nome <b>${customer.name}</b> se cadastrou na Loja Virtual.</p>
-                </article>
-                
-                <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                    <h5>Loja Virtual ${store.name}</h5>
-                </div>`,
+      subject: `Novo cliente se cadastrando na loja virtual da ${store.name}`,
+      html: data
     });
 
     return customer;
