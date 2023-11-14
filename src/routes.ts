@@ -488,6 +488,7 @@ import { PageListAllOrdersController } from './controllers/order/PageListAllOrde
 import { ExportOrdersCustomersController } from './controllers/order/ExportOrdersCustomersController';
 import { EmailExportOrdersCustomersController } from './controllers/sendEmails/EmailExportOrdersCustomersController';
 import { ListExactorderController } from './controllers/order/ListExactorderController';
+import { UpdateStatusOrderController } from './controllers/order/UpdateStatusOrderController';
 
 // -- STATUS ORDER EMAIL --
 import { AllTemplatesEmailsOrderController } from './controllers/order/templatesEmailsOrderStatus/AllTemplatesEmailsOrderController';
@@ -1033,6 +1034,7 @@ router.get('/pageAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADM
 router.get('/exportListAllOrdersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportOrdersCustomersController().handle);
 router.get('/sendEmailListordersCustomers', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new EmailExportOrdersCustomersController().handle);
 router.get('/exactOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactorderController().handle);
+router.put('/updateStatusOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusOrderController().handle);
 router.get('/exactOrderStore', isAuthenticated, new ListExactorderController().handle);
 
 // -- STATUS ORDER EMAIL --

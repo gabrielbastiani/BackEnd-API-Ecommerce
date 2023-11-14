@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
+
+<head>
+  <title>Estorno do pedido solicitado</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: transparent; font-family: Arial, sans-serif;">
+    <tr>
+      <td align="center" valign="top" style="padding: 20px;">
+        <p>Olá, <%= name %>!</p>
+        <p>Recebemos sua solicitação de estorno do seu pedido de número <%= id_order %> na data <%= data_update_status %> foi recebida por nós.</p>
+        <p>Maiores duvidas, fique tranquilo em entrar em contato conosco respondendo a esse email.</p>
+        <h2>PAGAMENTO</h2>
+        <hr />
+        <p>Forma de pagamento: <%= type_payment %></p>
+        <p>Parcelamento: <%= installment ? installment : "Sem Parcelamento" %></p>
+        <p>Valor da parcela: <%= installment_amount ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(installment_amount) : "Sem Parcelamento" %></p>
+        <h2>ENVIO</h2>
+        <p><%= envio %></p>
+        <p>
+          Para a sua segurança realizamos análise interna das informações de seu pedido através da validação de dados cadastrais.
+          É importante que você mantenha seus dados sempre atualizados e completos, pois poderemos entrar em contato para confirmá-los.
+          Importante: a partir desse momento não é permitido incluir novos produtos em seu pedido ou alterar a loja para realizar a retirada dos produtos.
+        </p>
+        <hr />
+      </td>
+      <hr />
+    </tr>
+  </table>
+
+  <td>
+    <table style="border: 1px solid rgb(187, 187, 187); margin: 0pt 0px;" cellpadding="0" cellspacing="0" width="600">
+      <tbody>
+        <tr>
+          <td style="border-bottom: 1px dotted rgb(187, 187, 187); padding: 10px; color: rgb(0, 0, 0); text-transform: uppercase;">
+            INFORMAÇÔES DO PRODUTO
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 15px 10px 10px;">
+            <table cellpadding="0" cellspacing="0" width="578">
+              <tbody>
+                <tr>
+                  <td style="border: 1px solid rgb(187, 187, 187); padding: 5px; text-align: center;" colspan="2">
+                    PRODUTO
+                  </td>
+                  <td style="border-top: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 5px; text-align: center;">
+                    QTDE
+                  </td>
+                  <td style="border-top: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 5px; text-align: center;">
+                    UNITARIO
+                  </td>
+                </tr>
+                <% for(var i = 0; i < list_product.length; i++) {%>
+                <tr>
+                  <td style="border-left: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 5px; height: 70px; width: 70px;">
+                    <img src="http://localhost:3333/files/<%= list_product[i].product.photoproducts[0].image %>" width="50" height="50" alt="lojavirtual" >
+                  </td>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 5px; width: 300px;">
+                    <p style="color: rgb(0, 0, 0);">
+                      <%= list_product[i].product.name %>
+                    </p>
+                  </td>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 5px; color: rgb(0, 0, 0); text-align: center;">
+                    <%= list_product[i].amount %>
+                  </td>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 5px; color: rgb(0, 0, 0); text-align: center;">
+                    <%= list_product[i].price ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(list_product[i].price) : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(list_product[i].product.promotion) %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 5px; color: rgb(0, 0, 0); text-align: center;">
+                    TOTAL: <%= list_product[i].price ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(list_product[i].price * list_product[i].amount) : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(list_product[i].product.promotion * list_product[i].amount) %>
+                  </td>
+                </tr>
+                <% } %>
+
+                <tr>
+                  <td style="border-left: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; text-align: right;" colspan="2">
+                    <p style="display: inline; text-transform: uppercase;">
+                      FRETE SEM DESCONTO
+                    </p>
+                  </td>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; color: rgb(0, 0, 0);" colspan="3">
+                    <%= Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(frete_pay) %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="border-left: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; text-align: right;" colspan="2">
+                    <p style="display: inline; text-transform: uppercase;">
+                      FRETE COM DESCONTO
+                    </p>
+                  </td>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; color: rgb(0, 0, 0);" colspan="3">
+                    <%= frete_cupom_pay === frete_pay ? "Sem cupom de frete" : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(frete_cupom_pay) %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="border-left: 1px solid rgb(187, 187, 187); border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; text-align: right;" colspan="2">
+                    <p style="display: inline; text-transform: uppercase;">
+                      TOTAL DO PEDIDO
+                    </p>
+                  </td>
+                  <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; color: rgb(212, 17, 17);" colspan="3">
+                    <%= value_pay_juros ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay_juros) : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay) %>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+
+  <br />
+  <br />
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #000000; font-family: Arial, sans-serif;">
+    <tr>
+      <td align="center" valign="top" style="padding: 20px;">
+        <img style="height: 30%; height: 30%;" src="http://localhost:3333/files/<%= store_logo %>" alt="loja-virtual">
+        <p style="color: #f4f4f4;"><%= store_name %></p>
+        <p style="color: #f4f4f4;">Endereço: <%= store_address %></p>
+        <p style="color: #f4f4f4;">CEP: <%= store_cep %></p>
+        <p style="color: #f4f4f4;">Cidade: <%= store_city %></p>
+        <p style="color: #f4f4f4;">CNPJ: <%= store_cnpj %></p>
+        <p style="color: #f4f4f4;">Telefone: <%= store_cellPhone %></p>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
