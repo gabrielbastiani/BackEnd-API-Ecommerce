@@ -59,6 +59,7 @@ class CreateOrderCommentService {
             const data = await ejs.renderFile(requiredPath, {
                 customer: commentsDate.order.customer.name,
                 order_id: commentsDate.order.id_order_store,
+                id_order: commentsDate.order_id,
                 comment: commentsDate.comment,
                 store_address: store.address,
                 store_cellPhone: store.cellPhone,
