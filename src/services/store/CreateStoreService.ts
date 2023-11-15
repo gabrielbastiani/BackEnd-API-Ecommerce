@@ -52,6 +52,13 @@ class CreateStoreService {
 
     const storeFirst = await prismaClient.store.findFirst();
 
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Loja <strong>${storeFirst.name}</strong> foi criada com sucesso.`,
+        store_id: storeFirst.id
+      }
+    });
+
     await prismaClient.configStore.create({
       data: {
         store_id: storeFirst.id

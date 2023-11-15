@@ -6,6 +6,22 @@ interface CustomerRequest {
 
 class DeleteCustomerService {
   async execute({ customer_id }: CustomerRequest) {
+
+    const store = await prismaClient.store.findFirst();
+
+    const customerName = await prismaClient.customer.findUnique({
+      where: {
+        id: customer_id
+      }
+    });
+
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Cliente <strong>${customerName.name}</strong> foi deletado(a) da loja.`,
+        store_id: store.id
+      }
+    });
+
     const customer = await prismaClient.customer.delete({
       where: {
         id: customer_id

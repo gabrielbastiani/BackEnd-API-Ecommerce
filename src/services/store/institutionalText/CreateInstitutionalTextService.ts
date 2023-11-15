@@ -38,7 +38,20 @@ class CreateInstitutionalTextService {
         description: description,
         store_id: store_id
       }
-    })
+    });
+
+    const textInstitucional = await prismaClient.institutionalText.findFirst({
+      orderBy: {
+        created_at: 'asc'
+      }
+    });
+
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Texto institucional <strong>${textInstitucional.title}</strong> foi criado com sucesso na loja.`,
+        store_id: store_id
+      }
+    });
 
     return text;
 

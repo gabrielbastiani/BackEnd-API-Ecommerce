@@ -33,7 +33,20 @@ class CreateSocialMediaService {
         slugPosition: removerAcentos(position),
         store_id: store.id
       }
-    })
+    });
+
+    const socialMedia = await prismaClient.socialMedia.findFirst({
+      orderBy: {
+        created_at: 'asc'
+      }
+    });
+
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Media social <strong>${socialMedia.name}</strong> cadastrada com sucesso na loja.`,
+        store_id: store.id
+      }
+    });
 
     return social;
 

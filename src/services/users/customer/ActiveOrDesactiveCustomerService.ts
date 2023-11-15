@@ -7,6 +7,8 @@ interface CustomerRequest {
 class ActiveOrDesactiveCustomerService {
   async execute({ customer_id }: CustomerRequest) {
 
+    const store = await prismaClient.store.findFirst();
+
     const activeTrue = await prismaClient.customer.findUnique({
       where: {
         id: customer_id
@@ -25,6 +27,12 @@ class ActiveOrDesactiveCustomerService {
       }
     })
 
+    const dateCustomer = await prismaClient.customer.findUnique({
+      where: {
+        id: customer_id
+      }
+    })
+
     if (activeTrue.authenticated === true) {
       const isFalse = await prismaClient.customer.update({
         where: {
@@ -33,7 +41,14 @@ class ActiveOrDesactiveCustomerService {
         data: {
           authenticated: false
         }
-      })
+      });
+
+      await prismaClient.notificationAdmin.create({
+        data: {
+          message: `Cliente ${dateCustomer.name} foi ${dateCustomer.authenticated === true ? `<strong>DESATIVADO</strong>` : `<strong>ATIVADO</strong>`} da loja.`,
+          store_id: store.id
+        }
+      });
 
       return isFalse;
     }
@@ -46,7 +61,14 @@ class ActiveOrDesactiveCustomerService {
         data: {
           authenticated: true
         }
-      })
+      });
+
+      await prismaClient.notificationAdmin.create({
+        data: {
+          message: `Cliente ${dateCustomer.name} foi ${dateCustomer.authenticated === true ? `<strong>DESATIVADO</strong>` : `<strong>ATIVADO</strong>`} da loja.`,
+          store_id: store.id
+        }
+      });
 
       return isTrue;
 

@@ -23,6 +23,8 @@ model Admin {
   authenticated Boolean   @default(false)
   role          RoleAdmin @default(ADMIN)
 
+  notificationAdmin NotificationAdmin[]
+
   created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
 
@@ -77,6 +79,7 @@ model Customer {
   orders                   Order[]
   payments                 Payment[]
   cartsabandoned           AbandonedCart[]
+  notificationcustomer     NotificationCustomer[]
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
@@ -180,6 +183,8 @@ model Store {
   statusorder                StatusOrder[]
   templatefreteEmail         TemplateFreteEmail[]
   shippingtracking           ShippingTracking[]
+  notificationadmin          NotificationAdmin[]
+  notificationcustomer       NotificationCustomer[]
 
   @@map("stores")
 }
@@ -1309,4 +1314,32 @@ model TemplateOrderEmail {
 enum StatusEmail {
   Sim
   Nao
+}
+
+model NotificationAdmin {
+  id       String  @id @default(uuid())
+  message  String?
+  viewed   Boolean @default(false)
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("notificationsadmin")
+}
+
+model NotificationCustomer {
+  id          String    @id @default(uuid())
+  customer    Customer? @relation(fields: [customer_id], references: [id])
+  customer_id String?
+  message     String?
+  viewed      Boolean   @default(false)
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("notificationscustomers")
 }

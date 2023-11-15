@@ -31,7 +31,20 @@ class CreateImageStoreService {
         position: position,
         slugPosition: removerAcentos(position)
       }
-    })
+    });
+
+    const imageInstitucional = await prismaClient.imageStore.findFirst({
+      orderBy: {
+        created_at: 'asc'
+      }
+    });
+
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Imagem institucional <strong>${imageInstitucional.titleImage}</strong> foi criada com sucesso da loja.`,
+        store_id: store.id
+      }
+    });
 
     return images;
 

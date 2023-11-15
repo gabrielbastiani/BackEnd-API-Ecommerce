@@ -204,6 +204,13 @@ class CreateCustomerService {
       html: data
     });
 
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Cliente <strong>${customer.name}</strong> se cadastrou na loja.`,
+        store_id: store.id
+      }
+    });
+
     return customer;
 
   }
