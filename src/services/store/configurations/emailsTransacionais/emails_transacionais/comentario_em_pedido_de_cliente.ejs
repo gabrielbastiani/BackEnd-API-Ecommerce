@@ -1,28 +1,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
 
 <head>
-  <title>Pedido em transito</title>
+  <title>Comentario em pedido</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
-  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: transparent; font-family: Arial, sans-serif;">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%"
+    style="background-color: transparent; font-family: Arial, sans-serif;">
     <tr>
       <td align="center" valign="top" style="padding: 20px;">
-        <p>Olá, <%= name %>!</p>
-        <p>Boas noticias por aqui, seu pedido de número <%= order_id %> está a caminho do endereço de entrega, data do status <%= date_tracking %></p>
-        <h3>ENVIO</h3>
-        <p>Não esqueça do seu código de rastreio junto aos correios é <strong><%= cod_tracking %></strong></p>
-        <p>Acesse o link abaixo, e digite seu código de rastreio por lá e confira o atual status da sua entrega.</p>
-        <a href="https://rastreamento.correios.com.br/app/index.php" target="_blank">CLIQUE AQUI</a>
-        <hr />
+        <p>Olá, <%= customer %>!</p>
+        <p>Fizemos um comentario em seu pedido de número <%= order_id %>.</p>
+        <p>VEJA ABAIXO:</p>
+        <strong>"<%= comment %>"</strong>
+        <p>Para ver os detalhes do seu pedido, entre em sua conta em nossa loja acessando o link abaixo.</p>
+        <a href="http://localhost:3001/myAccount/meuspedidos/pedido/<%= order_id %>">CLIQUE AQUI</a>
       </td>
       <hr />
     </tr>
   </table>
   <br />
   <br />
-  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #000000; font-family: Arial, sans-serif;">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%"
+    style="background-color: #000000; font-family: Arial, sans-serif;">
     <tr>
       <td align="center" valign="top" style="padding: 20px;">
         <img style="height: 30%; height: 30%;" src="http://localhost:3333/files/<%= store_logo %>" alt="loja-virtual">

@@ -521,6 +521,7 @@ import { UpdateCodeTrackingController } from './controllers/shippingTracking/tra
 
 // -- ORDER COMMENTS --
 import { CreateOrderCommentController } from './controllers/order/orderComment/CreateOrderCommentController';
+import { CreateOrderCommentCustomerController } from './controllers/order/orderComment/CreateOrderCommentCustomerController';
 import { ListExactOrderCommentController } from './controllers/order/orderComment/ListExactOrderCommentController';
 
 
@@ -1068,7 +1069,7 @@ router.put('/updateCodeTracking', [isAuthenticated, authorizationRules(["ADMIN",
 
 // -- ORDER COMMENTS --
 router.post('/createOrderComments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateOrderCommentController().handle);
-router.post('/createOrderCommentsStore', isAuthenticated, new CreateOrderCommentController().handle);
+router.post('/createOrderCommentsStore', isAuthenticated, new CreateOrderCommentCustomerController().handle);
 router.get('/orderComments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactOrderCommentController().handle);
 router.get('/orderCommentsStore', isAuthenticated, new ListExactOrderCommentController().handle);
 

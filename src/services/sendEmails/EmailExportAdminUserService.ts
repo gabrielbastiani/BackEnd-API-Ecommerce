@@ -9,6 +9,7 @@ class EmailExportAdminUserService {
     async execute() {
 
         const store = await prismaClient.store.findFirst();
+        
         const superAdmin = await prismaClient.admin.findFirst({
             where: {
                 role: RoleAdmin.ADMIN
