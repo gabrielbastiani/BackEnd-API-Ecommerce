@@ -34,6 +34,19 @@ class CreateCategoryService {
       }
     });
 
+    const category_find = await prismaClient.category.findFirst({
+      orderBy: {
+        created_at: 'asc'
+      }
+    });
+
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Uma nova categoria foi cadastrada <strong>${category_find.name}</strong>`,
+        store_id: store_id
+      }
+    });
+
     return category;
 
   }

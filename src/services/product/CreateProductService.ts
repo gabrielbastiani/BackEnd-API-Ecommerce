@@ -76,6 +76,13 @@ class CreateProductService {
             }
         });
 
+        await prismaClient.notificationAdmin.create({
+            data: {
+                message: `Produto <strong>${name}</strong> foi cadastrado.`,
+                store_id: store_id
+            }
+        });
+
         return product;
 
     }

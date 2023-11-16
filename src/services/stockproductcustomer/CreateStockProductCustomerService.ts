@@ -1,6 +1,8 @@
 import prismaClient from "../../prisma";
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
 
 interface StockEmailRequest {
     email: string;
@@ -38,47 +40,49 @@ class CreateStockProductCustomerService {
             }
         });
 
+        const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/estoque_de_produto_para_cliente.ejs`);
+
+        const data = await ejs.renderFile(requiredPath, {
+            nameProduct: firstStockProduct.product.name,
+            store_address: store.address,
+            store_cellPhone: store.cellPhone,
+            store_cep: store.cep,
+            store_city: store.city,
+            store_cnpj: store.cnpj,
+            store_name: store.name,
+            store_logo: store.logo
+        });
+
         await transporter.sendMail({
             from: `Loja Virtual - ${store.name} <${store.email}>`,
             to: `${email}`,
             subject: `Estoque do produto ${firstStockProduct.product.name}`,
-            html: `
-            <article>
-                <p>Olá!</p>
-                <p>Assim que que o estoque do produto ${firstStockProduct.product.name} estiver restabelecido, você será notificado aqui em seu e-mail.</p>
-            </article>
-            
-            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual ${store.name}</h5>
-            </div>`,
+            html: data
         });
-
-        function removerAcentos(s: any) {
-            return s.normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, "")
-                .toLowerCase()
-                .replace(/ +/g, "-")
-                .replace(/-{2,}/g, "-")
-                .replace(/[/]/g, "-");
-        }
 
         setInterval(async () => {
 
             if (firstStockProduct.product.stock >= 1) {
+
+                const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/estoque_de_produto_restabelecido_para_cliente.ejs`);
+
+                const data = await ejs.renderFile(requiredPath, {
+                    nameProduct: firstStockProduct.product.name,
+                    slugProduct: firstStockProduct.product.slug,
+                    store_address: store.address,
+                    store_cellPhone: store.cellPhone,
+                    store_cep: store.cep,
+                    store_city: store.city,
+                    store_cnpj: store.cnpj,
+                    store_name: store.name,
+                    store_logo: store.logo
+                });
+
                 await transporter.sendMail({
                     from: `Loja Virtual - ${store.name} <${store.email}>`,
                     to: `${email}`,
                     subject: `Estoque do produto ${firstStockProduct.product.name} restabelecido`,
-                    html: `
-                    <article>
-                        <p>Olá!</p>
-                        <p>O estoque do produto ${firstStockProduct.product.name} foi restabelecido em nossa loja virtual, clique abaixo e seja redirecionado para a página desse produto la na loja.</p>
-                        <p><a href="http://localhost:3001/produto/${removerAcentos(firstStockProduct.product.slug)}">CLIQUE AQUI - ${firstStockProduct.product.name}</a></p>
-                    </article>
-                    
-                    <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                        <h5>Loja Virtual ${store.name}</h5>
-                    </div>`,
+                    html: data
                 });
             }
 

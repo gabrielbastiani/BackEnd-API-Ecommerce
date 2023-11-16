@@ -109,6 +109,7 @@ import { FindCountDownController } from './controllers/store/configurations/Find
 import { UpdateCountDownTimeController } from './controllers/store/configurations/UpdateCountDownTimeController';
 import { DisableCountDownTimerController } from './controllers/store/configurations/DisableCountDownTimerController';
 import { NotificationsConfigsController } from './controllers/notifications/NotificationsConfigsController';
+import { NotificationsPainelAdminController } from './controllers/notifications/NotificationsPainelAdminController';
 import { FindEmailTransacionaisController } from './controllers/store/configurations/emailsTransacionais/FindEmailTransacionaisController';
 import { FindUniqueTemplateEmailTransacionalController } from './controllers/store/configurations/emailsTransacionais/FindUniqueTemplateEmailTransacionalController';
 import { UpdateTemplateEmailTransacionalController } from './controllers/store/configurations/emailsTransacionais/UpdateTemplateEmailTransacionalController';
@@ -654,6 +655,7 @@ router.get('/findCountDownTime', new FindCountDownController().handle);
 router.put('/updateCountDownTimer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCountDownTimeController().handle);
 router.put('/disaledCountDownTimer', new DisableCountDownTimerController().handle);
 router.get('/notificationsRegister', new NotificationsConfigsController().handle);
+router.get('/notificationPainelAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new NotificationsPainelAdminController().handle);
 router.get('/findEmailsTransactions', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindEmailTransacionaisController().handle);
 router.get('/findTemplateEmailTransacional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailTransacionalController().handle);
 router.put('/updateContentTemplateEmailTransacional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailTransacionalController().handle);

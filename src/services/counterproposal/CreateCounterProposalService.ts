@@ -93,6 +93,13 @@ class CreateCounterProposalService {
       html: data
     });
 
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Você recebeu uma contraproposta pelo produto <strong>${firstCounter.nameProduct}</strong>, <a href="http://localhost:3000/contraproposta/${firstCounter.id}">CLIQUE AQUI E VEJA</a>`,
+        store_id: store.id
+      }
+    });
+
     return counterProposal;
 
   }

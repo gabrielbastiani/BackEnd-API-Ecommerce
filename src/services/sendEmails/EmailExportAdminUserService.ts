@@ -49,6 +49,13 @@ class EmailExportAdminUserService {
             }]
         });
 
+        await prismaClient.notificationAdmin.create({
+            data: {
+                message: `Lista de <strong>usuarios administradores</strong> enviado com sucesso para o seu email.</strong>.`,
+                store_id: store.id
+            }
+        });
+
         return {
             message: "Verifique seu E-mail",
         };

@@ -237,6 +237,13 @@ class CreateOrderBoletoFinishPaymentService {
             html: respo,
         });
 
+        await prismaClient.notificationAdmin.create({
+            data: {
+                message: `Parabéns!!! você recebeu um novo pedido, número <strong>${statusDate.order.id_order_store}</strong> foi criado.`,
+                store_id: store.id
+            }
+        });
+
     }
 }
 

@@ -34,7 +34,7 @@ class CreateCuponService {
                 startDate: startDate,
                 endDate: endDate,
                 code: code,
-                amountCoupon: Number(amountCoupon),
+                amountCoupon: Number(amountCoupon),/* @ts-ignore */
                 active: active,
                 store_id: store.id
             }
@@ -52,7 +52,7 @@ class CreateCuponService {
         const firstDate = moment(dateAllFirst).format('DD/MM/YYYY HH:mm');
         const dateFuture = moment(dateAllLast).format('DD/MM/YYYY HH:mm');
 
-        const job = new CronJob('0 * * * * *', async () => {
+        new CronJob('0 * * * * *', async () => {
 
             const nowDate = new Date();
             const dateNow = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(nowDate);
@@ -68,6 +68,13 @@ class CreateCuponService {
                     }
                 });
 
+                await prismaClient.notificationAdmin.create({
+                    data: {
+                        message: `Cupom <strong>${alldates.name}</strong>, foi <strong>ATIVADO</strong> com sucesso.`,
+                        store_id: store.id
+                    }
+                });
+
                 return;
             }
 
@@ -79,6 +86,13 @@ class CreateCuponService {
                     },
                     data: {
                         active: StatusCoupon.Nao
+                    }
+                });
+
+                await prismaClient.notificationAdmin.create({
+                    data: {
+                        message: `Cupom <strong>${alldates.name}</strong>, foi <strong>DESATIVADO</strong> com sucesso.`,
+                        store_id: store.id
                     }
                 });
 

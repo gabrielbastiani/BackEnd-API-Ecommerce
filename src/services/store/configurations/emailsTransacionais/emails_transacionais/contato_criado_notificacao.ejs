@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
+
+<head>
+  <title>Contato criado notificacao</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: transparent; font-family: Arial, sans-serif;">
+    <tr>
+      <td align="center" valign="top" style="padding: 20px;">
+        <p>O cliente <%= name %>, deixou a seguinte mensagem abaixo, no formulario de contato da loja virtual <%= store_name %>.</p>
+        <p>Responda a mensagem do(a) <%= name %> respondendo a este email.</p>
+        <p>Ou vá até o painel administrativo da loja virtual e responda a qualquer momento por lá mesmo...</p>
+        <h3>Dados do Cliente:</h3>
+        <p><strong>Nome: </strong><span><%= name %></span></p>
+        <p><strong>E-mail: </strong><span><%= email %></span></p>
+        <p><strong>Telefone: </strong><span><%= phone %></span></p>
+        <p><%= company === null ? `Empresa: Clinte deixou em branco` : `Empresa: ${company}` %></p>
+        <p><%= sector === null ? `Setor: Clinte deixou em branco` : `Setor: ${sector}` %></p>
+        <h4>VEJA A MENSAGEM DEIXADA PELO CLIENTE ABAIXO:</h4>
+        <p><%= message %></p>
+      </td>
+      <hr />
+    </tr>
+  </table>
+  <br />
+  <br />
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #000000; font-family: Arial, sans-serif;">
+    <tr>
+      <td align="center" valign="top" style="padding: 20px;">
+        <img style="height: 30%; height: 30%;" src="http://localhost:3333/files/<%= store_logo %>" alt="loja-virtual">
+        <p style="color: #f4f4f4;"><%= store_name %></p>
+        <p style="color: #f4f4f4;">Endereço: <%= store_address %></p>
+        <p style="color: #f4f4f4;">CEP: <%= store_cep %></p>
+        <p style="color: #f4f4f4;">Cidade: <%= store_city %></p>
+        <p style="color: #f4f4f4;">CNPJ: <%= store_cnpj %></p>
+        <p style="color: #f4f4f4;">Telefone: <%= store_cellPhone %></p>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

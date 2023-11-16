@@ -12,6 +12,8 @@ interface AbandonedRequest {
 class CreateAbandonedCartService {
     async execute({ customer_id, store_cart_id, cart_abandoned, total_cart, email_customer }: AbandonedRequest) {
 
+        const store = await prismaClient.store.findFirst();
+
         function removerAcentos(s: any) {
             return s.normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, "")
@@ -38,6 +40,13 @@ class CreateAbandonedCartService {
         const findLastAbandoned = await prismaClient.abandonedCart.findMany({
             where: {
                 created_at: dataCart
+            }
+        });
+
+        await prismaClient.notificationAdmin.create({
+            data: {
+                message: `Se ligue!!! um cliente acaba de chegar a página de pagamento, e poderá abandonar a compra.`,
+                store_id: store.id
             }
         });
 

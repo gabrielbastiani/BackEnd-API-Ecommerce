@@ -124,6 +124,13 @@ class CreateBannerService {
           html: data
         });
 
+        await prismaClient.notificationAdmin.create({
+          data: {
+            message: `Banner programado <strong>${titleBanner}</strong> foi publicado na loja.`,
+            store_id: store.id
+          }
+        });
+
       }
 
       if (dateFuture === dateNow) {
@@ -166,6 +173,14 @@ class CreateBannerService {
           subject: "Banner programado na loja desabilitado",
           html: data
         });
+
+        await prismaClient.notificationAdmin.create({
+          data: {
+            message: `Banner programado <strong>${titleBanner}</strong> foi desabilitado na loja.`,
+            store_id: store.id
+          }
+        });
+        
       }
 
     }, null, true);

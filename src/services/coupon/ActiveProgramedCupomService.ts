@@ -13,6 +13,9 @@ interface CupomRequest {
 
 class ActiveProgramedCupomService {
     async execute({ startDate, endDate, cupon_id }: CupomRequest) {
+
+        const store = await prismaClient.store.findFirst();
+
         const allDateFirst = await prismaClient.coupon.findFirst({
             where: {
                 id: cupon_id,
@@ -33,7 +36,7 @@ class ActiveProgramedCupomService {
         const firstDate = moment(dateAllFirst).format('DD/MM/YYYY HH:mm');
         const dateFuture = moment(dateAllLast).format('DD/MM/YYYY HH:mm');
 
-        const job = new CronJob('0 * * * * *', async () => {
+        new CronJob('0 * * * * *', async () => {
 
             const nowDate = new Date();
             const dateNow = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(nowDate);
@@ -49,6 +52,13 @@ class ActiveProgramedCupomService {
                     }
                 });
 
+                await prismaClient.notificationAdmin.create({
+                    data: {
+                        message: `Cupom <strong>${allDateLast.name}</strong>, foi <strong>ATIVADO</strong> com sucesso.`,
+                        store_id: store.id
+                    }
+                });
+
                 return;
 
             }
@@ -61,6 +71,13 @@ class ActiveProgramedCupomService {
                     },
                     data: {
                         active: StatusCoupon.Nao
+                    }
+                });
+
+                await prismaClient.notificationAdmin.create({
+                    data: {
+                        message: `Cupom <strong>${allDateLast.name}</strong>, foi <strong>DESATIVADO</strong> com sucesso.`,
+                        store_id: store.id
                     }
                 });
 

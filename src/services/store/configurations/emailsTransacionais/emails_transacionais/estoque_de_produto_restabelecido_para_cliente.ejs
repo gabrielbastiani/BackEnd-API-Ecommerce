@@ -1,25 +1,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" dir="ltl" lang="pt-br">
 
 <head>
-  <title>Contraproposta para o produto</title>
+  <title>Estoque de produto</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
-  <table cellpadding="0" cellspacing="0" border="0" width="100%"
-    style="background-color: transparent; font-family: Arial, sans-serif;">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: transparent; font-family: Arial, sans-serif;">
     <tr>
       <td align="center" valign="top" style="padding: 20px;">
-        <p>Um cliente acabou de fazer uma contraproposta para o produto <%= nameProduct %>, clique abaixo para ver os detalhes da contraproposta, e responder o cliente.</p>
-        <a href="http://localhost:3000/contraproposta/<%= id %>">CLIQUE AQUI</a>
+        <p>Olá!</p>
+        <p>O estoque do produto <%= nameProduct %> foi restabelecido em nossa loja virtual, clique abaixo e seja redirecionado para a página desse produto la na loja.</p>
+        <a href="http://localhost:3001/produto/<%= slugProduct %>">CLIQUE AQUI - <%= nameProduct %></a>
       </td>
       <hr />
     </tr>
   </table>
   <br />
   <br />
-  <table cellpadding="0" cellspacing="0" border="0" width="100%"
-    style="background-color: #000000; font-family: Arial, sans-serif;">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #000000; font-family: Arial, sans-serif;">
     <tr>
       <td align="center" valign="top" style="padding: 20px;">
         <img style="height: 30%; height: 30%;" src="http://localhost:3333/files/<%= store_logo %>" alt="loja-virtual">

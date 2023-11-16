@@ -7,6 +7,7 @@ interface ConfigRequest {
 class ConfigsStoreService {
     async execute({ statusUpdate }: ConfigRequest) {
 
+        const store = await prismaClient.store.findFirst();
         const configDate = await prismaClient.configStore.findFirst();
 
         // offer_products
@@ -17,6 +18,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     offer_products: configDate.offer_products === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Carrossel de produtos em oferta se encontra <strong>${configDate.offer_products === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no front-end da loja.`,
+                    store_id: store.id
                 }
             });
 
@@ -35,6 +43,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Carrossel de produtos em destaque se encontra <strong>${configDate.emphasis_products === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no front-end da loja.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -47,6 +62,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     chat_ia: configDate.chat_ia === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Função de inteligencia artificial se encontra <strong>${configDate.chat_ia === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no front-end da loja.`,
+                    store_id: store.id
                 }
             });
 
@@ -65,6 +87,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Menu de crédito para o cliente se encontra <strong>${configDate.credits_customer_in_menu === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> para os clientes.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -77,6 +106,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     cupom_in_cart: configDate.cupom_in_cart === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Campo de cupom de desconto no carrinho de compras se encontra <strong>${configDate.cupom_in_cart === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
                 }
             });
 
@@ -95,6 +131,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Campo de cupom de desconto na página de pagamento se encontra <strong>${configDate.cupom_in_payment === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -107,6 +150,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     digital_products_customer_in_menu: configDate.digital_products_customer_in_menu === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Menu de produtos digitais se encontra <strong>${configDate.digital_products_customer_in_menu === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> para os clientes.`,
+                    store_id: store.id
                 }
             });
 
@@ -125,6 +175,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Seção de newsllaters se encontra <strong>${configDate.newsllaters_section === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no front-end da loja.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -137,6 +194,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     search_bar: configDate.search_bar === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Campo de pesquisa de produtos se encontra <strong>${configDate.search_bar === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no header da loja.`,
+                    store_id: store.id
                 }
             });
 
@@ -155,6 +219,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Função de atendimento se encontra <strong>${configDate.service_in_header === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no header da loja.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -167,6 +238,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     tendence_product: configDate.tendence_product === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Produtos em tendencias se encontra <strong>${configDate.tendence_product === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
                 }
             });
 
@@ -185,6 +263,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Carrossel de produtos recem vizualizados se encontra <strong>${configDate.recent_products_views === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -197,6 +282,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     payment_pix: configDate.payment_pix === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Método de pagamento <strong>PIX</strong> se encontra <strong>${configDate.payment_pix === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
                 }
             });
 
@@ -215,6 +307,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Método de pagamento <strong>BOLETO BANCARIO</strong> se encontra <strong>${configDate.payment_boleto === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -227,6 +326,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     payment_cartao: configDate.payment_cartao === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Método de pagamento <strong>CARTÃO DE CRÉDITO</strong> se encontra <strong>${configDate.payment_cartao === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
                 }
             });
 
@@ -245,6 +351,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Filtragem por <strong>CATEGORIAS</strong> se encontra <strong>${configDate.filter_categorys === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -257,6 +370,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     filter_atributes: configDate.filter_atributes === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Filtragem por <strong>ATRIBUTOS</strong> se encontra <strong>${configDate.filter_atributes === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
                 }
             });
 
@@ -275,6 +395,13 @@ class ConfigsStoreService {
                 }
             });
 
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Filtragem por <strong>PREÇOS</strong> se encontra <strong>${configDate.filter_price === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
+                }
+            });
+
             return;
         }
 
@@ -287,6 +414,13 @@ class ConfigsStoreService {
                 },
                 data: {
                     count_down_timer: configDate.count_down_timer === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Contador regressivo se encontra <strong>${configDate.count_down_timer === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    store_id: store.id
                 }
             });
 

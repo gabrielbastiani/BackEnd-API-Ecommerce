@@ -92,6 +92,13 @@ class SendEmailFreteOrderStatusService {
                                     subject: `${configs.subject}`,
                                     html: data,
                                 });
+
+                                await prismaClient.notificationAdmin.create({
+                                    data: {
+                                        message: `Status de frete do pedido <strong>${status_frete.order.id_order_store}</strong> atualizado para <strong>${configs.status_frete}</strong>.`,
+                                        store_id: store.id
+                                    }
+                                });
                             }
                         }
                     }

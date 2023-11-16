@@ -97,6 +97,13 @@ class UpdateStatusOrderService {
             html: response,
         });
 
+        await prismaClient.notificationAdmin.create({
+            data: {
+                message: `Status do pedido <strong>${statusDate.order.id_order_store}</strong> foi atualizado.`,
+                store_id: store.id
+            }
+        });
+
         return orderStatus;
     }
 }

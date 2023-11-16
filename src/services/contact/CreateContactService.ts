@@ -1,6 +1,8 @@
 import prismaClient from "../../prisma";
 import nodemailer from "nodemailer";
 require('dotenv/config');
+import ejs from 'ejs';
+import path from "path";
 
 interface ContactRequest {
   name: string;
@@ -12,12 +14,12 @@ interface ContactRequest {
 }
 
 class CreateContactService {
-  async execute({ name, email, phone, company, sector, message }: ContactRequest){
+  async execute({ name, email, phone, company, sector, message }: ContactRequest) {
 
     const store = await prismaClient.store.findFirst();
 
     const contact = await prismaClient.contact.create({
-      data:{
+      data: {
         name: name,
         email: email,
         phone: phone,
@@ -28,6 +30,12 @@ class CreateContactService {
       }
     });
 
+    const contact_find = await prismaClient.contact.findFirst({
+      orderBy: {
+        created_at: 'asc'
+      }
+    });
+
     const transporter = nodemailer.createTransport({
       host: process.env.HOST_SMTP,
       port: 465,
@@ -35,46 +43,58 @@ class CreateContactService {
         user: process.env.USER_SMTP,
         pass: process.env.PASS_SMTP
       }
-    })
+    });
+
+    const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/contato_criado.ejs`);
+
+    const data = await ejs.renderFile(requiredPath, {
+      name: name,
+      store_address: store.address,
+      store_cellPhone: store.cellPhone,
+      store_cep: store.cep,
+      store_city: store.city,
+      store_cnpj: store.cnpj,
+      store_name: store.name,
+      store_logo: store.logo
+    });
 
     await transporter.sendMail({
       from: `Loja Virtual - ${store.name} <${store.email}>`,
       to: `${email}`,
       subject: "Recebemos seu contato",
-      html: `
-            <article>
-                <p>Olá ${name}!</p>
-                <p>Agradecenos por entrar em contato conosco, fique tranquilo(a), em breve retornaremos contato por aqui, ou pelo numero de telefone que nos deixou.</p>
-            </article>
-            
-            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual ${store.name}</h5>
-            </div>`,
+      html: data
+    });
+
+    const requiredPathResponde = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/contato_criado_notificacao.ejs`);
+
+    const data_responde = await ejs.renderFile(requiredPathResponde, {
+      name: name,
+      email: email,
+      phone: phone,
+      company: company,
+      sector: sector,
+      message: message,
+      store_address: store.address,
+      store_cellPhone: store.cellPhone,
+      store_cep: store.cep,
+      store_city: store.city,
+      store_cnpj: store.cnpj,
+      store_name: store.name,
+      store_logo: store.logo
     });
 
     await transporter.sendMail({
       from: `<${email}>`,
       to: `${store.email}`,
       subject: `Formulario de contato da loja virtual ${store.name}`,
-      html: `
-            <article>
-                <p>O cliente ${name}, deixou a seguinte mensagem abaixo, no formulario de contato da loja virtual ${store.name}.</p>
-                <p>Responda a mensagem do(a) ${name} respondendo a este email.</p>
-                <p>Ou vá até o painel administrativo da loja virtual e responda a qualquer momento por lá mesmo...</p>
-                <h3>Dados do Cliente:</h3>
-                <p><strong>Nome: </strong><span>${name}</span></p>
-                <p><strong>E-mail: </strong><span>${email}</span></p>
-                <p><strong>Telefone: </strong><span>${phone}</span></p>
-                ${company === null ? ( `<p><strong>Empresa: </strong><span>Clinte deixou em branco</span></p>` ) : `<p><strong>Empresa: </strong><span>${company}</span></p>` }
-                ${sector === null ? ( `<p><strong>Setor: </strong><span>Clinte deixou em branco</span></p>` ) : `<p><strong>Setor: </strong><span>${sector}</span></p>` }
-                <h4>VEJA A MENSAGEM DEIXADA PELO CLIENTE ABAIXO:</h4>
-                <p>${message}</p>
-                <br/>
-            </article>
-            
-            <div style="background-color: rgb(223, 145, 0); color: black; padding: 0 55px;">
-                <h5>Loja Virtual ${store.name}</h5>
-            </div>`,
+      html: data_responde
+    });
+
+    await prismaClient.notificationAdmin.create({
+      data: {
+        message: `Você recebeu uma nova mensagem, <a href="http://localhost:3000/contato/${contact_find.id}">CLIQUE AQUI E VEJA</a>`,
+        store_id: store.id
+      }
     });
 
     return contact;

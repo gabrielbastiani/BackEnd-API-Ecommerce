@@ -22,6 +22,25 @@ class CreateAvalietionService {
             }
         });
 
+        const avalietion_data = await prismaClient.avalietion.findFirst({
+            orderBy: {
+                created_at: 'asc'
+            }
+        });
+
+        const product = await prismaClient.product.findUnique({
+            where: {
+                id: product_id
+            }
+        });
+
+        await prismaClient.notificationAdmin.create({
+            data: {
+                message: `Avaliação de produto realizado <strong>${product.name}</strong>, <a href="http://localhost:3000/avaliacao/${product.slug}/${avalietion_data.id}">CLIQUE AQUI E VEJA</a>`,
+                store_id: store_id
+            }
+        });
+
         return avalietion;
 
     }

@@ -75,6 +75,13 @@ class CreateOrderCommentCustomerService {
             html: data
         });
 
+        await prismaClient.notificationAdmin.create({
+            data: {
+                message: `Novo comentário feito no pedido de número <strong>${commentsDate.order.id_order_store}</strong>, veja o que foi dito... <a href="http://localhost:3000/pedido/${commentsDate.order_id}>CLIQUE AQUI</a>`,
+                store_id: store.id
+            }
+        });
+
         return comments;
 
     }

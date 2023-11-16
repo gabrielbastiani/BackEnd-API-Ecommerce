@@ -1,13 +1,9 @@
 import prismaClient from "../../prisma";
-/* const ApiNodeCorreios = require('node-correios');
-const correios = new ApiNodeCorreios(); */
 import puppeteer from 'puppeteer';
 
 interface CalcFrete {
-    /* nCdServico: string; */
     sCepDestino: string;
     nVlPeso: string;
-    /* nCdFormato: string; */
     nVlComprimento: string;
     nVlAltura: string;
     nVlLargura: string;
@@ -15,29 +11,14 @@ interface CalcFrete {
 
 class FindFreteCalculoService {
     async execute({
-        /* nCdServico, */
         sCepDestino,
         nVlPeso,
-        /* nCdFormato, */
         nVlComprimento,
         nVlAltura,
         nVlLargura
     }: CalcFrete) {
 
         const store = await prismaClient.store.findFirst();
-
-        /* const calcFrete = correios.calcPrecoPrazo({
-            nCdEmpresa: process.env.ADM_CORREIOS,
-            sDsSenha: process.env.PASS_CORREIOS,
-            nCdServico: nCdServico,
-            sCepOrigem: store.cep,
-            sCepDestino: sCepDestino,
-            nVlPeso: nVlPeso,
-            nCdFormato: nCdFormato,
-            nVlComprimento: nVlComprimento,
-            nVlAltura: nVlAltura,
-            nVlLargura: nVlLargura
-        }); */
 
         const browser = await puppeteer.launch();
         let page = await browser.newPage();

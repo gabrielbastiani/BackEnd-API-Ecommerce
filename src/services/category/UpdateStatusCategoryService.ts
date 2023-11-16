@@ -14,7 +14,7 @@ class UpdateStatusCategoryService {
       select: {
         status: true
       }
-    })
+    });
 
     if (active.status === "Disponivel") {
       const isFalse = await prismaClient.category.update({
@@ -24,7 +24,20 @@ class UpdateStatusCategoryService {
         data: {
           status: StatusCategory.Indisponivel
         }
-      })
+      });
+
+      const find_category = await prismaClient.category.findUnique({
+        where: {
+          id: category_id
+        }
+      });
+
+      await prismaClient.notificationAdmin.create({
+        data: {
+          message: `A categoria <strong>${find_category.name}</strong> foi <strong>DESATIVADA</strong>`,
+          store_id: find_category.store_id
+        }
+      });
 
       return isFalse;
     }
@@ -37,7 +50,20 @@ class UpdateStatusCategoryService {
         data: {
           status: StatusCategory.Disponivel
         }
-      })
+      });
+
+      const find_category = await prismaClient.category.findUnique({
+        where: {
+          id: category_id
+        }
+      });
+
+      await prismaClient.notificationAdmin.create({
+        data: {
+          message: `A categoria <strong>${find_category.name}</strong> foi <strong>ATIVADA</strong>`,
+          store_id: find_category.store_id
+        }
+      });
 
       return isTrue;
 

@@ -7,6 +7,9 @@ interface BannerRrequest {
 
 class StatusBannerService {
   async execute({ banner_id }: BannerRrequest) {
+
+    const store = await prismaClient.store.findFirst();
+
     const active = await prismaClient.banner.findUnique({
       where: {
         id: banner_id
@@ -14,30 +17,56 @@ class StatusBannerService {
       select: {
         active: true
       }
-    })
+    });
 
-    if(active.active === "Sim"){
+    if (active.active === "Sim") {
       const isFalse = await prismaClient.banner.update({
-        where:{
+        where: {
           id: banner_id
         },
         data: {
           active: StatusBanner.Nao
         }
-      })
+      });
+
+      const banner = await prismaClient.banner.findUnique({
+        where: {
+          id: banner_id
+        }
+      });
+
+      await prismaClient.notificationAdmin.create({
+        data: {
+          message: `Banner <strong>${banner.title}</strong> foi <strong>DESATIVADO</strong> na loja.`,
+          store_id: store.id
+        }
+      });
 
       return isFalse;
     }
 
-    if(active.active === "Nao"){
+    if (active.active === "Nao") {
       const isTrue = await prismaClient.banner.update({
-        where:{
+        where: {
           id: banner_id
         },
         data: {
           active: StatusBanner.Sim
         }
-      })
+      });
+
+      const banner = await prismaClient.banner.findUnique({
+        where: {
+          id: banner_id
+        }
+      });
+
+      await prismaClient.notificationAdmin.create({
+        data: {
+          message: `Banner <strong>${banner.title}</strong> foi <strong>ATIVADO</strong> na loja.`,
+          store_id: store.id
+        }
+      });
 
       return isTrue;
 

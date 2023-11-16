@@ -65,9 +65,9 @@ class PublishProgramadBannerService {
                         pass: process.env.PASS_SMTP
                     }
                 });
-        
+
                 const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/banner_programado.ejs`);
-        
+
                 const data = await ejs.renderFile(requiredPath, {
                     titleBanner: titleBanner,
                     firstDate: firstDate,
@@ -85,6 +85,13 @@ class PublishProgramadBannerService {
                     to: `${store.email}`,
                     subject: "Banner programado na loja",
                     html: data
+                });
+
+                await prismaClient.notificationAdmin.create({
+                    data: {
+                        message: `Banner programado <strong>${titleBanner}</strong> foi publicado na loja.`,
+                        store_id: store.id
+                    }
                 });
 
             }
@@ -110,7 +117,7 @@ class PublishProgramadBannerService {
                 });
 
                 const requiredPath = path.join(__dirname, `../store/configurations/emailsTransacionais/emails_transacionais/banner_programado_desabilitado.ejs`);
-        
+
                 const data = await ejs.renderFile(requiredPath, {
                     titleBanner: titleBanner,
                     dateFuture: dateFuture,
@@ -129,6 +136,14 @@ class PublishProgramadBannerService {
                     subject: "Banner programado da loja desabilitado",
                     html: data
                 });
+
+                await prismaClient.notificationAdmin.create({
+                    data: {
+                        message: `Banner programado <strong>${titleBanner}</strong> foi publicado na loja.`,
+                        store_id: store.id
+                    }
+                });
+
             }
 
         }, null, true);
