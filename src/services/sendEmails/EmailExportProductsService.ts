@@ -51,6 +51,7 @@ class EmailExportProductsService {
         await prismaClient.notificationAdmin.create({
             data: {
                 message: `Lista de <strong>produtos</strong> enviado com sucesso para o seu email.</strong>.`,
+                link: `http://localhost:3000/produtos`,
                 store_id: store.id
             }
         });

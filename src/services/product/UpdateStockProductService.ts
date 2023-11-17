@@ -28,6 +28,7 @@ class UpdateStockProductService {
         await prismaClient.notificationAdmin.create({
             data: {
                 message: `Estoque do produto <strong>${product.name}</strong> foi atualizado para <strong>${stock}</strong> unidade(s) com sucesso.`,
+                link: `http://localhost:3000/produto/${product.slug}/${product.id}`,
                 store_id: store.id
             }
         });

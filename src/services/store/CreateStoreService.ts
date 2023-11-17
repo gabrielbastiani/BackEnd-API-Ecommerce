@@ -55,6 +55,7 @@ class CreateStoreService {
     await prismaClient.notificationAdmin.create({
       data: {
         message: `Loja <strong>${storeFirst.name}</strong> foi criada com sucesso.`,
+        link: `http://localhost:3000/configuracoes`,
         store_id: storeFirst.id
       }
     });

@@ -18,6 +18,7 @@ class DeleteCustomerService {
     await prismaClient.notificationAdmin.create({
       data: {
         message: `Cliente <strong>${customerName.name}</strong> foi deletado(a) da loja.`,
+        link: `http://localhost:3000/clientes`,
         store_id: store.id
       }
     });

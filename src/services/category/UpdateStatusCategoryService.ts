@@ -35,6 +35,7 @@ class UpdateStatusCategoryService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `A categoria <strong>${find_category.name}</strong> foi <strong>DESATIVADA</strong>`,
+          link: `http://localhost:3000/categoria/${find_category.id}`,
           store_id: find_category.store_id
         }
       });
@@ -61,6 +62,7 @@ class UpdateStatusCategoryService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `A categoria <strong>${find_category.name}</strong> foi <strong>ATIVADA</strong>`,
+          link: `http://localhost:3000/categoria/${find_category.id}`,
           store_id: find_category.store_id
         }
       });

@@ -46,6 +46,7 @@ class ActiveOrDesactiveCustomerService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `Cliente ${dateCustomer.name} foi ${dateCustomer.authenticated === true ? `<strong>DESATIVADO</strong>` : `<strong>ATIVADO</strong>`} da loja.`,
+          link: `http://localhost:3000/cliente/${dateCustomer.id}`,
           store_id: store.id
         }
       });
@@ -66,6 +67,7 @@ class ActiveOrDesactiveCustomerService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `Cliente ${dateCustomer.name} foi ${dateCustomer.authenticated === true ? `<strong>DESATIVADO</strong>` : `<strong>ATIVADO</strong>`} da loja.`,
+          link: `http://localhost:3000/cliente/${dateCustomer.id}`,
           store_id: store.id
         }
       });

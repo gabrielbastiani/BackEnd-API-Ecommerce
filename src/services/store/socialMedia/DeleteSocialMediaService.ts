@@ -18,6 +18,7 @@ class DeleteSocialMediaService {
         await prismaClient.notificationAdmin.create({
             data: {
                 message: `Media social <strong>${socialMedia.name}</strong> foi deletada sucesso da loja.`,
+                link: `http://localhost:3000/configuracoes`,
                 store_id: store.id
             }
         });

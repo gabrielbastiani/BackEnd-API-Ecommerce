@@ -38,6 +38,7 @@ class UpdateStatusProductService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `Status do produto <strong>${product.name}</strong> se encontra <strong>Indisponivel</strong>.`,
+          link: `http://localhost:3000/produto/${product.slug}/${product.id}`,
           store_id: store.id
         }
       });
@@ -64,6 +65,7 @@ class UpdateStatusProductService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `Status do produto <strong>${product.name}</strong> se encontra <strong>Disponivel</strong>.`,
+          link: `http://localhost:3000/produto/${product.slug}/${product.id}`,
           store_id: store.id
         }
       });

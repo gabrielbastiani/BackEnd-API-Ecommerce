@@ -42,6 +42,7 @@ class CreateImageStoreService {
     await prismaClient.notificationAdmin.create({
       data: {
         message: `Imagem institucional <strong>${imageInstitucional.titleImage}</strong> foi criada com sucesso da loja.`,
+        link: `http://localhost:3000/imagem/${imageInstitucional.id}`,
         store_id: store.id
       }
     });

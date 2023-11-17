@@ -38,6 +38,7 @@ class StatusBannerService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `Banner <strong>${banner.title}</strong> foi <strong>DESATIVADO</strong> na loja.`,
+          link: `http://localhost:3000/banner/${banner.id}`,
           store_id: store.id
         }
       });
@@ -64,6 +65,7 @@ class StatusBannerService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `Banner <strong>${banner.title}</strong> foi <strong>ATIVADO</strong> na loja.`,
+          link: `http://localhost:3000/banner/${banner.id}`,
           store_id: store.id
         }
       });

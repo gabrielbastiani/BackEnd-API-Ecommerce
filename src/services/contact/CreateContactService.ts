@@ -92,7 +92,8 @@ class CreateContactService {
 
     await prismaClient.notificationAdmin.create({
       data: {
-        message: `Você recebeu uma nova mensagem, <a href="http://localhost:3000/contato/${contact_find.id}">CLIQUE AQUI E VEJA</a>`,
+        message: `Você recebeu uma nova mensagem.`,
+        link: `http://localhost:3000/contato/${contact_find.id}`,
         store_id: store.id
       }
     });

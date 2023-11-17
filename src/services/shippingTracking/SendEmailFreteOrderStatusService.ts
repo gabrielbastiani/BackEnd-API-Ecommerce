@@ -96,6 +96,7 @@ class SendEmailFreteOrderStatusService {
                                 await prismaClient.notificationAdmin.create({
                                     data: {
                                         message: `Status de frete do pedido <strong>${status_frete.order.id_order_store}</strong> atualizado para <strong>${configs.status_frete}</strong>.`,
+                                        link: `http://localhost:3000/pedido/${status_frete.order.id}`,
                                         store_id: store.id
                                     }
                                 });

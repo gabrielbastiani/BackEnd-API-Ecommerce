@@ -95,7 +95,8 @@ class CreateCounterProposalService {
 
     await prismaClient.notificationAdmin.create({
       data: {
-        message: `Você recebeu uma contraproposta pelo produto <strong>${firstCounter.nameProduct}</strong>, <a href="http://localhost:3000/contraproposta/${firstCounter.id}">CLIQUE AQUI E VEJA</a>`,
+        message: `Você recebeu uma contraproposta pelo produto <strong>${firstCounter.nameProduct}</strong>`,
+        link: `http://localhost:3000/contraproposta/${firstCounter.id}`,
         store_id: store.id
       }
     });

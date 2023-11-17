@@ -52,6 +52,7 @@ class EmailExportAdminUserService {
         await prismaClient.notificationAdmin.create({
             data: {
                 message: `Lista de <strong>usuarios administradores</strong> enviado com sucesso para o seu email.</strong>.`,
+                link: `http://localhost:3000/usuarios`,
                 store_id: store.id
             }
         });

@@ -18,6 +18,7 @@ class DeleteImageStoreService {
     await prismaClient.notificationAdmin.create({
       data: {
         message: `Imagem institucional <strong>${imageStore.titleImage}</strong> foi deletada com sucesso da loja.`,
+        link: `http://localhost:3000/ImagensInstitucionais`,
         store_id: store.id
       }
     });

@@ -24,7 +24,7 @@ class CreateAvalietionService {
 
         const avalietion_data = await prismaClient.avalietion.findFirst({
             orderBy: {
-                created_at: 'asc'
+                created_at: 'desc'
             }
         });
 
@@ -36,7 +36,8 @@ class CreateAvalietionService {
 
         await prismaClient.notificationAdmin.create({
             data: {
-                message: `Avaliação de produto realizado <strong>${product.name}</strong>, <a href="http://localhost:3000/avaliacao/${product.slug}/${avalietion_data.id}">CLIQUE AQUI E VEJA</a>`,
+                message: `Avaliação de produto realizado <strong>${product.name}</strong>`,
+                link: `http://localhost:3000/avaliacao/${product.slug}/${avalietion_data.id}`,
                 store_id: store_id
             }
         });

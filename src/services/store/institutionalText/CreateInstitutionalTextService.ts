@@ -49,6 +49,7 @@ class CreateInstitutionalTextService {
     await prismaClient.notificationAdmin.create({
       data: {
         message: `Texto institucional <strong>${textInstitucional.title}</strong> foi criado com sucesso na loja.`,
+        link: `http://localhost:3000/texto/${textInstitucional.id}`,
         store_id: store_id
       }
     });

@@ -55,6 +55,7 @@ class ActiveProgramedCupomService {
                 await prismaClient.notificationAdmin.create({
                     data: {
                         message: `Cupom <strong>${allDateLast.name}</strong>, foi <strong>ATIVADO</strong> com sucesso.`,
+                        link: `http://localhost:3000/cupom/${allDateFirst.id}`,
                         store_id: store.id
                     }
                 });
@@ -77,6 +78,7 @@ class ActiveProgramedCupomService {
                 await prismaClient.notificationAdmin.create({
                     data: {
                         message: `Cupom <strong>${allDateLast.name}</strong>, foi <strong>DESATIVADO</strong> com sucesso.`,
+                        link: `http://localhost:3000/cupom/${allDateLast.id}`,
                         store_id: store.id
                     }
                 });

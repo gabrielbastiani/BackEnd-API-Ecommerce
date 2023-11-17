@@ -24,6 +24,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Carrossel de produtos em oferta se encontra <strong>${configDate.offer_products === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no front-end da loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -46,6 +47,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Carrossel de produtos em destaque se encontra <strong>${configDate.emphasis_products === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no front-end da loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -68,6 +70,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Função de inteligencia artificial se encontra <strong>${configDate.chat_ia === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no front-end da loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -90,6 +93,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Menu de crédito para o cliente se encontra <strong>${configDate.credits_customer_in_menu === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> para os clientes.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -112,6 +116,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Campo de cupom de desconto no carrinho de compras se encontra <strong>${configDate.cupom_in_cart === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -134,6 +139,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Campo de cupom de desconto na página de pagamento se encontra <strong>${configDate.cupom_in_payment === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -156,6 +162,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Menu de produtos digitais se encontra <strong>${configDate.digital_products_customer_in_menu === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> para os clientes.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -178,6 +185,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Seção de newsllaters se encontra <strong>${configDate.newsllaters_section === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no front-end da loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -200,6 +208,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Campo de pesquisa de produtos se encontra <strong>${configDate.search_bar === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no header da loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -222,6 +231,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Função de atendimento se encontra <strong>${configDate.service_in_header === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> no header da loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -244,6 +254,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Produtos em tendencias se encontra <strong>${configDate.tendence_product === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -266,6 +277,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Carrossel de produtos recem vizualizados se encontra <strong>${configDate.recent_products_views === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -288,6 +300,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Método de pagamento <strong>PIX</strong> se encontra <strong>${configDate.payment_pix === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -310,6 +323,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Método de pagamento <strong>BOLETO BANCARIO</strong> se encontra <strong>${configDate.payment_boleto === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -332,6 +346,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Método de pagamento <strong>CARTÃO DE CRÉDITO</strong> se encontra <strong>${configDate.payment_cartao === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -354,6 +369,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Filtragem por <strong>CATEGORIAS</strong> se encontra <strong>${configDate.filter_categorys === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -376,6 +392,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Filtragem por <strong>ATRIBUTOS</strong> se encontra <strong>${configDate.filter_atributes === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -398,6 +415,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Filtragem por <strong>PREÇOS</strong> se encontra <strong>${configDate.filter_price === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });
@@ -420,6 +438,7 @@ class ConfigsStoreService {
             await prismaClient.notificationAdmin.create({
                 data: {
                     message: `Contador regressivo se encontra <strong>${configDate.count_down_timer === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
                     store_id: store.id
                 }
             });

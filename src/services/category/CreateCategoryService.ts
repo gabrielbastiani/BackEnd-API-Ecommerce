@@ -43,6 +43,7 @@ class CreateCategoryService {
     await prismaClient.notificationAdmin.create({
       data: {
         message: `Uma nova categoria foi cadastrada <strong>${category_find.name}</strong>`,
+        link: `http://localhost:3000/categoria/${category_find.id}`,
         store_id: store_id
       }
     });

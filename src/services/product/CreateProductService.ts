@@ -76,9 +76,16 @@ class CreateProductService {
             }
         });
 
+        const find_product = await prismaClient.product.findFirst({
+            orderBy: {
+                created_at: 'desc'
+            }
+        })
+
         await prismaClient.notificationAdmin.create({
             data: {
-                message: `Produto <strong>${name}</strong> foi cadastrado.`,
+                message: `Produto <strong>${find_product.name}</strong> foi cadastrado.`,
+                link: `http://localhost:3000/produto/${find_product.slug}/${find_product.id}`,
                 store_id: store_id
             }
         });

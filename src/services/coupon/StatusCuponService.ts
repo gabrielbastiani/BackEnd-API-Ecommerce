@@ -38,6 +38,7 @@ class StatusCuponService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `Cupom <strong>${cupomStatus.name}</strong>, foi <strong>DESATIVADO</strong> com sucesso.`,
+          link: `http://localhost:3000/cupom/${cupomStatus.id}`,
           store_id: store.id
         }
       });
@@ -64,6 +65,7 @@ class StatusCuponService {
       await prismaClient.notificationAdmin.create({
         data: {
           message: `Cupom <strong>${cupomStatus.name}</strong>, foi <strong>ATIVADO</strong> com sucesso.`,
+          link: `http://localhost:3000/cupom/${cupomStatus.id}`,
           store_id: store.id
         }
       });

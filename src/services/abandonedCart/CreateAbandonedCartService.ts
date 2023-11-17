@@ -43,9 +43,16 @@ class CreateAbandonedCartService {
             }
         });
 
+        const findLast = await prismaClient.abandonedCart.findFirst({
+            orderBy: {
+                created_at: 'desc'
+            }
+        });
+
         await prismaClient.notificationAdmin.create({
             data: {
                 message: `Se ligue!!! um cliente acaba de chegar a página de pagamento, e poderá abandonar a compra.`,
+                link: `http://localhost:3000/carrinho/metricas/detalhes/${findLast.id}`,
                 store_id: store.id
             }
         });

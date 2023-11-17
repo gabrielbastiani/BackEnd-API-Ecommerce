@@ -18,6 +18,7 @@ class DisableCountDownTimerService {
         await prismaClient.notificationAdmin.create({
             data: {
                 message: `Contador regressivo se encontra <strong>Indisponivel</strong> na loja.`,
+                link: `http://localhost:3000/configuracoes/loja`,
                 store_id: store.id
             }
         });

@@ -18,6 +18,7 @@ class DeleteInstitutionalTextService {
         await prismaClient.notificationAdmin.create({
             data: {
                 message: `Texto institucional <strong>${institucionalText.title}</strong> foi deletado com sucesso da loja.`,
+                link: `http://localhost:3000/textosInstitucionais`,
                 store_id: store.id
             }
         });

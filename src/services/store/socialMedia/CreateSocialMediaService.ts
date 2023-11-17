@@ -44,6 +44,7 @@ class CreateSocialMediaService {
     await prismaClient.notificationAdmin.create({
       data: {
         message: `Media social <strong>${socialMedia.name}</strong> cadastrada com sucesso na loja.`,
+        link: `http://localhost:3000/rede/${socialMedia.id}`,
         store_id: store.id
       }
     });

@@ -90,6 +90,7 @@ class PublishProgramadBannerService {
                 await prismaClient.notificationAdmin.create({
                     data: {
                         message: `Banner programado <strong>${titleBanner}</strong> foi publicado na loja.`,
+                        link: `http://localhost:3000/banner/${allDateFirst.id}`,
                         store_id: store.id
                     }
                 });
@@ -140,6 +141,7 @@ class PublishProgramadBannerService {
                 await prismaClient.notificationAdmin.create({
                     data: {
                         message: `Banner programado <strong>${titleBanner}</strong> foi publicado na loja.`,
+                        link: `http://localhost:3000/banner/${allDateLast.id}`,
                         store_id: store.id
                     }
                 });
