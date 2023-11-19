@@ -32,7 +32,7 @@ class CreateContactService {
 
     const contact_find = await prismaClient.contact.findFirst({
       orderBy: {
-        created_at: 'asc'
+        created_at: 'desc'
       }
     });
 

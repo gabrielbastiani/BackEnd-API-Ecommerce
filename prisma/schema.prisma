@@ -1315,10 +1315,11 @@ enum StatusEmail {
 }
 
 model NotificationAdmin {
-  id      String  @id @default(uuid())
-  message String?
-  link    String?
-  viewed  Boolean @default(false)
+  id         String  @id @default(uuid())
+  message    String?
+  link       String?
+  viewed     Boolean @default(false)
+  block_bell Boolean @default(true)
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)
 
@@ -1334,6 +1335,7 @@ model NotificationCustomer {
   customer_id String?
   message     String?
   viewed      Boolean   @default(false)
+  block_bell  Boolean   @default(true)
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)
 

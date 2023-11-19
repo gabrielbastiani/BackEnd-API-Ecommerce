@@ -113,6 +113,10 @@ import { NotificationsPainelAdminController } from './controllers/notifications/
 import { FindEmailTransacionaisController } from './controllers/store/configurations/emailsTransacionais/FindEmailTransacionaisController';
 import { FindUniqueTemplateEmailTransacionalController } from './controllers/store/configurations/emailsTransacionais/FindUniqueTemplateEmailTransacionalController';
 import { UpdateTemplateEmailTransacionalController } from './controllers/store/configurations/emailsTransacionais/UpdateTemplateEmailTransacionalController';
+import { UpdateNotificationsViewdAdminController } from './controllers/notifications/UpdateNotificationsViewdAdminController';
+import { UpdateAllNotificationsViewdAdminController } from './controllers/notifications/UpdateAllNotificationsViewdAdminController';
+import { ClearAllNotificationsAdminController } from './controllers/notifications/ClearAllNotificationsAdminController';
+import { PageNotificationsController } from './controllers/notifications/PageNotificationsController';
 
 // -- ROUTES CATEGORY --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -536,6 +540,7 @@ import uploadConfig from './config/multer';
 
 
 
+
 const router = Router();
 const upload = multer(uploadConfig.upload("./images"));
 
@@ -656,6 +661,10 @@ router.put('/updateCountDownTimer', [isAuthenticated, authorizationRules(["ADMIN
 router.put('/disaledCountDownTimer', new DisableCountDownTimerController().handle);
 router.get('/notificationsRegister', new NotificationsConfigsController().handle);
 router.get('/notificationPainelAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new NotificationsPainelAdminController().handle);
+router.put('/updateViewdNotification', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNotificationsViewdAdminController().handle);
+router.put('/updateAllViewdNotification', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllNotificationsViewdAdminController().handle);
+router.get('/pageAllNotifications', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageNotificationsController().handle);
+router.put('/clearAllNotificationsAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ClearAllNotificationsAdminController().handle);
 router.get('/findEmailsTransactions', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindEmailTransacionaisController().handle);
 router.get('/findTemplateEmailTransacional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailTransacionalController().handle);
 router.put('/updateContentTemplateEmailTransacional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailTransacionalController().handle);
