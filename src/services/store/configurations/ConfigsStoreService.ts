@@ -446,6 +446,29 @@ class ConfigsStoreService {
             return;
         }
 
+        // chat_whatsapp
+
+        if (statusUpdate === "chat_whatsapp") {
+            await prismaClient.configStore.update({
+                where: {
+                    id: configDate.id
+                },
+                data: {
+                    chat_whatsapp: configDate.chat_whatsapp === "Disponivel" ? "Indisponivel" : "Disponivel"
+                }
+            });
+
+            await prismaClient.notificationAdmin.create({
+                data: {
+                    message: `Chat Whatsapp se encontra <strong>${configDate.chat_whatsapp === "Disponivel" ? "Indisponivel" : "Disponivel"}</strong> na loja.`,
+                    link: `http://localhost:3000/configuracoes/loja`,
+                    store_id: store.id
+                }
+            });
+
+            return;
+        }
+
     }
 }
 

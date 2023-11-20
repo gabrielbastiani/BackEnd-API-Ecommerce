@@ -536,6 +536,8 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { StockCupomController } from './controllers/coupon/StockCupomController';
+import { ConfigsExtraController } from './controllers/store/configurations/ConfigsExtraController';
 
 
 
@@ -668,6 +670,7 @@ router.put('/clearAllNotificationsAdmin', [isAuthenticated, authorizationRules([
 router.get('/findEmailsTransactions', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindEmailTransacionaisController().handle);
 router.get('/findTemplateEmailTransacional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailTransacionalController().handle);
 router.put('/updateContentTemplateEmailTransacional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailTransacionalController().handle);
+router.put('/configExtraStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ConfigsExtraController().handle);
 
 // -- ROUTES CATEGORY --
 router.post('/createCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateCategoryController().handle);
@@ -902,6 +905,7 @@ router.delete('/deleteConditionalCupon', [isAuthenticated, authorizationRules(["
 router.get('/findUniqueConditionalCupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueConditionalCuponController().handle);
 router.put('/updateAllDataConditionalCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDataConditionalCuponController().handle);
 router.get('/getCouponCart', new FindCuponController().handle);
+router.put('/updateStockCoupon', isAuthenticated, new StockCupomController().handle);
 
 // -- ROUTES GROUP FILTERS --
 router.post('/createGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateGroupFilterController().handle);
