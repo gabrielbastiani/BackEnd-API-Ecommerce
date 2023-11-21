@@ -277,9 +277,9 @@ model ConfigStore {
   filter_price                      StatusFilterPrice                   @default(Disponivel)
   count_down_timer                  StatusCountdownTimer                @default(Disponivel)
   chat_whatsapp                     StatusChatWhatsApp                  @default(Disponivel)
-  number_whatsapp                   String?                             @default("54000000000")
-  code_google_analytics             String?                             @default("UA-XXXXXXXXX-X")
-  code_live_chat_tawkTo             String?                             @default("https://embed.tawk.to/628956297b967b1179909239/1g3k7h5ak")
+  number_whatsapp                   String?
+  code_google_analytics             String?                             @default("G-XXXXXXXXXX")
+  code_live_chat_tawkTo             String?                             @default("https://embed.tawk.to/xxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxx")
 
   store    Store?  @relation(fields: [store_id], references: [id])
   store_id String?
