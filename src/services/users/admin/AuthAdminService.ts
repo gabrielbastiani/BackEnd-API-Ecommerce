@@ -20,7 +20,7 @@ class AuthAdminService {
       throw new Error("Admin/password incorrect")
     }
 
-    const passwordMatch = await compare(password, admin.password)
+    const passwordMatch = await compare(password, admin.password);
 
     if (!passwordMatch) {
       throw new Error("Admin/password incorrect")
@@ -37,6 +37,7 @@ class AuthAdminService {
         expiresIn: '30d'
       }
     );
+
 
     return {
       id: admin.id,
