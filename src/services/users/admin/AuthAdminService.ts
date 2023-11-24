@@ -42,6 +42,8 @@ class AuthAdminService {
       id: admin.id,
       name: admin.name,
       email: admin.email,
+      store_id: admin.store_id,
+      role: admin.role,
       token: token,
     }
 
