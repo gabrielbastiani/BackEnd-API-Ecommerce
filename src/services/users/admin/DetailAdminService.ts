@@ -6,7 +6,7 @@ interface AdminRequest {
 
 class DetailAdminService {
   async execute({ admin_id }: AdminRequest) {
-    const admin = await prismaClient.admin.findUnique({
+    const admin = await prismaClient.admin.findFirst({
       where: {
         id: admin_id
       },
