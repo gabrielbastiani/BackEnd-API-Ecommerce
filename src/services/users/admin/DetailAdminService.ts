@@ -1,11 +1,7 @@
 import prismaClient from "../../../prisma";
 
-interface AdminRequest {
-  admin_id: string;
-}
-
 class DetailAdminService {
-  async execute({ admin_id }: AdminRequest) {
+  async execute(admin_id: string) {
     const admin = await prismaClient.admin.findFirst({
       where: {
         id: admin_id
