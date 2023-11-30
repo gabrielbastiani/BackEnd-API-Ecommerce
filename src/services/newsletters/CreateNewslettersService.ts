@@ -53,6 +53,7 @@ class CreateNewslettersService {
 
     await prismaClient.notificationAdmin.create({
       data: {
+        user: "EMPLOYEE",
         message: `Novo cadastro na <strong>newsletters</strong> foi realizado na loja.`,
         link: `http://localhost:3000/newsletters`,
         store_id: store.id
