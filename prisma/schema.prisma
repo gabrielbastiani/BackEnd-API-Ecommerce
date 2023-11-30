@@ -1325,6 +1325,7 @@ enum StatusEmail {
 
 model NotificationAdmin {
   id         String  @id @default(uuid())
+  user       String?
   message    String?
   link       String?
   viewed     Boolean @default(false)

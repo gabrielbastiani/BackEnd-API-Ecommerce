@@ -271,6 +271,7 @@ class CreateOrderCardFinishPaymentService {
 
         await prismaClient.notificationAdmin.create({
             data: {
+                user: "EMPLOYEE",
                 message: `Parabéns!!! você recebeu um novo pedido, número <strong>${statusDate.order.id_order_store}</strong> foi criado.`,
                 link: `http://localhost:3000/pedido/${statusDate.order.id}`,
                 store_id: store.id

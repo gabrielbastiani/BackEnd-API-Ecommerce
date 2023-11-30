@@ -77,6 +77,7 @@ class CreateOrderCommentCustomerService {
 
         await prismaClient.notificationAdmin.create({
             data: {
+                user: "EMPLOYEE",
                 message: `Novo comentário feito no pedido de número <strong>${commentsDate.order.id_order_store}</strong>`,
                 link: `http://localhost:3000/pedido/${commentsDate.order_id}`,
                 store_id: store.id

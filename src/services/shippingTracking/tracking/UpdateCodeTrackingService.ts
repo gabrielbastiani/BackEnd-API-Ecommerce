@@ -34,6 +34,7 @@ class UpdateCodeTrackingService {
 
         await prismaClient.notificationAdmin.create({
             data: {
+                user: "EMPLOYEE",
                 message: `Código de rastreio <strong>${code_tracking}</strong> atualizado.`,
                 link: `http://localhost:3000/pedido/${order.shippingTracking.order.id}`,
                 store_id: store.id

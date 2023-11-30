@@ -206,6 +206,7 @@ class CreateCustomerService {
 
     await prismaClient.notificationAdmin.create({
       data: {
+        user: "EMPLOYEE",
         message: `Cliente <strong>${customer.name}</strong> se cadastrou na loja.`,
         link: `http://localhost:3000/cliente/${customer.id}`,
         store_id: store.id

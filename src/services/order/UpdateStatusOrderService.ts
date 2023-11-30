@@ -99,6 +99,7 @@ class UpdateStatusOrderService {
 
         await prismaClient.notificationAdmin.create({
             data: {
+                user: "EMPLOYEE",
                 message: `Status do pedido <strong>${statusDate.order.id_order_store}</strong> foi atualizado.`,
                 link: `http://localhost:3000/pedido/${statusDate.order.id}`,
                 store_id: store.id
