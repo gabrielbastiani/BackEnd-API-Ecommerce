@@ -9,8 +9,10 @@ class ListExactOrderCommentService {
             orderBy: {
                 created_at: 'asc'
             }
-        })
+        });
+
         return exactComment;
+        
     }
 }
 

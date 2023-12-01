@@ -60,6 +60,7 @@ import { FindFirstStoreController } from './controllers/store/FindFirstStoreCont
 import { DeleteStoreController } from './controllers/store/DeleteStoreController';
 import { UpdateLogoStoreController } from './controllers/store/UpdateLogoStoreController';
 import { UpdateAllDateStoreController } from './controllers/store/UpdateAllDateStoreController';
+import { ConfigsExtraController } from './controllers/store/configurations/ConfigsExtraController';
 
 // -- ROUTES SOCIAL MEDIA --
 import { CreateSocialMediaController } from './controllers/store/socialMedia/CreateSocialMediaController';
@@ -117,6 +118,11 @@ import { UpdateNotificationsViewdAdminController } from './controllers/notificat
 import { UpdateAllNotificationsViewdAdminController } from './controllers/notifications/UpdateAllNotificationsViewdAdminController';
 import { ClearAllNotificationsAdminController } from './controllers/notifications/ClearAllNotificationsAdminController';
 import { PageNotificationsController } from './controllers/notifications/PageNotificationsController';
+import { NotificationsPainelCustomerController } from './controllers/notifications/NotificationsPainelCustomerController';
+import { UpdateNotificationsViewdCustomerController } from './controllers/notifications/UpdateNotificationsViewdCustomerController';
+import { CreateNotificationCommentController } from './controllers/notifications/CreateNotificationCommentController';
+import { ClearAllNotificationsCustomerController } from './controllers/notifications/ClearAllNotificationsCustomerController';
+import { UpdateAllNotificationsViewdCustomerController } from './controllers/notifications/UpdateAllNotificationsViewdCustomerController';
 
 // -- ROUTES CATEGORY --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -350,6 +356,7 @@ import { DeleteConditionalCuponController } from './controllers/coupon/cuponCond
 import { FindUniqueConditionalCuponController } from './controllers/coupon/cuponConditional/FindUniqueConditionalCuponController';
 import { UpdateAllDataConditionalCuponController } from './controllers/coupon/cuponConditional/UpdateAllDataConditionalCuponController';
 import { FindCuponController } from './controllers/coupon/FindCuponController';
+import { StockCupomController } from './controllers/coupon/StockCupomController';
 
 // -- ROUTES GROUP FILTERS --
 import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
@@ -536,8 +543,6 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { StockCupomController } from './controllers/coupon/StockCupomController';
-import { ConfigsExtraController } from './controllers/store/configurations/ConfigsExtraController';
 
 
 
@@ -663,10 +668,14 @@ router.put('/updateCountDownTimer', [isAuthenticated, authorizationRules(["ADMIN
 router.put('/disaledCountDownTimer', new DisableCountDownTimerController().handle);
 router.get('/notificationsRegister', new NotificationsConfigsController().handle);
 router.get('/notificationPainelAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new NotificationsPainelAdminController().handle);
+router.get('/notificationPainelCustomer', isAuthenticated, new NotificationsPainelCustomerController().handle);
 router.put('/updateViewdNotification', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNotificationsViewdAdminController().handle);
+router.put('/updateViewdNotificationCustomer', isAuthenticated, new UpdateNotificationsViewdCustomerController().handle);
 router.put('/updateAllViewdNotification', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllNotificationsViewdAdminController().handle);
+router.put('/updateAllViewdNotificationCustomer', isAuthenticated, new UpdateAllNotificationsViewdCustomerController().handle);
 router.get('/pageAllNotifications', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageNotificationsController().handle);
 router.put('/clearAllNotificationsAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ClearAllNotificationsAdminController().handle);
+router.put('/clearAllNotificationsCustomer', isAuthenticated, new ClearAllNotificationsCustomerController().handle);
 router.get('/findEmailsTransactions', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindEmailTransacionaisController().handle);
 router.get('/findTemplateEmailTransacional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueTemplateEmailTransacionalController().handle);
 router.put('/updateContentTemplateEmailTransacional', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTemplateEmailTransacionalController().handle);
@@ -1087,6 +1096,7 @@ router.post('/createOrderComments', [isAuthenticated, authorizationRules(["ADMIN
 router.post('/createOrderCommentsStore', isAuthenticated, new CreateOrderCommentCustomerController().handle);
 router.get('/orderComments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactOrderCommentController().handle);
 router.get('/orderCommentsStore', isAuthenticated, new ListExactOrderCommentController().handle);
+router.post('/createNotificationCustomerComment', isAuthenticated, new CreateNotificationCommentController().handle);
 
 
 

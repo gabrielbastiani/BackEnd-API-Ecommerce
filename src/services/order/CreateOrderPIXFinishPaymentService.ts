@@ -221,6 +221,14 @@ class CreateOrderPIXFinishPaymentService {
             }
         });
 
+        await prismaClient.notificationCustomer.create({
+            data: {
+                customer_id: statusDate.order.customer.id,
+                message: `Pedido <strong>${statusDate.order.id_order_store}</strong> realizado com sucesso!!!`,
+                store_id: store.id
+            }
+        });
+
     }
 }
 
