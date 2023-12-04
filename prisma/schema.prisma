@@ -183,6 +183,7 @@ model Store {
   shippingtracking           ShippingTracking[]
   notificationadmin          NotificationAdmin[]
   notificationcustomer       NotificationCustomer[]
+  paymentstotalstore         PaymentsTotalStore[]
 
   @@map("stores")
 }
@@ -1184,6 +1185,19 @@ model Payment {
   store_id String?
 
   @@map("payments")
+}
+
+model PaymentsTotalStore {
+  id            String  @id @default(uuid())
+  total_payment Float?
+  type_payment  String?
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("paymentstotalsstore")
 }
 
 model Order {
