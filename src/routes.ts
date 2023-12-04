@@ -11,7 +11,6 @@ import { AuthenticatedEmailAdminController } from './controllers/users/admin/Aut
 import { DeleteAdminOrEmployeController } from './controllers/users/admin/DeleteAdminOrEmployeController';
 import { DetailAdminController } from './controllers/users/admin/DetailAdminController';
 import { ExportAdminController } from './controllers/users/admin/ExportAdminController';
-import { ListExactAdminNameController } from './controllers/users/admin/ListExactAdminNameController';
 import { ListExactAdminController } from './controllers/users/admin/ListExactAdminController';
 import { PageListAllAdminsController } from './controllers/users/admin/PageListAllAdminsController';
 import { UpdateAllDateAdminController } from './controllers/users/admin/UpdateAllDateAdminController';
@@ -28,7 +27,6 @@ import { ListSuperAdminController } from './controllers/users/admin/ListSuperAdm
 import { ActiveOrDesactiveCustomerController } from './controllers/users/customer/ActiveOrDesactiveCustomerController';
 import { AuthCustomerController } from './controllers/users/customer/AuthCustomerController';
 import { CreateCustomerController } from './controllers/users/customer/CreateCustomerController';
-import { DeleteCustomerController } from './controllers/users/customer/DeleteCustomerController';
 import { DetailCustomerController } from './controllers/users/customer/DetailCustomerController';
 import { ExportCustomerController } from './controllers/users/customer/ExportCustomerController';
 import { ListExactCustomerNameController } from './controllers/users/customer/ListExactCustomerNameController';
@@ -557,20 +555,19 @@ const upload = multer(uploadConfig.upload("./images"));
 
 
 // -- ROUTES ADMIN --
-router.put('/admin/activeOrDesactiveAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ActiveOrDesactiveAdminController().handle);
+router.put('/admin/activeOrDesactiveAdmin', [isAuthenticated, authorizationRules(["ADMIN"])], new ActiveOrDesactiveAdminController().handle);
 router.post('/admin/createAdmin', new AdminCreateController().handle);
 router.post('/admin/createEmployee', new EmployeCreateController().handle);
-router.put('/admin/updateRoleAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AdminRoleController().handle);
+router.put('/admin/updateRoleAdmin', [isAuthenticated, authorizationRules(["ADMIN"])], new AdminRoleController().handle);
 router.post('/admin/session', new AuthAdminController().handle);
 router.put('/admin/authenticatedEmailAdmin', new AuthenticatedEmailAdminController().handle);
-router.delete('/admin/deleteAdminUser', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteAdminOrEmployeController().handle);
+router.delete('/admin/deleteAdminUser', [isAuthenticated, authorizationRules(["ADMIN"])], new DeleteAdminOrEmployeController().handle);
 router.get('/admin/me', isAuthenticated, new DetailAdminController().handle);
-router.get('/admin/exportAdmins', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportAdminController().handle);
-router.get('/admin/listExactAdminName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactAdminNameController().handle);
+router.get('/admin/exportAdmins', [isAuthenticated, authorizationRules(["ADMIN"])], new ExportAdminController().handle);
 router.get('/admin/listExactAdminID', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactAdminController().handle);
-router.get('/admin/listForPageEmployes', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageListAllAdminsController().handle);
+router.get('/admin/listForPageEmployes', [isAuthenticated, authorizationRules(["ADMIN"])], new PageListAllAdminsController().handle);
 router.put('/admin/updateDateAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateAdminController().handle);
-router.put('/admin/updateRoleEmployee', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AdminRoleEmployeeController().handle);
+router.put('/admin/updateRoleEmployee', [isAuthenticated, authorizationRules(["ADMIN"])], new AdminRoleEmployeeController().handle);
 router.put('/admin/updateNameAdminOrEmployee', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AdminUpdateNameController().handle);
 router.delete('/admin/deleteRecoveryIDAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteAdminPasswordRecoveryIDController().handle);
 router.get('/admin/findFirstAdmin', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindAdminRecoveryIDController().handle);
@@ -581,9 +578,9 @@ router.put('/admin/recoverAdmin', new RecoveryPasswordAdminController().handle);
 
 // -- ROUTES CUSTOMERS --
 router.post('/customer/createCustomer', new CreateCustomerController().handle);
-router.put('/customer/activeOrDesactiveCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ActiveOrDesactiveCustomerController().handle);
+router.put('/customer/activeOrDesactiveCustomer', [isAuthenticated, authorizationRules(["ADMIN"])], new ActiveOrDesactiveCustomerController().handle);
 router.post('/customer/session', new AuthCustomerController().handle);
-router.delete('/customer/deleteCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteCustomerController().handle);
+router.put('/customer/activeOrDesactiveCustomerAcount', isAuthenticated, new ActiveOrDesactiveCustomerController().handle);
 router.get('/customer/me', isAuthenticated, new DetailCustomerController().handle);
 router.get('/customer/exportCustomer', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ExportCustomerController().handle);
 router.get('/customer/listExactCustomerName', isAuthenticated, new ListExactCustomerNameController().handle);

@@ -279,7 +279,7 @@ model ConfigStore {
   chat_whatsapp                     StatusChatWhatsApp                  @default(Disponivel)
   number_whatsapp                   String?
   code_google_analytics             String?                             @default("G-XXXXXXXXXX")
-  code_live_chat_tawkTo             String?                             @default("https://embed.tawk.to/xxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxx")
+  code_live_chat_tawkTo             String?                             @default("xxxxxxxxxxxxxxxxxxxxxxxx")
 
   store    Store?  @relation(fields: [store_id], references: [id])
   store_id String?
@@ -665,13 +665,13 @@ enum StatusRelationAttributeProduct {
 }
 
 model Avalietion {
-  id          String   @id @default(uuid())
-  customer    Customer @relation(fields: [customer_id], references: [id])
-  customer_id String
-  product     Product  @relation(fields: [product_id], references: [id])
+  id          String    @id @default(uuid())
+  customer    Customer? @relation(fields: [customer_id], references: [id])
+  customer_id String?
+  product     Product   @relation(fields: [product_id], references: [id])
   product_id  String
-  description String?  @db.VarChar(1225)
-  point       String?  @db.VarChar(175)
+  description String?   @db.VarChar(1225)
+  point       String?   @db.VarChar(175)
   status      String?
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)

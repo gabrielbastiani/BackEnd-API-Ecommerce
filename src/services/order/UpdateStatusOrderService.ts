@@ -106,6 +106,14 @@ class UpdateStatusOrderService {
             }
         });
 
+        await prismaClient.notificationCustomer.create({
+            data: {
+                customer_id: statusDate.order.customer.id,
+                message: `Status do pedido <strong>${statusDate.order.id_order_store}</strong> foi alterado, vá até esse pedido e veja o que aconteceu.`,
+                store_id: store.id
+            }
+        });
+
         return orderStatus;
     }
 }
