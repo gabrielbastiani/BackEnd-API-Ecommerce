@@ -542,6 +542,7 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
+import { DatesPaymentsController } from './controllers/order/DatesPaymentsController';
 
 
 
@@ -1060,6 +1061,7 @@ router.get('/sendEmailListordersCustomers', [isAuthenticated, authorizationRules
 router.get('/exactOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new ListExactorderController().handle);
 router.put('/updateStatusOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusOrderController().handle);
 router.get('/exactOrderStore', isAuthenticated, new ListExactorderController().handle);
+router.get('/totalStorePayments', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DatesPaymentsController().handle);
 
 // -- STATUS ORDER EMAIL --
 router.get('/allTemplateEmailsStatusOrder', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new AllTemplatesEmailsOrderController().handle);
