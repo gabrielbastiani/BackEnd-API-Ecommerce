@@ -121,6 +121,7 @@ import { UpdateNotificationsViewdCustomerController } from './controllers/notifi
 import { CreateNotificationCommentController } from './controllers/notifications/CreateNotificationCommentController';
 import { ClearAllNotificationsCustomerController } from './controllers/notifications/ClearAllNotificationsCustomerController';
 import { UpdateAllNotificationsViewdCustomerController } from './controllers/notifications/UpdateAllNotificationsViewdCustomerController';
+import { CreateVisitedStoreController } from './controllers/store/CreateVisitedStoreController';
 
 // -- ROUTES CATEGORY --
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -500,6 +501,7 @@ import { ExportOrdersCustomersController } from './controllers/order/ExportOrder
 import { EmailExportOrdersCustomersController } from './controllers/sendEmails/EmailExportOrdersCustomersController';
 import { ListExactorderController } from './controllers/order/ListExactorderController';
 import { UpdateStatusOrderController } from './controllers/order/UpdateStatusOrderController';
+import { DatesPaymentsController } from './controllers/order/DatesPaymentsController';
 
 // -- STATUS ORDER EMAIL --
 import { AllTemplatesEmailsOrderController } from './controllers/order/templatesEmailsOrderStatus/AllTemplatesEmailsOrderController';
@@ -542,7 +544,6 @@ import { ListExactOrderCommentController } from './controllers/order/orderCommen
 const authorizationRules = require('./middlewares/userRouteAuthorization');
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import uploadConfig from './config/multer';
-import { DatesPaymentsController } from './controllers/order/DatesPaymentsController';
 
 
 
@@ -616,6 +617,7 @@ router.get('/store', new StoreController().handle);
 router.delete('/deleteStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteStoreController().handle);
 router.put('/logoStoreUpdate', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new UpdateLogoStoreController().handle);
 router.put('/updateAllDateStore', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateStoreController().handle);
+router.post('/createVisitedStore', new CreateVisitedStoreController().handle);
 
 // -- ROUTES SOCIAL MEDIA --
 router.post('/createSocialMedia', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new CreateSocialMediaController().handle);
