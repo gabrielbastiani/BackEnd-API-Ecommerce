@@ -55,12 +55,19 @@ class DatesPaymentsService {
             }
         });
 
+        const customer = await prismaClient.customer.findMany({
+            orderBy: {
+                created_at: 'desc'
+            }
+        });
+
         const data = {
             orders,
             payments,
             statusOrder,
             product,
-            visitedUser
+            visitedUser,
+            customer
         }
 
         return data;
