@@ -1185,7 +1185,6 @@ model Payment {
   flag_credit_card                  String?
   installment                       Int?
   installment_amount                Float?
-  total_payment_juros               Float?
   total_payment                     Float?
 
   orders Order[]

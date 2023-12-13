@@ -107,7 +107,7 @@
                     </p>
                   </td>
                   <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; color: rgb(212, 17, 17);" colspan="3">
-                    <%= value_pay_juros ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay_juros) : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay) %>
+                    <%= Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay) %>
                   </td>
                 </tr>
 

@@ -75,7 +75,6 @@ class UpdateStatusOrderService {
             type_payment: statusDate.order.payment.type_payment,
             installment: statusDate.order.payment.installment,
             value_pay: statusDate.order.payment.total_payment,
-            value_pay_juros: statusDate.order.payment.total_payment_juros,
             envio: statusDate.order.data_delivery,
             frete_pay: statusDate.order.frete,
             frete_cupom_pay: statusDate.order.frete_cupom,

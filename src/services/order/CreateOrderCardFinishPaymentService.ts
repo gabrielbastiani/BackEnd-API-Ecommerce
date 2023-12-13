@@ -82,8 +82,7 @@ class CreateOrderCardFinishPaymentService {
                 flag_credit_card: flag_credit_card,
                 installment: installmentCount,
                 installment_amount: value_pay_finish,
-                total_payment: totalPayJuros ? null : totalPay,
-                total_payment_juros: totalPayJuros
+                total_payment: totalPayJuros ? totalPayJuros : totalPay
             }
         });
 
@@ -247,7 +246,6 @@ class CreateOrderCardFinishPaymentService {
             type_payment: statusDate.order.payment.type_payment,
             installment: statusDate.order.payment.installment,
             value_pay: statusDate.order.payment.total_payment,
-            value_pay_juros: statusDate.order.payment.total_payment_juros,
             envio: statusDate.order.data_delivery,
             frete_pay: statusDate.order.frete,
             frete_cupom_pay: statusDate.order.frete_cupom,

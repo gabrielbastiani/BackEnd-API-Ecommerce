@@ -10,7 +10,7 @@
     <tr>
       <td align="center" valign="top" style="padding: 20px;">
         <p>Olá, <%= name %>!</p>
-        <p>O valor de <%= value_pay_juros ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay_juros) : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay) %> foi estornado na data <%= data_update_status %>.</p>
+        <p>O valor de <%= Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay) %> foi estornado na data <%= data_update_status %>.</p>
         <p>Maiores duvidas, fique tranquilo em entrar em contato conosco respondendo a esse email.</p>
         <h2>PAGAMENTO</h2>
         <hr />
@@ -107,7 +107,7 @@
                     </p>
                   </td>
                   <td style="border-right: 1px solid rgb(187, 187, 187); border-bottom: 1px solid rgb(187, 187, 187); padding: 12px 10px; color: rgb(212, 17, 17);" colspan="3">
-                    <%= value_pay_juros ? Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay_juros) : Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay) %>
+                    <%= Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(value_pay) %>
                   </td>
                 </tr>
 
