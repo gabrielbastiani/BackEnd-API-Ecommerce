@@ -82,7 +82,7 @@ class CreateOrderCardFinishPaymentService {
                 flag_credit_card: flag_credit_card,
                 installment: installmentCount,
                 installment_amount: value_pay_finish,
-                total_payment: totalPay,
+                total_payment: totalPayJuros ? null : totalPay,
                 total_payment_juros: totalPayJuros
             }
         });
