@@ -184,6 +184,7 @@ model Store {
   notificationadmin          NotificationAdmin[]
   notificationcustomer       NotificationCustomer[]
   visiteduser                VisitedUser[]
+  typepayment                TypePayment[]
 
   @@map("stores")
 }
@@ -1196,6 +1197,20 @@ model Payment {
   store_id String?
 
   @@map("payments")
+}
+
+model TypePayment {
+  id              String @id @default(uuid())
+  qtd_type_boleto Int?
+  qtd_type_pix    Int?
+  qtd_type_cartao Int?
+
+  created_at DateTime? @default(now()) @db.Timestamptz(3)
+
+  store    Store?  @relation(fields: [store_id], references: [id])
+  store_id String?
+
+  @@map("typepayments")
 }
 
 model Order {

@@ -215,6 +215,23 @@ class CreateOrderCardFinishPaymentService {
             }
         });
 
+        if(statusDate.status_order === "CONFIRMED") {
+
+            const typePayment = await prismaClient.typePayment.findFirst();
+
+            await prismaClient.typePayment.update({
+                where: {
+                    id: typePayment.id
+                },
+                data: {
+                    qtd_type_cartao: {
+                        increment: 1
+                    }
+                }
+            });
+
+        }
+
         const statusSendEmail = await prismaClient.templateOrderEmail.findFirst({
             where: {
                 status_order: status_order
