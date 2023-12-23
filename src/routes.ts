@@ -158,6 +158,8 @@ import { PageListAllProductController } from './controllers/product/PageListAllP
 import { ListExactProductController } from './controllers/product/ListExactProductController';
 import { DeletePhotoProductController } from './controllers/product/photoProduct/DeletePhotoProductController';
 import { DeleteAllPhotoProductController } from './controllers/product/photoProduct/DeleteAllPhotoProductController';
+import { UpdatePriceProductController } from './controllers/product/UpdatePriceProductController';
+import { UpdatePromotionProductController } from './controllers/product/UpdatePromotionProductController';
 import { DeleteProductController } from './controllers/product/DeleteProductController';
 import { UpdateNameProductController } from './controllers/product/UpdateNameProductController';
 import { ExportProductController } from './controllers/product/ExportProductController';
@@ -705,6 +707,8 @@ router.get('/categoriesInPageCategory', new ListAllCategoriesStorePageController
 router.post('/createProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateProductController().handle);
 router.post('/imageProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new CreatePhotoProductController().handle);
 router.put('/updateAllDateProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDateProductController().handle);
+router.put('/updatePriceProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdatePriceProductController().handle);
+router.put('/updatePromotionProduct', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdatePromotionProductController().handle);
 router.delete('/deletePhoto', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeletePhotoProductController().handle);
 router.delete('/deleteAllPhotos', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteAllPhotoProductController().handle);
 router.put('/updatePhoto', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new UpdatePhotoProductController().handle);
