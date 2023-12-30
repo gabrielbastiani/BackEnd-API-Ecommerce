@@ -115,46 +115,28 @@ class UpdateStatusOrderService {
 
         if (statusDate.status_order === "CONFIRMED" && statusDate.order.payment.type_payment === "Cartão de Crédito") {
 
-            const typePayment = await prismaClient.typePayment.findFirst();
-
-            await prismaClient.typePayment.update({
-                where: {
-                    id: typePayment.id
-                },
+            await prismaClient.typePayment.create({
                 data: {
-                    qtd_type_cartao: {
-                        increment: 1
-                    }
+                    store_id: store.id,
+                    qtd_type_cartao: 1
                 }
             });
 
         } else if (statusDate.status_order === "CONFIRMED" && statusDate.order.payment.type_payment === "Boleto bancário") {
 
-            const typePayment = await prismaClient.typePayment.findFirst();
-
-            await prismaClient.typePayment.update({
-                where: {
-                    id: typePayment.id
-                },
+            await prismaClient.typePayment.create({
                 data: {
-                    qtd_type_boleto: {
-                        increment: 1
-                    }
+                    store_id: store.id,
+                    qtd_type_boleto: 1
                 }
             });
 
         } else if (statusDate.status_order === "CONFIRMED" && statusDate.order.payment.type_payment === "PIX") {
 
-            const typePayment = await prismaClient.typePayment.findFirst();
-
-            await prismaClient.typePayment.update({
-                where: {
-                    id: typePayment.id
-                },
+            await prismaClient.typePayment.create({
                 data: {
-                    qtd_type_pix: {
-                        increment: 1
-                    }
+                    store_id: store.id,
+                    qtd_type_pix: 1
                 }
             });
 

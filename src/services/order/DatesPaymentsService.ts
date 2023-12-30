@@ -61,13 +61,16 @@ class DatesPaymentsService {
             }
         });
 
+        const typespayment = await prismaClient.typePayment.findMany();
+
         const data = {
             orders,
             payments,
             statusOrder,
             product,
             visitedUser,
-            customer
+            customer,
+            typespayment
         }
 
         return data;

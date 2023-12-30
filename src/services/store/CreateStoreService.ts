@@ -72,12 +72,6 @@ class CreateStoreService {
       }
     });
 
-    await prismaClient.typePayment.create({
-      data: {
-        store_id: storeFirst.id
-      }
-    });
-
     return store;
 
   }

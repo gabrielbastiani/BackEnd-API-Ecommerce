@@ -491,7 +491,6 @@ import { PaymentPixController } from './controllers/payment/PaymentPixController
 import { FindPixResultCodesController } from './controllers/payment/FindPixResultCodesController';
 import { FindFirstPaymentController } from './controllers/payment/FindFirstPaymentController';
 import { WebHooksPaymentsController } from './controllers/payment/WebHooksPaymentsController';
-import { CreateTotalStorePaymentController } from './controllers/payment/CreateTotalStorePaymentController';
 
 // -- ORDERS --
 import { CreateOrderCardFinishPaymentController } from './controllers/order/CreateOrderCardFinishPaymentController';
@@ -1053,7 +1052,6 @@ router.get('/findResultsPIXPayment', isAuthenticated, new FindPixResultCodesCont
 router.get('/findFirstPaymentInStoreCustomer', isAuthenticated, new FindFirstPaymentController().handle);
 router.put('/updateStockPayment', isAuthenticated, new StockProductPaymentController().handle);
 router.post('/getHooksPaymentsAssas', new WebHooksPaymentsController().handle);
-router.post('/createTotalPaymentsStore', isAuthenticated, new CreateTotalStorePaymentController().handle);
 
 // -- ORDERS --
 router.post('/createFinishPaymentCardOrder', isAuthenticated, new CreateOrderCardFinishPaymentController().handle);
