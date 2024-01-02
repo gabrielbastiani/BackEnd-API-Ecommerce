@@ -162,9 +162,6 @@ model Store {
   newsletters                Newsletter[]
   contacts                   Contact[]
   productcategories          ProductCategory[]
-  groupfilters               GroupFilter[]
-  filterattributes           FilterAttribute[]
-  filtercategories           FilterCategory[]
   buytogethers               BuyTogether[]
   productsvariations         ProductVariation[]
   valuesattributes           ValueAttribute[]
@@ -432,7 +429,6 @@ model Category {
   imagecategories   ImageCategory[]
   productcategories ProductCategory[]
   menucategories    MenuCategory[]
-  filtercategories  FilterCategory[]
 
   created_at DateTime? @default(now()) @db.Timestamptz(3)
   updated_at DateTime? @updatedAt
@@ -887,104 +883,6 @@ model ImageMenuCategory {
   updated_at DateTime? @updatedAt
 
   @@map("imagemenucategories")
-}
-
-model GroupFilter {
-  id            String            @id @default(uuid())
-  nameGroup     String?           @db.VarChar(385)
-  typeAttribute String?
-  slugCategory  String?           @db.VarChar(400)
-  order         Int?
-  status        StatusGroupFilter @default(Disponivel)
-
-  filtercategories FilterCategory[]
-  filterattributes FilterAttribute[]
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("groupfilters")
-}
-
-enum StatusGroupFilter {
-  Disponivel
-  Indisponivel
-}
-
-model FilterAttribute {
-  id             String                @id @default(uuid())
-  groupFilter    GroupFilter?          @relation(fields: [groupFilter_id], references: [id])
-  groupFilter_id String?
-  value          String?               @db.VarChar(150)
-  order          Int?
-  status         StatusFilterAttribute @default(Disponivel)
-
-  imagefilteratributos ImageFilterAttribute[]
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("filterattributes")
-}
-
-enum StatusFilterAttribute {
-  Disponivel
-  Indisponivel
-}
-
-model ImageFilterAttribute {
-  id                 String          @id @default(uuid())
-  filterAttribute    FilterAttribute @relation(fields: [filterAttribute_id], references: [id])
-  filterAttribute_id String
-  imageAttribute     String
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt
-
-  @@map("imagefilteratributos")
-}
-
-model FilterCategory {
-  id             String               @id @default(uuid())
-  groupFilter    GroupFilter?         @relation(fields: [groupFilter_id], references: [id])
-  groupFilter_id String?
-  category       Category?            @relation(fields: [name], references: [name])
-  name           String?
-  order          Int?
-  status         StatusFilterCategory @default(Disponivel)
-
-  imageFilterCategories ImageFilterCategory[]
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt
-
-  store    Store?  @relation(fields: [store_id], references: [id])
-  store_id String?
-
-  @@map("filtercategories")
-}
-
-enum StatusFilterCategory {
-  Disponivel
-  Indisponivel
-}
-
-model ImageFilterCategory {
-  id                String         @id @default(uuid())
-  filterCategory    FilterCategory @relation(fields: [filterCategory_id], references: [id])
-  filterCategory_id String
-  imageCategory     String
-
-  created_at DateTime? @default(now()) @db.Timestamptz(3)
-  updated_at DateTime? @updatedAt
-
-  @@map("imagefiltercategories")
 }
 
 model Banner {

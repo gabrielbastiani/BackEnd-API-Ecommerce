@@ -359,50 +359,6 @@ import { UpdateAllDataConditionalCuponController } from './controllers/coupon/cu
 import { FindCuponController } from './controllers/coupon/FindCuponController';
 import { StockCupomController } from './controllers/coupon/StockCupomController';
 
-// -- ROUTES GROUP FILTERS --
-import { CreateGroupFilterController } from './controllers/groupFilter/CreateGroupFilterController';
-import { UpdateNameGroupFilterController } from './controllers/groupFilter/UpdateNameGroupFilterController';
-import { UpdateSlugGroupFilterController } from './controllers/groupFilter/UpdateSlugGroupFilterController';
-import { UpdateStatusGroupFilterController } from './controllers/groupFilter/UpdateStatusGroupFilterController';
-import { PageGroupsFiltersController } from './controllers/groupFilter/PageGroupsFiltersController';
-import { FindsNameGroupFilterController } from './controllers/groupFilter/FindsNameGroupFilterController';
-import { FindTypeFilterController } from './controllers/groupFilter/FindTypeFilterController';
-import { DeleteGroupFilterController } from './controllers/groupFilter/DeleteGroupFilterController';
-import { FindSlugGroupFilterController } from './controllers/groupFilter/FindSlugGroupFilterController';
-import { FindFirstGroupsController } from './controllers/groupFilter/FindFirstGroupsController';
-import { FindIDGroupFilterController } from './controllers/groupFilter/FindIDGroupFilterController';
-import { UpdateTypeAttributeGroupController } from './controllers/groupFilter/UpdateTypeAttributeGroupController';
-
-// -- ROUTES FILTER ATTRIBUTES --
-import { CreateFilterAttributeController } from './controllers/groupFilter/filterAttribute/CreateFilterAttributeController';
-import { DeleteAllFilterAttributeController } from './controllers/groupFilter/filterAttribute/DeleteAllFilterAttributeController';
-import { PageFilterAttributeController } from './controllers/groupFilter/filterAttribute/PageFilterAttributeController';
-import { UpdateNameFilterAttributeController } from './controllers/groupFilter/filterAttribute/UpdateNameFilterAttributeController';
-import { UpdateValueFilterAttributeController } from './controllers/groupFilter/filterAttribute/UpdateValueFilterAttributeController';
-import { UpdateOrderFilterAttributeController } from './controllers/groupFilter/filterAttribute/UpdateOrderFilterAttributeController';
-import { UpdateStatusFilterAttributeController } from './controllers/groupFilter/filterAttribute/UpdateStatusFilterAttributeController';
-import { CreateImageFilterAttributeController } from './controllers/groupFilter/filterAttribute/imageFilterAtributo/CreateImageFilterAttributeController';
-import { UpdateImageFilterAttributeController } from './controllers/groupFilter/filterAttribute/imageFilterAtributo/UpdateImageFilterAttributeController';
-import { FindFilterAttributeController } from './controllers/groupFilter/filterAttribute/FindFilterAttributeController';
-import { FindUniqueFilterAttributeController } from './controllers/groupFilter/filterAttribute/FindUniqueFilterAttributeController';
-import { FindManyFilterAttributeNameController } from './controllers/groupFilter/filterAttribute/FindManyFilterAttributeNameController';
-import { DeleteFilterAttributeController } from './controllers/groupFilter/filterAttribute/DeleteFilterAttributeController';
-
-// -- ROUTES FILTER CATEGORY --
-import { CreateFilterCategoryController } from './controllers/groupFilter/filterCategory/CreateFilterCategoryController';
-import { DeleteFilterCategoryController } from './controllers/groupFilter/filterCategory/DeleteFilterCategoryController';
-import { FindManyFilterCategoryNameController } from './controllers/groupFilter/filterCategory/FindManyFilterCategoryNameController';
-import { FindUniqueFilterCategoryController } from './controllers/groupFilter/filterCategory/FindUniqueFilterCategoryController';
-import { PageFilterCategoryController } from './controllers/groupFilter/filterCategory/PageFilterCategoryController';
-import { UpdateNameFilterGroupController } from './controllers/groupFilter/filterCategory/UpdateNameFilterGroupController';
-import { UpdateCategoryNameFilterCategoryController } from './controllers/groupFilter/filterCategory/UpdateCategoryNameFilterCategoryController';
-import { UpdateStatusFilterCategoryController } from './controllers/groupFilter/filterCategory/UpdateStatusFilterCategoryController';
-import { UpdateCategoryOrderFilterController } from './controllers/groupFilter/filterCategory/UpdateCategoryOrderFilterController';
-import { DeleteImageFilterAttributeController } from './controllers/groupFilter/filterAttribute/imageFilterAtributo/DeleteImageFilterAttributeController';
-import { CreateImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/CreateImageFilterCategoryController';
-import { UpdateImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/UpdateImageFilterCategoryController';
-import { DeleteImageFilterCategoryController } from './controllers/groupFilter/filterCategory/imageFilterCategory/DeleteImageFilterCategoryController';
-
 // -- ROUTES BANNERS --
 import { CreateBannerController } from './controllers/banner/CreateBannerController';
 import { UpdateAllDateBannerController } from './controllers/banner/UpdateAllDateBannerController';
@@ -919,50 +875,6 @@ router.get('/findUniqueConditionalCupon', [isAuthenticated, authorizationRules([
 router.put('/updateAllDataConditionalCoupon', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateAllDataConditionalCuponController().handle);
 router.get('/getCouponCart', new FindCuponController().handle);
 router.put('/updateStockCoupon', isAuthenticated, new StockCupomController().handle);
-
-// -- ROUTES GROUP FILTERS --
-router.post('/createGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateGroupFilterController().handle);
-router.put('/updateNameGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameGroupFilterController().handle);
-router.put('/updateTypeAttributeGroup', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateTypeAttributeGroupController().handle);
-router.put('/updateSlugGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateSlugGroupFilterController().handle);
-router.put('/updateStatusGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusGroupFilterController().handle);
-router.get('/pagesGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageGroupsFiltersController().handle);
-router.get('/filterFirstGroupFiltro', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindFirstGroupsController().handle);
-router.delete('/deleteGroupFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteGroupFilterController().handle);
-router.get('/findsNameGroupFilter', new FindsNameGroupFilterController().handle);
-router.get('/findTypeAttributeGroupFilter', new FindTypeFilterController().handle);
-router.get('/findUniqueIDGroup', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindIDGroupFilterController().handle);
-router.get('/listFilterGroup', new FindSlugGroupFilterController().handle);
-
-// -- ROUTES FILTER ATTRIBUTES --
-router.post('/createFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateFilterAttributeController().handle);
-router.delete('/deleteAllFilterAttributeGroup', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteAllFilterAttributeController().handle);
-router.delete('/deleteFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteFilterAttributeController().handle);
-router.get('/pagesFilterAttributes', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageFilterAttributeController().handle);
-router.put('/updateNameFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameFilterAttributeController().handle);
-router.put('/updateValueFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateValueFilterAttributeController().handle);
-router.put('/updateOrderFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateOrderFilterAttributeController().handle);
-router.put('/updateStatusFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusFilterAttributeController().handle);
-router.post('/createImageFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new CreateImageFilterAttributeController().handle);
-router.put('/updateImageFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new UpdateImageFilterAttributeController().handle);
-router.delete('/deleteImageFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteImageFilterAttributeController().handle);
-router.get('/findUniqueFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueFilterAttributeController().handle);
-router.get('/findManyNameFilterAttribute', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindManyFilterAttributeNameController().handle);
-router.get('/allAttributesGroups', new FindFilterAttributeController().handle);
-
-// -- ROUTES FILTER CATEGORY --
-router.post('/createFilterCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new CreateFilterCategoryController().handle);
-router.delete('/deleteFilterCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteFilterCategoryController().handle);
-router.get('/pagesFiltrosCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new PageFilterCategoryController().handle);
-router.get('/findManyFilterName', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindManyFilterCategoryNameController().handle);
-router.get('/findUniqueFilterCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new FindUniqueFilterCategoryController().handle);
-router.put('/updateFilterNameGroupCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateNameFilterGroupController().handle);
-router.put('/updateCategoryNameFilter', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCategoryNameFilterCategoryController().handle);
-router.put('/updateFilterStatusCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateStatusFilterCategoryController().handle);
-router.put('/updateFilterOrderCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new UpdateCategoryOrderFilterController().handle);
-router.post('/createImageFilterCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new CreateImageFilterCategoryController().handle);
-router.put('/updateImageFilterCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new UpdateImageFilterCategoryController().handle);
-router.delete('/deleteImageFilterCategory', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], new DeleteImageFilterCategoryController().handle);
 
 // -- ROUTES BANNER --
 router.post('/createBanner', [isAuthenticated, authorizationRules(["ADMIN", "EMPLOYEE"])], upload.single('file'), new CreateBannerController().handle);
