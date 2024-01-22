@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CustomerPasswordRecoveryService } from "../../../../services/users/customer/passwordRecoveryCustomer/CustomerPasswordRecoveryService";
+import { CustomerPasswordRecoveryService } from "../../../../services/users/customer/PasswordRecoveryCustomer/CustomerPasswordRecoveryService"; 
 
 class CustomerRecoveryPasswordController {
   async handle(req: Request, res: Response) {
